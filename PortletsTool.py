@@ -133,7 +133,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
             container_id = self.getPortletContainerId()
             if getattr(aq_base(context), container_id, None) is not None:
                 return getattr(context, container_id)
-        return self
+        return getToolByName(self, 'portal_cpsportlets')
 
     #######################################################################
 
