@@ -1,0 +1,15 @@
+$Id$
+
+CPSPortlets : Portlets  engine for CPS3.
+
+  - To unify the CPS3 architecture by using CPS Schemas and layouts for the
+    portlets
+
+  - Full integration with CPSSkins
+
+  - Separation of two concepts : portlet content and portlet decoration and
+    style (title bar etc...)
+    CPSSkins will take care of the second one.
+
+  - Cleaning the old portal_boxes and the use of the old boxe containers
+    with the use of acquisition.
