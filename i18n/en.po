@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-11-27 12:34default\n"
+"POT-Creation-Date: 2004-12-08 21:19default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -361,3 +361,6 @@ msgstr "Rotating Image portlet"
 
 msgid "portal_type_RotatingImagePortlet_description"
 msgstr "Randomly displays a collection of images (rotating banners, ads, etc.)"
+
+msgid "cpsportlets_common_custom_cache_params_label"
+msgstr "Custom cache parameters"

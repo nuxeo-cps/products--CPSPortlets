@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-11-27 12:34default\n"
+"POT-Creation-Date: 2004-12-08 21:19default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -357,4 +357,7 @@ msgid "portal_type_RotatingImagePortlet_title"
 msgstr ""
 
 msgid "portal_type_RotatingImagePortlet_description"
+msgstr ""
+
+msgid "cpsportlets_common_custom_cache_params_label"
 msgstr ""

@@ -52,6 +52,8 @@ Bug fixes:
 - added missing cpsportlet_view.pt (closes bug #424)
 - 'Add item portlet': a form action url with an absolute path was stored
   in the RAM cache causing content to be created in the wrong folder.
+- the Custom Portlet now accepts cache parameters (one per line)
+  see doc/cpsportlets-RAMCache-draft.txt.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()

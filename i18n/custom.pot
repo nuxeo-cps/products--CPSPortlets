@@ -292,3 +292,6 @@ msgstr ""
 
 msgid "portal_type_RotatingImagePortlet_description"
 msgstr ""
+
+msgid "cpsportlets_common_custom_cache_params_label"
+msgstr ""

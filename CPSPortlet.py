@@ -142,6 +142,10 @@ class CPSPortlet(CPSDocument):
         if self.isI18n():
             params.append('lang')
 
+        # explicit custom cache parameters
+        if getattr(aq_base(self), 'custom_cache_params', None) is not None:
+            params.extend(self.custom_cache_params)
+
         return params
 
     security.declarePublic('getCacheParams')
