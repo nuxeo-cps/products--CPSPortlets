@@ -1,7 +1,7 @@
 
 PORTLET STYLING
 
-Last-updated: 2004-09-30
+Last-updated: 2004-11-16
 
 Author: Jean-Marc Orliaguet <jmo@ita.chalmers.se>
 
@@ -184,3 +184,29 @@ Applies to forms and to form elements.
   Element background color        background-color
   Element active border color     border-color
   Element active background color background-color
+
+
+STYLING OF BOXES:
+================
+
+The following HTML markup is used to represent boxes:
+
+<div class="box">
+  <div class="title">
+  -- Box Title -----
+  </div>
+  <div class="body">
+  -- Box Body ------
+
+  -- Box Menu ------
+    <ul> (*)
+      <li>item</li>
+      <li class="selected">selected item</li>
+      ...
+    </ul>
+
+  </div>
+</div>
+
+* <ul> may be renamed as <ul class="menu">
+  (Requires some cleaning in CPSDefault nuxeo_css2.css)
