@@ -165,14 +165,14 @@ class CPSPortlet(CPSDocument):
     def resetCacheParams(self, ptype_id=None):
         """Reset cache parameters
         """
+        params = []
         cache_params_dict = self.getCPSPortletCacheParams()
         if cache_params_dict.has_key(ptype_id):
             params = cache_params_dict[ptype_id]
             self._setCacheParams(params)
-            self._setCacheTimeout(params)
 
-        custom_params = self.getCustomCacheParams()
-        self._setCacheTimeout(custom_params)
+        params.extend(self.getCustomCacheParams())
+        self._setCacheTimeout(params)
 
     security.declarePrivate('_setCacheParams')
     def _setCacheParams(self, cache_params=[]):
