@@ -10,18 +10,18 @@ RAM Cache
 The cache implementation in CPSPortlets is the same as in CPSSkins
 (see CPSSkins/RAMCache.py) but the caching algorithm is different (see below)
 
-Cache entries are also stored in a dictionary: {(index, ): value} 
+Cache entries are also stored in a dictionary: {(index, ): value}
 where '(index, )' is a tuple that represents the cached object.
 
 The tuple consist of: (object_path, (..., ..., ) ) where 'object_path' is
-the physical path of the cached object and (..., ..., ) is a collection 
+the physical path of the cached object and (..., ..., ) is a collection
 of values that uniquely describes the object's context (the url, the current
 language, ...).
 
 
 Cache entries can be:
 
-- put in the cache. 
+- put in the cache.
   see: setEntry(index, data)
 
 - retrieved from the cache.
@@ -32,7 +32,7 @@ Cache entries can be:
 
 The entire cache can be:
 
-- invalidated. 
+- invalidated.
   see: invalidate()
 
 - queried for information
@@ -42,7 +42,7 @@ The entire cache can be:
 Caching algorithm
 =================
 
-A portlet can be global or local and while the content displayed may be the 
+A portlet can be global or local and while the content displayed may be the
 same the presentation logic is different:
 
 - Global portlets are universal inside the portal, they take part in the
@@ -67,7 +67,7 @@ the cache. The cache entries for a given object can also be invalidated
 manually by calling the expireCache() method on the cached object.
 
 This caching mechanism works well with objects that are displayed often such as
-the global UI elements of a portal (images, breadcrumbs, menus, global boxes, 
+the global UI elements of a portal (images, breadcrumbs, menus, global boxes,
 global portlets...). But the mechanism is not efficient when the elements of
 the portal are seldom displayed -- such as the local portlets..
 
@@ -87,7 +87,7 @@ i.e. when content has been created, deleted, published, etc.
 Cache index
 -----------
 The cache index is a mininal collection of parameter values that represent
-a portlet in a unique way. 
+a portlet in a unique way.
 
 The cache index may include:
 - the current language name
@@ -121,7 +121,7 @@ For example:
 
 - folder_url
   description: the url of the current folder
-  example: '/cps/workspaces/members' ) 
+  example: '/cps/workspaces/members' )
   used in: breadcrumbs, folder factories, ...
 
 - user
@@ -131,10 +131,59 @@ For example:
 
 ...
 
-
 Cache invalidation
 ------------------
 
+#
+# Julien Anguenot (16/09)
+# XXX not finished. Need to get started with the implementation to see if it
+# works as expected
+#
+
+:: Principal ::
+
+The cache invalidation has to be lazy. It means that when a portlet has to
+invalided its cache, we will set a flag on the portlet (Like the datetime)
+just wait for the next time he will be rendered to set the destroy the cache
+and to set the new one.
+
+:: Actors ::
+
+The portlet is able to cope with its own cache.
+The portlet tool is a subscriber of the central event service and will check
+for interested events. Then after, it will lookup for all the portlets
+interested about this event and flag the portlet.
+
+:: API on the tool ::
+
+ - notify_event(self, event_type, object, infos)
+   """ Standard event hook
+   """
+
+ - listPortletsInterestedInEvent(self, event_id, context=None)
+   """ return all the portlets interested about a particular event
+   """
+
+:: API on the portlet ::
+
+ - isInterestedInEvent(self, event_id):
+   """Is the portlet interested in a particular event
+
+   The portlet will have to store in a certain way the list of events
+   in which he's interested about
+   """
+
+ - expireCache(self)
+   """...
+   Already in here.
+   Will be call from sendEvent() if the event_id is related to cache invalidation
+   """
+
+ - sendEvent(self, event_id)
+   """React on a given event
+
+   It's designed to be used primarly for cache invalidation
+   but it's intended to be generic enough to do other stuffs than that.
+   """
+
 XXX
-
-
