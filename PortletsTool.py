@@ -126,12 +126,13 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security.declarePublic('getPortletContainerId')
     def getPortletContainer(self, context=None):
-        """Returns the portlet container wiithin the given context if it
-        exists. Otherweise return the tool
+        """Returns the portlet container within the given context if it
+        exists. Otherwise return the tool
         """
         if context is not None:
             container_id = self.getPortletContainerId()
-            return getattr(context, container_id, self)
+            if getattr(aq_base(context), container_id, None) is not None:
+                return getattr(context, container_id, self)
         return self
 
     #######################################################################
@@ -167,10 +168,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
             if not elem:
                 continue
             obj = getattr(obj, elem)
-            for portlet in self._getFolderPortlets(folder=obj, slot=slot):
-                if portlet in allportlets:
-                    continue
-                allportlets.append(portlet)
+            allportlets.extend(self._getFolderPortlets(folder=obj, slot=slot))
 
         # security check
         for portlet in allportlets:
