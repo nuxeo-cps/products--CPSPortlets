@@ -40,6 +40,13 @@ breadcrumbs_portlet_type = {
           'permission': ('View',),
           'category': 'object',
           'visible': False,},
+         {'id': 'metadata',
+          'name': 'action_metadata',
+          'action': 'string:${object_url}/cpsportlet_metadata',
+          'condition': '',
+          'permission': ('Manage Portlets',),
+          'category': 'object',
+          'visible': 0,},
     )
 }
 

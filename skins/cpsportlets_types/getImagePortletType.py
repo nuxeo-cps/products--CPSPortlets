@@ -34,6 +34,13 @@ image_portlet_type = {
           'permission': ('Modify portal content',),
           'category': 'object',
           'visible': True,},
+         {'id': 'metadata',
+          'name': 'action_metadata',
+          'action': 'string:${object_url}/cpsportlet_metadata',
+          'condition': '',
+          'permission': ('Manage Portlets',),
+          'category': 'object',
+          'visible': 0,},
     )
 }
 
