@@ -1,4 +1,4 @@
-<tal:block define="res python:here.editCPSDocument(REQUEST=request);
+<tal:block define="res python:here.editCPSPortlet(REQUEST=request);
                    rendered_main python: res[0];
                    portal_status_message python: res[1];
                    edition python:1;
