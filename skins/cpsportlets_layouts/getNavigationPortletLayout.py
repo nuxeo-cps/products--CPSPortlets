@@ -63,7 +63,7 @@ navigation_portlet_layout = {
                 'hidden_if_expr': '',
                 'css_class': '',
                 'widget_mode_expr': '',
-                'vocabulary': 'cpsportlet_navigation_display_voc',
+                'vocabulary': 'cpsportlets_navigation_display_voc',
                 'translated': True,
             },
         },

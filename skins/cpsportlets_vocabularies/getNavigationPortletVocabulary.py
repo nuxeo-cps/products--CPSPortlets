@@ -1,4 +1,4 @@
-cpsportlet_navigation_display_voc_vocabulary = {
+cpsportlets_navigation_display_voc_vocabulary = {
     'data': {
         'tuples': (
             ('vertical_breadcrumbs_menu', 'Vertical breadcrumbs menu',
@@ -9,6 +9,6 @@ cpsportlet_navigation_display_voc_vocabulary = {
     },
 }
 
-vocabularies = {'cpsportlet_navigation_display_voc': cpsportlet_navigation_display_voc_vocabulary,
+vocabularies = {'cpsportlets_navigation_display_voc': cpsportlets_navigation_display_voc_vocabulary,
                }
 return vocabularies
