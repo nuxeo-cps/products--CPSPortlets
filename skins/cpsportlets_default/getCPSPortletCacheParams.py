@@ -3,7 +3,7 @@ cache_params = {
     'Dummy Portlet': [],
     'Search Portlet': [],
     'Internal Links Portlet': ['folder'],
-    'Add Item Portlet': ['folder'],
+    'Add Item Portlet': ['portal type', 'wf_create'],
     'Breadcrumbs Portlet': ['folder', 'user'],
 }
 

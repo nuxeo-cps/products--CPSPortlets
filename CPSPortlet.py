@@ -28,6 +28,7 @@ This is a CPSDocument child base class for portlets
 """
 
 import time
+import md5
 
 from types import ListType, IntType
 
@@ -141,7 +142,6 @@ class CPSPortlet(CPSDocument):
                 self.javascript = javascript
 
     security.declareProtected(ManagePortlets, 'expireCache')
-    security.declareProtected(ManagePortlets, 'expireCache')
     def expireCache(self):
        """Expires the cache for this Portlet.
           In a ZEO environment, the information will propagate
@@ -160,7 +160,7 @@ class CPSPortlet(CPSDocument):
 
         context = REQUEST.get('context_obj', self)
         folder_url = context.absolute_url(1)
-        # XXX This should be moved elsewhere
+        # XXX This should be moved elsewhere !!!
         param_dict = {
             'url': REQUEST.get('cpsskins_url'),
             'folder': folder_url,
@@ -171,10 +171,16 @@ class CPSPortlet(CPSDocument):
         index = self.getCustomCacheIndex()
         # cache parameters
         for param in self.getCacheParams():
-            if not param_dict.has_key(param):
-                continue
+            if param == 'portal type':
+                index += (param + self.getTypeInfo().getId(), )
+            if param == 'wf_create':
+                wf_tool = getToolByName(self, 'portal_workflow')
+                types_allowed_by_wf = wf_tool.getAllowedContentTypes(context)
+                index += (param + md5.new(str(types_allowed_by_wf)).hexdigest(), )
             # we use the dict key as a prefix to make the 
             # index entries unique.
+            if not param_dict.has_key(param):
+                continue
             index += (param + str(param_dict[param]), )
         return index
 
@@ -189,7 +195,7 @@ class CPSPortlet(CPSDocument):
         ptltool = getToolByName(self, 'portal_cpsportlets')
         cache = ptltool.getPortletCache()
         last_cleanup = cache.getLastCleanup(id=portlet_path)
-        cleanup_date = self.cache_cleanup_date
+        cleanup_date = self.getCacheCleanupDate()
 
         # ZEO
         if last_cleanup and cleanup_date > last_cleanup:
@@ -256,6 +262,12 @@ class CPSPortlet(CPSDocument):
         """
         container = aq_parent(aq_inner(self))
         return aq_parent(aq_inner(container))
+
+    security.declarePublic('getCacheCleanupDate')
+    def getCacheCleanupDate(self):
+        """Return the last cleanup date for this portlet"""
+
+        return self.cache_cleanup_date
 
     #################################################################
 
