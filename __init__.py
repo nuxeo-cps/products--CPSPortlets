@@ -28,6 +28,7 @@ from Products.CMFCore.CMFCorePermissions import AddPortalContent
 import PortletsTool
 import CPSPortlet
 import PortletsContainer
+import PortletWidgets
 
 contentClasses = (
     CPSPortlet.CPSPortlet,
