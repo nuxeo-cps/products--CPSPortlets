@@ -57,7 +57,7 @@ content_portlet_layout = {
                 'hidden_layout_modes': ('view',),
                 'hidden_readonly_layout_modes': (),
                 'hidden_empty': False,
-                'hidden_if_expr': '',
+                'hidden_if_expr': "python: context.search_type in ['last_modified', 'upcoming']",
                 'css_class': '',
                 'widget_mode_expr': '',
                 'vocabulary': 'cpsportlets_content_sort_on_voc',

@@ -34,17 +34,19 @@ res = doc.renderEditDetailed(request=request, proxy=doc,
 
 if not res[1]:
     psm = 'psm_content_error'
+    error = 1
 else:
     # XXX
     # Has to be handled in here since the workflow doesn't take care
     # of that yet.
+    error = 0
     if getattr(context, 'portal_eventservice', None) is not None:
         context.portal_eventservice.notifyEvent('workflow_modify',
                                                 context,
                                                 {})
 if context_is_portlet:
     context.expireCache()
-    return res[0], psm
+    return res[0], psm, error
 
 if REQUEST is not None:
     redirect_url = REQUEST.get('HTTP_REFERER')
