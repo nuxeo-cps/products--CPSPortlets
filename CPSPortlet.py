@@ -65,14 +65,12 @@ class CPSPortlet(CPSDocument):
     def getRelativeUrl(self):
         """Return the url of the portlet relative to the portal.
         """
-
         utool = getToolByName(self, 'portal_url')
         return utool.getRelativeUrl(self)
 
     def getPath(self):
         """Return the physical path of the portlet.
         """
-
         return self.getPhysicalPath()
 
 
@@ -87,7 +85,7 @@ class CPSPortlet(CPSDocument):
         """Set the slot value
         """
         if slot_name:
-            self.edit({'slot':slot_name})
+            self.edit(slot=slot_name)
             return 0
         return 1
 
@@ -103,7 +101,7 @@ class CPSPortlet(CPSDocument):
 
         0 is the default value
         """
-        self.edit({'order':order})
+        self.edit(order=order)
 
 InitializeClass(CPSPortlet)
 
