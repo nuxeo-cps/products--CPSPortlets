@@ -133,6 +133,24 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         self.assert_(cache_index == expected_index)
         self.assert_(randint < 5)
 
+    def test_getCustomCacheParams(self):
+        ptltool = self.portal.portal_cpsportlets
+        portlet_id = ptltool.createPortlet(ptype_id='Custom Portlet')
+        portlet = ptltool[portlet_id]
+        custom_params = ['dummy1', 'dummy2']
+        portlet.edit(custom_cache_params=custom_params)
+        params = portlet.getCustomCacheParams()
+        self.assert_(params == custom_params)
+
+    def test_setCustomCacheParams(self):
+        ptltool = self.portal.portal_cpsportlets
+        portlet_id = ptltool.createPortlet(ptype_id='Custom Portlet')
+        portlet = ptltool[portlet_id]
+        custom_params = ['dummy1', 'dummy2']
+        portlet.setCustomCacheParams(params=custom_params)
+        self.assert_(portlet.custom_cache_params == custom_params)
+
+
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestRAMCache))
