@@ -54,7 +54,7 @@
       "<tal:block replace="here/title_or_id" />"
 
       <tal:block define="folder here/getLocalFolder|nothing"
-                 condition="folder">
+                 condition="nocall:folder">
         <tal:block i18n:translate="cpsportlets_located_in_the_folder">located in the folder</tal:block> 
         "<tal:block replace="folder/title_or_id" />"
       </tal:block>
