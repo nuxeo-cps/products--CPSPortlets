@@ -38,9 +38,10 @@ else:
     # XXX
     # Has to be handled in here since the workflow doesn't take care
     # of that yet.
-    context.portal_eventservice.notifyEvent('workflow_modify',
-                                            context,
-                                            {})
+    if getattr(context, 'portal_eventservice', None) is not None:
+        context.portal_eventservice.notifyEvent('workflow_modify',
+                                                context,
+                                                {})
 if context_is_portlet:
     return res[0], psm
 

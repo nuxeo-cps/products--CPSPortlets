@@ -3,7 +3,7 @@
                    portal_status_message python: res[1];
   ">
 <metal:block define-macro="edit_form">
-<metal:block use-macro="here/content_lib/macros/master">
+<metal:block use-macro="here/main_template/macros/master">
   <metal:block fill-slot="css_slot">
     <metal:block define-macro="widgets_javascript">
 
