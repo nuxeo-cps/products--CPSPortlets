@@ -1,8 +1,0 @@
-<tal:block define="ds options/datastructure;
-                   mode options/mode;
-                   image options/widget_infos/image/widget;
-                   link ds/link">
-  <a href="" alt="" tal:omit-tag="not:link"
-   tal:attributes="href link"
-   tal:content="structure python: image.render(mode, ds)" />
-</tal:block>

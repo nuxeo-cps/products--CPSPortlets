@@ -16,7 +16,7 @@ image_portlet_type = {
     'cps_is_portalbox': False,
     'schemas': ('portlet_common', 'image_portlet', 'common', 'metadata'),
     'layouts': ('portlet_common', 'image_portlet'),
-    'flexible_layouts': (),
+    'flexible_layouts': ('image_portlet:image_portlet',),
     'storage_methods': (),
     'cps_is_portlet': True,
     'actions': (
