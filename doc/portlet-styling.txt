@@ -322,3 +322,20 @@ Use the following HTML markup for second-level menu items (*) ::
 
 (*) some additional javascript code is required for IE.
     cf. http://www.alistapart.com/articles/dropdowns/
+
+
+STYLING OF TEXT
+===============
+
+Headers:
+--------
+
+Use the standard h1, h2, h3, h4, h5, h6 tags for the headers.
+
+NB: h4, h5, and h6 are all stylized in the same way by CPSSkins
+
+If you need to apply header styles to other HTML elements than h1, h2 ...
+use instead the following markup: ::
+
+  <div class="h1">Header 1</div>
+
