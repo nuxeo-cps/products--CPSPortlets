@@ -381,13 +381,14 @@ class PortletsTool(UniqueObject, PortletsContainer):
         return orphans
 
     security.declareProtected(ManagePortlets, 'invalidateCacheEntriesById')
-    def invalidateCacheEntriesById(self, obid=None, REQUEST=None):
+    def invalidateCacheEntriesById(self, obid=None):
         """Removes local cache entries that match a given portlet id.
            This method can be used to clean orphaned cache entries.
 
-           In a ZEO environment only the local RAM cache entries will be erased.
-           If the portlet still exists then 'portlet.expireCache()' should be used
-           instead in order to propagate the information between ZEO instances.
+           In a ZEO environment only the local RAM cache entries will be 
+           erased. If the portlet still exists then 'portlet.expireCache()' 
+           should be used instead in order to propagate the information 
+           between all ZEO instances.
         """
 
         cache = self.getPortletCache()
@@ -395,9 +396,27 @@ class PortletsTool(UniqueObject, PortletsContainer):
             return
         cache.delEntries(obid)
 
+    security.declareProtected(ManagePortlets, 'invalidateCacheEntriesByUser')
+    def invalidateCacheEntriesByUser(self, user=None):
+        """Removes local cache entries that match a given user.
+
+           In a ZEO environment only the local RAM cache entries will be 
+           erased. If the portlet still exists then 'portlet.expireCache()' 
+           should be used instead in order to propagate the information 
+           between all ZEO instances.
+        """
+
+        if user is None:
+            return
+
+        for entry in self.findCacheEntriesByUser(user):
+            # 'entry' is the portlet's path
+            portlet_id = entry[-1]
+            self.invalidateCacheEntriesById(portlet_id)
+
     security.declarePublic('findCacheEntriesByUser')
     def findCacheEntriesByUser(self, user=None):
-        """Return the cache entry ids of a user.
+        """Return the cache entry ids associated to a user.
         """
 
         if user is None:

@@ -12,8 +12,10 @@ PORTLET_CONTAINER_ID = '.cps_portlets'
 
 class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
     def afterSetUp(self):
-        self.login('root')
+        self.login_id = 'root'
+        self.login(self.login_id)
         self.portal.REQUEST.SESSION = {}
+        self.portal.REQUEST['AUTHENTICATED_USER'] = self.login_id
         self.ptltool = self.portal.portal_cpsportlets
 
     def beforeTearDown(self):
@@ -113,6 +115,69 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         # XXX to be implemented
         self.assertEqual(nportlet.sendEvent('fake_event'), 0)
         self.assertEqual(nportlet.sendEvent('fake_eventXXX'), 1)
+
+    def test_FindCacheEntriesByUser(self):
+        user = self.login_id
+        ptltool = self.ptltool
+        context = self.portal.workspaces
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                           slot='slot1',
+                                           context=context)
+        portlets_container = ptltool.getPortletContainer(context=context)
+        portlet = portlets_container.getPortletById(portlet_id)
+        self.assert_(ptltool.findCacheEntriesByUser(user) == [])
+        # clean the cache
+        cache = ptltool.getPortletCache()
+        cache.invalidate()
+        # render the portlet
+        portlet.render_cache()
+        entries = ptltool.findCacheEntriesByUser(user)
+        self.assert_(entries == [(portlet.getPhysicalPath(),)])
+
+    def test_invalidateCacheEntriesByUser(self):
+        user = self.login_id
+        ptltool = self.ptltool
+        context = self.portal.workspaces
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                           slot='slot1',
+                                           context=context)
+        portlets_container = ptltool.getPortletContainer(context=context)
+        portlet = portlets_container.getPortletById(portlet_id)
+        portlet_path = portlet.getPhysicalPath()
+        # clean the cache
+        cache = ptltool.getPortletCache()
+        cache.invalidate()
+        self.assert_(ptltool.findCacheEntriesByUser(user) == [])
+        # render the portlet
+        portlet.render_cache()
+        entries = ptltool.findCacheEntriesByUser(user)
+        self.assert_(entries == [(portlet_path,)])
+        # invalidate the entry for another user
+        ptltool.invalidateCacheEntriesByUser('dummy user')
+        self.assert_(ptltool.findCacheEntriesByUser(user) != [])
+        # invalidate the entry for this user
+        ptltool.invalidateCacheEntriesByUser(user)
+        self.assert_(ptltool.findCacheEntriesByUser(user) == [])
+
+    def test_invalidateCacheEntriesById(self):
+        user = self.login_id
+        ptltool = self.ptltool
+        context = self.portal.workspaces
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                           slot='slot1',
+                                           context=context)
+        portlets_container = ptltool.getPortletContainer(context=context)
+        portlet = portlets_container.getPortletById(portlet_id)
+        portlet_path = portlet.getPhysicalPath()
+        # clean the cache
+        cache = ptltool.getPortletCache()
+        cache.invalidate()
+        # render the portlet
+        portlet.render_cache()
+        self.assert_(len(cache.getEntries()) > 0)
+        # invalidate the entry
+        ptltool.invalidateCacheEntriesById(portlet_path)
+        self.assert_(len(cache.getEntries()) == 0)
 
 def test_suite():
     suite = unittest.TestSuite()
