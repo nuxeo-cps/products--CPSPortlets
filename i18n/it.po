@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-02-26 00:21default\n"
+"POT-Creation-Date: 2005-02-26 17:19default\n"
 "PO-Revision-Date: 2005-01-25 17:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -449,6 +449,10 @@ msgstr "Collegamenti interni"
 #, fuzzy
 msgid "cpsportlets_internallinks_show_icons_label"
 msgstr "Collegamenti interni"
+
+#, fuzzy
+msgid "cpsportlets_nav_context_rpath_label"
+msgstr "Visualizza le opzioni contestuali di ricerca"
 
 #~ msgid "button_close"
 #~ msgstr "Chiudi"

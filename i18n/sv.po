@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-02-26 00:21default\n"
+"POT-Creation-Date: 2005-02-26 17:19default\n"
 "PO-Revision-Date: 2005-02-26 01:53+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -37,6 +37,7 @@ msgid "_Edit_"
 msgstr ""
 
 #.   <option disabled="disabled" selected="selected" value="">
+#.         Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
 msgstr "Lägg till ny artikel..."
@@ -372,7 +373,8 @@ msgid "portal_type_RotatingImagePortlet_title"
 msgstr "Växlande bilder"
 
 msgid "portal_type_RotatingImagePortlet_description"
-msgstr "Visar slumpmässigt en samling bilder (roterande banners, annonser etc.)"
+msgstr ""
+"Visar slumpmässigt en samling bilder (roterande banners, annonser etc.)"
 
 msgid "cpsportlets_common_custom_cache_params_label"
 msgstr "Lokala cacheparametrar"
@@ -422,3 +424,6 @@ msgstr "Maximalt antal ord i titeln"
 msgid "cpsportlets_internallinks_show_icons_label"
 msgstr "Visa ikoner"
 
+#, fuzzy
+msgid "cpsportlets_nav_context_rpath_label"
+msgstr "Visa dokument i samma mapp som den Portlet befinner sig i."

@@ -1,4 +1,12 @@
-##parameters=context_obj=None, show_docs=None, max_title_words=0
+##parameters=context_obj=None, show_docs=None, max_title_words=0, context_rpath='', context_is_portlet=0, **kw
+
+base_url = context.getBaseUrl()
+
+if not not context_is_portlet:
+    context_obj = context.getLocalFolder()
+
+if context_rpath:
+    context_obj = context.restrictedTraverse(base_url + context_rpath, default=None)
 
 if context_obj is None:
     return []

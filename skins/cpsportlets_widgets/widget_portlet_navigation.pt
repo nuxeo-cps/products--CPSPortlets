@@ -12,7 +12,7 @@
     <tal:block
      define="rel_depth ds/rel_depth;
              trailItems python: context.getBreadcrumbsItems(url=context_url);
-             folderItems python: context.getFolderItems(folder=context, show_docs=show_docs);
+             folderItems python: context.getFolderItems(context_obj=context, show_docs=show_docs);
              trailItems python: trailItems[int(rel_depth):];
              depth python: len(trailItems)">
       <h1 style="margin:0" tal:condition="python: depth >= 1">
@@ -54,10 +54,7 @@
 
   <tal:block condition="python: display == 'folder_contents'">
     <tal:block
-     define="
-       context_is_portlet ds/context_is_portlet;
-       folder python: context_is_portlet and here.getLocalFolder() or context;
-       folderItems python: context.getFolderItems(folder=folder, show_docs=show_docs)"
+     define="folderItems python: here.getFolderItems(context_obj=context, **dict(ds))"
      condition="folderItems">
       <ul class="cpsskinsMenu">
         <li tal:repeat="item folderItems">
@@ -154,7 +151,7 @@
             <tal:block content="item/title" />
           </a>
           <tal:block condition="python: item['open']"
-           define="subfolderItems python: context.getFolderItems(folder=context, show_docs=int(show_docs))"
+           define="subfolderItems python: context.getFolderItems(context_obj=context, show_docs=int(show_docs))"
      repeat="subitem subfolderItems">
           <a style="margin-left: 1em"
              tal:attributes="href subitem/url;
