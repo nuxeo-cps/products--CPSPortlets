@@ -1,0 +1,406 @@
+# ##########################################################
+# ################# DON'T EDIT THIS FILE! ##################
+# ##########################################################
+# Gettext Message File for default.
+# Your Name <your@email>, Year
+msgid ""
+msgstr ""
+"Project-Id-Version: default\n"
+"POT-Creation-Date: 2005-01-15 15:41default\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Your Name <your@email>\n"
+"Language-Team: Name <email>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-code: LL\n"
+"Language-name: Language\n"
+"Preferred-encodings: utf-8 latin1\n"
+"Domain: default\n"
+
+#.   <input type="submit" value=" Add " />
+#: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
+msgid " Add "
+msgstr ""
+
+#.   <strong>ID:</strong>
+#: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
+msgid "ID:"
+msgstr ""
+
+#.   <a content="item/title" attributes="href item_url">Item title</a>
+#: from ../skins/cpsportlets_widgets/widget_portlet_rss.pt
+msgid "Item title"
+msgstr ""
+
+#.   <block>Edit</block>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "_Edit_"
+msgstr ""
+
+#.   <input onclick="window.opener.location.reload();window.close()" type="submit" class="standalone" value="button_close" />
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "button_close"
+msgstr ""
+
+#.   <option disabled="disabled" selected="selected" value="">
+#.         Add new item ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
+msgid "cpsportlet_add_new_item"
+msgstr ""
+
+#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+msgid "cpsportlets_advanced_search"
+msgstr ""
+
+#.   <option disabled="disabled" selected="selected" value="">Change language</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_change_language"
+msgstr ""
+
+#.   <option disabled="disabled" selected="selected" value="">Delete translation ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_delete_translation"
+msgstr ""
+
+#.   <span>To manage portlets please install CPSSkins.</span>
+#: from ../skins/cpsportlets_default/portlet_manage_form.pt
+msgid "cpsportlets_install_cpsskins"
+msgstr ""
+
+#.   <block>located in the folder</block>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "cpsportlets_located_in_the_folder"
+msgstr ""
+
+#.   <h1>Portlet management</h1>
+#: from ../skins/cpsportlets_default/portlet_manage_form.pt
+msgid "cpsportlets_portlet_management_heading"
+msgstr ""
+
+#.   <option disabled="disabled" selected="selected" value="">Switch to ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_switch_language"
+msgstr ""
+
+#.   <option disabled="disabled" selected="selected" value="">Translate into ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_translate_into"
+msgstr ""
+
+msgid "label_cpsportlets_provider"
+msgstr ""
+
+msgid "label_cpsportlets_title"
+msgstr ""
+
+msgid "label_cpsportlets_i18n"
+msgstr ""
+
+msgid "portal_type_DummyPortlet_title"
+msgstr ""
+
+msgid "portal_type_CustomPortlet_title"
+msgstr ""
+
+msgid "portal_type_TextPortlet_title"
+msgstr ""
+
+msgid "portal_type_SearchPortlet_title"
+msgstr ""
+
+msgid "portal_type_InternalLinksPortlet_title"
+msgstr ""
+
+msgid "portal_type_AddItemPortlet_title"
+msgstr ""
+
+msgid "portal_type_BreadcrumbsPortlet_title"
+msgstr ""
+
+msgid "portal_type_ActionsPortlet_title"
+msgstr ""
+
+msgid "portal_type_ContentPortlet_title"
+msgstr ""
+
+msgid "portal_type_LanguagePortlet_title"
+msgstr ""
+
+msgid "portal_type_NavigationPortlet_title"
+msgstr ""
+
+msgid "portal_type_DocumentPortlet_title"
+msgstr ""
+
+msgid "portal_type_RSSPortlet_title"
+msgstr ""
+
+msgid "action_portlets"
+msgstr ""
+
+msgid "action_canvas"
+msgstr ""
+
+msgid "cpsportlets_internallinks_links_label"
+msgstr ""
+
+msgid "cpsportlets_portlet_created_psm"
+msgstr ""
+
+msgid "cpsportlets_content_translated_psm"
+msgstr ""
+
+msgid "cpsportlets_bcs_display_dropdown_list_label"
+msgstr ""
+
+msgid "cpsportlets_bcs_display_horizontal_trail_label"
+msgstr ""
+
+msgid "cpsportlets_bcs_display_site_root_label"
+msgstr ""
+
+msgid "cpsportlets_advanced_search_link_label"
+msgstr ""
+
+msgid "cpsportlets_contextual_search_choice_label"
+msgstr ""
+
+msgid "cpsportlets_action_categories_label"
+msgstr ""
+
+msgid "cpsportlets_content_search_related_label"
+msgstr ""
+
+msgid "cpsportlets_content_search_type_label"
+msgstr ""
+
+msgid "cpsportlets_content_search_pending_label"
+msgstr ""
+
+msgid "cpsportlets_content_search_last_modified_label"
+msgstr ""
+
+msgid "cpsportlets_content_search_last_published_label"
+msgstr ""
+
+msgid "cpsportlets_content_search_recent_label"
+msgstr ""
+
+msgid "cpsportlets_content_search_upcoming_label"
+msgstr ""
+
+msgid "cpsportlets_content_search_today_label"
+msgstr ""
+
+msgid "cpsportlets_content_sort_on_label"
+msgstr ""
+
+msgid "cpsportlets_content_sort_on_Date_label"
+msgstr ""
+
+msgid "cpsportlets_content_sort_on_Title_label"
+msgstr ""
+
+msgid "cpsportlets_content_sort_on_review_state_label"
+msgstr ""
+
+msgid "cpsportlets_content_sort_on_Creator_label"
+msgstr ""
+
+msgid "cpsportlets_content_sort_reverse_label"
+msgstr ""
+
+msgid "cpsportlets_common_max_items_label"
+msgstr ""
+
+msgid "cpsportlets_content_folder_path_label"
+msgstr ""
+
+msgid "cpsportlets_content_searchable_types_label"
+msgstr ""
+
+msgid "cpsportlets_language_action_label"
+msgstr ""
+
+msgid "cpsportlets_language_action_translate_label"
+msgstr ""
+
+msgid "cpsportlets_language_action_delete_translation_label"
+msgstr ""
+
+msgid "cpsportlets_language_action_change_label"
+msgstr ""
+
+msgid "cpsportlets_language_action_switch_language_label"
+msgstr ""
+
+msgid "portal_type_ImagePortlet_title"
+msgstr ""
+
+msgid "cpsportlets_nav_display_vertical_breadcrumbs_menu_label"
+msgstr ""
+
+msgid "cpsportlets_nav_display_folder_contents_menu_label"
+msgstr ""
+
+msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
+msgstr ""
+
+msgid "cpsportlets_navigation_rel_depth_label"
+msgstr ""
+
+msgid "cpsportlets_navigation_show_docs_label"
+msgstr ""
+
+msgid "cpsportlets_navigation_show_icons_label"
+msgstr ""
+
+msgid "cpsportlets_custom_render_method_label"
+msgstr ""
+
+msgid "cpsportlets_translation_deleted_psm"
+msgstr ""
+
+msgid "button_portlet_management"
+msgstr ""
+
+msgid "cpsportlets_display_hidden_folders_label"
+msgstr ""
+
+msgid "cpsportlets_common_link_string_label"
+msgstr ""
+
+msgid "cpsportlets_common_display_description_label"
+msgstr ""
+
+msgid "cpsportlets_rss_channel_label"
+msgstr ""
+
+msgid "cpsportlets_rss_update_frequency_label"
+msgstr ""
+
+msgid "cpsportlets_rss_max_words_label"
+msgstr ""
+
+msgid "cpsportlets_content_max_words_label"
+msgstr ""
+
+msgid "cpsportlets_image_image_label"
+msgstr ""
+
+msgid "cpsportlets_image_link_label"
+msgstr ""
+
+msgid "portal_type_ContentPortlet_description"
+msgstr ""
+
+msgid "portal_type_NavigationPortlet_description"
+msgstr ""
+
+msgid "portal_type_AddItemPortlet_description"
+msgstr ""
+
+msgid "portal_type_InternalLinksPortlet_description"
+msgstr ""
+
+msgid "portal_type_TextPortlet_description"
+msgstr ""
+
+msgid "portal_type_ImagePortlet_description"
+msgstr ""
+
+msgid "portal_type_DummyPortlet_description"
+msgstr ""
+
+msgid "portal_type_SearchPortlet_description"
+msgstr ""
+
+msgid "portal_type_RSSPortlet_description"
+msgstr ""
+
+msgid "portal_type_DocumentPortlet_description"
+msgstr ""
+
+msgid "portal_type_BreadcrumbsPortlet_description"
+msgstr ""
+
+msgid "portal_type_ActionsPortlet_description"
+msgstr ""
+
+msgid "portal_type_LanguagePortlet_description"
+msgstr ""
+
+msgid "cpsportlets_common_first_item_label"
+msgstr ""
+
+msgid "cpsportlets_nav_display_navtree_menu_label"
+msgstr ""
+
+msgid "cpsportlets_navigation_contextual_label"
+msgstr ""
+
+msgid "cpsportlets_display_mode_label"
+msgstr ""
+
+msgid "w__imagelink"
+msgstr ""
+
+msgid "cpsportlets_nav_display_site_map_label"
+msgstr ""
+
+msgid "portal_type_CustomPortlet_description"
+msgstr ""
+
+msgid "cpsportlets_document_cluster_id_label"
+msgstr ""
+
+msgid "cpsportlet_rot_image_nb_images_label"
+msgstr ""
+
+msgid "portal_type_RotatingImagePortlet_title"
+msgstr ""
+
+msgid "portal_type_RotatingImagePortlet_description"
+msgstr ""
+
+msgid "cpsportlets_common_custom_cache_params_label"
+msgstr ""
+
+msgid "cpsportlets_visibility_range_0-0_label"
+msgstr ""
+
+msgid "cpsportlets_visibility_range_1-0_label"
+msgstr ""
+
+msgid "cpsportlets_visibility_range_0-1_label"
+msgstr ""
+
+msgid "cpsportlets_common_visibility_range_label"
+msgstr ""
+
+msgid "cpsportlets_navigation_root_uid_label"
+msgstr ""
+
+msgid "cpsportlets_custom_js_render_method_label"
+msgstr ""
+
+msgid "cpsportlets_content_query_title_label"
+msgstr ""
+
+msgid "cpsportlets_content_render_items_label"
+msgstr ""
+
+msgid "cpsportlets_content_cluster_id_label"
+msgstr ""
+
+msgid "cpsportlets_common_slot_override_label"
+msgstr ""
+
+msgid "cpsportlets_common_disable_override_label"
+msgstr ""
+
+msgid "cpsportlets_document_render_container_label"
+msgstr ""
