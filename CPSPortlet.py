@@ -61,14 +61,14 @@ class CPSPortlet(CPSDocument):
     def getRelativeUrl(self):
         """Return the url of the portlet relative to the portal.
         """
-       
-        return self.absolute_url(relative=1) 
+
+        return self.absolute_url(relative=1)
 
     def getSlot(self):
         """Return the portlet's slot.
         """
-         
-        return getattr(self, 'slot', '') 
+
+        return getattr(self, 'slot', '')
 
 InitializeClass(CPSPortlet)
 
@@ -83,5 +83,3 @@ def addCPSPortlet(container, id, REQUEST=None, **kw):
     if REQUEST:
         ob = container._getOb(id)
         REQUEST.RESPONSE.redirect(ob.absolute_url()+'/manage_main')
-
-
