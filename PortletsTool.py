@@ -61,10 +61,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
         # We ask the tool to know all the portal_types
         portlets = catalog.searchResults({'portal_type':portal_types})
         for portlet in portlets:
-            local_slots = portlet.getObject().getSlot()
-            for local_slot in local_slots:
-                if local_slot and local_slot not in slots:
-                    slots.append(local_slot)
+            local_slot = portlet.getObject().getSlot()
+            if local_slot and local_slot not in slots:
+                slots.append(local_slot)
 
         return slots
 
