@@ -68,7 +68,7 @@ portlet_common_layout = {
                 'hidden_layout_modes': ('view',),
                 'hidden_readonly_layout_modes': (),
                 'hidden_empty': False,
-                'hidden_if_expr': '',
+                'hidden_if_expr': 'python: context.isGlobal()',
                 'css_class': '',
                 'widget_mode_expr': '',
                 'widget_group_id': '',
