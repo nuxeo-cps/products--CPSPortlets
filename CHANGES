@@ -67,7 +67,8 @@ Bug fixes:
 - Upgraded the page templates to the new macro libs names
 - made the Document Portlet more robust
 - registration fix for the Portlet Visibility Widget
-- listPortlets() returned incorrect results when 'portal_types' was empty.
+- listPortlets() returned incorrect results when 'portal_types' was empty
+  and only local portlets should be listed.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()

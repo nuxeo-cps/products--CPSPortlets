@@ -119,6 +119,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
             portlet = res.getObject()
             if portlet is None:
                 continue
+            if portlet.isGlobal():
+                continue
             portlets.append(portlet)
         return portlets
 
