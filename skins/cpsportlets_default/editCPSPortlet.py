@@ -49,6 +49,8 @@ if context_is_portlet:
     context.resetInterestingEvents(ptype_id)
     context.expireCache()
     return res[0], psm, error
+else:
+    doc.expireCache()
 
 if REQUEST is not None:
     redirect_url = REQUEST.get('HTTP_REFERER')
