@@ -115,6 +115,8 @@ Cache parameters are variable names that are used to identify the parameter
 values of the cache index. These are specific to portlet types and could
 be set in the factory type information.
 
+* Contextual values:
+
 - url
   description: the entire currrent url including the query string
   example: 'http://www.yourhost.com/cps/view?pp=1'
@@ -148,6 +150,13 @@ be set in the factory type information.
 
 - no-cache:
   description: the portlet should not be cached.
+
+
+* Contextual objects:
+
+- objects:relative_path
+  description: the list of objects from the current object to the portal.
+  used in: the breadcrumbs portlet
 
 ...
 

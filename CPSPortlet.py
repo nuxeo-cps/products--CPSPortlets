@@ -159,6 +159,31 @@ class CPSPortlet(CPSDocument):
        """
        self.cache_cleanup_date = time.time()
 
+    security.declarePublic('getCacheObjects')
+    def getCacheObjects(self, REQUEST=None, **kw):
+        """Returns the list of cache objects.
+        """
+
+        context = kw.get('context_obj')
+
+        params = self.getCacheParams()
+        custom_params = self.getCustomCacheParams()
+        params.extend(custom_params)
+
+        objects = []
+        for param in params:
+            if not param.startswith('objects:'):
+                continue 
+            type = param.split(':')[1]
+
+            # relative path objects
+            if type == 'relative_path':
+                objs = self.getRelativeContentObjects(context)
+                if len(objs) > 0:
+                    objects.extend(objs)
+
+        return objects
+
     security.declarePublic('getCacheIndex')
     def getCacheIndex(self, REQUEST=None, **kw):
         """Returns the RAM cache index as a tuple (var1, var2, ...)
@@ -301,8 +326,8 @@ class CPSPortlet(CPSDocument):
                 REQUEST = self.REQUEST
             user = REQUEST.get('AUTHENTICATED_USER')
 
-            # XXX: get the list of cache objects.
-            cache_objects = []
+            # get the list of cache objects.
+            cache_objects = self.getCacheObjects(**kw)
 
             # set the new cache entry
             cache.setEntry(index, {'rendered': rendered,
@@ -521,6 +546,32 @@ class CPSPortlet(CPSDocument):
             # XXX
             return 0
         return 1
+
+    #
+    # Cache objects
+    #
+    security.declarePrivate('getRelativeContentObjects')
+    def getRelativeContentObjects(self, obj=None):
+        """Return the relative content objects from the current object to
+           the portal object.
+        """
+
+        if obj is None:
+            return []
+
+        utool = getToolByName(self, 'portal_url')
+        portal = utool.getPortalObject() 
+
+        objs = []
+        while 1:
+            objs.append(obj)
+            if obj == portal:
+                break
+            try:
+                obj = aq_parent(aq_inner(obj))
+            except AttributeError:
+                break
+        return objs[:]
 
     #################################################################
     # Private
