@@ -1,4 +1,4 @@
-##parameters=context_obj=None, show_docs=None, max_title_words=0, context_rpath='', context_is_portlet=0, **kw
+##parameters=context_obj=None, show_docs=None, max_title_words=0, context_rpath='', context_is_portlet=0, display_hidden_folders=1, **kw
 
 base_url = context.getBaseUrl()
 
@@ -56,6 +56,15 @@ for object in bmf.objectValues():
         ptype, 'cps_display_as_document_in_listing')
     if int(show_docs) == 0 and (isdocument or display_as_document_in_listing):
         continue
+
+    if not (isdocument or display_hidden_folders):
+        try:
+            content = object.getContent()
+        except AttributeError:
+            continue
+        if content and \
+            getattr(content.aq_inner.aq_explicit, 'hidden_folder', 0):
+            continue
 
     # XXX TODO: Dublin Core effective / expiration dates
 
