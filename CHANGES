@@ -62,6 +62,7 @@ Bug fixes:
 - The portlet visibility range is only displayed if the portlet is local.
 - The portlets' javascript method was not set correctly.
 - Upgraded the page templates to the new macro libs names
+- made the Document Portlet more robust
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()

@@ -18,11 +18,15 @@ layout_id = ds.get('layout_id')
 getContent = getattr(context_obj.aq_explicit, 'getContent', None)
 if getContent is not None:
     doc = getContent()
+    # find the 'render' method
+    render = getattr(doc, 'render', None)
+    if render is None:
+        return rendered
     # try to render the specified layout
     try:
-        rendered = doc.render(proxy=context_obj, layout_id=layout_id)
+        rendered = render(proxy=context_obj, layout_id=layout_id)
     except ValueError:
-        rendered = doc.render(proxy=context_obj)
+        rendered = render(proxy=context_obj)
 
 return rendered
 
