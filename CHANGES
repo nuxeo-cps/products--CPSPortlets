@@ -68,3 +68,5 @@ New internal features:
 - added an icon RAM cache to render image tags by portal type.
 - new cache parameter: 'random:' that generates a random integer as a cache index.
 - cache objects to monitor can be specified through a path list field.
+- listPortlets() searches among all portlet types if an empty 'portal_types'
+  is passed as a parameter.
