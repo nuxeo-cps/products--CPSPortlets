@@ -837,6 +837,8 @@ class CPSPortlet(CPSDocument):
             """
             res = []
             for o in p.split(':')[1].split(','):
+                if not o:
+                    continue
                 if o[0] == '(' and o[-1] == ')':
                     o = getattr(self, o[1:-1], None)
                     if o is None:
