@@ -132,12 +132,13 @@ be set in the factory type information.
   used in: breadcrumbs
 
 - object:lang
-  description: the default language of current object
+  description: the default language of the current object
   example: "('en', 'fr')"
   used in: language portlet
 
 - object:langs
-  description: the list of language revisions of current object
+  description: the list of existing language revisions of 
+               the current object
   example: "('en', 'fr')"
   used in: language portlet
 
