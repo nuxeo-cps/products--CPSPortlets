@@ -5,7 +5,7 @@ portlet_common_layout = {
             'data': {
                 'title': '',
                 'fields': ('Title',),
-                'is_required': False,
+                'is_required': True,
                 'label': '',
                 'label_edit': 'label_cpsportlets_title',
                 'description': '',
