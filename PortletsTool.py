@@ -110,10 +110,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """
         ttool = getToolByName(self, 'portal_types')
         returned = []
-        for id in ttool.objectIds():
-            fti = getattr(ttool, id)
-            if getattr(fti, 'cps_is_portlet', 0) == 1:
-                returned.append(id)
+        for ti in ttool.listTypeInfo():
+            if ti.getProperty('cps_is_portlet', 0) == 1:
+                returned.append(ti.getId())
         return returned
 
     ############################################################################
