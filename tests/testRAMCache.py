@@ -43,6 +43,53 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
     def beforeTearDown(self):
         self.logout()
 
+    def test_getCacheIndex_no_cache(self):
+        portlet = self.portlet
+        portlet._setCacheParams(['no-cache'])
+        kw = self.default_kw
+        cache_index = portlet.getCacheIndex(**kw)
+        expected_index = None
+        self.assert_(cache_index == expected_index)
+
+    def test_getCacheIndex_request(self):
+        portlet = self.portlet
+        kw = self.default_kw
+        # one option
+        self.portal.REQUEST['DUMMY'] = 'dummy'
+        portlet._setCacheParams(['request:DUMMY'])
+        cache_index = portlet.getCacheIndex(**kw)
+        expected_index = ('request__DUMMY:dummy',)
+        self.assert_(cache_index == expected_index)
+        # several options
+        self.portal.REQUEST['DUMMY1'] = 'dummy1'
+        self.portal.REQUEST['DUMMY2'] = 'dummy2'
+        portlet._setCacheParams(['request:DUMMY1,DUMMY2'])
+        cache_index = portlet.getCacheIndex(**kw)
+        expected_index = ('request__DUMMY1:dummy1_DUMMY2:dummy2',)
+        self.assert_(cache_index == expected_index)
+
+    def test_getCacheIndex_user(self):
+        portlet = self.portlet
+        portlet._setCacheParams(['user'])
+        kw = self.default_kw
+        cache_index = portlet.getCacheIndex(**kw)
+        expected_index = ('user_root',)
+        self.assert_(cache_index == expected_index)
+
+    def test_getCacheIndex_current_lang(self):
+        portlet = self.portlet
+        portlet._setCacheParams(['current_lang'])
+        kw = self.default_kw
+        self.portal.REQUEST['cpsskins_language'] = 'en'
+        cache_index = portlet.getCacheIndex(**kw)
+        expected_index = ('current_lang_en',)
+        self.assert_(cache_index == expected_index)
+        # dummy language
+        self.portal.REQUEST['cpsskins_language'] = 'dummy'
+        cache_index = portlet.getCacheIndex(**kw)
+        expected_index = ('current_lang_dummy',)
+        self.assert_(cache_index == expected_index)
+
     def test_getCacheIndex_portal_type(self):
         portlet = self.portlet
         portlet._setCacheParams(['portal_type'])
@@ -57,6 +104,15 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         kw = self.default_kw
         cache_index = portlet.getCacheIndex(**kw)
         expected_index = ('object__path:/portal/cpsportlets_test_folder',)
+        self.assert_(cache_index == expected_index)
+
+    def test_getCacheIndex_object_published_path(self):
+        portlet = self.portlet
+        portlet._setCacheParams(['object:published_path'])
+        kw = self.default_kw
+        self.portal.REQUEST['PATH_TRANSLATED'] = '/dummy_path'
+        cache_index = portlet.getCacheIndex(**kw)
+        expected_index = ('object__published_path:/dummy_path',)
         self.assert_(cache_index == expected_index)
 
 def test_suite():
