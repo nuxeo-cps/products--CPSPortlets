@@ -295,8 +295,10 @@ class PortletsTool(UniqueObject, PortletsContainer):
                     src_slot=None, src_ypos=0,
                     dest_slot=None, dest_ypos=0, **kw):
         """Move portlet
-           parameters: src_folder, dest_folder,
+           parameters: portlet,
+                       src_folder, dest_folder,
                        src_slot, src_ypos, dest_slot, dest_ypos,
+           Returns: the moved portlet.
         """
 
         if src_folder is None:
@@ -328,6 +330,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
             portlet = getattr(dest_container, new_id, None)
 
         self._insertPortlet(portlet=portlet, slot=dest_slot, order=dest_ypos)
+        return portlet
 
     security.declareProtected(View, 'insertPortlet')
     def insertPortlet(self, portlet=None, slot=None, order=0, **kw):
