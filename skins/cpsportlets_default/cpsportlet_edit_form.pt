@@ -39,8 +39,9 @@
     <div tal:condition="not:error"
          tal:replace="structure python: here.render(layout_mode='edit', context_obj=here)" />
 
-    <div>
-      <a tal:attributes="onClick string:window.opener.location.reload();;window.close()">Update</a>
+    <div style="text-align: center">
+      <input class="standalone" type="submit" onclick="window.opener.location.reload();window.close()"
+       value="button_close" i18n:attributes="value" />
     </div>
   </metal:block>
 
