@@ -1,0 +1,47 @@
+# ##########################################################
+# ################# DON'T EDIT THIS FILE! ##################
+# ##########################################################
+# Gettext Message File for default.
+# Your Name <your@email>, Year
+msgid ""
+msgstr ""
+"Project-Id-Version: default\n"
+"POT-Creation-Date: 2004-08-27 17:38default\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Your Name <your@email>\n"
+"Language-Team: Name <email>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-code: LL\n"
+"Language-name: Language\n"
+"Preferred-encodings: utf-8 latin1\n"
+"Domain: default\n"
+
+#.   <h1 condition="creation">
+#.         Create a document of type
+#.         ${type_name}
+#.       </h1>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "Create a document of type ${type_name}"
+msgstr ""
+
+#.   <block condition="edition">Edit ${title (tal content="here/title_or_id")}</block>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "Edit ${title}"
+msgstr ""
+
+#.   <block content="type_info/Title" define="type_name request/type_name;
+#.                           type_info python:here.portal_types[type_name]">Type Title</block>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "Type Title"
+msgstr ""
+
+#.   <span condition="metadata">heading_metadata_edit</span>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "heading_metadata_edit"
+msgstr ""
+
+msgid "label_cpsportlets_provider"
+msgstr ""

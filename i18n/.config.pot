@@ -1,0 +1,1 @@
+/home/zopes/cpsskins.sprint/Products/CPSPortlets/i18n/cpsportlets.pot
