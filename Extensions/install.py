@@ -146,6 +146,7 @@ class CPSPortletsInstaller(CPSInstaller):
                           self.portal.getBreadcrumbsPortletSchema(),
                           self.portal.getActionsPortletSchema(),
                           self.portal.getContentPortletSchema(),
+                          self.portal.getLanguagePortletSchema(),
                           self.portal.getDummyPortletSchema(),
                          )
 
@@ -166,6 +167,7 @@ class CPSPortletsInstaller(CPSInstaller):
                           self.portal.getAddItemPortletLayout(),
                           self.portal.getBreadcrumbsPortletLayout(),
                           self.portal.getContentPortletLayout(),
+                          self.portal.getLanguagePortletLayout(),
                           self.portal.getActionsPortletLayout(),
                          )
 
@@ -186,6 +188,7 @@ class CPSPortletsInstaller(CPSInstaller):
                         self.portal.getBreadcrumbsPortletType(),
                         self.portal.getActionsPortletType(),
                         self.portal.getContentPortletType(),
+                        self.portal.getLanguagePortletType(),
                        )
 
         all_ptypes = {}

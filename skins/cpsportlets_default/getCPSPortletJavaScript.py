@@ -9,6 +9,7 @@ javascript = {
     'Breadcrumbs Portlet': '',
     'Actions Portlet': '',
     'Content Portlet': '',
+    'Language Portlet': '',
 }
 
 return javascript

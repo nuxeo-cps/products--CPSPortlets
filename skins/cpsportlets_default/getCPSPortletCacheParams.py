@@ -8,6 +8,7 @@ cache_params = {
     'Breadcrumbs Portlet': ['object', 'user', 'objects:relative_path'],
     'Actions Portlet': ['actions:(categories)'],
     'Content Portlet': ['no-cache'],
+    'Language Portlet': ['no-cache'],
 }
 
 return cache_params

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-09-24 14:04default\n"
+"POT-Creation-Date: 2004-09-24 14:21default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -83,6 +83,9 @@ msgstr ""
 msgid "portal_type_ContentPortlet_title"
 msgstr ""
 
+msgid "portal_type_LanguagePortlet_title"
+msgstr ""
+
 msgid "action_portlets"
 msgstr ""
 
@@ -152,5 +155,5 @@ msgstr ""
 msgid "cpsportlets_content_folder_path_label"
 msgstr ""
 
-msgid "cpsportlets_content_portal_type_label"
+msgid "cpsportlets_content_searchable_types_label"
 msgstr ""
