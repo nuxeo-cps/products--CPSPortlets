@@ -28,6 +28,8 @@ folder and the manager(s) of sub-folders:
   below will be visible. All portlets above except the ones with the
   'disable_override' flag on will be invisible.
 
+- Only visible portlets may override other portlets.
+
 
 EXAMPLE:
 --------
