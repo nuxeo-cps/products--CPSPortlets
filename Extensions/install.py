@@ -87,8 +87,9 @@ class CPSPortletsInstaller(CPSInstaller):
                               'WorkspaceManager',],
             }
 
-        for perm, roles in ws_perms.items():
-            self.portal[WORKSPACES_ID].manage_permission(perm, roles, 0)
+        if self.portalHas(WORKSPACES_ID):
+            for perm, roles in ws_perms.items():
+                self.portal[WORKSPACES_ID].manage_permission(perm, roles, 0)
 
 
         # Sections
@@ -98,8 +99,9 @@ class CPSPortletsInstaller(CPSInstaller):
                               'SectionManager',],
             }
 
-        for perm, roles in se_perms.items():
-            self.portal[SECTIONS_ID].manage_permission(perm, roles, 0)
+        if self.portalHas(SECTIONS_ID):
+            for perm, roles in se_perms.items():
+                self.portal[SECTIONS_ID].manage_permission(perm, roles, 0)
 
     def installPortletSchemas(self):
         """Install all portlet specific schemas."""
