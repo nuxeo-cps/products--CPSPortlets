@@ -610,7 +610,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         portal = utool.getPortalObject()
         if (context is not None and
             context != portal):
-            return len(utool.getRelativeContentPath(context))
+            return len(utool.getRelativeContentPath(context)) -2
         return 0
 
     security.declarePrivate('_isPortletVisible')
@@ -622,15 +622,22 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if not portlet.isEffective(self.ZopeTime()):
             return 0
 
+        # depth of the context
         cdepth = self._getDepthOf(context)
+        # depth of the portlet
+        pdepth = portlet.getDepth()
+        # depth of the portlet relative to the context
+        rdepth = pdepth - cdepth
+        if rdepth < 0:
+            return 0
         vrange = portlet.getVisibilityRange()
         left = vrange[0]
         right = vrange[1]
 
         # [0, 0] means visible everywhere
         if (left == right == 0 or
-            right == 0 and left <= cdepth or
-            left <= cdepth <= right):
+            right == 0 and left <= rdepth or
+            left <= rdepth <= right):
             return 1
         return 0
 

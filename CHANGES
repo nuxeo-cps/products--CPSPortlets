@@ -54,6 +54,7 @@ Bug fixes:
   in the RAM cache causing content to be created in the wrong folder.
 - the Custom Portlet now accepts cache parameters (one per line)
   see doc/cpsportlets-RAMCache-draft.txt.
+- fixed the portlet visibility range test.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()
