@@ -10,7 +10,7 @@
       <select onchange="submit()" name="lang">
         <option i18n:translate="cpsportlet_translate_into" disabled=""
          value="" selected="selected">Translate into ...</option>
-        <option tal:repeat="item langItems"
+        <option tal:repeat="item langItems" i18n:translate=""
          tal:content="item/title"
          tal:attributes="value item/lang" />
       </select>
@@ -24,7 +24,7 @@
       <select onchange="submit()" name="lang">
         <option i18n:translate="cpsportlet_change_language" disabled=""
          value="" selected="selected">Change language</option>
-        <option tal:repeat="item langItems"
+        <option tal:repeat="item langItems" i18n:translate=""
          tal:content="item/title"
          tal:attributes="value item/lang" />
       </select>
