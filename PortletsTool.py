@@ -632,8 +632,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
         pdepth = portlet.getDepth()
         # depth of the portlet relative to the context
         rdepth = cdepth - pdepth
-        #if rdepth < 0:
-        #    return 0
+        if rdepth < 0:
+            return 0
         vrange = portlet.getVisibilityRange()
         start = vrange[0]
         end = vrange[1]
