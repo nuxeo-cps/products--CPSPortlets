@@ -1,22 +1,23 @@
 
 A note on portability.
-=====================
+======================
 
-author: Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>
-last updated: 2004-09-20
+author:
+  Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>
 
+last updated:
+  2004-09-20
 
-- Widgets
-  -------
+Widgets
+-------
   CMF-compatible skins are stored in skins/cpsportlets_widgets.
   CPS3-specific skins are stored in skins/cpsportlets_widgets_cps3.
   Plone2-specific skins are stored in skins/cpsportlets_widgets_plone2.
 
   The CPS3 (or the Plone2) skin is installed on top of the CMF skin.
 
-
-- Page templates / python scripts
-  -------------------------------
+Page templates / python scripts
+-------------------------------
   * The page templates are used for the presentation. They should be generic
     and cross-platform unless the presentation differs between platforms.
 
@@ -27,46 +28,44 @@ last updated: 2004-09-20
 
   For instance we write:
 
-  showData.pt:
-  ===========
+showData.pt: ::
 
   ...
   <div tal:define="data here/getData" tal:content="data/title" />
   ...
 
-  with the getData.py file located in skins/cpsportlets_widgets, in
-  skins/cpsportlets_widgets_plone2 and in skins/cpsportlets_widgets_cps3
+with the getData.py file located in skins/cpsportlets_widgets, in
+skins/cpsportlets_widgets_plone2 and in skins/cpsportlets_widgets_cps3
 
-  getData.py:
-  ==========
+getData.py: ::
 
   title = ...
   return {'title': title}
 
 
-  Instead of:
+Instead of::
 
   showData.pt:
-  ===========
 
   <div tal:define="data here/getCPSData" tal:content="data/title" />
 
 
-- i18n:
+i18n:
+-----
 
-  i18n is compatible. Use Localizer (not for a long time) if Localizer is
-  present.
-  Otherweise, the po are PlacelessTranslationService compliant.
+i18n is compatible. Use Localizer (not for a long time) if Localizer is
+present. Otherweise, the po are PlacelessTranslationService compliant.
 
 
-- CPS4CMFPlone
+CPS4CMFPlone
+============
 
-  You'll nedd either to install the build package CPS4CMFPlone or either
-  install the following :
+You'll need either to install the build package CPS4CMFPlone or either
+install the following :
 
-   - CPSchemas
-   - CPSDocument
-   - CPSInstaller
+ - CPSchemas
+ - CPSDocument
+ - CPSInstaller
 
- Check the DEPENDENCIES.txt file within this product for the version fter
- which the compatibility is ok.
+Check the DEPENDENCIES.txt file within this product for the version fter
+which the compatibility is ok.
