@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-09-07 02:09default\n"
+"POT-Creation-Date: 2004-09-07 16:45default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -18,6 +18,11 @@ msgstr ""
 "Language-name: Language\n"
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: default\n"
+
+#.   <block>Edit</block>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "_Edit_"
+msgstr ""
 
 #.   <h1>Portlet management</h1>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -43,4 +48,7 @@ msgid "action_canvas"
 msgstr ""
 
 msgid "cpsportlets_internallinks_links_label"
+msgstr ""
+
+msgid "psm_portlet_created"
 msgstr ""

@@ -37,3 +37,6 @@ msgstr ""
 
 msgid "cpsportlets_internallinks_links_label"
 msgstr ""
+
+msgid "psm_portlet_created"
+msgstr ""
