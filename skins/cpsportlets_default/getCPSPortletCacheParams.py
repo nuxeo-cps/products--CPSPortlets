@@ -1,6 +1,6 @@
 
 cache_params = {
-    'Dummy Portlet': [],
+    'Dummy Portlet': ['user'],
     'Text Portlet': [],
     'Search Portlet': ['no-cache'],
     'Internal Links Portlet': ['object:path'],
