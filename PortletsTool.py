@@ -135,7 +135,7 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
         if not isglobal:
             pass
 
-        if portlet_id not in self.listPortletIds():
+        if portlet_id in self.listPortletIds():
             del self[portlet_id]
             return 0
 
