@@ -174,13 +174,17 @@ class CPSPortlet(CPSDocument):
         for param in params:
             if not param.startswith('objects:'):
                 continue 
-            type = param.split(':')[1]
+            for type in param.split(':')[1].split(','):
 
-            # relative path objects
-            if type == 'relative_path':
-                objs = self.getRelativeContentObjects(context)
-                if len(objs) > 0:
-                    objects.extend(objs)
+                # relative path objects
+                if type == 'relative_path':
+                    objs = self.getRelativeContentObjects(context)
+                    if len(objs) > 0:
+                        objects.extend(objs)
+
+                # context (we return a copy of the object)
+                elif type == 'context':
+                    objects.extend([context][:])
 
         return objects
 

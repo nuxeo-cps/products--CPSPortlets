@@ -158,6 +158,10 @@ be set in the factory type information.
   description: the list of objects from the current object to the portal.
   used in: the breadcrumbs portlet
 
+- objects:context
+  description: the context object.
+  used in: portlets that display information about the current object
+
 ...
 
 Cache invalidation
