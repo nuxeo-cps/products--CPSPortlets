@@ -305,7 +305,7 @@ class CPSPortlet(CPSDocument):
                             index_string += context.getDefaultLanguage()
 
             # portal type
-            elif param == 'portal type':
+            elif param == 'portal_type':
                 ti = context.getTypeInfo()
                 if ti is not None:
                     index_string = ti.getId()
