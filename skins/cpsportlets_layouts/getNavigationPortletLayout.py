@@ -128,26 +128,41 @@ navigation_portlet_layout = {
                 'field_types': ('CPS String Field',),
             },
         },
+        'root_uid': {
+            'type': 'String Widget',
+            'data': {
+                'title': '',
+                'fields': ('root_uid',),
+                'label_edit': 'cpsportlets_navigation_root_uid_label',
+                'is_i18n': True,
+                'hidden_layout_modes': ('view',),
+                'hidden_if_expr': "python: context.display in ['vertical_breadcrumbs_menu', 'folder_contents']",
+                'display_width': 40,
+                'size_max': 0,
+            },
+        },
     },
     'layout': {
         'style_prefix': 'layout_portlet_',
         'flexible_widgets': (),
-        'ncols': 2,
+        'ncols': 3,
         'rows': [
-            [{'widget_id': 'portlet', 'ncols': 2},
+            [{'widget_id': 'portlet', 'ncols': 3},
             ],
-            [{'widget_id': 'display', 'ncols': 2},
+            [{'widget_id': 'display', 'ncols': 3},
             ],
-            [{'widget_id': 'rel_depth', 'ncols': 1},
+            [{'widget_id': 'root_uid', 'ncols': 1},
+             {'widget_id': 'rel_depth', 'ncols': 1},
              {'widget_id': 'contextual', 'ncols': 1},
             ],
             [{'widget_id': 'show_docs', 'ncols': 1},
-             {'widget_id': 'show_icons', 'ncols': 1},
+             {'widget_id': 'show_icons', 'ncols': 2},
             ],
-            [{'widget_id': 'i18n', 'ncols': 2},
+            [{'widget_id': 'i18n', 'ncols': 3},
             ],
         ],
     },
 }
+
 layouts = {'navigation_portlet': navigation_portlet_layout}
 return layouts

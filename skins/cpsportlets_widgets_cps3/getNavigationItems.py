@@ -29,6 +29,7 @@ else:
 
 try:
     nav = CPSNavigation(context_uid=context_uid,
+                        no_leaves=0,
                         context=context_obj,
                         request_form=REQUEST.form,
                         **kw)

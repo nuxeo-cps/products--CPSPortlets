@@ -310,3 +310,6 @@ msgstr ""
 
 msgid "cpsportlets_located_in_the_folder"
 msgstr ""
+
+msgid "cpsportlets_navigation_root_uid_label"
+msgstr ""

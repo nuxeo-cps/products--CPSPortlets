@@ -5,6 +5,7 @@
                    start_depth python: 2;
                    context nocall:options/context_obj|here;
                    context_url python: context.absolute_url(1);
+                   root_uid ds/root_uid;
                    context_rpath python: utool.getRelativeUrl(context)">
   <tal:block condition="python: display == 'vertical_breadcrumbs_menu'">
     <tal:block
@@ -64,7 +65,7 @@
 
   <tal:block condition="python: display == 'subfolder_contents'">
     <tal:block
-     define="folderItems python: context.getNavigationItems(context_rpath=context_rpath, context_obj=context, start_depth=1, end_depth=2, contextual=1, expand=1)"
+     define="folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, start_depth=1, end_depth=2, contextual=1, expand=1)"
      condition="folderItems">
        <tal:block repeat="item folderItems">
          <tal:block tal:define="depth item/depth">
@@ -87,7 +88,7 @@
      define="show_icons ds/show_icons;
              show_icons python: int(show_icons);
              contextual ds/contextual;
-             folderItems python: context.getNavigationItems(context_rpath=context_rpath, context_obj=context, contextual=contextual);
+             folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, contextual=contextual);
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul>
@@ -110,7 +111,7 @@
     <tal:block
      define="show_icons ds/show_icons;
              show_icons python: int(show_icons);
-             folderItems python: context.getNavigationItems(context_rpath=context_rpath, context_obj=context, contextual=0, expand=1);
+             folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, contextual=0, expand=1);
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul>
