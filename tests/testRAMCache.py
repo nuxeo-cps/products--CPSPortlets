@@ -123,6 +123,16 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         expected_index = ('object__published_path:/dummy_path',)
         self.assert_(cache_index == expected_index)
 
+    def test_getCacheIndex_random(self):
+        portlet = self.portlet
+        portlet._setCacheParams(['random:5'])
+        kw = self.default_kw
+        cache_index, data = portlet.getCacheIndex(**kw)
+        randint = data['random_int']
+        expected_index = ('random_%s' % str(randint),)
+        self.assert_(cache_index == expected_index)
+        self.assert_(randint < 5)
+
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestRAMCache))
