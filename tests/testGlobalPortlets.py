@@ -93,6 +93,15 @@ class TestPortletsAsRoot(TestPortlets):
         portlet.setOrder(4)
         self.assert_(portlet.order == 4)
 
+    def test_identifierChecks(self):
+        ptltool = self.ptltool
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                           identifier='toto')
+        self.assertNotEqual(portlet_id, None)
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                           identifier='toto')
+        self.assertEqual(portlet_id, None)
+
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestPortletsAsRoot))
