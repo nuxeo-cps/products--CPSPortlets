@@ -32,11 +32,11 @@ from Products.CMFCore.utils import getToolByName
 from Products.CPSSchemas.Widget import CPSWidgetType
 from Products.CPSSchemas.WidgetTypesTool import WidgetTypeRegistry
 
-from Products.CPSSchemas.BasicWidgets import renderHtmlTag, CPSWidget
+from Products.CPSSchemas.BasicWidgets import renderHtmlTag, CPSSelectWidget
 
 ##################################################
 
-class CPSPortletVisibilityWidget(CPSWidget):
+class CPSPortletVisibilityWidget(CPSSelectWidget):
     """CPS Portlet Visibility widget."""
     meta_type = "CPS Portlet Visibility Widget"
 
