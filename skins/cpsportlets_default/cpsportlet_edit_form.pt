@@ -25,15 +25,12 @@
    </metal:block>
   </metal:block>
 
-  <metal:block fill-slot="header">
+  <metal:block fill-slot="main">
     <h1>
       <img tal:replace="structure python:here.getImgTag('/'+here.getIcon(), base_url='')" />
       <tal:block i18n:translate="_Edit_">Edit</tal:block> 
       "<tal:block replace="here/title_or_id" />"
     </h1>
-  </metal:block>
-
-  <metal:block fill-slot="main">
     <div tal:condition="error"
          tal:replace="structure rendered_main" />
     <div tal:condition="not:error"
