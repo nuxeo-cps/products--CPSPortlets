@@ -3,10 +3,10 @@ cpsportlets_display_voc_vocabulary = {
         'tuples': (
             ('dropdown_list', 
              'Drop down list', 
-             'cpsportlets_label_display_dropdown_list'),
+             'cpsportlets_display_dropdown_list_label'),
             ('horizontal_trail', 
              'Horizontal trail', 
-             'cpsportlets_label_display_horizontal_trail'),
+             'cpsportlets_display_horizontal_trail_label'),
         ),
     },
 }

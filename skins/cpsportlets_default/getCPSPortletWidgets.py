@@ -23,6 +23,10 @@ widgets = {
     'type': 'CPS Actions Widget Type',
     'data': {},
     },
+    'CPS Content Widget': {
+    'type': 'CPS Content Widget Type',
+    'data': {},
+    },
 }
 
 return widgets

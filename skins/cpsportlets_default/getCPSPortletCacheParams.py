@@ -7,7 +7,7 @@ cache_params = {
     'Add Item Portlet': ['portal type', 'wf_create'],
     'Breadcrumbs Portlet': ['object', 'user', 'objects:relative_path'],
     'Actions Portlet': ['actions:(categories)'],
-    'Content Portlet': ['url'],
+    'Content Portlet': ['no-cache'],
 }
 
 return cache_params

@@ -1,7 +1,9 @@
 <tal:block define="ds options/datastructure;
                    context nocall:options/context_obj|here;
                    search_type ds/search_type;
-                   contentitems python: here.getContentItems(obj=context, search_type=search_type);
+                   sort_on ds/sort_on;
+                   sort_reverse ds/sort_reverse;
+                   contentitems python: here.getContentItems(obj=context, search_type=search_type, sort_on=sort_on, sort_reverse=sort_reverse);
 ">
     <ul>
       <li tal:repeat="item contentitems"><a i18n:translate=""

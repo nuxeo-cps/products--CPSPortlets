@@ -1,17 +1,22 @@
 ##parameters=obj=None, REQUEST=None, **kw
 
-if REQUEST is not None:
-    kw.update(REQUEST.form)
-
-catalog = context.portal_catalog
-
-search_type = kw.get('search_type')
-
 if obj is None:
     return []
 
-query = {}
+if REQUEST is not None:
+    kw.update(REQUEST.form)
 
+search_type = kw.get('search_type')
+sort_reverse = kw.get('sort_reverse')
+
+# remove unwanted search options
+for k in kw.keys():
+    if k not in ('sort_on', 'review_state'):
+       del kw[k]
+
+query = kw
+
+# Related documents
 if search_type == 'related':
     obj = obj.getContent()
     if getattr(obj.aq_explicit, 'Subject'):
@@ -21,17 +26,34 @@ if search_type == 'related':
             query.update({'Subject': subjects,
                           'review_state': 'published'})
 
-if search_type == 'pending':
+# Pending documents
+elif search_type == 'pending':
     query.update({'review_state': 'pending'})
 
-if search_type == 'last_modified':
+# Last modified documents
+elif search_type == 'last_modified':
     query.update({'review_state': 'published'})
+
+# Upcoming events
+elif search_type == 'upcoming':
+    # XXX
+    pass
+
+# Recent documents 
+elif search_type == 'recent':
+    # XXX
+    pass
+
+
+# XXX does not work yet
+if sort_reverse:
+    query.update({'sort_order': 'reverse'})
 
 if not query:
     return []
 
 try:
-    brains = catalog(**query)
+    brains = context.portal_catalog(**query)
 except ParseError:
     brains = []
 

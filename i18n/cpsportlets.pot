@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-09-19 18:07default\n"
+"POT-Creation-Date: 2004-09-22 22:22default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -27,6 +27,11 @@ msgstr ""
 #.   <strong>ID:</strong>
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
 msgid "ID:"
+msgstr ""
+
+#.   <a content="item/Title" attributes="href item/getURL">Item title</a>
+#: from ../skins/cpsportlets_widgets/widget_portlet_content.pt
+msgid "Item title"
 msgstr ""
 
 #.   <block>Edit</block>
@@ -75,6 +80,9 @@ msgstr ""
 msgid "portal_type_ActionsPortlet_title"
 msgstr ""
 
+msgid "portal_type_ContentPortlet_title"
+msgstr ""
+
 msgid "action_portlets"
 msgstr ""
 
@@ -87,10 +95,10 @@ msgstr ""
 msgid "psm_portlet_created"
 msgstr ""
 
-msgid "cpsportlets_label_display_dropdown_list"
+msgid "cpsportlets_display_dropdown_list_label"
 msgstr ""
 
-msgid "cpsportlets_label_display_horizontal_trail"
+msgid "cpsportlets_display_horizontal_trail_label"
 msgstr ""
 
 msgid "cpsportlets_advanced_search_link_label"
@@ -100,4 +108,40 @@ msgid "cpsportlets_contextual_search_choice_label"
 msgstr ""
 
 msgid "cpsportlets_action_categories_label"
+msgstr ""
+
+msgid "cpsportlets_content_search_related_label"
+msgstr ""
+
+msgid "cpsportlets_content_search_type_label"
+msgstr ""
+
+msgid "cpsportlets_content_search_pending_label"
+msgstr ""
+
+msgid "cpsportlets_content_search_last_modified_label"
+msgstr ""
+
+msgid "cpsportlets_content_search_recent_label"
+msgstr ""
+
+msgid "cpsportlets_content_search_upcoming_label"
+msgstr ""
+
+msgid "cpsportlets_content_sort_on_label"
+msgstr ""
+
+msgid "cpsportlets_content_sort_on_Date_label"
+msgstr ""
+
+msgid "cpsportlets_content_sort_on_Title_label"
+msgstr ""
+
+msgid "cpsportlets_content_sort_on_review_state_label"
+msgstr ""
+
+msgid "cpsportlets_content_sort_on_Creator_label"
+msgstr ""
+
+msgid "cpsportlets_content_sort_reverse_label"
 msgstr ""

@@ -126,6 +126,7 @@ class CPSPortletsInstaller(CPSInstaller):
         """Install all portlet specific vocabularies."""
 
         define_vocabularies = (self.portal.getPortletDisplayVocabulary(),
+                               self.portal.getPortletContentSearchVocabulary(),
                               )
 
         all_vocabularies = {}
@@ -144,6 +145,7 @@ class CPSPortletsInstaller(CPSInstaller):
                           self.portal.getAddItemPortletSchema(),
                           self.portal.getBreadcrumbsPortletSchema(),
                           self.portal.getActionsPortletSchema(),
+                          self.portal.getContentPortletSchema(),
                           self.portal.getDummyPortletSchema(),
                          )
 
@@ -163,6 +165,7 @@ class CPSPortletsInstaller(CPSInstaller):
                           self.portal.getInternalLinksPortletLayout(),
                           self.portal.getAddItemPortletLayout(),
                           self.portal.getBreadcrumbsPortletLayout(),
+                          self.portal.getContentPortletLayout(),
                           self.portal.getActionsPortletLayout(),
                          )
 
@@ -182,6 +185,7 @@ class CPSPortletsInstaller(CPSInstaller):
                         self.portal.getAddItemPortletType(),
                         self.portal.getBreadcrumbsPortletType(),
                         self.portal.getActionsPortletType(),
+                        self.portal.getContentPortletType(),
                        )
 
         all_ptypes = {}
