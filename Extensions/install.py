@@ -176,6 +176,7 @@ class CPSPortletsInstaller(CPSInstaller):
         """Install all portlet specific layouts."""
 
         define_layouts = (self.portal.getPortletCommonLayout(),
+                          self.portal.getPortletMetadataLayout(),
                           self.portal.getTextPortletLayout(),
                           self.portal.getDummyPortletLayout(),
                           self.portal.getSearchPortletLayout(),

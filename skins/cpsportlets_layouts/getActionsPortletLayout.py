@@ -1,10 +1,10 @@
 actions_portlet_layout = {
     'widgets': {
-        'actions': {
-            'type': 'CPS Actions Widget',
+        'portlet': {
+            'type': 'Generic Portlet Widget',
             'data': {
                 'title': '',
-                'fields': ('dummy',),
+                'fields': ('portlet',),
                 'is_required': False,
                 'label': '',
                 'label_edit': '',
@@ -18,6 +18,8 @@ actions_portlet_layout = {
                 'hidden_if_expr': '',
                 'css_class': '',
                 'widget_mode_expr': '',
+                'render_method': 'widget_portlet_actions',
+                'field_types': ('CPS String Field',),
             },
         },
         'categories': {
@@ -49,7 +51,7 @@ actions_portlet_layout = {
         'flexible_widgets': (),
         'ncols': 1,
         'rows': [
-            [{'widget_id': 'actions', 'ncols': 1},
+            [{'widget_id': 'portlet', 'ncols': 1},
             ],
             [{'widget_id': 'categories', 'ncols': 1},
             ],

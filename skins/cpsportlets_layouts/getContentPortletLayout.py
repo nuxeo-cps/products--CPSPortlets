@@ -1,10 +1,10 @@
 content_portlet_layout = {
     'widgets': {
-        'content': {
-            'type': 'CPS Content Widget',
+        'portlet': {
+            'type': 'Generic Portlet Widget',
             'data': {
                 'title': '',
-                'fields': ('content',),
+                'fields': ('portlet',),
                 'is_required': False,
                 'label': '',
                 'label_edit': '',
@@ -18,6 +18,8 @@ content_portlet_layout = {
                 'hidden_if_expr': '',
                 'css_class': '',
                 'widget_mode_expr': '',
+                'render_method': 'widget_portlet_content',
+                'field_types': ('CPS String Field',),
             },
         },
         'link_string': {
@@ -232,7 +234,7 @@ content_portlet_layout = {
         'flexible_widgets': (),
         'ncols': 3,
         'rows': [
-            [{'widget_id': 'content', 'ncols': 3},
+            [{'widget_id': 'portlet', 'ncols': 3},
             ],
             [{'widget_id': 'search_type', 'ncols': 3},
             ],

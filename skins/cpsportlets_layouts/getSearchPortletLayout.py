@@ -1,11 +1,11 @@
 search_portlet_layout = {
     'widgets': {
         'search': {
-            'type': 'CPS Search Widget',
+            'type': 'Generic Portlet Widget',
             'data': {
                 'title': '',
                 'fields': ('dummy',),
-                'is_required': True,
+                'is_required': False,
                 'label': '',
                 'label_edit': '',
                 'description': '',
@@ -18,6 +18,8 @@ search_portlet_layout = {
                 'hidden_if_expr': '',
                 'css_class': '',
                 'widget_mode_expr': '',
+                'render_method': 'widget_portlet_search',
+                'field_types': ('CPS String Field',),
             },
         },
         'advanced_search_link': {

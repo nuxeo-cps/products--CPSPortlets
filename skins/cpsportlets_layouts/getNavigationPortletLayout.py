@@ -1,7 +1,7 @@
 navigation_portlet_layout = {
     'widgets': {
         'dummy': {
-            'type': 'CPS Navigation Widget',
+            'type': 'Generic Portlet Widget',
             'data': {
                 'title': '',
                 'fields': ('dummy',),
@@ -18,6 +18,8 @@ navigation_portlet_layout = {
                 'hidden_if_expr': '',
                 'css_class': '',
                 'widget_mode_expr': '',
+                'render_method': 'widget_portlet_navigation',
+                'field_types': ('CPS String Field',),
             },
         },
         'show_docs': {

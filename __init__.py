@@ -37,15 +37,6 @@ import PortletRAMCache
 
 # Import new widgets in here
 import PortletWidgets.DummyWidget
-import PortletWidgets.SearchWidget
-import PortletWidgets.AddItemWidget
-import PortletWidgets.BreadcrumbsWidget
-import PortletWidgets.ActionsWidget
-import PortletWidgets.ContentWidget
-import PortletWidgets.LanguageWidget
-import PortletWidgets.NavigationWidget
-import PortletWidgets.DocumentWidget
-import PortletWidgets.RSSWidget
 
 contentClasses = (
     CPSPortlet.CPSPortlet,

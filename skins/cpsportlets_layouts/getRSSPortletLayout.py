@@ -116,7 +116,7 @@ rss_portlet_layout = {
             },
         },
         'rss': {
-            'type': 'CPS RSS Widget',
+            'type': 'Generic Portlet Widget',
             'data': {
                 'title': '',
                 'fields': ('rss',),
@@ -125,7 +125,7 @@ rss_portlet_layout = {
                 'label_edit': '',
                 'description': '',
                 'help': '',
-                'is_i18n': True,
+                'is_i18n': False,
                 'readonly_layout_modes': (),
                 'hidden_layout_modes': ('edit',),
                 'hidden_readonly_layout_modes': (),
@@ -133,6 +133,8 @@ rss_portlet_layout = {
                 'hidden_if_expr': '',
                 'css_class': '',
                 'widget_mode_expr': '',
+                'render_method': 'widget_portlet_rss',
+                'field_types': ('CPS String Field',),
             },
         },
         'max_words': {

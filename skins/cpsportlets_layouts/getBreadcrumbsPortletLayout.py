@@ -1,10 +1,10 @@
 breadcrumbs_portlet_layout = {
     'widgets': {
-        'navigation': {
-            'type': 'CPS Breadcumbs Widget',
+        'portlet': {
+            'type': 'Generic Portlet Widget',
             'data': {
                 'title': '',
-                'fields': ('navigation',),
+                'fields': ('portlet',),
                 'is_required': False,
                 'label': '',
                 'label_edit': '',
@@ -18,6 +18,8 @@ breadcrumbs_portlet_layout = {
                 'hidden_if_expr': '',
                 'css_class': '',
                 'widget_mode_expr': '',
+                'render_method': 'widget_portlet_breadcrumbs',
+                'field_types': ('CPS String Field',),
             },
         },
         'display': {
@@ -71,7 +73,7 @@ breadcrumbs_portlet_layout = {
         'flexible_widgets': (),
         'ncols': 1,
         'rows': [
-            [{'widget_id': 'navigation', 'ncols': 1},
+            [{'widget_id': 'portlet', 'ncols': 1},
             ],
             [{'widget_id': 'display', 'ncols': 1},
             ],

@@ -45,3 +45,4 @@ New internal features:
 - added a listPortlets() method to look for portlets based on search criteria.
 - added a slimmed-down 'view' layout for portlets
 - added a PortletRAMCache module (previously imported from CPSSkins.RAMCache)
+- added a generic portlet widget (CPSPortletWidget). Removed the other widgets.

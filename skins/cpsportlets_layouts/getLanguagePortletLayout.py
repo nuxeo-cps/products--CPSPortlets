@@ -1,7 +1,7 @@
 language_portlet_layout = {
     'widgets': {
         'language': {
-            'type': 'CPS Language Widget',
+            'type': 'Generic Portlet Widget',
             'data': {
                 'title': '',
                 'fields': ('dummy',),
@@ -18,6 +18,8 @@ language_portlet_layout = {
                 'hidden_if_expr': '',
                 'css_class': '',
                 'widget_mode_expr': '',
+                'render_method': 'widget_portlet_language',
+                'field_types': ('CPS String Field',),
             },
         },
         'action': {

@@ -1,11 +1,11 @@
 additem_portlet_layout = {
     'widgets': {
-        'choice': {
-            'type': 'CPS Add Item Widget',
+        'portlet': {
+            'type': 'Generic Portlet Widget',
             'data': {
                 'title': '',
-                'fields': ('choice',),
-                'is_required': True,
+                'fields': ('portlet',),
+                'is_required': False,
                 'label': '',
                 'label_edit': '',
                 'description': '',
@@ -18,6 +18,8 @@ additem_portlet_layout = {
                 'hidden_if_expr': '',
                 'css_class': '',
                 'widget_mode_expr': '',
+                'render_method': 'widget_portlet_additem',
+                'field_types': ('CPS String Field',),
             },
         },
     },
@@ -26,7 +28,7 @@ additem_portlet_layout = {
         'flexible_widgets': (),
         'ncols': 1,
         'rows': [
-            [{'widget_id': 'choice', 'ncols': 1},
+            [{'widget_id': 'portlet', 'ncols': 1},
             ],
         ],
     },

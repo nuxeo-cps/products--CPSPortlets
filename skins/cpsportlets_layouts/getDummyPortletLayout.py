@@ -1,10 +1,10 @@
 dummy_portlet_layout = {
     'widgets': {
-        'dummy': {
+        'portlet': {
             'type': 'CPS Portlet Dummy Widget',
             'data': {
                 'title': '',
-                'fields': ('dummy',),
+                'fields': ('portlet',),
                 'is_required': False,
                 'label': '',
                 'label_edit': '',
@@ -28,7 +28,7 @@ dummy_portlet_layout = {
         'flexible_widgets': (),
         'ncols': 1,
         'rows': [
-            [{'widget_id': 'dummy', 'ncols': 1},
+            [{'widget_id': 'portlet', 'ncols': 1},
             ],
         ],
     },
