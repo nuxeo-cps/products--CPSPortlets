@@ -1,14 +1,21 @@
-<tal:block define="emptybody python: 1;
-                   res python:here.editCPSPortlet(REQUEST=request);
-                   rendered_main python: res[0];
-                   portal_status_message python: res[1];
-                   error python: res[2];
-  ">
+<tal:block define="emptybody python: 1">
 <metal:block define-macro="edit_form">
   <metal:block use-macro="here/main_template/macros/master">
   <metal:block fill-slot="css_slot">
     <metal:block define-macro="widgets_javascript">
 
+    <!-- XXX this has to move to CPSSchemas -->
+    <style type="text/css"
+      tal:content="string:@import url(${base_url}calendar-win2k-1.css);"></style>
+    <script type="text/javascript" src="calendar.js"
+      tal:attributes="src string:${base_url}calendar.js"></script>
+    <script type="text/javascript" src="lang/calendar-en.js"
+      tal:define="local cpsmcat/get_selected_language"
+      tal:attributes="src string:${base_url}lang/calendar-${local}.js"></script>
+    <script type="text/javascript" src="calendar-setup.js"
+      tal:attributes="src string:${base_url}calendar-setup.js"></script>
+
+    <!-- XXX this has to move to CPSSchemas -->
     <script type="text/javascript">
     <!--
      function popup_rte(input_id, label_edit) {
@@ -25,7 +32,11 @@
    </metal:block>
   </metal:block>
 
-  <metal:block fill-slot="main">
+  <metal:block fill-slot="main"
+   tal:define="res python:here.editCPSPortlet(REQUEST=request);
+               rendered_main python: res[0];
+               portal_status_message python: res[1];
+               error python: res[2]">
     <h1>
       <img tal:replace="structure python:here.getImgTag('/'+here.getIcon(), base_url='')" />
       <tal:block i18n:translate="_Edit_">Edit</tal:block> 
