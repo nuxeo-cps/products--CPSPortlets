@@ -2,11 +2,10 @@
                    ti context/getTypeInfo|nothing;
                    checkPerm nocall:here/portal_membership/checkPermission"
            condition="python: checkPerm('Access contents information', context)">
-  <form action="content_create" method="get"
+  <form action="cpsportlet_additem_create" method="get"
   tal:omit-tag="not:creatableItems"
   tal:condition="ti"
-  tal:define="creatableItems context/getCreatableItems"
-  tal:attributes="action string:${context/absolute_url}/cpsportlet_additem_create">
+  tal:define="creatableItems context/getCreatableItems">
     <select onchange="submit()" name="type_name" tal:condition="creatableItems">
       <option i18n:translate="cpsportlet_add_new_item" selected="selected"
        value="" disabled="disabled">
