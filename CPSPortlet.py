@@ -30,7 +30,6 @@ This is a CPSDocument child base class for portlets
 import time
 import md5
 from random import randint
-from types import ListType, IntType, TupleType, StringType
 from App.Common import rfc1123_date
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_inner, aq_parent, aq_base
@@ -153,7 +152,7 @@ class CPSPortlet(CPSDocument):
         """Set custom cache parameters
         """
         if getattr(aq_base(self), 'custom_cache_params', None) is not None:
-            if isinstance(params, ListType):
+            if isinstance(params, list):
                 self.custom_cache_params = params
 
     security.declarePublic('getCacheParams')
@@ -167,7 +166,7 @@ class CPSPortlet(CPSDocument):
     def _setCacheParams(self, cache_params=[]):
         """Set the cache parameters
         """
-        if isinstance(cache_params, ListType):
+        if isinstance(cache_params, list):
             if self.cache_params != cache_params:
                 self.cache_params = cache_params
 
@@ -175,7 +174,7 @@ class CPSPortlet(CPSDocument):
     def _setJavaScript(self, javascript=''):
         """Set the javascript method.
         """
-        if isinstance(javascript, StringType):
+        if isinstance(javascript, str):
             if self.javascript != javascript:
                 self.javascript = javascript
 
@@ -208,8 +207,7 @@ class CPSPortlet(CPSDocument):
                     o = getattr(self, o[1:-1], None)
                     if o is None:
                         continue
-                    if isinstance(o, ListType) or\
-                       isinstance(o, TupleType):
+                    if isinstance(o, (list, tuple)):
                         res.extend(o)
                         continue
                 res.append(str(o))
@@ -260,8 +258,7 @@ class CPSPortlet(CPSDocument):
                     o = getattr(self, o[1:-1], None)
                     if o is None:
                         continue
-                    if isinstance(o, ListType) or\
-                       isinstance(o, TupleType):
+                    if isinstance(o, (list, tuple)):
                         res.extend(o)
                         continue
                 res.append(str(o))
@@ -607,10 +604,10 @@ class CPSPortlet(CPSDocument):
         The validation is a little bit stronger in here.
         We need integer values.
         """
-        if (isinstance(range, ListType) and
+        if (isinstance(range, list) and
             len(range) == 2 and
-            isinstance(range[0], IntType) and
-            isinstance(range[1], IntType)):
+            isinstance(range[0], int) and
+            isinstance(range[1], int)):
             try:
                 self.edit(visibility_range=range)
                 return 0
@@ -864,8 +861,7 @@ class CPSPortlet(CPSDocument):
                     o = getattr(self, o[1:-1], None)
                     if o is None:
                         continue
-                    if isinstance(o, ListType) or\
-                       isinstance(o, TupleType):
+                    if isinstance(o, (list, tuple)):
                         res.extend(o)
                         continue
                 res.append(str(o))

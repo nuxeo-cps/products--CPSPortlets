@@ -24,7 +24,6 @@ __author__ = "Jean-Marc Orliaguet <jmo@ita.chalmers.se>"
 
 import time
 from thread import allocate_lock
-from types import DictType, ListType, TupleType, StringType
 
 class SimpleRAMCache:
     """Simple non-persistent RAM cache.
@@ -164,13 +163,13 @@ class RAMCache:
     def calcsize(self, i, s=0):
         """Calculate the size of an object.
         """
-        if isinstance(i, StringType):
+        if isinstance(i, str):
             s = len(i)
-        elif isinstance(i, DictType):
+        elif isinstance(i, dict):
             for k, v in i.items():
                 s += self.calcsize(k)
                 s += self.calcsize(v)
-        elif isinstance(i, ListType) or isinstance(i, TupleType):
+        elif isinstance(i, (list, tuple)):
             for v in i:
                 s += self.calcsize(v)
         return s

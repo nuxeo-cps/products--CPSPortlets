@@ -33,3 +33,5 @@ New internal features:
 - added an 'override' parameter in getPortlets(), i.e. override=0 will
   disable portlet override.
 - added a 10 minutes timeout on the BreadCrumbs Portlet's cache parameters..
+- converted instance(cls, ListType) to python 2.3's isinstance(cls, list).
+  (resp. TupleType => tuple, IntType => int, StringType => str)
