@@ -48,6 +48,7 @@ class CPSPortletsInstaller(CPSInstaller):
                          'CPS Portlets Tool')
         self.verifySkins(SKINS)
         self.resetSkinCache()
+        self.verifyWidgets(self.portal.getPortletWidgets())
         self.finalize()
         self.log("End of Install/Update : CPSPortlets Product")
 
