@@ -47,7 +47,7 @@ portlet_common_layout = {
         },
     },
     'layout': {
-        'style_prefix': 'layout_default_',
+        'style_prefix': 'layout_portlet_',
         'flexible_widgets': (),
         'ncols': 3,
         'rows': [
