@@ -46,7 +46,7 @@ rotating_image_portlet_flexible_layout = {
             'data': {
                 'title': '',
                 'fields': ('?',),
-                'widget_ids': ('image', 'link'),
+                'widget_ids': ('image', 'link', 'caption'),
                 'widget_type': 'Image Link Widget',
                 'css_class': 'hidden',
             },
@@ -74,6 +74,19 @@ rotating_image_portlet_flexible_layout = {
                 'is_required': False,
                 'label': '',
                 'label_edit': 'cpsportlets_image_link_label',
+                'is_i18n': True,
+                'display_width': 36,
+                'size_max': 0,
+            },
+        },
+        'caption': {
+            'type': 'String Widget',
+            'data': {
+                'title': '',
+                'fields': ('?',),
+                'is_required': False,
+                'label': '',
+                'label_edit': 'cpsportlets_image_caption_label',
                 'is_i18n': True,
                 'display_width': 36,
                 'size_max': 0,
