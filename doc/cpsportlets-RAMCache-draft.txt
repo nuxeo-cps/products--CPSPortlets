@@ -209,14 +209,6 @@ Contextual variables:
     the content of the 'var' request variable
 
 
-- actions
-
-  description:
-    all CMF actions in the current context
-
-  used in:
-    the actions portlet
-
 - actions:cat1,cat2,cat3
 
   description:

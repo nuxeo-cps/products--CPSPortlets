@@ -328,20 +328,19 @@ class CPSPortlet(CPSDocument):
                 index_string = REQUEST.get('cpsskins_base_url')
 
             # XXX CPSSkins dependency
-            # CMF Actions
-            elif param == 'actions':
-                cmf_actions = REQUEST.get('cpsskins_cmfactions')
-                if cmf_actions:
-                    index_string = md5.new(str(cmf_actions)).hexdigest()
-
+            # CMF Actions by categories
             elif param.startswith('actions:'):
                 prefix = 'actions'
                 cmf_actions = REQUEST.get('cpsskins_cmfactions')
                 if cmf_actions:
-                    categories = getOptions(param)
-                    actions = [cmf_actions[x] for x in categories \
-                               if cmf_actions.has_key(x)]
-                    index_string = md5.new(str(actions)).hexdigest()
+                    ac_list = []
+                    ac_list_extend = ac_list.extend
+                    for cat in getOptions(param):
+                        if not cmf_actions.has_key(cat):
+                            continue
+                        for ac in cmf_actions[cat]:
+                             ac_list_extend([ac.get('name'), ac.get('url')])
+                    index_string = md5.new(str(ac_list)).hexdigest()
 
             # XXX CPSSkins dependency
             # Workflow actions
