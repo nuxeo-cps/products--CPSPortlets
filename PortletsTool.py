@@ -104,6 +104,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if not isglobal:
             pass
 
-        return self._deletePortlet(portlet_id)
+        return destination._deletePortlet(portlet_id)
 
 InitializeClass(PortletsTool)
