@@ -136,7 +136,7 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
             pass
 
         if portlet_id in self.listPortletIds():
-            del self[portlet_id]
+            self._delObject(portlet_id)
             return 0
 
         return 1
