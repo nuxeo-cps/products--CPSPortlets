@@ -25,13 +25,12 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 
-from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
-
 from Products.CMFCore.utils import UniqueObject, getToolByName
 
+from Products.CPSPortlets.PortletsContainer import PortletsContainer
 from Products.CPSPortlets.CPSPortletsPermissions import ManagePortlets
 
-class PortletsTool(UniqueObject, CMFBTreeFolder):
+class PortletsTool(UniqueObject, PortletsContainer):
     """ Portlets Tool
     """
 
@@ -39,28 +38,6 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
     meta_type = 'CPS Portlets Tool'
 
     security = ClassSecurityInfo()
-
-    def __init__(self):
-        """
-        """
-        CMFBTreeFolder.__init__(self, self.id)
-
-    ####################################################################
-
-    def getPortletById(self, id):
-        """Return a portlet object given an id
-        """
-        return self.get(id)
-
-    def listPortletIds(self):
-        """Return the list of all portlet ids contained within the tool
-        """
-        ids = []
-        for k, v in self.items():
-            ids.append(k)
-        return ids
-
-    ###################################################################
 
     def getPortletSlots(self):
         """Return all the available slots
