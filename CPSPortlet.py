@@ -187,21 +187,41 @@ class CPSPortlet(CPSDocument):
         custom_params = self.getCustomCacheParams()
         params.extend(custom_params)
 
+        def getOptions(p):
+            """extract cache parameter options
+            """
+            res = []
+            for o in p.split(':')[1].split(','):
+                if o[0] == '(' and o[-1] == ')':
+                    o = getattr(self, o[1:-1], None)
+                    if o is None:
+                        continue
+                    if isinstance(o, ListType) or\
+                       isinstance(o, TupleType):
+                        res.extend(o)
+                        continue
+                res.append(str(o))
+            return res
+
         objects = []
         for param in params:
-            if not param.startswith('objects:'):
-                continue
-            for type in param.split(':')[1].split(','):
+            if param.startswith('objects:'):
+                opts = getOptions(param)
+                for opt in opts:
 
-                # relative path objects
-                if type == 'relative_path':
-                    objs = self.getRelativeContentObjects(context)
-                    if len(objs) > 0:
-                        objects.extend(objs)
+                    # relative path objects
+                    if opt == 'relative_path':
+                        objs = self.getRelativeContentObjects(context)
+                        if len(objs) > 0:
+                            objects.extend(objs)
 
-                # context
-                elif type == 'context':
-                    objects.append(context.getPhysicalPath())
+                    # context
+                    elif opt == 'context':
+                        objects.append(context.getPhysicalPath())
+
+                    # list of paths
+                    else:
+                        objects.append(tuple(opt.split('/')))
 
         return objects
 

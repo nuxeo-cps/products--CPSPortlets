@@ -205,6 +205,11 @@ be set in the factory type information.
   description: the context object.
   used in: portlets that display information about the current object
 
+- objects:(list_variable)
+  description: a list of objects described by their physical path
+               as listed in the 'list_variable' property.
+  used in: the Internal Links Portlet.
+
 ...
 
 Cache invalidation

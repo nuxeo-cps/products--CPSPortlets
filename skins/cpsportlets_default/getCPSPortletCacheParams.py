@@ -4,7 +4,9 @@ cache_params = {
     'Custom Portlet': ['no-cache'],
     'Text Portlet': [],
     'Search Portlet': ['no-cache'],
-    'Internal Links Portlet': ['no-cache'],
+    'Internal Links Portlet': ['user',
+        'objects:(links)'
+        ],
     'Add Item Portlet': ['portal_type', 'wf_create'],
     'Breadcrumbs Portlet': ['user',
         'object:published_path',
