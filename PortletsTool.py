@@ -218,7 +218,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """Return the list of parent folders
         """
 
-        bmf = self.getBottomFolder(context=context)
+        bmf = self.getBottomMostFolder(context=context)
 
         utool = getToolByName(self, 'portal_url')
         rpath = utool.getRelativeContentPath(bmf)
@@ -251,8 +251,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
         )
         return folders
 
-    security.declarePublic('getBottomFolder')
-    def getBottomFolder(self, context=None):
+    security.declarePublic('getBottomMostFolder')
+    def getBottomMostFolder(self, context=None):
         """Return the first folderish object above the context
         """
 
@@ -272,6 +272,22 @@ class PortletsTool(UniqueObject, PortletsContainer):
             bmf = context
         return bmf
 
+    security.declarePublic('getFolders')
+    def getFolders(self, context=None):
+        """Return the list of folders in which portlets can be added
+        """
+        if context is None:
+            return []
+        folders = []
+        folders_append = folders.append
+        for c in context.objectValues():
+            if not c.isPrincipiaFolderish:
+                continue
+            if c.getId().startswith('.'):
+                continue
+            folders_append(c)
+        return folders
+
     #######################################################################
 
     security.declarePublic('getPortlets')
@@ -283,7 +299,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
             return []
 
         # get the bottom-most folder
-        bmf = self.getBottomFolder(context=context)
+        bmf = self.getBottomMostFolder(context=context)
 
         # get portlets from the root to current path
         utool = getToolByName(self, 'portal_url')
