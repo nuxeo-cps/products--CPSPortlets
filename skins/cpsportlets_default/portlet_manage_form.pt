@@ -1,6 +1,6 @@
 <tal:block define="
   manage_url nocall:here/cpsskins_portlet_manage_form|nothing"
-  condition="manage_url">
+  condition="nocall:manage_url">
   <tal:redirect define="response request/RESPONSE;
    redirect_url string:${here/absolute_url}/cpsskins_portlet_manage_form;
    dummy python:response.redirect(redirect_url)" />
