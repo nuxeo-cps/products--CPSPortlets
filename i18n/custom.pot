@@ -160,3 +160,9 @@ msgstr ""
 
 msgid "cpsportlets_delete_translation"
 msgstr ""
+
+msgid "button_canvas"
+msgstr ""
+
+msgid "button_visibility"
+msgstr ""
