@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-11-18 09:41default\n"
+"POT-Creation-Date: 2004-11-18 18:48default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -64,6 +64,16 @@ msgstr ""
 #.   <option disabled="disabled" selected="selected" value="">Delete translation ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
+msgstr ""
+
+#.   <span>To manage portlets please install CPSSkins.</span>
+#: from ../skins/cpsportlets_default/portlet_manage_form.pt
+msgid "cpsportlets_install_cpsskins"
+msgstr ""
+
+#.   <h1>Portlet management</h1>
+#: from ../skins/cpsportlets_default/portlet_manage_form.pt
+msgid "cpsportlets_portlet_management_heading"
 msgstr ""
 
 #.   <option disabled="disabled" selected="selected" value="">Switch to ...</option>

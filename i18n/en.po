@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-11-18 09:41default\n"
+"POT-Creation-Date: 2004-11-18 18:48default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -68,6 +68,16 @@ msgstr "Change language ..."
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
 msgstr "Delete the version in ..."
+
+#.   <span>To manage portlets please install CPSSkins.</span>
+#: from ../skins/cpsportlets_default/portlet_manage_form.pt
+msgid "cpsportlets_install_cpsskins"
+msgstr "To manage portlets please install CPSSkins."
+
+#.   <h1>Portlet management</h1>
+#: from ../skins/cpsportlets_default/portlet_manage_form.pt
+msgid "cpsportlets_portlet_management_heading"
+msgstr "Portlet management"
 
 #.   <option disabled="disabled" selected="selected" value="">Switch to ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
