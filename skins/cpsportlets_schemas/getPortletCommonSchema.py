@@ -21,6 +21,24 @@ portlet_common_schema = {
             'write_process_expr': '',
         },
     },
+    'state': {
+        'type': 'CPS String Field',
+        'data': {
+            'default_expr': 'python:0',
+            'is_searchabletext': 1,
+            'acl_read_permissions': '',
+            'acl_read_roles': '',
+            'acl_read_expr': '',
+            'acl_write_permissions': '',
+            'acl_write_roles': '',
+            'acl_write_expr': '',
+            'read_ignore_storage': 0,
+            'read_process_expr': '',
+            'read_process_dependent_fields': (),
+            'write_ignore_storage': 0,
+            'write_process_expr': '',
+        },
+    },
     'visibility_range': {
         'type': 'CPS Couple Field',
         'data': {
@@ -39,11 +57,11 @@ portlet_common_schema = {
             'write_process_expr': '',
         },
     },
-    'state': {
-        'type': 'CPS String Field',
+    'cache_params': {
+        'type': 'CPS String List Field',
         'data': {
-            'default_expr': 'python:0',
-            'is_searchabletext': 1,
+            'default_expr': 'python:[]',
+            'is_searchabletext': 0,
             'acl_read_permissions': '',
             'acl_read_roles': '',
             'acl_read_expr': '',
@@ -111,10 +129,10 @@ portlet_common_schema = {
             'write_process_expr': '',
         },
     },
-    'cache_params': {
-        'type': 'CPS String List Field',
+    'cache_cleanup_date': {
+        'type': 'CPS DateTime Field',
         'data': {
-            'default_expr': 'python:[]',
+            'default_expr': 'nothing',
             'is_searchabletext': 0,
             'acl_read_permissions': '',
             'acl_read_roles': '',
@@ -130,7 +148,6 @@ portlet_common_schema = {
         },
     },
 }
-
  
 dict = {}
 dict['portlet_common'] = portlet_common_schema

@@ -33,11 +33,15 @@ from Acquisition import aq_base, aq_parent, aq_inner
 
 from Products.CMFCore.utils import UniqueObject, getToolByName, _checkPermission
 from Products.CMFCore.CMFCorePermissions import View
+
+# XXX Remove dependency on CPSSkins
+from Products.CPSSkins.RAMCache import RAMCache
+
 from Products.CPSPortlets.PortletsContainer import PortletsContainer
 from Products.CPSPortlets.CPSPortletsPermissions import ManagePortlets
 
-
 PORTLET_CONTAINER_ID = '.cps_portlets'
+PORTLET_RAMCACHE_ID = 'portlets'
 
 class PortletsTool(UniqueObject, PortletsContainer):
     """ Portlets Tool
@@ -47,6 +51,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
     meta_type = 'CPS Portlets Tool'
 
     security = ClassSecurityInfo()
+
+    # RAM Cache
+    caches = {}
 
     security.declarePublic('listAllPortlets')
     def listAllPortlets(self):
@@ -121,7 +128,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
         return returned
 
     ############################################################################
-
     security.declarePublic('getPortletContainerId')
     def getPortletContainerId(self):
         """Return the id of the portlet container.
@@ -280,6 +286,29 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 portlet.absolute_url()))
 
         self._insertPortlet(portlet=portlet, slot=slot, order=order)
+
+    #
+    # RAM Cache
+    #
+    security.declarePublic('getPortletCache')
+    def getPortletCache(self, create=0):
+        """Returns the Portlet RAM cache object"""
+
+        cacheid = PORTLET_RAMCACHE_ID
+        try:
+            return self.caches[cacheid]
+        except KeyError:
+            cache = RAMCache()
+            self.caches[cacheid] = cache
+            return cache
+
+    security.declareProtected(ManagePortlets, 'clearCache')
+    def clearCache(self, REQUEST=None, **kw):
+        """Clear the cache."""
+
+        portletcache = self.getPortletCache()
+        if portletcache is not None:
+            portletcache.invalidate()
 
     #
     # Private

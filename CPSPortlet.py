@@ -27,6 +27,8 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 This is a CPSDocument child base class for portlets
 """
 
+import time
+
 from types import ListType, IntType
 
 from Globals import InitializeClass, DTMLFile
@@ -96,7 +98,8 @@ class CPSPortlet(CPSDocument):
         return 1
 
     #################################################################
-
+    # RAM Cache
+    #################################################################
     security.declarePublic('getCustomCacheIndex')
     def getCustomCacheIndex(self):
         """Returns the custom RAM cache index as a tuple (var1, var2, ...)
@@ -121,6 +124,60 @@ class CPSPortlet(CPSDocument):
         if type(cache_params) == type([]):
             if self.cache_params != cache_params:
                 self.cache_params = cache_params
+
+    security.declareProtected(ManagePortlets, 'expireCache')
+    def expireCache(self):
+       """Expires the cache for this Portlet.
+          In a ZEO environment, the information will propagate
+          between all ZEO instances as long as the portlet has not been
+          removed.
+       """
+       self.cache_cleanup_date = time.time()
+
+    security.declarePublic('getCacheIndex')
+    def getCacheIndex(self, REQUEST=None, **kw):
+        """Returns the RAM cache index as a tuple (var1, var2, ...)
+        """
+
+        # XXX This should be moved elsewhere
+        if REQUEST is None:
+            REQUEST = self.REQUEST
+        param_dict = {
+            'url': (REQUEST.get('PATH_TRANSLATED', '/'), ),
+            'i18n': (REQUEST.get('cpsskins_language', 'en'), ),
+            'user': (str(REQUEST.get('AUTHENTICATED_USER')), ),
+        }
+
+        # custom cache index
+        index = self.getCustomCacheIndex()
+        # cache parameters
+        for param in self.getCacheParams():
+            index += param_dict.get(param)
+        return index
+
+    security.declarePublic('render_cache')
+    def render_cache(self, **kw):
+        """Renders the cached version of the portlet."""
+
+        now = time.time()
+        portlet_path = self.getPhysicalPath()
+        index = (portlet_path, ) + self.getCacheIndex(**kw)
+
+        ptltool = getToolByName(self, 'portal_cpsportlets')
+        cache = ptltool.getPortletCache()
+        last_cleanup = cache.getLastCleanup(id=portlet_path)
+        cleanup_date = self.cache_cleanup_date
+
+        # ZEO
+        if cleanup_date > last_cleanup:
+            cache.delEntries(portlet_path)
+
+        rendered = cache.getEntry(index)
+        if rendered is None:
+            rendered = self.render(**kw)
+            cache.setEntry(index, rendered)
+
+        return rendered
 
     ##################################################################
 

@@ -43,6 +43,7 @@ else:
                                                 context,
                                                 {})
 if context_is_portlet:
+    context.expireCache()
     return res[0], psm
 
 if REQUEST is not None:
