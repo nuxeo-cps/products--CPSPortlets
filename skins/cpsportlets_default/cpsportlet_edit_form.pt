@@ -40,6 +40,8 @@
      tal:condition="portlet_folder"
      tal:attributes="action string:${portlet_folder/absolute_url}/portlet_manage_form">
       <input type="hidden" name="view_mode" value="canvas" />
+      <input type="hidden" name="selected_portlet" 
+       tal:attributes="value portlet_id" />
       <input type="submit" i18n:attributes="value"
        tal:attributes="value string:button_canvas">
     </form>
