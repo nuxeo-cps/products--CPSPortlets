@@ -11,7 +11,7 @@ ds = kw['datastructure']
 render_obj = context_obj.aq_inner.aq_explicit
 if int(ds.get('render_container', 0)):
     if not render_obj.isPrincipiaFolderish:
-        render_obj = context_obj.aq_parent.aq_inner
+        render_obj = context_obj.aq_inner.aq_parent
 
 ti =  render_obj.getTypeInfo()
 if ti is None:

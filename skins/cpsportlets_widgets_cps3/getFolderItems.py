@@ -20,7 +20,7 @@ while 1:
     if obj.isPrincipiaFolderish:
         bmf = obj
         break
-    parent = obj.aq_parent.aq_inner
+    parent = obj.aq_inner.aq_parent
     if not obj or parent == obj:
         break
     obj = parent
