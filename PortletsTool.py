@@ -61,14 +61,13 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
         """Return all the available slots
         """
         # XXX lookup everywhere on the portal (locally too)
-        return ('top',
+        return ['top',
                 'left',
                 'center_top',
                 'center',
                 'folder_view',
                 'center_bottom',
                 'right',
-                'bottom')
-
+                'bottom']
 
 InitializeClass(PortletsTool)
