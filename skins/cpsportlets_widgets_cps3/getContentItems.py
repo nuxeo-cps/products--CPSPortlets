@@ -27,15 +27,10 @@ query = kw
 # cps filter (portal_xyz, .___)
 query['cps_filter_sets'] = {'query': ('searchable', 'leaves'),
                             'operator': 'and'}
-
 # folder path
 if folder_path is not None:
     portal_path = context.portal_url.getPortalPath()
     query['path'] = portal_path + folder_path
-
-# portal types
-#if len(portal_types) > 0:
-#query['portal_type'] = ('123','123')
 
 # return the results in descending order
 if sort_reverse:
