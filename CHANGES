@@ -5,6 +5,7 @@ New features:
 ~~~~~~~~~~~~~
 - Navigation Portlet: several tree roots (sections, workspaces) can be
   specified.
+- Added syndication for RSS Portlet, Content Portlet, Internal Links Portlet.
 Bug fixes:
 ~~~~~~~~~~
 - Removed warnings: replaces CMFCore.CMFCorePermissions by CMFCore.permissions.
