@@ -48,6 +48,7 @@ rotating_image_portlet_flexible_layout = {
                 'fields': ('?',),
                 'widget_ids': ('image', 'link'),
                 'widget_type': 'Image Link Widget',
+                'css_class': 'hidden',
             },
         },
         'image': {
