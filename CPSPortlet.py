@@ -315,7 +315,8 @@ class CPSPortlet(CPSDocument):
             # using dict.get('objects') instead of dict['objects'] to get
             # a copy of the cached objects.
             for obj in cache_entry.get('objects'):
-                if obj._p_mtime < creation_date:
+                mtime = getattr(obj, '_p_mtime', None)
+                if mtime is not None and mtime < creation_date:
                     continue
                 # the entry is not longer valid
                 cache_entry = None
