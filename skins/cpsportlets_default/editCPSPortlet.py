@@ -6,13 +6,19 @@ edit layout and content if form submited
 return html renderer + psm
 """
 
-ptl_tool = context.portal_cpsportlets
+context_is_portlet = 0
+if getattr(context.aq_explicit, 'isCPSPortlet', None) is not None:
+    if context.aq_explicit.isCPSPortlet():
+        context_is_portlet = 1
 
-# Get portlet_id form the templet
-portlet_id = context.getPortletId()
-
-# Get the portlet from the tool
-doc = ptl_tool.getPortletById(portlet_id)
+if context_is_portlet:
+    doc = context
+else:
+    # Get portlet_id form the templet
+    ptltool = context.portal_cpsportlets
+    portlet_id = context.getPortletId()
+    # Get the portlet from the tool
+    doc = ptltool.getPortletById(portlet_id)
 
 layout_changed = doc.editLayouts(REQUEST=REQUEST);
 
@@ -35,6 +41,8 @@ else:
     context.portal_eventservice.notifyEvent('workflow_modify',
                                             context,
                                             {})
+if context_is_portlet:
+    return res[0], psm
 
 if REQUEST is not None:
     redirect_url = REQUEST.get('HTTP_REFERER')
