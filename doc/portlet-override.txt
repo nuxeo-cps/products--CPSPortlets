@@ -1,0 +1,52 @@
+CPSPortlets - portlet override (draft)
+======================================
+Authors:
+  - Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>
+
+BACKGROUND
+----------
+The portlets located in a folder are by default visible in all sub-folders.
+It means that the amount of portlets tends to increase as one goes deeper into
+the site structure.
+
+It can sometimes be useful to control the visibility of the portlets located
+in the parent folders.
+
+The solution is to allow users to override portlets.
+
+
+IMPLEMENTATION
+--------------
+The implementation is based on a dialogue between the manager(s) of a given
+folder and the manager(s) of sub-folders:
+
+- Portlets can be overriden be default unless the 'disable_override' flag is
+  set.
+
+- If a portlet located in a given folder has the 'slot_override' flag set then
+  only the portlets of the same slot located in the folder and in the folders
+  below will be visible. All portlets above except the ones with the
+  'disable_override' flag on will be invisible.
+
+
+EXAMPLE:
+--------
+
+  ::
+
+      Portlet A1 in /workspaces               Portlet A2 in /workspaces
+      in SLOT1                                in SLOT1
+      -------------------------               -------------------------
+      disable_override: YES                   disable_override: NO
+
+
+      Portlet B in /workspaces/members/user
+      in SLOT1
+      -------------------------------------
+      slot_override: YES
+
+
+* Visible in /workspaces (SLOT1): A1, A2
+
+* Visible in /workspaces/members/user (SLOT1): A1, B
+  (A2 is overridden, A1 cannot be overriden)
