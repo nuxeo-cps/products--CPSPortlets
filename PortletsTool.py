@@ -238,6 +238,37 @@ class PortletsTool(UniqueObject, PortletsContainer):
     # Private
     #
 
+
+    security.declarePrivate('_getDepthOf')
+    def _getDepthOf(self, context=None):
+        """Returns the depth of the context
+
+        If context is None then we are at depth 0 since we are at the root of
+        the portal
+        """
+        utool = getToolByName(self, 'portal_url')
+        portal = utool.getPortalObject()
+        if (context is not None and
+            context != portal):
+            return len(utool.getRelativeContentPath(context))
+        return 0
+
+    security.declarePrivate('_isPortletVisible')
+    def _isPortletVisible(self, portlet, context):
+        """Is the portlet visible in a given context
+        """
+        cdepth = self._getDepthOf(context)
+        vrange = portlet.getVisibilityRange()
+        left = vrange[0]
+        right = vrange[1]
+
+        # [0, 0] means visible everywhere
+        if (left == right == 0 or
+            right == 0 and left <= cdepth or
+            left <= cdepth <= right):
+            return 1
+        return 0
+
     security.declarePrivate('_getFolderPortlets')
     def _getFolderPortlets(self, folder=None, slot=None):
         """Load all portlets in a .cps_portlets folder.
@@ -254,6 +285,12 @@ class PortletsTool(UniqueObject, PortletsContainer):
                     if portlet_slot != slot:
                         continue
                 portlets.append(portlet)
-        return portlets
+
+        # Check the visibility range of the portlet
+        returned = []
+        for portlet in portlets:
+            if self._isPortletVisible(portlet, folder):
+                returned.append(portlet)
+        return returned
 
 InitializeClass(PortletsTool)
