@@ -30,7 +30,7 @@ search_portlet_layout = {
                 'label_edit': 'cpsportlets_advanced_search_link_label',
                 'description': '',
                 'help': '',
-                'is_i18n': False,
+                'is_i18n': True,
                 'readonly_layout_modes': (),
                 'hidden_layout_modes': ('view',),
                 'hidden_readonly_layout_modes': (),

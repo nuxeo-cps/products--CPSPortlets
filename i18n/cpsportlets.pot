@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-09-12 13:40default\n"
+"POT-Creation-Date: 2004-09-17 01:36default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -19,6 +19,16 @@ msgstr ""
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: default\n"
 
+#.   <input type="submit" value=" Add " />
+#: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
+msgid " Add "
+msgstr ""
+
+#.   <strong>ID:</strong>
+#: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
+msgid "ID:"
+msgstr ""
+
 #.   <block>Edit</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
@@ -28,6 +38,11 @@ msgstr ""
 #.         Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
+msgstr ""
+
+#.   <a href="" attributes="href advanced_search_form_url" condition="here/advanced_search_link">Advanced search</a>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+msgid "cpsportlets_advanced_search"
 msgstr ""
 
 msgid "label_cpsportlets_provider"
@@ -70,4 +85,7 @@ msgid "cpsportlets_label_display_dropdown_list"
 msgstr ""
 
 msgid "cpsportlets_label_display_horizontal_trail"
+msgstr ""
+
+msgid "cpsportlets_advanced_search_link_label"
 msgstr ""

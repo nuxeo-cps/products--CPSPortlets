@@ -9,12 +9,11 @@
 <div class="Desktop" 
  tal:define="type_name request/form/type_name|nothing"
  tal:condition="type_name">
-<h1 i18n:translate="">Add <tal:block content="type_name" /></h1>
+<h1>Add <tal:block content="type_name" /></h1>
 <form action="invokeFactory" method="post"
       
       tal:attributes="action string:${here/absolute_url}/invokeFactory"
 >
-
 
 <table class="FormLayout" tal:condition="type_name">
  <tr valign="top">

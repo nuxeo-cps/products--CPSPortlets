@@ -58,3 +58,6 @@ msgstr ""
 
 msgid "cpsportlets_label_display_horizontal_trail"
 msgstr ""
+
+msgid "cpsportlets_advanced_search_link_label"
+msgstr ""
