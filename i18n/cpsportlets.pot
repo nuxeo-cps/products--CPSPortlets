@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-11-06 15:14default\n"
+"POT-Creation-Date: 2004-11-08 10:44default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -64,11 +64,6 @@ msgstr ""
 #.   <option disabled="disabled" selected="selected" value="">Delete translation ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
-msgstr ""
-
-#.   <option disabled="disabled" selected="selected" value="">Set the default language ...</option>
-#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
-msgid "cpsportlets_set_default_language"
 msgstr ""
 
 #.   <option disabled="disabled" selected="selected" value="">Translate into ...</option>
@@ -254,4 +249,10 @@ msgid "cpsportlets_rss_max_words_label"
 msgstr ""
 
 msgid "cpsportlets_content_max_words_label"
+msgstr ""
+
+msgid "cpsportlets_image_image_label"
+msgstr ""
+
+msgid "cpsportlets_image_link_label"
 msgstr ""

@@ -153,6 +153,7 @@ class CPSPortletsInstaller(CPSInstaller):
 
         define_schemas = (self.portal.getPortletCommonSchema(),
                           self.portal.getTextPortletSchema(),
+                          self.portal.getImagePortletSchema(),
                           self.portal.getSearchPortletSchema(),
                           self.portal.getInternalLinksPortletSchema(),
                           self.portal.getAddItemPortletSchema(),
@@ -177,6 +178,7 @@ class CPSPortletsInstaller(CPSInstaller):
 
         define_layouts = (self.portal.getPortletCommonLayout(),
                           self.portal.getTextPortletLayout(),
+                          self.portal.getImagePortletLayout(),
                           self.portal.getDummyPortletLayout(),
                           self.portal.getSearchPortletLayout(),
                           self.portal.getInternalLinksPortletLayout(),
@@ -201,6 +203,7 @@ class CPSPortletsInstaller(CPSInstaller):
 
         define_types = (self.portal.getDummyPortletType(),
                         self.portal.getTextPortletType(),
+                        self.portal.getImagePortletType(),
                         self.portal.getSearchPortletType(),
                         self.portal.getInternalLinksPortletType(),
                         self.portal.getAddItemPortletType(),
@@ -211,7 +214,6 @@ class CPSPortletsInstaller(CPSInstaller):
                         self.portal.getNavigationPortletType(),
                         self.portal.getDocumentPortletType(),
                         self.portal.getRSSPortletType(),
-                        self.portal.getImagePortletType(),
                        )
 
         all_ptypes = {}

@@ -199,3 +199,9 @@ msgstr ""
 
 msgid "cpsportlets_content_max_words_label"
 msgstr ""
+
+msgid "cpsportlets_image_image_label"
+msgstr ""
+
+msgid "cpsportlets_image_link_label"
+msgstr ""

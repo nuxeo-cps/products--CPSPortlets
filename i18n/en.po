@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-11-06 15:14default\n"
+"POT-Creation-Date: 2004-11-08 10:44default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -253,3 +253,9 @@ msgstr "Number of words in the summary"
 
 msgid "cpsportlets_content_max_words_label"
 msgstr "Number of words in the summary"
+
+msgid "cpsportlets_image_image_label"
+msgstr "Image file"
+
+msgid "cpsportlets_image_link_label"
+msgstr "Link"

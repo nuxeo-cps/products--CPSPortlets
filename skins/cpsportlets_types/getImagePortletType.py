@@ -14,8 +14,8 @@ image_portlet_type = {
     'cps_proxy_type': '',
     'cps_display_as_document_in_listing': False,
     'cps_is_portalbox': False,
-    'schemas': ('portlet_common', 'common', 'metadata'),
-    'layouts': ('portlet_common', 'image'),
+    'schemas': ('portlet_common', 'image_portlet', 'common', 'metadata'),
+    'layouts': ('portlet_common', 'image_portlet'),
     'flexible_layouts': (),
     'storage_methods': (),
     'cps_is_portlet': True,
@@ -26,14 +26,14 @@ image_portlet_type = {
           'condition': '',
           'permission': ('View',),
           'category': 'object',
-          'visible': 1,},
+          'visible': True,},
          {'id': 'edit',
           'name': 'action_edit',
           'action': 'string:${object_url}/cpsportlet_edit_form',
           'condition': '',
           'permission': ('Modify portal content',),
           'category': 'object',
-          'visible': 1,},
+          'visible': True,},
     )
 }
 

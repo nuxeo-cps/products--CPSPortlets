@@ -22,6 +22,7 @@ New features:
 - Document portlet (renders a CPSDocument)
 - RSS portlet (renders an RSS feed)
 - The Navigation portlet displays folder contents
+- The Image portlet supports links (cf. ads, ...)
 Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves
