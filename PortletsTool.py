@@ -26,7 +26,7 @@ from Globals import InitializeClass
 
 from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
 
-from Products.CMFCore.utils import UniqueObject
+from Products.CMFCore.utils import UniqueObject, getToolByName
 
 class PortletsTool(UniqueObject, CMFBTreeFolder):
     """ Portlets Tool
@@ -69,5 +69,18 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
                 'center_bottom',
                 'right',
                 'bottom']
+
+    def listPortletTypes(self):
+        """Return the list of all defined portal_types which are portlets
+
+        It means having the 'CPS Portlet' flag
+        """
+        ttool = getToolByName(self, 'portal_types')
+        returned = []
+        for id in ttool.objectIds():
+            fti = getattr(ttool, id)
+            if getattr(fti, 'cps_is_portlet', 0) == 1:
+                returned.append(fti)
+        return returned
 
 InitializeClass(PortletsTool)
