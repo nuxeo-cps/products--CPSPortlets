@@ -110,14 +110,11 @@ class CPSPortlet(CPSDocument):
 
         index = ()
 
-        # box state
-        index += (self.getState(), )
-
         # i18n
         if self.isI18n():
             # XXX for testing purposes only
             # rewrite this in a more generic way
-            index += (REQUEST.get('cpsskins_language', 'en'), )
+            index += ('i18n' + REQUEST.get('cpsskins_language', 'en'), )
         return index
 
     security.declarePublic('getCacheParams')
@@ -156,16 +153,20 @@ class CPSPortlet(CPSDocument):
         folder_url = context.absolute_url(1)
         # XXX This should be moved elsewhere
         param_dict = {
-            'url': (REQUEST.get('cpsskins_url'), ),
-            'folder': (folder_url, ),
-            'user': (str(REQUEST.get('AUTHENTICATED_USER')), ),
+            'url': REQUEST.get('cpsskins_url'),
+            'folder': folder_url,
+            'user': REQUEST.get('AUTHENTICATED_USER'),
         }
 
         # custom cache index
         index = self.getCustomCacheIndex()
         # cache parameters
         for param in self.getCacheParams():
-            index += param_dict.get(param)
+            if not param_dict.has_key(param):
+                continue
+            # we use the dict key as a prefix to make the 
+            # index entries unique.
+            index += (param + str(param_dict[param]), )
         return index
 
     security.declarePublic('render_cache')
