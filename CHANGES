@@ -54,3 +54,4 @@ New internal features:
 - running 'html_slimmer' before storing rendered portlets in the RAM cache.
 - added a query parameter in listPortlets() to specify the portal types.
 - added an ESI portlet renderer (Edge-Side-Includes)
+- using CPSNavigation to list folder contents
