@@ -30,5 +30,5 @@ New internal features:
 - lazy cache invalidation algorithm. cf. render_cache()
 - new cache parameters to describe cache objects cf. getCacheObjects()
 - new option to pass portlet's attributes in the cache parameters
-- new cache parameter added ('events:event1,event2') containing the list of
-  events that will cause the portlet's cache to expire.
+- new cache parameters on events (event ids, folder paths, portal types)
+  that will cause the portlet's cache to expire.

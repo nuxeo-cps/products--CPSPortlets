@@ -31,7 +31,6 @@ from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
 
 from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
-
 from Products.CMFCore.utils import getToolByName
 
 class PortletsContainer(CMFBTreeFolder):
@@ -116,14 +115,6 @@ class PortletsContainer(CMFBTreeFolder):
             self.invokeFactory(ptype_id, new_id)
             new_portlet = getattr(self, new_id)
             new_portlet.edit(kw)
-
-            # subscribe to events
-            for param in cache_params:
-                if not param.startswith('events:'):
-                    continue
-                for event in param.split(':')[1].split(','):
-                    new_portlet.addEvent(event)
-
             return new_id
         return None
 

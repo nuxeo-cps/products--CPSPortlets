@@ -4,7 +4,7 @@
 Authors: Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>
          Julien Anguenot <mailto:ja@nuxeo.com>
 
-Last-modified: 2004-10-18
+Last-modified: 2004-10-26
 
 
 RAM Cache
@@ -172,10 +172,18 @@ be set in the factory type information.
   actions:(categories),(custom_categories),user
   ...
 
-- events
-  description: the list of events that will trigger an expiration
-  of the portlet's cache.
-  example: events:workflow_publish,workflow_unpublish
+- event_ids
+  description: the list of event ids that will trigger an expiration
+               of the portlet's cache.
+  example: event_ids:workflow_publish,workflow_unpublish
+  used in: the content portlet
+
+- event_in_folders
+  description: the list of folder paths inside which events will be monitored
+  used in: the content portlet
+
+- event_on_types
+  description: the list of portal types for which events will be monitored
   used in: the content portlet
 
 - no-cache:

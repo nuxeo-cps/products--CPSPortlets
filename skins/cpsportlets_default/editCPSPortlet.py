@@ -45,6 +45,8 @@ else:
                                                 context,
                                                 {})
 if context_is_portlet:
+    ptype_id = context.getPortletType()
+    context.resetInterestingEvents(ptype_id)
     context.expireCache()
     return res[0], psm, error
 

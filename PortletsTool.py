@@ -671,19 +671,33 @@ class PortletsTool(UniqueObject, PortletsContainer):
         LOG(":: OBJECT ::", DEBUG, repr(object))
         LOG(":: INFOS ::", DEBUG, repr(infos))
 
+        # we skip the events that do not inform about the object's path
+        if not infos.has_key('rpath'):
+            return
+
+        object_path = '/' + infos['rpath']
+
+        # XXX do we have to fetch the proxy's content to get the portal type?
+        portal_type = object.getContent().portal_type
+
         # expire the portlets interested in the event
-        for portlet in self.listPortletsInterestedInEvent(event_type):
+        for portlet in self.listPortletsInterestedInEvent(event_id=event_type,
+                                                          folder_path=object_path,
+                                                          portal_type=portal_type):
+
             portlet.expireCache()
 
-    def listPortletsInterestedInEvent(self, event_id, context=None):
+    def listPortletsInterestedInEvent(self, event_id, folder_path, portal_type):
         """return the list of all portlets interested about an event given its
         event_id
         """
-        # XXX check for context
+
         returned = []
         portlets = self.listAllPortlets()
         for portlet in portlets:
-            if portlet.isInterestedInEvent(event_id):
+            if portlet.isInterestedInEvent(event_id=event_id,
+                                           folder_path=folder_path,
+                                           portal_type=portal_type):
                 returned.append(portlet)
         return returned
 

@@ -458,6 +458,14 @@ class CPSPortlet(CPSDocument):
 
         return self.cache_cleanup_date
 
+    security.declarePublic('getPortletType')
+    def getPortletType(self):
+        """Return the portlet's type"""
+
+        ti = self.getTypeInfo()
+        if ti is not None:
+            return ti.getId()
+
     #################################################################
 
     security.declarePublic('getDepth')
@@ -572,19 +580,26 @@ class CPSPortlet(CPSDocument):
     #################################################################
 
     security.declareProtected(ModifyPortalContent, 'addEvent')
-    def addEvent(self, event_id):
+    def addEvent(self, event_ids=(), folder_paths=(), portal_types=()):
         """Add an event to the list of interesting events
         """
 
         # Check the existence cause it's not on the schema
         if not getattr(aq_base(self), '_interesting_events', 0):
-            self._interesting_events = ()
+            self.clearEvents()
 
         # Add the event if not already here
-        if event_id not in self.listEvents():
-            self._interesting_events += (event_id,)
+        if (event_ids, folder_paths, portal_types) not in self.listEvents():
+            self._interesting_events += ((event_ids, folder_paths, portal_types), )
             return 0
         return 1
+
+    security.declareProtected(ModifyPortalContent, 'clearEvents')
+    def clearEvents(self):
+        """Clear the list of interesting events
+        """
+
+        self._interesting_events = ()
 
     security.declareProtected(View, 'listEvents')
     def listEvents(self):
@@ -593,18 +608,45 @@ class CPSPortlet(CPSDocument):
         return self._interesting_events
 
     security.declareProtected(View, 'isInterestedInEvent')
-    def isInterestedInEvent(self, event_id):
-        """Check if whether or not the portlet is interested in event
+    def isInterestedInEvent(self, event_id='', folder_path='', portal_type=''):
+        """Check whether the portlet is interested in an event
         """
-        return event_id in self.listEvents()
+
+        interested = 0
+        for event in self.listEvents():
+            ids = event[0]
+            paths = event[1]
+            ptypes = event[2]
+
+            if len(ids) > 0:
+                if event_id and event_id not in ids:
+                    continue
+
+            if len(paths) > 0:
+                if folder_path:
+                    found = 0
+                    for path in paths:
+                        if folder_path.startswith(path):
+                            found = 1
+                            break
+                    if not found:
+                        continue
+
+            if len(ptypes) > 0:
+                if portal_type and portal_type not in ptypes:
+                    continue
+
+            interested = 1
+            break
+        return interested
 
     security.declarePrivate('sendEvent')
-    def sendEvent(self, event_id):
+    def sendEvent(self, **kw):
         """Subscriber send an event to the portlet.
 
         The portlet is gonna check if whether or not he reacts.
         """
-        if event_id in self.listEvents():
+        if self.isInterestedInEvent(**kw):
             # XXX
             return 0
         return 1
@@ -670,6 +712,58 @@ class CPSPortlet(CPSDocument):
         javascript_dict = self.getCPSPortletJavaScript()
         if javascript_dict.has_key(ptype_id):
             self._setJavaScript(javascript_dict[ptype_id])
+
+        self.resetInterestingEvents(ptype_id)
+
+    security.declareProtected(ManagePortlets, 'resetInterestingEvents')
+    def resetInterestingEvents(self, ptype_id=None):
+        """ Reset the list of interesting events
+            based on the portlet's settings
+        """
+
+        if ptype_id is None:
+            return
+        cache_params_dict = self.getCPSPortletCacheParams()
+        if not cache_params_dict.has_key(ptype_id):
+            return
+
+        def getOptions(param):
+             """extract cache parameter options
+             """
+             res = []
+             opts = param.split(':')[1].split(',')
+             for opt in opts:
+                 if opt[0] == '(' and opt[-1] == ')':
+                     opt = getattr(self, opt[1:-1], None)
+                     if opt is None:
+                         continue
+                     if isinstance(opt, ListType) or\
+                        isinstance(opt, TupleType):
+                         res.extend(opt)
+                         continue
+                 res.append(str(opt))
+             return res
+
+        event_ids = ()
+        folder_paths = ()
+        portal_types = ()
+        for param in cache_params_dict[ptype_id]:
+            # event ids 
+            if param.startswith('event_ids:'):
+                event_ids = getOptions(param)
+
+            # folders in which the event occurs
+            if param.startswith('event_in_folders:'):
+                folder_paths = getOptions(param)
+
+            # portal types on which the event occurs
+            if param.startswith('event_on_types:'):
+                portal_types = getOptions(param)
+
+        self.clearEvents()
+        self.addEvent(event_ids=event_ids,
+                      folder_paths=folder_paths,
+                      portal_types=portal_types)
 
     #################################################################
     # ZMI
