@@ -221,3 +221,17 @@ for instance:
 </ul>
 
 The bullet icon will be indented too.
+
+Not displaying menu icons
+-------------------------
+to not display the menu icons (menuin, menuout) defined in box styles,
+apply the "noicon" class on <a>.
+
+for example:
+<ul>
+  <li><img src="icon.png" ... /><a class="noicon" href="#link">Item</a><li>
+<ul>
+
+the indentation set with 'margin-left' will be preserved (see above),
+but the width taken by the menu icon will be removed to leave some extra space
+for an image (e.g. <img>).
