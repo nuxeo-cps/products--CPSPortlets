@@ -1,7 +1,7 @@
 <form tal:define="utool nocall:here/portal_url;
                   urls here/getSearchFormUrls;
-                  search_script_url url/script;
-                  search_form_url url/form"
+                  search_script_url urls/script;
+                  search_form_url urls/form"
  method="get" action=""
  tal:attributes="action search_script_url"
  onsubmit="return checkEmptySearch(this)">
@@ -9,4 +9,7 @@
     value="" tal:attributes="value request/SearchableText|nothing" />
   <input class="context searchButton" type="submit" value="button_search"
     i18n:attributes="value" /><br />
+  <a href="" tal:condition="here/advanced_search_link" 
+  i18n:translate="cpsportlets_advanced_search"
+  tal:attributes="href search_form_url">Advanced search</a>
 </form>
