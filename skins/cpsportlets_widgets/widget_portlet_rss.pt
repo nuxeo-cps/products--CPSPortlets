@@ -13,9 +13,9 @@
   <tal:block condition="not:export">
     <tal:block repeat="item rssitems">
       <tal:block define="item_url item/url">
-        <h2><a i18n:translate=""
-             tal:attributes="href item_url" 
-             tal:content="item/title">Item title</a></h2>
+        <h4><a i18n:translate=""
+             tal:attributes="href item_url"
+             tal:content="item/title">Item title</a></h4>
         <span tal:condition="python: int(display_description)"
          tal:content="item/description" />
         <span tal:condition="link_string">
