@@ -1,4 +1,5 @@
-<tal:block define="res python:here.editCPSPortlet(REQUEST=request);
+<tal:block define="global boxedit python: 1;
+                   res python:here.editCPSPortlet(REQUEST=request);
                    rendered_main python: res[0];
                    portal_status_message python: res[1];
   ">
