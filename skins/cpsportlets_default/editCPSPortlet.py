@@ -37,9 +37,5 @@ else:
                                             {})
 
 if REQUEST is not None:
-    redirect_url = context.absolute_url() + \
-                   '/edit_form/?' + \
-                   REQUEST.get('QUERY_STRING') + \
-                   '?portal_status_message=' + \
-                   psm
+    redirect_url = REQUEST.get('HTTP_REFERER')
     return REQUEST.RESPONSE.redirect(redirect_url)
