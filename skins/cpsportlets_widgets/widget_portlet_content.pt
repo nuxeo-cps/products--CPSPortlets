@@ -18,9 +18,11 @@
             <tal:block condition="not:render_items">
               <strong tal:content="item_title" /><br/>
             </tal:block>
-            <small tal:condition="rendered" tal:content="structure rendered" />
-            <small tal:condition="python: link_string and rendered"
-            i18n:translate="" tal:content="structure link_string" />
+            <small tal:omit-tag="render_items">
+              <tal:block condition="rendered" tal:content="structure rendered" />
+              <tal:block condition="python: link_string and rendered"
+              i18n:translate="" tal:content="structure link_string" />
+            </small>
           </a>
         </li>
       </tal:block>
