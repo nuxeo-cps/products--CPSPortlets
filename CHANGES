@@ -6,7 +6,8 @@ New features:
 - Actions portlet
 Bug fixes:
 ~~~~~~~~~~
--
+- storing object paths in the RAM cache instead of the objects themselves
+  to avoid "ZODB couldn't load state for ... " errors with Squid.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()

@@ -183,9 +183,9 @@ class CPSPortlet(CPSDocument):
                     if len(objs) > 0:
                         objects.extend(objs)
 
-                # context (we return a copy of the object)
+                # context
                 elif type == 'context':
-                    objects.extend([context][:])
+                    objects.append(context.getPhysicalPath())
 
         return objects
 
@@ -302,14 +302,15 @@ class CPSPortlet(CPSDocument):
         return index
 
     security.declarePublic('render_cache')
-    def render_cache(self, REQUEST=None, **kw):
+    def render_cache(self, render=1, REQUEST=None, **kw):
         """Renders the cached version of the portlet.
         """
 
         cache_index = self.getCacheIndex(**kw)
         # the portlet is not cacheable.
         if cache_index is None:
-            return self.render(**kw)
+            if render:
+                return self.render(**kw)
 
         now = time.time()
         portlet_path = self.getPhysicalPath()
@@ -334,19 +335,22 @@ class CPSPortlet(CPSDocument):
         # date.
         if cache_entry is not None:
             creation_date = cache_entry['date']
-            # using dict.get('objects') instead of dict['objects'] to get
-            # a copy of the cached objects.
-            for obj in cache_entry.get('objects'):
-                mtime = getattr(obj, '_p_mtime', None)
-                if mtime is not None and mtime < creation_date:
-                    continue
+            for obj_path in cache_entry['objects']:
+                obj = self.unrestrictedTraverse(obj_path, default=None) 
+                if obj is not None:
+                    mtime = getattr(obj, '_p_mtime', None)
+                    if mtime is not None and mtime < creation_date:
+                        continue
                 # the entry is not longer valid
                 cache_entry = None
                 break
 
         # create / recreate the cache entry
         if cache_entry is None:
-            rendered = self.render(**kw)
+            if render:
+                rendered = self.render(**kw)
+            else:
+                rendered = ''
             now = time.time()
 
             if REQUEST is None:
@@ -600,14 +604,14 @@ class CPSPortlet(CPSDocument):
 
         objs = []
         while 1:
-            objs.append(obj)
+            objs.append(obj.getPhysicalPath())
             if obj == portal:
                 break
             try:
                 obj = aq_parent(aq_inner(obj))
             except AttributeError:
                 break
-        return objs[:]
+        return objs
 
     #################################################################
     # Private
