@@ -26,5 +26,5 @@ Here it's defined the specific permissions for the CPS Portlets
 
 from Products.CMFCore.CMFCorePermissions import setDefaultRoles
 
-ManagePortlets = 'Add Global Portlet'
-setDefaultRoles(ManagePortlets, ('Manager', 'Owner', 'Theme Manager',))
+ManagePortlets = 'Manage Portlets'
+setDefaultRoles(ManagePortlets, ('Manager', 'Owner'))
