@@ -521,11 +521,30 @@ class CPSPortlet(CPSDocument):
         """
         return self.getPhysicalPath()
 
+    security.declarePublic('isLocal')
+    def isLocal(self):
+        """Return true if the portlet is a local portlet.
+        """
+        rurl = self.getRelativeUrl()
+        if rurl is not None and rurl.startswith('portal_cpsportlets'):
+            return 0
+        return 1
+
+    security.declarePublic('isGlobal')
+    def isGlobal(self):
+        """Return true if the portlet is a global portlet.
+        """
+
+        return not self.isLocal()
+
     security.declarePublic('getLocalFolder')
     def getLocalFolder(self):
         """Return the local folder (workspace, section ...)
            inside which the portlet will be displayed.
         """
+
+        if self.isGlobal():
+            return None
         container = aq_parent(aq_inner(self))
         return aq_parent(aq_inner(container))
 

@@ -128,6 +128,15 @@ class TestPortletsAsRoot(TestPortlets):
         self.assertEqual(new_portlet.setVisibilityRange(['a', 'b']), 1)
         self.assertEqual(new_portlet.getVisibilityRange(), [0,1])
 
+    def test_isGlobal(self):
+        ptltool = self.ptltool
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
+        # CMFBTreeFolder
+        portlet = ptltool[portlet_id]
+        portlet.setOrder(4)
+        self.assert_(portlet.isGlobal())
+        self.assert_(not portlet.isLocal())
+
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestPortletsAsRoot))

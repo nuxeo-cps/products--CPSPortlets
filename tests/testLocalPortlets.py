@@ -136,6 +136,15 @@ class TestLocalPortletsAsRoot(TestPortlets):
         portlet.setOrder(4)
         self.assert_(portlet.order == 4)
 
+    def test_isLocal(self):
+        ptltool = self.ptltool
+        working_context = self.portal.workspaces
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                           context=working_context)
+        portlets_container = ptltool.getPortletContainer(context=working_context)
+        portlet = portlets_container.getPortletById(portlet_id)
+        self.assert_(portlet.isLocal())
+        self.assert_(not portlet.isGlobal())
 
 class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
     login_id = 'member'
@@ -259,6 +268,16 @@ class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
         self.assertNotEqual(portlet, None)
         portlet.setOrder(4)
         self.assert_(portlet.order == 4)
+
+    def test_isLocal(self):
+        ptltool = self.ptltool
+        working_context = self.portal.workspaces.members.member
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                           context=working_context)
+        portlets_container = ptltool.getPortletContainer(context=working_context)
+        portlet = portlets_container.getPortletById(portlet_id)
+        self.assert_(portlet.isLocal())
+        self.assert_(not portlet.isGlobal())
 
 def test_suite():
     suite = unittest.TestSuite()

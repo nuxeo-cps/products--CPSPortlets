@@ -87,3 +87,5 @@ New internal features:
 - added a javascript layout style (layout_portlet_js_) with unique CSS
   selector IDs assigned to widgets to show or hide block elements.
 - added a portlet visibility range widget
+- added methods (isLocal(), isGlobal()) to determine whether a portlet is
+  local or global.
