@@ -1,4 +1,4 @@
-image_portlet_schema = {
+image_portlet_flexible_schema = {
     'image': {
         'type': 'CPS Image Field',
         'data': {
@@ -37,5 +37,5 @@ image_portlet_schema = {
     },
 }
 
-schemas = {'image_portlet': image_portlet_schema}
+schemas = {'image_portlet_flexible': image_portlet_flexible_schema}
 return schemas

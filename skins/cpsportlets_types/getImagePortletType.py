@@ -14,9 +14,9 @@ image_portlet_type = {
     'cps_proxy_type': '',
     'cps_display_as_document_in_listing': False,
     'cps_is_portalbox': False,
-    'schemas': ('portlet_common', 'image_portlet', 'common', 'metadata'),
-    'layouts': ('portlet_common', 'image_portlet'),
-    'flexible_layouts': ('image_portlet:image_portlet',),
+    'schemas': ('portlet_common', 'image_portlet', 'image_portlet_flexible', 'common', 'metadata'),
+    'layouts': ('portlet_common', 'image_portlet', 'image_portlet_flexible'),
+    'flexible_layouts': ('image_portlet_flexible:image_portlet_flexible',),
     'storage_methods': (),
     'cps_is_portlet': True,
     'actions': (
@@ -40,7 +40,7 @@ image_portlet_type = {
           'condition': '',
           'permission': ('Manage Portlets',),
           'category': 'object',
-          'visible': 0,},
+          'visible': False,},
     )
 }
 
