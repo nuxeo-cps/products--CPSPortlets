@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-02-26 17:19default\n"
-"PO-Revision-Date: 2005-02-26 01:53+0100\n"
+"POT-Creation-Date: 2005-02-27 19:35default\n"
+"PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -115,7 +115,7 @@ msgid "portal_type_AddItemPortlet_title"
 msgstr "Skapa innehåll"
 
 msgid "portal_type_BreadcrumbsPortlet_title"
-msgstr "\"Breadcrumbs\""
+msgstr "Breadcrumbs"
 
 msgid "portal_type_ActionsPortlet_title"
 msgstr "Kommando"
@@ -163,7 +163,7 @@ msgid "cpsportlets_advanced_search_link_label"
 msgstr "Visa en länk till avancerad sökning"
 
 msgid "cpsportlets_contextual_search_choice_label"
-msgstr "Visa kontextuella sökalternativ"
+msgstr "Visa lokala sökalternativ"
 
 msgid "cpsportlets_action_categories_label"
 msgstr "Kommandokategorier att visa"
@@ -232,7 +232,7 @@ msgid "cpsportlets_language_action_translate_label"
 msgstr "Översätt"
 
 msgid "cpsportlets_language_action_delete_translation_label"
-msgstr "Radera övesättning"
+msgstr "Radera översättning"
 
 msgid "cpsportlets_language_action_change_label"
 msgstr "Ändra språk"
@@ -244,7 +244,7 @@ msgid "portal_type_ImagePortlet_title"
 msgstr "Bild"
 
 msgid "cpsportlets_nav_display_vertical_breadcrumbs_menu_label"
-msgstr "Vertikal meny med \"breadcrumbs\""
+msgstr "Vertikal meny med breadcrumbs"
 
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Mappinnehåll"
@@ -253,10 +253,10 @@ msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Innehåll undermapp"
 
 msgid "cpsportlets_nav_display_collapsible_menu_label"
-msgstr "Fällbar vertikal meny"
+msgstr "Dynamisk meny"
 
 msgid "cpsportlets_navigation_rel_depth_label"
-msgstr "Relativt djup"
+msgstr "Djupnivå"
 
 msgid "cpsportlets_navigation_show_docs_label"
 msgstr "Visa dokument"
@@ -280,7 +280,7 @@ msgid "cpsportlets_common_link_string_label"
 msgstr "Länksträng"
 
 msgid "cpsportlets_common_display_description_label"
-msgstr "Visa beskrivning artiklar"
+msgstr "Visa beskrivning"
 
 msgid "cpsportlets_rss_channel_label"
 msgstr "RSS-kanal"
@@ -377,7 +377,7 @@ msgstr ""
 "Visar slumpmässigt en samling bilder (roterande banners, annonser etc.)"
 
 msgid "cpsportlets_common_custom_cache_params_label"
-msgstr "Lokala cacheparametrar"
+msgstr "Lokala cache-parametrar"
 
 msgid "cpsportlets_visibility_range_0-0_label"
 msgstr "I denna mapp och i alla undermappar"
@@ -424,6 +424,5 @@ msgstr "Maximalt antal ord i titeln"
 msgid "cpsportlets_internallinks_show_icons_label"
 msgstr "Visa ikoner"
 
-#, fuzzy
 msgid "cpsportlets_nav_context_rpath_label"
 msgstr "Visa dokument i samma mapp som den Portlet befinner sig i."
