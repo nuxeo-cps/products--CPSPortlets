@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-11-20 12:31default\n"
+"POT-Creation-Date: 2004-11-20 21:09default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -100,6 +100,9 @@ msgstr "Translate the portlet's content"
 
 msgid "portal_type_DummyPortlet_title"
 msgstr "Dummy portlet"
+
+msgid "portal_type_CustomPortlet_title"
+msgstr "Custom portlet"
 
 msgid "portal_type_TextPortlet_title"
 msgstr "Text portlet"
@@ -248,6 +251,9 @@ msgstr "Display documents"
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Display document icons"
 
+msgid "cpsportlets_custom_render_method_label"
+msgstr "Render method (zpt, py, etc.)"
+
 msgid "cpsportlets_translation_deleted_psm"
 msgstr "Translation deleted."
 
@@ -337,3 +343,6 @@ msgstr "Image link"
 
 msgid "cpsportlets_nav_display_site_map_label"
 msgstr "Site map"
+
+msgid "portal_type_CustomPortlet_description"
+msgstr "Displays a rendered method (.zpt, .py, etc.)"

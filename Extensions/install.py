@@ -165,6 +165,7 @@ class CPSPortletsInstaller(CPSInstaller):
                           self.portal.getDocumentPortletSchema(),
                           self.portal.getRSSPortletSchema(),
                           self.portal.getDummyPortletSchema(),
+                          self.portal.getCustomPortletSchema(),
                          )
 
         all_schemas = {}
@@ -180,6 +181,7 @@ class CPSPortletsInstaller(CPSInstaller):
                           self.portal.getTextPortletLayout(),
                           self.portal.getImagePortletLayout(),
                           self.portal.getDummyPortletLayout(),
+                          self.portal.getCustomPortletLayout(),
                           self.portal.getSearchPortletLayout(),
                           self.portal.getInternalLinksPortletLayout(),
                           self.portal.getAddItemPortletLayout(),
@@ -202,6 +204,7 @@ class CPSPortletsInstaller(CPSInstaller):
         """Install all portlet specific types."""
 
         define_types = (self.portal.getDummyPortletType(),
+                        self.portal.getCustomPortletType(),
                         self.portal.getTextPortletType(),
                         self.portal.getImagePortletType(),
                         self.portal.getSearchPortletType(),

@@ -1,0 +1,71 @@
+custom_portlet_layout = {
+    'widgets': {
+        'render_method': {
+            'type': 'String Widget',
+            'data': {
+                'title': '',
+                'fields': ('render_method',),
+                'is_required': True,
+                'label': '',
+                'label_edit': 'cpsportlets_custom_render_method_label',
+                'description': '',
+                'help': '',
+                'is_i18n': True,
+                'readonly_layout_modes': (),
+                'hidden_layout_modes': ('view',),
+                'hidden_readonly_layout_modes': (),
+                'hidden_empty': False,
+                'hidden_if_expr': '',
+                'css_class': '',
+                'widget_mode_expr': '',
+                'group_id': '',
+                'depends_on_id': '',
+                'depends_on_value': '',
+                'depends_on_value_xor': True,
+                'display_width': 36,
+                'size_max': 0,
+            },
+        },
+        'portlet': {
+            'type': 'CPS Portlet Custom Widget',
+            'data': {
+                'title': '',
+                'fields': ('portlet',),
+                'is_required': False,
+                'label': '',
+                'label_edit': '',
+                'description': '',
+                'help': '',
+                'is_i18n': False,
+                'readonly_layout_modes': (),
+                'hidden_layout_modes': ('edit',),
+                'hidden_readonly_layout_modes': (),
+                'hidden_empty': False,
+                'hidden_if_expr': '',
+                'css_class': '',
+                'widget_mode_expr': '',
+                'group_id': '',
+                'depends_on_id': '',
+                'depends_on_value': '',
+                'depends_on_value_xor': True,
+                'display_width': 20,
+                'size_max': 0,
+            },
+        },
+    },
+    'layout': {
+        'style_prefix': 'layout_default_',
+        'flexible_widgets': (),
+        'ncols': 1,
+        'rows': [
+            [{'widget_id': 'portlet', 'ncols': 1},
+            ],
+            [{'widget_id': 'render_method', 'ncols': 1},
+            ],
+        ],
+    },
+}
+
+
+layouts = {'custom_portlet': custom_portlet_layout}
+return layouts

@@ -1,6 +1,7 @@
 
 cache_params = {
     'Dummy Portlet': ['user'],
+    'Custom Portlet': ['no-cache'],
     'Text Portlet': [],
     'Search Portlet': ['no-cache'],
     'Internal Links Portlet': ['object:path'],
@@ -15,7 +16,7 @@ cache_params = {
         'event_in_folders:(folder_path)',
         'event_on_types:(searchable_types)',
         ],
-    'Language Portlet': ['object:path,langs', 'current_lang'],
+    'Language Portlet': ['object:path,langs,current_lang', 'current_lang'],
     'Image Portlet': [],
     'Navigation Portlet': ['no-cache'],
     'Document Portlet': ['no-cache'],

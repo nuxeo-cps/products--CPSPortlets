@@ -29,6 +29,9 @@ msgstr ""
 msgid "portal_type_DummyPortlet_title"
 msgstr ""
 
+msgid "portal_type_CustomPortlet_title"
+msgstr ""
+
 msgid "portal_type_TextPortlet_title"
 msgstr ""
 
@@ -176,6 +179,9 @@ msgstr ""
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr ""
 
+msgid "cpsportlets_custom_render_method_label"
+msgstr ""
+
 msgid "cpsportlets_translation_deleted_psm"
 msgstr ""
 
@@ -267,4 +273,7 @@ msgid "w__imagelink"
 msgstr ""
 
 msgid "cpsportlets_nav_display_site_map_label"
+msgstr ""
+
+msgid "portal_type_CustomPortlet_description"
 msgstr ""

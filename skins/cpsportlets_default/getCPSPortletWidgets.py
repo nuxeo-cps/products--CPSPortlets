@@ -7,6 +7,10 @@ widgets = {
     'type': 'CPS Portlet Dummy Widget Type',
     'data': {},
     },
+    'CPS Portlet Custom Widget': {
+    'type': 'CPS Portlet Custom Widget Type',
+    'data': {},
+    },
     'Generic Portlet Widget': {
     'type': 'CPS Generic Portlet Widget Type',
     'data': {},
