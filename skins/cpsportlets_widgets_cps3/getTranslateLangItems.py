@@ -2,6 +2,11 @@ lc = getattr(context, 'Localizer', None)
 if lc is None:
     return []
 
+# permission check
+mtool = context.portal_membership
+if not mtool.checkPermission('Modify portal content', context):
+    return []
+
 # available languages
 langs = lc.get_languages()
 dest_langs = []
