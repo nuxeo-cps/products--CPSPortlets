@@ -37,10 +37,12 @@ class PortletsContainer(CMFBTreeFolder):
 
     security = ClassSecurityInfo()
 
-    def __init__(self):
+    def __init__(self, id=None):
         """
         """
-        CMFBTreeFolder.__init__(self, self.id)
+        if id is None:
+            id = self.id
+        CMFBTreeFolder.__init__(self, id)
 
     ####################################################################
 
@@ -78,14 +80,12 @@ class PortletsContainer(CMFBTreeFolder):
 
 InitializeClass(PortletsContainer)
 
-def addPortletsContainer(container, id, REQUEST=None, **kw):
-    """Add a bare CPS Portlet.
-
-    The object doesn't have a portal_type yet, so we have no way to know
-    its schema. This simply constructs a bare instance.
+def addPortletsContainer(dispatcher, id, REQUEST=None):
+    """Add a CPS Portlets Container.
     """
-    ob = PortletsContainer(id, **kw)
+    ob = PortletsContainer(id)
+    container = dispatcher.Destination()
     container._setObject(id, ob)
-    if REQUEST:
-        ob = container._getOb(id)
-        REQUEST.RESPONSE.redirect(ob.absolute_url()+'/manage_main')
+    if REQUEST is not None:
+        url = dispatcher.DestinationURL()
+        REQUEST.RESPONSE.redirect('%s/manage_main' % url)
