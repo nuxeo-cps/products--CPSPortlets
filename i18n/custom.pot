@@ -176,6 +176,9 @@ msgstr ""
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr ""
 
+msgid "cpsportlets_nav_display_collapsible_menu_label"
+msgstr ""
+
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr ""
 

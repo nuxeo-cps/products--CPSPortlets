@@ -1,5 +1,8 @@
 ##parameters=context_obj=None, show_docs=None
 
+# XXX get base url from the request
+base_url = context.getBaseUrl()
+
 if context_obj is None:
     return []
 
@@ -24,6 +27,9 @@ checkPerm = mtool.checkPermission
 if not checkPerm( 'List folder contents', bmf):
     return []
 
+portal_types = context.portal_types
+renderIcon = context.portal_cpsportlets.renderIcon
+
 getFTIProperty = context.portal_cpsportlets.getFTIProperty
 for object in bmf.objectValues():
     # remove objects with ids beginning with '.'
@@ -36,11 +42,11 @@ for object in bmf.objectValues():
         continue
 
     # skip documents if show_docs is not set
-    portal_type = getattr(object, 'portal_type', None)
+    ptype = getattr(object, 'portal_type', None)
     # Using a RAM cache to optimize the retrieval of FTI
-    isdocument = getFTIProperty(portal_type, 'cps_proxy_type') == 'document'
+    isdocument = getFTIProperty(ptype, 'cps_proxy_type') == 'document'
     display_as_document_in_listing = getFTIProperty(
-        portal_type, 'cps_display_as_document_in_listing')
+        ptype, 'cps_display_as_document_in_listing')
     if int(show_docs) == 0 and (isdocument or display_as_document_in_listing):
         continue
 
@@ -49,5 +55,6 @@ for object in bmf.objectValues():
     folder_items.append(
         {'url': '/' + object.absolute_url(relative=1),
          'title': object.title_or_id(),
+         'icon_tag': renderIcon(ptype, base_url, ''),
         })
 return folder_items

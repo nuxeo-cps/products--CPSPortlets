@@ -55,7 +55,8 @@ for tree in nav.getTree():
     if depth < 0:
         continue
 
-    selected = (rpath == context_rpath)
+    selected = (context_rpath == rpath)
+    open = (context_rpath + '/').startswith(rpath + '/')
 
     if contextual:
         if depth == 0 and not selected:
@@ -76,6 +77,7 @@ for tree in nav.getTree():
                          'title': object['title_or_id'],
                          'depth': depth,
                          'selected': selected,
+                         'open': open,
                          'icon_tag': renderIcon(ptype, base_url, ''),
                         })
 

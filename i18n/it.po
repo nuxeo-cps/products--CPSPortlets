@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-01-27 21:36default\n"
+"POT-Creation-Date: 2005-02-04 14:11default\n"
 "PO-Revision-Date: 2005-01-25 17:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -253,6 +253,10 @@ msgstr "Contenuti della cartella corrente"
 
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Contenuti delle sottocartelle"
+
+#, fuzzy
+msgid "cpsportlets_nav_display_collapsible_menu_label"
+msgstr "Menù di navigazione"
 
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Profondità relativa"

@@ -131,4 +131,37 @@
       </ul>
     </tal:block>
   </tal:block>
+
+  <tal:block condition="python: display == 'collapsible_menu'">
+    <tal:block
+     define="show_icons ds/show_icons;
+             show_icons python: int(show_icons);
+             show_docs ds/show_docs;
+             rel_depth ds/rel_depth;
+             folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, start_depth=int(rel_depth), end_depth=int(rel_depth)+1);
+             linkclass python: show_icons and 'noicon' or None"
+     condition="folderItems">
+      <ul class="cpsskinsMenu">
+        <li tal:repeat="item folderItems">
+          <a tal:attributes="href item/url;
+                             class linkclass">
+            <tal:block condition="show_icons"
+             content="structure item/icon_tag" />
+            <tal:block content="item/title" />
+          </a>
+          <tal:block condition="python: item['open']"
+           define="subfolderItems python: context.getFolderItems(context_obj=context, show_docs=int(show_docs))"
+     repeat="subitem subfolderItems">
+          <a style="margin-left: 1em"
+             tal:attributes="href subitem/url;
+                             class linkclass">
+            <tal:block condition="show_icons"
+             content="structure subitem/icon_tag" />
+            <tal:block content="subitem/title" />
+          </a>
+          </tal:block>
+        </li>
+      </ul>
+    </tal:block>
+  </tal:block>
 </tal:block>

@@ -1,6 +1,8 @@
 cpsportlets_navigation_display_voc_vocabulary = {
     'data': {
         'tuples': (
+            ('collapsible_menu', 'Collapsible menu',
+             'cpsportlets_nav_display_collapsible_menu_label'),
             ('vertical_breadcrumbs_menu', 'Vertical breadcrumbs menu',
              'cpsportlets_nav_display_vertical_breadcrumbs_menu_label'),
             ('folder_contents', 'Folder contents',

@@ -8,6 +8,7 @@ New features:
 - Folderish documents listed as documents in folders will not be
   visible if the 'show documents' options is turned off.
 - Text Portlet: the rendering format can be selected ('text', 'stx', 'html')
+- Navigation Portlet: added a 'collapsible menu' presentation.
 Bug fixes:
 ~~~~~~~~~~
 - added missing 'is_i18n' parameter to getSearchableTypesVocabulary()
