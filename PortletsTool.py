@@ -150,7 +150,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         return PORTLET_CONTAINER_ID
 
     security.declarePublic('getPortletContainerId')
-    def getPortletContainer(self, context=None):
+    def getPortletContainer(self, context=None, create=0):
         """Returns the portlet container within the given context if it
         exists. Otherwise return the tool
         """
@@ -158,6 +158,12 @@ class PortletsTool(UniqueObject, PortletsContainer):
             container_id = self.getPortletContainerId()
             if getattr(aq_base(context), container_id, None) is not None:
                 return getattr(context, container_id)
+
+            # We create the portlets container if it doesn't already exist
+            if create:
+                context.manage_addProduct['CPSPortlets'].addPortletsContainer()
+                return getattr(context, container_id)
+
         return getToolByName(self, 'portal_cpsportlets')
 
     #######################################################################
@@ -258,14 +264,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
             # Here it's within the tool
             destination = self
         else:
-            container_id = self.getPortletContainerId()
-
-            # We create the portlets container if it doesn't already exist
-            if container_id not in context.objectIds():
-                context.manage_addProduct['CPSPortlets'].addPortletsContainer()
-
-            # Get the portlets container from the context
-            destination = getattr(context, container_id)
+            destination = self.getPortletContainer(context=context, create=1)
 
         return destination._createPortlet(ptype_id, **kw)
 
@@ -291,23 +290,43 @@ class PortletsTool(UniqueObject, PortletsContainer):
         return destination._deletePortlet(portlet_id)
 
     security.declareProtected(View, 'movePortlet')
-    def movePortlet(self, portlet=None, context=None,
+    def movePortlet(self, portlet=None,
+                    src_folder=None, dest_folder=None,
                     src_slot=None, src_ypos=0,
                     dest_slot=None, dest_ypos=0, **kw):
         """Move portlet
-           parameters: src_slot, src_ypos, dest_slot, dest_ypos,
+           parameters: src_folder, dest_folder,
+                       src_slot, src_ypos, dest_slot, dest_ypos,
         """
-        if not _checkPermission(ManagePortlets, context):
-            raise Unauthorized(
-                "You are not allowed to move portlets inside %s" %(
-                context.absolute_url()))
 
-        src_ypos = int(src_ypos)
-        dest_ypos = int(dest_ypos)
+        if src_folder is None:
+            return
+        if dest_folder is None:
+            return
         if dest_slot is None:
             return
         if portlet is None:
             return
+
+        if not _checkPermission(ManagePortlets, src_folder) or \
+            not _checkPermission(ManagePortlets, dest_folder):
+            raise Unauthorized(
+                "You are not allowed to move portlets from %s to %s" %(
+                src_folder.absolute_url(), dest_folder.absolute_url() ))
+
+        src_ypos = int(src_ypos)
+        dest_ypos = int(dest_ypos)
+
+        if dest_folder != src_folder:
+            src_container = self.getPortletContainer(context=src_folder,
+                                                     create=1)
+            dest_container = self.getPortletContainer(context=dest_folder,
+                                                     create=1)
+            cookie = src_container.manage_cutObjects([portlet.getId()])
+            res = dest_container.manage_pasteObjects(cookie)
+            new_id = res[0]['new_id']
+            portlet = getattr(dest_container, new_id, None)
+
         self._insertPortlet(portlet=portlet, slot=dest_slot, order=dest_ypos)
 
     security.declareProtected(View, 'insertPortlet')
