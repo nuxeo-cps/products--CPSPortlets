@@ -11,38 +11,40 @@ from Products.CPSDefault.tests import CPSDefaultTestCase
 
 class TestPortlets(CPSDefaultTestCase.CPSDefaultTestCase):
     def afterSetUp(self):
-        if self.login_id:
-            self.login(self.login_id)
-            self.portal.portal_membership.createMemberArea()
-
+        self.login('root')
         self.portal.REQUEST.SESSION = {}
         self.ptltool = self.portal.portal_cpsportlets
 
     def beforeTearDown(self):
         self.logout()
 
-class TestPortletWidgetsAsRoot(TestPortlets):
-    login_id = 'root'
-
-    def test_DummyPortlet(self):
+class TestPortlet(TestPortlets):
+    ptype_id = None
+    def testPortlet(self):
+        ptype_id = self.ptype_id
         ptltool = self.ptltool
         self.assert_(len(ptltool.items()) == 0)
-        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
+        portlet_id = ptltool.createPortlet(ptype_id)
         self.assert_(len(ptltool.items()) == 1)
-        portlet = ptltool.getPortletById(portlet_id)
+        portlet = ptltool[portlet_id]
         self.assert_(portlet.render())
 
-    def test_SearchPortlet(self):
-        ptltool = self.ptltool
-        self.assert_(len(ptltool.items()) == 0)
-        portlet_id = ptltool.createPortlet(ptype_id='Search Portlet')
-        self.assert_(len(ptltool.items()) == 1)
-        portlet = ptltool.getPortletById(portlet_id)
-        self.assert_(portlet.render())
+# portal type list
+tests=[]
+for ptype_id in ['Dummy Portlet',
+                 'Search Portlet',
+                 'Internal Links Portlet',
+                 'Add Item Portlet',
+                 'Breadcrumbs Portlet',
+                ]:
+    class TestOnePortlet(TestPortlet):
+        ptype_id = ptype_id
+    tests.append(TestOnePortlet)
 
 def test_suite():
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestPortletWidgetsAsRoot))
+    for test in tests:
+        suite.addTest(unittest.makeSuite(test))
     return suite
 
 if __name__ == '__main__':
