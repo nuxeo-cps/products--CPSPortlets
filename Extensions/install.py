@@ -129,6 +129,7 @@ class CPSPortletsInstaller(CPSInstaller):
                                self.portal.getContentPortletVocabulary(),
                                self.portal.getLanguagePortletVocabulary(),
                                self.portal.getNavigationPortletVocabulary(),
+                               self.portal.getRSSPortletVocabulary(),
                               )
 
         all_vocabularies = {}
