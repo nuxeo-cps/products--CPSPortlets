@@ -3,7 +3,6 @@ Portlets:
 --------
 - navigation tree
 - folder contents
-- locale selector (already started)
 - images, ads, ...
 - flash animations
 - event calendar
@@ -29,8 +28,6 @@ User interface:
 
 Cache:
 -----
-- invalidation through the event service
-- cache cleaning (e.g. when a user log out)
 
 ESI (Edge-Side-Includes):
 ------------------------
@@ -43,3 +40,8 @@ Tests:
 Installation:
 -------------
 - cross-platform installation (CMF/CPS/Plone)
+
+Internal:
+-------
+- Create a generic CPSPortletWidget for all portlets based on the
+  CPS Method widget that passes the context object to the render() method.
