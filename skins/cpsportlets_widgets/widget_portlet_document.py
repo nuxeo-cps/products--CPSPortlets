@@ -5,13 +5,6 @@ if context_obj is None:
 
 rendered = ''
 
-ti =  context_obj.getTypeInfo()
-if ti is None:
-    return rendered
-
-if ti.getProperty('cps_is_portlet', 0):
-    return rendered
-
 ds = kw['datastructure']
 
 # render the container
@@ -19,6 +12,13 @@ render_obj = context_obj.aq_inner.aq_explicit
 if int(ds.get('render_container', 0)):
     if not render_obj.isPrincipiaFolderish:
         render_obj = context_obj.aq_parent.aq_inner
+
+ti =  render_obj.getTypeInfo()
+if ti is None:
+    return rendered
+
+if ti.getProperty('cps_is_portlet', 0):
+    return rendered
 
 getContent = getattr(render_obj, 'getContent', None)
 if getContent is not None:
