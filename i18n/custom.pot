@@ -172,3 +172,9 @@ msgstr ""
 
 msgid "cpsportlets_breadcrumbs_display_hidden_folders_label"
 msgstr ""
+
+msgid "cpsportlets_content_link_string_label"
+msgstr ""
+
+msgid "cpsportlets_content_display_description_label"
+msgstr ""

@@ -7,10 +7,20 @@
                    folder_path ds/folder_path;
                    portal_type ds/searchable_types;
                    contentitems python: here.getContentItems(obj=context, search_type=search_type, sort_on=sort_on, sort_reverse=sort_reverse, max_items=max_items, folder_path=folder_path, portal_type=portal_type);
+                   link_string ds/link_string;
+                   display_description ds/display_description;
 ">
-    <ul>
-      <li tal:repeat="item contentitems"><a i18n:translate=""
-       tal:attributes="href item/getURL" 
-       tal:content="item/Title">Item title</a></li>
-    </ul>
+  <tal:block repeat="item contentitems">
+    <tal:block define="item_url item/getURL">
+      <h2><a i18n:translate=""
+           tal:attributes="href item/getURL" 
+           tal:content="item/Title">Item title</a></h2>
+      <span tal:condition="display_description"
+       tal:content="item/Description" />
+      <span tal:condition="link_string">
+       <a href="" tal:attributes="href item_url"
+        tal:content="structure link_string" />
+      </span>
+    </tal:block>
+  </tal:block>
 </tal:block>

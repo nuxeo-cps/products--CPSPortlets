@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-10-25 15:31default\n"
+"POT-Creation-Date: 2004-10-25 17:22default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -220,3 +220,9 @@ msgstr "Portlet management"
 
 msgid "cpsportlets_breadcrumbs_display_hidden_folders_label"
 msgstr "Display hidden folders"
+
+msgid "cpsportlets_content_link_string_label"
+msgstr "Link string"
+
+msgid "cpsportlets_content_display_description_label"
+msgstr "Display document descriptions"
