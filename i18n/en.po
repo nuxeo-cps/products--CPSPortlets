@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-09-10 00:37default\n"
+"POT-Creation-Date: 2004-09-11 21:17default\n"
 "PO-Revision-Date: 2004-09-06 18:03+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -33,6 +33,10 @@ msgstr "Add new item ..."
 
 msgid "label_cpsportlets_provider"
 msgstr "Provider"
+
+#, fuzzy
+msgid "label_cpsportlets_title"
+msgstr "Portlet title"
 
 msgid "portal_type_DummyPortlet_title"
 msgstr "Dummy portlet"

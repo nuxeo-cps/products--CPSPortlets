@@ -7,7 +7,7 @@ portlet_common_layout = {
                 'fields': ('title',),
                 'is_required': False,
                 'label': '',
-                'label_edit': 'cpsportlets_title_label_edit',
+                'label_edit': 'label_cpsportlets_title',
                 'description': '',
                 'help': '',
                 'is_i18n': True,

@@ -20,6 +20,9 @@ msgstr ""
 msgid "label_cpsportlets_provider"
 msgstr ""
 
+msgid "label_cpsportlets_title"
+msgstr ""
+
 msgid "portal_type_DummyPortlet_title"
 msgstr ""
 
