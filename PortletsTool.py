@@ -26,7 +26,7 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
-from Acquisition import aq_base
+from Acquisition import aq_base, aq_parent, aq_inner
 
 from Products.CMFCore.utils import UniqueObject, getToolByName
 
