@@ -3,6 +3,7 @@
                    checkPerm nocall:here/portal_membership/checkPermission"
            condition="python: checkPerm('Access contents information', context)">
   <form action="content_create" method="get"
+  tal:omit-tag="not:creatableItems"
   tal:condition="ti"
   tal:define="creatableItems context/getCreatableItems"
   tal:attributes="action string:${context/absolute_url}/cpsportlet_additem_create">
