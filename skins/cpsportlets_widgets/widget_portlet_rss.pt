@@ -1,4 +1,5 @@
 <tal:block define="ds options/datastructure;
+                   export request/form/export|nothing;
                    channel ds/channel;
                    first_item ds/first_item;
                    max_items ds/max_items;
@@ -8,17 +9,28 @@
                    rssitems python: here.getRSSItems(channel, int(first_item), int(max_items), int(max_words));
                    link_string ds/link_string"
            condition="rssitems">
-  <tal:block repeat="item rssitems">
-    <tal:block define="item_url item/url">
-      <h2><a i18n:translate=""
-           tal:attributes="href item_url" 
-           tal:content="item/title">Item title</a></h2>
-      <span tal:condition="python: int(display_description)"
-       tal:content="item/description" />
-      <span tal:condition="link_string">
-       <a href="" tal:attributes="href item_url"
-        tal:content="structure link_string" />
-      </span>
+
+  <tal:block condition="not:export">
+    <tal:block repeat="item rssitems">
+      <tal:block define="item_url item/url">
+        <h2><a i18n:translate=""
+             tal:attributes="href item_url" 
+             tal:content="item/title">Item title</a></h2>
+        <span tal:condition="python: int(display_description)"
+         tal:content="item/description" />
+        <span tal:condition="link_string">
+         <a href="" tal:attributes="href item_url"
+          tal:content="structure link_string" />
+        </span>
+      </tal:block>
+    </tal:block>
+  </tal:block>
+
+  <tal:block tal:condition="export">
+    <tal:block define="export_macro string:export_${export};
+                       items rssitems">
+      <metal:block use-macro="here/cpsportlet_macros/macros/?export_macro|
+                              here/cpsportlet_macros/macros/export_not_implemented" />
     </tal:block>
   </tal:block>
 </tal:block>

@@ -1,0 +1,15 @@
+<!-- RSS export -->
+<metal:block define-macro="export_rss">
+TODO: RSS export
+</metal:block>
+
+<!-- ATOM export -->
+<metal:block define-macro="export_atom">
+TODO: ATOM export
+</metal:block>
+
+<!-- Not implemented or unknown export format-->
+<metal:block define-macro="export_not_implemented">
+  <strong tal:content="export" />:
+  <span i18n:translate="">this export format has not been implemented yet</span>.
+</metal:block>
