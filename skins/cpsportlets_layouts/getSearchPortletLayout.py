@@ -12,7 +12,7 @@ search_portlet_layout = {
                 'help': '',
                 'is_i18n': False,
                 'readonly_layout_modes': (),
-                'hidden_layout_modes': (),
+                'hidden_layout_modes': ('edit',),
                 'hidden_readonly_layout_modes': (),
                 'hidden_empty': False,
                 'hidden_if_expr': '',
