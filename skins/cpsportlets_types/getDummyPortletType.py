@@ -1,6 +1,6 @@
 dummy_portlet_type = {
     'title': 'portal_type_DummyPortlet_title',
-    'description': '',
+    'description': 'portal_type_DummyPortlet_description',
     'content_icon': 'portlet_icon.png',
     'content_meta_type': 'CPS Portlet',
     'product': 'CPSPortlets',

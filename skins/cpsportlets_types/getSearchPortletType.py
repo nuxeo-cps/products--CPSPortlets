@@ -1,6 +1,6 @@
 search_portlet_type = {
     'title': 'portal_type_SearchPortlet_title',
-    'description': '',
+    'description': 'portal_type_SearchPortlet_description',
     'content_icon': 'search_portlet_icon.png',
     'content_meta_type': 'CPS Portlet',
     'product': 'CPSPortlets',

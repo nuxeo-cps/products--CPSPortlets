@@ -1,6 +1,6 @@
 language_portlet_type = {
     'title': 'portal_type_LanguagePortlet_title',
-    'description': '',
+    'description': 'portal_type_LanguagePortlet_description',
     'content_icon': 'language_portlet_icon.png',
     'content_meta_type': 'CPS Portlet',
     'product': 'CPSPortlets',

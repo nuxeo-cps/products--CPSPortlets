@@ -1,6 +1,6 @@
 internal_links_portlet_type = {
     'title': 'portal_type_InternalLinksPortlet_title',
-    'description': '',
+    'description': 'portal_type_InternalLinksPortlet_description',
     'content_icon': 'internallinks_portlet_icon.png',
     'content_meta_type': 'CPS Portlet',
     'product': 'CPSPortlets',

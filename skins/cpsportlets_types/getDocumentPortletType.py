@@ -1,6 +1,6 @@
 document_portlet_type = {
     'title': 'portal_type_DocumentPortlet_title',
-    'description': '',
+    'description': 'portal_type_DocumentPortlet_description',
     'content_icon': 'document_portlet_icon.png',
     'content_meta_type': 'CPS Portlet',
     'product': 'CPSPortlets',

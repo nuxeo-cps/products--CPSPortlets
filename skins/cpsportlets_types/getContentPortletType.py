@@ -1,6 +1,6 @@
 content_portlet_type = {
     'title': 'portal_type_ContentPortlet_title',
-    'description': '',
+    'description': 'portal_type_ContentPortlet_description',
     'content_icon': 'content_portlet_icon.png',
     'content_meta_type': 'CPS Portlet',
     'product': 'CPSPortlets',

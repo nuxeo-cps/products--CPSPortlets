@@ -1,6 +1,6 @@
 add_item_portlet_type = {
     'title': 'portal_type_AddItemPortlet_title',
-    'description': '',
+    'description': 'portal_type_AddItemPortlet_description',
     'content_icon': 'additem_portlet_icon.png',
     'content_meta_type': 'CPS Portlet',
     'product': 'CPSPortlets',

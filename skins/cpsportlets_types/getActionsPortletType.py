@@ -1,6 +1,6 @@
 actions_portlet_type = {
     'title': 'portal_type_ActionsPortlet_title',
-    'description': '',
+    'description': 'portal_type_ActionsPortlet_description',
     'content_icon': 'actions_portlet_icon.png',
     'content_meta_type': 'CPS Portlet',
     'product': 'CPSPortlets',
