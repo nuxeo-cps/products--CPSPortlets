@@ -833,6 +833,16 @@ class CPSPortlet(CPSDocument):
         return objs
 
     #################################################################
+    security.declareProtected(ManagePortlets, 'dictExport')
+    def dictExport(self):
+        """Export the portlet as a Python dictionary.
+        """
+
+        ti = self.getTypeInfo()
+        dm = ti.getDataModel(self)
+        return dict(dm.items())
+
+    #################################################################
     # Private
     #################################################################
 

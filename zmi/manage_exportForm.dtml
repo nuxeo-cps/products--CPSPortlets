@@ -4,7 +4,14 @@
 </dtml-let>
 
 <p class="form-help">
-Export
 </p>
+
+<pre>
+<dtml-var id> = {
+    'type': '<dtml-var getPortletType>',
+    'path': '<dtml-var getRelativeUrl>',
+    'data': <dtml-var dictExport>,
+    }
+</pre>
 
 <dtml-var manage_page_footer>
