@@ -57,7 +57,7 @@ search_portlet_layout = {
                 'hidden_layout_modes': ('view',),
                 'hidden_readonly_layout_modes': (),
                 'hidden_empty': False,
-                'hidden_if_expr': '',
+                'hidden_if_expr': "python: not context.getSearchFormParams()['contextual']",
                 'css_class': '',
                 'widget_mode_expr': '',
                 'display_true': 'Yes',
