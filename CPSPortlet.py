@@ -199,6 +199,20 @@ class CPSPortlet(CPSDocument):
 
         return rendered
 
+    security.declarePublic('render_js')
+    def render_js(self, **kw):
+        """Render the javascript code used by the portlet.
+        """
+
+        return 'test'
+        rendered = ''
+        js_meth = self.getJavaScript()
+        if js_meth != '':
+            meth = getattr(self, js_meth, None)
+            if meth and callable(meth):
+                rendered = apply(meth, (), kw)
+        return rendered  
+
     ##################################################################
 
     security.declarePublic('getURL')
@@ -267,6 +281,15 @@ class CPSPortlet(CPSDocument):
             except ValueError:
                 pass
         return 1
+
+    #################################################################
+
+    security.declarePublic('getJavaScript')
+    def getJavaScript(self):
+        """Return the javascript method name.
+        """
+
+        return self.javascript
 
     #################################################################
 
