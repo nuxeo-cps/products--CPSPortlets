@@ -1,12 +1,13 @@
 <tal:block define="ds options/datastructure;
                    categories ds/categories;
                    context nocall:options/context_obj|here;
-                   actionitems python: here.getActionsItems(context, categories);
-">
+                   actionitems python: here.getActionsItems(context, categories)"
+  condition="actionitems">
   <tal:block repeat="category python: actionitems.keys()">
     <br tal:condition="not:repeat/category/start" />
-    <ul>
-      <li tal:repeat="action actionitems/?category"><a i18n:translate=""
+    <ul tal:define="actions actionitems/?category"
+        tal:condition="actions">
+      <li tal:repeat="action actions"><a i18n:translate=""
        tal:attributes="href action/url"
        tal:content="action/title">Action</a></li>
     </ul>
