@@ -63,6 +63,7 @@ Bug fixes:
 - The portlets' javascript method was not set correctly.
 - Upgraded the page templates to the new macro libs names
 - made the Document Portlet more robust
+- registration fix for the Portlet Visibility Widget
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()
