@@ -35,6 +35,10 @@ widgets = {
     'type': 'CPS Navigation Widget Type',
     'data': {},
     },
+    'CPS Document Widget': {
+    'type': 'CPS Document Widget Type',
+    'data': {},
+    },
 }
 
 return widgets
