@@ -678,7 +678,11 @@ class PortletsTool(UniqueObject, PortletsContainer):
         object_path = '/' + infos['rpath']
 
         # XXX do we have to fetch the proxy's content to get the portal type?
-        portal_type = object.getContent().portal_type
+        content = object.getContent()
+        if content is None:
+            return
+
+        portal_type = content.portal_type
 
         # expire the portlets interested in the event
         for portlet in self.listPortletsInterestedInEvent(event_id=event_type,
