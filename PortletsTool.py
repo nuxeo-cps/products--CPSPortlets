@@ -100,7 +100,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
     #######################################################################
 
     security.declarePublic('getPortlets')
-    def getPortlets(self, context=None, slot=None):
+    def getPortlets(self, context=None, slot=None, sort=1):
         """Return a list of portlets.
         """
 
@@ -139,9 +139,10 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 continue
 
         # sort the portlets
-        def cmporder(a, b):
-            return int(a.order) - int(b.order)
-        allportlets.sort(cmporder)
+        if sort:
+            def cmporder(a, b):
+                return int(a.order) - int(b.order)
+            allportlets.sort(cmporder)
 
         return allportlets
 
