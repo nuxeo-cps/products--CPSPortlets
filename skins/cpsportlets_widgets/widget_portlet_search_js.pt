@@ -8,3 +8,10 @@ function checkEmptySearch(formElem) {
     formElem.SearchableText.focus();
     return false;
 }
+
+function trim(s) {
+    if (s) {
+        return s.replace(/^\s*|\s*$/g, "");
+    }
+    return "";
+}
