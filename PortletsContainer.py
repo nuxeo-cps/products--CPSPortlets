@@ -20,17 +20,45 @@
 __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 """Portlets Container
+
+Will be used to define local boxes
 """
 
 from Globals import InitializeClass
+from AccessControl import ClassSecurityInfo
 
-from Products.CPSCore.CPSBase import CPSBaseFolder
+from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
 
-class PortletsContainer(CPSBaseFolder):
+class PortletsContainer(CMFBTreeFolder):
     """ Portlets Container
     """
 
     meta_type = 'CPS Placeful Portlets Container'
+
+    security = ClassSecurityInfo()
+
+    def __init__(self):
+        """
+        """
+        CMFBTreeFolder.__init__(self, self.id)
+
+    ####################################################################
+
+    def getPortletById(self, id):
+        """Return a portlet object given an id
+        """
+        return self.get(id)
+
+    def listPortletIds(self):
+        """Return the list of all portlet ids contained within the tool
+        """
+        ids = []
+        for k, v in self.items():
+            ids.append(k)
+        return ids
+
+    ####################################################################
+
 
 InitializeClass(PortletsContainer)
 
@@ -45,5 +73,3 @@ def addPortletsContainer(container, id, REQUEST=None, **kw):
     if REQUEST:
         ob = container._getOb(id)
         REQUEST.RESPONSE.redirect(ob.absolute_url()+'/manage_main')
-
-
