@@ -106,3 +106,4 @@ New internal features:
 - content items in the Content Portlet can be rendered - layout ids can be specified.
 - added a getCreator() method for portlets
 - added getFolders(), getBottomMostFolder() to the portlets tool
+- implemented portlet override (see doc/portlet-override.txt)

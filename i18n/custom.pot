@@ -325,3 +325,9 @@ msgstr ""
 
 msgid "cpsportlets_content_layout_ids_label"
 msgstr ""
+
+msgid "cpsportlets_common_slot_override_label"
+msgstr ""
+
+msgid "cpsportlets_common_disable_override_label"
+msgstr ""

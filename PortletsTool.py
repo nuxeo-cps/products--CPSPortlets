@@ -24,7 +24,7 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 """Portlets Tool
 """
 
-from zLOG import LOG, DEBUG
+from zLOG import LOG, DEBUG, ERROR
 
 from Globals import InitializeClass
 from Globals import InitializeClass, DTMLFile
@@ -328,7 +328,33 @@ class PortletsTool(UniqueObject, PortletsContainer):
             not self._isPortletVisible(portlet, context):
                 allportlets.remove(portlet)
 
-        # sort the portlets
+        # portlet override
+        remove_list = []
+        for portlet in allportlets:
+            # the portlet is protected
+            if portlet.disable_override:
+                continue
+            depth = portlet.getDepth()
+            # run through the slot's portlets to see whether one of them
+            # can override this portlet.
+            for p in allportlets:
+                # portlets cannot override themselves
+                if p is portlet:
+                    continue
+                # the portlet does not do override
+                if not p.slot_override:
+                    continue
+                if p.getDepth() <= depth:
+                    continue
+                # override the portlet
+                remove_list.append(portlet)
+                break
+
+        # remove overriden portlets
+        for portlet in remove_list:
+            allportlets.remove(portlet)
+
+        # sort the remaining portlets
         if sort:
             def cmporder(a, b):
                 return int(a.order) - int(b.order)

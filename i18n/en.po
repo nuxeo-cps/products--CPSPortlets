@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2005-01-06 01:32default\n"
+"POT-Creation-Date: 2005-01-09 19:38default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -395,3 +395,9 @@ msgstr "Render items"
 
 msgid "cpsportlets_content_layout_ids_label"
 msgstr "Layout IDs"
+
+msgid "cpsportlets_common_slot_override_label"
+msgstr "Override existing portlets?"
+
+msgid "cpsportlets_common_disable_override_label"
+msgstr "Protect this portlet from being overridden?"
