@@ -50,7 +50,7 @@ internallinks_portlet_layout = {
                 'label_edit': 'cpsportlets_common_syndication_formats_label',
                 'is_i18n': True,
                 'hidden_layout_modes': ('view',),
-                'vocabulary': 'cpsportlets_syndication_formats',
+                'vocabulary': 'cpsportlets_syndication_formats_voc',
                 'size': 0,
             },
         },
