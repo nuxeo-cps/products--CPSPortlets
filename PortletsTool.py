@@ -75,7 +75,10 @@ class PortletsTool(UniqueObject, PortletsContainer):
         existing_identifiers = []
 
         for portlet in portlets:
-            existing_identifiers.append(portlet.identifier)
+            if portlet:
+                cidentifier = getattr(aq_base(portlet), 'identifier', None)
+                if cidentifier is not None:
+                    existing_identifiers.append(cidentifier)
 
         return (identifier not in existing_identifiers)
 
