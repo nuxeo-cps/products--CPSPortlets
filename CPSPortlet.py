@@ -142,13 +142,9 @@ class CPSPortlet(CPSDocument):
         """Returns the custom cache parameters.
         """
 
-        params = []
-
-        # explicit custom cache parameters
         if getattr(aq_base(self), 'custom_cache_params', None) is not None:
-            params.extend(self.custom_cache_params)
-
-        return params
+            return self.custom_cache_params
+        return []
 
     security.declareProtected(ManagePortlets, 'setCustomCacheParams')
     def setCustomCacheParams(self, params=[]):
@@ -165,6 +161,17 @@ class CPSPortlet(CPSDocument):
         """
         return self.cache_params[:]
 
+    security.declareProtected(ManagePortlets, 'resetCacheParams')
+    def resetCacheParams(self, ptype_id=None):
+        """Reset cache parameters
+        """
+        cache_params_dict = self.getCPSPortletCacheParams()
+        if cache_params_dict.has_key(ptype_id):
+            self._setCacheParams(cache_params_dict[ptype_id])
+
+        params = self.getCustomCacheParams()
+        self._setCacheTimeout(params)
+
     security.declarePrivate('_setCacheParams')
     def _setCacheParams(self, cache_params=[]):
         """Set the cache parameters
@@ -173,17 +180,21 @@ class CPSPortlet(CPSDocument):
             if self.cache_params != cache_params:
                 self.cache_params = cache_params
 
-            # set the cache timeout value
-            for param in cache_params:
-                if not param.startswith('timeout:'):
-                    continue
-                idx, value = param.split(':')
-                try:
-                    value = int(value)
-                except ValueError:
-                    value = 0
-                if self.cache_timeout != value:
-                    self.cache_timeout = value
+    security.declarePrivate('_setCacheTimeout')
+    def _setCacheTimeout(self, cache_params=[]):
+        """Set the cache parameters
+        """
+        # set the cache timeout value based on cache paramaters
+        for param in cache_params:
+            if not param.startswith('timeout:'):
+                continue
+            idx, value = param.split(':')
+            try:
+                value = int(value)
+            except ValueError:
+                value = 0
+            if self.cache_timeout != value:
+                self.cache_timeout = value
 
     security.declarePrivate('_setJavaScript')
     def _setJavaScript(self, javascript=''):
@@ -844,9 +855,7 @@ class CPSPortlet(CPSDocument):
 
         ptype_id = ti.getId()
         # reset cache parameters
-        cache_params_dict = self.getCPSPortletCacheParams()
-        if cache_params_dict.has_key(ptype_id):
-            self._setCacheParams(cache_params_dict[ptype_id])
+        self.resetCacheParams(ptype_id)
 
         # reset the javascript methods
         javascript_dict = self.getCPSPortletJavaScript()
