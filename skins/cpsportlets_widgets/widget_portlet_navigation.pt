@@ -52,7 +52,7 @@
 
   <tal:block condition="python: display == 'folder_contents'">
     <tal:block
-     define="folderItems python: context.getNavigationItems(context_rpath=context_rpath, context_obj=context, start_depth=1, end_depth=1, contextual=1)"
+     define="folderItems python: context.getFolderItems(context_obj=context, show_docs=show_docs)"
      condition="folderItems">
       <ul>
         <li tal:repeat="item folderItems">
