@@ -178,7 +178,7 @@ class CPSPortlet(CPSDocument):
         """
         return self.state
 
-    def setState(self, state=0):
+    def setState(self, state=''):
         """Set the portlet's state
         """
         self.edit(state=state)

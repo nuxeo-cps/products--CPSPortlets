@@ -40,9 +40,9 @@ portlet_common_schema = {
         },
     },
     'state': {
-        'type': 'CPS Int Field',
+        'type': 'CPS String Field',
         'data': {
-            'default_expr': 'python:0',
+            'default_expr': 'string:',
             'is_searchabletext': 0,
             'acl_read_permissions': '',
             'acl_read_roles': '',
