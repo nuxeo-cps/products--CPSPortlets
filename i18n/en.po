@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-11-16 22:30default\n"
+"POT-Creation-Date: 2004-11-17 16:21default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -225,6 +225,9 @@ msgstr "Vertical breadcrumbs menu"
 
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Folder contents"
+
+msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
+msgstr "Subfolder contents"
 
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Relative depth"

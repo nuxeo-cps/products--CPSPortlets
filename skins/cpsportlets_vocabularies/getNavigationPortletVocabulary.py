@@ -5,6 +5,8 @@ cpsportlets_navigation_display_voc_vocabulary = {
              'cpsportlets_nav_display_vertical_breadcrumbs_menu_label'),
             ('folder_contents', 'Folder contents',
              'cpsportlets_nav_display_folder_contents_menu_label'),
+            ('subfolder_contents', 'Sub-folder contents',
+             'cpsportlets_nav_display_subfolder_contents_menu_label'),
             ('navigation_tree', 'Navigation tree',
              'cpsportlets_nav_display_navtree_menu_label'),
         ),

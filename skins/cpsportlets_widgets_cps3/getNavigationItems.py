@@ -1,4 +1,4 @@
-##parameters=context_obj=None, only_children=None, REQUEST=None, **kw
+##parameters=context_obj=None, REQUEST=None, **kw
 
 from Products.CPSNavigation.CPSNavigation import CPSNavigation
 
@@ -7,11 +7,21 @@ if REQUEST is not None:
 else:
     REQUEST=context.REQUEST
 
+# XXX get base url from the request
+base_url = context.getBaseUrl()
+
 context_rpath = kw.get('context_rpath')
 start_depth = kw.get('start_depth', 0)
 end_depth = kw.get('end_depth', 0)
-contextual = kw.get('contextual')
-contextual = int(contextual) == 1
+
+# contextual navigation
+contextual = int(kw.get('contextual', 0)) == 1
+
+# display icons
+display_icons = int(kw.get('display_icons', 0)) == 1
+
+# expand all nodes?
+kw['expand_all'] = int(kw.get('expand', 0)) == 1
 
 if contextual:
     context_uid = context_rpath
@@ -34,12 +44,23 @@ delta = 0
 if contextual:
     delta = len(context_rpath.split('/')) -1
 
+# cache for icons
+icons = {}
+portal_types = context.portal_types
+
 for tree in nav.getTree():
     object = tree['object']
     rpath = object['rpath']
+    ptype = object['portal_type']
     depth = object['depth'] - delta
     if depth < 0:
         continue
+
+    if display_icons:
+        if not icons.has_key(ptype):
+            icons[ptype] = base_url + portal_types[ptype].getIcon()
+    else:
+        icons[ptype] = ''
 
     selected = (rpath == context_rpath)
 
@@ -47,9 +68,7 @@ for tree in nav.getTree():
         if depth == 0 and not selected:
             continue
 
-    # only display children
-    if only_children:
-        if rpath == context_rpath:
+        if not rpath.startswith(context_rpath):
             continue
 
     # filter out items outside the specified depth
@@ -60,10 +79,11 @@ for tree in nav.getTree():
         if depth > end_depth:
             continue
 
-    folder_items.append({'url': object['url'],
+    folder_items.append({'url': base_url + rpath,
                          'title': object['title_or_id'],
                          'depth': depth,
                          'selected': selected,
+                         'icon': icons[ptype],
                         })
 
 return folder_items
