@@ -5,6 +5,8 @@ New features:
 ~~~~~~~~~~~~~
 - Custom Portlet: the 'i18n' cache parameter for portlets that are 
   language-dependent can be set directly in the portlet edit form.
+- Folderish documents listed as documents in folders will not be
+  visible if the 'show documents' options is turned off.
 Bug fixes:
 ~~~~~~~~~~
 -
@@ -12,3 +14,4 @@ New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added an access key to access the portlet management panels.
   default: ALT + '_'
+- added an internal RAM cache to store Factory-type information

@@ -47,6 +47,9 @@ PORTLET_RAMCACHE_ID = 'portlets'
 ICON_RAMCACHE_ID = 'icons'
 IMG_TAG = '<img src="%s" width="%s" height="%s" alt="%s" border="0" />'
 
+# FTI
+FTI_RAMCACHE_ID = 'fti'
+
 # Actions
 PORTLET_MANAGE_ACTION_ID = 'portlets'
 PORTLET_MANAGE_ACTION_CATEGORY = 'folder'
@@ -708,6 +711,51 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 if cache is not None:
                     cache.setEntry(index, img_tag)
         return img_tag
+
+    #
+    # FTI RAM cache
+    #
+
+    security.declarePublic('getFTICache')
+    def getFTICache(self):
+        """Returns the icon RAM cache object"""
+
+        cacheid = '_'.join((FTI_RAMCACHE_ID,) + \
+                            self.getPhysicalPath()[1:-1])
+        try:
+            return self.caches[cacheid]
+        except KeyError:
+            cache = SimpleRAMCache()
+            self.caches[cacheid] = cache
+            return cache
+
+    security.declarePublic('getFTIProperty')
+    def getFTIProperty(self, portal_type=None, prop_id=None):
+        """Return some factory type information
+        cached in RAM for faster access"""
+
+        if portal_type is None:
+            return None
+
+        if prop_id is None:
+            return None
+
+        if prop_id.startswith('_'):
+            return None
+
+        cache = self.getFTICache()
+        # compute the cache index
+        index = (portal_type, prop_id)
+        prop = cache.getEntry(index)
+        if prop is None:
+            ttool = getToolByName(self, 'portal_types')
+            ti = ttool.getTypeInfo(portal_type)
+            if ti is None:
+                return None
+            prop = ti.getProperty(prop_id, None)
+            if cache is not None:
+                cache.setEntry(index, prop)
+        return prop
 
     #
     # Access key
