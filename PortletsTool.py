@@ -28,8 +28,8 @@ from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo, getSecurityManager
 from Acquisition import aq_base, aq_parent, aq_inner
 
-from Products.CMFCore.utils import UniqueObject, getToolByName
-
+from Products.CMFCore.utils import UniqueObject, getToolByName, _checkPermission
+from Products.CMFCore.CMFCorePermissions import View
 from Products.CPSPortlets.PortletsContainer import PortletsContainer
 from Products.CPSPortlets.CPSPortletsPermissions import ManagePortlets
 
@@ -186,7 +186,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     ######################################################################
 
-    security.declareProtected(ManagePortlets, 'createPortlet')
+    security.declareProtected(View, 'createPortlet')
     def createPortlet(self, ptype_id, context=None, **kw):
         """Create a new portlet
 
@@ -198,6 +198,11 @@ class PortletsTool(UniqueObject, PortletsContainer):
         returns the id of the new portlet within portal_portlets or Portlet
         Container or None if something happend
         """
+
+        # XXX possible to cope with that in a better way ?
+        if not _checkPermission(ManagePortlets, context):
+            raise "You are not allowed to create portlets within %s" %(
+                context.absolute_url())
 
         # Check if the ptype_id is valid
         if ptype_id not in self.listPortletTypes():
