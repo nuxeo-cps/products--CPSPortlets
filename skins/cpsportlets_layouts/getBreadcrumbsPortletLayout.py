@@ -42,6 +42,29 @@ breadcrumbs_portlet_layout = {
                 'translated': True,
             },
         },
+        'display_hidden_folders': {
+            'type': 'Boolean Widget',
+            'data': {
+                'title': '',
+                'fields': ('display_hidden_folders',),
+                'is_required': False,
+                'label': '',
+                'label_edit': 'cpsportlets_breadcrumbs_display_hidden_folders_label',
+                'description': '',
+                'help': '',
+                'is_i18n': True,
+                'readonly_layout_modes': (),
+                'hidden_layout_modes': ('view',),
+                'hidden_readonly_layout_modes': (),
+                'hidden_empty': False,
+                'hidden_if_expr': '',
+                'css_class': '',
+                'widget_mode_expr': '',
+                'label_false': 'cpsschemas_label_false',
+                'label_true': 'cpsschemas_label_true',
+                'render_format': 'select',
+            },
+        },
     },
     'layout': {
         'style_prefix': 'layout_default_',
@@ -52,9 +75,12 @@ breadcrumbs_portlet_layout = {
             ],
             [{'widget_id': 'display', 'ncols': 1},
             ],
+            [{'widget_id': 'display_hidden_folders', 'ncols': 1},
+            ],
         ],
     },
 }
+
 
 layouts = {'breadcrumbs_portlet': breadcrumbs_portlet_layout}
 return layouts

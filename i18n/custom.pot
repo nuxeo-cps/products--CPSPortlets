@@ -169,3 +169,6 @@ msgstr ""
 
 msgid "button_portlet_management"
 msgstr ""
+
+msgid "cpsportlets_breadcrumbs_display_hidden_folders_label"
+msgstr ""

@@ -1,9 +1,9 @@
 <tal:block define="ds options/datastructure;
                    display ds/display;
+                   display_hidden_folders ds/display_hidden_folders;
                    context nocall:options/context_obj|here;
                    context_url python: context.absolute_url(1);
-                   breadcrumb_set python: request.get('breadcrumb_set');
-                   breadcrumbsItems python: context.getBreadcrumbsItems(url=context_url, breadcrumb_set=breadcrumb_set)">
+                   breadcrumbsItems python: context.getBreadcrumbsItems(url=context_url, display_hidden_folders=int(display_hidden_folders))">
   <form tal:condition="python: display == 'dropdown_list'"
   method="get" action="cpsportlet_url_redirect"
   tal:attributes="action string:${context_url}/cpsportlet_url_redirect">
@@ -11,7 +11,7 @@
       <tal:block repeat="item breadcrumbsItems">
         <option value="" selected=""
         tal:define="item_url item/url"
-        tal:content="python: item['title'] or item['id']"
+        tal:content="python: item['title']"
         tal:attributes="value item_url;
                         selected python:test(item_url == context_url, nothing, 'selected')" />
       </tal:block>
@@ -20,7 +20,7 @@
   <tal:block condition="python: display == 'horizontal_trail'"
   repeat="item breadcrumbsItems">
     <a href="" tal:attributes="href item/url"
-     tal:content="python: item['title'] or item['id']" />
+     tal:content="python: item['title']" />
     <tal:block condition="not:repeat/item/end" 
      content="structure string:&gt;" />
   </tal:block>
