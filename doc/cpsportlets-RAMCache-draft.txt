@@ -291,3 +291,9 @@ The cache entries currently consist of:
 
    API: see CPSPortlet.render_cache()
 
+
+Cache Policy Manager
+====================
+
+  The RAM cache acts as a cache policy manager by setting the HTTP headers
+  to inform frontend proxy caches when pages have expired, etc.

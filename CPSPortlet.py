@@ -30,8 +30,9 @@ This is a CPSDocument child base class for portlets
 import time
 import md5
 
+
 from types import ListType, IntType, TupleType
-from zLOG import LOG, ERROR
+from App.Common import rfc1123_date
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_inner, aq_parent, aq_base
 from AccessControl import ClassSecurityInfo
@@ -346,10 +347,19 @@ class CPSPortlet(CPSDocument):
         # create / recreate the cache entry
         if cache_entry is None:
             rendered = self.render(**kw)
+            now = time.time()
 
-            # current user
             if REQUEST is None:
                 REQUEST = self.REQUEST
+            RESPONSE = REQUEST.RESPONSE
+
+            # set the HTTP headers to inform proxy caches (Apache, Squid, ...)
+            # that the page has expired.
+            RESPONSE.setHeader('Expires', rfc1123_date(now))
+            RESPONSE.setHeader('Last-Modified', rfc1123_date(now))
+            # XXX more headers?
+
+            # current user
             user = REQUEST.get('AUTHENTICATED_USER')
 
             # get the list of cache objects.
@@ -358,7 +368,7 @@ class CPSPortlet(CPSDocument):
             # set the new cache entry
             cache.setEntry(index, {'rendered': rendered,
                                    'user': user,
-                                   'date': time.time(),
+                                   'date': now,
                                    'objects': cache_objects,
                                   })
         # use the existing cache entry
