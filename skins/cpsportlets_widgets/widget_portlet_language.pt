@@ -1,1 +1,20 @@
-<h1>Language portlet</h1>
+<tal:block define="ds options/datastructure;
+                   context nocall:options/context_obj|here;
+                   context_url python: context.absolute_url(1);
+                   action ds/action; 
+                  ">
+  <tal:block condition="python: action == 'translate'">
+    <form action="" method="get" action="cpsportlet_translate"
+     tal:define="langItems context/getTranslateLangItems"
+     tal:condition="langItems"
+     tal:attributes="action string:${context_url}/cpsportlet_translate">
+      <select onchange="submit()" name="lang">
+        <option i18n:translate="cpsportlet_translate_into" 
+         value="" selected="selected">Translate into ...</option>
+        <option tal:repeat="item langItems"
+         tal:content="item/title"
+         tal:attributes="value item/lang" />
+      </select>
+    </form>
+  </tal:block>
+</tal:block>

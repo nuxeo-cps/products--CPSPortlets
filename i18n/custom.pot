@@ -124,3 +124,9 @@ msgstr ""
 
 msgid "cpsportlets_content_searchable_types_label"
 msgstr ""
+
+msgid "cpsportlets_language_action_label"
+msgstr ""
+
+msgid "cpsportlets_language_action_translate_label"
+msgstr ""

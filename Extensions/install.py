@@ -125,8 +125,9 @@ class CPSPortletsInstaller(CPSInstaller):
     def installPortletVocabularies(self):
         """Install all portlet specific vocabularies."""
 
-        define_vocabularies = (self.portal.getPortletDisplayVocabulary(),
-                               self.portal.getPortletContentSearchVocabulary(),
+        define_vocabularies = (self.portal.getBreadcrumbsPortletVocabulary(),
+                               self.portal.getContentPortletVocabulary(),
+                               self.portal.getLanguagePortletVocabulary(),
                               )
 
         all_vocabularies = {}

@@ -4,7 +4,7 @@
                    context_url python: context.absolute_url(1);
                    breadcrumb_set python: request.get('breadcrumb_set');
                    breadcrumbsItems python: context.getBreadcrumbsItems(url=context_url, breadcrumb_set=breadcrumb_set)">
-  <form action="" tal:condition="python: display == 'dropdown_list'"
+  <form tal:condition="python: display == 'dropdown_list'"
   method="get" action="cpsportlet_url_redirect"
   tal:attributes="action string:${context_url}/cpsportlet_url_redirect">
     <select onchange="submit()" name="url" tal:condition="breadcrumbsItems">
