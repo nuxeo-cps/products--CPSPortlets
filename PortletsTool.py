@@ -24,6 +24,8 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 """Portlets Tool
 """
 
+from zLOG import LOG, DEBUG
+
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo, getSecurityManager, Unauthorized
 from Acquisition import aq_base, aq_parent, aq_inner
@@ -341,7 +343,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
             return
 
         # find all portlets inside the slot
-        slot_portlets = [] 
+        slot_portlets = []
         for p in self.listEveryPortlets():
             if p.getSlot() != slot:
                 continue
@@ -360,7 +362,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 pos = slot_portlets.index(p)
                 break
 
-        # remove the portlet and 
+        # remove the portlet and
         # insert it to its new position
         if portlet in slot_portlets:
             slot_portlets.remove(portlet)
@@ -386,5 +388,17 @@ class PortletsTool(UniqueObject, PortletsContainer):
             slot_portlets[k].setOrder(newpos)
             # update the dictionary too
             order_dict[k] = newpos
+
+    ######################################################################
+    ######################################################################
+
+    security.declarePrivate("notify_event")
+    def notify_event(self, event_type, object, infos):
+        """Standard event hook
+        """
+        LOG(":: CPS Portlets Tool :: ", DEBUG, 'notify_event()')
+        LOG(":: EVENT TYPE ::", DEBUG, event_type)
+        LOG(":: OBJECT ::", DEBUG, repr(object))
+        LOG(":: INFOS ::", DEBUG, repr(infos))
 
 InitializeClass(PortletsTool)
