@@ -88,6 +88,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """
         return PORTLET_CONTAINER_ID
 
+    #######################################################################
+
     security.declarePublic('getPortlets')
     def getPortlets(self, context=None, slot=None):
         """Return a list of portlets.
@@ -127,7 +129,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
     ######################################################################
 
     security.declareProtected(ManagePortlets, 'createPortlet')
-    def createPortlet(self, ptype_id, context=None):
+    def createPortlet(self, ptype_id, context=None, slot='', order=0):
         """Create a new portlet
 
         Check where it has to be created globally within the tool or locally
@@ -158,7 +160,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
             # Get the portlets container from the context
             destination = getattr(context, container_id)
 
-        return destination._createPortlet(ptype_id)
+        return destination._createPortlet(ptype_id, slot, order)
 
     security.declareProtected(ManagePortlets, 'deletePortlet')
     def deletePortlet(self, portlet_id, context=None):
