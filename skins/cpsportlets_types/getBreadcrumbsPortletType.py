@@ -1,7 +1,7 @@
 breadcrumbs_portlet_type = {
     'title': 'portal_type_BreadcrumbsPortlet_title',
     'description': '',
-    'content_icon': 'breadcrumbs_portlet_icon.gif',
+    'content_icon': 'breadcrumbs_portlet_icon.png',
     'content_meta_type': 'CPS Portlet',
     'product': 'CPSPortlets',
     'factory': 'addCPSPortlet',
