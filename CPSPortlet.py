@@ -216,8 +216,10 @@ class CPSPortlet(CPSDocument):
             # Workflow actions
             elif param == 'wf_create':
                 wf_tool = getToolByName(self, 'portal_workflow')
-                types_allowed_by_wf = wf_tool.getAllowedContentTypes(context)
-                index_string = md5.new(str(types_allowed_by_wf)).hexdigest()
+                getAllowedTypes = getattr(wf_tool, 'getAllowedContentTypes', None)
+                if getAllowedTypes is not None:
+                    types_allowed_by_wf = getAllowedTypes(context)
+                    index_string = md5.new(str(types_allowed_by_wf)).hexdigest()
 
             if index_string:
                 index += (param + '_' + index_string,)
