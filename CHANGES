@@ -26,3 +26,4 @@ New internal features:
 - the RAM cache is cleared with CPSPortlets is updated / installed
 - added an 'override' parameter in getPortlets(), i.e. override=0 will
   disable portlet override.
+- added a 10 minutes timeout on the BreadCrumbs Portlet's cache parameters..
