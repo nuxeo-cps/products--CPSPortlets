@@ -194,7 +194,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
         portal_url = getToolByName(self, 'portal_url')
         rpath = portal_url.getRelativeContentPath(bmf)
         obj = portal_url.getPortalObject()
-        allportlets = []
+        # root portlets
+        allportlets = self._getFolderPortlets(folder=obj, slot=slot)
+        # other portlets
         for elem in ('',) + rpath:
             if not elem:
                 continue

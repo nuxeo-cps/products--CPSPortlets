@@ -22,6 +22,7 @@ Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves
   to avoid "ZODB couldn't load state for ... " errors with Squid.
+- Portal root portlets were not taken into account.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()
