@@ -23,7 +23,7 @@ last updated: 2004-09-20
   * The python scripts are used to prepare the data that will be presented.
 
   Specific implementations (CPS3/Plone) should be done in the scripts not
-  in the page templates. 
+  in the page templates.
 
   For instance we write:
 
@@ -33,7 +33,7 @@ last updated: 2004-09-20
   ...
   <div tal:define="data here/getData" tal:content="data/title" />
   ...
-  
+
   with the getData.py file located in skins/cpsportlets_widgets, in
   skins/cpsportlets_widgets_plone2 and in skins/cpsportlets_widgets_cps3
 
@@ -54,9 +54,19 @@ last updated: 2004-09-20
 
 - i18n:
 
-  XXX
+  i18n is compatible. Use Localizer (not for a long time) if Localizer is
+  present.
+  Otherweise, the po are PlacelessTranslationService compliant.
 
 
-- CPS4CMF, CPS4Plone
+- CPS4CMFPlone
 
-  XXX
+  You'll nedd either to install the build package CPS4CMFPlone or either
+  install the following :
+
+   - CPSchemas
+   - CPSDocument
+   - CPSInstaller
+
+ Check the DEPENDENCIES.txt file within this product for the version fter
+ which the compatibility is ok.
