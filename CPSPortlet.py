@@ -1,6 +1,7 @@
 # -*- coding: ISO-8859-15 -*-
 # Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
-# Copyright (c) 2004 Chalmers University of Technology <http://www.chalmers.se>
+# Copyright (c) 2004 Chalmers University of Technology
+#               <http://www.chalmers.se>
 # Authors : Julien Anguenot <ja@nuxeo.com>
 #           Jean-Marc Orliaguet <jmo@ita.chalmers.se>
 
@@ -47,24 +48,27 @@ class CPSPortlet(CPSDocument):
         return ""
 
     def isCPSPortlet(self):
-        """Return true if this is a CPS Portlet."""
-
+        """Return true if this is a CPS Portlet.
+        """
         return 1
 
     def getURL(self):
-        """Return the url of the portlet."""
-
+        """Return the url of the portlet.
+        """
         # XXX
+        pass
 
     def getRelativeUrl(self):
-        """Return the url of the portlet relative to the portal."""
-
+        """Return the url of the portlet relative to the portal.
+        """
         # XXX
+        pass
 
     def getSlot(self):
-        """Return the portlet's slot."""
-
+        """Return the portlet's slot.
+        """
         # XXX
+        pass
 
 InitializeClass(CPSPortlet)
 
