@@ -865,6 +865,8 @@ class CPSPortlet(CPSDocument):
                     if field.getFieldId() != k:
                         continue
                     if v != field.getDefault():
+                        if field.meta_type == 'CPS String Field':
+                            v = "'%s'" % v
                         data[k] = v
                         continue
 
