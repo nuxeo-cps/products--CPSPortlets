@@ -62,6 +62,7 @@ class CPSPortletsInstaller(CPSInstaller):
         self.installPortletSchemas()
         self.installPortletLayouts()
         self.installFlexibleTypes()
+        self.setupTranslations()
         self.finalize()
         self.log("End of Install/Update : CPSPortlets Product")
 
