@@ -9,6 +9,8 @@ cpsportlets_navigation_display_voc_vocabulary = {
              'cpsportlets_nav_display_subfolder_contents_menu_label'),
             ('navigation_tree', 'Navigation tree',
              'cpsportlets_nav_display_navtree_menu_label'),
+            ('site_map', 'Site map',
+             'cpsportlets_nav_display_site_map_label'),
         ),
     },
 }
