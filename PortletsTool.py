@@ -246,11 +246,56 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         return destination._deletePortlet(portlet_id)
 
+    security.declareProtected(View, 'movePortlet')
+    def movePortlet(self, portlet=None, context=None,
+                    src_slot=None, src_ypos=0,
+                    dest_slot=None, dest_ypos=0, **kw):
+        """Move portlet
+           parameters: src_slot, src_ypos, dest_slot, dest_ypos,
+        """
+
+        if not _checkPermission(ManagePortlets, context):
+            raise Unauthorized(
+                "You are not allowed to delete portlets within %s" %(
+                context.absolute_url()))
+
+        src_ypos = int(src_ypos)
+        dest_ypos = int(dest_ypos)
+        if dest_slot is None:
+            return
+        if portlet is None:
+            return
+
+        portlets = self.getPortlets(context=context, slot=dest_slot, sort=0)
+        if src_slot == dest_slot:
+            found = 0
+            for p in portlets: 
+                order = p.getOrder()
+                if order == dest_ypos and not found:
+                    found = 1
+                    p.setOrder(src_ypos)
+                    if src_ypos == dest_ypos:
+                        dest_ypos += 10
+                    break
+        else:
+            new_ypos = 0
+            found = 0
+            for p in portlets: 
+                order = p.getOrder()
+                if order == dest_ypos and not found:
+                    found = 1
+                    new_ypos = order + 10
+                if found:
+                    p.setOrder(new_ypos)
+                    new_ypos += 10
+
+        if portlet is not None:
+            portlet.setSlot(dest_slot)
+            portlet.setOrder(dest_ypos)
+
     #
     # Private
     #
-
-
     security.declarePrivate('_getDepthOf')
     def _getDepthOf(self, context=None):
         """Returns the depth of the context
