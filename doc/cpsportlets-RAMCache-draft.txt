@@ -1,0 +1,90 @@
+
+                    CPSPortlets - RAM cache (draft)
+
+Author: Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>
+Last-modified: 2004-10-12
+
+
+RAM Cache
+=========
+The cache implementation in CPSPortlets is the same as in CPSSkins
+(see CPSSkins/RAMCache.py) but the caching algorithm is different (see below)
+
+Cache entries are also stored in a dictionary: {(index, ): value} 
+where '(index, )' is a tuple that represents the cached object.
+
+The tuple consist of: (object_path, (..., ..., ) ) where 'object_path' is
+the physical path of the cached object and (..., ..., ) is a collection 
+of values that uniquely describes the object's context (the url, the current
+language, ...).
+
+
+Cache entries can be:
+
+- put in the cache. 
+  see: setEntry(index, data)
+
+- retrieved from the cache.
+  see: getEntry(index)
+
+- deleted from the cache.
+  see: deleteEntries(id) where 'id' is the object's physical path.
+
+The entire cache can be:
+
+- invalidated. 
+  see: invalidate()
+
+- queried for information
+  see: getStats(), getReport(), getSize(), getLastCleanup()
+
+
+Caching algorithm
+=================
+
+In CPSSkins:
+------------
+The caching algorithm in CPSSkins is based on the principle that cache
+entries are updated or invalidated only when the cached object is being
+displayed. There is no other purging mechanism other than this one...
+
+Each object that is in the cache has a time-to-live (TTL) that, when it has
+expired causes all cache entries associated to the object to be removed from
+the cache. The cache entries for a given object can also be invalidated
+manually by calling the expireCache() method on the cached object.
+
+This caching mechanism works well with objects that are displayed often such as
+the global UI elements of a portal (images, breadcrumbs, menus, global boxes, 
+global portlets...). But the mechanism is not efficient when the elements of
+the portal are seldom displayed -- such as the local portlets..
+
+In CPSPortlets:
+---------------
+The local portlets in CPSPortlets are designed to be specifically associated
+to some given users or group of users; they may be visible only inside some
+limited areas of the portal. Hence they are in comparison to global portlets
+very seldom displayed and it is not very efficient to use the same algorithm
+as the one used with global portlets.
+
+Instead the current implementation relies entirely on the event service of
+CPS3 to invalidate cache entries whenever an invalidation is required,
+i.e. when content has been created, deleted, published, etc.
+
+...
+
+Cache parameters
+----------------
+
+XXX
+
+Cache index
+-----------
+
+XXX
+
+Cache invalidation
+------------------
+
+XXX
+
+
