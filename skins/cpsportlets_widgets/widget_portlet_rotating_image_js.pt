@@ -1,0 +1,6 @@
+function showimage(layer_ref) {
+  if (document.getElementById &&!document.all) {
+    div = document.getElementById(layer_ref);
+    div.className = 'visible';
+  }
+}

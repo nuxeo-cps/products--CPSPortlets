@@ -11,6 +11,7 @@ javascript = {
     'Content Portlet': '',
     'Language Portlet': '',
     'Image Portlet': '',
+    'Rotating Image Portlet': 'widget_portlet_rotating_image_js',
     'Navigation Portlet': '',
     'Document Portlet': '',
     'RSS Portlet': '',

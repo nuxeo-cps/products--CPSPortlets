@@ -1,0 +1,13 @@
+<tal:block define="layout options/layout;
+                   portlet_id here/getId">
+  <tal:block repeat="row layout/rows">
+    <tal:block repeat="cell row">
+      <div tal:define="widget cell/widget;
+                       widget_id widget/getWidgetId;
+                       css_class widget/css_class;
+                       id python: '%s_%s_widget' % (portlet_id, widget_id)"
+       tal:attributes="class css_class; id id"
+       tal:content="structure cell/widget_rendered" />
+    </tal:block>
+  </tal:block>
+</tal:block>

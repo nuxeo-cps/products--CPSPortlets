@@ -35,6 +35,8 @@ New features:
 - The Document Portlet can render different layouts.
 - Added a 'last published' query type in the Content Portlet that replaces
   the 'last modified' query. 'Last modified' returns even unpublished items. 
+- Assigned a non-flexible layout to the Image Portlet.
+- Added a Rotating Image Portlet to randomly display ads, banners, etc.
 Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves
@@ -73,3 +75,5 @@ New internal features:
 - cache objects to monitor can be specified through a path list field.
 - listPortlets() searches among all portlet types if an empty 'portal_types'
   is passed as a parameter.
+- added a javascript layout style (layout_portlet_js_) with unique CSS
+  selector IDs assigned to widgets to show or hide block elements.

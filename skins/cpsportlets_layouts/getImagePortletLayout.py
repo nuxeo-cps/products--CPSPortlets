@@ -1,51 +1,10 @@
 image_portlet_layout = {
     'widgets': {
-        'portlet': {
-            'type': 'Generic Portlet Widget',
-            'data': {
-                'title': '',
-                'fields': ('portlet',),
-                'is_required': False,
-                'label': '',
-                'label_edit': '',
-                'description': '',
-                'help': '',
-                'is_i18n': False,
-                'readonly_layout_modes': (),
-                'hidden_layout_modes': ('edit',),
-                'hidden_readonly_layout_modes': (),
-                'hidden_empty': False,
-                'hidden_if_expr': '',
-                'css_class': '',
-                'widget_mode_expr': '',
-                'widget_group_id': '',
-                'depends_on_field_id': '',
-                'depends_on_field_value': '',
-                'display_if_depends_equals': True,
-                'render_method': 'widget_portlet_image',
-                'field_types': ('CPS String Field',),
-            },
-        },
-    },
-    'layout': {
-        'style_prefix': 'layout_portlet_',
-        'flexible_widgets': (),
-        'ncols': 1,
-        'rows': [
-            [{'widget_id': 'portlet', 'ncols': 1},
-            ],
-        ],
-    },
-}
-
-
-image_portlet_flexible_layout = {
-    'widgets': {
         'imagelink': {
             'type': 'Image Link Widget',
             'data': {
                 'title': '',
-                'fields': ('?',),
+                'fields': ('image', 'link'),
                 'widget_ids': ('image', 'link'),
                 'widget_type': 'Image Link Widget',
                 'is_required': False,
@@ -64,14 +23,14 @@ image_portlet_flexible_layout = {
                 'widget_group_id': '',
                 'depends_on_field_id': '',
                 'depends_on_field_value': '',
-                'display_if_depends_equals': False,
+                'display_if_depends_equals': True,
             },
         },
         'image': {
             'type': 'Image Widget',
             'data': {
                 'title': '',
-                'fields': ('?',),
+                'fields': ('image',),
                 'is_required': False,
                 'label': '',
                 'label_edit': 'cpsportlets_image_image_label',
@@ -88,7 +47,7 @@ image_portlet_flexible_layout = {
                 'widget_group_id': '',
                 'depends_on_field_id': '',
                 'depends_on_field_value': '',
-                'display_if_depends_equals': False,
+                'display_if_depends_equals': True,
                 'deletable': True,
                 'size_max': 4194304,
                 'display_width': 0,
@@ -100,7 +59,7 @@ image_portlet_flexible_layout = {
             'type': 'String Widget',
             'data': {
                 'title': '',
-                'fields': ('?',),
+                'fields': ('link',),
                 'is_required': False,
                 'label': '',
                 'label_edit': 'cpsportlets_image_link_label',
@@ -117,21 +76,23 @@ image_portlet_flexible_layout = {
                 'widget_group_id': '',
                 'depends_on_field_id': '',
                 'depends_on_field_value': '',
-                'display_if_depends_equals': False,
-                'display_width': 20,
+                'display_if_depends_equals': True,
+                'display_width': 36,
                 'size_max': 0,
             },
         },
     },
     'layout': {
-        'style_prefix': 'layout_default_',
-        'flexible_widgets': ('imagelink',),
+        'style_prefix': 'layout_portlet_',
+        'flexible_widgets': (),
         'ncols': 1,
         'rows': [
+            [{'widget_id': 'imagelink', 'ncols': 1},
+            ],
         ],
     },
 }
 
-layouts = {'image_portlet': image_portlet_layout,
-           'image_portlet_flexible': image_portlet_flexible_layout,}
+
+layouts = {'image_portlet': image_portlet_layout}
 return layouts

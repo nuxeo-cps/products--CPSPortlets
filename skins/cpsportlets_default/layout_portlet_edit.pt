@@ -1,1 +1,140 @@
-<metal:block use-macro="here/layout_lib/macros/default_edit" />
+<div
+  tal:define="layout options/layout;
+              ds options/datastructure;
+              creation creation|nothing;
+              metadata metadata|nothing;
+              type_name request/type_name|nothing;
+              ti python:type_name and getattr(here.portal_types,type_name,None) or getattr(here.portal_types,here.portal_type,None);
+              creation_form python:ti and ti.getActionById('create', 'cpsdocument_create_form') or 'cpsdocument_create_form' ;
+              edit_form     python:ti and ti.getActionById('edit',   'cpsdocument_edit_form') or  'cpsdocument_edit_form';
+              metadata_form python:ti and ti.getActionById('metadata', 'cpsdocument_metadata') or 'cpsdocument_metadata';
+              formaction python: test(creation, creation_form,
+                                 test(metadata, metadata_form,
+                                                edit_form));
+              first_layout options/first_layout|python:0;
+              last_layout options/last_layout|python:0;
+              is_flexible options/is_flexible;
+              cpsmcat nocall:here/Localizer/default;
+              cpstrans nocall:here/translation_service
+             ">
+<tal:block condition="first_layout">
+  <tal:block
+  content="structure string:<form action='${formaction}' method='post'
+  name='form' enctype='multipart/form-data'>
+  <div class='group'>" />
+  <input type="hidden" name="type_name" value="."
+    tal:condition="creation" tal:attributes="value request/type_name" />
+</tal:block>
+
+<table width="100%" cellpadding="2" cellspacing="2" border="0"
+  summary="form layout">
+  <tr tal:repeat="row layout/rows" valign="top">
+    <td tal:repeat="cell row"
+      tal:attributes="colspan cell/ncols">
+      <tal:block define="widget cell/widget;
+                         wid widget/getWidgetId;
+                         dm options/datastructure/getDataModel;
+                         err python:ds.getError(wid);
+                         err_mapping python:ds.getErrorMapping(wid);
+                         is_required widget/is_required|nothing;
+                         tooltip_id python:wid + '_help';
+                         css_class python:test(err, 'row error',
+                                           test(is_flexible, 'group', 'row'))">
+         <div>
+          <div class="label" tal:condition="widget/label_edit"
+            tal:attributes="class python:test(is_required, 'label required',
+                                              'label')">
+            <span i18n:translate="" tal:condition="widget/is_i18n"
+              tal:content="widget/label_edit">label</span>
+            <span tal:condition="not:widget/is_i18n"
+              tal:content="widget/label_edit">label</span>
+          </div>
+          <button type="button" class="tooltipControl"
+                  tal:condition="widget/help"
+                  tal:attributes="onclick python:'toggleElementVisibility(\'%s\')' % tooltip_id;"> ? </button>
+          <div class="field">
+            <div tal:replace="structure cell/widget_rendered"/>
+          </div>
+          <div class="tooltipArea" style="visibility: hidden;"
+               tal:condition="widget/help"
+               tal:attributes="id tooltip_id;
+                               onclick python:'showElement(false, \'%s\')' % tooltip_id;">
+            <tal:block i18n:translate="" tal:condition="widget/is_i18n"
+              tal:content="widget/help">i18_key-help_for_this_field</tal:block>
+            <tal:block tal:condition="not:widget/is_i18n"
+              tal:content="widget/help">This is the help for this field</tal:block>
+          </div>
+          <tal:block condition="err">
+              <tal:block define="msg python:cpstrans(err, mapping=err_mapping)">
+                <br /><em style="color: red"
+                  tal:content="msg">err</em>
+              </tal:block>
+          </tal:block>
+          <div style="float: right;" tal:condition="is_flexible">
+            <input type="submit" value="button_move_up"
+              tal:condition="not:repeat/row/start"
+              tal:attributes="name string:uprow_${repeat/row/index}"
+              class="context moveUp" i18n:attributes="value" />
+            <input type="submit" value="button_move_down"
+              tal:condition="not:repeat/row/end"
+              tal:attributes="name string:downrow_${repeat/row/index}"
+              class="context moveDown" i18n:attributes="value" />
+            <input type="submit" value="button_delete"
+              class="destructive" i18n:attributes="value"
+              tal:attributes="name string:deleterow_${repeat/row/index};
+                              onclick python:'return window.confirm(\'%s\')' %
+                                (cpsmcat('description_confirm_delete'), )" />
+          </div>
+        </div>
+      </tal:block>
+    </td>
+  </tr>
+</table>
+
+<tal:block condition="is_flexible">
+<div style="float: right;" 
+    tal:define="flexible_widgets options/flexible_widgets">
+  <input type="hidden" name="layout_id" value="."
+    tal:attributes="value layout/layout_id" />
+  <tal:select condition="python:len(flexible_widgets)>1">
+    <select name="widget_type">
+      <tal:block repeat="widget options/flexible_widgets">
+      <option value="."
+        tal:condition="widget/is_i18n"
+        i18n:translate=""
+        tal:attributes="value widget/getWidgetId"
+        tal:content="widget/title_or_id">Type</option>
+      <option value="."
+        tal:condition="not:widget/is_i18n"
+        tal:attributes="value widget/getWidgetId"
+        tal:content="widget/title_or_id">Type</option>
+      </tal:block>
+    </select>
+    <input type="submit" name="addwidget_button" value="button_add"
+     class="context"
+     i18n:attributes="value" />
+  </tal:select>
+  <tal:button condition="python:len(flexible_widgets) == 1"
+              define="widget python:flexible_widgets[0]">
+    <input type="hidden" name="widget_type" 
+      tal:attributes="value widget/getWidgetId">
+    <input type="submit" name="addwidget_button" 
+      tal:define="button_add python:cpsmcat('button_add');
+        widget_title python:cpsmcat(widget.title_or_id())"
+      tal:attributes="value string:${button_add} ${widget_title}"
+      class="context" />
+  </tal:button>
+</div>
+<br /><br />
+</tal:block>
+
+<tal:block condition="last_layout">
+  <input type="submit" class="standalone" name="cpsdocument_edit_button"
+    value="button_change" i18n:attributes="value"
+    tal:condition="not:creation" />
+  <input type="submit" class="standalone" name="cpsdocument_create_button"
+    value="button_create" i18n:attributes="value" tal:condition="creation" />
+  <tal:block content="structure string:</div></form>" />
+</tal:block>
+
+</div>
