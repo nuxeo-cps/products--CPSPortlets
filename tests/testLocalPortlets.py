@@ -47,6 +47,14 @@ class TestLocalPortletsAsRoot(TestPortlets):
         self.assertNotEqual(portlet, None)
         self.assert_(portlet.render())
 
+    def test_getPortletContext(self):
+        ptltool = self.ptltool
+        working_context = self.portal.workspaces
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet', context=working_context)
+        portlets_container = ptltool.getPortletContainer(context=working_context)
+        portlet = portlets_container.getPortletById(portlet_id)
+        self.assert_(ptltool.getPortletContext(portlet) == working_context)
+
     def test_isCPSPortlet(self):
         ptltool = self.ptltool
         working_context = self.portal.workspaces

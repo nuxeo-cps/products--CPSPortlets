@@ -38,6 +38,13 @@ class TestPortletsAsRoot(TestPortlets):
         portlet = ptltool[portlet_id]
         self.assert_(portlet.render())
 
+    def test_getPortletContext(self):
+        ptltool = self.ptltool
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
+        # CMFBTreeFolder
+        portlet = ptltool[portlet_id]
+        self.assert_(ptltool.getPortletContext(portlet) == ptltool)
+
     def test_isCPSPortlet(self):
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')

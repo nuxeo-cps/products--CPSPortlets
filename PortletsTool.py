@@ -209,6 +209,25 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         return allportlets
 
+    security.declarePublic('getPortletContext')
+    def getPortletContext(self, portlet=None):
+        """Returns the context of the portlet"""
+
+        if portlet is None:
+            return
+
+        container = aq_parent(aq_inner(portlet))
+        container_id = container.getId()
+
+        # global portlet
+        if container == self:
+            return self
+
+        # local portlet
+        if container.getId() == self.getPortletContainerId():
+            return portlet.getLocalFolder()
+        return
+
     ######################################################################
 
     security.declareProtected(View, 'createPortlet')

@@ -13,6 +13,7 @@ New features:
 - Implementation of an Image widget
 - FileDownloaderPatch for File / Image widgets
 - Navigation portlet: implementation of a 'Vertical breadcumbs menu' display.
+- API: added a getPortletContext() method that returns the portlet's context.
 Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves
