@@ -1,0 +1,4 @@
+<tal:block define="layout_id python:'metadata';
+                   emptybody python: 1">
+  <metal:block use-macro="here/cpsportlet_edit_form/macros/edit_form" />
+</tal:block>

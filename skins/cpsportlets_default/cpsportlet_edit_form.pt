@@ -33,10 +33,21 @@
   </metal:block>
 
   <metal:block fill-slot="main"
-   tal:define="res python:here.editCPSPortlet(REQUEST=request);
+   tal:define="layout_id layout_id|nothing;
+               metadata python: layout_id == 'metadata';
+               res python:here.editCPSPortlet(layout_id=layout_id, REQUEST=request);
                rendered_main python: res[0];
                portal_status_message python: res[1];
                error python: res[2]">
+
+    <div style="text-align: right"
+     tal:define="metadata python: layout_id == 'metadata'">
+       <a tal:condition="not:metadata" i18n:translate="action_metadata"
+        href="cpsportlet_metadata">metadata</a>
+       <a tal:condition="metadata" i18n:translate="button_back"
+        href="cpsportlet_edit_form">back</a>
+    </div>
+
     <h1>
       <img tal:replace="structure python:here.getImgTag('/'+here.getIcon(), base_url='')" />
       <tal:block i18n:translate="_Edit_">Edit</tal:block> 
@@ -45,7 +56,7 @@
     <div tal:condition="error"
          tal:replace="structure rendered_main" />
     <div tal:condition="not:error"
-         tal:replace="structure python: here.render(layout_mode='edit', context_obj=here)" />
+         tal:replace="structure python: here.render(layout_mode='edit', layout_id=layout_id,  context_obj=here)" />
 
     <form action="" style="text-align: center">
       <input class="standalone" type="submit" 
