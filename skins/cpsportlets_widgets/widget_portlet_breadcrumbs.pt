@@ -11,7 +11,7 @@
       <tal:block repeat="item breadcrumbsItems">
         <option value="" selected=""
         tal:define="item_url item/url"
-        tal:content="item/title"
+        tal:content="python: item['title'] or item['id']"
         tal:attributes="value item_url;
                         selected python:test(item_url == context_url, nothing, 'selected')" />
       </tal:block>
