@@ -66,8 +66,15 @@ class CPSPortlet(CPSDocument):
         """Return the url of the portlet relative to the portal.
         """
 
-        portal_url = getToolByName(self, 'portal_url')
+        utool = getToolByName(self, 'portal_url')
         return utool.getRelativeUrl(self)
+
+    def getPath(self):
+        """Return the physical path of the portlet.
+        """
+
+        return self.getPhysicalPath()
+
 
     #################################################################
 
