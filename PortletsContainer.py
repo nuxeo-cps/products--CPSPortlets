@@ -36,6 +36,7 @@ class PortletsContainer(CMFBTreeFolder):
     """
 
     meta_type = 'CPS Placeful Portlets Container'
+    portal_type = meta_type
 
     security = ClassSecurityInfo()
 
@@ -79,6 +80,23 @@ class PortletsContainer(CMFBTreeFolder):
             self._delObject(portlet_id)
             return 0
         return 1
+
+    #####################################################################
+
+    def listPortletSlots(self):
+        """Return all the portlets slots
+        """
+
+        slots = []
+        portlet_ids = self.listPortletIds()
+
+        for id in portlet_ids:
+            portlet = self.getPortletById(id)
+            slot = portlet.getSlot()
+            if slot and slot not in slots:
+                slots.append(slot)
+
+        return slots
 
 InitializeClass(PortletsContainer)
 
