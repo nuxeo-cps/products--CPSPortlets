@@ -112,6 +112,7 @@ class CPSPortlet(CPSDocument):
         action = _getViewFor(self, view='edit')
         if action and callable(action):
             return apply(action, (), kw)
+        return None
 
     #################################################################
     # RAM Cache
@@ -203,21 +204,20 @@ class CPSPortlet(CPSDocument):
         custom_params = self.getCustomCacheParams()
         params.extend(custom_params)
 
-        def getOptions(param):
+        def getOptions(p):
              """extract cache parameter options
              """
              res = []
-             opts = param.split(':')[1].split(',')
-             for opt in opts:
-                 if opt[0] == '(' and opt[-1] == ')':
-                     opt = getattr(self, opt[1:-1], None)
-                     if opt is None:
+             for o in p.split(':')[1].split(','):
+                 if o[0] == '(' and o[-1] == ')':
+                     o = getattr(self, opt[1:-1], None)
+                     if o is None:
                          continue
-                     if isinstance(opt, ListType) or\
-                        isinstance(opt, TupleType):
-                         res.extend(opt)
+                     if isinstance(o, ListType) or\
+                        isinstance(o, TupleType):
+                         res.extend(o)
                          continue
-                 res.append(str(opt))
+                 res.append(str(o))
              return res
 
         index = ()
@@ -481,6 +481,7 @@ class CPSPortlet(CPSDocument):
         ti = self.getTypeInfo()
         if ti is not None:
             return ti.getId()
+        return None
 
     #################################################################
 
@@ -743,21 +744,20 @@ class CPSPortlet(CPSDocument):
         if not cache_params_dict.has_key(ptype_id):
             return
 
-        def getOptions(param):
+        def getOptions(p):
              """extract cache parameter options
              """
              res = []
-             opts = param.split(':')[1].split(',')
-             for opt in opts:
-                 if opt[0] == '(' and opt[-1] == ')':
-                     opt = getattr(self, opt[1:-1], None)
-                     if opt is None:
+             for o in p.split(':')[1].split(','):
+                 if o[0] == '(' and o[-1] == ')':
+                     o = getattr(self, o[1:-1], None)
+                     if o is None:
                          continue
-                     if isinstance(opt, ListType) or\
-                        isinstance(opt, TupleType):
-                         res.extend(opt)
+                     if isinstance(o, ListType) or\
+                        isinstance(o, TupleType):
+                         res.extend(o)
                          continue
-                 res.append(str(opt))
+                 res.append(str(o))
              return res
 
         event_ids = ()

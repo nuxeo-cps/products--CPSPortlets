@@ -222,7 +222,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """Returns the context of the portlet"""
 
         if portlet is None:
-            return
+            return None
 
         container = aq_parent(aq_inner(portlet))
         container_id = container.getId()
@@ -234,7 +234,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         # local portlet
         if container.getId() == self.getPortletContainerId():
             return portlet.getLocalFolder()
-        return
+        return None
 
     ######################################################################
 
@@ -304,7 +304,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 context.absolute_url()))
 
         if context is None:
-            return
+            return None
 
         container = self.getPortletContainer(context=context)
         cookie = container.manage_copyObjects([portlet_id])
@@ -327,7 +327,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """
 
         if portlet is None:
-            return
+            return None
 
         src_folder = portlet.getLocalFolder()
         if dest_folder is None:
@@ -403,9 +403,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         cache = self.getPortletCache()
         if cache is None:
-            return
+            return None
         return cache.getReport()
-
 
     security.declarePublic('getCacheStats')
     def getCacheStats(self):
@@ -415,7 +414,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         cache = self.getPortletCache()
         if cache is None:
-            return
+            return None
 
         stats = cache.getStats()
         count = stats['count']
@@ -494,7 +493,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         cache = self.getPortletCache()
         if cache is None:
-            return
+            return None
 
         entries = []
         for k, v in cache.getEntries():
