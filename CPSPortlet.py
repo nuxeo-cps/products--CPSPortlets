@@ -101,13 +101,23 @@ class CPSPortlet(CPSDocument):
     # RAM Cache
     #################################################################
     security.declarePublic('getCustomCacheIndex')
-    def getCustomCacheIndex(self):
+    def getCustomCacheIndex(self, REQUEST=None):
         """Returns the custom RAM cache index as a tuple (var1, var2, ...)
         """
+
+        if REQUEST is None:
+            REQUEST = self.REQUEST
+
         index = ()
 
         # box state
         index += (self.getState(), )
+
+        # i18n
+        if self.isI18n():
+            # XXX for testing purposes only
+            # rewrite this in a more generic way
+            index += (REQUEST.get('cpsskins_language', 'en'), )
         return index
 
     security.declarePublic('getCacheParams')
@@ -139,13 +149,15 @@ class CPSPortlet(CPSDocument):
         """Returns the RAM cache index as a tuple (var1, var2, ...)
         """
 
-        # XXX This should be moved elsewhere
         if REQUEST is None:
             REQUEST = self.REQUEST
+
+        context = REQUEST.get('context_obj', self)
+        folder_url = context.absolute_url(1)
+        # XXX This should be moved elsewhere
         param_dict = {
-            'url': (REQUEST.get('PATH_TRANSLATED', '/'), ),
-            'folder': (REQUEST.get('URL1', '/'), ),
-            'i18n': (REQUEST.get('cpsskins_language', 'en'), ),
+            'url': (REQUEST.get('cpsskins_url'), ),
+            'folder': (folder_url, ),
             'user': (str(REQUEST.get('AUTHENTICATED_USER')), ),
         }
 
@@ -265,6 +277,13 @@ class CPSPortlet(CPSDocument):
             self.edit(slot=slot_name)
             return 0
         return 1
+
+    #################################################################
+    security.declarePublic('iI18n')
+    def isI18n(self):
+        """Return True if the portlet's content ought to be translated. 
+        """
+        return self.i18n
 
     #################################################################
 
