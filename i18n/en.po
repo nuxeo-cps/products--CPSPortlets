@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-11-14 22:49default\n"
+"POT-Creation-Date: 2004-11-16 22:30default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -220,9 +220,6 @@ msgstr "Switch language"
 msgid "portal_type_ImagePortlet_title"
 msgstr "Image portlet"
 
-msgid "portal_type_ImagePortlet_title_description"
-msgstr "Image portlet display an image."
-
 msgid "cpsportlets_nav_display_vertical_breadcrumbs_menu_label"
 msgstr "Vertical breadcrumbs menu"
 
@@ -315,3 +312,6 @@ msgstr "Navigation tree"
 
 msgid "cpsportlets_navigation_contextual_label"
 msgstr "Contextual display"
+
+msgid "cpsportlets_display_mode_label"
+msgstr "Display mode"

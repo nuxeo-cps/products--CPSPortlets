@@ -158,9 +158,6 @@ msgstr ""
 msgid "portal_type_ImagePortlet_title"
 msgstr ""
 
-msgid "portal_type_ImagePortlet_title_description"
-msgstr ""
-
 msgid "cpsportlets_nav_display_vertical_breadcrumbs_menu_label"
 msgstr ""
 
@@ -255,4 +252,7 @@ msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr ""
 
 msgid "cpsportlets_navigation_contextual_label"
+msgstr ""
+
+msgid "cpsportlets_display_mode_label"
 msgstr ""
