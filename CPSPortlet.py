@@ -28,6 +28,7 @@ This is a CPSDocument child base class for portlets
 """
 
 from Globals import InitializeClass
+from Acquisition import aq_inner, aq_parent
 
 from Products.CMFCore.utils import getToolByName
 
@@ -73,6 +74,13 @@ class CPSPortlet(CPSDocument):
         """
         return self.getPhysicalPath()
 
+    def getLocalFolder(self):
+        """Return the local folder (workspace, section ...)
+           inside which the portlet will be displayed.
+        """
+
+        container = aq_parent(aq_inner(self))
+        return aq_parent(aq_inner(container))
 
     #################################################################
 
