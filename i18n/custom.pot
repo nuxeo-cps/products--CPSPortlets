@@ -59,6 +59,9 @@ msgstr ""
 msgid "portal_type_DocumentPortlet_title"
 msgstr ""
 
+msgid "portal_type_RSSPortlet_title"
+msgstr ""
+
 msgid "action_portlets"
 msgstr ""
 
@@ -128,7 +131,7 @@ msgstr ""
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr ""
 
-msgid "cpsportlets_content_max_items_label"
+msgid "cpsportlets_common_max_items_label"
 msgstr ""
 
 msgid "cpsportlets_content_folder_path_label"
@@ -176,8 +179,11 @@ msgstr ""
 msgid "cpsportlets_breadcrumbs_display_hidden_folders_label"
 msgstr ""
 
-msgid "cpsportlets_content_link_string_label"
+msgid "cpsportlets_common_link_string_label"
 msgstr ""
 
-msgid "cpsportlets_content_display_description_label"
+msgid "cpsportlets_common_display_description_label"
+msgstr ""
+
+msgid "cpsportlets_rss_channel_label"
 msgstr ""

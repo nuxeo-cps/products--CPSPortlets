@@ -10,6 +10,10 @@ javascript = {
     'Actions Portlet': '',
     'Content Portlet': '',
     'Language Portlet': '',
+    'Image Portlet': '',
+    'Navigation Portlet': '',
+    'Document Portlet': '',
+    'RSS Portlet': '',
 }
 
 return javascript

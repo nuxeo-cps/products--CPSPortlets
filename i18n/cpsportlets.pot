@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-10-26 21:37default\n"
+"POT-Creation-Date: 2004-10-27 16:16default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -30,7 +30,9 @@ msgid "ID:"
 msgstr ""
 
 #.   <a content="item/Title" attributes="href item/getURL">Item title</a>
+#.   <a content="item/title" attributes="href item_url">Item title</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_content.pt
+#: ../skins/cpsportlets_widgets/widget_portlet_rss.pt
 msgid "Item title"
 msgstr ""
 
@@ -107,6 +109,9 @@ msgstr ""
 msgid "portal_type_DocumentPortlet_title"
 msgstr ""
 
+msgid "portal_type_RSSPortlet_title"
+msgstr ""
+
 msgid "action_portlets"
 msgstr ""
 
@@ -176,7 +181,7 @@ msgstr ""
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr ""
 
-msgid "cpsportlets_content_max_items_label"
+msgid "cpsportlets_common_max_items_label"
 msgstr ""
 
 msgid "cpsportlets_content_folder_path_label"
@@ -221,8 +226,11 @@ msgstr ""
 msgid "cpsportlets_breadcrumbs_display_hidden_folders_label"
 msgstr ""
 
-msgid "cpsportlets_content_link_string_label"
+msgid "cpsportlets_common_link_string_label"
 msgstr ""
 
-msgid "cpsportlets_content_display_description_label"
+msgid "cpsportlets_common_display_description_label"
+msgstr ""
+
+msgid "cpsportlets_rss_channel_label"
 msgstr ""
