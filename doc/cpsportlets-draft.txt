@@ -3,33 +3,45 @@
            $Id$
 
 Goals :
+---------
 
- Cf. goals.txt
+ - ./goals.txt
+ - ../../CPSSkins/doc/CPS3-Integration.txt
 
 Implementation :
+-----------------
 
- - CPSPortlets
-   Same as CPSDocument but for the Portlets.
+ - CPSPortlet : Base class for all portlets. Child of CPSDocument. It means
+   you can use the schemas / layouts  machinary with the portlets.
+   Notice one portlet == one portal_type now.
 
- - PortletsTool
-   Same idea as portal_boxes but will store the global portlets.
-   Has to provide a mapping for porta_themes (portal_id, portlet object)
+   The FlexibleTypeInformation is patched and holds now a cps_is_portlet
+   property so that it's easy to filter the portal_type defined to be
+   portlets.
 
-   API :
+   It means for a portlet will have schemas and layouts (generics and
+    specifics) with eventually specific widgets. (most of the time)
+    Check the PortletWidgets sub-folder (README.txt)
 
-     -> (CPSSKins) portal_themes
-     getPortletById(self, id)
-       """Return the portlet object given the id
-       """
+ - PortletsContainer : Container (BTreeFolder2) holding the portlets. Store,
+   create, delete portlets. Simple API
 
-     listPortletIds(self):
-       """ Returns the list of all portlet ids
-       """
 
- - PortletsContainer
-   Will hold local configuration for portlets
+   PortletsContainer are Placefuls. They are used to store local
+   portlet configurations overriding or extending global portlet
+   configuration. The id used within CPS for those is '.cps_portlets'
 
- - PortletWidgets
-   This module will hold
+ - PortletsTool : Inherits PortletsContainer and redefines methods to cope
+   with global and local portlets. Global portlets are stored within
 
-To be continued
+Misc :
+-------
+
+ - Schemas / Layouts / Vocabularies / FTIs are defined within the skins
+
+Comments :
+-----------
+
+ - Notice CPSPortlets deals only with portlet content. CPSSkins take care of
+   the way it is displayed the cache etc...
+
