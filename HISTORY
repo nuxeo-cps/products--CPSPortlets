@@ -1,4 +1,70 @@
 *******************************************
+** CPSPortlets V0.2.0 [R1 build 2005/03/07-15:48 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- Custom Portlet: the 'i18n' cache parameter for portlets that are 
+  language-dependent can be set directly in the portlet edit form.
+- Folderish documents listed as documents in folders will not be
+  visible if the 'show documents' options is turned off.
+- Text Portlet: the rendering format can be selected ('text', 'stx', 'html')
+- Navigation Portlet: added a 'collapsible menu' presentation.
+- (Rotating) Image Portlet: add an optional 'caption' field to display
+  under the image.
+- Added Swedish translation
+- Navigation Portlet: the portlet's own folder can be used as the
+  reference folder when listing folder items.
+  Added an option to specify the relative path of the folder to display.
+- Internal Links: refactored the rendering of the link items to support
+  more options (show icons, number of words in the title).
+- Document Portlet: added an option to render the specified cluster
+  exclusively.
+Bug fixes:
+~~~~~~~~~~
+- added missing 'is_i18n' parameter to getSearchableTypesVocabulary()
+- rebuilding newly created portlets to set cache parameters and
+  javascript settings.
+- resetInterestingEvents should not set empty events like ((), (), (),)
+  this fixes the test_listPortletsInterestedInEvent() test that failed.
+- XHTML fix in the Content Portlet (<h5> not allowed in <a>)
+- Breadcrumbs Portlet / Navigation Portlet with vertical breadcrumbs:
+  added support for Virtual Hosting (/cps => /) to include the site root as
+  the first displayed item.
+- Content portlet: not displaying the document's title if the content
+  of each item is rendered.
+- i18n fr.po fix: "surchargement" => "surcharge"
+- Search Portlet: fixed the contextual search url.
+- added a 'baseurl' cache index for portlets that need to cache the base url.
+- we check first that the object notified by the event is a proxy before
+  calling getContent() on it in notify_event().
+- getFolderItems(): url fixes for rewrite rules with '_vh_'
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- added an access key to access the portlet management panels.
+  default: ALT + '_'
+- added an internal RAM cache to store Factory-type information
+- ptltool.clearCache() also clears the icon and FTI cache.
+- the RAM cache is cleared with CPSPortlets is updated / installed
+- added an 'override' parameter in getPortlets(), i.e. override=0 will
+  disable portlet override.
+- added a 10 minutes timeout on the BreadCrumbs Portlet's cache parameters..
+- converted instance(cls, ListType) to python 2.3's isinstance(cls, list).
+  (resp. TupleType => tuple, IntType => int, StringType => str)
+- Search portlet: the search prefix can be the folder inside which the
+  portlet is physically located.
+- getFolderItems() takes an optional 'max_title_words' parameter to only
+  display the first words of the items' title with an ellipsis (...).
+- added a 'baseurl' cache parameter.
+- added a 'display_hidden_folders' parameter (default: on) in getFolderItems()
+- added a getVisibilityRangeMsgid() method that returns the msgid of a
+  portlet's visiblity range.
+- added a 'check_visibility' parameter to getPortlets() to make it possible
+  to turn off the portlet visibility check.
+
+*******************************************
 ** CPSPortlets V0.1.0 [R1 build 2005/01/28-15:09 by madarche]
 
 Requires:
