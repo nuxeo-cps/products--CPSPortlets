@@ -1,0 +1,415 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CPSPortlets\n"
+"POT-Creation-Date: 2005-02-22 14:55default\n"
+"PO-Revision-Date: 2005-02-22 14:59+0100\n"
+"Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
+"Language-Team: Swedish <sv@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-code: sv\n"
+"Language-name: Swedish\n"
+"Preferred-encodings: utf-8 latin1\n"
+"Domain: default\n"
+"X-Is-Fallback-For: sv-fi\n"
+"X-Generator: KBabel 1.3\n"
+
+#.   <input type="submit" value=" Add " />
+#: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
+msgid " Add "
+msgstr ""
+
+#.   <strong>ID:</strong>
+#: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
+msgid "ID:"
+msgstr "ID"
+
+#.   <a content="item/title" attributes="href item_url">Item title</a>
+#: from ../skins/cpsportlets_widgets/widget_portlet_rss.pt
+msgid "Item title"
+msgstr ""
+
+#.   <block>Edit</block>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "_Edit_"
+msgstr ""
+
+#.   <option disabled="disabled" selected="selected" value="">
+#: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
+msgid "cpsportlet_add_new_item"
+msgstr "Lägg till ny artikel..."
+
+#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+msgid "cpsportlets_advanced_search"
+msgstr "Avancerad sökning"
+
+#.   <option disabled="disabled" selected="selected" value="">Change language</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_change_language"
+msgstr "Ändra språk ..."
+
+#.   <option disabled="disabled" selected="selected" value="">Delete translation ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_delete_translation"
+msgstr "Ta bort versionen i ..."
+
+#.   <span>To manage portlets please install CPSSkins.</span>
+#: from ../skins/cpsportlets_default/portlet_manage_form.pt
+msgid "cpsportlets_install_cpsskins"
+msgstr "För att hantera Portlets var god installera CPSSkins."
+
+#.   <block>located in the folder</block>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "cpsportlets_located_in_the_folder"
+msgstr "placerad i mappen"
+
+#.   <h1>Portlet management</h1>
+#: from ../skins/cpsportlets_default/portlet_manage_form.pt
+msgid "cpsportlets_portlet_management_heading"
+msgstr "Hantera Portlets"
+
+#.   <block>cpsportlets_search_in</block>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+msgid "cpsportlets_search_in"
+msgstr "Sök i"
+
+#.   <option disabled="disabled" selected="selected" value="">Switch to ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_switch_language"
+msgstr "Visa versionen i ..."
+
+#.   <option disabled="disabled" selected="selected" value="">Translate into ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_translate_into"
+msgstr "Skapa en version i ..."
+
+msgid "label_cpsportlets_provider"
+msgstr "Leverantör"
+
+msgid "label_cpsportlets_title"
+msgstr "Titel"
+
+msgid "label_cpsportlets_i18n"
+msgstr "Språkberoende innehåll"
+
+msgid "portal_type_DummyPortlet_title"
+msgstr "Testbox"
+
+msgid "portal_type_CustomPortlet_title"
+msgstr "Anpassad mall"
+
+msgid "portal_type_TextPortlet_title"
+msgstr "Textbox"
+
+msgid "portal_type_SearchPortlet_title"
+msgstr "Sökruta"
+
+msgid "portal_type_InternalLinksPortlet_title"
+msgstr "Interna länkar"
+
+msgid "portal_type_AddItemPortlet_title"
+msgstr "Skapa innehåll"
+
+msgid "portal_type_BreadcrumbsPortlet_title"
+msgstr "\"Breadcrumbs\""
+
+msgid "portal_type_ActionsPortlet_title"
+msgstr "Kommando"
+
+msgid "portal_type_ContentPortlet_title"
+msgstr "Sajtinnehåll"
+
+msgid "portal_type_LanguagePortlet_title"
+msgstr "Språk"
+
+msgid "portal_type_NavigationPortlet_title"
+msgstr "Navigering"
+
+msgid "portal_type_DocumentPortlet_title"
+msgstr "Dokument "
+
+msgid "portal_type_RSSPortlet_title"
+msgstr "RSS-kanal"
+
+msgid "action_portlets"
+msgstr "Hantera Portlets"
+
+msgid "action_canvas"
+msgstr "Layout"
+
+msgid "cpsportlets_internallinks_links_label"
+msgstr "Interna länkar"
+
+msgid "cpsportlets_portlet_created_psm"
+msgstr "Portlet skapad."
+
+msgid "cpsportlets_content_translated_psm"
+msgstr "Innehåll översatt. "
+
+msgid "cpsportlets_bcs_display_dropdown_list_label"
+msgstr "Rullgardinsmeny"
+
+msgid "cpsportlets_bcs_display_horizontal_trail_label"
+msgstr "Horisontell lista"
+
+msgid "cpsportlets_bcs_display_site_root_label"
+msgstr "Visa webbplats rot "
+
+msgid "cpsportlets_advanced_search_link_label"
+msgstr "Visa en länk till avancerad sökning"
+
+msgid "cpsportlets_contextual_search_choice_label"
+msgstr "Visa kontextuella sökalternativ"
+
+msgid "cpsportlets_action_categories_label"
+msgstr "Kommandokategorier att visa"
+
+msgid "cpsportlets_context_is_portlet_choice_label"
+msgstr "Sök i samma mappen som den Portlet befinner sig i."
+
+msgid "cpsportlets_content_search_related_label"
+msgstr "Besläktade dokument"
+
+msgid "cpsportlets_content_search_type_label"
+msgstr "Innehåll"
+
+msgid "cpsportlets_content_search_pending_label"
+msgstr "Väntande dokument "
+
+msgid "cpsportlets_content_search_last_modified_label"
+msgstr "Senast ändrade dokument "
+
+msgid "cpsportlets_content_search_last_published_label"
+msgstr "Senaste publicerade dokument "
+
+msgid "cpsportlets_content_search_recent_label"
+msgstr "Nyaste dokument"
+
+msgid "cpsportlets_content_search_upcoming_label"
+msgstr "Kommande händelser"
+
+msgid "cpsportlets_content_search_today_label"
+msgstr "Dagens händelser"
+
+msgid "cpsportlets_content_sort_on_label"
+msgstr "Sortera resultat efter"
+
+msgid "cpsportlets_content_sort_on_Date_label"
+msgstr "Datum"
+
+msgid "cpsportlets_content_sort_on_Title_label"
+msgstr "Titel "
+
+msgid "cpsportlets_content_sort_on_review_state_label"
+msgstr "Granskningsstatus"
+
+msgid "cpsportlets_content_sort_on_Creator_label"
+msgstr "Författare"
+
+msgid "cpsportlets_content_sort_reverse_label"
+msgstr "Omvänd visningsordning"
+
+msgid "cpsportlets_common_max_items_label"
+msgstr "Antal artiklar "
+
+msgid "cpsportlets_content_folder_path_label"
+msgstr "Rotmapp"
+
+msgid "cpsportlets_content_searchable_types_label"
+msgstr "Innehållstyper att visa"
+
+msgid "cpsportlets_language_action_label"
+msgstr "Handling"
+
+msgid "cpsportlets_language_action_translate_label"
+msgstr "Översätt"
+
+msgid "cpsportlets_language_action_delete_translation_label"
+msgstr "Radera övesättning"
+
+msgid "cpsportlets_language_action_change_label"
+msgstr "Ändra språk"
+
+msgid "cpsportlets_language_action_switch_language_label"
+msgstr "Skifta språk"
+
+msgid "portal_type_ImagePortlet_title"
+msgstr "Bild"
+
+msgid "cpsportlets_nav_display_vertical_breadcrumbs_menu_label"
+msgstr "Vertikal meny med \"breadcrumbs\""
+
+msgid "cpsportlets_nav_display_folder_contents_menu_label"
+msgstr "Mappinnehåll"
+
+msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
+msgstr "Innehåll undermapp"
+
+msgid "cpsportlets_nav_display_collapsible_menu_label"
+msgstr "Fällbar vertikal meny "
+
+msgid "cpsportlets_navigation_rel_depth_label"
+msgstr "Relativt djup"
+
+msgid "cpsportlets_navigation_show_docs_label"
+msgstr "Visa dokument"
+
+msgid "cpsportlets_navigation_show_icons_label"
+msgstr "Visa dokumentikoner"
+
+msgid "cpsportlets_custom_render_method_label"
+msgstr "Skriptnamn (.zpt, .py, etc.)"
+
+msgid "cpsportlets_translation_deleted_psm"
+msgstr "Översättning raderad."
+
+msgid "button_portlet_management"
+msgstr "Portlet hantering"
+
+msgid "cpsportlets_display_hidden_folders_label"
+msgstr "Visa gömda mappar"
+
+msgid "cpsportlets_common_link_string_label"
+msgstr "Länksträng "
+
+msgid "cpsportlets_common_display_description_label"
+msgstr "Visa beskrivning artiklar"
+
+msgid "cpsportlets_rss_channel_label"
+msgstr "RSS-kanal"
+
+msgid "cpsportlets_rss_update_frequency_label"
+msgstr "Uppdateringsfrekvens (i sekunder)"
+
+msgid "cpsportlets_rss_max_words_label"
+msgstr "Antal ord i sammanfattning"
+
+msgid "cpsportlets_content_max_words_label"
+msgstr "Antal ord i sammanfattning"
+
+msgid "cpsportlets_image_image_label"
+msgstr "Bildfil"
+
+msgid "cpsportlets_image_link_label"
+msgstr "Länk"
+
+msgid "cpsportlets_image_caption_label"
+msgstr "Bildtext"
+
+msgid "portal_type_ContentPortlet_description"
+msgstr "Visar resultat av en innehållssökning."
+
+msgid "portal_type_NavigationPortlet_description"
+msgstr "Visar navigeringsobjekt, mappinnehåll etc."
+
+msgid "portal_type_AddItemPortlet_description"
+msgstr "Visar en meny för att lägga till artiklar i en mapp. "
+
+msgid "portal_type_InternalLinksPortlet_description"
+msgstr "Visar en lista över interna länkar. "
+
+msgid "portal_type_TextPortlet_description"
+msgstr "Visar en text i HTML."
+
+msgid "portal_type_ImagePortlet_description"
+msgstr "Visar en dekorationsbild med en länk. "
+
+msgid "portal_type_DummyPortlet_description"
+msgstr "För testning. "
+
+msgid "portal_type_SearchPortlet_description"
+msgstr "Visar ett gränssnitt för att söka på webbplatsen. "
+
+msgid "portal_type_RSSPortlet_description"
+msgstr "Visar innehållet av RSS-kanaler"
+
+msgid "portal_type_DocumentPortlet_description"
+msgstr "Visar det aktuella dokumentet."
+
+msgid "portal_type_BreadcrumbsPortlet_description"
+msgstr "Visar en lista över länkar till överliggande mappar. "
+
+msgid "portal_type_ActionsPortlet_description"
+msgstr "Visar en lista av kommandon efter kategori."
+
+msgid "portal_type_LanguagePortlet_description"
+msgstr "Visar språkrelaterade kommandon. "
+
+msgid "cpsportlets_common_first_item_label"
+msgstr "Första artikel"
+
+msgid "cpsportlets_nav_display_navtree_menu_label"
+msgstr "Navigeringsträd"
+
+msgid "cpsportlets_navigation_contextual_label"
+msgstr "Kontextuell visning"
+
+msgid "cpsportlets_display_mode_label"
+msgstr "Visningsläge"
+
+msgid "w__imagelink"
+msgstr "Bildlänk"
+
+msgid "cpsportlets_nav_display_site_map_label"
+msgstr "Karta över webbplats"
+
+msgid "portal_type_CustomPortlet_description"
+msgstr "En Portlet med anpassat innehåll (.zpt, .py, etc.)"
+
+msgid "cpsportlets_document_cluster_id_label"
+msgstr "Layoutgrupp ID"
+
+msgid "cpsportlet_rot_image_nb_images_label"
+msgstr "Antal bilder att växla mellan "
+
+msgid "portal_type_RotatingImagePortlet_title"
+msgstr "Växlande bilder"
+
+msgid "portal_type_RotatingImagePortlet_description"
+msgstr "Visar slumpmässigt en samling bilder (roterande banners, annonser etc.)"
+
+msgid "cpsportlets_common_custom_cache_params_label"
+msgstr "Lokala cacheparametrar"
+
+msgid "cpsportlets_visibility_range_0-0_label"
+msgstr "I denna mapp och i alla undermappar"
+
+msgid "cpsportlets_visibility_range_1-0_label"
+msgstr "Endast i undermappar"
+
+msgid "cpsportlets_visibility_range_0-1_label"
+msgstr "Endast i denna mapp"
+
+msgid "cpsportlets_common_visibility_range_label"
+msgstr "Synlighetsområde "
+
+msgid "cpsportlets_navigation_root_uid_label"
+msgstr "Trädrot"
+
+msgid "cpsportlets_custom_js_render_method_label"
+msgstr "Skriptnamn för Javascript (zpt, py, etc.)"
+
+msgid "cpsportlets_content_query_title_label"
+msgstr "Titelsökning"
+
+msgid "cpsportlets_content_render_items_label"
+msgstr "Rendera artiklarna"
+
+msgid "cpsportlets_content_cluster_id_label"
+msgstr "Layoutgrupp ID"
+
+msgid "cpsportlets_common_slot_override_label"
+msgstr "Ersätta existerande Portlets?"
+
+msgid "cpsportlets_common_disable_override_label"
+msgstr "Skydda denna Portlet från att ersättas?"
+
+msgid "cpsportlets_document_render_container_label"
+msgstr "Visa mappen ovanför"
+
+msgid "cpsportlets_navigation_end_depth_label"
+msgstr "Stoppdjup"
+

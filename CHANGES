@@ -11,6 +11,7 @@ New features:
 - Navigation Portlet: added a 'collapsible menu' presentation.
 - (Rotating) Image Portlet: add an optional 'caption' field to display
   under the image.
+- Added Swedish translation
 Bug fixes:
 ~~~~~~~~~~
 - added missing 'is_i18n' parameter to getSearchableTypesVocabulary()
