@@ -21,15 +21,10 @@
 
 Here it's defined the specific permissions for the CPS Portlets
 
-'Add Global Portlet': Permission to add new portlet at global scope (within portal)
-'Add Local Portlet' : Perrmissions to add new portlet at local scrope
-
+'Manage Portlets': Permission to add new portlet at global scope (within portal)
 """
 
 from Products.CMFCore.CMFCorePermissions import setDefaultRoles
 
-addGlobalPortlet = 'Add Global Portlet'
-setDefaultRoles(addGlobalPortlet, ('Manager', 'Owner', 'Theme Manager',))
-
-addLocalPortlet = 'Add Local Portlet'
-setDefaultRoles(addLocalPortlet, ('Manager', 'Owner',))
+ManagePortlets = 'Add Global Portlet'
+setDefaultRoles(ManagePortlets, ('Manager', 'Owner', 'Theme Manager',))
