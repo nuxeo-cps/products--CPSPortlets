@@ -44,6 +44,7 @@ New features:
 - The Custom Portlet accepts a javascript method.
 - added a title search query parameter for the Content Portlet.
 - Document Portlet: support for layout clustersn and the rendering of the container
+- Italian translation by Fabio Nosari
 Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves
