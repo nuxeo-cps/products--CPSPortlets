@@ -259,3 +259,6 @@ msgstr ""
 
 msgid "cpsportlets_display_mode_label"
 msgstr ""
+
+msgid "w__imagelink"
+msgstr ""

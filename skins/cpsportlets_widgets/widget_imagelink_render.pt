@@ -1,0 +1,25 @@
+<tal:block define="cells options/cells;
+                   mode options/mode;
+                   ds options/datastructure;">
+<tal:block condition="python: mode == 'view'">
+  <a href="" tal:omit-tag="not:link"
+   tal:define="image python: cells[0]['widget_rendered'];
+               link python: cells[1]['widget_rendered']"
+   tal:attributes="href link"
+   tal:content="structure image" />
+</tal:block>
+<tal:block condition="python: mode == 'edit'">
+<br />
+<tal:block repeat="cell cells">
+<div  tal:define="err python:ds.getError(cell['widget'].getWidgetId());
+                  css_class python:test(err, 'row error', 'row');">
+  <div class="label" tal:content="cell/widget/label_edit" i18n:translate="" />
+  <div class="field" tal:content="structure cell/widget_rendered" />
+  <div tal:condition="err">
+    <em style="color: red" i18n:translate="" tal:content="err">err</em>
+  </div>
+</div>
+<br />
+</tal:block>
+</tal:block>
+</tal:block>
