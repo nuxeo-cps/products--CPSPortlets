@@ -77,7 +77,12 @@ class CPSPortletsInstaller(CPSInstaller):
         self.installPortletSchemas()
         self.installPortletLayouts()
         self.installFlexibleTypes()
-        self.setupTranslations()
+
+        # importing po files
+        # Non CPS Installation may not have Localizer
+        if self.portalHas('Localizer'):
+            self.setupTranslations()
+
         self.rebuildPortlets()
         self.doSubscribeToEventServiceTool()
         self.finalize()
