@@ -11,3 +11,6 @@ Right now you need :
 - CPSSkins devel branch on Nuxeo's CVS
   http://cvs.nuxeo.org/cgi-bin/viewcvs.cgi/CPS3/CPSSkins/
 - Take the rest of the CPS3 CVS (HEAD branch)
+
+For Plone-2.0.x:
+- LinguaPlone >= 0.7
