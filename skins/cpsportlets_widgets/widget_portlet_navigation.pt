@@ -52,9 +52,23 @@
 
   <tal:block condition="python: display == 'folder_contents'">
     <tal:block
-     define="folderItems python: context.getNavigationItems(prefix=context_rpath, context_obj=context, start_depth=1, end_depth=1, contextual=1)">
+     define="folderItems python: context.getNavigationItems(context_rpath=context_rpath, context_obj=context, start_depth=1, end_depth=1, contextual=1)">
       <ul>
         <li tal:repeat="item folderItems">
+          <a tal:content="item/title" tal:attributes="href item/url" />
+        </li>
+      </ul>
+    </tal:block>
+  </tal:block>
+
+  <tal:block condition="python: display == 'navigation_tree'">
+    <tal:block
+     define="contextual ds/contextual;
+             folderItems python: context.getNavigationItems(context_rpath=context_rpath, context_obj=context, contextual=contextual)">
+      <ul>
+        <li tal:repeat="item folderItems"
+         tal:attributes="style string:padding-left:${item/depth}em;
+                         class python: item['selected'] and 'menuin' or 'menuout'">
           <a tal:content="item/title" tal:attributes="href item/url" />
         </li>
       </ul>

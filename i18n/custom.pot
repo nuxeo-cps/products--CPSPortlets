@@ -250,3 +250,9 @@ msgstr ""
 
 msgid "cpsportlets_common_first_item_label"
 msgstr ""
+
+msgid "cpsportlets_nav_display_navtree_menu_label"
+msgstr ""
+
+msgid "cpsportlets_navigation_contextual_label"
+msgstr ""

@@ -25,6 +25,7 @@ New features:
 - The Image portlet supports links (cf. ads, ...)
 - Added a 'Switch language' option to the Language portlet.
 - Added a 'first item' option in the RSS portlet.
+- Added a 'Navigation tree' display mode in the Navigation portlet.
 Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves
