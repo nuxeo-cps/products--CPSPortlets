@@ -3,10 +3,6 @@
 if context_obj is None:
     return []
 
-mtool = context.portal_membership
-if not mtool.checkPermission( 'List folder contents', context_obj):
-    return []
-
 folder_items = []
 
 # Find bottom-most folder:
@@ -23,15 +19,24 @@ while 1:
 if bmf is None:
     bmf = context_obj
 
+mtool = context.portal_membership
+checkPerm = mtool.checkPermission
+if not checkPerm( 'List folder contents', bmf):
+    return []
+
 for object in bmf.objectValues():
-    # skip folders beginning with '.'
-    if object.getId()[0] == '.':
+    # filter out objects that cannot be viewed
+    if not checkPerm('View', object):
+        continue
+    if getattr(object, 'view', None) is None:
         continue
     # skip documents if show_docs is not set
     if int(show_docs) == 0 and not object.isPrincipiaFolderish:
         continue
 
+    # XXX TODO: Dublin Core effective / expiration dates
+
     folder_items.append({'url': object.absolute_url(),
-                         'title': object.title_or_id(),
+                         'title': object.getId(),
                         })
 return folder_items
