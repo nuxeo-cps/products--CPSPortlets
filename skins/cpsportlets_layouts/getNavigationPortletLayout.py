@@ -152,17 +152,16 @@ navigation_portlet_layout = {
                 'field_types': ('CPS String Field',),
             },
         },
-        'root_uid': {
-            'type': 'String Widget',
+        'root_uids': {
+            'type': 'Lines Widget',
             'data': {
-                'title': '',
-                'fields': ('root_uid',),
-                'label_edit': 'cpsportlets_navigation_root_uid_label',
+                'fields': ('root_uids',),
+                'label_edit': 'cpsportlets_navigation_root_uids_label',
                 'is_i18n': True,
                 'hidden_layout_modes': ('view',),
                 'hidden_if_expr': "python: context.display in ['vertical_breadcrumbs_menu', 'folder_contents']",
-                'display_width': 15,
-                'size_max': 0,
+                'width': 40,
+                'height': 5,
             },
         },
         'context_rpath': {
@@ -199,7 +198,7 @@ navigation_portlet_layout = {
             ],
             [{'widget_id': 'display', 'ncols': 3},
             ],
-            [{'widget_id': 'root_uid', 'ncols': 1},
+            [{'widget_id': 'root_uids', 'ncols': 1},
              {'widget_id': 'rel_depth', 'ncols': 2},
              {'widget_id': 'end_depth', 'ncols': 3},
              {'widget_id': 'contextual', 'ncols': 4},

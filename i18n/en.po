@@ -399,8 +399,8 @@ msgstr "Only in this folder"
 msgid "cpsportlets_common_visibility_range_label"
 msgstr "Visibility range"
 
-msgid "cpsportlets_navigation_root_uid_label"
-msgstr "Tree root"
+msgid "cpsportlets_navigation_root_uids_label"
+msgstr "Tree roots"
 
 msgid "cpsportlets_custom_js_render_method_label"
 msgstr "Javascript render method (zpt, py, etc.)"

@@ -396,7 +396,7 @@ msgstr ""
 msgid "cpsportlets_common_visibility_range_label"
 msgstr ""
 
-msgid "cpsportlets_navigation_root_uid_label"
+msgid "cpsportlets_navigation_root_uids_label"
 msgstr ""
 
 msgid "cpsportlets_custom_js_render_method_label"

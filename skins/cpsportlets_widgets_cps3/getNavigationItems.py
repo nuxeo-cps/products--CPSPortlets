@@ -1,4 +1,4 @@
-##parameters=context_obj=None, REQUEST=None, **kw
+##parameters=context_obj=None, root_uids=[''], REQUEST=None, **kw
 
 from Products.CPSNavigation.CPSNavigation import CPSNavigation
 
@@ -27,16 +27,6 @@ if contextual:
 else:
     context_uid = None
 
-try:
-    nav = CPSNavigation(context_uid=context_uid,
-                        no_leaves=0,
-                        context=context_obj,
-                        request_form=REQUEST.form,
-                        **kw)
-# root_uid not set
-except KeyError:
-    return []
-
 folder_items = []
 
 # the depth is relative to the current folder in contextual mode
@@ -47,38 +37,56 @@ if contextual:
 portal_types = context.portal_types
 renderIcon = context.portal_cpsportlets.renderIcon
 
-for tree in nav.getTree():
-    object = tree['object']
-    rpath = object['rpath']
-    ptype = object['portal_type']
-    depth = object['depth'] - delta
-    if depth < 0:
+if root_uids == []:
+    root_uids = ['']
+
+for root_uid in root_uids:
+    try:
+        nav = CPSNavigation(context_uid=context_uid,
+                            no_leaves=0,
+                            context=context_obj,
+                            root_uid=root_uid,
+                            request_form=REQUEST.form,
+                            **kw)
+    # root_uid not set
+    except KeyError:
+        nav = None
+
+    if nav is None:
         continue
+    for tree in nav.getTree():
+        object = tree['object']
+        rpath = object['rpath']
+        ptype = object['portal_type']
+        depth = object['depth'] - delta
+        if depth < 0:
+             continue
 
-    selected = (context_rpath == rpath)
-    open = (context_rpath + '/').startswith(rpath + '/')
+        selected = (context_rpath == rpath)
+        open = (context_rpath + '/').startswith(rpath + '/')
 
-    if contextual:
-        if depth == 0 and not selected:
-            continue
+        if contextual:
+            if depth == 0 and not selected:
+                 continue
 
-        if not rpath.startswith(context_rpath):
-            continue
+            if not rpath.startswith(context_rpath):
+                continue
 
-    # filter out items outside the specified depth
-    if start_depth:
-        if depth < start_depth:
-            continue
-    if end_depth:
-        if depth >= end_depth:
-            continue
+        # filter out items outside the specified depth
+        if start_depth:
+            if depth < start_depth:
+                continue
+        if end_depth:
+            if depth >= end_depth:
+                continue
 
-    folder_items.append({'url': base_url + rpath,
-                         'title': object['title_or_id'],
-                         'depth': depth,
-                         'selected': selected,
-                         'open': open,
-                         'icon_tag': renderIcon(ptype, base_url, ''),
-                        })
+        folder_items.append(
+            {'url': base_url + rpath,
+             'title': object['title_or_id'],
+             'depth': depth,
+             'selected': selected,
+             'open': open,
+             'icon_tag': renderIcon(ptype, base_url, ''),
+            })
 
 return folder_items

@@ -3,7 +3,7 @@
                    display ds/display;
                    show_docs ds/show_docs;
                    start_depth python: 2;
-                   root_uid ds/root_uid;
+                   root_uids ds/root_uids;
                    context nocall:options/context_obj|here;
                    utool nocall:here/portal_url;
                    context_url python: utool.getRelativeUrl(context);
@@ -66,7 +66,7 @@
 
   <tal:block condition="python: display == 'subfolder_contents'">
     <tal:block
-     define="folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, start_depth=1, end_depth=3, contextual=1, expand=1)"
+     define="folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, start_depth=1, end_depth=3, contextual=1, expand=1)"
      condition="folderItems">
        <tal:block repeat="item folderItems">
          <tal:block tal:define="depth item/depth">
@@ -90,7 +90,7 @@
              show_icons python: int(show_icons);
              contextual ds/contextual;
              end_depth ds/end_depth;
-             folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, contextual=contextual, end_depth=int(end_depth));
+             folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, contextual=contextual, end_depth=int(end_depth));
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul class="cpsskinsMenu">
@@ -114,7 +114,7 @@
      define="show_icons ds/show_icons;
              show_icons python: int(show_icons);
              end_depth ds/end_depth;
-             folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, contextual=0, expand=1, end_depth=int(end_depth));
+             folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, contextual=0, expand=1, end_depth=int(end_depth));
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul class="cpsskinsMenu">
@@ -139,7 +139,7 @@
              show_icons python: int(show_icons);
              show_docs ds/show_docs;
              rel_depth ds/rel_depth;
-             folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, start_depth=int(rel_depth), end_depth=int(rel_depth)+1);
+             folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, start_depth=int(rel_depth), end_depth=int(rel_depth)+1);
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul class="cpsskinsMenu">

@@ -394,8 +394,8 @@ msgstr "Endast i denna mapp"
 msgid "cpsportlets_common_visibility_range_label"
 msgstr "Synlighetsområde"
 
-msgid "cpsportlets_navigation_root_uid_label"
-msgstr "Trädrot"
+msgid "cpsportlets_navigation_root_uids_label"
+msgstr "Trädröter"
 
 msgid "cpsportlets_custom_js_render_method_label"
 msgstr "Skriptnamn för Javascript (zpt, py, etc.)"

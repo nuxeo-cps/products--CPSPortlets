@@ -403,8 +403,8 @@ msgstr "Seulement dans ce répertoire"
 msgid "cpsportlets_common_visibility_range_label"
 msgstr "Région de visibilité"
 
-msgid "cpsportlets_navigation_root_uid_label"
-msgstr "Racine de l'arborescence"
+msgid "cpsportlets_navigation_root_uids_label"
+msgstr "Racines d'arborescences"
 
 msgid "cpsportlets_custom_js_render_method_label"
 msgstr "Méthode de rendu javascript (zpt, py, etc.)"
