@@ -1,0 +1,12 @@
+$Id$
+
+Currently it works with CVS version of CPS. It will be included within 3.3.x
+CPS revision
+
+Right now you need :
+
+- CPSDefault (CVS) branch cpsskins-cpsportlets-dev
+- CPSDocument (CVS) branch cpsskins-cpsportlets-dev
+- CPSSkins devel branch on Nuxeo's CVS
+  http://cvs.nuxeo.org/cgi-bin/viewcvs.cgi/CPS3/CPSSkins/
+- Take the rest of the CPS3 CVS (HEAD branch)
