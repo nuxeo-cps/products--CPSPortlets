@@ -20,6 +20,8 @@ Bug fixes:
 - Breadcrumbs Portlet / Navigation Portlet with vertical breadcrumbs:
   added support for Virtual Hosting (/cps => /) to include the site root as
   the first displayed item.
+- Content portlet: not displaying the document's title if the content
+  of each item is rendered.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added an access key to access the portlet management panels.

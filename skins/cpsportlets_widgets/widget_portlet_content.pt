@@ -1,4 +1,6 @@
 <tal:block define="ds options/datastructure;
+                   render_items ds/render_items;
+                   render_items python: int(render_items);
                    context nocall:options/context_obj|here;
                    contentitems python: here.getContentItems(obj=context, **dict(ds));
                    link_string ds/link_string">
@@ -6,7 +8,7 @@
     <tal:block define="item_title item/title;
                        item_url item/url;
                        rendered item/rendered">
-      <h4 tal:content="item_title" />
+      <h4 tal:content="item_title" tal:condition="not:render_items" />
       <a tal:attributes="href item_url">
         <tal:block condition="rendered" content="structure rendered" />
         <tal:block condition="python: link_string or not rendered"
