@@ -247,3 +247,6 @@ msgstr ""
 
 msgid "portal_type_LanguagePortlet_description"
 msgstr ""
+
+msgid "cpsportlets_common_first_item_label"
+msgstr ""

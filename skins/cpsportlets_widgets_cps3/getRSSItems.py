@@ -1,15 +1,17 @@
-##parameters=channel, max_items=0, max_words=0
+##parameters=channel, first_item=1, max_items=0, max_words=0
 
 channel = getattr(context.portal_rss, channel, None)
 
 if channel is None:
     return []
 
-data = channel.getData(max_items)
-
+data = channel.getData(max_items + first_item -1)
 items = []
 
 data_items = data['lines']
+if first_item > 1:
+    data_items = data_items[first_item-1:]
+
 if max_words == 0:
     return data_items
 

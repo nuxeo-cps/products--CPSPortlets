@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-11-12 11:10default\n"
+"POT-Creation-Date: 2004-11-13 23:55default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -46,7 +46,7 @@ msgstr ""
 #.   <input onclick="window.opener.location.reload();window.close()" type="submit" class="standalone" value="button_close" />
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "button_close"
-msgstr ""
+msgstr "Close"
 
 #.   <option disabled="disabled" selected="selected" value="">
 #.         Add new item ...</option>
@@ -306,3 +306,6 @@ msgstr "Displays a list of portal actions by category."
 
 msgid "portal_type_LanguagePortlet_description"
 msgstr "Displays language related actions."
+
+msgid "cpsportlets_common_first_item_label"
+msgstr "First item"
