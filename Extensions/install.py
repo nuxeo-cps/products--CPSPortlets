@@ -59,8 +59,22 @@ class CPSPortletsInstaller(CPSInstaller):
         self.verifySkins(SKINS)
         self.resetSkinCache()
         self.verifyWidgets(self.portal.getPortletWidgets())
+        self.installPortletSchemas()
         self.finalize()
         self.log("End of Install/Update : CPSPortlets Product")
+
+    def installPortletSchemas(self):
+        """Install all the portlet specific schemas
+        """
+
+        define_schemas = (self.portal.getPortletCommonSchema(),
+                          )
+
+        all_schemas = {}
+        for schema in define_schemas:
+            all_schemas.update(schema)
+
+        self.verifySchemas(all_schemas)
 
 
 ###############################################
