@@ -172,7 +172,7 @@ class CPSPortlet(CPSDocument):
         # cache parameters
         for param in self.getCacheParams():
             if param == 'portal type':
-                index += (param + self.getTypeInfo().getId(), )
+                index += (param + context.getTypeInfo().getId(), )
             if param == 'wf_create':
                 wf_tool = getToolByName(self, 'portal_workflow')
                 types_allowed_by_wf = wf_tool.getAllowedContentTypes(context)
