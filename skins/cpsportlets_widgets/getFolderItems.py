@@ -39,7 +39,8 @@ for object in bmf.objectValues():
 
     # XXX TODO: Dublin Core effective / expiration dates
 
-    folder_items.append({'url': object.absolute_url(),
-                         'title': object.title_or_id(),
-                        })
+    folder_items.append(
+        {'url': '/' + object.absolute_url(relative=1),
+         'title': object.title_or_id(),
+        })
 return folder_items
