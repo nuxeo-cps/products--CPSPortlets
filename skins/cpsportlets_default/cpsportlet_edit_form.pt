@@ -1,0 +1,65 @@
+<tal:block define="res python:here.editCPSDocument(REQUEST=request);
+                   rendered_main python: res[0];
+                   portal_status_message python: res[1];
+                   edition python:1;
+  ">
+<metal:block define-macro="edit_form">
+<metal:block use-macro="here/content_lib/macros/master">
+  <metal:block fill-slot="css_slot">
+    <metal:block define-macro="widgets_javascript">
+
+    <!-- XXX this has to move to CPSSchemas -->
+    <style type="text/css"
+      tal:content="string:@import url(${base_url}calendar-win2k-1.css);"></style>
+    <script type="text/javascript" src="calendar.js"
+      tal:attributes="src string:${base_url}calendar.js"></script>
+    <script type="text/javascript" src="lang/calendar-en.js"
+      tal:define="local cpsmcat/get_selected_language"
+      tal:attributes="src string:${base_url}lang/calendar-${local}.js"></script>
+    <script type="text/javascript" src="calendar-setup.js"
+      tal:attributes="src string:${base_url}calendar-setup.js"></script>
+
+    <script type="text/javascript">
+    <!--
+     function popup_rte(input_id, label_edit) {
+       var args, value
+       value = document.getElementById(input_id).value;
+       args='?input_id='+input_id+'&label_edit='+escape(label_edit);
+       popup = window.open('popup_rte_form'+args, input_id, 'toolbar=0, scrollbars=0, location=0, statusbar=0, menubar=0, resizable=0, dependent=1, width=640, height=480')
+       if(!popup.opener)
+         popup.opener = window;
+       return false;
+   }
+   //-->
+   </script>
+   </metal:block>
+  </metal:block>
+
+  <metal:block fill-slot="header"
+    tal:define="creation creation|nothing;
+                edition edition|nothing;
+                metadata metadata|nothing">
+    <h1 tal:condition="creation" i18n:translate="">
+      Create a document of type
+      <span i18n:name="type_name"><tal:block i18n:translate=""
+            tal:define="type_name request/type_name;
+                        type_info python:here.portal_types[type_name]"
+            tal:content="type_info/Title">Type Title</tal:block></span>
+    </h1>
+    <h1 tal:condition="not:creation">
+      <img tal:replace="structure python:here.getImgTag('/'+here.getIcon(), base_url='')">
+      <tal:block condition="edition"
+        i18n:translate="">Edit <span i18n:name="title"
+        tal:content="here/title_or_id">Page Title</span></tal:block>
+      <span tal:condition="metadata"
+        i18n:translate="">heading_metadata_edit</span>
+    </h1>
+  </metal:block>
+
+  <metal:block fill-slot="main">
+    <div tal:replace="structure rendered_main" />
+  </metal:block>
+
+</metal:block>
+</metal:block>
+</tal:block>

@@ -1,0 +1,10 @@
+<tal:block define="global edit_request python:request.has_key('cpsdocument_edit_button') and request or nothing;" />
+<html metal:use-macro="here/content_lib/macros/master">
+  <body>
+
+    <div metal:fill-slot="main">
+      <div tal:replace="structure python:doc.validateStoreRender(request=edit_request, layout_mode='view', layout_mode_ok='store', layout_mode_err='view')" />
+    </div>
+
+  <body>
+</html>

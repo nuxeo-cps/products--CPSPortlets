@@ -1,0 +1,7 @@
+<tal:block define="res python:here.createCPSDocument(REQUEST=request);
+                   rendered_main python: res[0];
+                   portal_status_message python: res[1];
+                   creation python:1;
+  ">
+  <metal:block use-macro="here/cpsdocument_edit_form/macros/edit_form" />
+</tal:block>
