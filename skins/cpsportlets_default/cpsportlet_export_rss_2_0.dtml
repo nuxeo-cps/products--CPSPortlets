@@ -1,4 +1,5 @@
 <dtml-call "request.RESPONSE.setHeader('Content-Type', 'text/xml; charset=ISO-8859-15')">
+<?xml version="1.0" encoding="ISO-8859-15"?>
 
 <rss version="2.0">
   <channel>
