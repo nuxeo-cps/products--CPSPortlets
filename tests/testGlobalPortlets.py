@@ -26,6 +26,7 @@ class TestPortletsAsRoot(TestPortlets):
 
     def test_createPortlet(self):
         ptltool = self.ptltool
+        # CMFBTreeFolder
         self.assert_(len(ptltool.items()) == 0)
         ptltool.createPortlet(ptype_id='Dummy Portlet')
         self.assert_(len(ptltool.items()) == 1)
@@ -33,41 +34,46 @@ class TestPortletsAsRoot(TestPortlets):
     def test_render(self):
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
-        portlet = getattr(ptltool, portlet_id)
+        # CMFBTreeFolder
+        portlet = ptltool[portlet_id]
         self.assert_(portlet.render())
 
     def test_isCPSPortlet(self):
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
-        portlet = getattr(aq_base(ptltool), portlet_id)
+        # CMFBTreeFolder
+        portlet = ptltool[portlet_id]
         self.assert_(aq_base(portlet).isCPSPortlet())
 
     def test_createPortlet_with_slot(self):
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
                                            slot='any slot')
-        portlet = getattr(aq_base(ptltool), portlet_id)
+        # CMFBTreeFolder
+        portlet = ptltool[portlet_id]
         self.assert_(portlet.slot == 'any slot')
 
     def test_createPortlet_with_order(self):
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
                                            order=1)
-        portlet = getattr(aq_base(ptltool), portlet_id)
+        # CMFBTreeFolder
+        portlet = ptltool[portlet_id]
         self.assert_(portlet.order == 1)
 
     def test_getSlot(self):
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
                                            slot='any slot')
-        portlet = getattr(aq_base(ptltool), portlet_id)
+        # CMFBTreeFolder
+        portlet = ptltool[portlet_id]
         self.assert_(portlet.getSlot() == 'any slot')
 
     def test_setSlot(self):
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
-        #portlet = getattr(aq_base(ptltool), portlet_id)
-        portlet = ptltool.getPortletById(portlet_id)
+        # CMFBTreeFolder
+        portlet = ptltool[portlet_id]
         portlet.setSlot('any slot')
         self.assert_(portlet.slot == 'any slot')
 
@@ -75,14 +81,15 @@ class TestPortletsAsRoot(TestPortlets):
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
                                            order=3)
-        portlet = getattr(aq_base(ptltool), portlet_id)
+        # CMFBTreeFolder
+        portlet = ptltool[portlet_id]
         self.assert_(portlet.getOrder() == 3)
 
     def test_setOrder(self):
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
-        #portlet = getattr(ptltool, portlet_id)
-        portlet = ptltool.getPortletById(portlet_id)
+        # CMFBTreeFolder
+        portlet = ptltool[portlet_id]
         portlet.setOrder(4)
         self.assert_(portlet.order == 4)
 
