@@ -37,7 +37,7 @@ from Acquisition import aq_inner, aq_parent, aq_base
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.utils import getToolByName, _getViewFor
-from Products.CMFCore.CMFCorePermissions import View
+from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent
 
 from Products.CPSDocument.CPSDocument import CPSDocument
 
@@ -57,7 +57,10 @@ class CPSPortlet(CPSDocument):
     security = ClassSecurityInfo()
     security.declareObjectPublic()
 
+    _interesting_events = ()
+
     guard = None
+
     security.declarePublic('getGuard')
     def getGuard(self):
         return self.guard
@@ -267,7 +270,7 @@ class CPSPortlet(CPSDocument):
             meth = getattr(self, js_meth, None)
             if meth and callable(meth):
                 rendered = apply(meth, (), kw)
-        return rendered  
+        return rendered
 
     ##################################################################
 
@@ -373,7 +376,7 @@ class CPSPortlet(CPSDocument):
     #################################################################
     security.declarePublic('iI18n')
     def isI18n(self):
-        """Return True if the portlet's content ought to be translated. 
+        """Return True if the portlet's content ought to be translated.
         """
         return self.i18n
 
@@ -419,6 +422,48 @@ class CPSPortlet(CPSDocument):
         """Set the portlet's state
         """
         self.edit(state=state)
+
+    #################################################################
+    # Cache / Events
+    #################################################################
+
+    security.declareProtected(ModifyPortalContent, 'addEvent')
+    def addEvent(self, event_id):
+        """Add an event to the list of interesting events
+        """
+
+        # Check the existence cause it's not on the schema
+        if not getattr(self, '_interesting_events', 0):
+            self._interesting_events = ()
+
+        # Add the event if not already here
+        if event_id not in self.listEvents():
+            self._interesting_events += (event_id,)
+            return 0
+        return 1
+
+    security.declareProtected(View, 'listEvents')
+    def listEvents(self):
+        """List all events the portlets is interested about
+        """
+        return self._interesting_events
+
+    security.declareProtected(View, 'isInterestedInEvent')
+    def isInterestedInEvent(self, event_id):
+        """Check if whether or not the portlet is interested in event
+        """
+        return event_id in self.listEvents()
+
+    security.declarePrivate('sendEvent')
+    def sendEvent(self, event_id):
+        """Subscriber send an event to the portlet.
+
+        The portlet is gonna check if whether or not he reacts.
+        """
+        if event_id in self.listEvents():
+            # XXX
+            return 0
+        return 1
 
     #################################################################
     # Private

@@ -328,7 +328,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         cache = self.getPortletCache()
         if cache is None:
-            return  
+            return
         return cache.getReport()
 
 
@@ -352,7 +352,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         else:
             effectivity = 100
 
-        return {'effectivity': effectivity, 
+        return {'effectivity': effectivity,
                 'size': size, }
 
     security.declarePublic('findCacheOrphans')
@@ -400,7 +400,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         cache = self.getPortletCache()
         if cache is None:
-            return  
+            return
 
         entries = []
         for k, v in cache.getEntries():
@@ -579,6 +579,11 @@ class PortletsTool(UniqueObject, PortletsContainer):
             REQUEST.RESPONSE.redirect(redirect_url)
 
     ######################################################################
+    ######################################################################
+
+    #
+    # Cache management
+    #
 
     security.declarePrivate('notify_event')
     def notify_event(self, event_type, object, infos):
@@ -588,5 +593,17 @@ class PortletsTool(UniqueObject, PortletsContainer):
         LOG(":: EVENT TYPE ::", DEBUG, event_type)
         LOG(":: OBJECT ::", DEBUG, repr(object))
         LOG(":: INFOS ::", DEBUG, repr(infos))
+
+    def listPortletsInterestedInEvent(self, event_id, context=None):
+        """return the list of all portlets interested about an event given its
+        event_id
+        """
+        # XXX check for context
+        returned = []
+        portlets = self.listAllPortlets()
+        for portlet in portlets:
+            if portlet.isInterestedInEvent(event_id):
+                returned.append(portlet)
+        return returned
 
 InitializeClass(PortletsTool)
