@@ -408,7 +408,7 @@ msgid "cpsportlets_common_slot_override_label"
 msgstr "Surcharger les portlets situés plus haut"
 
 msgid "cpsportlets_common_disable_override_label"
-msgstr "Protéger ce portlet contre le surchargement"
+msgstr "Protéger ce portlet contre la surcharge"
 
 msgid "cpsportlets_document_render_container_label"
 msgstr "Générer un rendu du conteneur"
