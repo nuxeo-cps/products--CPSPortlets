@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-11-14 22:49default\n"
+"POT-Creation-Date: 2004-11-16 21:48default\n"
 "PO-Revision-Date: 2004-09-28 03:28+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -46,7 +46,7 @@ msgstr "Edit"
 #.   <input onclick="window.opener.location.reload();window.close()" type="submit" class="standalone" value="button_close" />
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "button_close"
-msgstr "Fermer"
+msgstr ""
 
 #.   <option disabled="disabled" selected="selected" value="">
 #.         Add new item ...</option>
@@ -194,7 +194,7 @@ msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Inverser l'ordre d'affichage"
 
 msgid "cpsportlets_common_max_items_label"
-msgstr "Nombre d'articles"
+msgstr "Nombre d'entrées"
 
 msgid "cpsportlets_content_folder_path_label"
 msgstr "Répertoire de base"
@@ -222,122 +222,94 @@ msgstr "Portlet Image"
 
 #, fuzzy
 msgid "portal_type_ImagePortlet_title_description"
-msgstr "Portlet Image"
+msgstr "Affiche une image de décoration avec un lien."
 
-#, fuzzy
 msgid "cpsportlets_nav_display_vertical_breadcrumbs_menu_label"
-msgstr "Menu de navigation"
+msgstr "Piste de navigation verticale"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
-msgstr "Menu de navigation"
+msgstr "Contenu du répertoire courant"
 
-#, fuzzy
 msgid "cpsportlets_navigation_rel_depth_label"
-msgstr "Affichage contextuel"
+msgstr "Profondeur relative"
 
-#, fuzzy
 msgid "cpsportlets_navigation_show_docs_label"
-msgstr "Affichage contextuel"
+msgstr "Afficher les documents"
 
-#, fuzzy
 msgid "cpsportlets_translation_deleted_psm"
-msgstr "Créer une version en ..."
+msgstr "Traduction supprimée."
 
 msgid "button_portlet_management"
-msgstr ""
+msgstr "Gestion des portlets"
 
-#, fuzzy
 msgid "cpsportlets_breadcrumbs_display_hidden_folders_label"
-msgstr "Liste déroulante"
+msgstr "Afficher les répertoires cachés"
 
-#, fuzzy
 msgid "cpsportlets_common_link_string_label"
-msgstr "Nombre d'articles"
+msgstr "Texte des liens"
 
-#, fuzzy
 msgid "cpsportlets_common_display_description_label"
-msgstr "Liste déroulante"
+msgstr "Afficher la description"
 
-#, fuzzy
 msgid "cpsportlets_rss_channel_label"
-msgstr "Changer de langue ..."
+msgstr "Canal RSS"
 
-#, fuzzy
 msgid "cpsportlets_rss_update_frequency_label"
-msgstr "Catégories d'actions à afficher"
+msgstr "Fréquence de mise à jour (en secondes)"
 
-#, fuzzy
 msgid "cpsportlets_rss_max_words_label"
-msgstr "Nombre d'articles"
+msgstr "Nombre de mots dans le résumé"
 
-#, fuzzy
 msgid "cpsportlets_content_max_words_label"
-msgstr "Trier les résultats par"
+msgstr "Nombre de mots dans le résumé"
 
-#, fuzzy
 msgid "cpsportlets_image_image_label"
-msgstr "Changer de langue"
+msgstr "Image"
 
-#, fuzzy
 msgid "cpsportlets_image_link_label"
-msgstr "Action"
+msgstr "Lien"
 
-#, fuzzy
 msgid "portal_type_ContentPortlet_description"
-msgstr "Portlet de contenu"
+msgstr "Affiche le résultat d'une recherche de contenu."
 
-#, fuzzy
 msgid "portal_type_NavigationPortlet_description"
-msgstr "Portlet de navigation"
+msgstr "Affiche un menu de navigation, le contenu du répertoire courant, etc."
 
-#, fuzzy
 msgid "portal_type_AddItemPortlet_description"
-msgstr "Portlet de création de contenu"
+msgstr "Affiche un menu pour la création de documents dans un répertoire."
 
-#, fuzzy
 msgid "portal_type_InternalLinksPortlet_description"
-msgstr "Portlet de liens internes"
+msgstr "Affiche des liens internes."
 
-#, fuzzy
 msgid "portal_type_TextPortlet_description"
-msgstr "Portlet de texte"
+msgstr "Affiche un texte en HTML."
 
-#, fuzzy
 msgid "portal_type_ImagePortlet_description"
-msgstr "Portlet Image"
+msgstr "Affiche une image de décoration avec un lien."
 
-#, fuzzy
 msgid "portal_type_DummyPortlet_description"
-msgstr "Portlet pour tester"
+msgstr "Pour tester."
 
-#, fuzzy
 msgid "portal_type_SearchPortlet_description"
-msgstr "Portlet de recherche"
+msgstr "Affiche une interface de recherche de documents."
 
-#, fuzzy
 msgid "portal_type_RSSPortlet_description"
-msgstr "Portlet RSS"
+msgstr "Affiche le contenu d'un canal RSS."
 
-#, fuzzy
 msgid "portal_type_DocumentPortlet_description"
-msgstr "Portlet de document"
+msgstr "Affiche un rendu du document courant."
 
-#, fuzzy
 msgid "portal_type_BreadcrumbsPortlet_description"
-msgstr "Portlet chemin de navigation"
+msgstr "Affiche des liens de navigation vers les répertoires parents."
 
-#, fuzzy
 msgid "portal_type_ActionsPortlet_description"
-msgstr "Portlet d'actions"
+msgstr "Affiche des actions du portail par catégories."
 
-#, fuzzy
 msgid "portal_type_LanguagePortlet_description"
-msgstr "Portlet de langues"
+msgstr "Affiche des actions de gestion de langues."
 
-#, fuzzy
 msgid "cpsportlets_common_first_item_label"
-msgstr "Nombre d'articles"
+msgstr "Premier article"
 
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Menu de navigation"
