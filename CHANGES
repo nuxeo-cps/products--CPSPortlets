@@ -14,6 +14,8 @@ Bug fixes:
 - added missing 'is_i18n' parameter to getSearchableTypesVocabulary()
 - rebuilding newly created portlets to set cache parameters and
   javascript settings.
+- resetInterestingEvents should not set empty events like ((), (), (),)
+  this fixes the test_listPortletsInterestedInEvent() test that failed.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added an access key to access the portlet management panels.

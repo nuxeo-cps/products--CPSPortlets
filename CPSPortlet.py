@@ -888,9 +888,11 @@ class CPSPortlet(CPSDocument):
                 portal_types = getOptions(param)
 
         self.clearEvents()
-        self.addEvent(event_ids=event_ids,
-                      folder_paths=folder_paths,
-                      portal_types=portal_types)
+        if event_ids or folder_paths or portal_types:
+            self.addEvent(
+                event_ids=event_ids,
+                folder_paths=folder_paths,
+                portal_types=portal_types)
 
     #################################################################
     # ZMI
