@@ -1,0 +1,172 @@
+
+PORTLET STYLING
+
+Last-updated: 2004-09-30
+
+Author: Jean-Marc Orliaguet <jmo@ita.chalmers.se>
+
+Description: the complete list of style properties that
+             can be used for the styling of portlets.
+
+
+Area Color
+----------
+Applies to the area surrounding the portlet box.
+
+  LABEL                           CSS property
+  -----                           ------------
+  Area border color               border-color
+  Area background color           background-color
+  Area background image           background-image
+  Area background position        background-position
+  Area background repeat          background-repeat
+  Area font color                 color
+
+
+Area Shape
+----------
+Applies to the area surrounding the portlet box.
+
+  LABEL                           CSS property
+  -----                           ------------
+  Area border style               border-style
+  Area border width               border-width
+  Area text transform             text-transform
+
+
+Box Color
+---------
+Applies to the portlet box.
+
+  LABEL                           CSS property
+  -----                           ------------
+  BoxTitle font color             color
+  BoxTitle border color           border-color
+  BoxTitle background color       background-color
+  BoxTitle background image       background-image
+
+  BoxBody border color            border-color
+  BoxBody background color        background-color
+  BoxBody background image        background-image
+  BoxBody menuout color           background-color
+  BoxBody menuout border color    border-color
+  BoxBody menuin color            background-color
+  BoxBody menuin border color     border-color
+  BoxBody menuin icon             list-style-image
+  BoxBody menuout icon            list-style-image
+
+
+Box Shape
+---------
+Applies to the portlet box.
+
+  LABEL                           CSS property
+  -----                           ------------
+  BoxTitle font weight            font-weight
+  BoxTitle border style           border-style
+  BoxTitle border width           border-width
+  BoxTitle padding                padding
+  BoxTitle display                display
+
+  BoxBody padding                 padding
+  BoxBody border style            border-style
+  BoxBody border width            border-width
+
+  BoxBody menuout padding         padding
+  BoxBody menuout margin          margin
+  BoxBody menuout border style    border-style
+  BoxBody menuout border width    border-width
+
+  BoxBody menuin padding          padding
+  BoxBody menuin margin           margin
+  BoxBody menuin border style     border-style
+  BoxBody menuin border width     border-width
+
+
+Font Color
+----------
+Applies to the portlet's characters.
+
+  LABEL                           CSS property
+  -----                           ------------
+  H1 font color                   color
+  H1 border color                 border-color
+  H1 bg color                     background-color
+
+  H2 font color                   color
+  H2 border color                 border-color
+  H2 bg color                     background-color
+
+  H3 font color                   color
+  H3 border color                 border-color
+  H3 bg color                     background-color
+
+  H456 font color                 color
+  H456 border color               border-color
+  H456 bg color                   background-color
+
+  A link                          color
+  A visited                       color
+  A active                        color
+  A hover                         color
+
+
+Font Shape
+----------
+Applies to the portlet's characters.
+
+  LABEL                           CSS property
+  -----                           ------------
+  Default font                    font
+
+  H1 font                         font
+  H1 padding                      padding
+  H1 border width                 border-width
+  H1 border style                 border-style
+
+  H2 font                         font
+  H2 padding                      padding
+  H2 border width                 border-width
+  H2 border style                 border-style
+
+  H3 font                         font
+  H3 padding                      padding
+  H3 border width                 border-width
+  H3 border style                 border-style
+
+  H456 font                       font
+  H456 padding                    padding
+  H456 border width               border-width
+  H456 border style               border-style
+
+  STRONG font                     font
+
+  P font                          font
+  P padding                       padding
+
+  A link decoration               text-decoration
+  A visited decoration            text-decoration
+  A active decoration             text-decoration
+  A hover decoration              text-decoration
+
+
+Form Style
+----------
+Applies to forms and to form elements.
+
+  LABEL                           CSS property
+  -----                           ------------
+  Form padding                    padding
+  Form font color                 color
+  Form border color               border-color
+  Form border style               border-style
+  Form border width               border-width
+  Form background color           background-color
+
+  Element font color              color
+  Element border color            border-color
+  Element border style            border-style
+  Element border width            border-width
+  Element background color        background-color
+  Element active border color     border-color
+  Element active background color background-color
