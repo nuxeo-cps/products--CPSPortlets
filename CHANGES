@@ -117,3 +117,5 @@ New internal features:
   local portlet containers (and not the tool).
 - Breadcrumbs Portlet: added an option to always display the site's root as
   the first item.
+- added a setCustomCacheParams() mutator for setting custom cache parameters
+  to portlet types that support it.

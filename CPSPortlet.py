@@ -148,6 +148,14 @@ class CPSPortlet(CPSDocument):
 
         return params
 
+    security.declareProtected(ManagePortlets, 'setCustomCacheParams')
+    def setCustomCacheParams(self, params=[]):
+        """Set custom cache parameters
+        """
+        if getattr(aq_base(self), 'custom_cache_params', None) is not None:
+            if isinstance(params, ListType):
+                self.custom_cache_params = params
+
     security.declarePublic('getCacheParams')
     def getCacheParams(self):
         """Get the cache parameters that will be used to compute the
