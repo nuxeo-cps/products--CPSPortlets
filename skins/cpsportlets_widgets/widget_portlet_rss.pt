@@ -1,10 +1,11 @@
 <tal:block define="ds options/datastructure;
                    channel ds/channel;
+                   first_item ds/first_item;
                    max_items ds/max_items;
                    max_words ds/max_words;
                    display_description ds/display_description;
                    max_words python: display_description and int(max_words) or 0;
-                   rssitems python: here.getRSSItems(channel, int(max_items), int(max_words));
+                   rssitems python: here.getRSSItems(channel, int(first_item), int(max_items), int(max_words));
                    link_string ds/link_string"
            condition="rssitems">
   <tal:block repeat="item rssitems">
