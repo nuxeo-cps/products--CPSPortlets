@@ -43,6 +43,14 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
     def beforeTearDown(self):
         self.logout()
 
+    def test_getCacheIndex_no_parameter(self):
+        portlet = self.portlet
+        portlet._setCacheParams([])
+        kw = self.default_kw
+        cache_index = portlet.getCacheIndex(**kw)
+        expected_index = ()
+        self.assert_(cache_index == expected_index)
+
     def test_getCacheIndex_no_cache(self):
         portlet = self.portlet
         portlet._setCacheParams(['no-cache'])

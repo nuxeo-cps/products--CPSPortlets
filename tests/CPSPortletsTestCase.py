@@ -6,3 +6,4 @@ from Products.ExternalMethod.ExternalMethod import ExternalMethod
 CPSPortletsTestCase = CPSTestCase.CPSTestCase
 
 ZopeTestCase.installProduct('CPSPortlets')
+ZopeTestCase.installProduct('CPSNavigation')
