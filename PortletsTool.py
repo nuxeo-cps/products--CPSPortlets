@@ -35,12 +35,14 @@ from Products.CMFCore.CMFCorePermissions import View
 from Products.CMFCore.utils import UniqueObject, getToolByName,\
                                   _checkPermission
 
-from PortletRAMCache import RAMCache
+from PortletRAMCache import RAMCache, SimpleRAMCache
 from PortletsContainer import PortletsContainer
 from CPSPortletsPermissions import ManagePortlets
 
 PORTLET_CONTAINER_ID = '.cps_portlets'
 PORTLET_RAMCACHE_ID = 'portlets'
+ICON_RAMCACHE_ID = 'icons'
+IMG_TAG = '<img src="%s" width="%s" height="%s" alt="%s" border="0" />'
 
 class PortletsTool(UniqueObject, PortletsContainer):
     """ Portlets Tool
@@ -414,7 +416,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         self._insertPortlet(portlet=portlet, slot=slot, order=order)
 
     #
-    # RAM Cache
+    # Portlet RAM Cache
     #
     security.declarePublic('getPortletCache')
     def getPortletCache(self, create=0):
@@ -544,6 +546,54 @@ class PortletsTool(UniqueObject, PortletsContainer):
             if str(v['user']) == user:
                 entries.append(k)
         return entries
+
+    #
+    # Icon RAM Cache
+    #
+
+    security.declarePublic('getIconCache')
+    def getIconCache(self):
+        """Returns the icon RAM cache object"""
+
+        cacheid = '_'.join((ICON_RAMCACHE_ID,) + \
+                            self.getPhysicalPath()[1:-1])
+        try:
+            return self.caches[cacheid]
+        except KeyError:
+            cache = SimpleRAMCache()
+            self.caches[cacheid] = cache
+            return cache
+
+    security.declarePublic('renderIcon')
+    def renderIcon(self, portal_type=None, base_url='', alt=''):
+        """Renders the icon"""
+
+        # render portal type icon.
+        if portal_type is None:
+            return None
+
+        cache = self.getIconCache()
+
+        # compute the cache index
+        index = (portal_type, base_url, alt)
+
+        img_tag = cache.getEntry(index)
+        # the icon is not in the cache
+        if img_tag is None:
+            ttool = getToolByName(self, 'portal_types')
+            ti = ttool.getTypeInfo(portal_type)
+            if ti is not None:
+                icon_path = ti.getIcon()
+                img = self.unrestrictedTraverse(icon_path, default=None)
+                if img is None:
+                    return None
+                img_tag = IMG_TAG % (base_url + icon_path,
+                                     getattr(img, 'width', 0),
+                                     getattr(img, 'height', 0),
+                                     alt)
+                if cache is not None:
+                    cache.setEntry(index, img_tag)
+        return img_tag
 
     #
     # Private

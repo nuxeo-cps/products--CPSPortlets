@@ -62,3 +62,4 @@ New internal features:
 - added an ESI portlet renderer (Edge-Side-Includes)
 - using CPSNavigation to list folder contents
 - Added an 'Image Link' compound widget (used in the Image Portlet)
+- added an icon RAM cache to render image tags by portal type.

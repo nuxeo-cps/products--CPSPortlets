@@ -26,6 +26,59 @@ import time
 from thread import allocate_lock
 from types import DictType, ListType, TupleType, StringType
 
+class SimpleRAMCache:
+    """Simple non-persistent RAM cache.
+       Read / write / invalidate.
+    """
+
+    def __init__(self):
+        self.cache = {}
+        self.valid = 0
+        self.last_update = 0
+        self.writelock = allocate_lock()
+
+    def getEntry(self, index=None):
+        """Gets a cache entry by its index
+           Returns None if the entry is not in the cache.
+        """
+
+        if not self.valid:
+            return None
+        data = None
+        cache = self.cache
+        if cache.has_key(index):
+            data = cache[index]
+        return data
+
+    def setEntry(self, index=None, data=None):
+        """Sets a cache entry."""
+
+        self.writelock.acquire()
+        try:
+            if data is not None:
+                self.cache[index] = data
+                self.valid = 1
+                self.last_update = time.time()
+        finally:
+            self.writelock.release()
+
+    def getLastUpdate(self):
+        """Gets the last update time"""
+
+        return self.last_update
+
+    def invalidate(self):
+        """Invalidates the RAM cache."""
+
+        self.writelock.acquire()
+        try:
+            for k in self.cache.keys():
+                del self.cache[k]
+            self.valid = 0
+        finally:
+            self.writelock.release()
+
+
 class RAMCache:
     """Non-persistent RAM cache."""
 
