@@ -10,7 +10,7 @@ if lc is None:
 if REQUEST is None:
     REQUEST = context.REQUEST
 
-doc_lang = context.getDefaultLanguage()
+doc_lang = context.getLanguage()
 
 # existing language revisions
 if getattr(context.aq_explicit, 'getLanguageRevisions', None) is None:
@@ -19,6 +19,10 @@ if getattr(context.aq_explicit, 'getLanguageRevisions', None) is None:
 revs = context.getLanguageRevisions().keys()
 # the revision in 'lang' exists already
 if lang in revs:
+    return
+
+# checking whether 'addLanguageToProxy()' is supported
+if getattr(context.aq_explicit, 'addLanguageToProxy', None) is None:
     return
 
 # create a language revision in 'lang'
