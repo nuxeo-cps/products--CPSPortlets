@@ -49,6 +49,24 @@ class PortletsContainer(CMFBTreeFolder):
             id = self.id
         CMFBTreeFolder.__init__(self, id)
 
+    def _get_id(self, id):
+        """Override OFS.CopySupport._get_id to generate
+           unique portlet ids with the 'portlet_' prefix.
+
+           # Allow containers to override the generation of
+           # object copy id by attempting to call its _get_id
+           # method, if it exists.
+        """
+        ptltool = getToolByName(self, 'portal_cpsportlets')
+
+        ok = 0
+        while not ok:
+            new_id = self.generateId(prefix='portlet_',
+                                     suffix='',
+                                     rand_ceiling=999999999)
+            ok = ptltool.checkIdentifier(new_id)
+        return new_id
+
     ####################################################################
 
     def getPortletById(self, id):
