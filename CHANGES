@@ -8,6 +8,7 @@ New features:
 - Added syndication for RSS Portlet, Content Portlet, Internal Links Portlet.
 - added an option to display item descriptions in the Internal Links Portlet.
 - Content Portlet: added an option to do a search on all existing documents.
+- Navigation portlet: added an 'Up to folder parent' display mode.
 Bug fixes:
 ~~~~~~~~~~
 - Removed warnings: replaces CMFCore.CMFCorePermissions by CMFCore.permissions.
@@ -32,6 +33,7 @@ Bug fixes:
 - fixed syndication urls for the Internal Links Portlet.
 - Content Portlet: the sort_on and sort_order options were ignored.
 - Cosmetic: fixed bug #564
+- UI: Language Portlet added a submit button next to the select widget.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the

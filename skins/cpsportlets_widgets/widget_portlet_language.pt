@@ -7,13 +7,13 @@
      tal:define="langItems context/getTranslateLangItems"
      tal:condition="langItems"
      tal:attributes="action string:${context_url}/cpsportlet_translate">
+     <p i18n:translate="cpsportlets_translate_into">Translate into ...</p>
       <select onchange="submit()" name="lang">
-        <option i18n:translate="cpsportlets_translate_into" disabled="disabled"
-         value="" selected="selected">Translate into ...</option>
         <option tal:repeat="item langItems" i18n:translate=""
          tal:content="item/title"
          tal:attributes="value item/lang" />
       </select>
+      <button i18n:translate="cpsportlets_button_OK">OK</button>
     </form>
   </tal:block>
   <tal:block condition="python: action == 'delete_translation'">
@@ -21,13 +21,13 @@
      tal:define="langItems context/getDeletableLangItems"
      tal:condition="langItems"
      tal:attributes="action string:${context_url}/cpsportlet_delete_translation">
+     <p i18n:translate="cpsportlets_delete_translation">Delete translation ...</p>
       <select onchange="submit()" name="lang">
-        <option i18n:translate="cpsportlets_delete_translation" disabled="disabled"
-         value="" selected="selected">Delete translation ...</option>
         <option tal:repeat="item langItems" i18n:translate=""
          tal:content="item/title"
          tal:attributes="value item/lang" />
       </select>
+      <button i18n:translate="cpsportlets_button_OK">OK</button>
     </form>
   </tal:block>
   <tal:block condition="python: action == 'switch_language'">
@@ -35,13 +35,13 @@
      tal:define="langItems context/getSwitchableLangItems"
      tal:condition="langItems"
      tal:attributes="action string:${context_url}/cpsportlet_switch_language">
+     <p i18n:translate="cpsportlets_switch_language">Switch to ...</p>
       <select onchange="submit()" name="lang">
-        <option i18n:translate="cpsportlets_switch_language" disabled="disabled"
-         value="" selected="selected">Switch to ...</option>
         <option tal:repeat="item langItems" i18n:translate=""
          tal:content="item/title"
          tal:attributes="value item/lang" />
       </select>
+      <button i18n:translate="cpsportlets_button_OK">OK</button>
     </form>
   </tal:block>
   <tal:block condition="python: action == 'change'">
@@ -49,13 +49,13 @@
      tal:define="langItems context/getChangeLangItems"
      tal:condition="langItems"
      tal:attributes="action string:${context_url}/cpsportlet_change_language">
-      <select onchange="submit()" name="lang">
-        <option i18n:translate="cpsportlets_change_language" disabled="disabled"
-         value="" selected="selected">Change language</option>
+     <p i18n:translate="cpsportlets_change_language">Change language ...</p>
+      <select name="lang">
         <option tal:repeat="item langItems" i18n:translate=""
          tal:content="item/title"
          tal:attributes="value item/lang" />
       </select>
+      <button i18n:translate="cpsportlets_button_OK">OK</button>
     </form>
   </tal:block>
 </tal:block>

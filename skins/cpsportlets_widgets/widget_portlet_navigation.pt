@@ -64,6 +64,24 @@
     </tal:block>
   </tal:block>
 
+  <tal:block condition="python: display == 'up_to_parent'">
+    <tal:block define="mtool here/portal_membership;
+                       ptltool here/portal_cpsportlets"
+     condition="python: mtool.checkPermission('List folder contents',
+                context, 'aq_parent')">
+     <a href=".." 
+     tal:define="parent nocall:context/aq_inner/aq_parent;
+                 ti python: parent.getTypeInfo();
+                 base_url python: request.get('cpsskins_base_url', '')">
+      <tal:block condition="ti"
+      content="structure python: ptltool.renderIcon(ti.getId(), base_url, '')" />
+        <span i18n:translate="cpsportlets_up_to">Up to
+          <strong i18n:name="up_id" tal:content="parent/title_or_id">id</strong>
+        </span>
+      </a>
+    </tal:block>
+  </tal:block>
+
   <tal:block condition="python: display == 'subfolder_contents'">
     <tal:block
      define="folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, start_depth=1, end_depth=3, contextual=1, expand=1)"

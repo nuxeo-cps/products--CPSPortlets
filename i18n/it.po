@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-04-03 23:24default\n"
+"POT-Creation-Date: 2005-04-05 23:18default\n"
 "PO-Revision-Date: 2005-01-25 17:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -28,13 +28,13 @@ msgid " Add "
 msgstr "Aggiungi"
 
 #.   <a attributes="href item_url">
-#.               <strong content="item/title" /><br />
+#.               <block content="item/title" /><br />
 #.               <small content="item_description" condition="python: item_description and display_description" />
 #.               <small content="structure link_string" condition="python: link_string and item_description" />
 #.             </a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_rss.pt
 msgid ""
-"<strong content=\"item/title\" /><br /> <small content=\"item_description\" "
+"<block content=\"item/title\" /><br /> <small content=\"item_description\" "
 "condition=\"python: item_description and display_description\" /> <small "
 "content=\"structure link_string\" condition=\"python: link_string and "
 "item_description\" />"
@@ -61,12 +61,18 @@ msgstr "Aggiungi un nuovo elemento ..."
 msgid "cpsportlets_advanced_search"
 msgstr "Ricerca avanzata"
 
-#.   <option disabled="disabled" selected="selected" value="">Change language</option>
+#.   <button>OK</button>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+#, fuzzy
+msgid "cpsportlets_button_OK"
+msgstr "Crea una versione in ..."
+
+#.   <p>Change language ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_change_language"
 msgstr "Cambia la lingua ..."
 
-#.   <option disabled="disabled" selected="selected" value="">Delete translation ...</option>
+#.   <p>Delete translation ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
 msgstr "Elimina la versione in ..."
@@ -92,14 +98,22 @@ msgstr "Gestione dei portlets"
 msgid "cpsportlets_search_in"
 msgstr "Ricerca avanzata"
 
-#.   <option disabled="disabled" selected="selected" value="">Switch to ...</option>
+#.   <p>Switch to ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_switch_language"
 msgstr "Visualizza la versione in ..."
 
-#.   <option disabled="disabled" selected="selected" value="">Translate into ...</option>
+#.   <p>Translate into ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_translate_into"
+msgstr "Crea una versione in ..."
+
+#.   <span>Up to
+#.             ${up_id (tal content="parent/title_or_id")}
+#.           </span>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+#, fuzzy
+msgid "cpsportlets_up_to"
 msgstr "Crea una versione in ..."
 
 #.   <span>this export format has not been implemented yet</span>
@@ -279,6 +293,10 @@ msgstr "Contenuti della cartella corrente"
 
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Contenuti delle sottocartelle"
+
+#, fuzzy
+msgid "cpsportlets_nav_display_up_to_parent_label"
+msgstr "Mappa del portale"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_collapsible_menu_label"
