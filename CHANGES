@@ -40,3 +40,4 @@ New internal features:
 - cleanup of users' entries in the cache when they log out.
 - added an option to movePortlet() to leave the source portlet in place.
 - added a duplicatePortlet() method
+- using the 'common' and 'metadata' schemas by default.

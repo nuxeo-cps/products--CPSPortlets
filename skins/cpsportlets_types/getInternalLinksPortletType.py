@@ -13,7 +13,7 @@ internal_links_portlet_type = {
     'cps_is_searchable': False,
     'cps_proxy_type': '',
     'cps_display_as_document_in_listing': False,
-    'schemas': ('portlet_common', 'internallinks_portlet'),
+    'schemas': ('portlet_common', 'internallinks_portlet', 'common', 'metadata'),
     'layouts': ('portlet_common', 'internallinks_portlet',),
     'flexible_layouts': (),
     'storage_methods': (),

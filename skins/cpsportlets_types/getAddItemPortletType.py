@@ -13,7 +13,7 @@ add_item_portlet_type = {
     'cps_is_searchable': False,
     'cps_proxy_type': '',
     'cps_display_as_document_in_listing': False,
-    'schemas': ('portlet_common', 'additem_portlet'),
+    'schemas': ('portlet_common', 'additem_portlet', 'common','metadata'),
     'layouts': ('portlet_common', 'additem_portlet',),
     'flexible_layouts': (),
     'storage_methods': (),

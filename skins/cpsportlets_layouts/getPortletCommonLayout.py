@@ -1,32 +1,10 @@
 portlet_common_layout = {
     'widgets': {
-        'i18n': {
-            'type': 'CheckBox Widget',
-            'data': {
-                'title': '',
-                'fields': ('i18n',),
-                'is_required': False,
-                'label': '',
-                'label_edit': 'label_cpsportlets_i18n',
-                'description': '',
-                'help': '',
-                'is_i18n': True,
-                'readonly_layout_modes': (),
-                'hidden_layout_modes': ('view',),
-                'hidden_readonly_layout_modes': (),
-                'hidden_empty': False,
-                'hidden_if_expr': '',
-                'css_class': '',
-                'widget_mode_expr': '',
-                'display_true': 'cpsschemas_label_true',
-                'display_false': 'cpsschemas_label_false',
-            },
-        },
-        'title': {
+        'Title': {
             'type': 'String Widget',
             'data': {
                 'title': '',
-                'fields': ('title',),
+                'fields': ('Title',),
                 'is_required': False,
                 'label': '',
                 'label_edit': 'label_cpsportlets_title',
@@ -44,11 +22,11 @@ portlet_common_layout = {
                 'size_max': 36,
             },
         },
-        'description': {
+        'Description': {
             'type': 'TextArea Widget',
             'data': {
                 'title': '',
-                'fields': ('description',),
+                'fields': ('Description',),
                 'is_required': False,
                 'label': '',
                 'label_edit': 'label_description',
@@ -73,11 +51,9 @@ portlet_common_layout = {
         'flexible_widgets': (),
         'ncols': 3,
         'rows': [
-            [{'widget_id': 'title', 'ncols': 3},
+            [{'widget_id': 'Title', 'ncols': 3},
             ],
-            [{'widget_id': 'description', 'ncols': 3},
-            ],
-            [{'widget_id': 'i18n', 'ncols': 3},
+            [{'widget_id': 'Description', 'ncols': 3},
             ],
         ],
     },

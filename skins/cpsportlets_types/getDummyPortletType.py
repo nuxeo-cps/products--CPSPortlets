@@ -13,7 +13,7 @@ dummy_portlet_type = {
     'cps_is_searchable': False,
     'cps_proxy_type': '',
     'cps_display_as_document_in_listing': False,
-    'schemas': ('portlet_common', 'dummy_portlet'),
+    'schemas': ('portlet_common', 'dummy_portlet', 'common', 'metadata'),
     'layouts': ('portlet_common', 'dummy_portlet',),
     'flexible_layouts': (),
     'storage_methods': (),
