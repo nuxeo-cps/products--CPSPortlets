@@ -137,6 +137,9 @@ msgstr ""
 msgid "cpsportlets_language_action_translate_label"
 msgstr ""
 
+msgid "cpsportlets_language_action_delete_translation_label"
+msgstr ""
+
 msgid "cpsportlets_language_action_change_label"
 msgstr ""
 
@@ -150,4 +153,10 @@ msgid "cpsportlets_nav_display_vertical_breadcrumbs_menu_label"
 msgstr ""
 
 msgid "cpsportlets_navigation_rel_depth_label"
+msgstr ""
+
+msgid "cpsportlets_translation_deleted_psm"
+msgstr ""
+
+msgid "cpsportlets_delete_translation"
 msgstr ""

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-09-30 11:14default\n"
+"POT-Creation-Date: 2004-09-30 12:02default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -45,24 +45,24 @@ msgstr ""
 msgid "cpsportlet_add_new_item"
 msgstr ""
 
-#.   <option disabled="" selected="selected" value="">Change language</option>
-#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
-msgid "cpsportlet_change_language"
+#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+msgid "cpsportlets_advanced_search"
 msgstr ""
 
-#.   <option value="remove">Remove translation</option>
+#.   <option disabled="" selected="selected" value="">Change language</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
-msgid "cpsportlet_remove_translation"
+msgid "cpsportlets_change_language"
+msgstr ""
+
+#.   <option disabled="" selected="selected" value="">Delete translation ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_delete_translation"
 msgstr ""
 
 #.   <option disabled="" selected="selected" value="">Translate into ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
-msgid "cpsportlet_translate_into"
-msgstr ""
-
-#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
-#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
-msgid "cpsportlets_advanced_search"
+msgid "cpsportlets_translate_into"
 msgstr ""
 
 msgid "label_cpsportlets_provider"
@@ -185,6 +185,9 @@ msgstr ""
 msgid "cpsportlets_language_action_translate_label"
 msgstr ""
 
+msgid "cpsportlets_language_action_delete_translation_label"
+msgstr ""
+
 msgid "cpsportlets_language_action_change_label"
 msgstr ""
 
@@ -198,4 +201,7 @@ msgid "cpsportlets_nav_display_vertical_breadcrumbs_menu_label"
 msgstr ""
 
 msgid "cpsportlets_navigation_rel_depth_label"
+msgstr ""
+
+msgid "cpsportlets_translation_deleted_psm"
 msgstr ""

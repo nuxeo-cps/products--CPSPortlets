@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-09-30 11:14default\n"
+"POT-Creation-Date: 2004-09-30 12:02default\n"
 "PO-Revision-Date: 2004-09-28 03:28+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -48,26 +48,25 @@ msgstr "Edit"
 msgid "cpsportlet_add_new_item"
 msgstr "Ajouter du contenu ..."
 
-#.   <option disabled="" selected="selected" value="">Change language</option>
-#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
-msgid "cpsportlet_change_language"
-msgstr "Changer de langue ..."
-
-#.   <option value="remove">Remove translation</option>
-#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
-#, fuzzy
-msgid "cpsportlet_remove_translation"
-msgstr "Traduire en ..."
-
-#.   <option disabled="" selected="selected" value="">Translate into ...</option>
-#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
-msgid "cpsportlet_translate_into"
-msgstr "Traduire en ..."
-
 #.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Recherche avancée"
+
+#.   <option disabled="" selected="selected" value="">Change language</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_change_language"
+msgstr "Changer de langue ..."
+
+#.   <option disabled="" selected="selected" value="">Delete translation ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_delete_translation"
+msgstr "Supprimer la version en ..."
+
+#.   <option disabled="" selected="selected" value="">Translate into ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_translate_into"
+msgstr "Créer une version en ..."
 
 msgid "label_cpsportlets_provider"
 msgstr "Fournisseur"
@@ -189,6 +188,9 @@ msgstr "Action"
 msgid "cpsportlets_language_action_translate_label"
 msgstr "Traduire"
 
+msgid "cpsportlets_language_action_delete_translation_label"
+msgstr "Supprimer une traduction"
+
 msgid "cpsportlets_language_action_change_label"
 msgstr "Changer de langue"
 
@@ -203,3 +205,6 @@ msgstr "Piste de navigation verticale"
 
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Profondeur relative"
+
+msgid "cpsportlets_translation_deleted_psm"
+msgstr "Traduction supprimée."
