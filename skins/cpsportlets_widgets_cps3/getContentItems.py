@@ -41,21 +41,18 @@ if folder_path is not None:
 if sort_reverse:
     query['sort_order'] = 'reverse'
 
-# optimization
-query['sort_limit'] = max_items
-
 # Override some of the query options depending on the type of search
 
 # Related documents
-# XXX remove the current document from the search results
 if search_type == 'related':
-    obj = obj.getContent()
-    if getattr(obj.aq_explicit, 'Subject'):
-        subjects=obj.Subject()
+    content = obj.getContent()
+    if getattr(content.aq_explicit, 'Subject'):
+        subjects=content.Subject()
 
         if subjects:
             query.update({'Subject': subjects,
-                          'review_state': 'published'})
+                          'review_state': 'published',})
+            max_items += 1
         else:
             query = {}
 
@@ -100,12 +97,20 @@ else:
 if not query:
     return []
 
+# optimization
+query['sort_limit'] = max_items
+
 brains = context.portal_catalog(**query)
 try:
     brains = context.portal_catalog(**query)
 except: # XXX
     brains = []
 
-if len(brains) > max_items:
-    brains = brains[:max_items]
+# post-filtering
+if search_type == 'related':
+    # XXX also remove the same versions of a document published
+    # in different places?
+    obj_url = obj.absolute_url()
+    brains = [o for o in brains if o.getURL() != obj_url]
+
 return brains
