@@ -39,6 +39,11 @@ SKINS = {'cpsportlets_widgets':
          'cpsportlets_widgets_cps3':
          'Products/CPSPortlets/skins/cpsportlets_widgets_cps3',
 # -----------------------------------------------------------
+
+# Plone2 specific ---------------------------------------------
+#         'cpsportlets_widgets_plone2':
+#         'Products/CPSPortlets/skins/cpsportlets_widgets_plone2',
+# -----------------------------------------------------------
          'cpsportlets_default':
          'Products/CPSPortlets/skins/cpsportlets_default',
          'cpsportlets_schemas':
