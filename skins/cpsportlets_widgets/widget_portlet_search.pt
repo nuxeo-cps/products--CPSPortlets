@@ -1,16 +1,34 @@
-<form tal:define="utool nocall:here/portal_url;
-                  urls here/getSearchFormUrls;
-                  search_script_url urls/script;
-                  search_form_url urls/form;
-                  advanced_search_form_url urls/advanced;"
+<form tal:define="ds options/datastructure;
+                  advanced_search_link ds/advanced_search_link;
+                  contextual_search_choice ds/contextual_search_choice;
+                  utool nocall:here/portal_url;
+                  params here/getSearchFormParams;
+                  search_script params/script;
+                  contextual_search params/contextual;
+                  advanced_search_form params/advanced;
+                  contextualSearch request/folder_prefix|nothing"
  method="get" action=""
- tal:attributes="action search_script_url"
+ tal:attributes="action search_script"
  onsubmit="return checkEmptySearch(this)">
   <input id="searchGadget" type="text" name="SearchableText" size="20"
-    value="" tal:attributes="value request/SearchableText|nothing" />
+   value="" tal:attributes="value request/SearchableText|nothing" />
   <input class="context searchButton" type="submit" value="button_search"
-    i18n:attributes="value" /><br />
-  <a href="" tal:condition="here/advanced_search_link" 
-  i18n:translate="cpsportlets_advanced_search"
-  tal:attributes="href advanced_search_form_url">Advanced search</a>
+   i18n:attributes="value" />
+  <div tal:condition="python: contextual_search_choice and contextual_search"
+   tal:define="id here/getId; id1 string:${id}1; id2 string:${id}2">
+    <label tal:attributes="for id1"
+     i18n:translate="label_search_here">here</label>
+    <input type="radio" name="folder_prefix"
+     tal:attributes="id id1; checked contextualSearch;
+     value python: utool.getRelativeUrl(context)" />
+    <label tal:attributes="for id2"
+     i18n:translate="label_search_all_site">here</label>
+    <input type="radio" name="folder_prefix" value=""
+     tal:attributes="id id2; checked not:contextualSearch" />
+  </div>
+  <div>
+    <a href="" tal:condition="advanced_search_link" 
+    i18n:translate="cpsportlets_advanced_search"
+    tal:attributes="href advanced_search_form">Advanced search</a>
+  </div>
 </form>

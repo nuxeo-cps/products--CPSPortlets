@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-09-17 01:36default\n"
+"POT-Creation-Date: 2004-09-18 00:14default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -40,7 +40,7 @@ msgstr ""
 msgid "cpsportlet_add_new_item"
 msgstr ""
 
-#.   <a href="" attributes="href advanced_search_form_url" condition="here/advanced_search_link">Advanced search</a>
+#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr ""
@@ -88,4 +88,7 @@ msgid "cpsportlets_label_display_horizontal_trail"
 msgstr ""
 
 msgid "cpsportlets_advanced_search_link_label"
+msgstr ""
+
+msgid "cpsportlets_contextual_search_choice_label"
 msgstr ""

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-09-17 01:36default\n"
+"POT-Creation-Date: 2004-09-18 00:14default\n"
 "PO-Revision-Date: 2004-09-06 18:03+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -41,7 +41,7 @@ msgstr ""
 msgid "cpsportlet_add_new_item"
 msgstr "Add new item ..."
 
-#.   <a href="" attributes="href advanced_search_form_url" condition="here/advanced_search_link">Advanced search</a>
+#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 #, fuzzy
 msgid "cpsportlets_advanced_search"
@@ -95,9 +95,11 @@ msgstr "Drop down list"
 msgid "cpsportlets_label_display_horizontal_trail"
 msgstr "Horizontal trail"
 
-#, fuzzy
 msgid "cpsportlets_advanced_search_link_label"
 msgstr "Display a link to the advanced search form"
+
+msgid "cpsportlets_contextual_search_choice_label"
+msgstr "Display the contextual search options"
 
 #~ msgid "heading_portlet_manage_form"
 #~ msgstr "Portlet management"

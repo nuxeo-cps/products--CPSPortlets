@@ -61,3 +61,6 @@ msgstr ""
 
 msgid "cpsportlets_advanced_search_link_label"
 msgstr ""
+
+msgid "cpsportlets_contextual_search_choice_label"
+msgstr ""
