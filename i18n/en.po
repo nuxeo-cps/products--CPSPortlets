@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-11-08 10:44default\n"
+"POT-Creation-Date: 2004-11-08 18:07default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -68,6 +68,11 @@ msgstr "Change language ..."
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
 msgstr "Delete the version in ..."
+
+#.   <option disabled="disabled" selected="selected" value="">Switch to ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_switch_language"
+msgstr "View the version in ..."
 
 #.   <option disabled="disabled" selected="selected" value="">Translate into ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
@@ -208,6 +213,9 @@ msgstr "Delete translation"
 
 msgid "cpsportlets_language_action_change_label"
 msgstr "Change language"
+
+msgid "cpsportlets_language_action_switch_language_label"
+msgstr "Switch language"
 
 msgid "portal_type_ImagePortlet_title"
 msgstr "Image portlet"
