@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-09-18 01:14default\n"
+"POT-Creation-Date: 2004-09-19 18:07default\n"
 "PO-Revision-Date: 2004-09-06 18:03+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -37,49 +37,43 @@ msgstr ""
 #.   <option value="">
 #.         Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
-#, fuzzy
 msgid "cpsportlet_add_new_item"
 msgstr "Add new item ..."
 
 #.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
-#, fuzzy
 msgid "cpsportlets_advanced_search"
 msgstr "Advanced search"
 
 msgid "label_cpsportlets_provider"
 msgstr "Provider"
 
-#, fuzzy
 msgid "label_cpsportlets_title"
 msgstr "Portlet title"
 
-#, fuzzy
 msgid "label_cpsportlets_i18n"
 msgstr "Translate the portlet's content"
 
 msgid "portal_type_DummyPortlet_title"
 msgstr "Dummy portlet"
 
-#, fuzzy
 msgid "portal_type_TextPortlet_title"
 msgstr "Text portlet"
 
-#, fuzzy
 msgid "portal_type_SearchPortlet_title"
 msgstr "Search portlet"
 
-#, fuzzy
 msgid "portal_type_InternalLinksPortlet_title"
 msgstr "Internal links portlet"
 
-#, fuzzy
 msgid "portal_type_AddItemPortlet_title"
 msgstr "Content creation portlet"
 
-#, fuzzy
 msgid "portal_type_BreadcrumbsPortlet_title"
 msgstr "Breadcrumbs portlet"
+
+msgid "portal_type_ActionsPortlet_title"
+msgstr "Actions portlet"
 
 msgid "action_portlets"
 msgstr "Manage portlets"
@@ -104,6 +98,9 @@ msgstr "Display a link to the advanced search form"
 
 msgid "cpsportlets_contextual_search_choice_label"
 msgstr "Display the contextual search options"
+
+msgid "cpsportlets_action_categories_label"
+msgstr "Action categories to display"
 
 #~ msgid "heading_portlet_manage_form"
 #~ msgstr "Portlet management"

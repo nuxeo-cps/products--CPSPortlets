@@ -44,6 +44,9 @@ msgstr ""
 msgid "portal_type_BreadcrumbsPortlet_title"
 msgstr ""
 
+msgid "portal_type_ActionsPortlet_title"
+msgstr ""
+
 msgid "action_portlets"
 msgstr ""
 
@@ -66,4 +69,7 @@ msgid "cpsportlets_advanced_search_link_label"
 msgstr ""
 
 msgid "cpsportlets_contextual_search_choice_label"
+msgstr ""
+
+msgid "cpsportlets_action_categories_label"
 msgstr ""

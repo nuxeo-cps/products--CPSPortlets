@@ -7,6 +7,7 @@ javascript = {
     'Internal Links Portlet': '',
     'Add Item Portlet': '',
     'Breadcrumbs Portlet': '',
+    'Actions Portlet': '',
 }
 
 return javascript

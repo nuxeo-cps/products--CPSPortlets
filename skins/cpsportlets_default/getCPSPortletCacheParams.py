@@ -6,6 +6,7 @@ cache_params = {
     'Internal Links Portlet': ['folder'],
     'Add Item Portlet': ['portal type', 'wf_create'],
     'Breadcrumbs Portlet': ['object', 'user', 'objects:relative_path'],
+    'Actions Portlet': ['actions'],
 }
 
 return cache_params
