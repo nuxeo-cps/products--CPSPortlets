@@ -158,8 +158,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
             # We create the portlets container if it doesn't already exist
             if container_id not in context.objectIds():
-                context.manage_addProduct['CPSPortlets'].addPortletsContainer(
-                    id=container_id)
+                context.manage_addProduct['CPSPortlets'].addPortletsContainer()
 
             # Get the portlets container from the context
             destination = getattr(context, container_id)
