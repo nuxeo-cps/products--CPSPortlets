@@ -156,12 +156,12 @@ class CPSPortlet(CPSDocument):
 
     security.declareProtected(ManagePortlets, 'expireCache')
     def expireCache(self):
-       """Expires the cache for this Portlet.
-          In a ZEO environment, the information will propagate
-          between all ZEO instances as long as the portlet has not been
-          removed.
-       """
-       self.cache_cleanup_date = time.time()
+        """Expires the cache for this Portlet.
+           In a ZEO environment, the information will propagate
+           between all ZEO instances as long as the portlet has not been
+           removed.
+        """
+        self.cache_cleanup_date = time.time()
 
     security.declarePublic('getCacheObjects')
     def getCacheObjects(self, REQUEST=None, **kw):
@@ -207,20 +207,20 @@ class CPSPortlet(CPSDocument):
         params.extend(custom_params)
 
         def getOptions(p):
-             """extract cache parameter options
-             """
-             res = []
-             for o in p.split(':')[1].split(','):
-                 if o[0] == '(' and o[-1] == ')':
-                     o = getattr(self, o[1:-1], None)
-                     if o is None:
-                         continue
-                     if isinstance(o, ListType) or\
-                        isinstance(o, TupleType):
-                         res.extend(o)
-                         continue
-                 res.append(str(o))
-             return res
+            """extract cache parameter options
+            """
+            res = []
+            for o in p.split(':')[1].split(','):
+                if o[0] == '(' and o[-1] == ')':
+                    o = getattr(self, o[1:-1], None)
+                    if o is None:
+                        continue
+                    if isinstance(o, ListType) or\
+                       isinstance(o, TupleType):
+                        res.extend(o)
+                        continue
+                res.append(str(o))
+            return res
 
         index = ()
         for param in params:
@@ -319,7 +319,8 @@ class CPSPortlet(CPSDocument):
             # Workflow actions
             elif param == 'wf_create':
                 wf_tool = getToolByName(self, 'portal_workflow')
-                getAllowedTypes = getattr(wf_tool, 'getAllowedContentTypes', None)
+                getAllowedTypes = getattr(wf_tool,
+                                          'getAllowedContentTypes', None)
                 if getAllowedTypes is not None:
                     types_allowed_by_wf = getAllowedTypes(context)
                     index_string = md5.new(str(types_allowed_by_wf)).hexdigest()
@@ -609,7 +610,9 @@ class CPSPortlet(CPSDocument):
 
         # Add the event if not already here
         if (event_ids, folder_paths, portal_types) not in self.listEvents():
-            self._interesting_events += ((event_ids, folder_paths, portal_types), )
+            self._interesting_events += ((event_ids,
+                                          folder_paths,
+                                          portal_types), )
             return 0
         return 1
 
@@ -747,20 +750,20 @@ class CPSPortlet(CPSDocument):
             return
 
         def getOptions(p):
-             """extract cache parameter options
-             """
-             res = []
-             for o in p.split(':')[1].split(','):
-                 if o[0] == '(' and o[-1] == ')':
-                     o = getattr(self, o[1:-1], None)
-                     if o is None:
-                         continue
-                     if isinstance(o, ListType) or\
-                        isinstance(o, TupleType):
-                         res.extend(o)
-                         continue
-                 res.append(str(o))
-             return res
+            """extract cache parameter options
+            """
+            res = []
+            for o in p.split(':')[1].split(','):
+                if o[0] == '(' and o[-1] == ')':
+                    o = getattr(self, o[1:-1], None)
+                    if o is None:
+                        continue
+                    if isinstance(o, ListType) or\
+                       isinstance(o, TupleType):
+                        res.extend(o)
+                        continue
+                res.append(str(o))
+            return res
 
         event_ids = ()
         folder_paths = ()
