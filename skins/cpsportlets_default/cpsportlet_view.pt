@@ -1,16 +1,1 @@
-<metal:block define-macro="view">
-  <metal:block use-macro="here/main_template/macros/master">
-    <metal:block fill-slot="header">
-    </metal:block>
-
-    <metal:block fill-slot="css_slot">
-      <link rel="Stylesheet" type="text/css" href=""
-        tal:attributes="href string:${base_url}document.css" />
-    </metal:block>
-
-    <metal:block fill-slot="main">
-      <tal:block tal:content="structure rendered_main|python:here.render(proxy=here)" />
-    </metal:block>
-
-  </metal:block>
-</metal:block>
+<tal:block replace="nothing" />
