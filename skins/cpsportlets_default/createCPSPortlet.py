@@ -1,23 +1,20 @@
-##parameters=REQUEST
-# $Id$
-"""
-Create a CPSDocument
+##parameters=REQUEST=None, **kw
 
-return html renderer + psm
-"""
-type_name = REQUEST.form['type_name']
-ti = context.portal_types[type_name]
-validate = REQUEST.has_key('cpsdocument_create_button')
+if REQUEST is not None:
+    kw.update(REQUEST.form)
 
-res = ti.renderCreateObjectDetailed(container=context, request=REQUEST,
-                                    validate=validate, layout_mode='create',
-                                    create_callback='createCPSDocument_cb',
-                                    created_callback='cpsdocument_created')
+ptype_id = kw.get('ptype_id')
 
-psm = ''
-if not res[1]:
-    psm = 'psm_content_error'
-elif validate:
-    psm = 'psm_content_created'
+ptltool = context.portal_cpsportlets
+if ptype_id is not None:
+    portlet_id = ptltool.createPortlet(context=context, **kw)
+    portlet_container = ptltool.getPortletContainer(context)
+    portlet = portlet_container.getPortletById(portlet_id)
+    portlet_localfolder = portlet.getLocalFolder()
 
-return res[0], psm
+if REQUEST is not None:
+    msg = 'psm_portlet_created'
+    redirect_url = portlet_localfolder.absolute_url() \
+                   + '/portlet_manage_form' \
+                   + '?portal_status_message=' + msg
+    REQUEST.RESPONSE.redirect(redirect_url)
