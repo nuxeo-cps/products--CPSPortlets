@@ -1,18 +1,9 @@
 <tal:block define="res python:here.editCPSPortlet(REQUEST=request);
                    rendered_main python: res[0];
                    portal_status_message python: res[1];
-                   portlet_folder here/getLocalFolder;
-                   portlet_manage_form string:${portlet_folder/absolute_url}/portlet_manage_form;
   ">
 <metal:block define-macro="edit_form">
   <metal:block use-macro="here/main_template/macros/master">
-    <metal:block fill-slot="head_slot" 
-     tal:define="actions python:actions.update({'object': [
-         {'id': 'canvas',
-          'name': 'action_canvas',
-          'url': portlet_manage_form,
-          'category': 'object',}
-     ]}); " />
   <metal:block fill-slot="css_slot">
     <metal:block define-macro="widgets_javascript">
 
@@ -53,8 +44,10 @@
 
   <metal:block fill-slot="main">
     <div tal:replace="structure rendered_main" />
-    <form action="" method="post"
-     tal:attributes="action portlet_manage_form">
+    <form action="" method="post" 
+     tal:define="portlet_folder here/getLocalFolder|nothing"
+     tal:condition="portlet_folder"
+     tal:attributes="action string:${portlet_folder/absolute_url}/portlet_manage_form">
       <input type="submit" i18n:attributes="value"
        tal:attributes="value string:button_back">
     </form>
