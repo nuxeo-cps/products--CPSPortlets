@@ -8,7 +8,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <channel rdf:about="<dtml-var url html_quote>">
-    <title><dtml-var "box['Title']" html_quote></title>
+    <title><dtml-var "portal.Title()"> - <dtml-var "box['Title']" html_quote></title>
     <description><dtml-var "box['Description']" html_quote></description>
     <link><dtml-var url html_quote></link>
 

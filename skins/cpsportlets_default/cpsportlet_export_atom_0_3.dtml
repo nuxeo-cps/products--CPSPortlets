@@ -3,7 +3,7 @@
 
 <feed version="0.3" xmlns="http://purl.org/atom/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
 
-  <title mode="escaped" type="text/html"><dtml-var "box['Title']" html_quote></title>
+  <title mode="escaped" type="text/html"><dtml-var "portal.Title()"> - <dtml-var "box['Title']" html_quote></title>
   <modified></modified>
   <tagline type="text/plain">ATOM feed</tagline>
   <link rel="alternate" type="text/html" href="<dtml-var url>" />

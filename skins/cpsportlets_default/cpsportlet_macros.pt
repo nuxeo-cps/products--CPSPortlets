@@ -1,19 +1,25 @@
 <!-- RSS 1.0 export -->
 <metal:block define-macro="export_rss_1_0">
-  <tal:block define="url string:${request/URL}?export=${export}"
-   content="structure python: here.cpsportlet_export_rss_1_0(box=ds, items=items, url=url, request=request)" />
+  <tal:block define="url string:${request/URL}?export=${export};
+                     utool nocall:here/portal_url;
+                     portal python: utool.getPortalObject()"
+   content="structure python: here.cpsportlet_export_rss_1_0(portal=portal, box=ds, items=items, url=url, request=request)" />
 </metal:block>
 
 <!-- RSS 2.0 export -->
 <metal:block define-macro="export_rss_2_0">
-  <tal:block define="url string:${request/URL}?export=${export}"
-   content="structure python: here.cpsportlet_export_rss_2_0(box=ds, items=items, url=url, request=request)" />
+  <tal:block define="url string:${request/URL}?export=${export};
+                     utool nocall:here/portal_url;
+                     portal python: utool.getPortalObject()"
+   content="structure python: here.cpsportlet_export_rss_2_0(portal=portal, box=ds, items=items, url=url, request=request)" />
 </metal:block>
 
 <!-- ATOM 0.3 export -->
 <metal:block define-macro="export_atom_0_3">
-  <tal:block define="url string:${request/URL}?export=${export}"
-   content="structure python: here.cpsportlet_export_atom_0_3(box=ds, items=items, url=url, request=request)" />
+  <tal:block define="url string:${request/URL}?export=${export};
+                     utool nocall:here/portal_url;
+                     portal python: utool.getPortalObject()"
+   content="structure python: here.cpsportlet_export_atom_0_3(portal=portal, box=ds, items=items, url=url, request=request)" />
 </metal:block>
 
 <!-- Not implemented or unknown export format-->
