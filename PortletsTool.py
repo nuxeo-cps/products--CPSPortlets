@@ -191,8 +191,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
             idpc = self.getPortletContainerId()
             if idpc in folder.objectIds():
                 for obj in getattr(folder, idpc).objectValues():
-                    obj = aq_base(obj)
-                    if not hasattr(obj, 'isCPSPortlet'):
+                    if not hasattr(aq_base(obj), 'isCPSPortlet'):
                        continue
                     if not obj.isCPSPortlet():
                        continue

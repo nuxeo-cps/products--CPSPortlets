@@ -96,8 +96,7 @@ class PortletsContainer(CMFBTreeFolder):
 
         for id in portlet_ids:
             portlet = self.getPortletById(id)
-            portlet = aq_base(portlet)
-            if getattr(portlet, 'isCPSPortlet', None) is None:
+            if getattr(aq_base(portlet), 'isCPSPortlet', None) is None:
                 continue
             if not portlet.isCPSPortlet():
                 continue
