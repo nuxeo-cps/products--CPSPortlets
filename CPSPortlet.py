@@ -41,6 +41,8 @@ from Products.CPSDocument.CPSDocument import CPSDocument
 from CPSPortletsPermissions import ManagePortlets
 from PortletGuard import PortletGuard
 
+_marker = None
+
 class CPSPortlet(CPSDocument):
     """ CPS Portlet
     This is a CPSPortlet child base class for portlets
@@ -112,6 +114,14 @@ class CPSPortlet(CPSDocument):
            cache index.
         """
         return self.cache_params
+
+    security.declarePrivate('_setCacheParams')
+    def _setCacheParams(self, cache_params=[]):
+        """Set the cache parameters
+        """
+        if type(cache_params) == type([]):
+            if self.cache_params != cache_params:
+                self.cache_params = cache_params
 
     ##################################################################
 
@@ -251,8 +261,27 @@ class CPSPortlet(CPSDocument):
         """Rebuilds the portlet.
         """
 
-        # XXX
-        pass
+        # rebuild properties
+        stool = getToolByName(self, 'portal_schemas')
+        existing_schemas = stool.objectIds()
+        ti = self.getTypeInfo()
+        for type_schema in ti._listSchemas():
+            schema_id = type_schema.getId()
+            if schema_id not in existing_schemas:
+                continue
+            schema = stool[schema_id]
+            for field in schema.objectValues():
+                field_id = field.getFieldId()
+                # the attribute exists
+                if getattr(aq_base(self), field_id, _marker) is not _marker:
+                    continue
+                default_value = field.getDefault()
+                setattr(self, field_id, default_value)
+
+        # reset cache parameters
+        ptype_id = ti.getId()
+        cache_params = self.getCPSPortletCacheParams(ptype_id)
+        self._setCacheParams(cache_params)
 
     #################################################################
     # ZMI

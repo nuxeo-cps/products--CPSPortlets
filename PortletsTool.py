@@ -406,11 +406,18 @@ class PortletsTool(UniqueObject, PortletsContainer):
                      )
 
     security.declareProtected(ManagePortlets, 'rebuild_portlets')
-    def rebuild_portlets(self):
+    def rebuild_portlets(self, REQUEST=None):
         """ """
 
-        for portlet in self.listAllPortlets():
+        portlets = self.listAllPortlets()
+        for portlet in portlets:
             portlet._rebuild()
+
+        if REQUEST is not None:
+            redirect_url = self.absolute_url()\
+                + '/manage_rebuildPortlets' \
+                + '?manage_tabs_message=%s Portlets rebuilt.' % len(portlets)
+            REQUEST.RESPONSE.redirect(redirect_url)
 
     ######################################################################
 
