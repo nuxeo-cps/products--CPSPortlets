@@ -226,7 +226,7 @@ class CPSPortlet(CPSDocument):
         """
         return self.getPhysicalPath()
 
-    security.declareProtected(ManagePortlets, 'getLocalFolder')
+    security.declarePublic('getLocalFolder')
     def getLocalFolder(self):
         """Return the local folder (workspace, section ...)
            inside which the portlet will be displayed.
