@@ -142,11 +142,16 @@ def summarize(text='', max_words=20):
     return res
 
 items = []
+
+render_items = int(kw.get('render_items'), 0) == 1
+cluster_id = kw.get('cluster_id')
+display_description = kw.get('display_description')
+
 for brain in brains:
 
     rendered = ''
     # render the item
-    if int(kw.get('render_items'), 0) == 1:
+    if render_items:
         content = None
         if getattr(brain.aq_inner.aq_explicit, 'getRID', None) is not None:
             obj = brain.getObject()
@@ -154,17 +159,29 @@ for brain in brains:
             if getContent is not None:
                 content = getContent()
 
-        render = getattr(content, 'render', None)
-        if render is not None:
-            # render the document by cluster (if specified)
-            try:
-                rendered = render(proxy=obj, cluster=kw.get('cluster_id'))
-            except ValueError:
-                pass
+        renderable = 1
+        # check whether the cluster exists.
+        # XXX: this could be done in CPSDocument.FlexibleTypeInformation.py
+        if cluster_id:
+            ti =  content.getTypeInfo()
+            if ti is None:
+                continue
+            renderable = 0
+            for cluster in ti.getProperty('layout_clusters'):
+                cl, v = cluster.split(':')
+                if cl == cluster_id:
+                    renderable = 1
+                    break
+
+        if renderable:
+            render = getattr(content, 'render', None)
+            if render is not None:
+                # render the document by cluster (if specified)
+                rendered = render(proxy=obj, cluster=cluster_id)
 
     # default item presentation (summary of description)
     if not rendered:
-        if kw.get('display_description'):
+        if display_description:
             description = brain['Description']
             max_words = int(kw.get('max_words', 20))
             if max_words > 0:

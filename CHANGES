@@ -14,3 +14,4 @@ New internal features:
 - optimized the portlets tool notify_event() method by not fetching the
   content of the notification object.
 - using cluster 'metadata' instead of layout 'metadata'
+- a layout cluster can be specified in the Content Portlet for rendering items.
