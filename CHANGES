@@ -11,6 +11,7 @@ New features:
                     change the current language
 - Implementation of an Image widget
 - FileDownloaderPatch for File / Image widgets
+- Navigation portlet: implementation of a 'Vertical breadcumbs menu' display.
 Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves
