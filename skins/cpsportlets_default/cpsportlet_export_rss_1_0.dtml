@@ -44,6 +44,9 @@
              <dtml-if "dc.has_key('coverage')">
                <dc:coverage><dtml-var "dc['coverage']"></dc:coverage>
              </dtml-if>
+             <dtml-if "dc.has_key('rights')">
+               <dc:rights><dtml-var "dc['rights']"></dc:rights>
+             </dtml-if>
            </dtml-let>
          </dtml-if>
        </item>
