@@ -24,6 +24,7 @@ Bug fixes:
   and when it contains a 'timeout:...' custom cache parameter.
 - portlet visibility: some invisible portlets were displayed.
 - custom cache parameters are reset for global portlets too.
+- getFolderItems.py did not work behind virtual hosts
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the

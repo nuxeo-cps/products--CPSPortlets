@@ -6,7 +6,7 @@ if context_is_portlet:
     context_obj = context.getLocalFolder()
 
 if context_rpath:
-    context_obj = context.restrictedTraverse(base_url + context_rpath, default=None)
+    context_obj = context.restrictedTraverse(context_rpath, default=None)
 
 if context_obj is None:
     return []
@@ -20,16 +20,17 @@ while 1:
     if obj.isPrincipiaFolderish:
         bmf = obj
         break
-    parent = obj.aq_parent
+    parent = obj.aq_parent.aq_inner
     if not obj or parent == obj:
         break
     obj = parent
 if bmf is None:
     bmf = folder
 
+
 mtool = context.portal_membership
 checkPerm = mtool.checkPermission
-if not checkPerm( 'List folder contents', bmf):
+if not checkPerm('List folder contents', bmf):
     return []
 
 portal_types = context.portal_types
@@ -47,6 +48,7 @@ for object in bmf.objectValues():
         continue
     if getattr(object, 'view', None) is None:
         continue
+
 
     # skip documents if show_docs is not set
     ptype = getattr(object, 'portal_type', None)
