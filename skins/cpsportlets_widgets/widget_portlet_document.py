@@ -30,7 +30,19 @@ if getContent is not None:
 
     # render the document by cluster (if specified)
     if ds.has_key('cluster_id'):
-        rendered = render(proxy=context_obj, cluster=ds['cluster_id'])
+        cluster_id = ds['cluster_id']
+        # check whether the cluster exists.
+        # XXX: this could be done in CPSDocument.FlexibleTypeInformation.py
+        if ds.get('cluster_no_fallback'):
+            found = 0
+            for cluster in ti.getProperty('layout_clusters'):
+                cl, v = cluster.split(':')
+                if cl == cluster_id:
+                    found = 1
+                    break
+            if not found:
+                return ''
+        rendered = render(proxy=context_obj, cluster=cluster_id)
     else:
         rendered = render(proxy=context_obj)
 

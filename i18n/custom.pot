@@ -302,6 +302,9 @@ msgstr ""
 msgid "cpsportlets_document_cluster_id_label"
 msgstr ""
 
+msgid "cpsportlets_document_render_cluster_no_fallback_label"
+msgstr ""
+
 msgid "cpsportlet_rot_image_nb_images_label"
 msgstr ""
 

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-02-26 17:19default\n"
+"POT-Creation-Date: 2005-03-06 16:00default\n"
 "PO-Revision-Date: 2005-01-25 17:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -385,6 +385,10 @@ msgstr "Visualizza la renderizzazione di un metodo (.zpt, .py, etc.)"
 #, fuzzy
 msgid "cpsportlets_document_cluster_id_label"
 msgstr "Identificativi di layout:"
+
+#, fuzzy
+msgid "cpsportlets_document_render_cluster_no_fallback_label"
+msgstr "Genera un elenco dei risultati ?"
 
 msgid "cpsportlet_rot_image_nb_images_label"
 msgstr "Numero di immagini in rotazione"

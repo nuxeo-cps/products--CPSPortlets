@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2005-02-26 17:19default\n"
+"POT-Creation-Date: 2005-03-06 16:00default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -371,6 +371,9 @@ msgstr "Displays a rendered method (.zpt, .py, etc.)"
 
 msgid "cpsportlets_document_cluster_id_label"
 msgstr "Cluster ID"
+
+msgid "cpsportlets_document_render_cluster_no_fallback_label"
+msgstr "Render the document only if the specified cluster exists"
 
 msgid "cpsportlet_rot_image_nb_images_label"
 msgstr "Number of images to rotate between"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-02-27 19:35default\n"
+"POT-Creation-Date: 2005-03-06 16:00default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -366,6 +366,9 @@ msgstr "En Portlet med anpassat innehåll (.zpt, .py, etc.)"
 msgid "cpsportlets_document_cluster_id_label"
 msgstr "Layoutgrupp ID"
 
+msgid "cpsportlets_document_render_cluster_no_fallback_label"
+msgstr "Visa endast denna layoutgrupp"
+
 msgid "cpsportlet_rot_image_nb_images_label"
 msgstr "Antal bilder att växla mellan"
 
@@ -413,7 +416,7 @@ msgid "cpsportlets_common_disable_override_label"
 msgstr "Skydda denna Portlet från att ersättas?"
 
 msgid "cpsportlets_document_render_container_label"
-msgstr "Visa mappen ovanför"
+msgstr "Visa närmast ovanliggande mapp"
 
 msgid "cpsportlets_navigation_end_depth_label"
 msgstr "Stoppdjup"
