@@ -143,9 +143,6 @@ class CPSPortlet(CPSDocument):
         """
 
         params = []
-        # i18n
-        if self.isI18n():
-            params.append('lang')
 
         # explicit custom cache parameters
         if getattr(aq_base(self), 'custom_cache_params', None) is not None:
@@ -671,13 +668,6 @@ class CPSPortlet(CPSDocument):
             self.edit(slot=slot_name)
             return 0
         return 1
-
-    #################################################################
-    security.declarePublic('iI18n')
-    def isI18n(self):
-        """Return True if the portlet's content ought to be translated.
-        """
-        return self.i18n
 
     #################################################################
 
