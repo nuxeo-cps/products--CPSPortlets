@@ -1,6 +1,6 @@
 <tal:block define="ds options/datastructure;
                    display ds/display;
-                   context python: request.get('context_obj', here);
+                   context nocall:options/context_obj|here;
                    context_url python: context.absolute_url(1);
                    breadcrumb_set python: request.get('breadcrumb_set');
                    breadcrumbsItems python: context.getBreadCrumbs(url=context_url, breadcrumb_set=breadcrumb_set)">

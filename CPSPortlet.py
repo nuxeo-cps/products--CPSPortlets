@@ -43,7 +43,7 @@ from Products.CPSDocument.CPSDocument import CPSDocument
 from CPSPortletsPermissions import ManagePortlets
 from PortletGuard import PortletGuard
 
-_marker = None
+_marker = []
 
 class CPSPortlet(CPSDocument):
     """ CPS Portlet
@@ -101,29 +101,24 @@ class CPSPortlet(CPSDocument):
     #################################################################
     # RAM Cache
     #################################################################
-    security.declarePublic('getCustomCacheIndex')
-    def getCustomCacheIndex(self, REQUEST=None):
-        """Returns the custom RAM cache index as a tuple (var1, var2, ...)
+    security.declarePublic('getCustomCacheParams')
+    def getCustomCacheParams(self):
+        """Returns the custom cache parameters.
         """
 
-        if REQUEST is None:
-            REQUEST = self.REQUEST
-
-        index = ()
-
+        params = []
         # i18n
         if self.isI18n():
-            # XXX for testing purposes only
-            # rewrite this in a more generic way
-            index += ('i18n' + REQUEST.get('cpsskins_language', 'en'), )
-        return index
+            params.append('lang')
+
+        return params
 
     security.declarePublic('getCacheParams')
     def getCacheParams(self):
         """Get the cache parameters that will be used to compute the
            cache index.
         """
-        return self.cache_params
+        return self.cache_params[:]
 
     security.declarePrivate('_setCacheParams')
     def _setCacheParams(self, cache_params=[]):
@@ -158,40 +153,74 @@ class CPSPortlet(CPSDocument):
         if REQUEST is None:
             REQUEST = self.REQUEST
 
-        context = REQUEST.get('context_obj', self)
-        folder_url = context.absolute_url(1)
-        # XXX This should be moved elsewhere !!!
-        param_dict = {
-            'url': REQUEST.get('cpsskins_url'),
-            'folder': folder_url,
-            'user': REQUEST.get('AUTHENTICATED_USER'),
-        }
+        context = kw.get('context_obj')
 
-        # custom cache index
-        index = self.getCustomCacheIndex()
-        # cache parameters
-        for param in self.getCacheParams():
-            if param == 'portal type':
-                index += (param + context.getTypeInfo().getId(), )
-            if param == 'wf_create':
+        params = self.getCacheParams()
+        custom_params = self.getCustomCacheParams()
+        params.extend(custom_params)
+
+        index = ()
+        for param in params:
+            index_string = ''
+
+            # current user
+            if param == 'user':
+                index_string = str(REQUEST.get('AUTHENTICATED_USER'))
+
+            # XXX CPSSkins dependency
+            # current language
+            elif param == 'lang':
+                index_string = REQUEST.get('cpsskins_language', 'en')
+
+            # XXX CPSSkins dependency
+            # current url
+            elif param == 'url':
+                index_string = REQUEST.get('cpsskins_url')
+
+            # XXX CPSSkins dependency
+            # CMF Actions
+            elif param == 'actions':
+                cmf_actions = REQUEST.get('cpsskins_cmfactions')
+                index_string = md5.new(str(cmf_actions)).hexdigest()
+
+            # XXX CPSSkins dependency
+            # Workflow actions
+            elif param == 'wf_actions':
+                cmf_actions = REQUEST.get('cpsskins_cmfactions')
+                wf_actions = cmf_actions.get('workflow', None)
+                if wf_actions is not None:
+                    index_string = md5.new(str(wf_actions)).hexdigest()
+
+            # current folder
+            elif param == 'folder':
+                context = kw.get('context_obj')
+                index_string = context.absolute_url(1)
+
+            # portal type
+            elif param == 'portal type':
+                ti = context.getTypeInfo()
+                if ti is not None:
+                    index_string = ti.getId()
+
+            # Workflow actions
+            elif param == 'wf_create':
                 wf_tool = getToolByName(self, 'portal_workflow')
                 types_allowed_by_wf = wf_tool.getAllowedContentTypes(context)
-                index += (param + md5.new(str(types_allowed_by_wf)).hexdigest(), )
-            # we use the dict key as a prefix to make the 
-            # index entries unique.
-            if not param_dict.has_key(param):
-                continue
-            index += (param + str(param_dict[param]), )
+                index_string = md5.new(str(types_allowed_by_wf)).hexdigest()
+
+            if index_string:
+                index += (param + '_' + index_string,)
+
         return index
 
     security.declarePublic('render_cache')
     def render_cache(self, REQUEST=None, **kw):
-        """Renders the cached version of the portlet."""
+        """Renders the cached version of the portlet.
+        """
 
         now = time.time()
         portlet_path = self.getPhysicalPath()
         index = (portlet_path, ) + self.getCacheIndex(**kw)
-
         ptltool = getToolByName(self, 'portal_cpsportlets')
         cache = ptltool.getPortletCache()
         last_cleanup = cache.getLastCleanup(id=portlet_path)
@@ -282,7 +311,7 @@ class CPSPortlet(CPSDocument):
     def getVisibilityRange(self):
         """Visibility range for this portlet
         """
-        return aq_base(self).visibility_range
+        return self.visibility_range[:]
 
     security.declareProtected(ManagePortlets, 'setVisibilityRange')
     def setVisibilityRange(self, range):

@@ -53,7 +53,7 @@ class CPSBreadcrumbsWidget(CPSWidget):
         if meth is None:
             raise RuntimeError("Unknown Render Method %s for widget type %s"
                                % (render_method, self.getId()))
-        return meth(mode=mode, datastructure=datastructure)
+        return meth(mode=mode, datastructure=datastructure, **kw)
 
 InitializeClass(CPSBreadcrumbsWidget)
 
