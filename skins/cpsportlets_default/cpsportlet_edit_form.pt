@@ -53,7 +53,8 @@
       <tal:block i18n:translate="_Edit_">Edit</tal:block> 
       "<tal:block replace="here/title_or_id" />"
 
-      <tal:block define="folder here/getLocalFolder">
+      <tal:block define="folder here/getLocalFolder|nothing"
+                 condition="folder">
         <tal:block i18n:translate="cpsportlets_located_in_the_folder">located in the folder</tal:block> 
         "<tal:block replace="folder/title_or_id" />"
       </tal:block>
