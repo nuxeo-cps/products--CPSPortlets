@@ -294,12 +294,11 @@ class PortletsTool(UniqueObject, PortletsContainer):
     security.declareProtected(View, 'movePortlet')
     def movePortlet(self, portlet=None,
                     src_folder=None, dest_folder=None,
-                    src_slot=None, src_ypos=0,
                     dest_slot=None, dest_ypos=0, **kw):
         """Move portlet
            parameters: portlet,
                        src_folder, dest_folder,
-                       src_slot, src_ypos, dest_slot, dest_ypos,
+                       dest_slot, dest_ypos,
            Returns: the moved portlet.
         """
 
@@ -307,10 +306,10 @@ class PortletsTool(UniqueObject, PortletsContainer):
             return
         if dest_folder is None:
             return
-        if dest_slot is None:
-            return
         if portlet is None:
             return
+        if dest_slot is None:
+            dest_slot = portlet.getSlot()
 
         if not _checkPermission(ManagePortlets, src_folder) or \
             not _checkPermission(ManagePortlets, dest_folder):
@@ -318,7 +317,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 "You are not allowed to move portlets from %s to %s" %(
                 src_folder.absolute_url(), dest_folder.absolute_url() ))
 
-        src_ypos = int(src_ypos)
         dest_ypos = int(dest_ypos)
 
         if dest_folder != src_folder:
