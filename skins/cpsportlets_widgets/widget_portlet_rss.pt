@@ -13,14 +13,17 @@
   <tal:block condition="not:export">
     <ul class="cpsskinsMenu">
       <tal:block repeat="item rssitems">
-        <li tal:define="item_url item/url">
+        <li tal:define="item_url item/url;
+                        item_description item/description">
           <a i18n:translate=""
           tal:attributes="href item_url">
-            <tal:block content="item/title" /><br/>
-            <tal:block condition="python: int(display_description)"
-            content="item/description" />
-            <tal:block condition="link_string"
-            content="structure link_string" />
+            <strong tal:content="item/title" />
+            <p>
+              <tal:block condition="python: int(display_description)"
+              content="item_description" />
+              <tal:block condition="python: link_string and item_description"
+              content="structure link_string" />
+            </p>
           </a>
         </li>
       </tal:block>
