@@ -854,7 +854,7 @@ class CPSPortlet(CPSDocument):
                 continue
             data[k] = v
 
-        return data
+        return data.items()
 
     #################################################################
     # Private
