@@ -262,3 +262,6 @@ msgstr ""
 
 msgid "w__imagelink"
 msgstr ""
+
+msgid "cpsportlets_nav_display_site_map_label"
+msgstr ""

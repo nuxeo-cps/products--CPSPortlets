@@ -95,4 +95,17 @@
     </tal:block>
   </tal:block>
 
+  <tal:block condition="python: display == 'site_map'">
+    <tal:block
+     define="folderItems python: context.getNavigationItems(context_rpath=context_rpath, context_obj=context, contextual=0, expand=1, display_icons=1)">
+      <p tal:repeat="item folderItems">
+        <a href="" alt=""
+         tal:attributes="href item/url; style string:padding-left: ${item/depth}em">
+          <img src="" tal:attributes="src item/icon" />
+          <span tal:content="item/title" />
+        </a>
+      </p>
+    </tal:block>
+  </tal:block>
+
 </tal:block>
