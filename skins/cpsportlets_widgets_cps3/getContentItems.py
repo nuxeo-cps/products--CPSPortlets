@@ -222,7 +222,7 @@ for brain in brains:
                 value = meth()
             else:
                 value = meth
-            if not value:
+            if not value or value is 'None':
                 continue
             if not isinstance(value, str):
                 value = ', '.join(value)
