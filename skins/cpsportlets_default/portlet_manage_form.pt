@@ -7,7 +7,9 @@
         <span i18n:translate="cpsportlets_install_cpsskins">To manage portlets please install CPSSkins.</span>
       </tal:block>
       <tal:block condition="manage_url">
-        <tal:redirect define="response request/RESPONSE; dummy python:response.redirect(manage_url.absolute_url())" />
+        <tal:redirect define="response request/RESPONSE;
+         redirect_url string:${here/absolute_url}/cpsskins_portlet_manage_form;
+         dummy python:response.redirect(redirect_url)" />
       </tal:block>
     </metal:block>
   </metal:block>
