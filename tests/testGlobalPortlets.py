@@ -30,6 +30,12 @@ class TestPortletsAsRoot(TestPortlets):
         ptltool.createPortlet(ptype_id='Dummy Portlet')
         self.assert_(len(ptltool.items()) == 1)
 
+    def test_render(self):
+        ptltool = self.ptltool
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
+        portlet = getattr(ptltool, portlet_id)
+        self.assert_(portlet.render())
+
     def test_isCPSPortlet(self):
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
@@ -57,12 +63,26 @@ class TestPortletsAsRoot(TestPortlets):
         portlet = getattr(aq_base(ptltool), portlet_id)
         self.assert_(portlet.getSlot() == 'any slot')
 
+    def test_setSlot(self):
+        ptltool = self.ptltool
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
+        portlet = getattr(aq_base(ptltool), portlet_id)
+        portlet.setSlot('any slot')
+        self.assert_(portlet.slot == 'any slot')
+
     def test_getOrder(self):
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
                                            order=3)
         portlet = getattr(aq_base(ptltool), portlet_id)
         self.assert_(portlet.getOrder() == 3)
+
+    def test_setOrder(self):
+        ptltool = self.ptltool
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
+        portlet = getattr(aq_base(ptltool), portlet_id)
+        portlet.setOrder(4)
+        self.assert_(portlet.order == 4)
 
 def test_suite():
     suite = unittest.TestSuite()
