@@ -304,7 +304,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def getPortletCache(self, create=0):
         """Returns the Portlet RAM cache object"""
 
-        cacheid = PORTLET_RAMCACHE_ID
+        cacheid = '_'.join((PORTLET_RAMCACHE_ID,) + \
+                            self.getPhysicalPath()[1:-1])
         try:
             return self.caches[cacheid]
         except KeyError:
