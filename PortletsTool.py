@@ -252,10 +252,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """Move portlet
            parameters: src_slot, src_ypos, dest_slot, dest_ypos,
         """
-
         if not _checkPermission(ManagePortlets, context):
             raise Unauthorized(
-                "You are not allowed to delete portlets within %s" %(
+                "You are not allowed to move portlets inside %s" %(
                 context.absolute_url()))
 
         src_ypos = int(src_ypos)
@@ -264,8 +263,18 @@ class PortletsTool(UniqueObject, PortletsContainer):
             return
         if portlet is None:
             return
-
         self._insertPortlet(portlet=portlet, slot=dest_slot, order=dest_ypos)
+
+    security.declareProtected(View, 'insertPortlet')
+    def insertPortlet(self, portlet=None, slot=None, order=0, **kw):
+        """ Insert an existing portlet inside a slot at a given order.
+        """
+        if not _checkPermission(ManagePortlets, portlet):
+            raise Unauthorized(
+                "You are not allowed to modify %s" %(
+                portlet.absolute_url()))
+
+        self._insertPortlet(portlet=portlet, slot=slot, order=order)
 
     #
     # Private
