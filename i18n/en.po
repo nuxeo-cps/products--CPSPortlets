@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-10-03 20:04default\n"
+"POT-Creation-Date: 2004-10-18 15:51default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -106,6 +106,9 @@ msgstr "Language portlet"
 
 msgid "portal_type_NavigationPortlet_title"
 msgstr "Navigation portlet"
+
+msgid "portal_type_DocumentPortlet_title"
+msgstr "Document portlet"
 
 msgid "action_portlets"
 msgstr "Manage portlets"

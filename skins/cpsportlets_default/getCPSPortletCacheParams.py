@@ -12,6 +12,7 @@ cache_params = {
     'Language Portlet': ['object:path,langs', 'current_lang'],
     'Image Portlet': [],
     'Navigation Portlet': ['no-cache'],
+    'Document Portlet': ['no-cache'],
 }
 
 return cache_params

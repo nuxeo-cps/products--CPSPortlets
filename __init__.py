@@ -42,6 +42,7 @@ import PortletWidgets.ActionsWidget
 import PortletWidgets.ContentWidget
 import PortletWidgets.LanguageWidget
 import PortletWidgets.NavigationWidget
+import PortletWidgets.DocumentWidget
 
 contentClasses = (
     CPSPortlet.CPSPortlet,

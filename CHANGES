@@ -18,6 +18,7 @@ New features:
   a portlet container if it does not already exist.
 - API: added 'src_folder' and 'dest_folder' parameters to movePortlet()
   to move portlets between different folders.
+- Document portlet (renders a CPSDocument)
 Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves

@@ -56,6 +56,9 @@ msgstr ""
 msgid "portal_type_NavigationPortlet_title"
 msgstr ""
 
+msgid "portal_type_DocumentPortlet_title"
+msgstr ""
+
 msgid "action_portlets"
 msgstr ""
 

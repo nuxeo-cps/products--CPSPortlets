@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-10-03 20:04default\n"
+"POT-Creation-Date: 2004-10-18 15:51default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -102,6 +102,9 @@ msgid "portal_type_LanguagePortlet_title"
 msgstr ""
 
 msgid "portal_type_NavigationPortlet_title"
+msgstr ""
+
+msgid "portal_type_DocumentPortlet_title"
 msgstr ""
 
 msgid "action_portlets"
