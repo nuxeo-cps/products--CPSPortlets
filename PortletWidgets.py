@@ -36,8 +36,8 @@ class PortletDummyWidget(CPSStringWidget):
 
     meta_type = "CPS Portlet Dummy Widget"
 
-    def render(self, mode, datastructure):
-        """Render in mode from datastrucuture
+    def render(self, mode, datastructure, **kw):
+        """Render in mode from datastructure
         """
         return "<h1>Dummy portlet</h1>"
 
