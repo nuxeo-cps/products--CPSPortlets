@@ -69,6 +69,7 @@ class CPSPortletsInstaller(CPSInstaller):
         self.installPortletLayouts()
         self.installFlexibleTypes()
         self.setupTranslations()
+        self.rebuildPortlets()
         self.doSubscribeToEventServiceTool()
         self.finalize()
         self.log("End of Install/Update : CPSPortlets Product")
@@ -167,6 +168,15 @@ class CPSPortletsInstaller(CPSInstaller):
             all_ptypes.update(ptype)
 
         self.verifyFlexibleTypes(all_ptypes)
+
+
+    def rebuildPortlets(self):
+        """Rebuild all portlets to make sure that their schema
+           definitions is up-to-date"""
+
+        self.log("Rebuilding all portlets...")
+        ptltool = getToolByName(self.portal, 'portal_cpsportlets')
+        ptltool.rebuild_portlets(REQUEST=None)
 
     def doSubscribeToEventServiceTool(self):
         """Subscribe to the event service tool
