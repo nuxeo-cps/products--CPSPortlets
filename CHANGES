@@ -18,6 +18,8 @@ Bug fixes:
 - fine-tuned cache parameters
 - the 'cache_timeout' portlet attribute was not updated according to the
   specified cache parameter.
+- removed useless 'i18n' attribute for language-dependent portlets.
+  These parameters are set site-wide in 'getPortletCacheParams.py'
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the
