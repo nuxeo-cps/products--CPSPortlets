@@ -1016,16 +1016,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
             return
 
         object_path = '/' + infos['rpath']
-
-        # XXX do we have to fetch the proxy's content to get the portal type?
-        getContent = getattr(object.aq_inner.aq_explicit, 'getContent', None)
-        if getContent is None:
-            return
-        content = getContent()
-        if content is None:
-            return
-
-        portal_type = getattr(content, 'portal_type', None)
+        portal_type = getattr(object.aq_inner.aq_explicit, 'portal_type', None)
 
         # expire the portlets interested in the event
         # ZEO-aware invalidation.
@@ -1041,7 +1032,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 self.invalidateCacheEntriesByUser(user)
 
     def listPortletsInterestedInEvent(self, event_id, folder_path, portal_type):
-        """return the list of all portlets interested about an event given its
+        """Return the list of all portlets interested in an event given its
         event_id
         """
 

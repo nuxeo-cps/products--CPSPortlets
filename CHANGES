@@ -9,4 +9,5 @@ Bug fixes:
 -
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- optimized the portlets tool notify_event() method by not fetching the
+  content of the notification object.
