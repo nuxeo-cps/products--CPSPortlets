@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-11-19 10:16default\n"
+"POT-Creation-Date: 2004-11-20 12:31default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -240,6 +240,9 @@ msgid "cpsportlets_navigation_rel_depth_label"
 msgstr ""
 
 msgid "cpsportlets_navigation_show_docs_label"
+msgstr ""
+
+msgid "cpsportlets_navigation_show_icons_label"
 msgstr ""
 
 msgid "cpsportlets_translation_deleted_psm"

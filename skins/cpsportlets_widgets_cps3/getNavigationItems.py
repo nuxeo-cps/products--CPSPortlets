@@ -18,7 +18,6 @@ end_depth = kw.get('end_depth', 0)
 contextual = int(kw.get('contextual', 0)) == 1
 
 # display icons
-display_icons = int(kw.get('display_icons', 0)) == 1
 
 # expand all nodes?
 kw['expand_all'] = int(kw.get('expand', 0)) == 1
@@ -44,8 +43,6 @@ delta = 0
 if contextual:
     delta = len(context_rpath.split('/')) -1
 
-# cache for icons
-icons = {}
 portal_types = context.portal_types
 renderIcon = context.portal_cpsportlets.renderIcon
 
@@ -56,12 +53,6 @@ for tree in nav.getTree():
     depth = object['depth'] - delta
     if depth < 0:
         continue
-
-    if display_icons:
-        if not icons.has_key(ptype):
-            icons[ptype] = base_url + portal_types[ptype].getIcon()
-    else:
-        icons[ptype] = ''
 
     selected = (rpath == context_rpath)
 

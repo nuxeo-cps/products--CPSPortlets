@@ -63,7 +63,7 @@
 
   <tal:block condition="python: display == 'subfolder_contents'">
     <tal:block
-     define="folderItems python: context.getNavigationItems(context_rpath=context_rpath, context_obj=context, start_depth=1, end_depth=2, contextual=1, expand=1, display_icons=1)">
+     define="folderItems python: context.getNavigationItems(context_rpath=context_rpath, context_obj=context, start_depth=1, end_depth=2, contextual=1, expand=1)">
        <tal:block repeat="item folderItems">
          <tal:block tal:define="depth item/depth">
            <p tal:condition="python: depth == 1">
@@ -82,14 +82,22 @@
 
   <tal:block condition="python: display == 'navigation_tree'">
     <tal:block
-     define="contextual ds/contextual;
-             folderItems python: context.getNavigationItems(context_rpath=context_rpath, context_obj=context, contextual=contextual)">
+     define="show_icons ds/show_icons;
+             show_icons python: int(show_icons);
+             contextual ds/contextual;
+             folderItems python: context.getNavigationItems(context_rpath=context_rpath, context_obj=context, contextual=contextual);
+             linkclass python: show_icons and 'noicon' or None">
       <ul>
         <li tal:repeat="item folderItems"
         tal:attributes="class python: item['selected'] and 'selected' or None">
-          <a tal:content="item/title"
-           tal:attributes="href item/url;
-                           style string: margin-left:${item/depth}em" />
+          <a tal:define="style string:margin-left:${item/depth}em"
+             tal:attributes="href item/url;
+                             style style;
+                             class linkclass">
+            <tal:block condition="show_icons"
+             content="structure item/icon_tag" />
+            <tal:block content="item/title" />
+          </a>
         </li>
       </ul>
     </tal:block>
@@ -97,14 +105,23 @@
 
   <tal:block condition="python: display == 'site_map'">
     <tal:block
-     define="folderItems python: context.getNavigationItems(context_rpath=context_rpath, context_obj=context, contextual=0, expand=1, display_icons=1)">
-      <p tal:repeat="item folderItems">
-        <a href="" alt=""
-         tal:attributes="href item/url; style string:padding-left: ${item/depth}em">
-          <tal:block content="structure item/icon_tag" />
-          <span tal:content="item/title" />
-        </a>
-      </p>
+     define="show_icons ds/show_icons;
+             show_icons python: int(show_icons);
+             folderItems python: context.getNavigationItems(context_rpath=context_rpath, context_obj=context, contextual=0, expand=1);
+             linkclass python: show_icons and 'noicon' or None">
+      <ul>
+        <li tal:repeat="item folderItems"
+        tal:attributes="class python: item['selected'] and 'selected' or None">
+          <a tal:define="style string:margin-left:${item/depth}em"
+             tal:attributes="href item/url;
+                             style style;
+                             class linkclass">
+            <tal:block condition="show_icons"
+             content="structure item/icon_tag" />
+            <tal:block content="item/title" />
+          </a>
+        </li>
+      </ul>
     </tal:block>
   </tal:block>
 
