@@ -59,6 +59,8 @@ ESI_CODE = """
 </esi:try>
 """
 
+VISIBILITY_VOC = 'cpsportlets_visibility_range_voc'
+
 class CPSPortlet(CPSDocument):
     """ CPS Portlet
     This is a CPSPortlet child base class for portlets
@@ -619,6 +621,18 @@ class CPSPortlet(CPSDocument):
             except ValueError:
                 pass
         return 1
+
+    security.declarePublic('VisibilityRangeMsgid')
+    def getVisibilityRangeMsgid(self):
+        """Return the visibility range msgid for this portlet
+        """
+
+        vtool = getToolByName(self, 'portal_vocabularies')
+        vrange = self.getVisibilityRange()
+        vrange_keyid = '%s-%s' % (vrange[0], vrange[1])
+
+        vrangevoc = vtool[VISIBILITY_VOC]
+        return vrangevoc.getMsgid(vrange_keyid)
 
     #################################################################
 

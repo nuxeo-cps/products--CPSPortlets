@@ -54,3 +54,5 @@ New internal features:
   display the first words of the items' title with an ellipsis (...).
 - added a 'baseurl' cache parameter.
 - added a 'display_hidden_folders' parameter (default: on) in getFolderItems()
+- added a getVisibilityRangeMsgid() method that returns the msgid of a
+  portlet's visiblity range.
