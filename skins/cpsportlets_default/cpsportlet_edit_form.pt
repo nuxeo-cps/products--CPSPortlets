@@ -39,10 +39,11 @@
     <div tal:condition="not:error"
          tal:replace="structure python: here.render(layout_mode='edit', context_obj=here)" />
 
-    <div style="text-align: center">
-      <input class="standalone" type="submit" onclick="window.opener.location.reload();window.close()"
+    <form action="" style="text-align: center">
+      <input class="standalone" type="submit" 
+       onclick="window.opener.location.reload();window.close()"
        value="button_close" i18n:attributes="value" />
-    </div>
+    </form>
   </metal:block>
 
 </metal:block>
