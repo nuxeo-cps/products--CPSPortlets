@@ -29,6 +29,9 @@ msgstr ""
 msgid "portal_type_DummyPortlet_title"
 msgstr ""
 
+msgid "portal_type_TextPortlet_title"
+msgstr ""
+
 msgid "portal_type_SearchPortlet_title"
 msgstr ""
 

@@ -133,6 +133,7 @@ class CPSPortletsInstaller(CPSInstaller):
         """Install all portlet specific schemas."""
 
         define_schemas = (self.portal.getPortletCommonSchema(),
+                          self.portal.getTextPortletSchema(),
                           self.portal.getSearchPortletSchema(),
                           self.portal.getInternalLinksPortletSchema(),
                           self.portal.getAddItemPortletSchema(),
@@ -150,6 +151,7 @@ class CPSPortletsInstaller(CPSInstaller):
         """Install all portlet specific layouts."""
 
         define_layouts = (self.portal.getPortletCommonLayout(),
+                          self.portal.getTextPortletLayout(),
                           self.portal.getDummyPortletLayout(),
                           self.portal.getSearchPortletLayout(),
                           self.portal.getInternalLinksPortletLayout(),
@@ -167,6 +169,7 @@ class CPSPortletsInstaller(CPSInstaller):
         """Install all portlet specific types."""
 
         define_types = (self.portal.getDummyPortletType(),
+                        self.portal.getTextPortletType(),
                         self.portal.getSearchPortletType(),
                         self.portal.getInternalLinksPortletType(),
                         self.portal.getAddItemPortletType(),
