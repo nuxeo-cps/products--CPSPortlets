@@ -311,7 +311,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
     #######################################################################
 
     security.declarePublic('getPortlets')
-    def getPortlets(self, context=None, slot=None, sort=1, override=1):
+    def getPortlets(self, context=None, slot=None, sort=1, override=1, **kw):
         """Return a list of portlets.
         """
 

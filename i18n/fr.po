@@ -405,10 +405,10 @@ msgid "cpsportlets_content_cluster_id_label"
 msgstr "Identifiant de 'cluster'"
 
 msgid "cpsportlets_common_slot_override_label"
-msgstr "Ecraser les portlets situés plus haut"
+msgstr "Surcharger les portlets situés plus haut"
 
 msgid "cpsportlets_common_disable_override_label"
-msgstr "Protéger ce portlet contre l'écrasement"
+msgstr "Protéger ce portlet contre le surchargement"
 
 msgid "cpsportlets_document_render_container_label"
 msgstr "Générer un rendu du conteneur"
