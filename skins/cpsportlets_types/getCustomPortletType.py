@@ -16,6 +16,7 @@ custom_portlet_type = {
     'cps_is_portalbox': False,
     'schemas': ('portlet_common', 'custom_portlet', 'common', 'metadata'),
     'layouts': ('portlet_common', 'custom_portlet'),
+    'layout_clusters': ('metadata:metadata',),
     'flexible_layouts': (),
     'storage_methods': (),
     'cps_is_portlet': True,

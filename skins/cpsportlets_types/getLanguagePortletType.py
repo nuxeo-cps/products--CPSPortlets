@@ -16,6 +16,7 @@ language_portlet_type = {
     'cps_is_portalbox': False,
     'schemas': ('portlet_common', 'language_portlet', 'common', 'metadata'),
     'layouts': ('portlet_common', 'language_portlet'),
+    'layout_clusters': ('metadata:metadata',),
     'flexible_layouts': (),
     'storage_methods': (),
     'cps_is_portlet': True,

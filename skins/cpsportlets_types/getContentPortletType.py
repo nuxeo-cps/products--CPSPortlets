@@ -15,6 +15,7 @@ content_portlet_type = {
     'cps_display_as_document_in_listing': False,
     'schemas': ('portlet_common', 'content_portlet', 'common', 'metadata'),
     'layouts': ('portlet_common', 'content_portlet'),
+    'layout_clusters': ('metadata:metadata',),
     'flexible_layouts': (),
     'storage_methods': (),
     'cps_is_portlet': True,

@@ -16,6 +16,7 @@ rss_portlet_type = {
     'cps_is_portalbox': False,
     'schemas': ('portlet_common', 'rss_portlet', 'common', 'metadata'),
     'layouts': ('portlet_common', 'rss_portlet'),
+    'layout_clusters': ('metadata:metadata',),
     'flexible_layouts': (),
     'storage_methods': (),
     'cps_is_portlet': True,
