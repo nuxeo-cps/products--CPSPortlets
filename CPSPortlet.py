@@ -31,7 +31,7 @@ import time
 import md5
 
 from types import ListType, IntType
-
+from zLOG import LOG, ERROR
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_inner, aq_parent, aq_base
 from AccessControl import ClassSecurityInfo
@@ -256,7 +256,7 @@ class CPSPortlet(CPSDocument):
         """
 
         cache_index = self.getCacheIndex(**kw)
-        # not cacheable
+        # the portlet is not cacheable.
         if cache_index is None:
             return self.render(**kw)
 
@@ -265,21 +265,52 @@ class CPSPortlet(CPSDocument):
         index = (portlet_path, ) + cache_index
         ptltool = getToolByName(self, 'portal_cpsportlets')
         cache = ptltool.getPortletCache()
+        # last_cleanup: the date when all the cache entries associated to the
+        # portlet were last removed from the cache
         last_cleanup = cache.getLastCleanup(id=portlet_path)
+        # cleanup_date: the portlet's cleanup date (ZEO-aware).
         cleanup_date = self.getCacheCleanupDate()
 
-        # ZEO
+        # remove all cache entries associated to this portlet.
+        # This will occur on all ZEO instances (lazily).
         if cleanup_date > last_cleanup:
             cache.delEntries(portlet_path)
 
         cache_entry = cache.getEntry(index)
+        # compare the cache entry creation date with the modification date
+        # of cached objects. The cache entry is considered invalid if any one
+        # of the cache objects were modified after the cache entry creation
+        # date.
+        if cache_entry is not None:
+            creation_date = cache_entry['date']
+            # using dict.get('objects') instead of dict['objects'] to get
+            # a copy of the cached objects.
+            for obj in cache_entry.get('objects'):
+                if obj._p_mtime < creation_date:
+                    continue
+                # the entry is not longer valid
+                cache_entry = None
+                break
+
+        # create / recreate the cache entry
         if cache_entry is None:
             rendered = self.render(**kw)
+
+            # current user
             if REQUEST is None:
                 REQUEST = self.REQUEST
             user = REQUEST.get('AUTHENTICATED_USER')
+
+            # XXX: get the list of cache objects.
+            cache_objects = []
+
+            # set the new cache entry
             cache.setEntry(index, {'rendered': rendered,
-                                   'user': user})
+                                   'user': user,
+                                   'date': time.time(),
+                                   'objects': cache_objects,
+                                  })
+        # use the existing cache entry
         else:
             rendered = cache_entry['rendered']
 

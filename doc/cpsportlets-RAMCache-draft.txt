@@ -214,12 +214,13 @@ The cache entries currently consist of:
 - the portlet's physical path
 - the cache index
 - the rendered portlet
+- the cache entry creation date
 - the name of the user for whom the entry has been created
 - a list of "reactive" objects (see below)
 
-in the form:
 { ((portlet1_path), (cache index)): {'rendered': rendered,
                                      'user': user,
+                                     'date': creation_date,
                                      'objects': [...],
                                     },
   ... }
@@ -240,16 +241,31 @@ in the form:
 
 => REACTIVE OBJECTS are stored for INVALIDATION purposes.
 
-   The list of objects that have been used to create the portlet's content are
-   stored in the cache. If any of these objects were to be affected by an
-   event then the cache entry should be invalidated.
+   METHOD A) The list of objects that have been used to create the portlet's
+   content are recorded in the cache. If any of these objects were to be
+   affected by an event then the cache entries associated to the portlet should
+   be invalidated.
 
    For instance, if the portlet is a "Breadcumbs portlet" and its content is
    "Workspaces > members", the objects <workspaces proxy folder> and
    <members proxy folder> will be stored in the cache as object reactive to
    events.
 
-   SCOPE: the invalidation of cache entries must propagate between all
+   SCOPE: global - the invalidation of cache entries must propagate between all
    ZEO instances.
 
    API: portlet.expireCache(), ...
+
+   --
+
+   METHOD B) When the portlet is rendered, we compare the modification date of
+   the cache objects with the cache entry creation date. If any of the cache
+   objects were modified after the cache entry creation date we consider
+   the cache entry as invalid and the portlet must be rendered again.
+
+   SCOPE: local - the invalidation concerns the cache entry which is being used
+   when rendering the portlet. The other cache entries associated to the
+   portlet are not affected.
+
+   API: see CPSPortlet.render_cache()
+
