@@ -83,6 +83,16 @@ class CPSPortletsInstaller(CPSInstaller):
         if self.portalHas('Localizer'):
             self.setupTranslations()
 
+        # portlet management screen
+        self.verifyAction('portal_actions',
+                id='portlets',
+                name='action_portlets',
+                action="string:${folder_url}/portlet_manage_form",
+                condition='member',
+                permission=(ManagePortlets,),
+                category='folder',
+                visible=1)
+
         self.rebuildPortlets()
         self.doSubscribeToEventServiceTool()
         self.finalize()
