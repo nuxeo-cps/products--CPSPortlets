@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-09-26 18:49default\n"
+"POT-Creation-Date: 2004-09-28 03:26default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -39,18 +39,18 @@ msgstr ""
 msgid "_Edit_"
 msgstr ""
 
-#.   <option value="">
+#.   <option disabled="" selected="selected" value="">
 #.         Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
 msgstr ""
 
-#.   <option selected="selected" value="">Change language</option>
+#.   <option disabled="" selected="selected" value="">Change language</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlet_change_language"
 msgstr ""
 
-#.   <option selected="selected" value="">Translate into ...</option>
+#.   <option disabled="" selected="selected" value="">Translate into ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlet_translate_into"
 msgstr ""
@@ -175,4 +175,10 @@ msgid "cpsportlets_language_action_translate_label"
 msgstr ""
 
 msgid "cpsportlets_language_action_change_label"
+msgstr ""
+
+msgid "portal_type_ImagePortlet_title"
+msgstr ""
+
+msgid "portal_type_ImagePortlet_title_description"
 msgstr ""

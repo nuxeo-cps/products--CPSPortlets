@@ -9,6 +9,8 @@ New features:
 - Portlet visibility: effective and expiration dates can be set on portlets.
 - Language portlet: translate the current document / folder.
                     change the current language
+- Implementation of an Image widget
+- FileDownloaderPatch for File / Image widgets
 Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves

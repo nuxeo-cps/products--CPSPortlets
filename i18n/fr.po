@@ -1,12 +1,13 @@
 # translation of fr.po to 
+# translation of fr.po to
 # Gettext Message File for default.
 # Your Name <your@email>, Year
 # Julien Anguenot <ja@nuxeo.com>, 2004.
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2004-09-26 18:49default\n"
-"PO-Revision-Date: 2004-09-06 18:03+0200\n"
+"POT-Creation-Date: 2004-09-28 03:26default\n"
+"PO-Revision-Date: 2004-09-28 03:28+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,18 +42,18 @@ msgstr ""
 msgid "_Edit_"
 msgstr "Edit"
 
-#.   <option value="">
+#.   <option disabled="" selected="selected" value="">
 #.         Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
 msgstr "Ajouter du contenu ..."
 
-#.   <option selected="selected" value="">Change language</option>
+#.   <option disabled="" selected="selected" value="">Change language</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlet_change_language"
 msgstr "Changer de langue ..."
 
-#.   <option selected="selected" value="">Translate into ...</option>
+#.   <option disabled="" selected="selected" value="">Translate into ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlet_translate_into"
 msgstr "Traduire en ..."
@@ -179,5 +180,9 @@ msgstr "Traduire"
 msgid "cpsportlets_language_action_change_label"
 msgstr "Changer de langue"
 
-#~ msgid "heading_portlet_manage_form"
-#~ msgstr "Gestion des portlets"
+msgid "portal_type_ImagePortlet_title"
+msgstr "Portlet Image"
+
+msgid "portal_type_ImagePortlet_title_description"
+msgstr "Portlet Image affiche une image"
+
