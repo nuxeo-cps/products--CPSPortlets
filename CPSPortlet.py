@@ -37,6 +37,13 @@ class CPSPortlet(CPSDocument):
     meta_type = 'CPS Portlet'
     portal_type = meta_type
 
+    def SearchableText(self):
+        """ We don't index CPS Portlets
+
+        No Searchable Text on here
+        """
+        return ""
+
 InitializeClass(CPSPortlet)
 
 def addCPSPortlet(container, id, REQUEST=None, **kw):
