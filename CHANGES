@@ -84,3 +84,4 @@ New internal features:
   is passed as a parameter.
 - added a javascript layout style (layout_portlet_js_) with unique CSS
   selector IDs assigned to widgets to show or hide block elements.
+- added a portlet visibility range widget
