@@ -139,11 +139,14 @@ class PortletsTool(UniqueObject, PortletsContainer):
             # Here it's within the tool
             destination = self
         else:
-            # We create the portlets container and we create the new portlet
-            # within this last.
             container_id = self.getPortletContainerId()
-            context.manage_addProduct['CPSPortlets'].addPortletsContainer(
-                id=container_id)
+
+            # We create the portlets container if it doesn't already exist
+            if container_id not in context.objectIds():
+                context.manage_addProduct['CPSPortlets'].addPortletsContainer(
+                    id=container_id)
+
+            # Get the portlets container from the context
             destination = getattr(context, container_id)
 
         return destination._createPortlet(ptype_id)
