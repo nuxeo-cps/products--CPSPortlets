@@ -30,7 +30,7 @@ This is a CPSDocument child base class for portlets
 import time
 import md5
 from random import randint
-from types import ListType, IntType, TupleType
+from types import ListType, IntType, TupleType, StringType
 from App.Common import rfc1123_date
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_inner, aq_parent, aq_base
@@ -159,7 +159,7 @@ class CPSPortlet(CPSDocument):
     def _setCacheParams(self, cache_params=[]):
         """Set the cache parameters
         """
-        if type(cache_params) == type([]):
+        if isinstance(cache_params, ListType):
             if self.cache_params != cache_params:
                 self.cache_params = cache_params
 
@@ -167,7 +167,7 @@ class CPSPortlet(CPSDocument):
     def _setJavaScript(self, javascript=''):
         """Set the javascript method.
         """
-        if type(javascript) == type(''):
+        if isinstance(javascript, StringType):
             if self.javascript != javascript:
                 self.javascript = javascript
 

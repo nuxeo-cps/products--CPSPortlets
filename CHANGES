@@ -58,6 +58,7 @@ Bug fixes:
 - moved the portlet visibility check code from _getFolderPortlets() 
   to getPortlets() and passing the correct context to _isPortletVisible()
 - The portlet visibility range is only displayed if the portlet is local.
+- The portlets' javascript method was not set correctly.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()
