@@ -331,3 +331,6 @@ msgstr ""
 
 msgid "cpsportlets_common_disable_override_label"
 msgstr ""
+
+msgid "cpsportlets_document_render_container_label"
+msgstr ""

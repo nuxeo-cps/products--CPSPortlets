@@ -14,7 +14,13 @@ if ti.getProperty('cps_is_portlet', 0):
 
 ds = kw['datastructure']
 
-getContent = getattr(context_obj.aq_explicit, 'getContent', None)
+# render the container
+render_obj = context_obj.aq_inner.aq_explicit
+if int(ds.get('render_container', 0)):
+    if not render_obj.isPrincipiaFolderish:
+        render_obj = context_obj.aq_parent.aq_inner
+
+getContent = getattr(render_obj, 'getContent', None)
 if getContent is not None:
     doc = getContent()
     # find the 'render' method

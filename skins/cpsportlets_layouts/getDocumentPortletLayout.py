@@ -34,15 +34,29 @@ document_portlet_layout = {
                 'size_max': 0,
             },
         },
+        'render_container': {
+            'type': 'CheckBox Widget',
+            'data': {
+                'fields': ('render_container',),
+                'label_edit': 'cpsportlets_document_render_container_label',
+                'is_i18n': True,
+                'hidden_layout_modes': ('view',),
+                'display_true': 'Yes',
+                'display_false': 'No',
+            },
+        },
+
     },
     'layout': {
         'style_prefix': 'layout_portlet_',
         'flexible_widgets': (),
-        'ncols': 1,
+        'validate_values_expr': '',
+        'ncols': 2,
         'rows': [
-            [{'widget_id': 'portlet', 'ncols': 1},
+            [{'widget_id': 'portlet', 'ncols': 2},
             ],
-            [{'widget_id': 'cluster_id', 'ncols': 1},
+            [{'widget_id': 'render_container', 'ncols': 1},
+             {'widget_id': 'cluster_id', 'ncols': 1},
             ],
         ],
     },
