@@ -1,4 +1,4 @@
-##parameters=context_obj=None, show_docs=None
+##parameters=context_obj=None, show_docs=None, max_title_words=0
 
 # XXX get base url from the request
 base_url = context.getBaseUrl()
@@ -52,9 +52,16 @@ for object in bmf.objectValues():
 
     # XXX TODO: Dublin Core effective / expiration dates
 
+    # title 
+    title = object.title_or_id()
+    if max_title_words > 0:
+        words = title.split(' ')
+        if len(words) > max_title_words:
+            title = ' '.join(words[:int(max_title_words)]) + ' ...'
+
     folder_items.append(
         {'url': '/' + object.absolute_url(relative=1),
-         'title': object.title_or_id(),
+         'title': title,
          'icon_tag': renderIcon(ptype, base_url, ''),
         })
 return folder_items

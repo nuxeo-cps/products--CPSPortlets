@@ -40,3 +40,5 @@ New internal features:
   (resp. TupleType => tuple, IntType => int, StringType => str)
 - Search portlet: the search prefix can be the folder inside which the
   portlet is physically located.
+- getFolderItems() takes an optional 'max_title_words' parameter to only
+  display the first words of the items' title with an ellipsis (...).
