@@ -80,7 +80,9 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
         for id in ttool.objectIds():
             fti = getattr(ttool, id)
             if getattr(fti, 'cps_is_portlet', 0) == 1:
-                returned.append(fti)
+                returned.append(id)
         return returned
+
+
 
 InitializeClass(PortletsTool)
