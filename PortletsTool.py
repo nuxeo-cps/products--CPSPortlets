@@ -574,7 +574,11 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         portlets = self.listAllPortlets()
         for portlet in portlets:
-            portlet._rebuild()
+            # Might be an error from the user For instance, it the user checked
+            # the isPortlet porperty within a 'regular' CPSDocument instance
+            # without using the CPSPortlet base class
+            if getattr(portlet, '_rebuild', 0):
+                portlet._rebuild()
 
         if REQUEST is not None:
             redirect_url = self.absolute_url()\
