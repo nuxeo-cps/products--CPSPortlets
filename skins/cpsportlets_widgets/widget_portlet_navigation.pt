@@ -1,20 +1,21 @@
 <tal:block define="utool nocall:here/portal_url;
                    ds options/datastructure;
                    display ds/display;
+                   show_docs ds/show_docs;
                    context nocall:options/context_obj|here;
                    context_url python: context.absolute_url(1);
                    context_rpath python: utool.getRelativeUrl(context)">
   <tal:block condition="python: display == 'vertical_breadcrumbs_menu'"
    define="rel_depth ds/rel_depth;
            trailItems python: context.getBreadcrumbsItems(url=context_url);
-           navItems python: context.getNavigationItems(context_obj=context, prefix=context_rpath, only_children=1);
+           folderItems python: context.getFolderItems(context_obj=context, show_docs=show_docs);
            trailItems python: trailItems[int(rel_depth):];
            depth python: len(trailItems)">
     <h1 style="margin:0" tal:condition="python: depth >= 1">
       <a tal:define="item python: trailItems[0]"
          tal:attributes="href item/url"
          tal:content="item/title" /><br/>
-      <tal:block tal:repeat="item navItems" tal:condition="python: depth == 1">
+      <tal:block tal:repeat="item folderItems" tal:condition="python: depth == 1">
         <br/><br/><a tal:content="item/title" tal:attributes="href item/url" />
       </tal:block>
     </h1>
@@ -22,7 +23,7 @@
       <a tal:define="item python: trailItems[1]"
          tal:attributes="href item/url"
          tal:content="item/title" /><br/>
-      <tal:block tal:repeat="item navItems" tal:condition="python: depth == 2">
+      <tal:block tal:repeat="item folderItems" tal:condition="python: depth == 2">
         <br/><br/><a tal:content="item/title" tal:attributes="href item/url" />
       </tal:block>
     </h2>
@@ -30,7 +31,7 @@
       <a tal:define="item python: trailItems[2]"
          tal:attributes="href item/url"
          tal:content="item/title" /><br/>
-      <tal:block tal:repeat="item navItems" tal:condition="python: depth == 3">
+      <tal:block tal:repeat="item folderItems" tal:condition="python: depth == 3">
         <br/><br/><a tal:content="item/title" tal:attributes="href item/url" />
       </tal:block>
     </h3>
@@ -39,7 +40,7 @@
         <a tal:define="item python: trailItems[level]"
            tal:attributes="href item/url"
            tal:content="item/title" /><br/>
-        <tal:block tal:repeat="item navItems" tal:condition="python: level == depth">
+        <tal:block tal:repeat="item folderItems" tal:condition="python: level == depth">
           <br/><br/><a tal:content="item/title" tal:attributes="href item/url" />
         </tal:block>
       </h4>

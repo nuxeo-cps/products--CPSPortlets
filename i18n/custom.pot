@@ -158,6 +158,9 @@ msgstr ""
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr ""
 
+msgid "cpsportlets_navigation_show_docs_label"
+msgstr ""
+
 msgid "cpsportlets_translation_deleted_psm"
 msgstr ""
 

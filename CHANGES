@@ -13,6 +13,7 @@ New features:
 - Implementation of an Image widget
 - FileDownloaderPatch for File / Image widgets
 - Navigation portlet: implementation of a 'Vertical breadcumbs menu' display.
+  added a 'show documents' option to show or hide documents.
 - API: added a getPortletContext() method that returns the portlet's context.
 - API: added a 'create=1' parameter in the getPortletContainer() method to create
   a portlet container if it does not already exist.
