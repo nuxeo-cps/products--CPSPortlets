@@ -293,22 +293,22 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security.declareProtected(View, 'movePortlet')
     def movePortlet(self, portlet=None,
-                    src_folder=None, dest_folder=None,
+                    dest_folder=None,
                     dest_slot=None, dest_ypos=0, leave=None, **kw):
         """Move portlet
            parameters: portlet,
-                       src_folder, dest_folder,
-                       dest_slot, dest_ypos,
+                       dest_folder, dest_slot, dest_ypos,
            if 'leave' is set to 1 the source portlet will be left in place.
            Returns: the moved portlet.
         """
 
-        if src_folder is None:
-            return
-        if dest_folder is None:
-            return
         if portlet is None:
             return
+
+        src_folder = portlet.getLocalFolder()
+        if dest_folder is None:
+            dest_folder = src_folder
+
         if dest_slot is None:
             dest_slot = portlet.getSlot()
 
