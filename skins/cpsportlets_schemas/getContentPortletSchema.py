@@ -1,5 +1,5 @@
 content_portlet_schema = {
-    'content': {
+    'search_type': {
         'type': 'CPS String Field',
         'data': {
             'default_expr': 'string:',
@@ -38,7 +38,25 @@ content_portlet_schema = {
     'max_items': {
         'type': 'CPS Int Field',
         'data': {
-            'default_expr': 'python:0',
+            'default_expr': 'python:1',
+            'is_searchabletext': False,
+            'acl_read_permissions': '',
+            'acl_read_roles': '',
+            'acl_read_expr': '',
+            'acl_write_permissions': '',
+            'acl_write_roles': '',
+            'acl_write_expr': '',
+            'read_ignore_storage': False,
+            'read_process_expr': '',
+            'read_process_dependent_fields': (),
+            'write_ignore_storage': False,
+            'write_process_expr': '',
+        },
+    },
+    'content': {
+        'type': 'CPS String Field',
+        'data': {
+            'default_expr': 'string:',
             'is_searchabletext': 0,
             'acl_read_permissions': '',
             'acl_read_roles': '',
@@ -53,10 +71,10 @@ content_portlet_schema = {
             'write_process_expr': '',
         },
     },
-    'search_type': {
-        'type': 'CPS String Field',
+    'sort_reverse': {
+        'type': 'CPS Int Field',
         'data': {
-            'default_expr': 'string:',
+            'default_expr': 'python:0',
             'is_searchabletext': 0,
             'acl_read_permissions': '',
             'acl_read_roles': '',
@@ -89,10 +107,10 @@ content_portlet_schema = {
             'write_process_expr': '',
         },
     },
-    'sort_reverse': {
-        'type': 'CPS Int Field',
+    'folder_path': {
+        'type': 'CPS String Field',
         'data': {
-            'default_expr': 'python:0',
+            'default_expr': 'string:',
             'is_searchabletext': 0,
             'acl_read_permissions': '',
             'acl_read_roles': '',

@@ -113,3 +113,8 @@ msgstr ""
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr ""
 
+msgid "cpsportlets_content_max_items_label"
+msgstr ""
+
+msgid "cpsportlets_content_folder_path_label"
+msgstr ""
