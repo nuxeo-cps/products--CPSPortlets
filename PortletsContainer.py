@@ -29,6 +29,8 @@ Will be used to define local boxes
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 
+from Acquisition import aq_base
+
 from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
 
 class PortletsContainer(CMFBTreeFolder):
@@ -95,6 +97,11 @@ class PortletsContainer(CMFBTreeFolder):
 
         for id in portlet_ids:
             portlet = self.getPortletById(id)
+            portlet = aq_base(portlet)
+            if getattr(portlet, 'isCPSPortlet', None) is None:
+                continue
+            if not portlet.isCPSPortlet():
+                continue
             slot = portlet.getSlot()
             if slot and slot not in slots:
                 slots.append(slot)
