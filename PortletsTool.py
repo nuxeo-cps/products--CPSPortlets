@@ -372,6 +372,22 @@ class PortletsTool(UniqueObject, PortletsContainer):
             if portlet_path not in (cached_portlets_paths + orphans):
                 orphans.append(portlet_path)
         return orphans
+
+    security.declareProtected(ManagePortlets, 'invalidateCacheEntriesById')
+    def invalidateCacheEntriesById(self, obid=None, REQUEST=None):
+        """Removes local cache entries that match a given portlet id.
+           This method can be used to clean orphaned cache entries.
+
+           In a ZEO environment only the local RAM cache entries will be erased.
+           If the portlet still exists then 'portlet.expireCache()' should be used
+           instead in order to propagate the information between ZEO instances.
+        """
+
+        cache = self.getPortletCache()
+        if cache is None:
+            return
+        cache.delEntries(obid)
+
     #
     # Private
     #
@@ -524,6 +540,20 @@ class PortletsTool(UniqueObject, PortletsContainer):
             redirect_url = self.absolute_url()\
                 + '/manage_RAMCache' \
                 + '?manage_tabs_message=Cache cleared'
+            REQUEST.RESPONSE.redirect(redirect_url)
+
+    security.declareProtected(ManagePortlets, 'manage_clearCacheOrphans')
+    def manage_clearCacheOrphans(self, REQUEST=None):
+        """Removes orphaned objects from the cache."""
+
+        orphans = self.findCacheOrphans()
+        for orphan in orphans:
+            self.invalidateCacheEntriesById(orphan)
+
+        if REQUEST is not None:
+            redirect_url = self.absolute_url()\
+                + '/manage_RAMCache' \
+                + '?manage_tabs_message=Cache orphans removed'
             REQUEST.RESPONSE.redirect(redirect_url)
 
     ######################################################################

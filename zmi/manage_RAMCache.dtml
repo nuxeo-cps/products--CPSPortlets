@@ -81,7 +81,7 @@
           </td>
           <td align="left" valign="top" colspan="5">
             <div class="list-item">
-              <span style="color: red">Orphan</span>
+              <span style="color: red">orphan</span>
             </div>
           </td>
         </td>
@@ -94,6 +94,21 @@
 <p><em>There are no entries in the cache.</em></p>
 </dtml-if>
 </dtml-let>
+</dtml-let>
+
+<dtml-let orphans="findCacheOrphans()">
+  <dtml-if expr="orphans">
+      <br/>
+      <br/>
+      <form action="manage_clearCacheOrphans" method="post">
+      <p class="form-element">
+      <input class="form-element" type="submit" value=" Clean up the cache " />
+      </p>
+      <p>
+      <dtml-var expr="len(orphans)"> orphaned object(s) will be removed from the cache.
+      </p>
+      </form>
+  </dtml-if>
 </dtml-let>
 
 <dtml-var manage_page_footer>
