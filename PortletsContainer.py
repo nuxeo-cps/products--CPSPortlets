@@ -111,10 +111,19 @@ class PortletsContainer(CMFBTreeFolder):
             new_id = kw.get('identifier')
             cache_params_dict = self.getCPSPortletCacheParams()
             if cache_params_dict.has_key(ptype_id):
-                kw.update({'cache_params': cache_params_dict[ptype_id]})
+                cache_params = cache_params_dict[ptype_id]
+                kw.update({'cache_params': cache_params})
             self.invokeFactory(ptype_id, new_id)
             new_portlet = getattr(self, new_id)
             new_portlet.edit(kw)
+
+            # subscribe to events
+            for param in cache_params:
+                if not param.startswith('events:'):
+                    continue
+                for event in param.split(':')[1].split(','):
+                    new_portlet.addEvent(event)
+
             return new_id
         return None
 

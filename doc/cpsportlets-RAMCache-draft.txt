@@ -172,6 +172,12 @@ be set in the factory type information.
   actions:(categories),(custom_categories),user
   ...
 
+- events
+  description: the list of events that will trigger an expiration
+  of the portlet's cache.
+  example: events:workflow_publish,workflow_unpublish
+  used in: the content portlet
+
 - no-cache:
   description: the portlet should not be cached.
 

@@ -671,6 +671,10 @@ class PortletsTool(UniqueObject, PortletsContainer):
         LOG(":: OBJECT ::", DEBUG, repr(object))
         LOG(":: INFOS ::", DEBUG, repr(infos))
 
+        # expire the portlets interested in the event
+        for portlet in self.listPortletsInterestedInEvent(event_type):
+            portlet.expireCache()
+
     def listPortletsInterestedInEvent(self, event_id, context=None):
         """return the list of all portlets interested about an event given its
         event_id

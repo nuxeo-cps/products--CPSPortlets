@@ -577,7 +577,7 @@ class CPSPortlet(CPSDocument):
         """
 
         # Check the existence cause it's not on the schema
-        if not getattr(self, '_interesting_events', 0):
+        if not getattr(aq_base(self), '_interesting_events', 0):
             self._interesting_events = ()
 
         # Add the event if not already here
