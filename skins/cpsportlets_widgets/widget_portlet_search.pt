@@ -1,14 +1,10 @@
-<metal:block tal:define="global utool nocall:here/portal_url">
-<div>
-  <form method="get" action="search_form" name="searchBoxForm"
-    onsubmit="return checkEmptySearch(this)"
-    tal:define="sfpo_id string:box">
-    <input id="searchGadget" type="text" name="SearchableText" size="20"
-      value="" tal:attributes="value request/SearchableText|nothing" />
-    <input class="context searchButton" type="submit" value="button_search"
-      i18n:attributes="value" /><br />
-    <metal:block
-     use-macro="here/generic_lib/macros/search_folder_prefix_option" />
-  </form>
-</div>
-</metal:block>
+<form tal:define="utool nocall:here/portal_url"
+ method="get" action="search_form" name="searchBoxForm"
+ onsubmit="return checkEmptySearch(this)">
+  <input id="searchGadget" type="text" name="SearchableText" size="20"
+    value="" tal:attributes="value request/SearchableText|nothing" />
+  <input class="context searchButton" type="submit" value="button_search"
+    i18n:attributes="value" /><br />
+  <metal:block
+   use-macro="here/generic_lib/macros/search_folder_prefix_option" />
+</form>
