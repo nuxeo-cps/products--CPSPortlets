@@ -18,7 +18,7 @@
                         item_description item/description">
           <a i18n:translate=""
           tal:attributes="href item_url">
-            <strong tal:content="item/title" /><br/>
+            <tal:block content="item/title" /><br/>
             <small tal:condition="python: item_description and display_description"
             tal:content="item_description" />
             <small tal:condition="python: link_string and item_description"
