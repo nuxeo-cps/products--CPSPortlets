@@ -80,6 +80,10 @@ for root_uid in root_uids:
             if depth >= end_depth:
                 continue
 
+        # filter out hidden folders
+        if object.get('hidden_folder', False):
+            continue
+
         folder_items.append(
             {'url': base_url + rpath,
              'title': object['title_or_id'],
