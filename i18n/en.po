@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-11-08 18:07default\n"
+"POT-Creation-Date: 2004-11-12 11:10default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -267,3 +267,42 @@ msgstr "Image file"
 
 msgid "cpsportlets_image_link_label"
 msgstr "Link"
+
+msgid "portal_type_ContentPortlet_description"
+msgstr "Displays the results of a content search."
+
+msgid "portal_type_NavigationPortlet_description"
+msgstr "Displays navigation items, folder contents, etc."
+
+msgid "portal_type_AddItemPortlet_description"
+msgstr "Displays a menu to add items inside a folder."
+
+msgid "portal_type_InternalLinksPortlet_description"
+msgstr "Displays a list of internal links."
+
+msgid "portal_type_TextPortlet_description"
+msgstr "Displays a text in HTML."
+
+msgid "portal_type_ImagePortlet_description"
+msgstr "Displays a decoration image with a link."
+
+msgid "portal_type_DummyPortlet_description"
+msgstr "A portlet for testing."
+
+msgid "portal_type_SearchPortlet_description"
+msgstr "Displays an interface for searching the site."
+
+msgid "portal_type_RSSPortlet_description"
+msgstr "Displays the feeds of an RSS channel."
+
+msgid "portal_type_DocumentPortlet_description"
+msgstr "Displays a rendering of the current document."
+
+msgid "portal_type_BreadcrumbsPortlet_description"
+msgstr "Displays a list of links to parent folders."
+
+msgid "portal_type_ActionsPortlet_description"
+msgstr "Displays a list of portal actions by category."
+
+msgid "portal_type_LanguagePortlet_description"
+msgstr "Displays language related actions."
