@@ -110,9 +110,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         # portal types
         if kw.has_key('portal_types'):
-            portal_types = kw['portal_types']
-            if len(portal_types) > 0:
-                query['portal_type'] = portal_types
+            query['portal_type'] = kw['portal_types']
+        else:
+            query['portal_type'] = self.listPortletTypes()
 
         portlets = []
         for res in catalog.searchResults(query):
