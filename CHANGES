@@ -36,3 +36,5 @@ New internal features:
   that will cause the portlet's cache to expire.
 - cache timeout in seconds
 - cleanup of users' entries in the cache when they log out.
+- added an option to movePortlet() to leave the source portlet in place.
+- added a copyPortlet() method

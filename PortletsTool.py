@@ -294,11 +294,12 @@ class PortletsTool(UniqueObject, PortletsContainer):
     security.declareProtected(View, 'movePortlet')
     def movePortlet(self, portlet=None,
                     src_folder=None, dest_folder=None,
-                    dest_slot=None, dest_ypos=0, **kw):
+                    dest_slot=None, dest_ypos=0, leave=None, **kw):
         """Move portlet
            parameters: portlet,
                        src_folder, dest_folder,
                        dest_slot, dest_ypos,
+           if 'leave' is set to 1 the source portlet will be left in place.
            Returns: the moved portlet.
         """
 
@@ -319,18 +320,31 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         dest_ypos = int(dest_ypos)
 
-        if dest_folder != src_folder:
+        if dest_folder != src_folder or leave:
             src_container = self.getPortletContainer(context=src_folder,
                                                      create=1)
             dest_container = self.getPortletContainer(context=dest_folder,
                                                      create=1)
-            cookie = src_container.manage_cutObjects([portlet.getId()])
+            if leave:
+                cookie = src_container.manage_copyObjects([portlet.getId()])
+            else:
+                cookie = src_container.manage_cutObjects([portlet.getId()])
             res = dest_container.manage_pasteObjects(cookie)
             new_id = res[0]['new_id']
             portlet = getattr(dest_container, new_id, None)
 
         self._insertPortlet(portlet=portlet, slot=dest_slot, order=dest_ypos)
         return portlet
+
+    security.declareProtected(View, 'copyPortlet')
+    def copyPortlet(self, **kw):
+        """Copy portlet
+           parameters: portlet,
+                       src_folder, dest_folder,
+                       dest_slot, dest_ypos,
+           Returns: the copied portlet.
+        """
+        return self.movePortlet(self, leave=1, **kw)
 
     security.declareProtected(View, 'insertPortlet')
     def insertPortlet(self, portlet=None, slot=None, order=0, **kw):
