@@ -609,6 +609,11 @@ class CPSPortlet(CPSDocument):
         """Return the javascript method name.
         """
 
+        # custom javascript method
+        custom_js_meth = getattr(aq_base(self), 'js_render_method', None)
+        if custom_js_meth:
+            return custom_js_meth
+
         return self.javascript
 
     #################################################################
