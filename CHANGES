@@ -44,3 +44,4 @@ New internal features:
 - using the 'common' and 'metadata' schemas by default.
 - added a listPortlets() method to look for portlets based on search criteria.
 - added a slimmed-down 'view' layout for portlets
+- added a PortletRAMCache module (previously imported from CPSSkins.RAMCache)

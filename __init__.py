@@ -32,6 +32,7 @@ import PortletsTool
 import CPSPortlet
 import FileDownloaderPatch
 import PortletsContainer
+import PortletRAMCache
 
 # Import new widgets in here
 import PortletWidgets.DummyWidget

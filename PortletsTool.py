@@ -31,14 +31,13 @@ from Globals import InitializeClass, DTMLFile
 from AccessControl import ClassSecurityInfo, getSecurityManager, Unauthorized
 from Acquisition import aq_base, aq_parent, aq_inner
 
-from Products.CMFCore.utils import UniqueObject, getToolByName, _checkPermission
 from Products.CMFCore.CMFCorePermissions import View
+from Products.CMFCore.utils import UniqueObject, getToolByName,\
+                                  _checkPermission
 
-# XXX Remove dependency on CPSSkins
-from Products.CPSSkins.RAMCache import RAMCache
-
-from Products.CPSPortlets.PortletsContainer import PortletsContainer
-from Products.CPSPortlets.CPSPortletsPermissions import ManagePortlets
+from PortletRAMCache import RAMCache
+from PortletsContainer import PortletsContainer
+from CPSPortletsPermissions import ManagePortlets
 
 PORTLET_CONTAINER_ID = '.cps_portlets'
 PORTLET_RAMCACHE_ID = 'portlets'
