@@ -1,7 +1,7 @@
 <dtml-call "request.RESPONSE.setHeader('Content-Type', 'text/xml; charset=ISO-8859-15')">
 <?xml version="1.0" encoding="ISO-8859-15"?>
 
-<dtml-let toW3CDTF="context.cpsportlet_toW3CDTF">
+<dtml-let convert_date="context.cpsportlet_convert_date">
 
 <rss version="2.0">
   <channel>
@@ -19,7 +19,7 @@
           <dtml-if "item.has_key('metadata')">
             <dtml-let metadata="item['metadata']">
               <dtml-if "metadata.has_key('date')">
-                <pubDate><dtml-var "toW3CDTF(metadata['date'])"></pubDate>
+                <pubDate><dtml-var "convert_date(metadata['date'], 'rfc822')"></pubDate>
               </dtml-if>
             </dtml-let>
           </dtml-if>

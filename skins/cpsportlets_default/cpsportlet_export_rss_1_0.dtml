@@ -1,7 +1,7 @@
 <dtml-call "request.RESPONSE.setHeader('Content-Type', 'text/xml; charset=ISO-8859-15')">
 <?xml version="1.0" encoding="ISO-8859-15"?>
 
-<dtml-let toW3CDTF="context.cpsportlet_toW3CDTF">
+<dtml-let convert_date="context.cpsportlet_convert_date">
 
 <rdf:RDF
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -18,7 +18,7 @@
       <rdf:Seq>
         <dtml-in items>
           <dtml-let item=sequence-item>
-            <rdf:li rdf:resources="<dtml-var "item['url']">" />
+            <rdf:li rdf:resource="<dtml-var "item['url']">" />
           </dtml-let>
         </dtml-in>
       </rdf:Seq>
@@ -40,7 +40,7 @@
                <dc:language><dtml-var "metadata['language']"></dc:language>
              </dtml-if>
              <dtml-if "metadata.has_key('date')">
-               <dc:date><dtml-var "toW3CDTF(metadata['date'])"></dc:date>
+               <dc:date><dtml-var "convert_date(metadata['date'], 'W3CDTF')"></dc:date>
              </dtml-if>
              <dtml-if "metadata.has_key('coverage')">
                <dc:coverage><dtml-var "metadata['coverage']"></dc:coverage>
