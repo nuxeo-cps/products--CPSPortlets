@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-12-08 21:19default\n"
+"POT-Creation-Date: 2004-12-09 21:38default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -364,3 +364,15 @@ msgstr "Randomly displays a collection of images (rotating banners, ads, etc.)"
 
 msgid "cpsportlets_common_custom_cache_params_label"
 msgstr "Custom cache parameters"
+
+msgid "cpsportlets_visibility_range_0-0_label"
+msgstr "In this folder and in all subfolders"
+
+msgid "cpsportlets_visibility_range_1-0_label"
+msgstr "Only in the subfolders"
+
+msgid "cpsportlets_visibility_range_0-1_label"
+msgstr "Only in this folder"
+
+msgid "cpsportlets_common_visibility_range_label"
+msgstr "Visibiliity range"

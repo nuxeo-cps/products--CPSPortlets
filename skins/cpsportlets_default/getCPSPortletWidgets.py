@@ -15,6 +15,10 @@ widgets = {
     'type': 'CPS Generic Portlet Widget Type',
     'data': {},
     },
+    'CPS Portlet Visibility Widget': {
+    'type': 'CPS Portlet Visibility Widget Type',
+    'data': {},
+    },
     'Image Link Widget': {
         'type': 'CPS Compound Widget Type',
         'data': {

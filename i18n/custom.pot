@@ -295,3 +295,15 @@ msgstr ""
 
 msgid "cpsportlets_common_custom_cache_params_label"
 msgstr ""
+
+msgid "cpsportlets_visibility_range_0-0_label"
+msgstr ""
+
+msgid "cpsportlets_visibility_range_1-0_label"
+msgstr ""
+
+msgid "cpsportlets_visibility_range_0-1_label"
+msgstr ""
+
+msgid "cpsportlets_common_visibility_range_label"
+msgstr ""
