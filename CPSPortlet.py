@@ -98,6 +98,15 @@ class CPSPortlet(CPSDocument):
         """
         return 1
 
+    #################################################################
+    def getCacheIndex(self):
+        """Returns the RAM cache index as a tuple (var1, var2, ...)
+        """
+
+        index = ()
+        # XXX check the schema for boolean values realted to the cache.
+        return index
+
     ##################################################################
 
     def getURL(self):
