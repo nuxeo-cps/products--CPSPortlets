@@ -52,7 +52,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
     def test_getPortletContainerId(self):
         ptltool = self.ptltool
         container_id = ptltool.getPortletContainerId()
-        self.assert_(container_id == PORTLET_CONTAINER_ID) 
+        self.assert_(container_id == PORTLET_CONTAINER_ID)
 
     def test_getPortlets_in_workspaces(self):
         ptltool = self.ptltool
@@ -62,9 +62,9 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
                                             context=self.portal.workspaces)
         ws_portlets = ptltool.getPortlets(context=self.portal.workspaces)
         ws_portlets_ids = [p.getId() for p in ws_portlets]
-        self.assert_(ws_portlets_ids == [portlet1_id, portlet2_id]) 
+        self.assert_(ws_portlets_ids == [portlet1_id, portlet2_id])
         s_portlets = ptltool.getPortlets(context=self.portal.sections)
-        self.assert_(s_portlets == []) 
+        self.assert_(s_portlets == [])
 
     def test_getPortlets_in_workspaces_members(self):
         ptltool = self.ptltool
@@ -75,10 +75,44 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
                                             context=members_folder)
         ws_portlets = ptltool.getPortlets(context=self.portal.workspaces)
         ws_portlets_ids = [p.getId() for p in ws_portlets]
-        self.assert_(ws_portlets_ids == [portlet1_id]) 
+        self.assert_(ws_portlets_ids == [portlet1_id])
         members_portlets = ptltool.getPortlets(context=members_folder)
         members_portlets_ids = [p.getId() for p in members_portlets]
-        self.assert_(members_portlets_ids == [portlet1_id, portlet2_id]) 
+        self.assert_(members_portlets_ids == [portlet1_id, portlet2_id])
+
+    def test_notify_event(self):
+        ptltool = self.ptltool
+        # XXX
+        # To be sure the tests will be updated when the implementation will be
+        # done
+        self.assertEqual(ptltool.notify_event('fake_event', None, {}), None)
+
+    def test_listPortletsInterestedInEvent(self):
+        ptltool = self.ptltool
+
+        # No portlets found already
+        portlets = ptltool.listPortletsInterestedInEvent('fake_event')
+        self.assertEqual(portlets, [])
+
+        new_id = ptltool.createPortlet('Dummy Portlet')
+        self.assertNotEqual(new_id, None)
+
+        nportlet = ptltool.getPortletById(new_id)
+        self.assertNotEqual(nportlet, None)
+
+        res = nportlet.addEvent('fake_event')
+        self.assertEqual(res, 0)
+
+        # No way to add two time the same event
+        res = nportlet.addEvent('fake_event')
+        self.assertEqual(res, 1)
+
+        events = nportlet.listEvents()
+        self.assertEqual(events, ('fake_event',))
+
+        # XXX to be implemented
+        self.assertEqual(nportlet.sendEvent('fake_event'), 0)
+        self.assertEqual(nportlet.sendEvent('fake_eventXXX'), 1)
 
 def test_suite():
     suite = unittest.TestSuite()
@@ -87,4 +121,3 @@ def test_suite():
 
 if __name__ == '__main__':
     framework(descriptions=1, verbosity=2)
-
