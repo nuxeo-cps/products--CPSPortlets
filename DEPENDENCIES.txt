@@ -1,13 +1,11 @@
-$Id$
-
-Dependencies as of 2004-12-28:
-
-For CPS3:
-- CPS 3.2.3
-- CPSSkins development branch on Nuxeo's CVS
-  http://cvs.nuxeo.org/cgi-bin/viewcvs.cgi/CPS3/CPSSkins/
-
-For Plone-2.0.x:
-- CPS4CMF nightly build 2004-09-09
-  http://zope.org/Members/nuxeo/news/cps4cmf
-- LinguaPlone >= 0.7
+# $Id$
+# Dependencies as of 2004-12-28:
+# For CPS3:
+# - CPS 3.2.3
+# - CPSSkins development branch on Nuxeo's CVS
+#  http://cvs.nuxeo.org/cgi-bin/viewcvs.cgi/CPS3/CPSSkins/
+#
+# For Plone-2.0.x:
+# - CPS4CMF nightly build 2004-09-09
+#   http://zope.org/Members/nuxeo/news/cps4cmf
+# - LinguaPlone >= 0.7
