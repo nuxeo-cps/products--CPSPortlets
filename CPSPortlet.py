@@ -37,7 +37,7 @@ class CPSPortlet(CPSDocument):
     This is a CPSPortlet child base class for portlets
     """
 
-    meta_type = 'CPS Portlet' 
+    meta_type = 'CPS Portlet'
     portal_type = meta_type
 
     def SearchableText(self):
@@ -52,28 +52,38 @@ class CPSPortlet(CPSDocument):
         """
         return 1
 
+    ##################################################################
+
     def getURL(self):
         """Return the url of the portlet.
         """
-
         return self.absolute_url()
 
     def getRelativeUrl(self):
         """Return the url of the portlet relative to the portal.
         """
-
         return self.absolute_url(relative=1)
+
+    #################################################################
 
     def getSlot(self):
         """Return the portlet's slot.
         """
-
         return getattr(self, 'slot', '')
+
+    def setSlot(self, slot_name=''):
+        """Set the slot value
+        """
+        if slot_name:
+            self.edit({'slot':slot_name})
+            return 0
+        return 1
+
+    #################################################################
 
     def getOrder(self):
         """Return the portlet's order.
         """
-
         return getattr(self, 'order', 0)
 
 InitializeClass(CPSPortlet)
