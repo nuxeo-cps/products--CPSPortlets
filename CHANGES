@@ -15,6 +15,7 @@ Bug fixes:
   (it is a special case of actions:workflow)
 - Document portlet, Content Portlet: added a fallback in case the 
   'layout_clusters' property is not set as a list.
+- fine-tuned cache parameters
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the
