@@ -94,7 +94,7 @@ portlet_common_schema = {
         },
     },
     'visibility_range': {
-        'type': 'CPS Range List Field',
+        'type': 'CPS Couple Field',
         'data': {
             'default_expr': 'python:[0,0]',
             'is_searchabletext': False,
