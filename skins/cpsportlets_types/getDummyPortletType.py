@@ -11,7 +11,7 @@ dummy_portlet_type = {
     'allowed_content_types': (),
     'allow_discussion': False,
     'cps_is_searchable': True,
-    'cps_proxy_type': 'document',
+    'cps_proxy_type': '',
     'cps_display_as_document_in_listing': False,
     'schemas': ('portlet_common', 'dummy_portlet'),
     'layouts': ('dummy_portlet',),
