@@ -28,10 +28,11 @@ Will be used to define local boxes
 
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
-
 from Acquisition import aq_base
 
 from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
+
+from Products.CMFCore.utils import getToolByName
 
 class PortletsContainer(CMFBTreeFolder):
     """ Portlets Container
@@ -73,14 +74,36 @@ class PortletsContainer(CMFBTreeFolder):
 
     def _createPortlet(self, ptype_id, **kw):
         """Create a new portlet given its portal_type
+
+        Check the identifier that the user might have given.  If it aleady
+        exists then don't create the portlet and log it The reason is that the
+        update will be wrong after if cerate it in this situation
+
+        If it's a portlet created through CPSSkins then use the internal
+        id as identifier
         """
-        new_id = self.generateId(prefix='portlet_',
-                                 suffix='',
-                                 rand_ceiling=999999999)
-        self.invokeFactory(ptype_id, new_id)
-        new_portlet = getattr(self, new_id)
-        new_portlet.edit(kw)
-        return new_id
+
+        ptltool = getToolByName(self, 'portal_cpsportlets')
+
+        ok = 0
+
+        if kw.has_key('identifier'):
+            ok = ptltool.checkIdentifier(kw.get('identifier'))
+        else:
+            while not ok:
+                new_id = self.generateId(prefix='portlet_',
+                                         suffix='',
+                                         rand_ceiling=999999999)
+                ok = ptltool.checkIdentifier(new_id)
+            kw['identifier'] = new_id
+
+        if ok:
+            new_id = kw.get('identifier')
+            self.invokeFactory(ptype_id, new_id)
+            new_portlet = getattr(self, new_id)
+            new_portlet.edit(kw)
+            return new_id
+        return None
 
     def _deletePortlet(self, portlet_id):
         """Delete a portlet given its id
