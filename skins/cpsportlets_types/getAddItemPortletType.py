@@ -33,13 +33,6 @@ add_item_portlet_type = {
           'permission': ('Manage Portlets',),
           'category': 'object',
           'visible': False,},
-         {'id': 'canvas',
-          'name': 'action_canvas',
-          'action': "python: object.getLocalFolder().absolute_url() + '/portlet_manage_form'",
-          'condition': '',
-          'permission': ('Manage Portlets',),
-          'category': 'object',
-          'visible': True,},
     )
 }
 

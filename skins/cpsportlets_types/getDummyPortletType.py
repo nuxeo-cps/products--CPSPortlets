@@ -33,13 +33,6 @@ dummy_portlet_type = {
           'permission': ('Manage Portlets',),
           'category': 'object',
           'visible': 0,},
-         {'id': 'canvas',
-          'name': 'action_canvas',
-          'action': "python: object.getLocalFolder().absolute_url() + '/portlet_manage_form'",
-          'condition': '',
-          'permission': ('Manage Portlets',),
-          'category': 'object',
-          'visible': 1,},
     )
 }
 
