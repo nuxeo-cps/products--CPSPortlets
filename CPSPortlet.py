@@ -275,10 +275,6 @@ class CPSPortlet(CPSDocument):
                 if wf_actions is not None:
                     index_string = md5.new(str(wf_actions)).hexdigest()
 
-            # current folder
-            elif param == 'folder':
-                index_string = context.absolute_url(1)
-
             # current object
             elif param.startswith('object:'):
                 opts = getOptions(param)

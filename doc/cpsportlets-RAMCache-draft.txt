@@ -118,7 +118,7 @@ be set in the factory type information.
 * Contextual variables:
 
 - url
-  description: the entire currrent url including the query string
+  description: the entire current url including the query string
   example: 'http://www.yourhost.com/cps/view?pp=1'
   used in: portal actions
 
@@ -145,10 +145,6 @@ be set in the factory type information.
                the current object
   example: "('en', 'fr')"
   used in: language portlet
-
-- folder
-  description: the path of the current folder
-  example: '/cps/workspaces/members'
 
 - user
   description: the name of the current user
