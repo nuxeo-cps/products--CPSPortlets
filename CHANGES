@@ -6,6 +6,7 @@ New features:
 - Navigation Portlet: several tree roots (sections, workspaces) can be
   specified.
 - Added syndication for RSS Portlet, Content Portlet, Internal Links Portlet.
+- added an option to display item descriptions in the Internal Links Portlet.
 Bug fixes:
 ~~~~~~~~~~
 - Removed warnings: replaces CMFCore.CMFCorePermissions by CMFCore.permissions.
@@ -27,6 +28,7 @@ Bug fixes:
 - portlet visibility: some invisible portlets were displayed.
 - custom cache parameters are reset for global portlets too.
 - getFolderItems.py did not work behind virtual hosts
+- fixed syndication urls for the Internal Links Portlet.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the

@@ -45,7 +45,7 @@ for path in links:
 
     # DublinCore information
     dc_info = {}
-    content = object
+    content = object.getContent()
     for key, dc in dc_map.items():
         meth = getattr(content, dc)
         if callable(meth):
@@ -58,10 +58,14 @@ for path in links:
             value = ', '.join(value)
         dc_info[key] = value
 
+    rpath = getRelativeUrl(object)
+
     items.append(
-        {'url': base_url + getRelativeUrl(object),
-         'title': title,
-         'description': object.Description(),
+        {'url': object.absolute_url(),
+         'rurl': base_url + rpath,
+         'rpath': rpath,
+         'title': object.title_or_id(),
+         'description': content.Description(),
          'icon_tag': renderIcon(ptype, base_url, ''),
          'dc': dc_info,
         })

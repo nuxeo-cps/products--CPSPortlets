@@ -5,16 +5,20 @@
   show_icons python: int(show_icons);
   items python:here.getItemsFromPath(**dict(ds));
   linkclass python: show_icons and 'noicon' or None;
+  display_description ds/display_description|python:0;
+  display_description python: int(display_description);
   ">
 
   <tal:block condition="not:export">
     <ul class="cpsskinsMenu" tal:condition="items">
       <li tal:repeat="item items">
-        <a tal:attributes="href item/url;
+        <a tal:define="item_description item/description"
+           tal:attributes="href item/rurl;
                            class linkclass">
-          <tal:block condition="show_icons"
-          content="structure item/icon_tag" />
-          <tal:block content="item/title" />
+          <tal:block condition="show_icons" content="structure item/icon_tag" />
+          <strong tal:omit-tag="not:display_description" tal:content="item/title" />
+          <p tal:condition="python: item_description and display_description"
+            tal:content="item_description" />
         </a>
       </li>
     </ul>
