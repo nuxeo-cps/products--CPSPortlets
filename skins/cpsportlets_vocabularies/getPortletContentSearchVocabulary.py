@@ -21,8 +21,16 @@ cpsportlets_content_sort_on_voc_vocabulary = {
     },
 }
 
+cpsportlets_content_portal_types_vocabulary = {
+    'type': 'CPS Method Vocabulary',
+    'data': {
+        'get_vocabulary_method': 'getSearchableTypesVocabulary',
+            }
+    }
+
 vocabularies = {'cpsportlets_content_search_voc': cpsportlets_content_search_voc_vocabulary,
                 'cpsportlets_content_sort_on_voc': cpsportlets_content_sort_on_voc_vocabulary,
+                'cpsportlets_content_portal_types_voc': cpsportlets_content_portal_types_vocabulary,
                }
 
 return vocabularies

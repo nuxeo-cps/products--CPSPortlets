@@ -5,7 +5,8 @@
                    sort_reverse ds/sort_reverse;
                    max_items ds/max_items;
                    folder_path ds/folder_path;
-                   contentitems python: here.getContentItems(obj=context, search_type=search_type, sort_on=sort_on, sort_reverse=sort_reverse, max_items=max_items, folder_path=folder_path);
+                   portal_type ds/searchable_types;
+                   contentitems python: here.getContentItems(obj=context, search_type=search_type, sort_on=sort_on, sort_reverse=sort_reverse, max_items=max_items, folder_path=folder_path, portal_type=portal_type);
 ">
     <ul>
       <li tal:repeat="item contentitems"><a i18n:translate=""

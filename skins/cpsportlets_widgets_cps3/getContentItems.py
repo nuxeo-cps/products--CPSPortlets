@@ -15,8 +15,12 @@ folder_path = kw.get('folder_path')
 
 # remove unwanted search options
 for k in kw.keys():
-    if k not in ('sort_on', 'review_state'):
+    if k not in ('sort_on', 'review_state', 'portal_type'):
        del kw[k]
+
+# remove empty portal_type query parameter
+if kw.get('portal_type') == []:
+    del kw['portal_type']
 
 query = kw
 
@@ -28,6 +32,10 @@ query['cps_filter_sets'] = {'query': ('searchable', 'leaves'),
 if folder_path is not None:
     portal_path = context.portal_url.getPortalPath()
     query['path'] = portal_path + folder_path
+
+# portal types
+#if len(portal_types) > 0:
+#query['portal_type'] = ('123','123')
 
 # return the results in descending order
 if sort_reverse:
@@ -72,7 +80,6 @@ elif search_type == 'upcoming':
                   'end': {'query': now, 'range': 'min'},
                   'sort_on': 'start',
                  })
-
 # Recent documents:
 # - published
 # - modified date > last_login_time

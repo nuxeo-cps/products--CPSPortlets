@@ -118,3 +118,6 @@ msgstr ""
 
 msgid "cpsportlets_content_folder_path_label"
 msgstr ""
+
+msgid "cpsportlets_content_searchable_types_label"
+msgstr ""
