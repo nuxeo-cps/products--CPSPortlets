@@ -109,6 +109,8 @@ class PortletsContainer(CMFBTreeFolder):
 
         if ok:
             new_id = kw.get('identifier')
+            cache_params = self.getCPSPortletCacheParams(ptype_id)
+            kw.update({'cache_params': cache_params})
             self.invokeFactory(ptype_id, new_id)
             new_portlet = getattr(self, new_id)
             new_portlet.edit(kw)
