@@ -29,6 +29,7 @@ This is a CPSDocument child base class for portlets
 
 import time
 import md5
+from cgi import escape
 from random import randint
 from App.Common import rfc1123_date
 from Globals import InitializeClass, DTMLFile
@@ -866,7 +867,7 @@ class CPSPortlet(CPSDocument):
                         continue
                     if v != field.getDefault():
                         if field.meta_type == 'CPS String Field':
-                            v = "'%s'" % v
+                            v = "'%s'" % escape(v)
                         data[k] = v
                         continue
 
