@@ -102,3 +102,4 @@ New internal features:
 - getBreadCrumbs() returns the list of parent folders up to the top folder.
 - using '<ul class="cpsskinsMenu">' on menus to dissociate them from other sorts
   of lists.
+- content items in the Content Portlet can be rendered - layout ids can be specified.

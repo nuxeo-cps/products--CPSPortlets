@@ -1,28 +1,17 @@
 <tal:block define="ds options/datastructure;
                    context nocall:options/context_obj|here;
-                   search_type ds/search_type;
-                   sort_on ds/sort_on;
-                   sort_reverse ds/sort_reverse;
-                   display_description ds/display_description;
-                   max_items ds/max_items;
-                   max_words ds/max_words;
-                   query_title ds/query_title;
-                   max_words python: display_description and int(max_words) or 0;
-                   folder_path ds/folder_path;
-                   portal_type ds/searchable_types;
-                   contentitems python: here.getContentItems(obj=context, search_type=search_type, sort_on=sort_on, sort_reverse=sort_reverse, query_title=query_title, max_items=max_items, max_words=max_words, folder_path=folder_path, portal_type=portal_type);
+                   contentitems python: here.getContentItems(obj=context, **dict(ds));
                    link_string ds/link_string">
   <tal:block repeat="item contentitems">
-    <tal:block define="item_url item/url">
-      <h2><a i18n:translate=""
-           tal:attributes="href item_url" 
-           tal:content="item/title">Item title</a></h2>
-      <span tal:condition="python: int(display_description)"
-       tal:content="structure item/description" />
-      <span tal:condition="link_string">
-       <a href="" tal:attributes="href item_url"
-        tal:content="structure link_string" />
-      </span>
-    </tal:block>
+    <a tal:define="item_title item/title;
+                   item_url item/url;
+                   rendered item/rendered"
+    tal:attributes="href item_url;
+                    title item_title">
+      <h5 tal:content="item_title" />
+      <tal:block condition="rendered" content="structure rendered" />
+      <tal:block condition="link_string" i18n:translate=""
+       content="structure link_string" />
+    </a>
   </tal:block>
 </tal:block>

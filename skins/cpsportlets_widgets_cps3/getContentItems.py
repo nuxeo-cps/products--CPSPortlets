@@ -7,50 +7,40 @@ if obj is None:
 if REQUEST is not None:
     kw.update(REQUEST.form)
 
-search_type = kw.get('search_type')
-sort_reverse = kw.get('sort_reverse')
-max_items = kw.get('max_items', 5)
-max_items = int(max_items)
-max_words = kw.get('max_words', 20)
-max_words = int(max_words)
-folder_path = kw.get('folder_path')
-query_title = kw.get('query_title')
+max_items = int(kw.get('max_items', 5))
 
-# remove unwanted search options
-for k in kw.keys():
-    if k not in ('sort_on', 'review_state', 'portal_type'):
-       del kw[k]
-
-# remove empty portal_type query parameter
-if kw.get('portal_type') == []:
-    del kw['portal_type']
-
-query = kw
+query = {}
+# set portal_type query parameter
+searchable_types = kw.get('searchable_types', [])
+if len(searchable_types) > 0:
+    query['portal_type'] = searchable_types
 
 # cps filter (portal_xyz, .___)
 query['cps_filter_sets'] = {'query': ('searchable', 'leaves'),
                             'operator': 'and'}
 # folder path
+folder_path = kw.get('folder_path')
 if folder_path is not None:
     portal_path = context.portal_url.getPortalPath()
     query['path'] = portal_path + folder_path
 
 # return the results in descending order
-if sort_reverse:
+if kw.get('sort_reverse'):
     query['sort_order'] = 'reverse'
 
 # Title search (if specified)
+query_title = kw.get('query_title')
 if query_title is not None:
    query['ZCTitle'] = query_title
 
 # Override some of the query options depending on the type of search
 
 # Related documents
+search_type = kw.get('search_type')
 if search_type == 'related':
     content = obj.getContent()
     if getattr(content.aq_inner.aq_explicit, 'Subject'):
         subjects=content.Subject()
-
         if subjects:
             query.update({'Subject': subjects,
                           'review_state': 'published',})
@@ -151,14 +141,56 @@ def summarize(text='', max_words=20):
         res = ' '.join(split_text) + ' ...'
     return res
 
+def renderDoc(content, proxy, layout_ids=[]):
+    """Render the document
+    """
+    # find the 'render' method
+    render = getattr(content, 'render', None)
+    if render is None:
+        return ''
+    rendered = []
+    if len(layout_ids) > 0:
+        # try to render the specified layouts
+        try:
+            for layout_id in layout_ids:
+                rendered.append(
+                    render(proxy=proxy, layout_id=layout_id)
+                )
+        except ValueError:
+            return ''
+    else:
+        rendered.append(render(proxy=proxy))
+    return ''.join(rendered)
+
+# Collect all items
 items = []
 for brain in brains:
-    description = brain['Description']
-    if max_words > 0:
-        description = summarize(description, max_words)
-    items.append({'url': brain.getURL(),
-                  'title': brain['Title'],
-                  'description': description,
-                 })
+
+    rendered = ''
+    # render the item with 
+    if kw.get('render_items'):
+        rendered = None
+        content = None
+        if getattr(brain.aq_inner.aq_explicit, 'getRID', None) is not None:
+            obj = brain.getObject()
+            getContent = getattr(obj.aq_inner.aq_explicit, 'getContent', None)
+            if getContent is not None:
+                content = getContent()
+        layout_ids = kw.get('layout_ids', [])
+        rendered = renderDoc(content=content, proxy=obj, layout_ids=layout_ids)
+    # default item presentation
+    else:
+        if kw.get('display_description'):
+            description = brain['Description']
+            max_words = int(kw.get('max_words', 20))
+            if max_words > 0:
+                description = summarize(description, max_words)
+            rendered = description
+
+    items.append(
+        {'url': brain.getURL(),
+         'title': brain['Title'],
+         'rendered': rendered,
+        })
 
 return items
