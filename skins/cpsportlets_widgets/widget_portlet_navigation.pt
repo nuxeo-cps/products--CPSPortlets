@@ -55,7 +55,7 @@
     <tal:block
      define="folderItems python: context.getFolderItems(context_obj=context, show_docs=show_docs)"
      condition="folderItems">
-      <ul class="menu">
+      <ul class="cpsskinsMenu">
         <li tal:repeat="item folderItems">
           <a tal:content="item/title" tal:attributes="href item/url" />
         </li>
@@ -91,7 +91,7 @@
              folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, contextual=contextual);
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
-      <ul class="menu">
+      <ul class="cpsskinsMenu">
         <li tal:repeat="item folderItems"
         tal:attributes="class python: item['selected'] and 'selected' or None">
           <a tal:define="style string:margin-left:${item/depth}em"
@@ -114,7 +114,7 @@
              folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, contextual=0, expand=1);
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
-      <ul class="menu">
+      <ul class="cpsskinsMenu">
         <li tal:repeat="item folderItems"
         tal:attributes="class python: item['selected'] and 'selected' or None">
           <a tal:define="style string:margin-left:${item/depth}em"

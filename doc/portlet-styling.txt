@@ -235,7 +235,7 @@ The following HTML markup is used to represent boxes: ::
     -- Box Body ------
 
     -- Box Menu ------
-      <ul class="menu">
+      <ul class="cpsskinsMenu">
         <li><a href="#">item</a></li>
         <li class="selected"><a href="#">selected item</a></li>
         ...
@@ -250,7 +250,7 @@ to set an indentation use the 'margin-left' property in the <a> tag.
 
 for instance: ::
 
-  <ul class="menu">
+  <ul class="cpsskinsMenu">
     <li><a style="margin-left: 1em" href="#link">Item</a><li>
   </ul>
 
@@ -263,7 +263,7 @@ apply the "noicon" class on <a>.
 
 for example: ::
 
-  <ul class="menu">
+  <ul class="cpsskinsMenu">
     <li><img src="icon.png" ... /><a class="noicon" href="#link">Item</a><li>
   <ul>
 
@@ -287,7 +287,7 @@ Box styles:
 
 Use the following HTML markup for top-level menu items: ::
 
-      <ul class="menu">
+      <ul class="cpsskinsMenu">
         <li><a href="#">item</a></li>
         <li class="selected"><a href="#">Selected item</a></li>
         ...
@@ -295,7 +295,7 @@ Use the following HTML markup for top-level menu items: ::
 
 Use the following HTML markup for second-level menu items (*) ::
 
-      <ul class="menu">
+      <ul class="cpsskinsMenu">
         <li>
           <!-- top level -->
           <a href="#">Top level item 1</a>

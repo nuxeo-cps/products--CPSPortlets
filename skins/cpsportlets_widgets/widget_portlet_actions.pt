@@ -5,7 +5,7 @@
   condition="actionitems">
   <tal:block repeat="category python: actionitems.keys()">
     <br tal:condition="not:repeat/category/start" />
-    <ul class="menu"
+    <ul class="cpsskinsMenu"
         tal:define="actions actionitems/?category"
         tal:condition="actions">
       <li tal:repeat="action actions"><a i18n:translate=""

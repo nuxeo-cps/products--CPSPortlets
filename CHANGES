@@ -100,5 +100,5 @@ New internal features:
 - added methods (isLocal(), isGlobal()) to determine whether a portlet is
   local or global.
 - getBreadCrumbs() returns the list of parent folders up to the top folder.
-- using '<ul class="menu">' on menus to dissociate them from other sorts
+- using '<ul class="cpsskinsMenu">' on menus to dissociate them from other sorts
   of lists.
