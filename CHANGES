@@ -69,6 +69,7 @@ Bug fixes:
 - registration fix for the Portlet Visibility Widget
 - listPortlets() returned incorrect results when 'portal_types' was empty
   and only local portlets should be listed.
+- _getFolderPortlets() returned global portlets
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()
@@ -109,3 +110,5 @@ New internal features:
 - added a getCreator() method for portlets
 - added getFolders(), getBottomMostFolder() to the portlets tool
 - implemented portlet override (see doc/portlet-override.txt)
+- added an option in getPortletContainer(..., local=1) to explicitly return
+  local portlet containers (and not the tool).

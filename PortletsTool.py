@@ -197,9 +197,10 @@ class PortletsTool(UniqueObject, PortletsContainer):
         return PORTLET_CONTAINER_ID
 
     security.declarePublic('getPortletContainerId')
-    def getPortletContainer(self, context=None, create=0):
+    def getPortletContainer(self, context=None, create=0, local=0):
         """Returns the portlet container within the given context if it
         exists. Otherwise return the tool
+        If the 'local' parameter is 1 then only local containers will be returned.
         """
         if context is not None:
             container_id = self.getPortletContainerId()
@@ -211,7 +212,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 context.manage_addProduct['CPSPortlets'].addPortletsContainer()
                 return getattr(context, container_id)
 
-        return getToolByName(self, 'portal_cpsportlets')
+        if not local:
+            return getToolByName(self, 'portal_cpsportlets')
 
     #######################################################################
 
@@ -750,14 +752,19 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """
 
         portlets = []
-        if folder is not None:
-            portlet_container = self.getPortletContainer(folder)
-            for id in portlet_container.listPortletIds():
-                portlet = portlet_container.getPortletById(id)
-                if slot is not None:
-                    if portlet.getSlot() != slot:
-                        continue
-                portlets.append(portlet)
+        if folder is None:
+            return portlets
+        portlet_container = self.getPortletContainer(
+            context=folder,
+            local=1)
+        if portlet_container is None:
+            return portlets
+        for id in portlet_container.listPortletIds():
+            portlet = portlet_container.getPortletById(id)
+            if slot is not None:
+                if portlet.getSlot() != slot:
+                    continue
+            portlets.append(portlet)
         return portlets
 
     security.declarePrivate('_insertPortlet')
