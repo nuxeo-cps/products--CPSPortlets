@@ -170,11 +170,6 @@ class CPSPortlet(CPSDocument):
         """
         return self.title_or_id()
 
-    def setTitle(self, title=''):
-        """Set the title
-        """
-        self.edit(title=title)
-
     #################################################################
 
     def getState(self):
