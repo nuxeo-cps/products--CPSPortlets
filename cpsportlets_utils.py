@@ -27,5 +27,4 @@ def html_slimmer(html):
     """
     html = re.sub(r'>\s+<','> <', html)
     html = re.sub(r'\n\s+\n','', html)
-    html = re.sub(r'\n','', html)
     return html
