@@ -1,0 +1,6 @@
+<tal:block define="ds options/datastructure;
+                   i18n ds/i18n;
+                   text ds/text;">
+  <tal:block condition="not:i18n" content="structure text" />
+  <tal:block condition="i18n" i18n:translate="" content="structure text" />
+</tal:block>

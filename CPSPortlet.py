@@ -160,7 +160,11 @@ class CPSPortlet(CPSDocument):
         """Get the cache parameters that will be used to compute the
            cache index.
         """
-        return self.cache_params[:]
+        params = self.cache_params[:]
+        # parameters set on the fly: i18n
+        if getattr(self, 'i18n', 0):
+            params.append('current_lang')
+        return params
 
     security.declareProtected(ManagePortlets, 'resetCacheParams')
     def resetCacheParams(self, ptype_id=None):
