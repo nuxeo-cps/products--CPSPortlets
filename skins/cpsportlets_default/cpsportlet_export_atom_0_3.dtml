@@ -21,7 +21,7 @@
        <entry>
          <dtml-if "item.has_key('metadata')">
            <dtml-let metadata="item['metadata']">
-             <id><dtml-var "construct_atomid(item['url'], context.created())"></id>
+             <id><dtml-var "construct_atomid(item['url'], metadata.get('created'))"></id>
              <title mode="escaped" type="text/html"><dtml-var "item['title']" html_quote></title>
 
              <dtml-if "metadata.has_key('issued')">

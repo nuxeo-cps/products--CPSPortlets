@@ -12,6 +12,6 @@ m = re.search(urlregexp, permalink)
 if m:
     location, port, path = m.groups()[1:]
     path = path.split('?')[0]
-    uid = 'tag:' + location + ',' + datetime.strftime('%Y-%m-%d') + ':' + path
+    uid = 'tag:' + location + ',' + DateTime(datetime).strftime('%Y-%m-%d') + ':' + path
     return uid
 return permalink

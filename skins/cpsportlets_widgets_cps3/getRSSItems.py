@@ -12,9 +12,6 @@ data_items = data['lines']
 if first_item > 1:
     data_items = data_items[first_item-1:]
 
-if max_words == 0:
-    return data_items
-
 def summarize(text='', max_words=20):
     """summarize the text by returning the first max_words
     """
@@ -27,8 +24,18 @@ def summarize(text='', max_words=20):
 # summarize the descriptions
 pos = 0
 for item in data_items:
-    description = summarize(item['description'], max_words)
-    data_items[pos].update({'description': description})
+    description = item['description']
+    modified = item['modified']
+    if max_words > 0:
+        description = summarize(description, max_words)
+    data_items[pos].update(
+        {'description': description,
+         'metadata':
+            {'creator': item['author'],
+             'date': modified,
+             'created': modified,
+            }
+        })
     pos += 1
 
 return data_items
