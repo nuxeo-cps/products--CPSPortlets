@@ -16,6 +16,7 @@ Bug fixes:
   javascript settings.
 - resetInterestingEvents should not set empty events like ((), (), (),)
   this fixes the test_listPortletsInterestedInEvent() test that failed.
+- XHTML fix in the Content Portlet (<h5> not allowed in <a>)
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added an access key to access the portlet management panels.

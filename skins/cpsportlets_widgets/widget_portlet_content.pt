@@ -8,7 +8,7 @@
                    rendered item/rendered"
     tal:attributes="href item_url;
                     title item_title">
-      <h5 tal:content="item_title" />
+      <strong tal:content="item_title" /><br/>
       <tal:block condition="rendered" content="structure rendered" />
       <tal:block condition="link_string" i18n:translate=""
        content="structure link_string" />
