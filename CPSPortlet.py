@@ -109,6 +109,7 @@ class CPSPortlet(CPSDocument):
 
     ##################################################################
 
+
     def getURL(self):
         """Return the url of the portlet.
         """
@@ -161,6 +162,33 @@ class CPSPortlet(CPSDocument):
         0 is the default value
         """
         self.edit(order=order)
+
+    #################################################################
+
+    def getTitle(self):
+        """Return the portlet's title (or id)
+        """
+        return self.title_or_id()
+
+    def setTitle(self, title=''):
+        """Set the title
+        """
+        self.edit(title=title)
+
+    #################################################################
+
+    def getState(self):
+        """Return the portlet's state 
+           (minimized, maximized, closed ...)
+        """
+        return self.state
+
+    def setState(self, state=0):
+        """Set the portlet's state
+        """
+        self.edit(state=state)
+
+    #################################################################
 
 InitializeClass(CPSPortlet)
 
