@@ -94,6 +94,16 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         return (identifier not in existing_identifiers)
 
+    security.declareProtected(ManagePortlets, 'getPortletByPath')
+    def getPortletByPath(self, portlet_path=None):
+        """
+        Returns a portlet by its physical path.
+        """
+
+        for portlet in self.listAllPortlets():
+            if portlet.getPhysicalPath() == portlet_path:
+               return portlet
+
     #########################################################################
 
     security.declarePublic('listPortletSlots')
@@ -310,6 +320,58 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if portletcache is not None:
             portletcache.invalidate()
 
+    security.declarePublic('getCacheReport')
+    def getCacheReport(self):
+        """
+        Returns detailed statistics about the cache.
+        """
+
+        cache = self.getPortletCache()
+        if cache is None:
+            return  
+        return cache.getReport()
+
+    security.declarePublic('getCacheStats')
+    def getCacheStats(self):
+        """
+        Returns statistics about the cache.
+        """
+
+        cache = self.getPortletCache()
+        if cache is None:
+            return
+
+        stats = cache.getStats()
+        count = stats['count']
+        hits = stats['hits']
+        size = stats['size']
+
+        if count > 0:
+            effectivity = 100 * hits / count
+        else:
+            effectivity = 100
+
+        return {'effectivity': effectivity, 
+                'size': size, }
+
+    security.declarePublic('findCacheOrphans')
+    def findCacheOrphans(self):
+        """
+        Returns the list of object ids that are in the cache
+        but that no longer exist.
+        """
+
+        cache = self.getPortletCache()
+        if cache is None:
+            return []
+        portlets = self.listAllPortlets()
+        cached_portlets_paths = [p.getPhysicalPath() for p in portlets]
+        orphans = []
+        for index, entry in cache.getEntries():
+            portlet_path = index[0]
+            if portlet_path not in (cached_portlets_paths + orphans):
+                orphans.append(portlet_path)
+        return orphans
     #
     # Private
     #
@@ -427,11 +489,15 @@ class PortletsTool(UniqueObject, PortletsContainer):
     security.declareProtected(ManagePortlets, 'manage_rebuildPortlets')
     manage_rebuildPortlets = DTMLFile('zmi/manage_rebuildPortlets',
                                        globals())
-
+    security.declareProtected(ManagePortlets, 'manage_RAMCache')
+    manage_RAMCache = DTMLFile('zmi/manage_RAMCache',
+                                       globals())
     manage_options = (
         PortletsContainer.manage_options +
-        ({'label': 'Rebuild portlets',
-          'action': 'manage_rebuildPortlets'},)
+        ({'label': 'Rebuild',
+          'action': 'manage_rebuildPortlets'},
+         {'label': 'Cache',
+          'action': 'manage_RAMCache'}, )
         )
 
     security.declareProtected(ManagePortlets, 'rebuild_portlets')
@@ -446,6 +512,18 @@ class PortletsTool(UniqueObject, PortletsContainer):
             redirect_url = self.absolute_url()\
                 + '/manage_rebuildPortlets' \
                 + '?manage_tabs_message=%s Portlets rebuilt.' % len(portlets)
+            REQUEST.RESPONSE.redirect(redirect_url)
+
+    security.declareProtected(ManagePortlets, 'manage_clearCache')
+    def manage_clearCache(self, REQUEST=None):
+        """Clears the local RAM cache."""
+
+        self.clearCache()
+
+        if REQUEST is not None:
+            redirect_url = self.absolute_url()\
+                + '/manage_RAMCache' \
+                + '?manage_tabs_message=Cache cleared'
             REQUEST.RESPONSE.redirect(redirect_url)
 
     ######################################################################

@@ -1,0 +1,99 @@
+<dtml-var manage_page_header>
+<dtml-var manage_tabs>
+
+<br/>
+<dtml-let portlets="listAllPortlets()">
+<dtml-let data="getCacheReport()">
+<dtml-if data>
+
+<form action="manage_clearCache" method="post">
+<p class="form-element">
+<input class="form-element" type="submit" value=" Purge the cache " />
+</p>
+</form>
+
+<dtml-let stats="getCacheStats()">
+<p>
+   Cache effectivity: <dtml-var expr="stats['effectivity']">%
+   Cache size: <dtml-var expr="stats['size'] / 1024"> KB
+</p>
+</dtml-let>
+<br/>
+
+<table cellspacing="0" cellpadding="2" border="0" width="100%">
+  <tr class="list-header">
+    <td align="left" valign="top" width="20">
+       &nbsp;
+    </td>
+    <td align="left" valign="top" width="25%">
+      <div class="form-label">Templet</div>
+    </td>
+    <td align="center" valign="top">
+      <div class="form-label">Number of entries</div>
+    </td>
+    <td align="center" valign="top">
+      <div class="form-label">Total size (KB)</div>
+    </td>
+    <td align="left" valign="top" width="25%">
+      <div class="form-label">Last cleanup</div>
+    </td>
+  </tr>
+  <dtml-in expr="data.items()">
+    <dtml-let portlet_path=sequence-key>
+        <dtml-let portlet="getPortletByPath(portlet_path)">
+        <dtml-if sequence-odd>
+        <tr class="row-normal">
+        <dtml-else>
+        <tr class="row-hilite">
+        </dtml-if>
+        <dtml-if expr="getPortletByPath(portlet_path)">
+          <td align="left" valign="top">
+            <img src="<dtml-var "portlet.getIcon()">" width="16" height="16" />
+          </td>
+          <td align="left" valign="top">
+            <div class="list-item">
+            <a href="<dtml-var "portlet.absolute_url()">/manage_propertiesForm">
+            <dtml-var "portlet.title_or_id()">
+            </a>
+            </div>
+          </td>
+          <dtml-let item=sequence-item>
+          <td align="center" valign="top">
+            <div class="list-item">
+            <dtml-var expr="item['count']">
+            </div>
+          </td>
+          <td align="center" valign="top">
+            <div class="list-item">
+            <dtml-var expr="item['size'] / 1024">
+            </div>
+          </td>
+          <td align="left" valign="top">
+            <div class="list-item">
+            <dtml-var expr="DateTime(item['last_cleanup']).strftime('%Y-%m-%d %H:%M:%S')">
+            </div>
+          </td>
+        </dtml-let>
+        </tr>
+        <dtml-else>
+          <td align="center" valign="top">
+            ?
+          </td>
+          <td align="left" valign="top" colspan="5">
+            <div class="list-item">
+              <span style="color: red">Orphan</span>
+            </div>
+          </td>
+        </td>
+        </dtml-if>
+        </dtml-let>
+    </dtml-let>
+  </dtml-in>
+</table>
+<dtml-else>
+<p><em>There are no entries in the cache.</em></p>
+</dtml-if>
+</dtml-let>
+</dtml-let>
+
+<dtml-var manage_page_footer>
