@@ -1,5 +1,27 @@
 rss_portlet_layout = {
     'widgets': {
+        'portlet': {
+            'type': 'Generic Portlet Widget',
+            'data': {
+                'title': '',
+                'fields': ('portlet',),
+                'is_required': False,
+                'label': '',
+                'label_edit': '',
+                'description': '',
+                'help': '',
+                'is_i18n': False,
+                'readonly_layout_modes': (),
+                'hidden_layout_modes': ('edit',),
+                'hidden_readonly_layout_modes': (),
+                'hidden_empty': False,
+                'hidden_if_expr': '',
+                'css_class': '',
+                'widget_mode_expr': '',
+                'render_method': 'widget_portlet_rss',
+                'field_types': ('CPS String Field',),
+            },
+        },
         'link_string': {
             'type': 'String Widget',
             'data': {
@@ -115,28 +137,6 @@ rss_portlet_layout = {
                 'translated': False,
             },
         },
-        'rss': {
-            'type': 'Generic Portlet Widget',
-            'data': {
-                'title': '',
-                'fields': ('rss',),
-                'is_required': False,
-                'label': '',
-                'label_edit': '',
-                'description': '',
-                'help': '',
-                'is_i18n': False,
-                'readonly_layout_modes': (),
-                'hidden_layout_modes': ('edit',),
-                'hidden_readonly_layout_modes': (),
-                'hidden_empty': False,
-                'hidden_if_expr': '',
-                'css_class': '',
-                'widget_mode_expr': '',
-                'render_method': 'widget_portlet_rss',
-                'field_types': ('CPS String Field',),
-            },
-        },
         'max_words': {
             'type': 'Int Widget',
             'data': {
@@ -167,7 +167,7 @@ rss_portlet_layout = {
         'flexible_widgets': (),
         'ncols': 1,
         'rows': [
-            [{'widget_id': 'rss', 'ncols': 1},
+            [{'widget_id': 'portlet', 'ncols': 1},
             ],
             [{'widget_id': 'channel', 'ncols': 1},
             ],
