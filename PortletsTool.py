@@ -24,11 +24,15 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
+from Acquisition import aq_base
 
 from Products.CMFCore.utils import UniqueObject, getToolByName
 
 from Products.CPSPortlets.PortletsContainer import PortletsContainer
 from Products.CPSPortlets.CPSPortletsPermissions import ManagePortlets
+
+
+PORTLET_CONTAINER_ID = '.cps_portlets'
 
 class PortletsTool(UniqueObject, PortletsContainer):
     """ Portlets Tool
@@ -39,6 +43,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security = ClassSecurityInfo()
 
+    security.declarePublic('getPortletSlots')
     def getPortletSlots(self):
         """Return all the available slots
         """
@@ -52,6 +57,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 'right',
                 'bottom']
 
+    security.declarePublic('listPortletTypes')
     def listPortletTypes(self):
         """Return the list of all defined portal_types which are portlets
 
@@ -64,6 +70,49 @@ class PortletsTool(UniqueObject, PortletsContainer):
             if getattr(fti, 'cps_is_portlet', 0) == 1:
                 returned.append(id)
         return returned
+
+    security.declarePublic('getPortletContainerId')
+    def getPortletContainerId(self):
+        """Return the id of the portlet container.
+        """
+
+        return PORTLET_CONTAINER_ID
+
+    security.declarePublic('getPortlets')
+    def getPortlets(self, context=None, slot=None):
+        """Return a list of portlets.
+        """
+
+        if context is None:
+            return []
+
+        # Find bottom-most folder:
+        obj = context
+        bmf = None
+        while 1:
+            if obj.isPrincipiaFolderish:
+                bmf = obj
+                break
+            parent = aq_parent(aq_inner(obj))
+            if not obj or parent == obj:
+                break
+            obj = parent
+        if bmf is None:
+            bmf = context
+
+        # get portlets from the root to current path
+        # XXX no security check is done yet.
+
+        portal_url = getToolByName(self, 'portal_url')
+        rpath = portal_url.getRelativeContentPath(bmf)
+        obj = portal_url.getPortalObject()
+        allportlets = []
+        for elem in ('',) + rpath:
+            if elem:
+                obj = getattr(obj, elem)
+            allportlets.extend(self._getFolderPortlets(obj))
+
+        return allportlets
 
     ######################################################################
 
@@ -105,5 +154,20 @@ class PortletsTool(UniqueObject, PortletsContainer):
             pass
 
         return destination._deletePortlet(portlet_id)
+
+    #
+    # Private
+    #
+    security.declarePrivate('_getFolderPortlets')
+    def _getFolderPortlets(self, folder=None):
+        """Load all portlets in a .cps_portlets folder
+        """
+
+        portlets = []
+        if folder is not None:
+            idpc = self.getPortletContainerId()
+            if idpc in folder.objectIds(): 
+                portlets = getattr(folder, idpc).objectValues('CPS Portlet')
+        return portlets
 
 InitializeClass(PortletsTool)
