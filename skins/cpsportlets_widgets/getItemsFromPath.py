@@ -15,9 +15,11 @@ portal_types = context.portal_types
 renderIcon = context.portal_cpsportlets.renderIcon
 getRelativeUrl = portal_url.getRelativeUrl
 
-dc_map = {
+metadata_map = {
     'creator': 'Creator',
     'date': 'ModificationDate',
+    'issued': 'EffectiveDate',
+    'created': 'CreationDate',
     'rights': 'Rights',
     'language': 'Language',
     'contributor': 'Contributors',
@@ -43,11 +45,11 @@ for path in links:
         if len(words) > max_title_words:
             title = ' '.join(words[:int(max_title_words)]) + ' ...'
 
-    # DublinCore information
-    dc_info = {}
+    # DublinCore / metatada information
+    metadata_info = {}
     content = object.getContent()
-    for key, dc in dc_map.items():
-        meth = getattr(content, dc)
+    for key, attr in metadata_map.items():
+        meth = getattr(content, attr)
         if callable(meth):
             value = meth()
         else:
@@ -56,7 +58,7 @@ for path in links:
             continue
         if not isinstance(value, str):
             value = ', '.join(value)
-        dc_info[key] = value
+        metadata_info[key] = value
 
     rpath = getRelativeUrl(object)
 
@@ -67,7 +69,7 @@ for path in links:
          'title': object.title_or_id(),
          'description': content.Description(),
          'icon_tag': renderIcon(ptype, base_url, ''),
-         'dc': dc_info,
+         'metadata': metadata_info,
         })
 
 return items

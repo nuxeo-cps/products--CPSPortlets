@@ -27,7 +27,7 @@
   <tal:block define="url string:${request/URL}?export=${export};
                      utool nocall:here/portal_url;
                      portal python: utool.getPortalObject()"
-   content="structure python: export_script(portal=portal, box=ds, items=items, url=url, request=request)" />
+   content="structure python: export_script(portal=portal, box=ds, items=items, url=url, context=here, request=request)" />
 </metal:block>
 
 <!-- Display export buttons -->

@@ -1,24 +1,51 @@
 <dtml-call "request.RESPONSE.setHeader('Content-Type', 'text/xml; charset=ISO-8859-15')">
 <?xml version="1.0" encoding="ISO-8859-15"?>
 
+<dtml-let construct_atomid="context.cpsportlet_construct_atomid">
+
 <feed version="0.3" xmlns="http://purl.org/atom/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
 
   <title mode="escaped" type="text/html"><dtml-var "portal.Title()"> - <dtml-var "box['Title']" html_quote></title>
-  <modified></modified>
-  <tagline type="text/plain">ATOM feed</tagline>
+  <tagline></tagline>
   <link rel="alternate" type="text/html" href="<dtml-var url>" />
+  <id><dtml-var "construct_atomid(url, context.created())"></id>
+  <generator url="http://nuxeo.com" version="3.3">CPS</generator>
+  <modified><dtml-var "context.ModificationDate()"></modified>
+  <tagline type="text/plain">ATOM feed</tagline>
 
   <description><dtml-var "box['Description']" html_quote></description>
   <link><dtml-var url html_quote></link>
 
-
   <dtml-in items>
      <dtml-let item=sequence-item>
        <entry>
-         <title><dtml-var "item['title']"></title>
-         <description><dtml-var "item['description']"></description>
+         <dtml-if "item.has_key('metadata')">
+           <dtml-let metadata="item['metadata']">
+             <id><dtml-var "construct_atomid(item['url'], context.created())"></id>
+             <title mode="escaped" type="text/html"><dtml-var "item['title']" html_quote></title>
+
+             <dtml-if "metadata.has_key('issued')">
+               <issued><dtml-var "metadata['issued']"></issued>
+             </dtml-if>
+             <dtml-if "metadata.has_key('date')">
+               <modified><dtml-var "metadata['date']"></modified>
+             </dtml-if>
+             <dtml-if "metadata.has_key('creator')">
+               <author>
+                 <name><dtml-var "metadata['creator']"></name>
+               </author>
+             </dtml-if>
+             <dtml-if "metadata.has_key('contributor')">
+               <contributor><dtml-var "metadata['contributor']"></contributor>
+             </dtml-if>
+             <summary xml:lang="<dtml-var "metadata.get('language', 'en')">"><dtml-var "item['description']"></summary>
+           </dtml-let>
+         </dtml-if>
+
        </entry>
      </dtml-let>
   </dtml-in>
 
 </feed>
+
+</dtml-let>

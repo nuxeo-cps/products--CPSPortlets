@@ -14,10 +14,10 @@
           <link><dtml-var "item['url']"></link>
           <guid><dtml-var "item['url']"></guid>
           <description><dtml-var "item['description']"></description>
-          <dtml-if "item.has_key('dc')">
-            <dtml-let dc="item['dc']">
-              <dtml-if "dc.has_key('date')">
-                <pubDate><dtml-var "dc['date']"></pubDate>
+          <dtml-if "item.has_key('metadata')">
+            <dtml-let metadata="item['metadata']">
+              <dtml-if "metadata.has_key('date')">
+                <pubDate><dtml-var "metadata['date']"></pubDate>
               </dtml-if>
             </dtml-let>
           </dtml-if>

@@ -39,3 +39,4 @@ New internal features:
 - added an RSS 1.0 / 2.0 exporter
 - harmonization in the HTML code of portlets containing list items.
 - added the portal's title in syndication feed titles.
+- added ATOM 0.3 export

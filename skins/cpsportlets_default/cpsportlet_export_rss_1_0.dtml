@@ -21,7 +21,6 @@
         </dtml-in>
       </rdf:Seq>
     </items>
-
   </channel>
 
   <dtml-in items>
@@ -30,22 +29,22 @@
          <title><dtml-var "item['title']"></title>
          <description><dtml-var "item['description']"></description>
          <link><dtml-var "item['url']"></link>
-         <dtml-if "item.has_key('dc')">
-           <dtml-let dc="item['dc']">
-             <dtml-if "dc.has_key('contributor')">
-               <dc:contributor><dtml-var "dc['contributor']"></dc:contributor>
+         <dtml-if "item.has_key('metadata')">
+           <dtml-let metadata="item['metadata']">
+             <dtml-if "metadata.has_key('contributor')">
+               <dc:contributor><dtml-var "metadata['contributor']"></dc:contributor>
              </dtml-if>
-             <dtml-if "dc.has_key('language')">
-               <dc:language><dtml-var "dc['language']"></dc:language>
+             <dtml-if "metadata.has_key('language')">
+               <dc:language><dtml-var "metadata['language']"></dc:language>
              </dtml-if>
-             <dtml-if "dc.has_key('date')">
-               <dc:date><dtml-var "dc['date']"></dc:date>
+             <dtml-if "metadata.has_key('date')">
+               <dc:date><dtml-var "metadata['date']"></dc:date>
              </dtml-if>
-             <dtml-if "dc.has_key('coverage')">
-               <dc:coverage><dtml-var "dc['coverage']"></dc:coverage>
+             <dtml-if "metadata.has_key('coverage')">
+               <dc:coverage><dtml-var "metadata['coverage']"></dc:coverage>
              </dtml-if>
-             <dtml-if "dc.has_key('rights')">
-               <dc:rights><dtml-var "dc['rights']"></dc:rights>
+             <dtml-if "metadata.has_key('rights')">
+               <dc:rights><dtml-var "metadata['rights']"></dc:rights>
              </dtml-if>
            </dtml-let>
          </dtml-if>
