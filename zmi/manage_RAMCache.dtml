@@ -2,7 +2,6 @@
 <dtml-var manage_tabs>
 
 <br/>
-<dtml-let portlets="listAllPortlets()">
 <dtml-let data="getCacheReport()">
 <dtml-if data>
 
@@ -93,7 +92,6 @@
 <dtml-else>
 <p><em>There are no entries in the cache.</em></p>
 </dtml-if>
-</dtml-let>
 </dtml-let>
 
 <dtml-let orphans="findCacheOrphans()">
