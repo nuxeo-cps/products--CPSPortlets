@@ -71,6 +71,7 @@ Bug fixes:
 - listPortlets() returned incorrect results when 'portal_types' was empty
   and only local portlets should be listed.
 - _getFolderPortlets() returned global portlets
+- some tools in the site root were not filtered out by ptltool.getFolders().
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()

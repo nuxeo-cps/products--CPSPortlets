@@ -291,7 +291,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 continue
             if not c.isPrincipiaFolderish:
                 continue
-            if c.getId().startswith('.'):
+            folder_id = c.getId()
+            if folder_id.startswith('.') or \
+                folder_id.startswith('portal_'):
                 continue
             folders_append(c)
         return folders
