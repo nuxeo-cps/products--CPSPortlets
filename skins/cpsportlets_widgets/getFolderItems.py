@@ -32,6 +32,8 @@ checkPerm = mtool.checkPermission
 if not checkPerm( 'List folder contents', bmf):
     return []
 
+getRelativeUrl = context.portal_url.getRelativeUrl
+
 for object in bmf.objectValues():
     # remove objects with ids beginning with '.'
     if object.getId().startswith('.'):
@@ -55,7 +57,7 @@ for object in bmf.objectValues():
             title = ' '.join(words[:int(max_title_words)]) + ' ...'
 
     folder_items.append(
-        {'url': '/' + object.absolute_url(relative=1),
+        {'url': base_url + getRelativeUrl(object),
          'title': title,
          'icon_tag': '', #XXX render the icon tag
         })

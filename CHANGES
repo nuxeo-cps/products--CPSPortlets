@@ -35,6 +35,7 @@ Bug fixes:
 - added a 'baseurl' cache index for portlets that need to cache the base url.
 - we check first that the object notified by the event is a proxy before
   calling getContent() on it in notify_event().
+- getFolderItems(): url fixes for rewrite rules with '_vh_'
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added an access key to access the portlet management panels.

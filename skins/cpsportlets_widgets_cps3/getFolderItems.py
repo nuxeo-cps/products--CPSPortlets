@@ -36,6 +36,8 @@ portal_types = context.portal_types
 renderIcon = context.portal_cpsportlets.renderIcon
 
 getFTIProperty = context.portal_cpsportlets.getFTIProperty
+getRelativeUrl = context.portal_url.getRelativeUrl
+
 for object in bmf.objectValues():
     # remove objects with ids beginning with '.'
     if object.getId().startswith('.'):
@@ -65,7 +67,7 @@ for object in bmf.objectValues():
             title = ' '.join(words[:int(max_title_words)]) + ' ...'
 
     folder_items.append(
-        {'url': '/' + object.absolute_url(relative=1),
+        {'url': base_url + getRelativeUrl(object),
          'title': title,
          'icon_tag': renderIcon(ptype, base_url, ''),
         })
