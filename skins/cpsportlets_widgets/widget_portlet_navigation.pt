@@ -15,7 +15,7 @@
          tal:attributes="href item/url"
          tal:content="item/title" /><br/>
       <tal:block tal:repeat="item navItems" tal:condition="python: depth == 1">
-        <br/><a tal:content="item/title" tal:attributes="href item/url" />
+        <br/><br/><a tal:content="item/title" tal:attributes="href item/url" />
       </tal:block>
     </h1>
     <h2 style="margin:0" tal:condition="python: depth >= 2">
@@ -23,7 +23,7 @@
          tal:attributes="href item/url"
          tal:content="item/title" /><br/>
       <tal:block tal:repeat="item navItems" tal:condition="python: depth == 2">
-        <br/><a tal:content="item/title" tal:attributes="href item/url" />
+        <br/><br/><a tal:content="item/title" tal:attributes="href item/url" />
       </tal:block>
     </h2>
     <h3 style="margin:0" tal:condition="python: depth >= 3">
@@ -31,7 +31,7 @@
          tal:attributes="href item/url"
          tal:content="item/title" /><br/>
       <tal:block tal:repeat="item navItems" tal:condition="python: depth == 3">
-        <br/><a tal:content="item/title" tal:attributes="href item/url" />
+        <br/><br/><a tal:content="item/title" tal:attributes="href item/url" />
       </tal:block>
     </h3>
     <tal:block repeat="level python: range(3,depth)">
@@ -40,7 +40,7 @@
            tal:attributes="href item/url"
            tal:content="item/title" /><br/>
         <tal:block tal:repeat="item navItems" tal:condition="python: level == depth">
-          <br/><a tal:content="item/title" tal:attributes="href item/url" />
+          <br/><br/><a tal:content="item/title" tal:attributes="href item/url" />
         </tal:block>
       </h4>
     </tal:block>
