@@ -83,6 +83,20 @@ Applies to the portlet box.
   BoxBody menuin border width     border-width
 
 
+Box Corners
+-----------
+Applies to the portlet box frame.
+
+  LABEL                           CSS property
+  -----                           ------------
+  Area border color               border-color
+  Area background color           background-color
+  Top left background image       background-image
+  Top right background image      background-image
+  Bottom left background image    background-image
+  Bottom right background image   background-image
+
+
 Font Color
 ----------
 Applies to the portlet's characters.
