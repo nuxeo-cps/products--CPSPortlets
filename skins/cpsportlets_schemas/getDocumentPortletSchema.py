@@ -1,8 +1,8 @@
 document_portlet_schema = {
-    'layout_id': {
-        'type': 'CPS String Field',
+    'layout_ids': {
+        'type': 'CPS String List Field',
         'data': {
-            'default_expr': 'string:',
+            'default_expr': 'python:[]',
             'is_searchabletext': 0,
             'acl_read_permissions': '',
             'acl_read_roles': '',
@@ -18,5 +18,6 @@ document_portlet_schema = {
         },
     },
 }
+
 schemas = {'document_portlet': document_portlet_schema}
 return schemas

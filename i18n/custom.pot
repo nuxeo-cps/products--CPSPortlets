@@ -281,7 +281,7 @@ msgstr ""
 msgid "portal_type_CustomPortlet_description"
 msgstr ""
 
-msgid "cpsportlets_layout_id_label"
+msgid "cpsportlets_document_layout_ids_label"
 msgstr ""
 
 msgid "cpsportlet_rot_image_nb_images_label"
