@@ -33,6 +33,8 @@ Bug fixes:
 - i18n fr.po fix: "surchargement" => "surcharge"
 - Search Portlet: fixed the contextual search url.
 - added a 'baseurl' cache index for portlets that need to cache the base url.
+- we check first that the object notified by the event is a proxy before
+  calling getContent() on it in notify_event().
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added an access key to access the portlet management panels.

@@ -1016,7 +1016,10 @@ class PortletsTool(UniqueObject, PortletsContainer):
         object_path = '/' + infos['rpath']
 
         # XXX do we have to fetch the proxy's content to get the portal type?
-        content = object.getContent()
+        getContent = getattr(object.aq_inner.aq_explicit, 'getContent', None)
+        if getContent is None:
+            return
+        content = getContent()
         if content is None:
             return
 
