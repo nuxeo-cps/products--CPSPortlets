@@ -1,7 +1,7 @@
 image_portlet_type = {
     'title': 'portal_type_ImagePortlet_title',
     'description': 'portal_type_ImagePortlet_description',
-    'content_icon': 'image_icon.gif',
+    'content_icon': 'image_portlet_icon.png',
     'content_meta_type': 'CPS Portlet',
     'product': 'CPSPortlets',
     'factory': 'addCPSPortlet',
