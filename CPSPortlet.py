@@ -31,7 +31,7 @@ from Products.CPSDocument.CPSDocument import CPSDocument
 class CPSPortlet(CPSDocument):
     """ CPS Portlet
 
-    This is a CPSDocument child base class for portlets
+    This is a CPSPortlet child base class for portlets
     """
 
     meta_type = 'CPS Portlet'
@@ -43,6 +43,11 @@ class CPSPortlet(CPSDocument):
         No Searchable Text on here
         """
         return ""
+
+    def isCPSPortlet(self):
+        """Return true if this is a CPS Portlet."""
+
+        return 1
 
 InitializeClass(CPSPortlet)
 

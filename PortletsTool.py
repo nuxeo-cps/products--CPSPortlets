@@ -167,7 +167,12 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if folder is not None:
             idpc = self.getPortletContainerId()
             if idpc in folder.objectIds(): 
-                portlets = getattr(folder, idpc).objectValues('CPS Portlet')
+                for obj in getattr(folder, idpc).objectValues():
+                    obj = aq_base(obj)
+                    if not hasattr(obj, 'isCPSPortlet'):
+                       continue
+                    if obj.isCPSPortlet():
+                       portlets.append(obj)
         return portlets
 
 InitializeClass(PortletsTool)
