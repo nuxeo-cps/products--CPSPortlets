@@ -66,7 +66,8 @@ class TestPortletsAsRoot(TestPortlets):
     def test_setSlot(self):
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
-        portlet = getattr(aq_base(ptltool), portlet_id)
+        #portlet = getattr(aq_base(ptltool), portlet_id)
+        portlet = ptltool.getPortletById(portlet_id)
         portlet.setSlot('any slot')
         self.assert_(portlet.slot == 'any slot')
 
@@ -80,7 +81,8 @@ class TestPortletsAsRoot(TestPortlets):
     def test_setOrder(self):
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
-        portlet = getattr(aq_base(ptltool), portlet_id)
+        #portlet = getattr(ptltool, portlet_id)
+        portlet = ptltool.getPortletById(portlet_id)
         portlet.setOrder(4)
         self.assert_(portlet.order == 4)
 
