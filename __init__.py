@@ -31,7 +31,9 @@ import FlexibleTypeInformationPatch
 import PortletsTool
 import CPSPortlet
 import PortletsContainer
-import PortletWidgets
+
+# Import new widgets in here
+import PortletWidgets.DummyWidget
 
 contentClasses = (
     CPSPortlet.CPSPortlet,
