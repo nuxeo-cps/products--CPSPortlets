@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-10-28 16:19default\n"
+"POT-Creation-Date: 2004-10-28 16:43default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -29,7 +29,6 @@ msgstr ""
 msgid "ID:"
 msgstr ""
 
-#.   <a content="item/Title" attributes="href item_url">Item title</a>
 #.   <a content="item/title" attributes="href item_url">Item title</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_content.pt
 #: ../skins/cpsportlets_widgets/widget_portlet_rss.pt
@@ -239,4 +238,7 @@ msgid "cpsportlets_rss_update_frequency_label"
 msgstr ""
 
 msgid "cpsportlets_rss_max_words_label"
+msgstr ""
+
+msgid "cpsportlets_content_max_words_label"
 msgstr ""

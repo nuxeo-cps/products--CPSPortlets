@@ -11,6 +11,8 @@ search_type = kw.get('search_type')
 sort_reverse = kw.get('sort_reverse')
 max_items = kw.get('max_items', 5)
 max_items = int(max_items)
+max_words = kw.get('max_words', 20)
+max_words = int(max_words)
 folder_path = kw.get('folder_path')
 
 # remove unwanted search options
@@ -130,4 +132,24 @@ if search_type == 'related':
     obj_url = obj.absolute_url()
     brains = [o for o in brains if o.getURL() != obj_url]
 
-return brains
+# build results dictionary
+def summarize(text='', max_words=20):
+    """summarize the text by returning the first max_words
+    """
+    split_text = text.split(' ', max_words)[0:max_words]
+    res = ''
+    if split_text:
+        res = ' '.join(split_text) + ' ...'
+    return res
+
+items = []
+for brain in brains:
+    description = brain['Description']
+    if max_words > 0:
+        description = summarize(description, max_words)
+    items.append({'url': brain.getURL(),
+                  'title': brain['Title'],
+                  'description': description,
+                 })
+
+return items
