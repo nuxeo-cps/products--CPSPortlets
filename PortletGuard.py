@@ -32,7 +32,7 @@ def createExpressionContext(sm, portlet, context):
     """Create a name space for TALES expressions."""
     portal = getToolByName(context, 'portal_url').getPortalObject()
     data = {
-        'portlet': porlet,
+        'portlet': portlet,
         'here': context,
         'portal': portal,
         'request': getattr(context, 'REQUEST', None),
