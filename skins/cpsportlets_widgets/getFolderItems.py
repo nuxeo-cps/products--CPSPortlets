@@ -25,6 +25,9 @@ if not checkPerm( 'List folder contents', bmf):
     return []
 
 for object in bmf.objectValues():
+    # remove objects with ids beginning with '.'
+    if object.getId().startswith('.'):
+        continue
     # filter out objects that cannot be viewed
     if not checkPerm('View', object):
         continue
