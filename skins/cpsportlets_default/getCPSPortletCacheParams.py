@@ -10,6 +10,8 @@ cache_params = {
     'Actions Portlet': ['actions:(categories)'],
     'Content Portlet': ['no-cache'],
     'Language Portlet': ['no-cache'],
+    'Image Portlet': [],
+    'Navigation Portlet': ['no-cache'],
 }
 
 return cache_params
