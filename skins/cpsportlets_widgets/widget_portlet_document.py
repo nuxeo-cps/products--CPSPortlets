@@ -42,7 +42,10 @@ if getContent is not None:
                     break
             if not found:
                 return ''
-        rendered = render(proxy=context_obj, cluster=cluster_id)
+        try:
+            rendered = render(proxy=context_obj, cluster=cluster_id)
+        except TypeError:
+            pass
     else:
         rendered = render(proxy=context_obj)
 

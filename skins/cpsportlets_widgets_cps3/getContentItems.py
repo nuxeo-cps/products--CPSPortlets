@@ -177,7 +177,10 @@ for brain in brains:
             render = getattr(content, 'render', None)
             if render is not None:
                 # render the document by cluster (if specified)
-                rendered = render(proxy=obj, cluster=cluster_id)
+                try:
+                    rendered = render(proxy=obj, cluster=cluster_id)
+                except TypeError:
+                    pass
 
     # default item presentation (summary of description)
     if not rendered:
