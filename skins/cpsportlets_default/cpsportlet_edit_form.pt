@@ -33,18 +33,31 @@
     </h1>
   </metal:block>
 
-  <metal:block fill-slot="main">
+  <metal:block fill-slot="main"
+     tal:define="portlet_folder here/getLocalFolder|nothing;
+                 portlet_id here/getId">
+    <form action="" method="post"
+     tal:condition="portlet_folder"
+     tal:attributes="action string:${portlet_folder/absolute_url}/portlet_manage_form">
+      <input type="hidden" name="view_mode" value="canvas" />
+      <input type="submit" i18n:attributes="value"
+       tal:attributes="value string:button_canvas">
+    </form>
+
+    <form action="" method="post"
+     tal:condition="portlet_folder"
+     tal:attributes="action string:${portlet_folder/absolute_url}/portlet_manage_form">
+      <input type="hidden" name="view_mode" value="visibility" />
+      <input type="hidden" name="selected_portlet" 
+       tal:attributes="value portlet_id" />
+      <input type="submit" i18n:attributes="value"
+       tal:attributes="value string:button_visibility">
+    </form>
+
     <div tal:condition="error"
          tal:replace="structure rendered_main" />
     <div tal:condition="not:error"
          tal:replace="structure python: here.render(layout_mode='edit', context_obj=here)" />
-    <form action="" method="post" 
-     tal:define="portlet_folder here/getLocalFolder|nothing"
-     tal:condition="portlet_folder"
-     tal:attributes="action string:${portlet_folder/absolute_url}/portlet_manage_form">
-      <input type="submit" i18n:attributes="value"
-       tal:attributes="value string:button_back">
-    </form>
   </metal:block>
 
 </metal:block>
