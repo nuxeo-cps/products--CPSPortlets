@@ -23,6 +23,7 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 """
 
 from Products.CMFCore import utils
+from Products.CMFCore.DirectoryView import registerDirectory
 from Products.CMFCore.CMFCorePermissions import AddPortalContent
 
 import PortletsTool
@@ -43,6 +44,9 @@ contentConstructors = (
 fti = ()
 
 tools = (PortletsTool.PortletsTool,)
+
+
+registerDirectory('skins', globals())
 
 def initialize(registrar):
     """Initialize CPS Portlets content

@@ -31,7 +31,8 @@ from Products.CPSInstaller.CPSInstaller import CPSInstaller
 
 SECTIONS_ID = 'sections'
 WORKSPACES_ID = 'workspaces'
-SKINS = {}
+SKINS = {'cpsportlets_widgets':
+         'Products/CPSPortlets/skins/cpsportlets_widgets'}
 
 class CPSPortletsInstaller(CPSInstaller):
     """ Installer class for CPS Portlets component
