@@ -108,9 +108,11 @@ class PortletsContainer(CMFBTreeFolder):
 
 InitializeClass(PortletsContainer)
 
-def addPortletsContainer(dispatcher, id, REQUEST=None):
+def addPortletsContainer(dispatcher, id='', REQUEST=None):
     """Add a CPS Portlets Container.
     """
+    if not id:
+        id = dispatcher.portal_cpsportlets.getPortletContainerId()
     ob = PortletsContainer(id)
     container = dispatcher.Destination()
     container._setObject(id, ob)
