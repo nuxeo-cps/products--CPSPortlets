@@ -27,8 +27,10 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 This is a CPSDocument child base class for portlets
 """
 
+from types import ListType, IntType
+
 from Globals import InitializeClass, DTMLFile
-from Acquisition import aq_inner, aq_parent
+from Acquisition import aq_inner, aq_parent, aq_base
 from AccessControl import ClassSecurityInfo
 from OFS.PropertyManager import PropertyManager
 
@@ -99,10 +101,10 @@ class CPSPortlet(CPSDocument):
         return 1
 
     #################################################################
+
     def getCacheIndex(self):
         """Returns the RAM cache index as a tuple (var1, var2, ...)
         """
-
         index = ()
         # XXX check the schema for boolean values realted to the cache.
         index += (self.getState(), )
@@ -137,15 +139,38 @@ class CPSPortlet(CPSDocument):
         """Return the local folder (workspace, section ...)
            inside which the portlet will be displayed.
         """
-
         container = aq_parent(aq_inner(self))
         return aq_parent(aq_inner(container))
+
+    #################################################################
 
     def getDepth(self):
         """Return the portlet's relative depth.
         """
 
         return len(self.getRelativePath()) - 2
+
+    def getVisibilityRange(self):
+        """Visibility range for this portlet
+        """
+        return aq_base(self).visibility_range
+
+    def setVisibilityRange(self, range):
+        """Set the visiblity range
+
+        The validation is a little bit stronger in here.
+        We need integer values.
+        """
+        if (isinstance(range, ListType) and
+            len(range) == 2 and
+            isinstance(range[0], IntType) and
+            isinstance(range[1], IntType)):
+            try:
+                self.edit(visibility_range=range)
+                return 0
+            except ValueError:
+                pass
+        return 1
 
     #################################################################
 
@@ -186,11 +211,10 @@ class CPSPortlet(CPSDocument):
     #################################################################
 
     def getState(self):
-        """Return the portlet's state 
+        """Return the portlet's state
            (minimized, maximized, closed ...)
            default is 'maximized'
         """
-
         state = self.state
         if not state:
             state = 'maximized'
@@ -216,4 +240,3 @@ def addCPSPortlet(container, id, REQUEST=None, **kw):
     if REQUEST:
         ob = container._getOb(id)
         REQUEST.RESPONSE.redirect(ob.absolute_url()+'/manage_main')
-
