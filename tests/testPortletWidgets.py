@@ -11,7 +11,7 @@ from Products.CPSDefault.tests import CPSDefaultTestCase
 
 class TestPortlets(CPSDefaultTestCase.CPSDefaultTestCase):
     def afterSetUp(self):
-        self.login('root')
+        self.login('manager')
         self.portal.REQUEST.SESSION = {}
         self.ptltool = self.portal.portal_cpsportlets
 
@@ -43,7 +43,7 @@ for ptype_id in ['Dummy Portlet',
                  'Image Portlet',
                  'Navigation Portlet',
                  'RSS Portlet',
-                 # 'Document Portlet', XXX test not working yet
+                 # 'Document Portlet', fails
                  'Text Portlet',
                 ]:
     class TestOnePortlet(TestPortlet):

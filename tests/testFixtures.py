@@ -10,7 +10,7 @@ from Products.CMFCore.utils import getToolByName
 
 class TestFixtures(CPSPortletsTestCase.CPSPortletsTestCase):
     def afterSetUp(self):
-        self.login('root')
+        self.login('manager')
 
     def beforeTearDown(self):
         self.logout()

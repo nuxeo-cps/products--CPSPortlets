@@ -12,7 +12,7 @@ PORTLET_CONTAINER_ID = '.cps_portlets'
 
 class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
     def afterSetUp(self):
-        self.login_id = 'root'
+        self.login_id = 'manager'
         self.login(self.login_id)
         self.portal.REQUEST.SESSION = {}
         self.portal.REQUEST['AUTHENTICATED_USER'] = self.login_id

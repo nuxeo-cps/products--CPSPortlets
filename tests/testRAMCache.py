@@ -11,7 +11,7 @@ from Products.CPSDefault.tests import CPSDefaultTestCase
 
 class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
     def afterSetUp(self):
-        self.login_id = 'root'
+        self.login_id = 'manager'
         self.login(self.login_id)
         self.portal.REQUEST.SESSION = {}
         self.portal.REQUEST['AUTHENTICATED_USER'] = self.login_id
@@ -81,7 +81,7 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         portlet._setCacheParams(['user'])
         kw = self.default_kw
         cache_index = portlet.getCacheIndex(**kw)
-        expected_index = ('user_root',)
+        expected_index = ('user_%s' % self.login_id,)
         self.assert_(cache_index == expected_index)
 
     def test_getCacheIndex_current_lang(self):

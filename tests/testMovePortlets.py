@@ -25,7 +25,7 @@ class TestPortlets(CPSDefaultTestCase.CPSDefaultTestCase):
         self.logout()
 
 class TestMovePortletsAsRoot(TestPortlets):
-    login_id = 'root'
+    login_id = 'manager'
 
     def test_insertPortlet_same_slot_1(self):
         ptltool = self.ptltool

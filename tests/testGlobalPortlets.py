@@ -22,7 +22,7 @@ class TestPortlets(CPSDefaultTestCase.CPSDefaultTestCase):
         self.logout()
 
 class TestPortletsAsRoot(TestPortlets):
-    login_id = 'root'
+    login_id = 'manager'
 
     def test_createPortlet(self):
         ptltool = self.ptltool
