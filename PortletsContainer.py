@@ -64,7 +64,7 @@ class PortletsContainer(CMFBTreeFolder):
         portlets = []
         ids = self.listPortletIds()
         for id in ids:
-            portets.append(self.getPortletById(id))
+            portlets.append(self.getPortletById(id))
         return portlets
 
     def listPortletIds(self):
