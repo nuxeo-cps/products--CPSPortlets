@@ -846,13 +846,27 @@ class CPSPortlet(CPSDocument):
                      'identifier', 'allow_discussion', 'cache_timeout',
                      'Format', 'ExpirationDate', 'Coverage', 'ModificationDate',
                      'review_state', 'portlet', 'EffectiveDate', 'Rights',
-                     'Language''Contributors', 'Creator', 'Relation',
+                     'Language', 'Contributors', 'Creator', 'Relation',
                      'CreationDate', 'Subject')
+
+        stool = getToolByName(self, 'portal_schemas')
+        existing_schemas = stool.objectIds()
 
         for k, v in dm.items():
             if k in skip_list:
                 continue
-            data[k] = v
+
+            for type_schema in ti._listSchemas():
+                schema_id = type_schema.getId()
+                if schema_id not in existing_schemas:
+                    continue
+                schema = stool[schema_id]
+                for field in schema.objectValues():
+                    if field.getFieldId() != k:
+                        continue
+                    if v != field.getDefault():
+                        data[k] = v
+                        continue
 
         return data.items()
 
