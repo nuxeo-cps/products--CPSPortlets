@@ -1,8 +1,10 @@
 
                     CPSPortlets - RAM cache (draft)
 
-Author: Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>
-Last-modified: 2004-10-12
+Authors: Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>
+         Julien Anguenot <mailto:ja@nuxeo.com>
+
+Last-modified: 2004-10-18
 
 
 RAM Cache
@@ -119,8 +121,8 @@ For example:
   example: 'http://www.yourhost.com/cps/view?pp=1'
   used in: portal actions
 
-- folder_url
-  description: the url of the current folder
+- folder
+  description: the path of the current folder
   example: '/cps/workspaces/members' )
   used in: breadcrumbs, folder factories, ...
 
@@ -128,6 +130,12 @@ For example:
   description: the name of the current user
   example: 'root'
   used in: navigation portlets, login portlet ...
+
+- request:var
+  description: the content of the 'var' request variable
+
+- no-cache:
+  description: the portlet should not be cached.
 
 ...
 
@@ -186,40 +194,50 @@ interested about this event and flag the portlet.
    but it's intended to be generic enough to do other stuffs than that.
    """
 
------
-# Jean-Marc Orliaguet (16/09)
 
 :: Storing "event-reactive" objects in the cache ::
 
-The cache entries currently contain:
+The cache entries currently consist of:
 
 - the portlet's physical path
 - the cache index
 - the rendered portlet
 - the name of the user for whom the entry has been created
+- a list of "reactive" objects (see below)
 
 in the form:
-{
- ((portlet1_path), (cache index)) : {'rendered': rendered, 'user': user},
- ((portlet2_path), (cache index)) : {'rendered': rendered, 'user': user},
- ...
-}
+{ ((portlet1_path), (cache index)): {'rendered': rendered,
+                                     'user': user,
+                                     'objects': [...],
+                                    },
+  ... }
 
-=> the cache index is used for discrimination purposes
+=> the CACHE INDEX is used for DISCRIMINATION purposes to make sure that
+   the cache entries are specific to the context.
 
-=> the user name is stored for invalidation purposes, for instance in order to
-find all the cache entries that have been created for a given user to remove
-all user-dependent entries when the user logs out.
 
-It is also possible to store the list of objects that have been used to create
-the portlet's content. If any of these objects were to be affected by an event
-then the cache entry should be invalidated.
+=> the USER NAME is stored for CLEANING purposes to increase the efficiency of
+   the cache, for instance to find and remove all user-dependent entries when
+   a user logs out.
 
-For instance, if the portlet is a "Breadcumbs portlet" and its content is
-"Workspaces > members", the objects <workspaces proxy folder> and
-<members proxy folder> will be stored in the cache as object reactive to
-events.
+   SCOPE: The cleaning of the cache does not need to propagate between all
+   ZEO instances.
 
-When the portlets tool is notified about an event, it will search the cache 
-entries and remove those that contain the objects concerned with the event.
+   API: ptltool.invalidateCacheEntriesById(), ...
 
+
+=> REACTIVE OBJECTS are stored for INVALIDATION purposes.
+
+   The list of objects that have been used to create the portlet's content are
+   stored in the cache. If any of these objects were to be affected by an
+   event then the cache entry should be invalidated.
+
+   For instance, if the portlet is a "Breadcumbs portlet" and its content is
+   "Workspaces > members", the objects <workspaces proxy folder> and
+   <members proxy folder> will be stored in the cache as object reactive to
+   events.
+
+   SCOPE: the invalidation of cache entries must propagate between all
+   ZEO instances.
+
+   API: portlet.expireCache(), ...
