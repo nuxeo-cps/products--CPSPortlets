@@ -20,6 +20,8 @@ Portlet management:
 ------------------
 - portlet override
 - placeful workflows to restrict the list of addable portlets.
+- set up a portlet browser (image library, RSS channels, folder contents, ...)
+  to make it possible for users to create and share portlets.
 
 User interface:
 ---------------
