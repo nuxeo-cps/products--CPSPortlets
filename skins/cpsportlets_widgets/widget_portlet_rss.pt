@@ -11,19 +11,20 @@
            condition="rssitems">
 
   <tal:block condition="not:export">
-    <tal:block repeat="item rssitems">
-      <tal:block define="item_url item/url">
-        <h4><a i18n:translate=""
-             tal:attributes="href item_url"
-             tal:content="item/title">Item title</a></h4>
-        <span tal:condition="python: int(display_description)"
-         tal:content="item/description" />
-        <span tal:condition="link_string">
-         <a href="" tal:attributes="href item_url"
-          tal:content="structure link_string" />
-        </span>
+    <ul class="cpsskinsMenu">
+      <tal:block repeat="item rssitems">
+        <li tal:define="item_url item/url">
+          <a i18n:translate=""
+          tal:attributes="href item_url">
+            <tal:block content="item/title" /><br/>
+            <tal:block condition="python: int(display_description)"
+            content="item/description" />
+            <tal:block condition="link_string"
+            content="structure link_string" />
+          </a>
+        </li>
       </tal:block>
-    </tal:block>
+    </ul>
     <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
   </tal:block>
 

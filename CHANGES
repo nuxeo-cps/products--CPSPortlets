@@ -35,3 +35,4 @@ New internal features:
 - a layout cluster can be specified in the Content Portlet for rendering items.
 - added an export infrastructure (rss, atom, etc.) for portlets that list items.
 - added an RSS 1.0 / 2.0 exporter
+- harmonization in the HTML code of portlets containing list items.

@@ -9,18 +9,20 @@
   tal:condition="contentitems">
 
   <tal:block condition="not:export">
-    <tal:block repeat="item contentitems">
-      <tal:block define="item_title item/title;
-                         item_url item/url;
-                         rendered item/rendered">
-        <h4 tal:content="item_title" tal:condition="not:render_items" />
-        <a tal:attributes="href item_url">
-          <tal:block condition="rendered" content="structure rendered" />
-          <tal:block condition="python: link_string or not rendered"
+    <ul class="cpsskinsMenu">
+      <tal:block repeat="item contentitems">
+        <li tal:define="item_title item/title;
+                        item_url item/url;
+                        rendered item/rendered">
+          <a tal:attributes="href item_url">
+            <tal:block content="item_title" tal:condition="not:render_items" />
+            <tal:block condition="rendered" content="structure rendered" />
+            <tal:block condition="python: link_string or not rendered"
             i18n:translate="" content="structure link_string" />
-        </a>
+          </a>
+        </li>
       </tal:block>
-    </tal:block>
+    </ul>
     <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
   </tal:block>
 
