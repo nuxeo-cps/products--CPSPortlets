@@ -276,7 +276,7 @@ class CPSPortletsInstaller(CPSInstaller):
                     meta_type='*',
                     event_type='*',
                     notification_type='synchronous')
-            self.log("Portlal CPS Portlets :: already subscriber")
+            self.log("Portal CPS Portlets :: already subscriber")
 
         self.log('Event service tool not found')
 
