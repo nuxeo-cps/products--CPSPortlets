@@ -40,6 +40,8 @@ SKINS = {'cpsportlets_widgets':
          'cpsportlets_schemas':
          'Products/CPSPortlets/skins/cpsportlets_schemas',
          'cpsportlets_types':
+         'Products/CPSPortlets/skins/cpsportlets_vocabularies',
+         'cpsportlets_vocabularies':
          'Products/CPSPortlets/skins/cpsportlets_types',
          'cpsportlets_layouts':
          'Products/CPSPortlets/skins/cpsportlets_layouts',
@@ -62,6 +64,7 @@ class CPSPortletsInstaller(CPSInstaller):
         self.resetSkinCache()
         self.setupSpecificPermissions()
         self.verifyWidgets(self.portal.getPortletWidgets())
+        self.installPortletVocabularies()
         self.installPortletSchemas()
         self.installPortletLayouts()
         self.installFlexibleTypes()
@@ -102,6 +105,18 @@ class CPSPortletsInstaller(CPSInstaller):
         if self.portalHas(SECTIONS_ID):
             for perm, roles in se_perms.items():
                 self.portal[SECTIONS_ID].manage_permission(perm, roles, 0)
+
+    def installPortletVocabularies(self):
+        """Install all portlet specific vocabularies."""
+
+        define_vocabularies = (self.portal.getPortletDisplayVocabulary(),
+                              )
+
+        all_vocabularies = {}
+        for vocabulary in define_vocabularies:
+            all_vocabularies.update(vocabulary)
+
+        self.verifyVocabularies(all_vocabularies)
 
     def installPortletSchemas(self):
         """Install all portlet specific schemas."""

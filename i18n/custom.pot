@@ -46,3 +46,9 @@ msgstr ""
 
 msgid "psm_portlet_created"
 msgstr ""
+
+msgid "cpsportlets_label_display_dropdown_list"
+msgstr ""
+
+msgid "cpsportlets_label_display_horizontal_trail"
+msgstr ""
