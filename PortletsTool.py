@@ -395,13 +395,14 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     #
     # ZMI
-    # 
+    #
     security.declareProtected(ManagePortlets, 'manage_rebuildPortlets')
-    manage_rebuildPortlets = DTMLFile('zmi/manage_rebuildPortlets', 
+    manage_rebuildPortlets = DTMLFile('zmi/manage_rebuildPortlets',
                                        globals())
 
     manage_options = (PropertyManager.manage_options +
-                      ({'label': 'Rebuild portlets', 
+                      PortletsContainer.manage_options +
+                      ({'label': 'Rebuild portlets',
                         'action': 'manage_rebuildPortlets'},)
                      )
 
