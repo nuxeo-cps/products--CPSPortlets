@@ -265,32 +265,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if portlet is None:
             return
 
-        portlets = self.getPortlets(context=context, slot=dest_slot, sort=0)
-        if src_slot == dest_slot:
-            found = 0
-            for p in portlets: 
-                order = p.getOrder()
-                if order == dest_ypos and not found:
-                    found = 1
-                    p.setOrder(src_ypos)
-                    if src_ypos == dest_ypos:
-                        dest_ypos += 10
-                    break
-        else:
-            new_ypos = 0
-            found = 0
-            for p in portlets: 
-                order = p.getOrder()
-                if order == dest_ypos and not found:
-                    found = 1
-                    new_ypos = order + 10
-                if found:
-                    p.setOrder(new_ypos)
-                    new_ypos += 10
-
-        if portlet is not None:
-            portlet.setSlot(dest_slot)
-            portlet.setOrder(dest_ypos)
+        self._insertPortlet(portlet=portlet, slot=dest_slot, order=dest_ypos)
 
     #
     # Private
@@ -347,5 +322,60 @@ class PortletsTool(UniqueObject, PortletsContainer):
             if self._isPortletVisible(portlet, folder):
                 returned.append(portlet)
         return returned
+
+    security.declarePrivate('_insertPortlet')
+    def _insertPortlet(self, portlet=None, slot=None, order=0):
+        """Insert a portlet inside a slot at a given position.
+        """
+
+        if portlet is None:
+            return
+
+        # find all portlets inside the slot
+        slot_portlets = [] 
+        for p in self.listEveryPortlets():
+            if p.getSlot() != slot:
+                continue
+            slot_portlets.append(p)
+
+        # sort the portlets by order
+        def cmporder(a, b):
+            return int(a.order) - int(b.order)
+        slot_portlets.sort(cmporder)
+
+        # find the position in the list
+        # where to insert the portlet
+        pos = 0
+        for p in slot_portlets:
+            if int(p.getOrder()) >= order:
+                pos = slot_portlets.index(p)
+                break
+
+        # remove the portlet and 
+        # insert it to its new position
+        if portlet in slot_portlets:
+            slot_portlets.remove(portlet)
+        slot_portlets.insert(pos, portlet)
+
+        # set the portlet's slot and order
+        portlet.setSlot(slot)
+        portlet.setOrder(order)
+
+        # create a dictionary that holds portlets' order values
+        order_dict = dict([(slot_portlets.index(p), int(p.getOrder()))
+                           for p in slot_portlets])
+
+        # shift portlets downwards if necessary
+        for k in order_dict.keys():
+            # skip the first position
+            if k == 0:
+                continue
+            if order_dict[k] > order_dict[k-1]:
+                continue
+            # move this portlet downwwards
+            newpos = order_dict[k-1] + 10
+            slot_portlets[k].setOrder(newpos)
+            # update the dictionary too
+            order_dict[k] = newpos
 
 InitializeClass(PortletsTool)
