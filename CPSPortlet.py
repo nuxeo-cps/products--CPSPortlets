@@ -271,7 +271,6 @@ class CPSPortlet(CPSDocument):
                 index_string = ''
                 prefix = 'random'
                 for opt in opts:
-                    index_string += '_' + opt + ':'
                     value = opt
                     if value is None:
                         continue
