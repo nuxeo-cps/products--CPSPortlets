@@ -340,6 +340,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
             obj = getattr(obj, elem)
             allportlets.extend(self._getFolderPortlets(folder=obj, slot=slot))
 
+        # list of portlets that will not be displayed
+        remove_list = []
+
         # portlet guard and visibility range check
         if visibility_check:
             for portlet in allportlets:
@@ -349,11 +352,10 @@ class PortletsTool(UniqueObject, PortletsContainer):
                     portlet,
                     context) or \
                 not self._isPortletVisible(portlet, context):
-                    allportlets.remove(portlet)
+                    remove_list.append(portlet)
 
         # portlet override
         if override:
-            remove_list = []
             for portlet in allportlets:
                 # the portlet is protected
                 if portlet.disable_override:
@@ -374,9 +376,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
                     remove_list.append(portlet)
                     break
 
-            # remove overriden portlets
-            for portlet in remove_list:
-                allportlets.remove(portlet)
+        # remove invisible and overriden portlets
+        for portlet in remove_list:
+            allportlets.remove(portlet)
 
         # sort the remaining portlets
         if sort:
