@@ -47,6 +47,7 @@ if contextual:
 # cache for icons
 icons = {}
 portal_types = context.portal_types
+renderIcon = context.portal_cpsportlets.renderIcon
 
 for tree in nav.getTree():
     object = tree['object']
@@ -83,7 +84,7 @@ for tree in nav.getTree():
                          'title': object['title_or_id'],
                          'depth': depth,
                          'selected': selected,
-                         'icon': icons[ptype],
+                         'icon_tag': renderIcon(ptype, base_url, ''),
                         })
 
 return folder_items

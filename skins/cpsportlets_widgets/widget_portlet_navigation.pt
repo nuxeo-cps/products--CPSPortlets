@@ -68,7 +68,7 @@
          <tal:block tal:define="depth item/depth">
            <p tal:condition="python: depth == 1">
              <a href="" alt=""  tal:attributes="href item/url">
-               <img src="" tal:attributes="src item/icon" />
+               <tal:block content="structure item/icon_tag" />
                <strong tal:content="item/title" />
              </a>
            </p>
@@ -101,7 +101,7 @@
       <p tal:repeat="item folderItems">
         <a href="" alt=""
          tal:attributes="href item/url; style string:padding-left: ${item/depth}em">
-          <img src="" tal:attributes="src item/icon" />
+          <tal:block content="structure item/icon_tag" />
           <span tal:content="item/title" />
         </a>
       </p>
