@@ -118,11 +118,13 @@ class PortletsTool(UniqueObject, PortletsContainer):
     ######################################################################
 
     security.declareProtected(ManagePortlets, 'createPortlet')
-    def createPortlet(self, ptype_id, isglobal=1):
+    def createPortlet(self, ptype_id, context=None):
         """Create a new portlet
 
         Check where it has to be created globally within the tool or locally
-        within the PortletsTool
+        within the PortletsTool. It's done byt checking the context. If context
+        is None then it's global otherweise we gonne look at the context to get
+        the portal ocontainer
 
         returns the id of the new portlet within portal_portlets or Portlet
         Container or None if something happend
@@ -133,26 +135,31 @@ class PortletsTool(UniqueObject, PortletsContainer):
             return None
 
         # Check where we gonna create the portlet
-        destination = self
-
-        # TODO cope with local portlets
-        if not isglobal:
-            return None
+        if context is None:
+            # Here it's within the tool
+            destination = self
+        else:
+            # We create the portlets container and we create the new portlet
+            # within this last.
+            container_id = self.getPortletContainerId()
+            context.manage_addProduct['CPSPortlets'].addPortletsContainer(
+                id=container_id)
+            destination = getattr(context, container_id)
 
         return destination._createPortlet(ptype_id)
 
     security.declareProtected(ManagePortlets, 'deletePortlet')
-    def deletePortlet(self, portlet_id, isglobal=1):
+    def deletePortlet(self, portlet_id, context=None):
         """Delete portlet id
 
         Possible to warn event service for action
         """
 
-        destination = self
-
-        # TODO cope with local portlets
-        if not isglobal:
-            pass
+        if context is None:
+            destination = self
+        else:
+            container_id = self.getPortletContainerId()
+            destination = getattr(context, container_id)
 
         return destination._deletePortlet(portlet_id)
 
