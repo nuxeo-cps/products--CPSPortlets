@@ -1,15 +1,14 @@
 <tal:block define="ds options/datastructure;
                    context nocall:options/context_obj|here;
                    context_url context/absolute_url;
-                   action ds/action; 
-                  ">
+                   action ds/action">
   <tal:block condition="python: action == 'translate'">
     <form action="" method="get"
      tal:define="langItems context/getTranslateLangItems"
      tal:condition="langItems"
      tal:attributes="action string:${context_url}/cpsportlet_translate">
       <select onchange="submit()" name="lang">
-        <option i18n:translate="cpsportlet_translate_into" 
+        <option i18n:translate="cpsportlet_translate_into" disabled=""
          value="" selected="selected">Translate into ...</option>
         <option tal:repeat="item langItems"
          tal:content="item/title"
@@ -23,7 +22,7 @@
      tal:condition="langItems"
      tal:attributes="action string:${context_url}/cpsportlet_change_language">
       <select onchange="submit()" name="lang">
-        <option i18n:translate="cpsportlet_change_language" 
+        <option i18n:translate="cpsportlet_change_language" disabled=""
          value="" selected="selected">Change language</option>
         <option tal:repeat="item langItems"
          tal:content="item/title"

@@ -7,7 +7,7 @@
   tal:define="creatableItems context/getCreatableItems"
   tal:attributes="action string:${context/absolute_url}/cpsportlet_additem_create">
     <select onchange="submit()" name="type_name" tal:condition="creatableItems">
-      <option i18n:translate="cpsportlet_add_new_item" value="">
+      <option i18n:translate="cpsportlet_add_new_item" value="" disabled="">
       Add new item ...</option>
       <option tal:repeat="item creatableItems"
       tal:content="item/Title" i18n:translate=""
