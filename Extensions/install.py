@@ -69,6 +69,7 @@ class CPSPortletsInstaller(CPSInstaller):
         self.installPortletLayouts()
         self.installFlexibleTypes()
         self.setupTranslations()
+        self.doSubscribeToEventServiceTool()
         self.finalize()
         self.log("End of Install/Update : CPSPortlets Product")
 
@@ -167,6 +168,32 @@ class CPSPortletsInstaller(CPSInstaller):
 
         self.verifyFlexibleTypes(all_ptypes)
 
+    def doSubscribeToEventServiceTool(self):
+        """Subscribe to the event service tool
+        """
+
+        # Try to get the event service tool from CPS3
+        evtool = getToolByName(self.portal,
+                               'portal_eventservice',
+                               None)
+
+        # If found subscribe
+        if evtool is not None:
+            objs = evtool.objectValues()
+            subscribers = []
+            for obj in objs:
+                subscribers.append(obj.subscriber)
+            if 'portal_cpsportlets' not in subscribers:
+                self.log("Adding CPS Portlets Tool as subscriber of Event service tool")
+                evtool.manage_addSubscriber(
+                    subscriber='portal_cpsportlets',
+                    action='event',
+                    meta_type='*',
+                    event_type='*',
+                    notification_type='synchronous')
+            self.log("Portlal CPS Portlets :: already subscriber")
+
+        self.log('Event service tool not found')
 
 ###############################################
 # __call__
