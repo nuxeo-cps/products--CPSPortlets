@@ -2,7 +2,7 @@
 
 javascript = {
     'Dummy Portlet': 'widget_portlet_dummy_js',
-    'Search Portlet': '',
+    'Search Portlet': 'widget_portlet_search_js',
     'Internal Links Portlet': '',
     'Add Item Portlet': '',
     'Breadcrumbs Portlet': '',

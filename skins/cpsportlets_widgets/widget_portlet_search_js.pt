@@ -1,0 +1,10 @@
+function checkEmptySearch(formElem) {
+    var query = trim(formElem.SearchableText.value);
+    if (query != '') {
+        formElem.SearchableText.value = query;
+        return true;
+    }
+    formElem.SearchableText.value = query;
+    formElem.SearchableText.focus();
+    return false;
+}
