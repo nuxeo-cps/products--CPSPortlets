@@ -26,7 +26,7 @@ Here it's defined the specific permissions for the CPS Portlets
 'Manage Portlets': Permission to add new portlet at global scope (within portal)
 """
 
-from Products.CMFCore.CMFCorePermissions import setDefaultRoles
+from Products.CMFCore.permissions import setDefaultRoles
 
 ManagePortlets = 'Manage Portlets'
 setDefaultRoles(ManagePortlets, ('Manager', 'Owner'))

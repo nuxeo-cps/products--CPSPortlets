@@ -24,7 +24,7 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 from Products.CMFCore import utils
 from Products.CMFCore.DirectoryView import registerDirectory
-from Products.CMFCore.CMFCorePermissions import AddPortalContent
+from Products.CMFCore.permissions import AddPortalContent
 
 import CPSPortletsPermissions
 import FlexibleTypeInformationPatch

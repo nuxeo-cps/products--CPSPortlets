@@ -31,7 +31,7 @@ from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass
 from OFS.Image import File
 
-from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent
+from Products.CMFCore.permissions import View, ModifyPortalContent
 from CPSPortlet import CPSPortlet
 
 KEYWORD_DOWNLOAD_FILE = 'downloadFile'
