@@ -1,0 +1,62 @@
+
+A note on portability.
+=====================
+
+author: Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>
+last updated: 2004-09-20
+
+
+- Widgets
+  -------
+  CMF-compatible skins are stored in skins/cpsportlets_widgets.
+  CPS3-specific skins are stored in skins/cpsportlets_widgets_cps3.
+  Plone2-specific skins are stored in skins/cpsportlets_widgets_plone2.
+
+  The CPS3 (or the Plone2) skin is installed on top of the CMF skin.
+
+
+- Page templates / python scripts
+  -------------------------------
+  * The page templates are used for the presentation. They should be generic
+    and cross-platform unless the presentation differs between platforms.
+
+  * The python scripts are used to prepare the data that will be presented.
+
+  Specific implementations (CPS3/Plone) should be done in the scripts not
+  in the page templates. 
+
+  For instance we write:
+
+  showData.pt:
+  ===========
+
+  ...
+  <div tal:define="data here/getData" tal:content="data/title" />
+  ...
+  
+  with the getData.py file located in skins/cpsportlets_widgets, in
+  skins/cpsportlets_widgets_plone2 and in skins/cpsportlets_widgets_cps3
+
+  getData.py:
+  ==========
+
+  title = ...
+  return {'title': title}
+
+
+  Instead of:
+
+  showData.pt:
+  ===========
+
+  <div tal:define="data here/getCPSData" tal:content="data/title" />
+
+
+- i18n:
+
+  XXX
+
+
+- CPS4CMF, CPS4Plone
+
+  XXX
