@@ -101,7 +101,10 @@ msgstr ""
 msgid "cpsportlets_action_categories_label"
 msgstr ""
 
-msgid "cpsportlets_context_is_portlet_choice_label"
+msgid "cpsportlets_search_context_is_portlet_label"
+msgstr ""
+
+msgid "cpsportlets_nav_context_is_portlet_label"
 msgstr ""
 
 msgid "cpsportlets_content_search_related_label"

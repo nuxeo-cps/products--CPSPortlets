@@ -12,6 +12,8 @@ New features:
 - (Rotating) Image Portlet: add an optional 'caption' field to display
   under the image.
 - Added Swedish translation
+- Navigation Portlet: the portlet's own folder can be used as the
+  reference folder when listing folder items.
 Bug fixes:
 ~~~~~~~~~~
 - added missing 'is_i18n' parameter to getSearchableTypesVocabulary()

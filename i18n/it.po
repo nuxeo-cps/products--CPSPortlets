@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-02-15 16:21default\n"
+"POT-Creation-Date: 2005-02-25 19:16default\n"
 "PO-Revision-Date: 2005-01-25 17:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -178,7 +178,11 @@ msgid "cpsportlets_action_categories_label"
 msgstr "Categorie di azioni da visualizzare"
 
 #, fuzzy
-msgid "cpsportlets_context_is_portlet_choice_label"
+msgid "cpsportlets_search_context_is_portlet_label"
+msgstr "Visualizza le opzioni contestuali di ricerca"
+
+#, fuzzy
+msgid "cpsportlets_nav_context_is_portlet_label"
 msgstr "Visualizza le opzioni contestuali di ricerca"
 
 msgid "cpsportlets_content_search_related_label"

@@ -1,15 +1,15 @@
-##parameters=context_obj=None, show_docs=None, max_title_words=0
+##parameters=folder=None, show_docs=None, max_title_words=0
 
 # XXX get base url from the request
 base_url = context.getBaseUrl()
 
-if context_obj is None:
+if folder is None:
     return []
 
 folder_items = []
 
 # Find bottom-most folder:
-obj = context_obj
+obj = folder
 bmf = None
 while 1:
     if obj.isPrincipiaFolderish:
@@ -20,7 +20,7 @@ while 1:
         break
     obj = parent
 if bmf is None:
-    bmf = context_obj
+    bmf = folder
 
 mtool = context.portal_membership
 checkPerm = mtool.checkPermission

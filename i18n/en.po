@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2005-02-15 16:21default\n"
+"POT-Creation-Date: 2005-02-25 19:16default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -174,8 +174,11 @@ msgstr "Display the contextual search option"
 msgid "cpsportlets_action_categories_label"
 msgstr "Action categories to display"
 
-msgid "cpsportlets_context_is_portlet_choice_label"
+msgid "cpsportlets_search_context_is_portlet_label"
 msgstr "Perform the search starting from the location of the portlet"
+
+msgid "cpsportlets_nav_context_is_portlet_label"
+msgstr "Use the portlet's location as the context"
 
 msgid "cpsportlets_content_search_related_label"
 msgstr "Related documents"
