@@ -19,7 +19,7 @@
 
 __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
-"""CPS Portlet compoenent
+"""CPS Portlet componnent
 """
 
 from Products.CMFCore import utils
@@ -30,6 +30,7 @@ import CPSPortletsPermissions
 import FlexibleTypeInformationPatch
 import PortletsTool
 import CPSPortlet
+import FileDownloaderPatch
 import PortletsContainer
 
 # Import new widgets in here
