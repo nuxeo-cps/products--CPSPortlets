@@ -1,8 +1,152 @@
+# translation of ro.po to 
 # ##########################################################
 # ################# DON'T EDIT THIS FILE! ##################
 # ##########################################################
 # Gettext Message File for default.
 # Your Name <your@email>, Year
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
+# , 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
@@ -11,13 +155,14 @@ msgstr ""
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Language-code: ro\n"
 "Language-name: Romanian\n"
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: default\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #.   <input type="submit" value=" Add " />
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
@@ -40,23 +185,23 @@ msgstr ""
 #.   <strong>ID:</strong>
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
 msgid "ID:"
-msgstr ""
+msgstr "ID:"
 
 #.   <block>Edit</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
-msgstr ""
+msgstr "Editeaza"
 
 #.   <option disabled="disabled" selected="selected" value="">
 #.         Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
-msgstr ""
+msgstr "Adauga continut..."
 
 #.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
-msgstr ""
+msgstr "Cautare avansata"
 
 #.   <button>OK</button>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
@@ -66,42 +211,42 @@ msgstr ""
 #.   <p>Change language ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_change_language"
-msgstr ""
+msgstr "Schimba limba..."
 
 #.   <p>Delete translation ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
-msgstr ""
+msgstr "Sterge versiunea in..."
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
 msgid "cpsportlets_install_cpsskins"
-msgstr ""
+msgstr "Pentru a administra \"portlets \" trebuie sa instalezi CPSSkins."
 
 #.   <block>located in the folder</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "cpsportlets_located_in_the_folder"
-msgstr ""
+msgstr "prezent in director"
 
 #.   <h1>Portlet management</h1>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
 msgid "cpsportlets_portlet_management_heading"
-msgstr ""
+msgstr "Administrarea portlet-urilor"
 
 #.   <block>cpsportlets_search_in</block>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_search_in"
-msgstr ""
+msgstr "Cauta in"
 
 #.   <p>Switch to ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_switch_language"
-msgstr ""
+msgstr "Vizualizeaza versiunea in..."
 
 #.   <p>Translate into ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_translate_into"
-msgstr ""
+msgstr "Creeaza o versiune in..."
 
 #.   <span>Up to
 #.             ${up_id (tal content="parent/title_or_id")}
@@ -116,352 +261,353 @@ msgid "this export format has not been implemented yet"
 msgstr ""
 
 msgid "label_cpsportlets_provider"
-msgstr ""
+msgstr "Furnizeaza"
 
 msgid "label_cpsportlets_title"
-msgstr ""
+msgstr "Titlul portlet-ului"
 
 msgid "label_cpsportlets_i18n"
-msgstr ""
+msgstr "Tradu continutul portlet-ului"
 
 msgid "portal_type_DummyPortlet_title"
-msgstr ""
+msgstr "Portlet pentru test"
 
 msgid "portal_type_CustomPortlet_title"
-msgstr ""
+msgstr "Portlet pentru masurare"
 
 msgid "portal_type_TextPortlet_title"
-msgstr ""
+msgstr "Portlet pentru text"
 
 msgid "portal_type_SearchPortlet_title"
-msgstr ""
+msgstr "Portlet pentru cautare"
 
 msgid "portal_type_InternalLinksPortlet_title"
-msgstr ""
+msgstr "Portlet pentru legaturi interne"
 
 msgid "portal_type_AddItemPortlet_title"
-msgstr ""
+msgstr "Portlet pentru crearea de continut"
 
 msgid "portal_type_BreadcrumbsPortlet_title"
-msgstr ""
+msgstr "Portlet pentru drum de navigare"
 
 msgid "portal_type_ActionsPortlet_title"
-msgstr ""
+msgstr "Portlet de actiuni"
 
 msgid "portal_type_ContentPortlet_title"
-msgstr ""
+msgstr "Portlet de continut"
 
 msgid "portal_type_LanguagePortlet_title"
-msgstr ""
+msgstr "Portlet pentru limbi"
 
 msgid "portal_type_NavigationPortlet_title"
-msgstr ""
+msgstr "Portlet de navigare"
 
 msgid "portal_type_DocumentPortlet_title"
-msgstr ""
+msgstr "Portlet Document"
 
 msgid "portal_type_RSSPortlet_title"
-msgstr ""
+msgstr "Portlet RSS"
 
 msgid "action_portlets"
-msgstr ""
+msgstr "Administreaza portlet-urile"
 
 msgid "action_canvas"
-msgstr ""
+msgstr "Asezare in pagina"
 
 msgid "cpsportlets_internallinks_links_label"
-msgstr ""
+msgstr "Legaturi interne"
 
 msgid "cpsportlets_portlet_created_psm"
-msgstr ""
+msgstr "Portlet creat."
 
 msgid "cpsportlets_content_translated_psm"
-msgstr ""
+msgstr "Continut tradus."
 
 msgid "cpsportlets_bcs_display_dropdown_list_label"
-msgstr ""
+msgstr "Lista derulanta."
 
 msgid "cpsportlets_bcs_display_horizontal_trail_label"
-msgstr ""
+msgstr "Urma orizontala"
 
 msgid "cpsportlets_bcs_display_site_root_label"
-msgstr ""
+msgstr "Afiseaza radacina site-ului"
 
 msgid "cpsportlets_advanced_search_link_label"
-msgstr ""
+msgstr "Afiseaza o legatura catre un formular de cautare avansata"
 
 msgid "cpsportlets_contextual_search_choice_label"
-msgstr ""
+msgstr "Afiseaza optiunea pentru cautarea contextuala"
 
 msgid "cpsportlets_action_categories_label"
-msgstr ""
+msgstr "Categorii de actiuni pentru afisat"
 
 msgid "cpsportlets_search_context_is_portlet_label"
-msgstr ""
+msgstr "Efectueaza cautarea pornind de la locatia unde se gaseste portlet-ul"
 
 msgid "cpsportlets_nav_context_is_portlet_label"
-msgstr ""
+msgstr "Foloseste ca si context locatia in care se gaseste portlet-ul"
 
 msgid "cpsportlets_content_search_related_label"
-msgstr ""
+msgstr "Articole cu acelasi subiect"
 
 msgid "cpsportlets_content_search_all_label"
 msgstr ""
 
 msgid "cpsportlets_content_search_type_label"
-msgstr ""
+msgstr "Continut"
 
 msgid "cpsportlets_content_search_pending_label"
-msgstr ""
+msgstr "Documente in asteptare de a fi publicate "
 
 msgid "cpsportlets_content_search_last_modified_label"
-msgstr ""
+msgstr "Ultimele documente modificate"
 
 msgid "cpsportlets_content_search_last_published_label"
-msgstr ""
+msgstr "Ultimele documente publicate"
 
 msgid "cpsportlets_content_search_recent_label"
-msgstr ""
+msgstr "Documente recente"
 
 msgid "cpsportlets_content_search_upcoming_label"
-msgstr ""
+msgstr "Evenimente care vor urma"
 
 msgid "cpsportlets_content_search_today_label"
-msgstr ""
+msgstr "Evenimentele zilei"
 
 msgid "cpsportlets_content_sort_on_label"
-msgstr ""
+msgstr "Sorteaza rezultatele dupa"
 
 msgid "cpsportlets_content_sort_on_Date_label"
-msgstr ""
+msgstr "Data"
 
 msgid "cpsportlets_content_sort_on_Title_label"
-msgstr ""
+msgstr "Titlu"
 
 msgid "cpsportlets_content_sort_on_review_state_label"
-msgstr ""
+msgstr "Stare de publicare"
 
 msgid "cpsportlets_content_sort_on_Creator_label"
-msgstr ""
+msgstr "Autor"
 
 msgid "cpsportlets_content_sort_reverse_label"
-msgstr ""
+msgstr "Inverseaza ordinea afisarii"
 
 msgid "cpsportlets_common_max_items_label"
-msgstr ""
+msgstr "Numar de rezultate"
 
 msgid "cpsportlets_content_folder_path_label"
-msgstr ""
+msgstr "Locatia de baza"
 
 msgid "cpsportlets_content_searchable_types_label"
-msgstr ""
+msgstr "Tipuri de continut pentru afisare"
 
 msgid "cpsportlets_language_action_label"
-msgstr ""
+msgstr "Actiune"
 
 msgid "cpsportlets_language_action_translate_label"
-msgstr ""
+msgstr "Tradu"
 
 msgid "cpsportlets_language_action_delete_translation_label"
-msgstr ""
+msgstr "Sterge traducerea"
 
 msgid "cpsportlets_language_action_change_label"
-msgstr ""
+msgstr "Schimba limba"
 
 msgid "cpsportlets_language_action_switch_language_label"
-msgstr ""
+msgstr "Schimba limba"
 
 msgid "portal_type_ImagePortlet_title"
-msgstr ""
+msgstr "Portlet de tip imagine"
 
 msgid "cpsportlets_nav_display_vertical_breadcrumbs_menu_label"
-msgstr ""
+msgstr "Urma de navigare verticala"
 
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
-msgstr ""
+msgstr "Continutul locatiei curente"
 
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
-msgstr ""
+msgstr "Continutul sub-directoarelor"
 
 msgid "cpsportlets_nav_display_up_to_parent_label"
 msgstr ""
 
 msgid "cpsportlets_nav_display_collapsible_menu_label"
-msgstr ""
+msgstr "Meniu extensibil"
 
 msgid "cpsportlets_navigation_rel_depth_label"
-msgstr ""
+msgstr "Adancime relativa"
 
 msgid "cpsportlets_navigation_show_docs_label"
-msgstr ""
+msgstr "Afiseaza documentele"
 
 msgid "cpsportlets_navigation_show_icons_label"
-msgstr ""
+msgstr "Afiseaza iconitele documentelor"
 
 msgid "cpsportlets_custom_render_method_label"
-msgstr ""
+msgstr "Metoda de redare (zpt, py, etc.)"
 
 msgid "cpsportlets_translation_deleted_psm"
-msgstr ""
+msgstr "Traducere stearsa."
 
 msgid "button_portlet_management"
-msgstr ""
+msgstr "Administrarea portlet-urilor"
 
 msgid "cpsportlets_display_hidden_folders_label"
-msgstr ""
+msgstr "Afiseaza locatiile ascunse"
 
 msgid "cpsportlets_common_link_string_label"
-msgstr ""
+msgstr "Text de legatura"
 
 msgid "cpsportlets_common_display_description_label"
-msgstr ""
+msgstr "Afiseaza descrierea"
 
 msgid "cpsportlets_rss_channel_label"
-msgstr ""
+msgstr "Canal RSS"
 
 msgid "cpsportlets_rss_update_frequency_label"
-msgstr ""
+msgstr "Frecventa adusa la zi (in secunde)"
 
 msgid "cpsportlets_rss_max_words_label"
-msgstr ""
+msgstr "Numar de cuvinte in rezumat"
 
 msgid "cpsportlets_content_max_words_label"
-msgstr ""
+msgstr "Numar de cuvinte in rezumat"
 
 msgid "cpsportlets_image_image_label"
-msgstr ""
+msgstr "Imagine"
 
 msgid "cpsportlets_image_link_label"
-msgstr ""
+msgstr "Legatura"
 
 msgid "cpsportlets_image_caption_label"
-msgstr ""
+msgstr "Legenda"
 
 msgid "portal_type_ContentPortlet_description"
-msgstr ""
+msgstr "Afiseaza rezultatul cautarii de continut."
 
 msgid "portal_type_NavigationPortlet_description"
-msgstr ""
+msgstr "Afiseaza meniul de navigare, continutul locatiei curente, etc."
 
 msgid "portal_type_AddItemPortlet_description"
-msgstr ""
+msgstr "Afiseaza un meniu pentru crearea documentelor intr-un subdirector. "
 
 msgid "portal_type_InternalLinksPortlet_description"
-msgstr ""
+msgstr "Afiseaza legaturile interne."
 
 msgid "portal_type_TextPortlet_description"
-msgstr ""
+msgstr "Afiseaza un text HTML."
 
 msgid "portal_type_ImagePortlet_description"
-msgstr ""
+msgstr "Afiseaza o imagine pentru decorare cu o legatura."
 
 msgid "portal_type_DummyPortlet_description"
-msgstr ""
+msgstr "Pentru test."
 
 msgid "portal_type_SearchPortlet_description"
-msgstr ""
+msgstr "Afiseaza o interfata de cautare a documentelor."
 
 msgid "portal_type_RSSPortlet_description"
-msgstr ""
+msgstr "Afiseaza continutul unui canal RSS."
 
 msgid "portal_type_DocumentPortlet_description"
-msgstr ""
+msgstr "Afiseaza interpretarea documentului curent."
 
 msgid "portal_type_BreadcrumbsPortlet_description"
-msgstr ""
+msgstr "Afiseaza lista de legaturi catre locatiile parinte."
 
 msgid "portal_type_ActionsPortlet_description"
-msgstr ""
+msgstr "Afiseaza actiunile site-ului pe categorii."
 
 msgid "portal_type_LanguagePortlet_description"
-msgstr ""
+msgstr "Afiseaza actiunile de gestionare a limbilor."
 
 msgid "cpsportlets_common_first_item_label"
-msgstr ""
+msgstr "Primul articol"
 
 msgid "cpsportlets_nav_display_navtree_menu_label"
-msgstr ""
+msgstr "Meniu de navigare"
 
 msgid "cpsportlets_navigation_contextual_label"
-msgstr ""
+msgstr "Afisare contextuala"
 
 msgid "cpsportlets_display_mode_label"
-msgstr ""
+msgstr "Mod de afisare"
 
 msgid "w__imagelink"
-msgstr ""
+msgstr "Imagine legatura"
 
 msgid "cpsportlets_nav_display_site_map_label"
-msgstr ""
+msgstr "Planul site-ului"
 
 msgid "portal_type_CustomPortlet_description"
-msgstr ""
+msgstr "Afiseaza metoda de redare (.zpt, .py, etc.)"
 
 msgid "cpsportlets_document_cluster_id_label"
-msgstr ""
+msgstr "Identificatorul gruparii de layout-uri"
 
 msgid "cpsportlets_document_render_cluster_no_fallback_label"
-msgstr ""
+msgstr "Realizeaza redarea documentului doar pentru grupul de layout-uri specificat"
 
 msgid "cpsportlet_rot_image_nb_images_label"
-msgstr ""
+msgstr "Numar de imagini in rotatie"
 
 msgid "portal_type_RotatingImagePortlet_title"
-msgstr ""
+msgstr "Portlet pentru imagini in rotatie"
 
 msgid "portal_type_RotatingImagePortlet_description"
-msgstr ""
+msgstr "Afiseaza o colectie de imagini in mod aleator (bannere care se rotesc, reclame, etc)"
 
 msgid "cpsportlets_common_custom_cache_params_label"
-msgstr ""
+msgstr "Parametrii cache-ului"
 
 msgid "cpsportlets_visibility_range_0-0_label"
-msgstr ""
+msgstr "In acest director si in toate sub-directoarele sale"
 
 msgid "cpsportlets_visibility_range_1-0_label"
-msgstr ""
+msgstr "Doar in sub-director"
 
 msgid "cpsportlets_visibility_range_0-1_label"
-msgstr ""
+msgstr "Doar in acest director"
 
 msgid "cpsportlets_common_visibility_range_label"
-msgstr ""
+msgstr "Nivel de vizibilitate"
 
 msgid "cpsportlets_navigation_root_uids_label"
-msgstr ""
+msgstr "Radacina arborescentei"
 
 msgid "cpsportlets_custom_js_render_method_label"
-msgstr ""
+msgstr "Metoda de redare Javascript (zpt, py, etc.)"
 
 msgid "cpsportlets_content_query_title_label"
-msgstr ""
+msgstr "Cauta in functie de titlu"
 
 msgid "cpsportlets_content_render_items_label"
-msgstr ""
+msgstr "Genereaza o redare a rezultatelor"
 
 msgid "cpsportlets_content_cluster_id_label"
-msgstr ""
+msgstr "Identificator al grupului de layout-uri"
 
 msgid "cpsportlets_common_slot_override_label"
-msgstr ""
+msgstr "Suprascrie portlet-urile deja existente"
 
 msgid "cpsportlets_common_disable_override_label"
-msgstr ""
+msgstr "Protejeaza acest portlet impotriva suprascrierii"
 
 msgid "cpsportlets_document_render_container_label"
-msgstr ""
+msgstr "Genereaza interpretarea continutului"
 
 msgid "cpsportlets_navigation_end_depth_label"
-msgstr ""
+msgstr "Adancime"
 
 msgid "cpsportlets_internallinks_max_title_words_label"
-msgstr ""
+msgstr "Numar de cuvinte in titlu"
 
 msgid "cpsportlets_internallinks_show_icons_label"
-msgstr ""
+msgstr "Afiseaza iconitele documentelor"
 
 msgid "cpsportlets_nav_context_rpath_label"
-msgstr ""
+msgstr "Calea spre director (relativa)"
+
 
 msgid "cpsportlets_common_syndication_formats_label"
 msgstr ""
