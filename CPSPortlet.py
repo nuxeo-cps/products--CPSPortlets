@@ -302,15 +302,14 @@ class CPSPortlet(CPSDocument):
         return index
 
     security.declarePublic('render_cache')
-    def render_cache(self, render=1, REQUEST=None, **kw):
+    def render_cache(self, REQUEST=None, **kw):
         """Renders the cached version of the portlet.
         """
 
         cache_index = self.getCacheIndex(**kw)
         # the portlet is not cacheable.
         if cache_index is None:
-            if render:
-                return self.render(**kw)
+            return self.render(**kw)
 
         now = time.time()
         portlet_path = self.getPhysicalPath()
@@ -347,10 +346,7 @@ class CPSPortlet(CPSDocument):
 
         # create / recreate the cache entry
         if cache_entry is None:
-            if render:
-                rendered = self.render(**kw)
-            else:
-                rendered = ''
+            rendered = self.render(**kw)
             now = time.time()
 
             if REQUEST is None:
