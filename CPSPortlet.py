@@ -144,6 +144,7 @@ class CPSPortlet(CPSDocument):
             REQUEST = self.REQUEST
         param_dict = {
             'url': (REQUEST.get('PATH_TRANSLATED', '/'), ),
+            'folder': (REQUEST.get('URL1', '/'), ),
             'i18n': (REQUEST.get('cpsskins_language', 'en'), ),
             'user': (str(REQUEST.get('AUTHENTICATED_USER')), ),
         }
