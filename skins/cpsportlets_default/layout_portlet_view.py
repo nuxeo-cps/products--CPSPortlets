@@ -1,8 +1,8 @@
 ##parameters=layout=None, **kw
 
-rendered = ''
+rendered = []
 for row in layout['rows']:
     for cell in row:
-        rendered += cell['widget_rendered']
+        rendered.append(cell['widget_rendered'])
 
-return rendered
+return ''.join(rendered)
