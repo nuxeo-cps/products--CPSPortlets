@@ -24,10 +24,11 @@ __author__ = "Jean-Marc Orliaguet <jmo@ita.chalmers.se>"
 
 import time
 from thread import allocate_lock
+from types import DictType, ListType, TupleType, StringType
 
 class RAMCache:
     """Non-persistent RAM cache."""
- 
+
     def __init__(self):
         self.cache = {}
         self.count = 0
@@ -107,13 +108,24 @@ class RAMCache:
         finally:
             self.writelock.release()
 
+    def calcsize(self, i, s=0):
+        """Calculate the size of an object.
+        """
+        if isinstance(i, StringType):
+            s = len(i)
+        elif isinstance(i, DictType):
+            for k, v in i.items():
+                s += self.calcsize(k)
+                s += self.calcsize(v)
+        elif isinstance(i, ListType) or isinstance(i, TupleType):
+            for v in i:
+                s += self.calcsize(v)
+        return s
+
     def getSize(self):
         """Returns the size of the cache."""
- 
-        size = 0
-        for v in self.cache.values():
-            size += len(v)
-        return size
+
+        return self.calcsize(self.cache)
 
     def getStats(self):
         """Returns statistics about the cache."""
@@ -129,13 +141,14 @@ class RAMCache:
 
         stats_dict = {}
         for k, v in self.cache.items():
+            size = self.calcsize(k) + self.calcsize(v)
             entry = k[0]
             if stats_dict.has_key(entry):
                 stats_dict[entry]['count'] += 1
-                stats_dict[entry]['size'] += len(v) 
+                stats_dict[entry]['size'] += size
             else:
-                stats_dict[entry] = {'count': 1, 
-                                     'size': 0}
+                stats_dict[entry] = {'count': 1,
+                                     'size': size}
         for entry in stats_dict.keys():
             stats_dict[entry]['last_cleanup'] = self.getLastCleanup(entry) 
         return stats_dict
