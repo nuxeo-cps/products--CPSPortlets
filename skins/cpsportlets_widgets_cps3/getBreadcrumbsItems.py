@@ -13,7 +13,8 @@ url = kw.get('url')
 if url is None:
     url = context.getBaseUrl()
 
-display_hidden_folders = kw.get('display_hidden_folders', 1)
+display_hidden_folders = int(kw.get('display_hidden_folders', 1))
+display_site_root = int(kw.get('display_site_root', 1))
 
 path = url.split('/')
 path = filter(None, path)
@@ -25,9 +26,12 @@ portal_id = portal.getId()
 checkPermission = context.portal_membership.checkPermission
 items = []
 
-first_item = kw.get('first_item', 0)
+first_item = int(kw.get('first_item', 0))
+bc_range = range(first_item, len(path))
+if first_item > 0 and display_site_root:
+    bc_range.insert(0, 0)
 
-for i in range(first_item, len(path)):
+for i in bc_range:
     ipath = path[:i+1]
     obj = portal.restrictedTraverse(ipath)
 

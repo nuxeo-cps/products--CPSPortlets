@@ -112,3 +112,5 @@ New internal features:
 - implemented portlet override (see doc/portlet-override.txt)
 - added an option in getPortletContainer(..., local=1) to explicitly return
   local portlet containers (and not the tool).
+- Breadcrumbs Portlet: added an option to always display the site's root as
+  the first item.

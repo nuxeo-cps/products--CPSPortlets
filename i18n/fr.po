@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2005-01-14 11:21default\n"
+"POT-Creation-Date: 2005-01-15 15:41default\n"
 "PO-Revision-Date: 2004-09-28 03:28+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -161,6 +161,9 @@ msgstr "Liste déroulante"
 
 msgid "cpsportlets_bcs_display_horizontal_trail_label"
 msgstr "Piste horizontale"
+
+msgid "cpsportlets_bcs_display_site_root_label"
+msgstr "Afficher la racine du site"
 
 msgid "cpsportlets_advanced_search_link_label"
 msgstr "Afficher un lien vers le formulaire de recherche avancée"

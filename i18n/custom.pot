@@ -86,6 +86,9 @@ msgstr ""
 msgid "cpsportlets_bcs_display_horizontal_trail_label"
 msgstr ""
 
+msgid "cpsportlets_bcs_display_site_root_label"
+msgstr ""
+
 msgid "cpsportlets_advanced_search_link_label"
 msgstr ""
 
