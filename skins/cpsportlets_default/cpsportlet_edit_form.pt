@@ -1,4 +1,4 @@
-<tal:block define="global boxedit python: 1;
+<tal:block define="emptybody python: 1;
                    res python:here.editCPSPortlet(REQUEST=request);
                    rendered_main python: res[0];
                    portal_status_message python: res[1];
@@ -33,20 +33,15 @@
     </h1>
   </metal:block>
 
-  <metal:block fill-slot="main"
-     tal:define="portlet_folder here/getLocalFolder|nothing;
-                 portlet_id here/getId">
-    <form action="" method="post"
-     tal:condition="portlet_folder"
-     tal:attributes="action string:${portlet_folder/absolute_url}/portlet_manage_form">
-      <input type="submit" i18n:attributes="value"
-       tal:attributes="value string:button_portlet_management">
-    </form>
-
+  <metal:block fill-slot="main">
     <div tal:condition="error"
          tal:replace="structure rendered_main" />
     <div tal:condition="not:error"
          tal:replace="structure python: here.render(layout_mode='edit', context_obj=here)" />
+
+    <div>
+      <a tal:attributes="onClick string:window.opener.location.reload();;window.close()">Update</a>
+    </div>
   </metal:block>
 
 </metal:block>
