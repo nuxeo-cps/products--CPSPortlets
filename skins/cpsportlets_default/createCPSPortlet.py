@@ -16,7 +16,7 @@ portlet_localfolder = portlet.getLocalFolder()
 
 if REQUEST is not None:
     msg = 'psm_portlet_created'
-    redirect_url = portlet_localfolder.absolute_url() \
-                   + '/portlet_manage_form' \
+    redirect_url = portlet.absolute_url() \
+                   + '/cpsportlet_edit_form' \
                    + '?portal_status_message=' + msg
     REQUEST.RESPONSE.redirect(redirect_url)

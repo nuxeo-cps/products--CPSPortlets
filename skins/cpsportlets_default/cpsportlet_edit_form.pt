@@ -44,10 +44,14 @@
 
   <metal:block fill-slot="main">
     <div tal:replace="structure rendered_main" />
-    <form action="" method="post">
-      <input type="button" i18n:attributes="value"
-       tal:attributes="value string:button_back"
-       onclick="javascript:history.back()" />
+    <form action="" method="post"
+     tal:define="object_actions actions/object;
+                 canvas_action python: [ac for ac in object_actions if ac['id'] == 'canvas'];
+                 canvas_action python: canvas_action and canvas_action[0] or None;"
+     tal:condition="canvas_action"
+     tal:attributes="action canvas_action/url">
+      <input type="submit" i18n:attributes="value"
+       tal:attributes="value string:button_back">
     </form>
   </metal:block>
 
