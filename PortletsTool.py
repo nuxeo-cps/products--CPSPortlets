@@ -40,6 +40,8 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
         """
         CMFBTreeFolder.__init__(self, self.id)
 
+    ####################################################################
+
     def getPortletById(self, id):
         """Return a portlet object given an id
         """
@@ -48,6 +50,25 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
     def listPortletIds(self):
         """Return the list of all portlet ids contained within the tool
         """
-        return self.keys()
+        ids = []
+        for k, v in self.items():
+            ids.append(k)
+        return ids
+
+    ###################################################################
+
+    def getPortletSlots(self):
+        """Return all the available slots
+        """
+        # XXX lookup everywhere on the portal (locally too)
+        return ('top',
+                'left',
+                'center_top',
+                'center',
+                'folder_view',
+                'center_bottom',
+                'right',
+                'bottom')
+
 
 InitializeClass(PortletsTool)
