@@ -20,7 +20,7 @@
   <tal:block condition="python: display == 'horizontal_trail'"
   repeat="item breadcrumbsItems">
     <a href="" tal:attributes="href item/url"
-     tal:content="item/title" />
+     tal:content="python: item['title'] or item['id']" />
     <tal:block condition="not:repeat/item/end" 
      content="structure string:&gt;" />
   </tal:block>
