@@ -29,7 +29,10 @@ This is a CPSDocument child base class for portlets
 
 from Globals import InitializeClass
 
+from Products.CMFCore.utils import getToolByName
+
 from Products.CPSDocument.CPSDocument import CPSDocument
+
 
 class CPSPortlet(CPSDocument):
     """ CPS Portlet
@@ -62,14 +65,16 @@ class CPSPortlet(CPSDocument):
     def getRelativeUrl(self):
         """Return the url of the portlet relative to the portal.
         """
-        return self.absolute_url(relative=1)
+
+        portal_url = getToolByName(self, 'portal_url')
+        return utool.getRelativeUrl(self)
 
     #################################################################
 
     def getSlot(self):
         """Return the portlet's slot.
         """
-        return getattr(self, 'slot', '')
+        return self.slot
 
     def setSlot(self, slot_name=''):
         """Set the slot value
@@ -84,7 +89,7 @@ class CPSPortlet(CPSDocument):
     def getOrder(self):
         """Return the portlet's order.
         """
-        return getattr(self, 'order', 0)
+        return self.order
 
     def setOrder(self, order=0):
         """Set order
