@@ -438,6 +438,3 @@ msgstr "Afficher l'icône des documents"
 
 msgid "cpsportlets_nav_context_rpath_label"
 msgstr "Chemin du répertoire (relatif)"
-
-#~ msgid "button_close"
-#~ msgstr "Fermer"

@@ -78,12 +78,6 @@ msgstr "contenuto nella cartella"
 msgid "cpsportlets_portlet_management_heading"
 msgstr "Gestione dei portlets"
 
-#.   <block>cpsportlets_search_in</block>
-#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
-#, fuzzy
-msgid "cpsportlets_search_in"
-msgstr "Ricerca avanzata"
-
 #.   <option disabled="disabled" selected="selected" value="">Switch to ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_switch_language"
@@ -163,10 +157,6 @@ msgstr "Lista scorrevole"
 msgid "cpsportlets_bcs_display_horizontal_trail_label"
 msgstr "Percorso a sviluppo orizzontale"
 
-#, fuzzy
-msgid "cpsportlets_bcs_display_site_root_label"
-msgstr "Mappa del portale"
-
 msgid "cpsportlets_advanced_search_link_label"
 msgstr ""
 "Visualizza un collegamento verso il modulo di ricerca avanzata del portale"
@@ -176,14 +166,6 @@ msgstr "Visualizza le opzioni contestuali di ricerca"
 
 msgid "cpsportlets_action_categories_label"
 msgstr "Categorie di azioni da visualizzare"
-
-#, fuzzy
-msgid "cpsportlets_search_context_is_portlet_label"
-msgstr "Visualizza le opzioni contestuali di ricerca"
-
-#, fuzzy
-msgid "cpsportlets_nav_context_is_portlet_label"
-msgstr "Visualizza le opzioni contestuali di ricerca"
 
 msgid "cpsportlets_content_search_related_label"
 msgstr "Oggetti correlati"
@@ -263,10 +245,6 @@ msgstr "Contenuti della cartella corrente"
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Contenuti delle sottocartelle"
 
-#, fuzzy
-msgid "cpsportlets_nav_display_collapsible_menu_label"
-msgstr "Menù di navigazione"
-
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Profondità relativa"
 
@@ -310,10 +288,6 @@ msgid "cpsportlets_image_image_label"
 msgstr "Immagine"
 
 msgid "cpsportlets_image_link_label"
-msgstr "Collegamento"
-
-#, fuzzy
-msgid "cpsportlets_image_caption_label"
 msgstr "Collegamento"
 
 msgid "portal_type_ContentPortlet_description"
@@ -382,14 +356,6 @@ msgstr "Mappa del portale"
 msgid "portal_type_CustomPortlet_description"
 msgstr "Visualizza la renderizzazione di un metodo (.zpt, .py, etc.)"
 
-#, fuzzy
-msgid "cpsportlets_document_cluster_id_label"
-msgstr "Identificativi di layout:"
-
-#, fuzzy
-msgid "cpsportlets_document_render_cluster_no_fallback_label"
-msgstr "Genera un elenco dei risultati ?"
-
 msgid "cpsportlet_rot_image_nb_images_label"
 msgstr "Numero di immagini in rotazione"
 
@@ -428,47 +394,8 @@ msgstr "Ricerca sotto il titolo:"
 msgid "cpsportlets_content_render_items_label"
 msgstr "Genera un elenco dei risultati ?"
 
-#, fuzzy
-msgid "cpsportlets_content_cluster_id_label"
-msgstr "Identificativi del layout:"
-
 msgid "cpsportlets_common_slot_override_label"
 msgstr "Sovrascrivi i portlets situati ad un livello superiore ?"
 
 msgid "cpsportlets_common_disable_override_label"
 msgstr "Proteggi questo portlet dalla sovrascrittura ?"
-
-#, fuzzy
-msgid "cpsportlets_document_render_container_label"
-msgstr "Genera un elenco dei risultati ?"
-
-#, fuzzy
-msgid "cpsportlets_navigation_end_depth_label"
-msgstr "Profondità relativa"
-
-#, fuzzy
-msgid "cpsportlets_internallinks_max_title_words_label"
-msgstr "Collegamenti interni"
-
-#, fuzzy
-msgid "cpsportlets_internallinks_show_icons_label"
-msgstr "Collegamenti interni"
-
-#, fuzzy
-msgid "cpsportlets_nav_context_rpath_label"
-msgstr "Visualizza le opzioni contestuali di ricerca"
-
-#~ msgid "button_close"
-#~ msgstr "Chiudi"
-
-#~ msgid "cpsportlets_layout_id_label"
-#~ msgstr "Identificativo del layout"
-
-#~ msgid "Install"
-#~ msgstr "Installa"
-
-#~ msgid "Reinstall"
-#~ msgstr "Reinstalla"
-
-#~ msgid "Uninstall"
-#~ msgstr "Disinstalla"

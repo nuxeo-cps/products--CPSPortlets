@@ -434,6 +434,3 @@ msgstr "Show document icons"
 
 msgid "cpsportlets_nav_context_rpath_label"
 msgstr "Folder path (relative)"
-
-#~ msgid "button_close"
-#~ msgstr "Close"
