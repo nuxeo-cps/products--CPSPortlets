@@ -108,6 +108,10 @@ elif search_type == 'recent':
     else:
         query = {}
 
+
+elif search_type == 'all':
+    pass
+
 # unknown search type
 else:
     query = {}

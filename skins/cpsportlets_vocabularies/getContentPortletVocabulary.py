@@ -1,6 +1,7 @@
 cpsportlets_content_search_voc_vocabulary = {
     'data': {
         'tuples': (
+            ('all', 'All documents', 'cpsportlets_content_search_all_label'),
             ('related', 'Related', 'cpsportlets_content_search_related_label'),
             ('pending', 'Pending', 'cpsportlets_content_search_pending_label'),
             ('last_modified', 'Last modified', 'cpsportlets_content_search_last_modified_label'),

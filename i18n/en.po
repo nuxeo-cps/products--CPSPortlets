@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2005-04-02 17:39default\n"
+"POT-Creation-Date: 2005-04-03 23:24default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -27,15 +27,23 @@ msgstr ""
 msgid " Add "
 msgstr ""
 
+#.   <a attributes="href item_url">
+#.               <strong content="item/title" /><br />
+#.               <small content="item_description" condition="python: item_description and display_description" />
+#.               <small content="structure link_string" condition="python: link_string and item_description" />
+#.             </a>
+#: from ../skins/cpsportlets_widgets/widget_portlet_rss.pt
+msgid ""
+"<strong content=\"item/title\" /><br /> <small content=\"item_description\" "
+"condition=\"python: item_description and display_description\" /> <small "
+"content=\"structure link_string\" condition=\"python: link_string and "
+"item_description\" />"
+msgstr ""
+
 #.   <strong>ID:</strong>
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
 msgid "ID:"
 msgstr "ID"
-
-#.   <a content="item/title" attributes="href item_url">Item title</a>
-#: from ../skins/cpsportlets_widgets/widget_portlet_rss.pt
-msgid "Item title"
-msgstr ""
 
 #.   <block>Edit</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
@@ -187,6 +195,9 @@ msgstr "Use the portlet's location as the context"
 
 msgid "cpsportlets_content_search_related_label"
 msgstr "Related documents"
+
+msgid "cpsportlets_content_search_all_label"
+msgstr "All documents"
 
 msgid "cpsportlets_content_search_type_label"
 msgstr "Content"

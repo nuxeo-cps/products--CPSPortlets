@@ -110,6 +110,9 @@ msgstr ""
 msgid "cpsportlets_content_search_related_label"
 msgstr ""
 
+msgid "cpsportlets_content_search_all_label"
+msgstr ""
+
 msgid "cpsportlets_content_search_type_label"
 msgstr ""
 

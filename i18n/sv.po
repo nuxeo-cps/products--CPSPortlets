@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-04-02 17:39default\n"
+"POT-Creation-Date: 2005-04-03 23:24default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -21,15 +21,23 @@ msgstr ""
 msgid " Add "
 msgstr ""
 
+#.   <a attributes="href item_url">
+#.               <strong content="item/title" /><br />
+#.               <small content="item_description" condition="python: item_description and display_description" />
+#.               <small content="structure link_string" condition="python: link_string and item_description" />
+#.             </a>
+#: from ../skins/cpsportlets_widgets/widget_portlet_rss.pt
+msgid ""
+"<strong content=\"item/title\" /><br /> <small content=\"item_description\" "
+"condition=\"python: item_description and display_description\" /> <small "
+"content=\"structure link_string\" condition=\"python: link_string and "
+"item_description\" />"
+msgstr ""
+
 #.   <strong>ID:</strong>
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
 msgid "ID:"
 msgstr "ID"
-
-#.   <a content="item/title" attributes="href item_url">Item title</a>
-#: from ../skins/cpsportlets_widgets/widget_portlet_rss.pt
-msgid "Item title"
-msgstr ""
 
 #.   <block>Edit</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
@@ -181,6 +189,9 @@ msgstr "Visa dokument i samma mapp som den Portlet befinner sig i."
 
 msgid "cpsportlets_content_search_related_label"
 msgstr "Besläktade dokument"
+
+msgid "cpsportlets_content_search_all_label"
+msgstr "Alla dokument"
 
 msgid "cpsportlets_content_search_type_label"
 msgstr "Innehåll"
