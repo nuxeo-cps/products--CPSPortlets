@@ -62,7 +62,7 @@ Applies to the portlet box.
 
   LABEL                           CSS property
   -----                           ------------
-  BoxTitle font weight            font-weight
+  BoxTitle font                   font
   BoxTitle border style           border-style
   BoxTitle border width           border-width
   BoxTitle padding                padding
