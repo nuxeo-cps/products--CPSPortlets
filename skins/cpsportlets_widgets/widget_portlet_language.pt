@@ -17,4 +17,18 @@
       </select>
     </form>
   </tal:block>
+  <tal:block condition="python: action == 'change'">
+    <form action="" method="get" action=""
+     tal:define="langItems context/getChangeLangItems"
+     tal:condition="langItems"
+     tal:attributes="action string:${context_url}/cpsportlet_change_language">
+      <select onchange="submit()" name="lang">
+        <option i18n:translate="cpsportlet_change_language" 
+         value="" selected="selected">Change language</option>
+        <option tal:repeat="item langItems"
+         tal:content="item/title"
+         tal:attributes="value item/lang" />
+      </select>
+    </form>
+  </tal:block>
 </tal:block>

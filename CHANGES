@@ -8,6 +8,7 @@ New features:
   upcoming events)
 - Portlet visibility: effective and expiration dates can be set on portlets.
 - Language portlet: translate the current document / folder.
+                    change the current language
 Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-09-26 14:40default\n"
+"POT-Creation-Date: 2004-09-26 18:49default\n"
 "PO-Revision-Date: 2004-09-06 18:03+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -46,6 +46,11 @@ msgstr ""
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
 msgstr "Add new item ..."
+
+#.   <option selected="selected" value="">Change language</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlet_change_language"
+msgstr "Change language ..."
 
 #.   <option selected="selected" value="">Translate into ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
@@ -170,6 +175,9 @@ msgstr "Action"
 
 msgid "cpsportlets_language_action_translate_label"
 msgstr "Translate"
+
+msgid "cpsportlets_language_action_change_label"
+msgstr "Change language"
 
 #~ msgid "heading_portlet_manage_form"
 #~ msgstr "Portlet management"
