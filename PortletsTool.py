@@ -29,7 +29,7 @@ from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
 
 from Products.CMFCore.utils import UniqueObject, getToolByName
 
-from Products.CPSPortlets.CPSPortletsPermissions import addGlobalPortlet
+from Products.CPSPortlets.CPSPortletsPermissions import ManagePortlets
 
 class PortletsTool(UniqueObject, CMFBTreeFolder):
     """ Portlets Tool
@@ -90,7 +90,7 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
 
     ######################################################################
 
-    security.declareProtected(addGlobalPortlet, 'createPortlet')
+    security.declareProtected(ManagePortlets, 'createPortlet')
     def createPortlet(self, ptype_id, isglobal=1):
         """Create a new portlet
 
@@ -110,7 +110,7 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
 
         # TODO cope with local portlets
         if not isglobal:
-            pass
+            return None
 
         # Create the box nyt
         # Use the BTreeFolder generateId facility
@@ -121,5 +121,24 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
         # Don't create proxies but objects.
         destination.invokeFactory(ptype_id, new_id)
         return new_id
+
+    security.declareProtected(ManagePortlets, 'createPortlet')
+    def deletePortlet(self, portlet_id, isglobal=1):
+        """Delete portlet id
+
+        Possible to warn event service for action
+        """
+
+        destination = self
+
+        # TODO cope with local portlets
+        if not isglobal:
+            pass
+
+        if portlet_id not in self.listPortletIds():
+            del self[portlet_id]
+            return 0
+
+        return 1
 
 InitializeClass(PortletsTool)
