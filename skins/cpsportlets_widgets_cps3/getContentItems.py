@@ -167,7 +167,7 @@ for brain in brains:
             if ti is None:
                 continue
             renderable = 0
-            for cluster in ti.getProperty('layout_clusters'):
+            for cluster in ti.getProperty('layout_clusters', []):
                 cl, v = cluster.split(':')
                 if cl == cluster_id:
                     renderable = 1

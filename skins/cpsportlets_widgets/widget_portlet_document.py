@@ -35,7 +35,7 @@ if getContent is not None:
         # XXX: this could be done in CPSDocument.FlexibleTypeInformation.py
         if ds.get('cluster_no_fallback'):
             found = 0
-            for cluster in ti.getProperty('layout_clusters'):
+            for cluster in ti.getProperty('layout_clusters', []):
                 cl, v = cluster.split(':')
                 if cl == cluster_id:
                     found = 1

@@ -13,6 +13,8 @@ Bug fixes:
   CMF 1.5 action information representation.
 - removed the 'wf_actions' cache parameter
   (it is a special case of actions:workflow)
+- Document portlet, Content Portlet: added a fallback in case the 
+  'layout_clusters' property is not set as a list.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the
