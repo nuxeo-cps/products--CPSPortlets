@@ -110,7 +110,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         for elem in ('',) + rpath:
             if elem:
                 obj = getattr(obj, elem)
-            allportlets.extend(self._getFolderPortlets(obj))
+            allportlets.extend(self._getFolderPortlets(folder=obj, slot=slot))
 
         return allportlets
 
@@ -159,8 +159,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
     # Private
     #
     security.declarePrivate('_getFolderPortlets')
-    def _getFolderPortlets(self, folder=None):
-        """Load all portlets in a .cps_portlets folder
+    def _getFolderPortlets(self, folder=None, slot=None):
+        """Load all portlets in a .cps_portlets folder.
+           The slot name can be used as a filter.
         """
 
         portlets = []
@@ -171,8 +172,13 @@ class PortletsTool(UniqueObject, PortletsContainer):
                     obj = aq_base(obj)
                     if not hasattr(obj, 'isCPSPortlet'):
                        continue
-                    if obj.isCPSPortlet():
-                       portlets.append(obj)
+                    if not obj.isCPSPortlet():
+                       continue
+                    if slot is not None:
+                       portlet_slot = getattr(obj, 'slot', '')
+                       if portlet_slot != slot:
+                           continue
+                    portlets.append(obj)
         return portlets
 
 InitializeClass(PortletsTool)
