@@ -316,3 +316,6 @@ msgstr ""
 
 msgid "cpsportlets_custom_js_render_method_label"
 msgstr ""
+
+msgid "cpsportlets_content_query_title_label"
+msgstr ""

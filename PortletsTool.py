@@ -213,15 +213,51 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     #######################################################################
 
-    security.declarePublic('getPortlets')
-    def getPortlets(self, context=None, slot=None, sort=1):
-        """Return a list of portlets.
+    security.declarePublic('getBreadCrumbs')
+    def getBreadCrumbs(self, context=None):
+        """Return the list of parent folders
+        """
+
+        bmf = self.getBottomFolder(context=context)
+
+        utool = getToolByName(self, 'portal_url')
+        rpath = utool.getRelativeContentPath(bmf)
+        obj = utool.getPortalObject()
+
+        mtool = getToolByName(self, 'portal_membership')
+        checkPerm = mtool.checkPermission
+
+        folders = []
+        # other portlets
+        for elem in ('',) + rpath:
+            if not elem:
+                continue
+            folders.append(
+                {'id': obj.getId(),
+                 'title': obj.title_or_id(),
+                 'rpath': utool.getRelativeUrl(obj),
+                 'editable': checkPerm('ManagePortlets', obj),
+                }
+            )
+            obj = getattr(obj, elem)
+
+        # include the current folder
+        folders.append(
+            {'id': bmf.getId(),
+             'title': bmf.title_or_id(),
+             'rpath': utool.getRelativeUrl(bmf),
+             'editable': checkPerm('Manage Portlets', bmf),
+            }
+        )
+        return folders
+
+    security.declarePublic('getBottomFolder')
+    def getBottomFolder(self, context=None):
+        """Return the first folderish object above the context
         """
 
         if context is None:
-            return []
-
-        # Find bottom-most folder:
+            return None
         obj = context
         bmf = None
         while 1:
@@ -234,11 +270,25 @@ class PortletsTool(UniqueObject, PortletsContainer):
             obj = parent
         if bmf is None:
             bmf = context
+        return bmf
+
+    #######################################################################
+
+    security.declarePublic('getPortlets')
+    def getPortlets(self, context=None, slot=None, sort=1):
+        """Return a list of portlets.
+        """
+
+        if context is None:
+            return []
+
+        # get the bottom-most folder
+        bmf = self.getBottomFolder(context=context)
 
         # get portlets from the root to current path
-        portal_url = getToolByName(self, 'portal_url')
-        rpath = portal_url.getRelativeContentPath(bmf)
-        obj = portal_url.getPortalObject()
+        utool = getToolByName(self, 'portal_url')
+        rpath = utool.getRelativeContentPath(bmf)
+        obj = utool.getPortalObject()
         # root portlets
         allportlets = self._getFolderPortlets(folder=obj, slot=slot)
         # other portlets
@@ -713,7 +763,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 continue
             # move this portlet downwwards
             newpos = order_dict[k-1] + 10
-            slot_portlets[k].setOrder(newpos)
+            # XXX: setOrder(newpos) raises an unauthorized exception
+            slot_portlets[k].order = newpos
             # update the dictionary too
             order_dict[k] = newpos
 

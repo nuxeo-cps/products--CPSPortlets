@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-12-30 16:40default\n"
+"POT-Creation-Date: 2005-01-02 00:15default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -387,3 +387,6 @@ msgstr "Tree root"
 
 msgid "cpsportlets_custom_js_render_method_label"
 msgstr "Javascript render method (zpt, py, etc.)"
+
+msgid "cpsportlets_content_query_title_label"
+msgstr "Title search"

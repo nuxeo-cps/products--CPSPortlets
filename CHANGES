@@ -42,6 +42,7 @@ New features:
 - the tree root (e.g. 'sections', 'workspaces') can be specified in the
   Navigation portlet.
 - The Custom Portlet accepts a javascript method.
+- added a title search query parameter for the Content Portlet.
 Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves
@@ -97,3 +98,4 @@ New internal features:
 - added a portlet visibility range widget
 - added methods (isLocal(), isGlobal()) to determine whether a portlet is
   local or global.
+- getBreadCrumbs() returns the list of parent folders up to the top folder.

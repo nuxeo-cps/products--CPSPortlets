@@ -14,6 +14,7 @@ max_items = int(max_items)
 max_words = kw.get('max_words', 20)
 max_words = int(max_words)
 folder_path = kw.get('folder_path')
+query_title = kw.get('query_title')
 
 # remove unwanted search options
 for k in kw.keys():
@@ -38,12 +39,16 @@ if folder_path is not None:
 if sort_reverse:
     query['sort_order'] = 'reverse'
 
+# Title search (if specified)
+if query_title is not None:
+   query['ZCTitle'] = query_title
+
 # Override some of the query options depending on the type of search
 
 # Related documents
 if search_type == 'related':
     content = obj.getContent()
-    if getattr(content.aq_explicit, 'Subject'):
+    if getattr(content.aq_inner.aq_explicit, 'Subject'):
         subjects=content.Subject()
 
         if subjects:
