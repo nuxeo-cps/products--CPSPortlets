@@ -1,9 +1,10 @@
 <tal:block define="ds options/datastructure;
                    display ds/display;
                    display_hidden_folders ds/display_hidden_folders;
+                   first_item ds/first_item;
                    context nocall:options/context_obj|here;
                    context_url python: context.absolute_url(1);
-                   breadcrumbsItems python: context.getBreadcrumbsItems(url=context_url, display_hidden_folders=int(display_hidden_folders))">
+                   breadcrumbsItems python: context.getBreadcrumbsItems(url=context_url, display_hidden_folders=int(display_hidden_folders), first_item=int(first_item))">
   <form tal:condition="python: display == 'dropdown_list'"
   method="get" action="cpsportlet_url_redirect"
   tal:attributes="action string:${context_url}/cpsportlet_url_redirect">

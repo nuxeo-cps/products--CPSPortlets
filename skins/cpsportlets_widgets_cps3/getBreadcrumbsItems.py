@@ -25,7 +25,9 @@ portal_id = portal.getId()
 checkPermission = context.portal_membership.checkPermission
 items = []
 
-for i in range(len(path)):
+first_item = kw.get('first_item', 0)
+
+for i in range(first_item, len(path)):
     ipath = path[:i+1]
     obj = portal.restrictedTraverse(ipath)
 
