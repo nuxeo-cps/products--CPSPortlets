@@ -1,0 +1,24 @@
+<dtml-call "request.RESPONSE.setHeader('Content-Type', 'text/xml; charset=ISO-8859-15')">
+<?xml version="1.0" encoding="ISO-8859-15"?>
+
+<feed version="0.3" xmlns="http://purl.org/atom/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+  <title mode="escaped" type="text/html"><dtml-var "box['Title']" html_quote></title>
+  <modified></modified>
+  <tagline type="text/plain">ATOM feed</tagline>
+  <link rel="alternate" type="text/html" href="<dtml-var url>" />
+
+  <description><dtml-var "box['Description']" html_quote></description>
+  <link><dtml-var url html_quote></link>
+
+
+  <dtml-in items>
+     <dtml-let item=sequence-item>
+       <entry>
+         <title><dtml-var "item['title']"></title>
+         <description><dtml-var "item['description']"></description>
+       </entry>
+     </dtml-let>
+  </dtml-in>
+
+</feed>
