@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-10-28 16:43default\n"
+"POT-Creation-Date: 2004-11-06 15:14default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -40,6 +40,11 @@ msgstr ""
 msgid "_Edit_"
 msgstr ""
 
+#.   <input onclick="window.opener.location.reload();window.close()" type="submit" class="standalone" value="button_close" />
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "button_close"
+msgstr ""
+
 #.   <option disabled="disabled" selected="selected" value="">
 #.         Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
@@ -59,6 +64,11 @@ msgstr ""
 #.   <option disabled="disabled" selected="selected" value="">Delete translation ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
+msgstr ""
+
+#.   <option disabled="disabled" selected="selected" value="">Set the default language ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_set_default_language"
 msgstr ""
 
 #.   <option disabled="disabled" selected="selected" value="">Translate into ...</option>
@@ -208,6 +218,9 @@ msgid "portal_type_ImagePortlet_title_description"
 msgstr ""
 
 msgid "cpsportlets_nav_display_vertical_breadcrumbs_menu_label"
+msgstr ""
+
+msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr ""
 
 msgid "cpsportlets_navigation_rel_depth_label"
