@@ -102,13 +102,20 @@ class CPSPortlet(CPSDocument):
 
     #################################################################
 
-    def getCacheIndex(self):
-        """Returns the RAM cache index as a tuple (var1, var2, ...)
+    def getCustomCacheIndex(self):
+        """Returns the custom RAM cache index as a tuple (var1, var2, ...)
         """
         index = ()
-        # XXX check the schema for boolean values realted to the cache.
+
+        # box state
         index += (self.getState(), )
         return index
+
+    def getCacheParams(self):
+        """Get the cache parameters that will be used to compute the
+           cache index.
+        """
+        return self.cache_params
 
     ##################################################################
 

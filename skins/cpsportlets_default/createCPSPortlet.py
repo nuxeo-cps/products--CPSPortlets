@@ -7,6 +7,9 @@ ptype_id = kw.get('ptype_id')
 if ptype_id is None:
     return
 
+cache_params = context.getCPSPortletCacheParams(ptype_id)
+kw.update({'cache_params': cache_params})
+
 ptltool = context.portal_cpsportlets
 portlet_id = ptltool.createPortlet(context=context, **kw)
 portlet_container = ptltool.getPortletContainer(context)
