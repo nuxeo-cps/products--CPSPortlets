@@ -16,6 +16,8 @@ Bug fixes:
 - Document portlet, Content Portlet: added a fallback in case the 
   'layout_clusters' property is not set as a list.
 - fine-tuned cache parameters
+- the 'cache_timeout' portlet attribute was not updated according to the
+  specified cache parameter.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the

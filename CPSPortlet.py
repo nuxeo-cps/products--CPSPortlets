@@ -176,6 +176,18 @@ class CPSPortlet(CPSDocument):
             if self.cache_params != cache_params:
                 self.cache_params = cache_params
 
+            # set the cache timeout value
+            for param in cache_params:
+                if not param.startswith('timeout:'):
+                    continue
+                idx, value = param.split(':')
+                try:
+                    value = int(value)
+                except ValueError:
+                    value = 0
+                if self.cache_timeout != value:
+                    self.cache_timeout = value
+
     security.declarePrivate('_setJavaScript')
     def _setJavaScript(self, javascript=''):
         """Set the javascript method.
@@ -845,6 +857,7 @@ class CPSPortlet(CPSDocument):
         cache_params_dict = self.getCPSPortletCacheParams()
         if cache_params_dict.has_key(ptype_id):
             self._setCacheParams(cache_params_dict[ptype_id])
+
         # reset the javascript methods
         javascript_dict = self.getCPSPortletJavaScript()
         if javascript_dict.has_key(ptype_id):
