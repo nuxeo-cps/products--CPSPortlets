@@ -1,9 +1,9 @@
 $Id$
 
-DON'T MESS UP THE FOLDER !!! 
+DON'T MESS UP THIS FOLDER !!!
 
-Use one file for one schema. We don't wanna edit schemas in a 5000 lines file.
-Morever, it eases the dev with the export facility of CPS
+Use one file per schema. We don't want to edit schemas in a 5000-lines file.
+Morover, it simplifies the development with the export facility of CPS.
 
-Edit the Installer of CPSPortlets method installPortletSchemas and add your new schema in here
-
+Edit the Installer of CPSPortlets method installPortletSchemas and add
+your new schema there.
