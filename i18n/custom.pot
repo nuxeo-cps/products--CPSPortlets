@@ -319,3 +319,9 @@ msgstr ""
 
 msgid "cpsportlets_content_query_title_label"
 msgstr ""
+
+msgid "cpsportlets_content_render_items_label"
+msgstr ""
+
+msgid "cpsportlets_content_layout_ids_label"
+msgstr ""

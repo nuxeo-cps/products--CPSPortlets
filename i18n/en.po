@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2005-01-04 21:12default\n"
+"POT-Creation-Date: 2005-01-06 01:32default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -33,8 +33,7 @@ msgid "ID:"
 msgstr "ID"
 
 #.   <a content="item/title" attributes="href item_url">Item title</a>
-#: from ../skins/cpsportlets_widgets/widget_portlet_content.pt
-#: ../skins/cpsportlets_widgets/widget_portlet_rss.pt
+#: from ../skins/cpsportlets_widgets/widget_portlet_rss.pt
 msgid "Item title"
 msgstr ""
 
@@ -390,3 +389,9 @@ msgstr "Javascript render method (zpt, py, etc.)"
 
 msgid "cpsportlets_content_query_title_label"
 msgstr "Title search"
+
+msgid "cpsportlets_content_render_items_label"
+msgstr "Render items"
+
+msgid "cpsportlets_content_layout_ids_label"
+msgstr "Layout IDs"

@@ -67,6 +67,7 @@ Bug fixes:
 - Upgraded the page templates to the new macro libs names
 - made the Document Portlet more robust
 - registration fix for the Portlet Visibility Widget
+- the items of the Content Portlet can be rendered.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()
