@@ -4,6 +4,7 @@
                   utool nocall:here/portal_url;
                   params here/getSearchFormParams;
                   search_script params/script;
+                  context nocall:options/context_obj;
                   contextual_search params/contextual;
                   advanced_search_form params/advanced;
                   contextualSearch request/folder_prefix|nothing"

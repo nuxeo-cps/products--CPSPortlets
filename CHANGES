@@ -23,6 +23,7 @@ Bug fixes:
 - Content portlet: not displaying the document's title if the content
   of each item is rendered.
 - i18n fr.po fix: "surchargement" => "surcharge"
+- Search Portlet: fixed the contextual search url.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added an access key to access the portlet management panels.
