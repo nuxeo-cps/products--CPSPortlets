@@ -187,8 +187,43 @@ Applies to forms and to form elements.::
   Element active background color background-color
 
 
+Tab Style
+---------
+Applies to menu tabs. ::
+
+  LABEL                           CSS property
+  -----                           ------------
+
+  Horizontal margin               margin
+  Vertical padding                padding (top bottom)
+  Horizontal padding              padding (left right)
+  Tab width                       width
+  Tabs background image           background-image
+  Tab left-side image             background-image
+  Tab right-side image            background-image
+  Selected tab left-side image    background-image
+  Selected tab right-side image   background-image
+  Tab bottom border color         border-color (bottom)
+  Sel. tab bottom border color    border-color (bottom)
+
+
 STYLING OF BOXES:
 =================
+
+Box layouts:
+
+  - all except 'horizontal menu'
+
+Box styles:
+
+  - Box color
+  - Box shape
+
+List orientations:
+
+  - vertical
+  - horizontal
+
 
 The following HTML markup is used to represent boxes: ::
 
@@ -239,3 +274,51 @@ for example: ::
 the indentation set with 'margin-left' will be preserved (see above),
 but the width taken by the menu icon will be removed to leave some extra space
 for an image (e.g. <img>).
+
+
+STYLING OF HORIZONTAL MENUS
+===========================
+
+Box layout:
+
+  - horizontal menu
+
+Box styles:
+
+  - Box color
+  - Box shape
+  - Portal Tab style (w/ rounded tabs)
+
+Use the following HTML markup for top-level menu items: ::
+
+      <ul>
+        <li><a href="#">item</a></li>
+        <li class="selected"><a href="#">Selected item</a></li>
+        ...
+      </ul>
+
+Use the following HTML markup for second-level menu items (*) ::
+
+      <ul>
+        <!-- top level -->
+        <li><a href="#">Top level item 1</a></li>
+
+        <!-- sub-level -->
+        <ul>
+           <li><a href="#">Item 1</a></li>
+           <li><a href="#">Item 2</a></li>
+        </ul>
+
+        <!-- top level -->
+        <li><a href="#">Top level item 2</a></li>
+
+        <!-- sub-level -->
+        <ul>
+           <li><a href="#">Item 1</a></li>
+           <li><a href="#">Item 2</a></li>
+        </ul>
+        ...
+      </ul>
+
+(*) some additional javascript code is required for IE.
+    cf. http://www.alistapart.com/articles/dropdowns/
