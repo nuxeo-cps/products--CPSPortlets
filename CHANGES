@@ -3,7 +3,8 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- Custom Portlet: the 'i18n' cache parameter for portlets that are 
+  language-dependent can be set directly in the portlet edit form.
 Bug fixes:
 ~~~~~~~~~~
 -
