@@ -243,7 +243,7 @@ class CPSPortlet(CPSDocument):
 
             # XXX CPSSkins dependency
             # current language
-            elif param == 'lang':
+            elif param == 'current_lang':
                 index_string = REQUEST.get('cpsskins_language', 'en')
 
             # XXX CPSSkins dependency

@@ -9,7 +9,7 @@ cache_params = {
                             'objects:relative_path'],
     'Actions Portlet': ['actions:(categories)'],
     'Content Portlet': ['no-cache'],
-    'Language Portlet': ['no-cache'],
+    'Language Portlet': ['object:langs', 'current_lang'],
     'Image Portlet': [],
     'Navigation Portlet': ['no-cache'],
 }

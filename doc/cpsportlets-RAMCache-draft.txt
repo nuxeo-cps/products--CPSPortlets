@@ -122,6 +122,10 @@ be set in the factory type information.
   example: 'http://www.yourhost.com/cps/view?pp=1'
   used in: portal actions
 
+- current_lang
+  description: the current language
+  used in: the language portlet
+
 - object:path
   description: the path of the object
   example: '/cps/workspaces/members'
