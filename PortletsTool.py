@@ -336,16 +336,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
         self._insertPortlet(portlet=portlet, slot=dest_slot, order=dest_ypos)
         return portlet
 
-    security.declareProtected(View, 'copyPortlet')
-    def copyPortlet(self, **kw):
-        """Copy portlet
-           parameters: portlet,
-                       src_folder, dest_folder,
-                       dest_slot, dest_ypos,
-           Returns: the copied portlet.
-        """
-        return self.movePortlet(self, leave=1, **kw)
-
     security.declareProtected(View, 'insertPortlet')
     def insertPortlet(self, portlet=None, slot=None, order=0, **kw):
         """ Insert an existing portlet inside a slot at a given order.
