@@ -1,4 +1,6 @@
 
+# XXX permission check
+
 if getattr(context, 'isTranslatable', None) is None:
     return []
 
