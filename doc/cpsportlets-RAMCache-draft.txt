@@ -42,6 +42,19 @@ The entire cache can be:
 Caching algorithm
 =================
 
+A portlet can be global or local and while the content displayed may be the 
+same the presentation logic is different:
+
+- Global portlets are universal inside the portal, they take part in the
+  portal's graphical profile as any other fixed elements of the interface.
+  The graphical elements of CPSSkins are global.
+
+- Local portlets have a particular function inside the portal. They are only
+  shown inside certain folders and restricted to some users or groups of
+  users. The graphical elements of CPSPortlets are local.
+
+The caching algorithms are different in CPSSkins and in CPSPortlets.
+
 In CPSSkins:
 ------------
 The caching algorithm in CPSSkins is based on the principle that cache
@@ -70,17 +83,54 @@ Instead the current implementation relies entirely on the event service of
 CPS3 to invalidate cache entries whenever an invalidation is required,
 i.e. when content has been created, deleted, published, etc.
 
-...
-
-Cache parameters
-----------------
-
-XXX
 
 Cache index
 -----------
+The cache index is a mininal collection of parameter values that represent
+a portlet in a unique way. 
 
-XXX
+The cache index may include:
+- the current language name
+- the current url
+- the current month name
+- the current user
+- ...
+
+Some portlets are completely independent of the context; for instance an image
+portlet is the same for every user, in all languages, and the cache index
+associated to it will be reduced to the portlet's path.
+
+To increase performance the parameter values must be fast to compute, these
+can typically be:
+- request variables
+- variables that can be obtained through a simple method (absolute_url(),
+  getId(), ...)
+
+
+Cache parameters
+----------------
+Cache parameters are variable names that are used to identify the parameter
+values of the cache index. These are specific to portlet types and could
+be set in the factory type information.
+
+For example:
+- url
+  description: the entire currrent url including the query string
+  example: 'http://www.yourhost.com/cps/view?pp=1'
+  used in: portal actions
+
+- folder_url
+  description: the url of the current folder
+  example: '/cps/workspaces/members' ) 
+  used in: breadcrumbs, folder factories, ...
+
+- user
+  description: the name of the current user
+  example: 'root'
+  used in: navigation portlets, login portlet ...
+
+...
+
 
 Cache invalidation
 ------------------
