@@ -927,9 +927,12 @@ class CPSPortlet(CPSDocument):
 
     security.declareProtected(ManagePortlets, 'manage_guardForm')
     manage_guardForm = DTMLFile('zmi/manage_guardForm', globals())
+    manage_exportForm = DTMLFile('zmi/manage_exportForm', globals())
 
-    manage_options = (CPSDocument.manage_options +
-                      ({'label': 'Guard', 'action': 'manage_guardForm'},)
+    manage_options = (CPSDocument.manage_options + (
+                      {'label': 'Guard', 'action': 'manage_guardForm'},
+                      {'label': 'Export', 'action': 'manage_exportForm'},
+                      )
                      )
 
 InitializeClass(CPSPortlet)
