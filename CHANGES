@@ -33,6 +33,8 @@ New features:
 - Added a 'Custom Portlet' to allow users to create their own portlets.
 - Added a 'metadata' edition screen
 - The Document Portlet can render different layouts.
+- Added a 'last published' query type in the Content Portlet that replaces
+  the 'last modified' query. 'Last modified' returns even unpublished items. 
 Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves

@@ -4,6 +4,7 @@ cpsportlets_content_search_voc_vocabulary = {
             ('related', 'Related', 'cpsportlets_content_search_related_label'),
             ('pending', 'Pending', 'cpsportlets_content_search_pending_label'),
             ('last_modified', 'Last modified', 'cpsportlets_content_search_last_modified_label'),
+            ('last_published', 'Last published', 'cpsportlets_content_search_last_published_label'),
             ('recent', 'Recent', 'cpsportlets_content_search_recent_label'),
             ('upcoming', 'Upcoming', 'cpsportlets_content_search_upcoming_label'),
             ('today', 'Today', 'cpsportlets_content_search_today_label'),

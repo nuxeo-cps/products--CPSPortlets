@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-11-23 23:24default\n"
+"POT-Creation-Date: 2004-11-25 23:32default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -178,6 +178,9 @@ msgstr "Pending documents"
 
 msgid "cpsportlets_content_search_last_modified_label"
 msgstr "Last modified documents"
+
+msgid "cpsportlets_content_search_last_published_label"
+msgstr "Last published documents"
 
 msgid "cpsportlets_content_search_recent_label"
 msgstr "Recent documents"

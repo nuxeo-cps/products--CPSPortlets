@@ -62,6 +62,10 @@ elif search_type == 'pending':
 
 # Last modified documents
 elif search_type == 'last_modified':
+    query.update({'sort_on': 'Date'})
+
+# Last published documents
+elif search_type == 'last_published':
     query.update({'review_state': 'published',
                   'sort_on': 'Date'})
 
