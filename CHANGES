@@ -10,7 +10,7 @@ New features:
 - Text Portlet: the rendering format can be selected ('text', 'stx', 'html')
 Bug fixes:
 ~~~~~~~~~~
--
+- added missing 'is_i18n' parameter to getSearchableTypesVocabulary()
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added an access key to access the portlet management panels.

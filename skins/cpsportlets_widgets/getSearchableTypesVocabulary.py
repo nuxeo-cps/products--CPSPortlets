@@ -1,4 +1,4 @@
-##parameters=key=None
+##parameters=key=None, is_i18n=0
 
 items = []
 for ptype in context.getSearchablePortalTypes():
