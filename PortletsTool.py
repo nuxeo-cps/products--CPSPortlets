@@ -337,8 +337,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
             for id in portlet_container.listPortletIds():
                 portlet = portlet_container.getPortletById(id)
                 if slot is not None:
-                    portlet_slot = portlet.getSlot()
-                    if portlet_slot != slot:
+                    if portlet.getSlot() != slot:
                         continue
                 portlets.append(portlet)
 
