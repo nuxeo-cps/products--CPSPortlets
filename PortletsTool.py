@@ -87,6 +87,17 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """
         return PORTLET_CONTAINER_ID
 
+    security.declarePublic('getPortletContainerId')
+    def getPortletContainer(self, context=None):
+        """Returns the portlet container wiithin the given context if it
+        exists. Otherweise return the tool
+        """
+        if context is not None:
+            container_id = self.getPortletContainerId()
+            if hasattr(context, container_id):
+                return getattr(context, container_id)
+        return self
+
     #######################################################################
 
     security.declarePublic('getPortlets')
@@ -197,18 +208,14 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         portlets = []
         if folder is not None:
-            idpc = self.getPortletContainerId()
-            if idpc in folder.objectIds():
-                for obj in getattr(folder, idpc).objectValues():
-                    if not hasattr(aq_base(obj), 'isCPSPortlet'):
-                       continue
-                    if not obj.isCPSPortlet():
-                       continue
-                    if slot is not None:
-                       portlet_slot = getattr(obj, 'slot', '')
-                       if portlet_slot != slot:
-                           continue
-                    portlets.append(obj)
+            portlet_container = self.getPortletContainer(folder)
+            for id in portlet_container.listPortletIds():
+                portlet = portlet_container.getPortletById(id)
+                if slot is not None:
+                    portlet_slot = portlet.getSlot()
+                    if portlet_slot != slot:
+                        continue
+                portlets.append(portlet)
         return portlets
 
 InitializeClass(PortletsTool)
