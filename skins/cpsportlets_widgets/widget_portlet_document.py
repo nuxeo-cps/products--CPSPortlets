@@ -7,10 +7,10 @@ rendered = []
 
 ti =  context_obj.getTypeInfo()
 if ti is None:
-    return rendered
+    return ''
 
 if ti.getProperty('cps_is_portlet', 0):
-    return rendered
+    return ''
 
 ds = kw['datastructure']
 layout_ids = ds.get('layout_ids')
