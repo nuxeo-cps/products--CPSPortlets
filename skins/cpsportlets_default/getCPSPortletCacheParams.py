@@ -19,7 +19,7 @@ cache_params = {
     'Image Portlet': [],
     'Navigation Portlet': ['no-cache'],
     'Document Portlet': ['no-cache'],
-    'RSS Portlet': ['no-cache'],
+    'RSS Portlet': ['event_ids:rss_channel_refresh'],
 }
 
 return cache_params
