@@ -14,7 +14,7 @@ internal_links_portlet_type = {
     'cps_proxy_type': '',
     'cps_display_as_document_in_listing': False,
     'schemas': ('portlet_common', 'internallinks_portlet'),
-    'layouts': ('internallinks_portlet',),
+    'layouts': ('portlet_common', 'internallinks_portlet',),
     'flexible_layouts': (),
     'storage_methods': (),
     'cps_is_portlet': True,

@@ -14,7 +14,7 @@ search_portlet_type = {
     'cps_proxy_type': '',
     'cps_display_as_document_in_listing': False,
     'schemas': ('portlet_common', 'search_portlet'),
-    'layouts': ('search_portlet',),
+    'layouts': ('portlet_common', 'search_portlet',),
     'flexible_layouts': (),
     'storage_methods': (),
     'cps_is_portlet': True,

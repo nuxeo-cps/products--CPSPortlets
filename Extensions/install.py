@@ -140,7 +140,8 @@ class CPSPortletsInstaller(CPSInstaller):
     def installPortletLayouts(self):
         """Install all portlet specific layouts."""
 
-        define_layouts = (self.portal.getDummyPortletLayout(),
+        define_layouts = (self.portal.getPortletCommonLayout(),
+                          self.portal.getDummyPortletLayout(),
                           self.portal.getSearchPortletLayout(),
                           self.portal.getInternalLinksPortletLayout(),
                           self.portal.getAddItemPortletLayout(),
