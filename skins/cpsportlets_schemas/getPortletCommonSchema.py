@@ -220,7 +220,7 @@ portlet_common_schema = {
         },
     },
 }
- 
+
 dict = {}
 dict['portlet_common'] = portlet_common_schema
 return dict

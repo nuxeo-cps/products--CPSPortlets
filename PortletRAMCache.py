@@ -92,7 +92,7 @@ class RAMCache:
         self.writelock = allocate_lock()
 
     def getEntry(self, index=None):
-        """Gets a cache entry by its index 
+        """Gets a cache entry by its index
            Returns None if the entry is not in the cache.
         """
 
@@ -130,7 +130,7 @@ class RAMCache:
         try:
             for k in self.cache.keys():
                 if k[0] == id:
-                    del self.cache[k] 
+                    del self.cache[k]
             self.last_cleanup[id] = time.time()
         finally:
             self.writelock.release()
@@ -203,5 +203,5 @@ class RAMCache:
                 stats_dict[entry] = {'count': 1,
                                      'size': size}
         for entry in stats_dict.keys():
-            stats_dict[entry]['last_cleanup'] = self.getLastCleanup(entry) 
+            stats_dict[entry]['last_cleanup'] = self.getLastCleanup(entry)
         return stats_dict

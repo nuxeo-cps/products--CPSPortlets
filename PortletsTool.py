@@ -572,9 +572,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """Removes local cache entries that match a given portlet id.
            This method can be used to clean orphaned cache entries.
 
-           In a ZEO environment only the local RAM cache entries will be 
-           erased. If the portlet still exists then 'portlet.expireCache()' 
-           should be used instead in order to propagate the information 
+           In a ZEO environment only the local RAM cache entries will be
+           erased. If the portlet still exists then 'portlet.expireCache()'
+           should be used instead in order to propagate the information
            between all ZEO instances.
         """
 
@@ -587,9 +587,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def invalidateCacheEntriesByUser(self, user=None):
         """Removes local cache entries that match a given user.
 
-           In a ZEO environment only the local RAM cache entries will be 
-           erased. If the portlet still exists then 'portlet.expireCache()' 
-           should be used instead in order to propagate the information 
+           In a ZEO environment only the local RAM cache entries will be
+           erased. If the portlet still exists then 'portlet.expireCache()'
+           should be used instead in order to propagate the information
            between all ZEO instances.
         """
 

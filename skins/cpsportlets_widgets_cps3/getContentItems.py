@@ -167,7 +167,7 @@ items = []
 for brain in brains:
 
     rendered = ''
-    # render the item with 
+    # render the item with
     if int(kw.get('render_items'), 0) == 1:
         rendered = ''
         content = None

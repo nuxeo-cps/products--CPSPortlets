@@ -867,7 +867,7 @@ class CPSPortlet(CPSDocument):
         folder_paths = ()
         portal_types = ()
         for param in cache_params_dict[ptype_id]:
-            # event ids 
+            # event ids
             if param.startswith('event_ids:'):
                 event_ids = getOptions(param)
 

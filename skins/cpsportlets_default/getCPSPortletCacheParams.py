@@ -13,7 +13,7 @@ cache_params = {
         'objects:relative_path'
         ],
     'Actions Portlet': ['actions:(categories)'],
-    'Content Portlet': ['user', 
+    'Content Portlet': ['user',
         'event_ids:workflow_create,workflow_publish,workflow_modify,sys_del_object,workflow_cut_copy_paste',
         'event_in_folders:(folder_path)',
         'event_on_types:(searchable_types)',

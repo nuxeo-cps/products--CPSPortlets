@@ -68,7 +68,7 @@ class TestMovePortletsAsRoot(TestPortlets):
         portlet2 = portlets_container.getPortletById(portlet2_id)
         portlet3 = portlets_container.getPortletById(portlet3_id)
         # move portlet2 in the place ot portlet1
-        # portlet3 is unchanged 
+        # portlet3 is unchanged
         ptltool.insertPortlet(portlet2, slot=working_slot, order=1)
         self.assert_(portlet2.order == 1)
         self.assert_(portlet1.order == 1 + ORDER_INTERVAL)
