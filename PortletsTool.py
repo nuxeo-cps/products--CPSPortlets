@@ -89,17 +89,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if not isglobal:
             return None
 
-        # Create the box nyt
-        # Use the BTreeFolder generateId facility
-        new_id = self.generateId(prefix='portlet_',
-                                 suffix='',
-                                 rand_ceiling=999999999)
+        return destination._createPortlet(ptype_id)
 
-        # Don't create proxies but objects.
-        destination.invokeFactory(ptype_id, new_id)
-        return new_id
-
-    security.declareProtected(ManagePortlets, 'createPortlet')
+    security.declareProtected(ManagePortlets, 'deletePortlet')
     def deletePortlet(self, portlet_id, isglobal=1):
         """Delete portlet id
 
@@ -112,10 +104,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if not isglobal:
             pass
 
-        if portlet_id in self.listPortletIds():
-            self._delObject(portlet_id)
-            return 0
-
-        return 1
+        return self._deletePortlet(portlet_id)
 
 InitializeClass(PortletsTool)

@@ -59,6 +59,22 @@ class PortletsContainer(CMFBTreeFolder):
 
     ####################################################################
 
+    def _createPortlet(self, ptype_id):
+        """Create a new portlet given its portal_type
+        """
+        new_id = self.generateId(prefix='portlet_',
+                                 suffix='',
+                                 rand_ceiling=999999999)
+        self.invokeFactory(ptype_id, new_id)
+        return new_id
+
+    def _deletePortlet(self, portlet_id):
+        """Delete a portlet given its id
+        """
+        if portlet_id in self.listPortletIds():
+            self._delObject(portlet_id)
+            return 0
+        return 1
 
 InitializeClass(PortletsContainer)
 
