@@ -45,19 +45,28 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security = ClassSecurityInfo()
 
-    security.declarePublic('getPortletSlots')
-    def getPortletSlots(self):
+    security.declarePublic('listPortletSlots')
+    def listPortletSlots(self):
         """Return all the available slots
         """
-        # XXX lookup everywhere on the portal (locally too)
-        return ['top',
-                'left',
-                'center_top',
-                'center',
-                'folder_view',
-                'center_bottom',
-                'right',
-                'bottom']
+
+        # Slots defined within portlets defined within the tool
+        slots = PortletsContainer.listPortletSlots(self)
+
+        # Cope with local portlets containers
+        catalog = getToolByName(self, 'portal_catalog')
+        portal_types = self.listPortletTypes()
+
+        # Lookup through catalog to get the potlets
+        # We ask the tool to know all the portal_types
+        portlets = catalog.searchResults({'portal_type':portal_types})
+        for portlet in portlets:
+            local_slots = portlet.getObject().getSlot()
+            for local_slot in local_slots:
+                if local_slot and local_slot not in slots:
+                    slots.append(local_slot)
+
+        return slots
 
     security.declarePublic('listPortletTypes')
     def listPortletTypes(self):
@@ -169,6 +178,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
     #
     # Private
     #
+
     security.declarePrivate('_getFolderPortlets')
     def _getFolderPortlets(self, folder=None, slot=None):
         """Load all portlets in a .cps_portlets folder.
