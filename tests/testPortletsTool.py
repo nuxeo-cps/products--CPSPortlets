@@ -179,6 +179,24 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         ptltool.invalidateCacheEntriesById(portlet_path)
         self.assert_(len(cache.getEntries()) == 0)
 
+    def test_renderIcon(self):
+        ptltool = self.ptltool
+        ttool = self.portal.portal_types
+        # first rendering: storing the result in the cache
+        res = ptltool.renderIcon('Dummy Portlet', '/cps/', 'dummy portlet')
+        expected = '<img src="/cps/portlet_icon.png" width="16" height="16" alt="dummy portlet" border="0" />'
+        self.assert_(res == expected)
+        # fetching the entry from the cache
+        res = ptltool.renderIcon('Dummy Portlet', '/cps/', 'dummy portlet')
+        self.assert_(res == expected)
+        # default parameters
+        res = ptltool.renderIcon('Dummy Portlet')
+        expected = '<img src="portlet_icon.png" width="16" height="16" alt="" border="0" />'
+        self.assert_(res == expected)
+        # unknown type
+        res = ptltool.renderIcon('Unknown type for testing', '/', '')
+        self.assert_(res == None)
+
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestPortletsTool))
