@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-11-20 21:09default\n"
+"POT-Creation-Date: 2004-11-21 12:32default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -152,10 +152,10 @@ msgstr "Portlet created."
 msgid "cpsportlets_content_translated_psm"
 msgstr "Content translated."
 
-msgid "cpsportlets_display_dropdown_list_label"
+msgid "cpsportlets_bcs_display_dropdown_list_label"
 msgstr "Drop down list"
 
-msgid "cpsportlets_display_horizontal_trail_label"
+msgid "cpsportlets_bcs_display_horizontal_trail_label"
 msgstr "Horizontal trail"
 
 msgid "cpsportlets_advanced_search_link_label"
@@ -260,7 +260,7 @@ msgstr "Translation deleted."
 msgid "button_portlet_management"
 msgstr "Portlet management"
 
-msgid "cpsportlets_breadcrumbs_display_hidden_folders_label"
+msgid "cpsportlets_display_hidden_folders_label"
 msgstr "Display hidden folders"
 
 msgid "cpsportlets_common_link_string_label"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-11-20 21:09default\n"
+"POT-Creation-Date: 2004-11-21 12:32default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -149,10 +149,10 @@ msgstr ""
 msgid "cpsportlets_content_translated_psm"
 msgstr ""
 
-msgid "cpsportlets_display_dropdown_list_label"
+msgid "cpsportlets_bcs_display_dropdown_list_label"
 msgstr ""
 
-msgid "cpsportlets_display_horizontal_trail_label"
+msgid "cpsportlets_bcs_display_horizontal_trail_label"
 msgstr ""
 
 msgid "cpsportlets_advanced_search_link_label"
@@ -257,7 +257,7 @@ msgstr ""
 msgid "button_portlet_management"
 msgstr ""
 
-msgid "cpsportlets_breadcrumbs_display_hidden_folders_label"
+msgid "cpsportlets_display_hidden_folders_label"
 msgstr ""
 
 msgid "cpsportlets_common_link_string_label"

@@ -1,4 +1,4 @@
-cpsportlets_display_voc_vocabulary = {
+cpsportlets_bcs_display_voc_vocabulary = {
     'data': {
         'tuples': (
             ('dropdown_list', 
@@ -11,5 +11,5 @@ cpsportlets_display_voc_vocabulary = {
     },
 }
 
-vocabularies = {'cpsportlets_display_voc': cpsportlets_display_voc_vocabulary}
+vocabularies = {'cpsportlets_bcs_display_voc': cpsportlets_bcs_display_voc_vocabulary}
 return vocabularies
