@@ -3,15 +3,15 @@
                    contentitems python: here.getContentItems(obj=context, **dict(ds));
                    link_string ds/link_string">
   <tal:block repeat="item contentitems">
-    <a tal:define="item_title item/title;
-                   item_url item/url;
-                   rendered item/rendered"
-    tal:attributes="href item_url;
-                    title item_title">
-      <strong tal:content="item_title" /><br/>
-      <tal:block condition="rendered" content="structure rendered" />
-      <tal:block condition="link_string" i18n:translate=""
-       content="structure link_string" />
-    </a>
+    <tal:block define="item_title item/title;
+                       item_url item/url;
+                       rendered item/rendered">
+      <h4 tal:content="item_title" />
+      <a tal:attributes="href item_url">
+        <tal:block condition="rendered" content="structure rendered" />
+        <tal:block condition="python: link_string or not rendered"
+         i18n:translate="" content="structure link_string" />
+      </a>
+    </tal:block>
   </tal:block>
 </tal:block>
