@@ -210,7 +210,7 @@ class CPSPortlet(CPSDocument):
              res = []
              for o in p.split(':')[1].split(','):
                  if o[0] == '(' and o[-1] == ')':
-                     o = getattr(self, opt[1:-1], None)
+                     o = getattr(self, o[1:-1], None)
                      if o is None:
                          continue
                      if isinstance(o, ListType) or\
