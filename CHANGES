@@ -50,3 +50,4 @@ New internal features:
 - added a generic portlet widget (CPSPortletWidget). Removed the other widgets.
 - using 'switchLanguage' instead of Localizer to select the document language.
 - running 'html_slimmer' before storing rendered portlets in the RAM cache.
+- added a query parameter in listPortlets() to specify the portal types.
