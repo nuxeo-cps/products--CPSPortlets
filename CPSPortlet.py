@@ -30,7 +30,6 @@ This is a CPSDocument child base class for portlets
 import time
 import md5
 
-
 from types import ListType, IntType, TupleType
 from App.Common import rfc1123_date
 from Globals import InitializeClass, DTMLFile
@@ -174,7 +173,7 @@ class CPSPortlet(CPSDocument):
         objects = []
         for param in params:
             if not param.startswith('objects:'):
-                continue 
+                continue
             for type in param.split(':')[1].split(','):
 
                 # relative path objects
@@ -280,7 +279,7 @@ class CPSPortlet(CPSDocument):
             elif param == 'folder':
                 index_string = context.absolute_url(1)
 
-            # current object 
+            # current object
             elif param.startswith('object:'):
                 opts = getOptions(param)
                 index_string = ''
@@ -361,7 +360,7 @@ class CPSPortlet(CPSDocument):
         if cache_entry is not None:
             creation_date = cache_entry['date']
             for obj_path in cache_entry['objects']:
-                obj = self.unrestrictedTraverse(obj_path, default=None) 
+                obj = self.unrestrictedTraverse(obj_path, default=None)
                 if obj is not None:
                     mtime = getattr(obj, '_p_mtime', None)
                     if mtime is not None and mtime < creation_date:
@@ -622,7 +621,7 @@ class CPSPortlet(CPSDocument):
             return []
 
         utool = getToolByName(self, 'portal_url')
-        portal = utool.getPortalObject() 
+        portal = utool.getPortalObject()
 
         objs = []
         while 1:
