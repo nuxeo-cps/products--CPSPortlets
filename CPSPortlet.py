@@ -47,6 +47,20 @@ from cpsportlets_utils import html_slimmer
 
 _marker = []
 
+# Edge-Side-Includes
+ESI_CODE = """
+<esi:try>
+  <esi:attempt>
+    <esi:include src="%s/render?context_rurl=%s" onerror="continue" />
+  </esi:attempt>
+  <esi:except>
+    <!--esi
+     This spot is reserved
+    -->
+  </esi:except>
+</esi:try>
+"""
+
 class CPSPortlet(CPSDocument):
     """ CPS Portlet
     This is a CPSPortlet child base class for portlets
@@ -428,6 +442,15 @@ class CPSPortlet(CPSDocument):
             if meth and callable(meth):
                 rendered = apply(meth, (), kw)
         return rendered
+
+    security.declarePublic('render_esi')
+    def render_esi(self, **kw):
+        """Render the ESI fragment code."""
+
+        utool = getToolByName(self, 'portal_url')
+        context_obj = kw.get('context_obj')
+        context_rurl = utool.getRelativeUrl(context_obj)
+        return ESI_CODE % (self.absolute_url(), context_rurl)
 
     ##################################################################
 
