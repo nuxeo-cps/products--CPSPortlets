@@ -32,7 +32,16 @@ from Products.CPSInstaller.CPSInstaller import CPSInstaller
 SECTIONS_ID = 'sections'
 WORKSPACES_ID = 'workspaces'
 SKINS = {'cpsportlets_widgets':
-         'Products/CPSPortlets/skins/cpsportlets_widgets'}
+         'Products/CPSPortlets/skins/cpsportlets_widgets',
+         'cpsportlets_default':
+         'Products/CPSPortlets/skins/cpsportlets_default',
+         'cpsportlets_schemas':
+         'Products/CPSPortlets/skins/cpsportlets_schemas',
+         'cpsportlets_types':
+         'Products/CPSPortlets/skins/cpsportlets_types',
+         'cpsportlets_layouts':
+         'Products/CPSPortlets/skins/cpsportlets_layouts',
+         }
 
 class CPSPortletsInstaller(CPSInstaller):
     """ Installer class for CPS Portlets component
