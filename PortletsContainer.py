@@ -61,6 +61,11 @@ class PortletsContainer(CMFBTreeFolder):
         """
         ids = []
         for k, v in self.items():
+            portlet = self.getPortletById(k)
+            if not hasattr(aq_base(portlet), 'isCPSPortlet'):
+                continue
+            if not portlet.isCPSPortlet():
+                continue
             ids.append(k)
         return ids
 
