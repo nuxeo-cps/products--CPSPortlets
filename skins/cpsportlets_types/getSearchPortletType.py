@@ -10,7 +10,7 @@ search_portlet_type = {
     'filter_content_types': False,
     'allowed_content_types': (),
     'allow_discussion': False,
-    'cps_is_searchable': True,
+    'cps_is_searchable': False,
     'cps_proxy_type': '',
     'cps_display_as_document_in_listing': False,
     'schemas': ('portlet_common', 'search_portlet'),
