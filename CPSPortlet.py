@@ -177,6 +177,16 @@ class CPSPortlet(CPSDocument):
         for param in params:
             index_string = ''
 
+            # not cacheable
+            if param == 'no-cache':
+                return None
+
+            # request variable
+            if param.startswith('request:'):
+                var = param.split(':')[1]
+                if REQUEST.get(var):
+                    index_string = str(var)
+
             # current user
             if param == 'user':
                 index_string = str(REQUEST.get('AUTHENTICATED_USER'))
@@ -234,9 +244,14 @@ class CPSPortlet(CPSDocument):
         """Renders the cached version of the portlet.
         """
 
+        cache_index = self.getCacheIndex(**kw)
+        # not cacheable
+        if cache_index is None:
+            return self.render(**kw)
+
         now = time.time()
         portlet_path = self.getPhysicalPath()
-        index = (portlet_path, ) + self.getCacheIndex(**kw)
+        index = (portlet_path, ) + cache_index
         ptltool = getToolByName(self, 'portal_cpsportlets')
         cache = ptltool.getPortletCache()
         last_cleanup = cache.getLastCleanup(id=portlet_path)
