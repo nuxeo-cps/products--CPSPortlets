@@ -1,0 +1,40 @@
+
+Portlets:
+--------
+- navigation tree
+- folder contents
+- locale selector (already started)
+- images, ads, ...
+- flash animations
+- event calendar
+- RSS box
+- Presence box
+- CPS3TaskBox
+- ...
+
+Portlet management:
+------------------
+- portlet override
+
+User interface:
+---------------
+- setting the portlet's visibility range
+- direct drag-and-drop of portlets. (cf. Zope4Media)
+- direct editing of portlets. (cf. Zope4Media)
+
+Cache:
+-----
+- invalidation through the event service
+- cache cleaning (e.g. when a user log out)
+
+ESI (Edge-Side-Includes):
+------------------------
+- replacing portlets with <esi> markup
+
+Tests:
+------
+- cross-platform tests (CMF/CPS/Plone)
+
+Installation:
+-------------
+- cross-platform installation (CMF/CPS/Plone)
