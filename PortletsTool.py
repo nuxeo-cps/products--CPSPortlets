@@ -27,7 +27,6 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 from zLOG import LOG, DEBUG
 
 from Globals import InitializeClass
-from OFS.PropertyManager import PropertyManager
 from Globals import InitializeClass, DTMLFile
 from AccessControl import ClassSecurityInfo, getSecurityManager, Unauthorized
 from Acquisition import aq_base, aq_parent, aq_inner
@@ -400,11 +399,11 @@ class PortletsTool(UniqueObject, PortletsContainer):
     manage_rebuildPortlets = DTMLFile('zmi/manage_rebuildPortlets',
                                        globals())
 
-    manage_options = (PropertyManager.manage_options +
-                      PortletsContainer.manage_options +
-                      ({'label': 'Rebuild portlets',
-                        'action': 'manage_rebuildPortlets'},)
-                     )
+    manage_options = (
+        PortletsContainer.manage_options +
+        ({'label': 'Rebuild portlets',
+          'action': 'manage_rebuildPortlets'},)
+        )
 
     security.declareProtected(ManagePortlets, 'rebuild_portlets')
     def rebuild_portlets(self, REQUEST=None):
