@@ -342,14 +342,6 @@ class CPSPortlet(CPSDocument):
                              ac_list_extend([ac.get('name'), ac.get('url')])
                     index_string = md5.new(str(ac_list)).hexdigest()
 
-            # XXX CPSSkins dependency
-            # Workflow actions
-            elif param == 'wf_actions':
-                cmf_actions = REQUEST.get('cpsskins_cmfactions')
-                wf_actions = cmf_actions.get('workflow', None)
-                if wf_actions is not None:
-                    index_string = md5.new(str(wf_actions)).hexdigest()
-
             # current object
             elif param.startswith('object:'):
                 opts = getOptions(param)

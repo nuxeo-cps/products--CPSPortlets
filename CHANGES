@@ -11,6 +11,8 @@ Bug fixes:
   on CPS-3.2.x instances.
 - Action Portlet: updated the computed cache index to make it work with the
   CMF 1.5 action information representation.
+- removed the 'wf_actions' cache parameter
+  (it is a special case of actions:workflow)
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the
