@@ -1,31 +1,33 @@
 <!-- RSS 1.0 export -->
-<metal:block define-macro="export_rss_1_0">
-  <tal:block define="url string:${request/URL}?export=${export};
-                     utool nocall:here/portal_url;
-                     portal python: utool.getPortalObject()"
-   content="structure python: here.cpsportlet_export_rss_1_0(portal=portal, box=ds, items=items, url=url, request=request)" />
+<metal:block define-macro="export_rss_1_0"
+  tal:define="export_script nocall:here/cpsportlet_export_rss_1_0">
+  <metal:block use-macro="here/cpsportlet_macros/macros/syndication" />
 </metal:block>
 
 <!-- RSS 2.0 export -->
-<metal:block define-macro="export_rss_2_0">
-  <tal:block define="url string:${request/URL}?export=${export};
-                     utool nocall:here/portal_url;
-                     portal python: utool.getPortalObject()"
-   content="structure python: here.cpsportlet_export_rss_2_0(portal=portal, box=ds, items=items, url=url, request=request)" />
+<metal:block define-macro="export_rss_2_0"
+  tal:define="export_script nocall:here/cpsportlet_export_rss_2_0">
+  <metal:block use-macro="here/cpsportlet_macros/macros/syndication" />
 </metal:block>
 
 <!-- ATOM 0.3 export -->
-<metal:block define-macro="export_atom_0_3">
-  <tal:block define="url string:${request/URL}?export=${export};
-                     utool nocall:here/portal_url;
-                     portal python: utool.getPortalObject()"
-   content="structure python: here.cpsportlet_export_atom_0_3(portal=portal, box=ds, items=items, url=url, request=request)" />
+<metal:block define-macro="export_atom_0_3"
+  tal:define="export_script nocall:here/cpsportlet_export_atom_0_3">
+  <metal:block use-macro="here/cpsportlet_macros/macros/syndication" />
 </metal:block>
 
 <!-- Not implemented or unknown export format-->
 <metal:block define-macro="export_not_implemented">
   <strong tal:content="export" />:
   <span i18n:translate="">this export format has not been implemented yet</span>.
+</metal:block>
+
+<!-- Syndication -->
+<metal:block define-macro="syndication">
+  <tal:block define="url string:${request/URL}?export=${export};
+                     utool nocall:here/portal_url;
+                     portal python: utool.getPortalObject()"
+   content="structure python: export_script(portal=portal, box=ds, items=items, url=url, request=request)" />
 </metal:block>
 
 <!-- Display export buttons -->
