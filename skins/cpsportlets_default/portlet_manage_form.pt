@@ -1,8 +1,14 @@
-<metal:block define-macro="edit_form">
+<metal:block define-macro="edit_form"
+ tal:define="manage_url nocall:here/cpsskins_portlet_manage_form|nothing">
   <metal:block use-macro="here/main_template/macros/master">
     <metal:block fill-slot="main">
-      <h1 i18n:translate="cpsportlets_portlet_management_heading">Portlet management</h1>
-      <span i18n:translate="cpsportlets_install_cpsskins">To manage portlets please install CPSSkins.</span>
+      <tal:block condition="not:manage_url">
+        <h1 i18n:translate="cpsportlets_portlet_management_heading">Portlet management</h1>
+        <span i18n:translate="cpsportlets_install_cpsskins">To manage portlets please install CPSSkins.</span>
+      </tal:block>
+      <tal:block condition="manage_url">
+        <tal:redirect define="response request/RESPONSE; dummy python:response.redirect(manage_url.absolute_url())" />
+      </tal:block>
     </metal:block>
   </metal:block>
 </metal:block>
