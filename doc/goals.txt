@@ -11,5 +11,7 @@ CPSPortlets : Portlets  engine for CPS3.
     style (title bar etc...)
     CPSSkins will take care of the second one.
 
-  - Cleaning the old portal_boxes and the use of the old boxe containers
-    with the use of acquisition.
+  - Refactoring the old portal_boxes machinery.
+
+You may check CPSSkins/doc/CPS3-Integration.txt document from jmo for
+further explanations on CPSSkins side
