@@ -29,6 +29,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.CMFCorePermissions import View
 from Products.CPSInstaller.CPSInstaller import CPSInstaller
 
+from Products.CPSPortlets.CPSPortletsPermissions import ManagePortlets
+
 SECTIONS_ID = 'sections'
 WORKSPACES_ID = 'workspaces'
 SKINS = {'cpsportlets_widgets':
@@ -58,6 +60,7 @@ class CPSPortletsInstaller(CPSInstaller):
                          'CPS Portlets Tool')
         self.verifySkins(SKINS)
         self.resetSkinCache()
+        self.setupSpecificPermissions()
         self.verifyWidgets(self.portal.getPortletWidgets())
         self.installPortletSchemas()
         self.installPortletLayouts()
@@ -65,6 +68,38 @@ class CPSPortletsInstaller(CPSInstaller):
         self.setupTranslations()
         self.finalize()
         self.log("End of Install/Update : CPSPortlets Product")
+
+
+    def setupSpecificPermissions(self):
+        """Setup specific permissions
+        """
+
+        # Globally
+        # Necessarly ?
+        self.setupPortalPermissions({
+            ManagePortlets : ['Manager',
+                              'Owner'],})
+
+        # Workspace
+        ws_perms = {
+            ManagePortlets : ['Manager',
+                              'Owner',
+                              'WorkspaceManager',],
+            }
+
+        for perm, roles in ws_perms.items():
+            self.portal[WORKSPACES_ID].manage_permission(perm, roles, 0)
+
+
+        # Sections
+        se_perms = {
+            ManagePortlets : ['Manager',
+                              'Owner',
+                              'SectionManager',],
+            }
+
+        for perm, roles in se_perms.items():
+            self.portal[SECTIONS_ID].manage_permission(perm, roles, 0)
 
     def installPortletSchemas(self):
         """Install all portlet specific schemas."""
