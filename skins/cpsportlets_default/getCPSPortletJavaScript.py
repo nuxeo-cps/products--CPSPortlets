@@ -8,6 +8,7 @@ javascript = {
     'Add Item Portlet': '',
     'Breadcrumbs Portlet': '',
     'Actions Portlet': '',
+    'Content Portlet': '',
 }
 
 return javascript
