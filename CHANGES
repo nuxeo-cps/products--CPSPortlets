@@ -65,3 +65,4 @@ New internal features:
 - using CPSNavigation to list folder contents
 - Added an 'Image Link' compound widget (used in the Image Portlet)
 - added an icon RAM cache to render image tags by portal type.
+- new cache parameter: 'random:' that generates a random integer as a cache index.

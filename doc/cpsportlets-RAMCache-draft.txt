@@ -189,6 +189,11 @@ be set in the factory type information.
 - no-cache:
   description: the portlet should not be cached.
 
+- random:n
+  description: generates a random integer between 0 and n-1.
+               the integer is passed as a keyword parameter to the portlet
+               as 'random_int'
+  used in: Image Portlet (banner rotation, etc.)
 
 * Contextual objects:
 

@@ -29,6 +29,7 @@ This is a CPSDocument child base class for portlets
 
 import time
 import md5
+from random import randint
 from types import ListType, IntType, TupleType
 from App.Common import rfc1123_date
 from Globals import InitializeClass, DTMLFile
@@ -37,12 +38,10 @@ from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.utils import getToolByName, _getViewFor
 from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent
-
 from Products.CPSDocument.CPSDocument import CPSDocument
 
 from CPSPortletsPermissions import ManagePortlets
 from PortletGuard import PortletGuard
-
 from cpsportlets_utils import html_slimmer
 
 _marker = []
@@ -237,13 +236,31 @@ class CPSPortlet(CPSDocument):
             return res
 
         index = ()
+        data = {}
         for param in params:
             index_string = ''
             prefix = param
 
             # not cacheable
             if param == 'no-cache':
-                return None
+                return None, data
+
+            # random integer
+            elif param.startswith('random:'):
+                opts = getOptions(param)
+                index_string = ''
+                prefix = 'random'
+                for opt in opts:
+                    index_string += '_' + opt + ':'
+                    value = opt
+                    if value is None:
+                        continue
+                    value = int(value)
+                    if value <= 1:
+                        continue
+                    random_int = randint(0, value-1)
+                    index_string += str(random_int)
+                    data['random_int'] = random_int
 
             # request variable
             elif param.startswith('request:'):
@@ -341,14 +358,15 @@ class CPSPortlet(CPSDocument):
             if index_string:
                 index += (prefix + '_' + index_string,)
 
-        return index
+        return index, data
 
     security.declarePublic('render_cache')
     def render_cache(self, REQUEST=None, **kw):
         """Renders the cached version of the portlet.
         """
 
-        cache_index = self.getCacheIndex(**kw)
+        cache_index, data = self.getCacheIndex(**kw)
+        kw.update(data)
         # the portlet is not cacheable.
         if cache_index is None:
             return self.render(**kw)
