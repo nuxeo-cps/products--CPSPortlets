@@ -102,6 +102,25 @@ class TestPortletsAsRoot(TestPortlets):
                                            identifier='toto')
         self.assertEqual(portlet_id, None)
 
+    def test_visiblity_range_field(self):
+        ptltool = self.ptltool
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                           identifier='toto')
+        new_portlet = ptltool.getPortletById(portlet_id)
+        self.assertEqual(new_portlet.getVisibilityRange(), [0,0])
+
+        self.assertEqual(new_portlet.setVisibilityRange((0, 1)), 1)
+        self.assertEqual(new_portlet.getVisibilityRange(), [0,0])
+
+        self.assertEqual(new_portlet.setVisibilityRange([0, 1]), 0)
+        self.assertEqual(new_portlet.getVisibilityRange(), [0,1])
+
+        self.assertEqual(new_portlet.setVisibilityRange([0, 1, 8]), 1)
+        self.assertEqual(new_portlet.getVisibilityRange(), [0,1])
+
+        self.assertEqual(new_portlet.setVisibilityRange(['a', 'b']), 1)
+        self.assertEqual(new_portlet.getVisibilityRange(), [0,1])
+
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestPortletsAsRoot))
