@@ -30,6 +30,7 @@ Bug fixes:
 - custom cache parameters are reset for global portlets too.
 - getFolderItems.py did not work behind virtual hosts
 - fixed syndication urls for the Internal Links Portlet.
+- Content Portlet: the sort_on and sort_order options were ignored.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the

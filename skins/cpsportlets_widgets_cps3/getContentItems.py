@@ -24,9 +24,12 @@ if folder_path is not None:
     portal_path = context.portal_url.getPortalPath()
     query['path'] = portal_path + folder_path
 
+# sort on
+query['sort_on'] = kw.get('sort_on')
+
 # return the results in descending order
-if kw.get('sort_reverse'):
-    query['sort_order'] = 'reverse'
+if int(kw.get('sort_reverse', 0)) == 1:
+    query['sort-order'] = 'reverse'
 
 # Title search (if specified)
 query_title = kw.get('query_title')
