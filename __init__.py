@@ -30,6 +30,7 @@ import CPSPortletsPermissions
 import FlexibleTypeInformationPatch
 import PortletsTool
 import CPSPortlet
+import CPSPortletWidget
 import FileDownloaderPatch
 import PortletsContainer
 import PortletRAMCache
