@@ -60,21 +60,47 @@ class CPSPortletsInstaller(CPSInstaller):
         self.resetSkinCache()
         self.verifyWidgets(self.portal.getPortletWidgets())
         self.installPortletSchemas()
+        self.installPortletLayouts()
+        self.installFlexibleTypes()
         self.finalize()
         self.log("End of Install/Update : CPSPortlets Product")
 
     def installPortletSchemas(self):
-        """Install all the portlet specific schemas
-        """
+        """Install all portlet specific schemas."""
 
         define_schemas = (self.portal.getPortletCommonSchema(),
-                          )
+                          self.portal.getDummyPortletSchema(),
+                         )
 
         all_schemas = {}
         for schema in define_schemas:
             all_schemas.update(schema)
 
         self.verifySchemas(all_schemas)
+
+    def installPortletLayouts(self):
+        """Install all portlet specific layouts."""
+
+        define_layouts = (self.portal.getDummyPortletLayout(),
+                         )
+
+        all_layouts = {}
+        for layout in define_layouts:
+            all_layouts.update(layout)
+
+        self.verifyLayouts(all_layouts)
+
+    def installFlexibleTypes(self):
+        """Install all portlet specific types."""
+
+        define_types = (self.portal.getDummyPortletType(),
+                       )
+
+        all_ptypes = {}
+        for ptype in define_types:
+            all_ptypes.update(ptype)
+
+        self.verifyFlexibleTypes(all_ptypes)
 
 
 ###############################################
