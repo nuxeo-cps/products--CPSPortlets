@@ -185,10 +185,12 @@ class CPSPortlet(CPSDocument):
         if cleanup_date > last_cleanup:
             cache.delEntries(portlet_path)
 
-        rendered = cache.getEntry(index)
-        if rendered is None:
+        cache_entry = cache.getEntry(index)
+        if cache_entry is None:
             rendered = self.render(**kw)
-            cache.setEntry(index, rendered)
+            cache.setEntry(index, {'rendered': rendered})
+        else:
+            rendered = cache_entry['rendered']
 
         return rendered
 
