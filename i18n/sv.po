@@ -129,7 +129,7 @@ msgid "portal_type_NavigationPortlet_title"
 msgstr "Navigering"
 
 msgid "portal_type_DocumentPortlet_title"
-msgstr "Dokument "
+msgstr "Dokument"
 
 msgid "portal_type_RSSPortlet_title"
 msgstr "RSS-kanal"
@@ -147,7 +147,7 @@ msgid "cpsportlets_portlet_created_psm"
 msgstr "Portlet skapad."
 
 msgid "cpsportlets_content_translated_psm"
-msgstr "Innehåll översatt. "
+msgstr "Innehåll översatt."
 
 msgid "cpsportlets_bcs_display_dropdown_list_label"
 msgstr "Rullgardinsmeny"
@@ -156,7 +156,7 @@ msgid "cpsportlets_bcs_display_horizontal_trail_label"
 msgstr "Horisontell lista"
 
 msgid "cpsportlets_bcs_display_site_root_label"
-msgstr "Visa webbplats rot "
+msgstr "Visa webbplats rot"
 
 msgid "cpsportlets_advanced_search_link_label"
 msgstr "Visa en länk till avancerad sökning"
@@ -180,13 +180,13 @@ msgid "cpsportlets_content_search_type_label"
 msgstr "Innehåll"
 
 msgid "cpsportlets_content_search_pending_label"
-msgstr "Väntande dokument "
+msgstr "Väntande dokument"
 
 msgid "cpsportlets_content_search_last_modified_label"
-msgstr "Senast ändrade dokument "
+msgstr "Senast ändrade dokument"
 
 msgid "cpsportlets_content_search_last_published_label"
-msgstr "Senaste publicerade dokument "
+msgstr "Senaste publicerade dokument"
 
 msgid "cpsportlets_content_search_recent_label"
 msgstr "Nyaste dokument"
@@ -204,7 +204,7 @@ msgid "cpsportlets_content_sort_on_Date_label"
 msgstr "Datum"
 
 msgid "cpsportlets_content_sort_on_Title_label"
-msgstr "Titel "
+msgstr "Titel"
 
 msgid "cpsportlets_content_sort_on_review_state_label"
 msgstr "Granskningsstatus"
@@ -216,7 +216,7 @@ msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Omvänd visningsordning"
 
 msgid "cpsportlets_common_max_items_label"
-msgstr "Antal artiklar "
+msgstr "Antal artiklar"
 
 msgid "cpsportlets_content_folder_path_label"
 msgstr "Rotmapp"
@@ -252,7 +252,7 @@ msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Innehåll undermapp"
 
 msgid "cpsportlets_nav_display_collapsible_menu_label"
-msgstr "Fällbar vertikal meny "
+msgstr "Fällbar vertikal meny"
 
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Relativt djup"
@@ -276,7 +276,7 @@ msgid "cpsportlets_display_hidden_folders_label"
 msgstr "Visa gömda mappar"
 
 msgid "cpsportlets_common_link_string_label"
-msgstr "Länksträng "
+msgstr "Länksträng"
 
 msgid "cpsportlets_common_display_description_label"
 msgstr "Visa beskrivning artiklar"
@@ -309,22 +309,22 @@ msgid "portal_type_NavigationPortlet_description"
 msgstr "Visar navigeringsobjekt, mappinnehåll etc."
 
 msgid "portal_type_AddItemPortlet_description"
-msgstr "Visar en meny för att lägga till artiklar i en mapp. "
+msgstr "Visar en meny för att lägga till artiklar i en mapp."
 
 msgid "portal_type_InternalLinksPortlet_description"
-msgstr "Visar en lista över interna länkar. "
+msgstr "Visar en lista över interna länkar."
 
 msgid "portal_type_TextPortlet_description"
 msgstr "Visar en text i HTML."
 
 msgid "portal_type_ImagePortlet_description"
-msgstr "Visar en dekorationsbild med en länk. "
+msgstr "Visar en dekorationsbild med en länk."
 
 msgid "portal_type_DummyPortlet_description"
-msgstr "För testning. "
+msgstr "För testning."
 
 msgid "portal_type_SearchPortlet_description"
-msgstr "Visar ett gränssnitt för att söka på webbplatsen. "
+msgstr "Visar ett gränssnitt för att söka på webbplatsen."
 
 msgid "portal_type_RSSPortlet_description"
 msgstr "Visar innehållet av RSS-kanaler"
@@ -333,13 +333,13 @@ msgid "portal_type_DocumentPortlet_description"
 msgstr "Visar det aktuella dokumentet."
 
 msgid "portal_type_BreadcrumbsPortlet_description"
-msgstr "Visar en lista över länkar till överliggande mappar. "
+msgstr "Visar en lista över länkar till överliggande mappar."
 
 msgid "portal_type_ActionsPortlet_description"
 msgstr "Visar en lista av kommandon efter kategori."
 
 msgid "portal_type_LanguagePortlet_description"
-msgstr "Visar språkrelaterade kommandon. "
+msgstr "Visar språkrelaterade kommandon."
 
 msgid "cpsportlets_common_first_item_label"
 msgstr "Första artikel"
@@ -366,7 +366,7 @@ msgid "cpsportlets_document_cluster_id_label"
 msgstr "Layoutgrupp ID"
 
 msgid "cpsportlet_rot_image_nb_images_label"
-msgstr "Antal bilder att växla mellan "
+msgstr "Antal bilder att växla mellan"
 
 msgid "portal_type_RotatingImagePortlet_title"
 msgstr "Växlande bilder"
@@ -387,7 +387,7 @@ msgid "cpsportlets_visibility_range_0-1_label"
 msgstr "Endast i denna mapp"
 
 msgid "cpsportlets_common_visibility_range_label"
-msgstr "Synlighetsområde "
+msgstr "Synlighetsområde"
 
 msgid "cpsportlets_navigation_root_uid_label"
 msgstr "Trädrot"
