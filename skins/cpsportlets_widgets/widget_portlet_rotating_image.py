@@ -1,9 +1,9 @@
 ##parameters=portlet=None, random_int=0, **kw
 
 js_code = """
-<script language="JavaScript" type="text/javascript">
+<script type="text/javascript"><!--
 showimage('%s');
-</script>
+//--></script>
 """
 
 widget_id = 'imagelink'
