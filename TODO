@@ -24,7 +24,6 @@ Portlet management:
 User interface:
 ---------------
 - setting the portlet's visibility range
-- direct editing of portlets. (cf. Zope4Media)
 
 Cache:
 -----
