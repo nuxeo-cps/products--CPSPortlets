@@ -123,6 +123,11 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 obj = getattr(obj, elem)
             allportlets.extend(self._getFolderPortlets(folder=obj, slot=slot))
 
+        # sort the portlets
+        def cmporder(a, b):
+            return int(a.order) - int(b.order)
+        allportlets.sort(cmporder)
+
         return allportlets
 
     ######################################################################
