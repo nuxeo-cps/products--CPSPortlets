@@ -36,6 +36,7 @@ for path in links:
     items.append(
         {'url': base_url + getRelativeUrl(object),
          'title': title,
+         'description': object.Description(),
          'icon_tag': renderIcon(ptype, base_url, ''),
         })
 

@@ -194,6 +194,7 @@ for brain in brains:
     items.append(
         {'url': brain.getURL(),
          'title': brain['Title'],
+         'description': brain['Description'],
          'rendered': rendered,
         })
 
