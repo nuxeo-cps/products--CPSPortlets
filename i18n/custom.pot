@@ -355,3 +355,9 @@ msgstr ""
 
 msgid "cpsportlets_navigation_end_depth_label"
 msgstr ""
+
+msgid "cpsportlets_internallinks_max_title_words_label"
+msgstr ""
+
+msgid "cpsportlets_internallinks_show_icons_label"
+msgstr ""

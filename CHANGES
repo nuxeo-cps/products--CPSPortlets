@@ -14,6 +14,8 @@ New features:
 - Added Swedish translation
 - Navigation Portlet: the portlet's own folder can be used as the
   reference folder when listing folder items.
+- Internal Links: refactored the rendering of the link items to support
+  more options (show icons, number of words in the title).
 Bug fixes:
 ~~~~~~~~~~
 - added missing 'is_i18n' parameter to getSearchableTypesVocabulary()

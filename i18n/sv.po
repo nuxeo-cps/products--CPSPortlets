@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-02-25 19:16default\n"
+"POT-Creation-Date: 2005-02-26 00:21default\n"
 "PO-Revision-Date: 2005-02-22 14:59+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -419,3 +419,11 @@ msgstr "Visa mappen ovanför"
 
 msgid "cpsportlets_navigation_end_depth_label"
 msgstr "Stoppdjup"
+
+#, fuzzy
+msgid "cpsportlets_internallinks_max_title_words_label"
+msgstr "Interna länkar"
+
+#, fuzzy
+msgid "cpsportlets_internallinks_show_icons_label"
+msgstr "Interna länkar"

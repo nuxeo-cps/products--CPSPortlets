@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2005-02-25 19:16default\n"
+"POT-Creation-Date: 2005-02-26 00:21default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -422,6 +422,12 @@ msgstr "Render the container"
 
 msgid "cpsportlets_navigation_end_depth_label"
 msgstr "End depth"
+
+msgid "cpsportlets_internallinks_max_title_words_label"
+msgstr "Number of words in the title"
+
+msgid "cpsportlets_internallinks_show_icons_label"
+msgstr "Show document icons"
 
 #~ msgid "button_close"
 #~ msgstr "Close"

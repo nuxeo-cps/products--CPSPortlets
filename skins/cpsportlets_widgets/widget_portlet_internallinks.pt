@@ -1,0 +1,18 @@
+<tal:block define="
+  ds options/datastructure;
+  show_icons ds/show_icons;
+  show_icons python: int(show_icons);
+  items python:here.getItemsFromPath(**dict(ds));
+  linkclass python: show_icons and 'noicon' or None;
+  ">
+  <ul class="cpsskinsMenu" tal:condition="items">
+    <li tal:repeat="item items">
+      <a tal:attributes="href item/url;
+                         class linkclass">
+        <tal:block condition="show_icons"
+        content="structure item/icon_tag" />
+        <tal:block content="item/title" />
+      </a>
+    </li>
+  </ul>
+</tal:block>
