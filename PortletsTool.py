@@ -456,6 +456,11 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def _isPortletVisible(self, portlet, context):
         """Is the portlet visible in a given context
         """
+
+        # Dublin Core
+        if not portlet.isEffective(self.ZopeTime()):
+            return 0
+
         cdepth = self._getDepthOf(context)
         vrange = portlet.getVisibilityRange()
         left = vrange[0]

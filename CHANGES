@@ -6,6 +6,7 @@ New features:
 - Actions portlet
 - Content portlet (related, pending, last modified, recent documents,
   upcoming events)
+- Portlet visibility: effective and expiration dates can be set on portlets.
 Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves
