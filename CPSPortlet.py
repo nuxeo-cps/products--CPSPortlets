@@ -32,7 +32,6 @@ from types import ListType, IntType
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_inner, aq_parent, aq_base
 from AccessControl import ClassSecurityInfo
-from OFS.PropertyManager import PropertyManager
 
 from Products.CMFCore.utils import getToolByName
 
@@ -290,7 +289,7 @@ class CPSPortlet(CPSDocument):
     security.declareProtected(ManagePortlets, 'manage_guardForm')
     manage_guardForm = DTMLFile('zmi/manage_guardForm', globals())
 
-    manage_options = (PropertyManager.manage_options +
+    manage_options = (CPSDocument.manage_options +
                       ({'label': 'Guard', 'action': 'manage_guardForm'},)
                      )
 
