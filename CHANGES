@@ -55,6 +55,8 @@ Bug fixes:
 - the Custom Portlet now accepts cache parameters (one per line)
   see doc/cpsportlets-RAMCache-draft.txt.
 - fixed the portlet visibility range test.
+- moved the portlet visibility check code from _getFolderPortlets() 
+  to getPortlets() and passing the correct context to _isPortletVisible()
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()

@@ -248,10 +248,14 @@ class PortletsTool(UniqueObject, PortletsContainer):
             obj = getattr(obj, elem)
             allportlets.extend(self._getFolderPortlets(folder=obj, slot=slot))
 
-        # security check
+        # portlet guard and visibility range check
         for portlet in allportlets:
             if portlet.getGuard() and \
-            not portlet.getGuard().check(getSecurityManager(), portlet, context):
+            not portlet.getGuard().check(
+                getSecurityManager(),
+                portlet,
+                context) or \
+            not self._isPortletVisible(portlet, context):
                 allportlets.remove(portlet)
 
         # sort the portlets
@@ -635,9 +639,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
         right = vrange[1]
 
         # [0, 0] means visible everywhere
-        if (left == right == 0 or
-            right == 0 and left <= rdepth or
-            left <= rdepth <= right):
+        if left == right == 0 or \
+           right == 0 and left <= rdepth or \
+           left <= rdepth <= right:
             return 1
         return 0
 
@@ -656,13 +660,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
                     if portlet.getSlot() != slot:
                         continue
                 portlets.append(portlet)
-
-        # Check the visibility range of the portlet
-        returned = []
-        for portlet in portlets:
-            if self._isPortletVisible(portlet, folder):
-                returned.append(portlet)
-        return returned
+        return portlets
 
     security.declarePrivate('_insertPortlet')
     def _insertPortlet(self, portlet=None, slot=None, order=0):
