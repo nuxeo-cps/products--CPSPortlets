@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-09-07 16:45default\n"
+"POT-Creation-Date: 2004-09-08 23:13default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -24,6 +24,12 @@ msgstr ""
 msgid "_Edit_"
 msgstr ""
 
+#.   <option value="">
+#.         Add new item ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
+msgid "cpsportlet_add_new_item"
+msgstr ""
+
 #.   <h1>Portlet management</h1>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
 msgid "heading_portlet_manage_form"
@@ -39,6 +45,9 @@ msgid "portal_type_SearchPortlet_title"
 msgstr ""
 
 msgid "portal_type_InternalLinksPortlet_title"
+msgstr ""
+
+msgid "portal_type_AddItemPortlet_title"
 msgstr ""
 
 msgid "action_portlets"

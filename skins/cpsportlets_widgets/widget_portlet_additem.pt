@@ -1,0 +1,15 @@
+<tal:block define="context python: request.get('context_obj', here);
+                   checkPerm nocall:here/portal_membership/checkPermission"
+           condition="python: checkPerm('Access contents information', context)">
+  <form action="content_create" method="get"
+  tal:define="creatableItems context/getSortedContentTypes"
+  tal:attributes="action string:${context/absolute_url}/cpsportlet_additem_create">
+    <select onchange="submit()" name="type_name" tal:condition="creatableItems">
+      <option i18n:translate="cpsportlet_add_new_item" value="">
+      Add new item ...</option>
+      <option tal:repeat="item creatableItems"
+      tal:content="item/Title" i18n:translate=""
+      tal:attributes="value item/getId" value="" />
+    </select>
+  </form>
+</tal:block>

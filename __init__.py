@@ -35,6 +35,7 @@ import PortletsContainer
 # Import new widgets in here
 import PortletWidgets.DummyWidget
 import PortletWidgets.SearchWidget
+import PortletWidgets.AddItemWidget
 
 contentClasses = (
     CPSPortlet.CPSPortlet,
