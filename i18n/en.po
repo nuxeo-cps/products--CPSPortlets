@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-10-27 21:13default\n"
+"POT-Creation-Date: 2004-10-28 16:19default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -32,7 +32,7 @@ msgstr ""
 msgid "ID:"
 msgstr "ID"
 
-#.   <a content="item/Title" attributes="href item/getURL">Item title</a>
+#.   <a content="item/Title" attributes="href item_url">Item title</a>
 #.   <a content="item/title" attributes="href item_url">Item title</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_content.pt
 #: ../skins/cpsportlets_widgets/widget_portlet_rss.pt
@@ -240,3 +240,6 @@ msgstr "RSS channel"
 
 msgid "cpsportlets_rss_update_frequency_label"
 msgstr "Update frequency (in seconds)"
+
+msgid "cpsportlets_rss_max_words_label"
+msgstr "Number of words in the summary"
