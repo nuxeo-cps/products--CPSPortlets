@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-03-06 16:00default\n"
+"POT-Creation-Date: 2005-04-02 17:39default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -86,6 +86,11 @@ msgstr "Visa versionen i ..."
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_translate_into"
 msgstr "Skapa en version i ..."
+
+#.   <span>this export format has not been implemented yet</span>
+#: from ../skins/cpsportlets_default/cpsportlet_macros.pt
+msgid "this export format has not been implemented yet"
+msgstr ""
 
 msgid "label_cpsportlets_provider"
 msgstr "Leverantör"
@@ -429,3 +434,6 @@ msgstr "Visa ikoner"
 
 msgid "cpsportlets_nav_context_rpath_label"
 msgstr "Visa dokument i samma mapp som den Portlet befinner sig i."
+
+msgid "cpsportlets_common_syndication_formats_label"
+msgstr "Syndikeringsformat"

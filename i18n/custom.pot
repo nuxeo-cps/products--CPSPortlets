@@ -367,3 +367,6 @@ msgstr ""
 
 msgid "cpsportlets_nav_context_rpath_label"
 msgstr ""
+
+msgid "cpsportlets_common_syndication_formats_label"
+msgstr ""

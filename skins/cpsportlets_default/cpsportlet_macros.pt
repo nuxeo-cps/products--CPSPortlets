@@ -19,3 +19,20 @@ TODO: ATOM export
   <strong tal:content="export" />:
   <span i18n:translate="">this export format has not been implemented yet</span>.
 </metal:block>
+
+<!-- Display export buttons -->
+<metal:block define-macro="xml_exports"
+  tal:define="formats ds/syndication_formats;
+              portlet nocall:options/portlet|nothing"
+  tal:condition="python: formats and portlet">
+  <div class="xmlExportButtons"
+  tal:define="vtool here/portal_vocabularies;
+              voc vtool/cpsportlets_syndication_formats_voc">
+    <a
+     tal:repeat="format formats"
+     tal:attributes="href string:${portlet/absolute_url}?export=${format};
+                     title format"
+     tal:content="python: voc[format]" />
+  </div>
+  <div style="clear:right"></div>
+</metal:block>

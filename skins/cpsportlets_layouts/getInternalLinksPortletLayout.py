@@ -43,6 +43,17 @@ internallinks_portlet_layout = {
                 'render_format': 'select',
             },
         },
+        'syndication_formats': {
+            'type': 'MultiSelect Widget',
+            'data': {
+                'fields': ('syndication_formats',),
+                'label_edit': 'cpsportlets_common_syndication_formats_label',
+                'is_i18n': True,
+                'hidden_layout_modes': ('view',),
+                'vocabulary': 'cpsportlets_syndication_formats',
+                'size': 0,
+            },
+        },
     },
     'layout': {
         'style_prefix': 'layout_portlet_',
@@ -56,6 +67,8 @@ internallinks_portlet_layout = {
              {'widget_id': 'show_icons', 'ncols': 1},
             ],
             [{'widget_id': 'links', 'ncols': 2},
+            ],
+            [{'widget_id': 'syndication_formats', 'ncols': 3},
             ],
         ],
     },

@@ -24,6 +24,7 @@
         </span>
       </tal:block>
     </tal:block>
+    <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
   </tal:block>
 
   <tal:block tal:condition="export">
@@ -33,4 +34,5 @@
                               here/cpsportlet_macros/macros/export_not_implemented" />
     </tal:block>
   </tal:block>
+
 </tal:block>

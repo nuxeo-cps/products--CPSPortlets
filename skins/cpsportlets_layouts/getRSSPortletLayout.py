@@ -185,6 +185,17 @@ rss_portlet_layout = {
                 'thousands_separator': '',
             },
         },
+        'syndication_formats': {
+            'type': 'MultiSelect Widget',
+            'data': {
+                'fields': ('syndication_formats',),
+                'label_edit': 'cpsportlets_common_syndication_formats_label',
+                'is_i18n': True,
+                'hidden_layout_modes': ('view',),
+                'vocabulary': 'cpsportlets_syndication_formats',
+                'size': 0,
+            },
+        },
     },
     'layout': {
         'style_prefix': 'layout_portlet_',
@@ -206,6 +217,8 @@ rss_portlet_layout = {
             [{'widget_id': 'max_words', 'ncols': 1},
             ],
             [{'widget_id': 'link_string', 'ncols': 1},
+            ],
+            [{'widget_id': 'syndication_formats', 'ncols': 3},
             ],
         ],
     },

@@ -18,6 +18,7 @@
         </a>
       </li>
     </ul>
+    <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
   </tal:block>
 
   <tal:block tal:condition="export">
