@@ -141,45 +141,29 @@ def summarize(text='', max_words=20):
         res = ' '.join(split_text) + ' ...'
     return res
 
-def renderDoc(content, proxy, layout_ids=[]):
-    """Render the document
-    """
-    # find the 'render' method
-    render = getattr(content, 'render', None)
-    if render is None:
-        return ''
-    rendered = []
-    if len(layout_ids) > 0:
-        # try to render the specified layouts
-        try:
-            for layout_id in layout_ids:
-                rendered.append(
-                    render(proxy=proxy, layout_id=layout_id)
-                )
-        except ValueError:
-            return ''
-    else:
-        rendered.append(render(proxy=proxy))
-    return ''.join(rendered)
-
-# Collect all items
 items = []
 for brain in brains:
 
     rendered = ''
-    # render the item with
+    # render the item
     if int(kw.get('render_items'), 0) == 1:
-        rendered = ''
         content = None
         if getattr(brain.aq_inner.aq_explicit, 'getRID', None) is not None:
             obj = brain.getObject()
             getContent = getattr(obj.aq_inner.aq_explicit, 'getContent', None)
             if getContent is not None:
                 content = getContent()
-        layout_ids = kw.get('layout_ids', [])
-        rendered = renderDoc(content=content, proxy=obj, layout_ids=layout_ids)
-    # default item presentation
-    else:
+
+        render = getattr(content, 'render', None)
+        if render is not None:
+            # render the document by cluster (if specified)
+            try:
+                 rendered = render(proxy=obj, cluster=kw.get('cluster_id'))
+            except ValueError:
+                 pass
+
+    # default item presentation (summary of description)
+    if not rendered:
         if kw.get('display_description'):
             description = brain['Description']
             max_words = int(kw.get('max_words', 20))

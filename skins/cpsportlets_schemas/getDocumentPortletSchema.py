@@ -1,8 +1,8 @@
 document_portlet_schema = {
-    'layout_ids': {
-        'type': 'CPS String List Field',
+    'cluster_id': {
+        'type': 'CPS String Field',
         'data': {
-            'default_expr': 'python:[]',
+            'default_expr': 'string:',
             'is_searchabletext': 0,
             'acl_read_permissions': '',
             'acl_read_roles': '',
@@ -12,7 +12,7 @@ document_portlet_schema = {
             'acl_write_expr': '',
             'read_ignore_storage': 0,
             'read_process_expr': '',
-            'read_process_dependent_fields': [],
+            'read_process_dependent_fields': (),
             'write_ignore_storage': 0,
             'write_process_expr': '',
         },

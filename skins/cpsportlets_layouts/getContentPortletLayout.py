@@ -8,7 +8,6 @@ content_portlet_layout = {
                 'is_i18n': True,
                 'hidden_layout_modes': ('view',),
                 'display_width': 36,
-                'size_max': 0,
             },
         },
         'query_title': {
@@ -19,7 +18,6 @@ content_portlet_layout = {
                 'is_i18n': True,
                 'hidden_layout_modes': ('view',),
                 'display_width': 36,
-                'size_max': 0,
             },
         },
         'folder_path': {
@@ -30,7 +28,6 @@ content_portlet_layout = {
                 'is_i18n': True,
                 'hidden_layout_modes': ('view',),
                 'display_width': 36,
-                'size_max': 0,
             },
         },
         'sort_on': {
@@ -89,6 +86,17 @@ content_portlet_layout = {
                 'field_types': ('CPS String Field',),
             },
         },
+        'cluster_id': {
+            'type': 'String Widget',
+            'data': {
+                'fields': ('cluster_id',),
+                'label_edit': 'cpsportlets_content_cluster_id_label',
+                'is_i18n': True,
+                'hidden_layout_modes': ('view',),
+                'hidden_if_expr': 'not:context/render_items',
+                'display_width': 20,
+            },
+        },
         'display_description': {
             'type': 'Boolean Widget',
             'data': {
@@ -126,18 +134,6 @@ content_portlet_layout = {
                 'size': 7,
             },
         },
-        'layout_ids': {
-            'type': 'Lines Widget',
-            'data': {
-                'fields': ('layout_ids',),
-                'label_edit': 'cpsportlets_content_layout_ids_label',
-                'is_i18n': True,
-                'hidden_layout_modes': ('view',),
-                'hidden_if_expr': 'not:context/render_items',
-                'width': 36,
-                'height': 3,
-            },
-        },
         'max_words': {
             'type': 'Int Widget',
             'data': {
@@ -157,7 +153,8 @@ content_portlet_layout = {
         'rows': [
             [{'widget_id': 'portlet', 'ncols': 3},
             ],
-            [{'widget_id': 'render_items', 'ncols': 2},
+            [{'widget_id': 'render_items', 'ncols': 1},
+             {'widget_id': 'cluster_id', 'ncols': 1},
              {'widget_id': 'max_items', 'ncols': 1},
             ],
             [{'widget_id': 'search_type', 'ncols': 1},
@@ -172,14 +169,11 @@ content_portlet_layout = {
             [{'widget_id': 'display_description', 'ncols': 2},
              {'widget_id': 'max_words', 'ncols': 1},
             ],
-            [{'widget_id': 'layout_ids', 'ncols': 3},
-            ],
             [{'widget_id': 'link_string', 'ncols': 3},
             ],
         ],
     },
 }
-
 
 layouts = {'content_portlet': content_portlet_layout}
 return layouts

@@ -43,7 +43,7 @@ New features:
   Navigation portlet.
 - The Custom Portlet accepts a javascript method.
 - added a title search query parameter for the Content Portlet.
-- Document Portlet: support for several layout ids
+- Document Portlet: support for layout clusters
 Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves
@@ -103,7 +103,8 @@ New internal features:
 - getBreadCrumbs() returns the list of parent folders up to the top folder.
 - using '<ul class="cpsskinsMenu">' on menus to dissociate them from other sorts
   of lists.
-- content items in the Content Portlet can be rendered - layout ids can be specified.
+- content items in the Content Portlet can be rendered and the
+  cluster id can be specified.
 - added a getCreator() method for portlets
 - added getFolders(), getBottomMostFolder() to the portlets tool
 - implemented portlet override (see doc/portlet-override.txt)

@@ -22,17 +22,16 @@ document_portlet_layout = {
                 'field_types': ('CPS String Field',),
             },
         },
-        'layout_ids': {
-            'type': 'Lines Widget',
+        'cluster_id': {
+            'type': 'String Widget',
             'data': {
                 'title': '',
-                'fields': ('layout_ids',),
-                'label_edit': 'cpsportlets_document_layout_ids_label',
+                'fields': ('cluster_id',),
+                'label_edit': 'cpsportlets_document_cluster_id_label',
                 'is_i18n': True,
                 'hidden_layout_modes': ('view',),
-                'width': 40,
-                'height': 5,
-                'format_empty': '',
+                'display_width': 36,
+                'size_max': 0,
             },
         },
     },
@@ -43,7 +42,7 @@ document_portlet_layout = {
         'rows': [
             [{'widget_id': 'portlet', 'ncols': 1},
             ],
-            [{'widget_id': 'layout_ids', 'ncols': 1},
+            [{'widget_id': 'cluster_id', 'ncols': 1},
             ],
         ],
     },

@@ -3,17 +3,16 @@
 if context_obj is None:
     return
 
-rendered = []
+rendered = ''
 
 ti =  context_obj.getTypeInfo()
 if ti is None:
-    return ''
+    return rendered
 
 if ti.getProperty('cps_is_portlet', 0):
-    return ''
+    return rendered
 
 ds = kw['datastructure']
-layout_ids = ds.get('layout_ids')
 
 getContent = getattr(context_obj.aq_explicit, 'getContent', None)
 if getContent is not None:
@@ -21,18 +20,12 @@ if getContent is not None:
     # find the 'render' method
     render = getattr(doc, 'render', None)
     if render is None:
-        return ''
+        return rendered
 
-    if len(layout_ids) > 0:
-        # try to render the specified layouts
-        try:
-            for layout_id in layout_ids:
-                rendered.append(
-                    render(proxy=context_obj, layout_id=layout_id)
-                )
-        except ValueError:
-            return ''
+    # render the document by cluster (if specified)
+    if ds.has_key('cluster_id'):
+        rendered = render(proxy=context_obj, cluster=ds['cluster_id'])
     else:
-        rendered.append(render(proxy=context_obj))
+        rendered = render(proxy=context_obj)
 
-return ''.join(rendered)
+return rendered
