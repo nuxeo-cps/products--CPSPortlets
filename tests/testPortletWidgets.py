@@ -28,6 +28,7 @@ class TestPortlet(TestPortlets):
         self.assert_(len(ptltool.items()) == 1)
         portlet = ptltool[portlet_id]
         self.assert_(portlet.render())
+        self.assert_(portlet.render_js() is not None)
 
 # portal type list
 tests=[]
