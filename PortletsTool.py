@@ -55,6 +55,18 @@ class PortletsTool(UniqueObject, PortletsContainer):
     # RAM Cache
     caches = {}
 
+    #
+    # Catalog
+    #
+    security.declarePrivate('_getPortletCatalog')
+    def _getPortletCatalog(self):
+        """Return the portlet catalog
+        """
+
+        # XXX change later to a dedicated catalog
+        catalog = getToolByName(self, 'portal_catalog')
+        return catalog
+
     security.declarePublic('listAllPortlets')
     def listAllPortlets(self):
         """List all the portlets over the portal
@@ -63,14 +75,37 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """
 
         # Use the catalog to get all the portlets and their identifiers
-        catalog = getToolByName(self, 'portal_catalog')
+        catalog = self._getPortletCatalog()
         portal_types = self.listPortletTypes()
 
-        # Lookup through catalog to get the potlets
+        # Lookup through catalog to get the portlets
         # We ask the tool to know all the portal_types
 
         portlets = []
         for res in catalog.searchResults({'portal_type':portal_types}):
+            portlet = res.getObject()
+            if portlet is None:
+                continue
+            portlets.append(portlet)
+        return portlets
+
+    security.declarePublic('listPortlets')
+    def listPortlets(self, **kw):
+        """List all portlets meeting certain criteria.
+
+           parameters:
+           - topics
+        """
+
+        catalog = self._getPortletCatalog()
+        query = {'portal_type': self.listPortletTypes()}
+
+        # topics
+        if kw.has_key('topics'):
+            query['Subject'] = kw['topics']
+
+        portlets = []
+        for res in catalog.searchResults(query):
             portlet = res.getObject()
             if portlet is None:
                 continue

@@ -41,3 +41,4 @@ New internal features:
 - added an option to movePortlet() to leave the source portlet in place.
 - added a duplicatePortlet() method
 - using the 'common' and 'metadata' schemas by default.
+- add a listPortlets() method to look for portlets based on search criteria.
