@@ -286,10 +286,34 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if context is None:
             destination = self
         else:
-            container_id = self.getPortletContainerId()
-            destination = getattr(context, container_id)
+            destination = self.getPortletContainer(context=context)
 
         return destination._deletePortlet(portlet_id)
+
+    security.declareProtected(View, 'duplicatePortlet')
+    def duplicatePortlet(self, portlet_id, context=None):
+        """Duplicate a portlet
+
+        Possible to warn event service for action
+        """
+
+        # XXX possible to cope with that in a better way ?
+        if not _checkPermission(ManagePortlets, context):
+            raise Unauthorized(
+                "You are not allowed to manage portlets in %s" %(
+                context.absolute_url()))
+
+        if context is None:
+            return
+
+        container = self.getPortletContainer(context=context)
+        cookie = container.manage_copyObjects([portlet_id])
+        res = container.manage_pasteObjects(cookie)
+
+        # XXX canonize portlet id
+        new_id = res[0]['new_id']
+        portlet = getattr(container, new_id, None)
+        return portlet
 
     security.declareProtected(View, 'movePortlet')
     def movePortlet(self, portlet=None,
