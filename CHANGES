@@ -59,6 +59,7 @@ Bug fixes:
   to getPortlets() and passing the correct context to _isPortletVisible()
 - The portlet visibility range is only displayed if the portlet is local.
 - The portlets' javascript method was not set correctly.
+- Upgraded the page templates to the new macro libs names
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()

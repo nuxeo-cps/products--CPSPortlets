@@ -1,2 +1,2 @@
 <tal:block define="global creation python:1" />
-<metal:block use-macro="here/layout_lib/macros/default_edit" />
+<metal:block use-macro="here/layout_lib_default_edit/macros/default_edit" />
