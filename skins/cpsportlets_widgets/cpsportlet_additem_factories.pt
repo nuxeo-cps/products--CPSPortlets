@@ -1,0 +1,36 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="here/main_template/macros/master">
+<body>
+<div metal:fill-slot="main" i18n:domain="cmf_default">
+<div tal:condition="python: not(here.portal_membership.checkPermission('Access contents information', here))">
+  <span tal:define="dummy here/unauthRedirect"></span>
+</div>
+<div class="Desktop" 
+ tal:define="type_name request/form/type_name|nothing"
+ tal:condition="type_name">
+<h1 i18n:translate="">Add <tal:block content="type_name" /></h1>
+<form action="invokeFactory" method="post"
+      
+      tal:attributes="action string:${here/absolute_url}/invokeFactory"
+>
+
+
+<table class="FormLayout" tal:condition="type_name">
+ <tr valign="top">
+  <td> <br /> </td>
+  <td colspan="2" class="TextField">
+   <strong i18n:translate="">ID:</strong>
+   <input type="text" name="id" size="20" />
+   <input type="hidden" name="type_name" tal:attributes="value type_name" />
+   <input type="submit" value=" Add " i18n:attributes="value" />
+  </td>
+ </tr>
+</table>
+</form>
+
+</div>
+</div>
+</body>
+</html>
+
