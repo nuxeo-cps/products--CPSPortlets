@@ -169,7 +169,7 @@ class CPSPortlet(CPSDocument):
         return index
 
     security.declarePublic('render_cache')
-    def render_cache(self, **kw):
+    def render_cache(self, REQUEST=None, **kw):
         """Renders the cached version of the portlet."""
 
         now = time.time()
@@ -188,7 +188,11 @@ class CPSPortlet(CPSDocument):
         cache_entry = cache.getEntry(index)
         if cache_entry is None:
             rendered = self.render(**kw)
-            cache.setEntry(index, {'rendered': rendered})
+            if REQUEST is None:
+                REQUEST = self.REQUEST
+            user = REQUEST.get('AUTHENTICATED_USER')
+            cache.setEntry(index, {'rendered': rendered,
+                                   'user': user})
         else:
             rendered = cache_entry['rendered']
 

@@ -331,6 +331,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
             return  
         return cache.getReport()
 
+
     security.declarePublic('getCacheStats')
     def getCacheStats(self):
         """
@@ -387,6 +388,27 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if cache is None:
             return
         cache.delEntries(obid)
+
+    security.declarePublic('findCacheEntriesByUser')
+    def findCacheEntriesByUser(self, user=None):
+        """Return the cache entry ids of a user.
+        """
+
+        if user is None:
+            return []
+        user = str(user)
+
+        cache = self.getPortletCache()
+        if cache is None:
+            return  
+
+        entries = []
+        for k, v in cache.getEntries():
+            if not v.has_key('user'):
+                continue
+            if str(v['user']) == user:
+                entries.append(k)
+        return entries
 
     #
     # Private
