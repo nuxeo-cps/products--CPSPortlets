@@ -495,6 +495,14 @@ class CPSPortlet(CPSDocument):
 
     ##################################################################
 
+    security.declarePublic('getCreator')
+    def getCreator(self):
+        """Return the name of the portlet's creator.
+        """
+        return self.Creator
+
+    ##################################################################
+
     security.declarePublic('getURL')
     def getURL(self):
         """Return the url of the portlet.

@@ -104,3 +104,4 @@ New internal features:
 - using '<ul class="cpsskinsMenu">' on menus to dissociate them from other sorts
   of lists.
 - content items in the Content Portlet can be rendered - layout ids can be specified.
+- added a getCreator() method for portlets
