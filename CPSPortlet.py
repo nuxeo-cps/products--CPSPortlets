@@ -182,13 +182,13 @@ class CPSPortlet(CPSDocument):
                 return None
 
             # request variable
-            if param.startswith('request:'):
+            elif param.startswith('request:'):
                 var = param.split(':')[1]
                 if REQUEST.get(var):
                     index_string = str(var)
 
             # current user
-            if param == 'user':
+            elif param == 'user':
                 index_string = str(REQUEST.get('AUTHENTICATED_USER'))
 
             # XXX CPSSkins dependency
@@ -217,8 +217,11 @@ class CPSPortlet(CPSDocument):
 
             # current folder
             elif param == 'folder':
-                context = kw.get('context_obj')
                 index_string = context.absolute_url(1)
+
+            # current object 
+            elif param == 'object':
+                index_string = REQUEST.get('PATH_TRANSLATED')
 
             # portal type
             elif param == 'portal type':
@@ -233,7 +236,6 @@ class CPSPortlet(CPSDocument):
                 if getAllowedTypes is not None:
                     types_allowed_by_wf = getAllowedTypes(context)
                     index_string = md5.new(str(types_allowed_by_wf)).hexdigest()
-
             if index_string:
                 index += (param + '_' + index_string,)
 

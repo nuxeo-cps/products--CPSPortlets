@@ -121,10 +121,14 @@ For example:
   example: 'http://www.yourhost.com/cps/view?pp=1'
   used in: portal actions
 
+- object
+  description: the path of the current object
+  example: '/cps/workspaces/members/view' )
+  used in: breadcrumbs
+
 - folder
   description: the path of the current folder
   example: '/cps/workspaces/members' )
-  used in: breadcrumbs, folder factories, ...
 
 - user
   description: the name of the current user
