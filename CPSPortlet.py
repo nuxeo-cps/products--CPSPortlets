@@ -122,6 +122,12 @@ class CPSPortlet(CPSDocument):
         utool = getToolByName(self, 'portal_url')
         return utool.getRelativeUrl(self)
 
+    def getRelativePath(self):
+        """Return the url of the portlet relative to the portal.
+        """
+        utool = getToolByName(self, 'portal_url')
+        return utool.getRelativeContentPath(self)
+
     def getPath(self):
         """Return the physical path of the portlet.
         """
@@ -134,6 +140,12 @@ class CPSPortlet(CPSDocument):
 
         container = aq_parent(aq_inner(self))
         return aq_parent(aq_inner(container))
+
+    def getDepth(self):
+        """Return the portlet's relative depth.
+        """
+
+        return len(self.getRelativePath()) - 2
 
     #################################################################
 
