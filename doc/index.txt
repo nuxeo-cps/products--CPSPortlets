@@ -1,0 +1,14 @@
+CPSPortlets Documentation
+=========================
+
+General Documentation
+---------------------
+
+- `Goals <goals.html>`_
+- `Assigning styles to portlets <portlet-styling.html>`_
+
+Internals
+---------
+- `RAM Cache <cpsportlets-RAMCache-draft.html>`_
+- `Portability to CMF, Plone <cpsportlets-portability.html>`_
+- `Installing portlets with CPSInstaller <cpsinstaller.html>`_
