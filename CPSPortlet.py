@@ -43,29 +43,21 @@ from PortletGuard import PortletGuard
 
 class CPSPortlet(CPSDocument):
     """ CPS Portlet
-
     This is a CPSPortlet child base class for portlets
     """
 
     meta_type = 'CPS Portlet'
     portal_type = meta_type
 
-    manage_options = (PropertyManager.manage_options +
-                      ({'label': 'Guard', 'action': 'manage_guardForm'},)
-                     )
-
     security = ClassSecurityInfo()
     security.declareObjectPublic()
 
     guard = None
-
-    security.declareProtected(ManagePortlets, 'manage_guardForm')
-    manage_guardForm = DTMLFile('zmi/manage_guardForm', globals())
-
-    # XXX which security declaration?
+    security.declarePublic('getGuard')
     def getGuard(self):
         return self.guard
 
+    security.declarePublic('getTempGuard')
     def getTempGuard(self):
         """Used only by the time of using guard management form."""
         return PortletGuard().__of__(self)  # Create a temporary guard.
@@ -88,6 +80,7 @@ class CPSPortlet(CPSDocument):
                 management_view='Guard',
                 manage_tabs_message='Guard setting changed.')
 
+    security.declarePublic('SearchableText')
     def SearchableText(self):
         """ We don't index CPS Portlets
 
@@ -95,6 +88,7 @@ class CPSPortlet(CPSDocument):
         """
         return ""
 
+    security.declarePublic('isCPSPortlet')
     def isCPSPortlet(self):
         """Return true if this is a CPS Portlet.
         """
@@ -102,6 +96,7 @@ class CPSPortlet(CPSDocument):
 
     #################################################################
 
+    security.declarePublic('getCustomCacheIndex')
     def getCustomCacheIndex(self):
         """Returns the custom RAM cache index as a tuple (var1, var2, ...)
         """
@@ -111,6 +106,7 @@ class CPSPortlet(CPSDocument):
         index += (self.getState(), )
         return index
 
+    security.declarePublic('getCacheParams')
     def getCacheParams(self):
         """Get the cache parameters that will be used to compute the
            cache index.
@@ -119,29 +115,33 @@ class CPSPortlet(CPSDocument):
 
     ##################################################################
 
-
+    security.declarePublic('getURL')
     def getURL(self):
         """Return the url of the portlet.
         """
         return self.absolute_url()
 
+    security.declarePublic('getRelativeUrl')
     def getRelativeUrl(self):
         """Return the url of the portlet relative to the portal.
         """
         utool = getToolByName(self, 'portal_url')
         return utool.getRelativeUrl(self)
 
+    security.declarePublic('getRelativePath')
     def getRelativePath(self):
         """Return the url of the portlet relative to the portal.
         """
         utool = getToolByName(self, 'portal_url')
         return utool.getRelativeContentPath(self)
 
+    security.declarePublic('getPath')
     def getPath(self):
         """Return the physical path of the portlet.
         """
         return self.getPhysicalPath()
 
+    security.declareProtected(ManagePortlets, 'getLocalFolder')
     def getLocalFolder(self):
         """Return the local folder (workspace, section ...)
            inside which the portlet will be displayed.
@@ -151,17 +151,20 @@ class CPSPortlet(CPSDocument):
 
     #################################################################
 
+    security.declarePublic('getDepth')
     def getDepth(self):
         """Return the portlet's relative depth.
         """
 
         return len(self.getRelativePath()) - 2
 
+    security.declarePublic('getVisibilityRange')
     def getVisibilityRange(self):
         """Visibility range for this portlet
         """
         return aq_base(self).visibility_range
 
+    security.declareProtected(ManagePortlets, 'setVisibilityRange')
     def setVisibilityRange(self, range):
         """Set the visiblity range
 
@@ -181,11 +184,13 @@ class CPSPortlet(CPSDocument):
 
     #################################################################
 
+    security.declarePublic('getSlot')
     def getSlot(self):
         """Return the portlet's slot.
         """
         return self.slot
 
+    security.declareProtected(ManagePortlets, 'setSlot')
     def setSlot(self, slot_name=''):
         """Set the slot value
         """
@@ -196,11 +201,13 @@ class CPSPortlet(CPSDocument):
 
     #################################################################
 
+    security.declarePublic('getOrder')
     def getOrder(self):
         """Return the portlet's order.
         """
         return self.order
 
+    security.declareProtected(ManagePortlets, 'setOrder')
     def setOrder(self, order=0):
         """Set order
 
@@ -210,6 +217,7 @@ class CPSPortlet(CPSDocument):
 
     #################################################################
 
+    security.declarePublic('getTitle')
     def getTitle(self):
         """Return the portlet's title (or id)
         """
@@ -217,6 +225,7 @@ class CPSPortlet(CPSDocument):
 
     #################################################################
 
+    security.declarePublic('getState')
     def getState(self):
         """Return the portlet's state
            (minimized, maximized, closed ...)
@@ -227,12 +236,34 @@ class CPSPortlet(CPSDocument):
             state = 'maximized'
         return state
 
+    security.declareProtected(ManagePortlets, 'setState')
     def setState(self, state=''):
         """Set the portlet's state
         """
         self.edit(state=state)
 
     #################################################################
+    # Private
+    #################################################################
+
+    security.declarePrivate('_rebuild')
+    def _rebuild(self):
+        """Rebuilds the portlet.
+        """
+
+        # XXX
+        pass
+
+    #################################################################
+    # ZMI
+    #################################################################
+
+    security.declareProtected(ManagePortlets, 'manage_guardForm')
+    manage_guardForm = DTMLFile('zmi/manage_guardForm', globals())
+
+    manage_options = (PropertyManager.manage_options +
+                      ({'label': 'Guard', 'action': 'manage_guardForm'},)
+                     )
 
 InitializeClass(CPSPortlet)
 

@@ -27,6 +27,8 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 from zLOG import LOG, DEBUG
 
 from Globals import InitializeClass
+from OFS.PropertyManager import PropertyManager
+from Globals import InitializeClass, DTMLFile
 from AccessControl import ClassSecurityInfo, getSecurityManager, Unauthorized
 from Acquisition import aq_base, aq_parent, aq_inner
 
@@ -47,7 +49,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security = ClassSecurityInfo()
 
-    def listEveryPortlets(self):
+    security.declarePublic('listAllPortlets')
+    def listAllPortlets(self):
         """List all the portlets over the portal
 
         Use the catalog.
@@ -63,6 +66,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         return [x.getObject() for x in portlets]
 
+    security.declarePublic('checkIdentifier')
     def checkIdentifier(self, identifier):
         """We need to check that the given identifier (coming from the user
         is not already in use.
@@ -72,7 +76,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """
 
         # Get all portlets all over the portal
-        portlets = self.listEveryPortlets()
+        portlets = self.listAllPortlets()
 
         existing_identifiers = []
 
@@ -95,7 +99,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         slots = PortletsContainer.listPortletSlots(self)
 
         # Get all portlets all over the portal
-        portlets = self.listEveryPortlets()
+        portlets = self.listAllPortlets()
 
         for portlet in portlets:
             local_slot = portlet.getSlot()
@@ -344,7 +348,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         # find all portlets inside the slot
         slot_portlets = []
-        for p in self.listEveryPortlets():
+        for p in self.listAllPortlets():
             if p.getSlot() != slot:
                 continue
             slot_portlets.append(p)
@@ -389,10 +393,28 @@ class PortletsTool(UniqueObject, PortletsContainer):
             # update the dictionary too
             order_dict[k] = newpos
 
-    ######################################################################
+    #
+    # ZMI
+    # 
+    security.declareProtected(ManagePortlets, 'manage_rebuildPortlets')
+    manage_rebuildPortlets = DTMLFile('zmi/manage_rebuildPortlets', 
+                                       globals())
+
+    manage_options = (PropertyManager.manage_options +
+                      ({'label': 'Rebuild portlets', 
+                        'action': 'manage_rebuildPortlets'},)
+                     )
+
+    security.declareProtected(ManagePortlets, 'rebuild_portlets')
+    def rebuild_portlets(self):
+        """ """
+
+        for portlet in self.listAllPortlets():
+            portlet._rebuild()
+
     ######################################################################
 
-    security.declarePrivate("notify_event")
+    security.declarePrivate('notify_event')
     def notify_event(self, event_type, object, infos):
         """Standard event hook
         """
