@@ -128,7 +128,7 @@ navigation_portlet_schema = {
     'root_uids': {
         'type': 'CPS String List Field',
         'data': {
-            'default_expr': "python:['sections', 'workspaces']",
+            'default_expr': "portal/portal_trees/objectIds",
             'is_searchabletext': False,
             'acl_read_permissions': '',
             'acl_read_roles': '',
