@@ -57,6 +57,8 @@ class CPSPortlet(CPSDocument):
     security = ClassSecurityInfo()
     security.declareObjectPublic()
 
+    isPrincipiaFolderish = 0
+
     _interesting_events = ()
 
     guard = None
