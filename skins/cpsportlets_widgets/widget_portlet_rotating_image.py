@@ -1,15 +1,13 @@
-##parameters=portlet=None, random_int=0, **kw
+##parameters=portlet=None, **kw
 
 js_code = """
 <script type="text/javascript"><!--
-showimage('%s');
+var rand = get_random(%s);
+if (rand > 0) rand = rand + '_'; else rand = '';
+showimage('%s_imagelink_' + rand + 'widget');
 //--></script>
 """
 
-widget_id = 'imagelink'
-if random_int:
-    widget_id += '_%s' % str(random_int)
-
-selector_id = '%s_%s_widget' % (portlet.getId(), widget_id)
-
-return js_code % selector_id
+if portlet is not None:
+    return js_code % (portlet.nb_images-1, portlet.getId())
+return ''

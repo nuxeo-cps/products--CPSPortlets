@@ -1,6 +1,11 @@
 function showimage(layer_ref) {
   if (document.getElementById &&!document.all) {
-    div = document.getElementById(layer_ref);
+    var div = document.getElementById(layer_ref);
     div.className = 'visible';
   }
+}
+
+function get_random(n) {
+  var ranNum= Math.round(Math.random()*n);
+  return ranNum;
 }

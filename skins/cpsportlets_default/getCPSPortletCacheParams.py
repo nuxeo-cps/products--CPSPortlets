@@ -20,7 +20,7 @@ cache_params = {
         ],
     'Language Portlet': ['object:path,langs,current_lang', 'current_lang'],
     'Image Portlet': [],
-    'Rotating Image Portlet': ['random:(nb_images)'],
+    'Rotating Image Portlet': [],
     'Navigation Portlet': ['no-cache'],
     'Document Portlet': ['no-cache'],
     'RSS Portlet': ['event_ids:rss_channel_refresh','timeout:10'],
