@@ -86,6 +86,13 @@ class CPSPortlet(CPSDocument):
         """
         return getattr(self, 'order', 0)
 
+    def setOrder(self, order=0):
+        """Set order
+
+        0 is the default value
+        """
+        self.edit({'order':order})
+
 InitializeClass(CPSPortlet)
 
 def addCPSPortlet(container, id, REQUEST=None, **kw):
@@ -99,3 +106,4 @@ def addCPSPortlet(container, id, REQUEST=None, **kw):
     if REQUEST:
         ob = container._getOb(id)
         REQUEST.RESPONSE.redirect(ob.absolute_url()+'/manage_main')
+
