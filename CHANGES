@@ -1,0 +1,13 @@
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- Actions portlet
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- lazy cache invalidation algorithm. cf. render_cache()
+- new cache parameters to describe cache objects cf. getCacheObjects()
