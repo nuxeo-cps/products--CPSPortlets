@@ -454,7 +454,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         for entry in self.findCacheEntriesByUser(user):
             # 'entry' is the portlet's path
-            portlet_id = entry[-1]
+            portlet_id = entry[0]
             self.invalidateCacheEntriesById(portlet_id)
 
     security.declarePublic('findCacheEntriesByUser')
@@ -685,11 +685,17 @@ class PortletsTool(UniqueObject, PortletsContainer):
         portal_type = content.portal_type
 
         # expire the portlets interested in the event
+        # ZEO-aware invalidation.
         for portlet in self.listPortletsInterestedInEvent(event_id=event_type,
                                                           folder_path=object_path,
                                                           portal_type=portal_type):
-
             portlet.expireCache()
+
+        # remove all cache entries of a user who logs out.
+        if event_type == 'user_logout':
+            if object is not None:
+                user = object.getId()
+                self.invalidateCacheEntriesByUser(user)
 
     def listPortletsInterestedInEvent(self, event_id, folder_path, portal_type):
         """return the list of all portlets interested about an event given its

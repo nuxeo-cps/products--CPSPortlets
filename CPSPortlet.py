@@ -392,8 +392,11 @@ class CPSPortlet(CPSDocument):
             RESPONSE.setHeader('Last-Modified', rfc1123_date(now))
             # XXX more headers?
 
-            # current user
-            user = REQUEST.get('AUTHENTICATED_USER')
+            # current user if the cache entry is user-dependent
+            if 'user' in self.getCacheParams():
+                user = REQUEST.get('AUTHENTICATED_USER')
+            else:
+                user = ''
 
             # get the list of cache objects.
             cache_objects = self.getCacheObjects(**kw)

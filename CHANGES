@@ -26,6 +26,7 @@ Bug fixes:
 - storing object paths in the RAM cache instead of the objects themselves
   to avoid "ZODB couldn't load state for ... " errors with Squid.
 - Portal root portlets were not taken into account.
+- 'ptltool.invalidateCacheEntriesByUser()' did not invalidate the cache entries.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()
@@ -34,3 +35,4 @@ New internal features:
 - new cache parameters on events (event ids, folder paths, portal types)
   that will cause the portlet's cache to expire.
 - cache timeout in seconds
+- cleanup of users' entries in the cache when they log out.
