@@ -1,7 +1,0 @@
-<tal:block 
- define="layout options/layout"
- repeat="row layout/rows">
-  <tal:block repeat="cell row">
-    <tal:block replace="structure cell/widget_rendered" />
-  </tal:block>
-</tal:block>
