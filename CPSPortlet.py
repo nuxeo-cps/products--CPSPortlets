@@ -105,6 +105,7 @@ class CPSPortlet(CPSDocument):
 
         index = ()
         # XXX check the schema for boolean values realted to the cache.
+        index += (self.getState(), )
         return index
 
     ##################################################################
@@ -175,8 +176,13 @@ class CPSPortlet(CPSDocument):
     def getState(self):
         """Return the portlet's state 
            (minimized, maximized, closed ...)
+           default is 'maximized'
         """
-        return self.state
+
+        state = self.state
+        if not state:
+            state = 'maximized'
+        return state
 
     def setState(self, state=''):
         """Set the portlet's state
