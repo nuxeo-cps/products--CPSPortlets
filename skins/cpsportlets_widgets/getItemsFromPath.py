@@ -13,6 +13,7 @@ mtool = context.portal_membership
 checkPerm = mtool.checkPermission
 portal_types = context.portal_types
 renderIcon = context.portal_cpsportlets.renderIcon
+getRelativeUrl = portal_url.getRelativeUrl
 
 for path in links:
     if path.startswith('/'):
@@ -33,7 +34,7 @@ for path in links:
             title = ' '.join(words[:int(max_title_words)]) + ' ...'
 
     items.append(
-        {'url': '/' + object.absolute_url(relative=1),
+        {'url': base_url + getRelativeUrl(object),
          'title': title,
          'icon_tag': renderIcon(ptype, base_url, ''),
         })
