@@ -168,8 +168,8 @@ for brain in brains:
 
     rendered = ''
     # render the item with 
-    if kw.get('render_items'):
-        rendered = None
+    if int(kw.get('render_items'), 0) == 1:
+        rendered = ''
         content = None
         if getattr(brain.aq_inner.aq_explicit, 'getRID', None) is not None:
             obj = brain.getObject()
