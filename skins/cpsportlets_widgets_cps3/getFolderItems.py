@@ -1,4 +1,4 @@
-##parameters=context_obj=None, show_docs=None, max_title_words=0, context_rpath='', context_is_portlet=0, display_hidden_folders=1, **kw
+##parameters=context_obj=None, show_docs=None, max_title_words=0, context_rpath='', context_is_portlet=0, **kw
 
 base_url = context.getBaseUrl()
 
@@ -38,6 +38,8 @@ renderIcon = context.portal_cpsportlets.renderIcon
 
 getFTIProperty = context.portal_cpsportlets.getFTIProperty
 getRelativeUrl = context.portal_url.getRelativeUrl
+
+display_hidden_folders = int(kw.get('display_hidden_folders', 1))
 
 for object in bmf.objectValues():
     # remove objects with ids beginning with '.'

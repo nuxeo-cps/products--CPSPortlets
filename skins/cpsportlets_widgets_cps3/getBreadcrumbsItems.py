@@ -58,7 +58,7 @@ for i in bc_range:
 
     if not display_hidden_folders:
         content = obj.getContent()
-        if getattr(content.aq_explicit, 'hidden_folder', 0):
+        if getattr(content.aq_inner.aq_explicit, 'hidden_folder', 0):
             continue
 
     rpath = '/'.join(ipath)
