@@ -5,7 +5,7 @@ text_portlet_type = {
     'content_meta_type': 'CPS Portlet',
     'product': 'CPSPortlets',
     'factory': 'addCPSPortlet',
-    'immediate_view': 'cpsportlet_view',
+    'immediate_view': 'cpsportlet_edit_form',
     'global_allow': False,
     'filter_content_types': False,
     'allowed_content_types': (),

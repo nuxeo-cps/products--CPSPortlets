@@ -5,7 +5,7 @@ image_portlet_type = {
     'content_meta_type': 'CPS Portlet',
     'product': 'CPSPortlets',
     'factory': 'addCPSPortlet',
-    'immediate_view': 'cpsportlet_view',
+    'immediate_view': 'cpsportlet_edit_form',
     'global_allow': True,
     'filter_content_types': True,
     'allowed_content_types': (),
