@@ -37,6 +37,7 @@ Bug fixes:
 - the portlet guard was not taken into account
 - added localizations for portlet descriptions.
 - the cache size information was not accurate
+- added missing cpsportlet_view.pt (closes bug #424)
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()
