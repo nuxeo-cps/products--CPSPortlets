@@ -307,3 +307,6 @@ msgstr ""
 
 msgid "cpsportlets_common_visibility_range_label"
 msgstr ""
+
+msgid "cpsportlets_located_in_the_folder"
+msgstr ""

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-12-09 21:38default\n"
+"POT-Creation-Date: 2004-12-09 22:07default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -69,6 +69,11 @@ msgstr ""
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
 msgid "cpsportlets_install_cpsskins"
+msgstr ""
+
+#.   <block>located in the folder</block>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "cpsportlets_located_in_the_folder"
 msgstr ""
 
 #.   <h1>Portlet management</h1>

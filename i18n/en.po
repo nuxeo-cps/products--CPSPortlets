@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-12-09 21:38default\n"
+"POT-Creation-Date: 2004-12-09 22:07default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -73,6 +73,11 @@ msgstr "Delete the version in ..."
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
 msgid "cpsportlets_install_cpsskins"
 msgstr "To manage portlets please install CPSSkins."
+
+#.   <block>located in the folder</block>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "cpsportlets_located_in_the_folder"
+msgstr "located in the folder"
 
 #.   <h1>Portlet management</h1>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -375,4 +380,7 @@ msgid "cpsportlets_visibility_range_0-1_label"
 msgstr "Only in this folder"
 
 msgid "cpsportlets_common_visibility_range_label"
-msgstr "Visibiliity range"
+msgstr "Visibility range"
+
+#~ msgid "cpsportlets_portlet_located_in"
+#~ msgstr "located in"
