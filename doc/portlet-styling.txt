@@ -1,17 +1,20 @@
 
-PORTLET STYLING
+PORTLET STYLING:
+================
+  Last-updated:
+    2004-12-13
 
-Last-updated: 2004-11-16
+  Author:
+    Jean-Marc Orliaguet <jmo@ita.chalmers.se>
 
-Author: Jean-Marc Orliaguet <jmo@ita.chalmers.se>
-
-Description: the complete list of style properties that
-             can be used for the styling of portlets.
+  Description:
+    the complete list of style properties that
+    can be used for the styling of portlets.
 
 
 Area Color
 ----------
-Applies to the area surrounding the portlet box.
+Applies to the area surrounding the portlet box.::
 
   LABEL                           CSS property
   -----                           ------------
@@ -22,10 +25,9 @@ Applies to the area surrounding the portlet box.
   Area background repeat          background-repeat
   Area font color                 color
 
-
 Area Shape
 ----------
-Applies to the area surrounding the portlet box.
+Applies to the area surrounding the portlet box.::
 
   LABEL                           CSS property
   -----                           ------------
@@ -33,10 +35,9 @@ Applies to the area surrounding the portlet box.
   Area border width               border-width
   Area text transform             text-transform
 
-
 Box Color
 ---------
-Applies to the portlet box.
+Applies to the portlet box.::
 
   LABEL                           CSS property
   -----                           ------------
@@ -58,7 +59,7 @@ Applies to the portlet box.
 
 Box Shape
 ---------
-Applies to the portlet box.
+Applies to the portlet box.::
 
   LABEL                           CSS property
   -----                           ------------
@@ -85,7 +86,7 @@ Applies to the portlet box.
 
 Box Corners
 -----------
-Applies to the portlet box frame.
+Applies to the portlet box frame.::
 
   LABEL                           CSS property
   -----                           ------------
@@ -99,7 +100,7 @@ Applies to the portlet box frame.
 
 Font Color
 ----------
-Applies to the portlet's characters.
+Applies to the portlet's characters.::
 
   LABEL                           CSS property
   -----                           ------------
@@ -127,7 +128,7 @@ Applies to the portlet's characters.
 
 Font Shape
 ----------
-Applies to the portlet's characters.
+Applies to the portlet's characters.::
 
   LABEL                           CSS property
   -----                           ------------
@@ -166,7 +167,7 @@ Applies to the portlet's characters.
 
 Form Style
 ----------
-Applies to forms and to form elements.
+Applies to forms and to form elements.::
 
   LABEL                           CSS property
   -----                           ------------
@@ -187,38 +188,40 @@ Applies to forms and to form elements.
 
 
 STYLING OF BOXES:
-================
+=================
 
-The following HTML markup is used to represent boxes:
+The following HTML markup is used to represent boxes: ::
 
-<div class="box">
-  <div class="title">
-  -- Box Title -----
+  <div class="box">
+    <div class="title">
+    -- Box Title -----
+    </div>
+    <div class="body">
+    -- Box Body ------
+
+    -- Box Menu ------
+      <ul> (*)
+        <li><a href="#">item</a></li>
+        <li class="selected"><a href="#">selected item</a></li>
+        ...
+      </ul>
+
+    </div>
   </div>
-  <div class="body">
-  -- Box Body ------
 
-  -- Box Menu ------
-    <ul> (*)
-      <li><a href="#">item</a></li>
-      <li class="selected"><a href="#">selected item</a></li>
-      ...
-    </ul>
-
-  </div>
-</div>
-
-* <ul> may be renamed as <ul class="menu">
+NB:
+  <ul> may be renamed as <ul class="menu">
   (Requires some cleaning in CPSDefault nuxeo_css2.css)
 
 Indentation:
 ------------
 to set an indentation use the 'margin-left' property in the <a> tag.
 
-for instance:
-<ul>
-  <li><a style="margin-left: 1em" href="#link">Item</a><li>
-</ul>
+for instance: ::
+
+  <ul>
+    <li><a style="margin-left: 1em" href="#link">Item</a><li>
+  </ul>
 
 The bullet icon will be indented too.
 
@@ -227,10 +230,11 @@ Not displaying menu icons
 to not display the menu icons (menuin, menuout) defined in box styles,
 apply the "noicon" class on <a>.
 
-for example:
-<ul>
-  <li><img src="icon.png" ... /><a class="noicon" href="#link">Item</a><li>
-<ul>
+for example: ::
+
+  <ul>
+    <li><img src="icon.png" ... /><a class="noicon" href="#link">Item</a><li>
+  <ul>
 
 the indentation set with 'margin-left' will be preserved (see above),
 but the width taken by the menu icon will be removed to leave some extra space
