@@ -37,7 +37,7 @@ class CPSPortlet(CPSDocument):
     This is a CPSPortlet child base class for portlets
     """
 
-    meta_type = 'CPS Portlet'
+    meta_type = 'CPS Portlet' 
     portal_type = meta_type
 
     def SearchableText(self):
@@ -69,6 +69,12 @@ class CPSPortlet(CPSDocument):
         """
 
         return getattr(self, 'slot', '')
+
+    def getOrder(self):
+        """Return the portlet's order.
+        """
+
+        return getattr(self, 'order', 0)
 
 InitializeClass(CPSPortlet)
 
