@@ -57,13 +57,13 @@ SKINS = {'cpsportlets_widgets':
          }
 
 class CPSPortletsInstaller(CPSInstaller):
-    """ Installer class for CPS Portlets component
+    """Installer class for CPS Portlets components
     """
 
     product_name = 'CPSPortlets'
 
     def install(self):
-        """ Installs the compulsory elements.
+        """Installs the mandatory components.
         """
 
         self.log("Install/Update : CPSPortlets Product")
@@ -133,7 +133,7 @@ class CPSPortletsInstaller(CPSInstaller):
                 self.portal[SECTIONS_ID].manage_permission(perm, roles, 0)
 
     def installPortletVocabularies(self):
-        """Install all portlet specific vocabularies."""
+        """Install portlet specific vocabularies."""
 
         define_vocabularies = (self.portal.getPortletVisibilityVocabulary(),
                                self.portal.getBreadcrumbsPortletVocabulary(),
@@ -150,7 +150,7 @@ class CPSPortletsInstaller(CPSInstaller):
         self.verifyVocabularies(all_vocabularies)
 
     def installPortletSchemas(self):
-        """Install all portlet specific schemas."""
+        """Install portlet specific schemas."""
 
         define_schemas = (self.portal.getPortletCommonSchema(),
                           self.portal.getTextPortletSchema(),
@@ -177,7 +177,7 @@ class CPSPortletsInstaller(CPSInstaller):
         self.verifySchemas(all_schemas)
 
     def installPortletLayouts(self):
-        """Install all portlet specific layouts."""
+        """Install portlet specific layouts."""
 
         define_layouts = (self.portal.getPortletCommonLayout(),
                           self.portal.getTextPortletLayout(),
@@ -204,7 +204,7 @@ class CPSPortletsInstaller(CPSInstaller):
         self.verifyLayouts(all_layouts)
 
     def installFlexibleTypes(self):
-        """Install all portlet specific types."""
+        """Install portlet specific types."""
 
         define_types = (self.portal.getDummyPortletType(),
                         self.portal.getCustomPortletType(),
