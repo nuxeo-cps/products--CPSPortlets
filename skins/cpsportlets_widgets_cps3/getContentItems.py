@@ -31,7 +31,7 @@ if kw.get('sort_reverse'):
 # Title search (if specified)
 query_title = kw.get('query_title')
 if query_title is not None:
-   query['ZCTitle'] = query_title
+    query['ZCTitle'] = query_title
 
 # Override some of the query options depending on the type of search
 
@@ -158,9 +158,9 @@ for brain in brains:
         if render is not None:
             # render the document by cluster (if specified)
             try:
-                 rendered = render(proxy=obj, cluster=kw.get('cluster_id'))
+                rendered = render(proxy=obj, cluster=kw.get('cluster_id'))
             except ValueError:
-                 pass
+                pass
 
     # default item presentation (summary of description)
     if not rendered:
