@@ -15,3 +15,4 @@ New internal features:
 - added an access key to access the portlet management panels.
   default: ALT + '_'
 - added an internal RAM cache to store Factory-type information
+- ptltool.clearCache() also clears the icon and FTI cache.

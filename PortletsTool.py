@@ -548,14 +548,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
             self.caches[cacheid] = cache
             return cache
 
-    security.declareProtected(ManagePortlets, 'clearCache')
-    def clearCache(self, REQUEST=None, **kw):
-        """Clear the cache."""
-
-        portletcache = self.getPortletCache()
-        if portletcache is not None:
-            portletcache.invalidate()
-
     security.declarePublic('getCacheReport')
     def getCacheReport(self):
         """
@@ -663,6 +655,28 @@ class PortletsTool(UniqueObject, PortletsContainer):
             if str(v['user']) == user:
                 entries.append(k)
         return entries
+
+    #
+    # RAM cache (portlet, icons, FTI)
+    #
+    security.declareProtected(ManagePortlets, 'clearCache')
+    def clearCache(self, REQUEST=None, **kw):
+        """Clear the cache."""
+
+        # Portlets
+        portletcache = self.getPortletCache()
+        if portletcache is not None:
+            portletcache.invalidate()
+
+        # icons
+        iconcache = self.getIconCache()
+        if iconcache is not None:
+            iconcache.invalidate()
+
+        # FTI
+        fticache = self.getFTICache()
+        if fticache is not None:
+            fticache.invalidate()
 
     #
     # Icon RAM Cache
