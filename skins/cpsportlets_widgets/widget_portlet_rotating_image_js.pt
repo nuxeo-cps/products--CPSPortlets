@@ -1,5 +1,5 @@
 function showimage(layer_ref) {
-  if (document.getElementById &&!document.all) {
+  if (document.getElementById) {
     var div = document.getElementById(layer_ref);
     div.className = 'visible';
   }
