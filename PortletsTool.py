@@ -311,7 +311,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
     #######################################################################
 
     security.declarePublic('getPortlets')
-    def getPortlets(self, context=None, slot=None, sort=1):
+    def getPortlets(self, context=None, slot=None, sort=1, override=1):
         """Return a list of portlets.
         """
 
@@ -345,30 +345,31 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 allportlets.remove(portlet)
 
         # portlet override
-        remove_list = []
-        for portlet in allportlets:
-            # the portlet is protected
-            if portlet.disable_override:
-                continue
-            depth = portlet.getDepth()
-            # run through the slot's portlets to see whether one of them
-            # can override this portlet.
-            for p in allportlets:
-                # portlets cannot override themselves
-                if p is portlet:
+        if override:
+            remove_list = []
+            for portlet in allportlets:
+                # the portlet is protected
+                if portlet.disable_override:
                     continue
-                # the portlet does not do override
-                if not p.slot_override:
-                    continue
-                if p.getDepth() <= depth:
-                    continue
-                # override the portlet
-                remove_list.append(portlet)
-                break
+                depth = portlet.getDepth()
+                # run through the slot's portlets to see whether one of them
+                # can override this portlet.
+                for p in allportlets:
+                    # portlets cannot override themselves
+                    if p is portlet:
+                        continue
+                    # the portlet does not do override
+                    if not p.slot_override:
+                        continue
+                    if p.getDepth() <= depth:
+                        continue
+                    # override the portlet
+                    remove_list.append(portlet)
+                    break
 
-        # remove overriden portlets
-        for portlet in remove_list:
-            allportlets.remove(portlet)
+            # remove overriden portlets
+            for portlet in remove_list:
+                allportlets.remove(portlet)
 
         # sort the remaining portlets
         if sort:

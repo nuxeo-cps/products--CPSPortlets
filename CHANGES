@@ -23,3 +23,5 @@ New internal features:
 - added an internal RAM cache to store Factory-type information
 - ptltool.clearCache() also clears the icon and FTI cache.
 - the RAM cache is cleared with CPSPortlets is updated / installed
+- added an 'override' parameter in getPortlets(), i.e. override=0 will
+  disable portlet override.
