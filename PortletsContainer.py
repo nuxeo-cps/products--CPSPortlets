@@ -57,6 +57,16 @@ class PortletsContainer(CMFBTreeFolder):
         """
         return self.get(id)
 
+    def listPortlets(self):
+        """Return the list of portlet objects
+        """
+
+        portlets = []
+        ids = self.listPortletIds()
+        for id in ids:
+            portets.append(self.getPortletById(id))
+        return portlets
+
     def listPortletIds(self):
         """Return the list of all portlet ids contained within the tool
         """
