@@ -190,6 +190,7 @@ class CPSPortletsInstaller(CPSInstaller):
                         self.portal.getActionsPortletType(),
                         self.portal.getContentPortletType(),
                         self.portal.getLanguagePortletType(),
+                        self.portal.getImagePortletType(),
                        )
 
         all_ptypes = {}
