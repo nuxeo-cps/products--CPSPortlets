@@ -9,6 +9,8 @@ Bug fixes:
 - Removed warnings: replaces CMFCore.CMFCorePermissions by CMFCore.permissions.
 - Added a fallback to CMF 1.4 for CMFCorePermissions since CPSPortlets is used
   on CPS-3.2.x instances.
+- Portal Actions: added 'user' as a cache parameter to make sure that their
+  is a discrimination between different users (temporary fix).
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the
