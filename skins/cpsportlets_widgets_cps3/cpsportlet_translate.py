@@ -1,5 +1,8 @@
 ##parameters=lang=None, REQUEST=None
 
+if not lang:
+    return
+
 lc = getattr(context, 'Localizer', None)
 if lc is None:
     return
