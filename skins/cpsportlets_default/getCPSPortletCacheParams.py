@@ -1,9 +1,5 @@
-##parameters=ptype_id=None
 
-if ptype_id is None:
-    return []
-
-cache_params_dict = {
+cache_params = {
     'Dummy Portlet': [],
     'Search Portlet': [],
     'Internal Links Portlet': ['folder'],
@@ -11,4 +7,4 @@ cache_params_dict = {
     'Breadcrumbs Portlet': ['folder', 'user'],
 }
 
-return cache_params_dict.get(ptype_id, [])
+return cache_params

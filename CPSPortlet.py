@@ -132,6 +132,15 @@ class CPSPortlet(CPSDocument):
             if self.cache_params != cache_params:
                 self.cache_params = cache_params
 
+    security.declarePrivate('_setJavaScript')
+    def _setJavaScript(self, javascript=''):
+        """Set the javascript method.
+        """
+        if type(javascript) == type(''):
+            if self.javascript != javascript:
+                self.javascript = javascript
+
+    security.declareProtected(ManagePortlets, 'expireCache')
     security.declareProtected(ManagePortlets, 'expireCache')
     def expireCache(self):
        """Expires the cache for this Portlet.
@@ -204,10 +213,9 @@ class CPSPortlet(CPSDocument):
         """Render the javascript code used by the portlet.
         """
 
-        return 'test'
         rendered = ''
         js_meth = self.getJavaScript()
-        if js_meth != '':
+        if js_meth:
             meth = getattr(self, js_meth, None)
             if meth and callable(meth):
                 rendered = apply(meth, (), kw)
@@ -384,10 +392,15 @@ class CPSPortlet(CPSDocument):
                 default_value = field.getDefault()
                 setattr(self, field_id, default_value)
 
-        # reset cache parameters
         ptype_id = ti.getId()
-        cache_params = self.getCPSPortletCacheParams(ptype_id)
-        self._setCacheParams(cache_params)
+        # reset cache parameters
+        cache_params_dict = self.getCPSPortletCacheParams()
+        if cache_params_dict.has_key(ptype_id):
+            self._setCacheParams(cache_params_dict[ptype_id])
+        # reset the javascript methods
+        javascript_dict = self.getCPSPortletJavaScript()
+        if javascript_dict.has_key(ptype_id):
+            self._setJavaScript(javascript_dict[ptype_id])
 
     #################################################################
     # ZMI
