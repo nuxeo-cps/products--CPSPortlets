@@ -40,6 +40,7 @@ for ptype_id in ['Dummy Portlet',
                  'Actions Portlet',
                  'Content Portlet',
                  'Language Portlet',
+                 'Image Portlet',
                 ]:
     class TestOnePortlet(TestPortlet):
         ptype_id = ptype_id
