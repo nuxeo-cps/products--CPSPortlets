@@ -1,9 +1,10 @@
 <tal:block define="ds options/datastructure;
                    export request/form/export|nothing;
+                   getDC python: export is not None;
                    render_items ds/render_items;
                    render_items python: int(render_items);
                    context nocall:options/context_obj|here;
-                   contentitems python: here.getContentItems(obj=context, **dict(ds));
+                   contentitems python: here.getContentItems(obj=context, getDC=getDC, **dict(ds));
                    link_string ds/link_string"
   tal:condition="contentitems">
 

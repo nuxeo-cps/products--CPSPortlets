@@ -141,24 +141,40 @@ def summarize(text='', max_words=20):
         res = ' '.join(split_text) + ' ...'
     return res
 
-items = []
+# return the catalog brain's actual content
+def getBrainContent():
+    content = None
+    if getattr(brain.aq_inner.aq_explicit, 'getRID', None) is not None:
+        obj = brain.getObject()
+        getContent = getattr(obj.aq_inner.aq_explicit, 'getContent', None)
+        if getContent is not None:
+            content = getContent()
+    return content
 
+items = []
 render_items = int(kw.get('render_items'), 0) == 1
 cluster_id = kw.get('cluster_id')
 display_description = kw.get('display_description')
 
+# Dublin Core
+getDC = kw.get('getDC')
+dc_map = {
+    'creator': 'Creator',
+    'date': 'ModificationDate',
+    'rights': 'Rights',
+    'language': 'Language',
+    'contributor': 'Contributors',
+    'source': 'source',
+    'relation': 'relation',
+    'coverage': 'coverage'}
+
 for brain in brains:
+    content = None
 
     rendered = ''
     # render the item
     if render_items:
-        content = None
-        if getattr(brain.aq_inner.aq_explicit, 'getRID', None) is not None:
-            obj = brain.getObject()
-            getContent = getattr(obj.aq_inner.aq_explicit, 'getContent', None)
-            if getContent is not None:
-                content = getContent()
-
+        content = getBrainContent()
         renderable = 1
         # check whether the cluster exists.
         # XXX: this could be done in CPSDocument.FlexibleTypeInformation.py
@@ -191,11 +207,31 @@ for brain in brains:
                 description = summarize(description, max_words)
             rendered = description
 
+    # DublinCore information
+    dc_info = {}
+
+    if getDC:
+        if content is None:
+            content = getBrainContent()
+
+        for key, dc in dc_map.items():
+            meth = getattr(content, dc)
+            if callable(meth):
+                value = meth()
+            else:
+                value = meth
+            if not value:
+                continue
+            if not isinstance(value, str):
+                value = ', '.join(value)
+            dc_info[key] = value
+
     items.append(
         {'url': brain.getURL(),
          'title': brain['Title'],
          'description': brain['Description'],
          'rendered': rendered,
+         'dc': dc_info,
         })
 
 return items
