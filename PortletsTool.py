@@ -207,7 +207,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         for portlet in allportlets:
             if portlet.getGuard() and \
             not portlet.getGuard().check(getSecurityManager(), portlet, context):
-                continue
+                allportlets.remove(portlet)
 
         # sort the portlets
         if sort:
