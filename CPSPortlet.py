@@ -36,7 +36,8 @@ from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_inner, aq_parent, aq_base
 from AccessControl import ClassSecurityInfo
 
-from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.utils import getToolByName, _getViewFor
+from Products.CMFCore.CMFCorePermissions import View
 
 from Products.CPSDocument.CPSDocument import CPSDocument
 
@@ -97,6 +98,16 @@ class CPSPortlet(CPSDocument):
         """Return true if this is a CPS Portlet.
         """
         return 1
+
+    security.declareProtected(View, 'edit_form')
+    def edit_form(self, **kw):
+        """
+        Call the edit action.
+        """
+
+        action = _getViewFor(self, view='edit')
+        if action and callable(action):
+            return apply(action, (), kw)
 
     #################################################################
     # RAM Cache
