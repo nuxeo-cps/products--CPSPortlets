@@ -51,6 +51,21 @@ class CPSPortlet(CPSDocument):
 
         return 1
 
+    def getURL(self):
+        """Return the url of the portlet."""
+
+        # XXX
+
+    def getRelativeUrl(self):
+        """Return the url of the portlet relative to the portal."""
+
+        # XXX
+
+    def getSlot(self):
+        """Return the portlet's slot."""
+
+        # XXX
+
 InitializeClass(CPSPortlet)
 
 def addCPSPortlet(container, id, REQUEST=None, **kw):
