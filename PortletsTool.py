@@ -25,7 +25,7 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 """
 
 from Globals import InitializeClass
-from AccessControl import ClassSecurityInfo, getSecurityManager
+from AccessControl import ClassSecurityInfo, getSecurityManager, Unauthorized
 from Acquisition import aq_base, aq_parent, aq_inner
 
 from Products.CMFCore.utils import UniqueObject, getToolByName, _checkPermission
@@ -201,8 +201,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         # XXX possible to cope with that in a better way ?
         if not _checkPermission(ManagePortlets, context):
-            raise "You are not allowed to create portlets within %s" %(
-                context.absolute_url())
+            raise Unauthorized(
+                "You are not allowed to create portlets within %s" %(
+                context.absolute_url()))
 
         # Check if the ptype_id is valid
         if ptype_id not in self.listPortletTypes():
@@ -224,12 +225,18 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         return destination._createPortlet(ptype_id, **kw)
 
-    security.declareProtected(ManagePortlets, 'deletePortlet')
+    security.declareProtected(View, 'deletePortlet')
     def deletePortlet(self, portlet_id, context=None):
         """Delete portlet id
 
         Possible to warn event service for action
         """
+
+        # XXX possible to cope with that in a better way ?
+        if not _checkPermission(ManagePortlets, context):
+            raise Unauthorized(
+                "You are not allowed to delete portlets within %s" %(
+                context.absolute_url()))
 
         if context is None:
             destination = self
