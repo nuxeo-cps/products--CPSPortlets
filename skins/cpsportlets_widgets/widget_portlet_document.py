@@ -21,14 +21,18 @@ if getContent is not None:
     # find the 'render' method
     render = getattr(doc, 'render', None)
     if render is None:
-        return rendered
-    # try to render the specified layouts
-    try:
-        for layout_id in layout_ids:
-            rendered.append(
-                render(proxy=context_obj, layout_id=layout_id)
-            )
-    except ValueError:
+        return ''
+
+    if len(layout_ids) > 0:
+        # try to render the specified layouts
+        try:
+            for layout_id in layout_ids:
+                rendered.append(
+                    render(proxy=context_obj, layout_id=layout_id)
+                )
+        except ValueError:
+            return ''
+    else:
         rendered.append(render(proxy=context_obj))
 
 return ''.join(rendered)
