@@ -11,3 +11,4 @@ New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - lazy cache invalidation algorithm. cf. render_cache()
 - new cache parameters to describe cache objects cf. getCacheObjects()
+- new option to pass portlet's attributes in the cache parameters

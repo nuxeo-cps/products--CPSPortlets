@@ -30,7 +30,7 @@ This is a CPSDocument child base class for portlets
 import time
 import md5
 
-from types import ListType, IntType
+from types import ListType, IntType, TupleType
 from zLOG import LOG, ERROR
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_inner, aq_parent, aq_base
@@ -202,6 +202,23 @@ class CPSPortlet(CPSDocument):
         custom_params = self.getCustomCacheParams()
         params.extend(custom_params)
 
+        def getOptions(param):
+             """extract cache parameter options
+             """
+             res = []
+             opts = param.split(':')[1].split(',')
+             for opt in opts:
+                 if opt[0] == '(' and opt[-1] == ')':
+                     opt = getattr(self, opt[1:-1], None)
+                     if opt is None:
+                         continue
+                     if isinstance(opt, ListType) or\
+                        isinstance(opt, TupleType):
+                         res.extend(opt)
+                         continue
+                 res.append(str(opt))
+             return res
+
         index = ()
         for param in params:
             index_string = ''
@@ -212,9 +229,12 @@ class CPSPortlet(CPSDocument):
 
             # request variable
             elif param.startswith('request:'):
-                var = param.split(':')[1]
-                if REQUEST.get(var):
-                    index_string = str(var)
+                for var in getOptions(param):
+                    value = REQUEST.get(var)
+                    if value is None:
+                        continue
+                    index_string += str(value)
+                    param = 'request'
 
             # current user
             elif param == 'user':
@@ -240,10 +260,11 @@ class CPSPortlet(CPSDocument):
             elif param.startswith('actions:'):
                 cmf_actions = REQUEST.get('cpsskins_cmfactions')
                 if cmf_actions:
-                    categories = param.split(':')[1].split(',')
+                    categories = getOptions(param)
                     actions = [cmf_actions[x] for x in categories \
                                if cmf_actions.has_key(x)]
                     index_string = md5.new(str(actions)).hexdigest()
+                    param = 'actions'
 
             # XXX CPSSkins dependency
             # Workflow actions

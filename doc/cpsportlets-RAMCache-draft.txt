@@ -148,6 +148,15 @@ be set in the factory type information.
   example: actions:object,global,user,maintabs
   used in: the actions portlet
 
+  actions:(categories)
+  description: the CMF actions by categories where 'categories' is a
+               property of the portlet that contains a list/tuple of 
+               categories
+  used in: the actions portlet
+
+  actions:(categories),(custom_categories),user
+  ...
+
 - no-cache:
   description: the portlet should not be cached.
 
