@@ -2,6 +2,7 @@
                    ds options/datastructure;
                    display ds/display;
                    show_docs ds/show_docs;
+                   display_hidden_folders ds/display_hidden_folders;
                    start_depth python: 2;
                    root_uids ds/root_uids;
                    context nocall:options/context_obj|here;
@@ -11,8 +12,8 @@
   <tal:block condition="python: display == 'vertical_breadcrumbs_menu'">
     <tal:block
      define="rel_depth ds/rel_depth;
-             trailItems python: context.getBreadcrumbsItems(url=context_url);
-             folderItems python: context.getFolderItems(context_obj=context, show_docs=show_docs);
+             trailItems python: context.getBreadcrumbsItems(url=context_url, display_hidden_folders=display_hidden_folders);
+             folderItems python: context.getFolderItems(context_obj=context, show_docs=show_docs, display_hidden_folders=display_hidden_folders);
              trailItems python: trailItems[int(rel_depth):];
              depth python: len(trailItems)">
       <h1 style="margin:0" tal:condition="python: depth >= 1">
@@ -78,7 +79,7 @@
 
   <tal:block condition="python: display == 'subfolder_contents'">
     <tal:block
-     define="folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, start_depth=1, end_depth=3, contextual=1, expand=1)"
+     define="folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, start_depth=1, end_depth=3, contextual=1, expand=1, display_hidden_folders=display_hidden_folders)"
      condition="folderItems">
        <tal:block repeat="item folderItems">
          <tal:block tal:define="depth item/depth">
@@ -102,7 +103,7 @@
              show_icons python: int(show_icons);
              contextual ds/contextual;
              end_depth ds/end_depth;
-             folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, contextual=contextual, end_depth=int(end_depth));
+             folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, contextual=contextual, end_depth=int(end_depth), display_hidden_folders=display_hidden_folders);
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul class="cpsskinsMenu">
@@ -126,7 +127,7 @@
      define="show_icons ds/show_icons;
              show_icons python: int(show_icons);
              end_depth ds/end_depth;
-             folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, contextual=0, expand=1, end_depth=int(end_depth));
+             folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, contextual=0, expand=1, end_depth=int(end_depth), display_hidden_folders=display_hidden_folders);
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul class="cpsskinsMenu">
@@ -151,7 +152,7 @@
              show_icons python: int(show_icons);
              show_docs ds/show_docs;
              rel_depth ds/rel_depth;
-             folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, start_depth=int(rel_depth), end_depth=int(rel_depth)+1);
+             folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, start_depth=int(rel_depth), end_depth=int(rel_depth)+1, display_hidden_folders=display_hidden_folders);
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul class="cpsskinsMenu">

@@ -17,7 +17,8 @@ end_depth = kw.get('end_depth', 0)
 # contextual navigation
 contextual = int(kw.get('contextual', 0)) == 1
 
-# display icons
+# show hidden folders 
+display_hidden_folders = int(kw.get('display_hidden_folders', 0)) == 1
 
 # expand all nodes?
 kw['expand_all'] = int(kw.get('expand', 0)) == 1
@@ -81,8 +82,9 @@ for root_uid in root_uids:
                 continue
 
         # filter out hidden folders
-        if object.get('hidden_folder', False):
-            continue
+        if not display_hidden_folders:
+            if object.get('hidden_folder', False):
+                continue
 
         folder_items.append(
             {'url': base_url + rpath,

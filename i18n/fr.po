@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2005-04-05 23:18default\n"
+"POT-Creation-Date: 2005-04-06 17:12default\n"
 "PO-Revision-Date: 2004-09-28 03:28+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -107,7 +107,7 @@ msgid "cpsportlets_translate_into"
 msgstr "Créer une version en ..."
 
 #.   <span>Up to
-#.             ${up_id (tal content="parent/title_or_id")}
+#.             ${up_id (tal content="item/title")}
 #.           </span>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 msgid "cpsportlets_up_to"
@@ -298,6 +298,9 @@ msgstr "Profondeur relative"
 
 msgid "cpsportlets_navigation_show_docs_label"
 msgstr "Afficher les documents"
+
+msgid "cpsportlets_navigation_display_hidden_folders_label"
+msgstr "Afficher les répertoires cachés"
 
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Afficher l'icône des documents"

@@ -200,6 +200,9 @@ msgstr ""
 msgid "cpsportlets_navigation_show_docs_label"
 msgstr ""
 
+msgid "cpsportlets_navigation_display_hidden_folders_label"
+msgstr ""
+
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr ""
 
