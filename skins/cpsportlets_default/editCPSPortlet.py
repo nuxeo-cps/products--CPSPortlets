@@ -44,14 +44,14 @@ else:
         context.portal_eventservice.notifyEvent('workflow_modify',
                                                 context,
                                                 {})
+# update cache parameters
+ptype_id = doc.getPortletType()
+doc.resetCacheParams(ptype_id)
+doc.resetInterestingEvents(ptype_id)
+doc.expireCache()
+
 if context_is_portlet:
-    ptype_id = context.getPortletType()
-    context.resetCacheParams(ptype_id)
-    context.resetInterestingEvents(ptype_id)
-    context.expireCache()
     return res[0], psm, error
-else:
-    doc.expireCache()
 
 if REQUEST is not None:
     redirect_url = REQUEST.get('HTTP_REFERER')

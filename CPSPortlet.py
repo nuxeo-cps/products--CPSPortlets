@@ -187,16 +187,19 @@ class CPSPortlet(CPSDocument):
         """Set the cache parameters
         """
         # set the cache timeout value based on cache paramaters
+
+        timeout = 0
         for param in cache_params:
             if not param.startswith('timeout:'):
                 continue
             idx, value = param.split(':')
             try:
-                value = int(value)
+                timeout = int(value)
             except ValueError:
-                value = 0
-            if self.cache_timeout != value:
-                self.cache_timeout = value
+                pass
+
+        if self.cache_timeout != timeout:
+            self.cache_timeout = timeout
 
     security.declarePrivate('_setJavaScript')
     def _setJavaScript(self, javascript=''):

@@ -23,6 +23,7 @@ Bug fixes:
 - the cache timeout attribute is updated when the Custom Portlet gets edited
   and when it contains a 'timeout:...' custom cache parameter.
 - portlet visibility: some invisible portlets were displayed.
+- custom cache parameters are reset for global portlets too.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the
