@@ -132,7 +132,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if context is not None:
             container_id = self.getPortletContainerId()
             if getattr(aq_base(context), container_id, None) is not None:
-                return getattr(context, container_id, self)
+                return getattr(context, container_id)
         return self
 
     #######################################################################
