@@ -29,15 +29,12 @@ if getattr(context.aq_explicit, 'delLanguageFromProxy', None) is None:
 
 # delete the language revision in 'lang'
 context.delLanguageFromProxy(lang=lang)
-context.reindexObject()
-
-default_lang = context.getDefaultLanguage()
 
 # switch to 'default_lang'
-portal = context.portal_url.getPortalObject()
-portal.Localizer.changeLanguage(lang=default_lang)
-
 if REQUEST is not None:
-    msg = 'cpsportlets_translation_deleted_psm'
-    redirect_url = context.absolute_url() + '?portal_status_message=%s' % msg
+    default_lang = context.getDefaultLanguage()
+    context_url = REQUEST.get('context_url', context.getContextUrl())
+    psm = 'cpsportlets_translation_deleted_psm'
+    redirect_url = '%s/switchLanguage/%s/?portal_status_message=%s' % \
+                   (context_url, default_lang, psm)
     REQUEST.RESPONSE.redirect(redirect_url)

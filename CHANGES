@@ -48,3 +48,4 @@ New internal features:
 - added a slimmed-down 'view' layout for portlets
 - added a PortletRAMCache module (previously imported from CPSSkins.RAMCache)
 - added a generic portlet widget (CPSPortletWidget). Removed the other widgets.
+- using 'switchLanguage' instead of Localizer to select the document language.

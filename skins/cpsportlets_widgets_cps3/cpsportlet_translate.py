@@ -3,10 +3,6 @@
 if not lang:
     return
 
-lc = getattr(context, 'Localizer', None)
-if lc is None:
-    return
-
 if REQUEST is None:
     REQUEST = context.REQUEST
 
@@ -27,13 +23,11 @@ if getattr(context.aq_explicit, 'addLanguageToProxy', None) is None:
 
 # create a language revision in 'lang'
 context.addLanguageToProxy(lang=lang, from_lang=doc_lang)
-context.reindexObject()
 
 # switch to 'lang'
-portal = context.portal_url.getPortalObject()
-portal.Localizer.changeLanguage(lang=lang)
-
 if REQUEST is not None:
-    msg = 'cpsportlets_content_translated_psm'
-    redirect_url = context.absolute_url() + '?portal_status_message=%s' % msg
+    context_url = REQUEST.get('context_url', context.getContextUrl())
+    psm = 'cpsportlets_content_translated_psm'
+    redirect_url = '%s/switchLanguage/%s/?portal_status_message=%s' % \
+                   (context_url, lang, psm)
     REQUEST.RESPONSE.redirect(redirect_url)
