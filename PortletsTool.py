@@ -1013,10 +1013,10 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def notify_event(self, event_type, object, infos):
         """Standard event hook
         """
-        LOG(":: CPS Portlets Tool :: ", DEBUG, 'notify_event()')
-        LOG(":: EVENT TYPE ::", DEBUG, event_type)
-        LOG(":: OBJECT ::", DEBUG, repr(object))
-        LOG(":: INFOS ::", DEBUG, repr(infos))
+        ##LOG(":: CPS Portlets Tool :: ", DEBUG, 'notify_event()')
+        ##LOG(":: EVENT TYPE ::", DEBUG, event_type)
+        ##LOG(":: OBJECT ::", DEBUG, repr(object))
+        ##LOG(":: INFOS ::", DEBUG, repr(infos))
 
         # we skip the events that do not inform about the object's path
         if not infos.has_key('rpath'):
