@@ -26,13 +26,19 @@ pos = 0
 for item in data_items:
     description = item['description']
     modified = item['modified']
+    author = item['author']
+    if not author:
+        author = 'unknown'
+
     if max_words > 0:
         description = summarize(description, max_words)
     data_items[pos].update(
         {'description': description,
          'metadata':
-            {'creator': item['author'],
+            {'creator': author,
+             'contributor': author,
              'date': modified,
+             'issued': modified,
              'created': modified,
             }
         })
