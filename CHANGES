@@ -17,3 +17,4 @@ New internal features:
   default: ALT + '_'
 - added an internal RAM cache to store Factory-type information
 - ptltool.clearCache() also clears the icon and FTI cache.
+- the RAM cache is cleared with CPSPortlets is updated / installed

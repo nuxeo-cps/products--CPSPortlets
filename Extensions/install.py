@@ -96,6 +96,7 @@ class CPSPortletsInstaller(CPSInstaller):
                 visible=1)
 
         self.rebuildPortlets()
+        self.clearCache()
         self.doSubscribeToEventServiceTool()
         self.finalize()
         self.log("End of Install/Update : CPSPortlets Product")
@@ -239,6 +240,12 @@ class CPSPortletsInstaller(CPSInstaller):
         self.log("Rebuilding all portlets...")
         ptltool = getToolByName(self.portal, 'portal_cpsportlets')
         ptltool.rebuild_portlets(REQUEST=None)
+
+    def clearCache(self):
+        """Clear the RAM cache
+        """
+        ptltool = getToolByName(self.portal, 'portal_cpsportlets')
+        ptltool.clearCache()
 
     def doSubscribeToEventServiceTool(self):
         """Subscribe to the event service tool
