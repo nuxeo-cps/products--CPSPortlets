@@ -68,9 +68,14 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         # Lookup through catalog to get the potlets
         # We ask the tool to know all the portal_types
-        portlets = catalog.searchResults({'portal_type':portal_types})
 
-        return [x.getObject() for x in portlets]
+        portlets = []
+        for res in catalog.searchResults({'portal_type':portal_types}):
+            portlet = res.getObject()
+            if portlet is None:
+                continue
+            portlets.append(portlet)
+        return portlets
 
     security.declarePublic('checkIdentifier')
     def checkIdentifier(self, identifier):
