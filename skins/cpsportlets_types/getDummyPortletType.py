@@ -18,9 +18,22 @@ dummy_portlet_type = {
     'flexible_layouts': (),
     'storage_methods': (),
     'cps_is_portlet': True,
-    'actions': (
-    )
-}
+    'actions': ({'id': 'create',
+                 'name': 'action_create',
+                 'action': 'string:${object_url}/cpsportlet_create_form',
+                 'condition': '',
+                 'permission': ('Modify portal content',),
+                 'category': 'object',
+                 'visible': 0,},
+                {'id': 'edit',
+                 'name': 'action_edit',
+                 'action': 'string:${object_url}/cpsportlet_edit_form',
+                 'condition': '',
+                 'permission': ('Modify portal content',),
+                 'category': 'object',
+                 'visible': 0,},
+                )
+    }
 
 types = {'Dummy Portlet': dummy_portlet_type}
 
