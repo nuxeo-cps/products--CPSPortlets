@@ -1,7 +1,6 @@
 <tal:block define="res python:here.editCPSPortlet(REQUEST=request);
                    rendered_main python: res[0];
                    portal_status_message python: res[1];
-                   edition python:1;
   ">
 <metal:block define-macro="edit_form">
 <metal:block use-macro="here/content_lib/macros/master">
@@ -35,29 +34,21 @@
    </metal:block>
   </metal:block>
 
-  <metal:block fill-slot="header"
-    tal:define="creation creation|nothing;
-                edition edition|nothing;
-                metadata metadata|nothing">
-    <h1 tal:condition="creation" i18n:translate="">
-      Create a document of type
-      <span i18n:name="type_name"><tal:block i18n:translate=""
-            tal:define="type_name request/type_name;
-                        type_info python:here.portal_types[type_name]"
-            tal:content="type_info/Title">Type Title</tal:block></span>
-    </h1>
-    <h1 tal:condition="not:creation">
-      <img tal:replace="structure python:here.getImgTag('/'+here.getIcon(), base_url='')">
-      <tal:block condition="edition"
-        i18n:translate="">Edit <span i18n:name="title"
-        tal:content="here/title_or_id">Page Title</span></tal:block>
-      <span tal:condition="metadata"
-        i18n:translate="">heading_metadata_edit</span>
+  <metal:block fill-slot="header">
+    <h1>
+      <img tal:replace="structure python:here.getImgTag('/'+here.getIcon(), base_url='')" />
+      <tal:block i18n:translate="_Edit_">Edit</tal:block> 
+      <tal:block replace="here/title_or_id" />
     </h1>
   </metal:block>
 
   <metal:block fill-slot="main">
     <div tal:replace="structure rendered_main" />
+    <form action="" method="post">
+      <input type="button" i18n:attributes="value"
+       tal:attributes="value string:button_back"
+       onclick="javascript:history.back()" />
+    </form>
   </metal:block>
 
 </metal:block>
