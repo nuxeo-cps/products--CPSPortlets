@@ -223,6 +223,7 @@ class CPSPortlet(CPSDocument):
         index = ()
         for param in params:
             index_string = ''
+            prefix = param
 
             # not cacheable
             if param == 'no-cache':
@@ -259,13 +260,13 @@ class CPSPortlet(CPSDocument):
                     index_string = md5.new(str(cmf_actions)).hexdigest()
 
             elif param.startswith('actions:'):
+                prefix = 'actions'
                 cmf_actions = REQUEST.get('cpsskins_cmfactions')
                 if cmf_actions:
                     categories = getOptions(param)
                     actions = [cmf_actions[x] for x in categories \
                                if cmf_actions.has_key(x)]
                     index_string = md5.new(str(actions)).hexdigest()
-                    param = 'actions'
 
             # XXX CPSSkins dependency
             # Workflow actions
@@ -280,8 +281,33 @@ class CPSPortlet(CPSDocument):
                 index_string = context.absolute_url(1)
 
             # current object 
-            elif param == 'object':
-                index_string = REQUEST.get('PATH_TRANSLATED')
+            elif param.startswith('object:'):
+                opts = getOptions(param)
+                index_string = ''
+                prefix = 'object'
+                for opt in opts:
+                    # object's published path
+                    # including the method used to access the object
+                    index_string += '_' + opt + ':'
+                    if opt == 'published_path':
+                        index_string += REQUEST.get('PATH_TRANSLATED')
+
+                    # object's physical path
+                    if opt == 'path':
+                        index_string += '/'.join(context.getPhysicalPath())
+
+                    # object's languages
+                    if opt == 'langs':
+                        if getattr(aq_base(context), 'getLanguageRevisions',
+                                   _marker) is not _marker:
+                            revs = context.getLanguageRevisions()
+                            index_string += str(revs.keys())
+
+                    # object's default language
+                    if opt == 'lang':
+                        if getattr(aq_base(context), 'getDefaultLanguage',
+                                   _marker) is not _marker:
+                            index_string += context.getDefaultLanguage()
 
             # portal type
             elif param == 'portal type':
@@ -297,7 +323,7 @@ class CPSPortlet(CPSDocument):
                     types_allowed_by_wf = getAllowedTypes(context)
                     index_string = md5.new(str(types_allowed_by_wf)).hexdigest()
             if index_string:
-                index += (param + '_' + index_string,)
+                index += (prefix + '_' + index_string,)
 
         return index
 

@@ -115,21 +115,35 @@ Cache parameters are variable names that are used to identify the parameter
 values of the cache index. These are specific to portlet types and could
 be set in the factory type information.
 
-* Contextual values:
+* Contextual variables:
 
 - url
   description: the entire currrent url including the query string
   example: 'http://www.yourhost.com/cps/view?pp=1'
   used in: portal actions
 
-- object
-  description: the path of the current object
-  example: '/cps/workspaces/members/view' )
+- object:path
+  description: the path of the object
+  example: '/cps/workspaces/members'
+
+- object:published_path
+  description: the path of the published object
+  example: '/cps/workspaces/members/view'
   used in: breadcrumbs
+
+- object:lang
+  description: the default language of current object
+  example: "('en', 'fr')"
+  used in: language portlet
+
+- object:langs
+  description: the list of language revisions of current object
+  example: "('en', 'fr')"
+  used in: language portlet
 
 - folder
   description: the path of the current folder
-  example: '/cps/workspaces/members' )
+  example: '/cps/workspaces/members'
 
 - user
   description: the name of the current user
