@@ -18,6 +18,9 @@ msgstr ""
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: default\n"
 "X-Generator: KBabel 1.3\n"
+"Domain: default\n"
+"Language-Code: en \n"
+
 
 #.   <input type="submit" value=" Add " />
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
