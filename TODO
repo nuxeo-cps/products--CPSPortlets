@@ -18,10 +18,7 @@ Portlets to port to Plone:
 
 Portlet management:
 ------------------
-- portlet override
 - placeful workflows to restrict the list of addable portlets.
-- set up a portlet browser (image library, RSS channels, folder contents, ...)
-  to make it possible for users to create and share portlets.
 
 Tests:
 ------
@@ -31,3 +28,6 @@ Installation:
 -------------
 - cross-platform installation (CMF/CPS/Plone)
 
+UI:
+---
+- set up an access key to jump directly to the portlet editor
