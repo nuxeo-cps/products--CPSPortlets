@@ -72,6 +72,18 @@ elif search_type == 'upcoming':
                   'end': {'query': now, 'range': 'min'},
                   'sort_on': 'start',
                  })
+
+# Today's events:
+# - published
+# - today's latest time > start date
+elif search_type == 'today':
+    now = context.ZopeTime()
+    query.update({'review_state': 'published',
+                  'start': {'query': now.latestTime(),
+                            'range': 'max'},
+                  'sort_on': 'start',
+                 })
+
 # Recent documents:
 # - published
 # - modified date > last_login_time

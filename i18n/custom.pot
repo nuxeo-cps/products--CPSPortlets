@@ -107,6 +107,9 @@ msgstr ""
 msgid "cpsportlets_content_search_upcoming_label"
 msgstr ""
 
+msgid "cpsportlets_content_search_today_label"
+msgstr ""
+
 msgid "cpsportlets_content_sort_on_label"
 msgstr ""
 

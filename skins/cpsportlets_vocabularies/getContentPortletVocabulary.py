@@ -6,6 +6,7 @@ cpsportlets_content_search_voc_vocabulary = {
             ('last_modified', 'Last modified', 'cpsportlets_content_search_last_modified_label'),
             ('recent', 'Recent', 'cpsportlets_content_search_recent_label'),
             ('upcoming', 'Upcoming', 'cpsportlets_content_search_upcoming_label'),
+            ('today', 'Today', 'cpsportlets_content_search_today_label'),
         ),
     },
 }
