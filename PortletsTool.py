@@ -682,7 +682,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if content is None:
             return
 
-        portal_type = content.portal_type
+        portal_type = getattr(content, 'portal_type', None)
 
         # expire the portlets interested in the event
         # ZEO-aware invalidation.
