@@ -23,10 +23,13 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 """
 
 from Globals import InitializeClass
+from AccessControl import ClassSecurityInfo
 
 from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
 
 from Products.CMFCore.utils import UniqueObject, getToolByName
+
+from Products.CPSPortlets.CPSPortletsPermissions import addGlobalPortlet
 
 class PortletsTool(UniqueObject, CMFBTreeFolder):
     """ Portlets Tool
@@ -34,6 +37,8 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
 
     id = 'portal_cpsportlets'
     meta_type = 'CPS Portlets Tool'
+
+    security = ClassSecurityInfo()
 
     def __init__(self):
         """
@@ -85,6 +90,7 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
 
     ######################################################################
 
+    security.declareProtected(addGlobalPortlet, 'createPortlet')
     def createPortlet(self, ptype_id, isglobal=1):
         """Create a new portlet
 
