@@ -1,1 +1,1 @@
-return context.allowContentTypes()
+return context.allowedContentTypes()
