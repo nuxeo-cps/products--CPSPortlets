@@ -7,25 +7,23 @@ if REQUEST is not None:
 else:
     REQUEST=context.REQUEST
 
-utool = context.portal_url
-
-nav = CPSNavigation(context=context_obj,
+context_rpath = kw.get('prefix')
+# XXX: root_uid
+nav = CPSNavigation(context_uid=context_rpath,
+                    context=context_obj,
                     request_form=REQUEST.form,
                     **kw
                    )
 
-context_url = context_obj.absolute_url()
-
 folder_items = []
 for tree in nav.getTree():
     object = tree['object']
-    url = object['url']
 
     # only display children
-    if only_children and url == context_url:
+    if only_children and object['rpath'] == context_rpath:
         continue
 
-    folder_items.append({'url': url,
+    folder_items.append({'url': object['url'],
                          'title': object['title_or_id'],
                         })
 
