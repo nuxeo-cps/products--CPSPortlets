@@ -186,4 +186,40 @@ interested about this event and flag the portlet.
    but it's intended to be generic enough to do other stuffs than that.
    """
 
-XXX
+-----
+# Jean-Marc Orliaguet (16/09)
+
+:: Storing "event-reactive" objects in the cache ::
+
+The cache entries currently contain:
+
+- the portlet's physical path
+- the cache index
+- the rendered portlet
+- the name of the user for whom the entry has been created
+
+in the form:
+{
+ ((portlet1_path), (cache index)) : {'rendered': rendered, 'user': user},
+ ((portlet2_path), (cache index)) : {'rendered': rendered, 'user': user},
+ ...
+}
+
+=> the cache index is used for discrimination purposes
+
+=> the user name is stored for invalidation purposes, for instance in order to
+find all the cache entries that have been created for a given user to remove
+all user-dependent entries when the user logs out.
+
+It is also possible to store the list of objects that have been used to create
+the portlet's content. If any of these objects were to be affected by an event
+then the cache entry should be invalidated.
+
+For instance, if the portlet is a "Breadcumbs portlet" and its content is
+"Workspaces > members", the objects <workspaces proxy folder> and
+<members proxy folder> will be stored in the cache as object reactive to
+events.
+
+When the portlets tool is notified about an event, it will search the cache 
+entries and remove those that contain the objects concerned with the event.
+
