@@ -9,6 +9,8 @@ New features:
   visible if the 'show documents' options is turned off.
 - Text Portlet: the rendering format can be selected ('text', 'stx', 'html')
 - Navigation Portlet: added a 'collapsible menu' presentation.
+- (Rotating) Image Portlet: add an optional 'caption' field to display
+  under the image.
 Bug fixes:
 ~~~~~~~~~~
 - added missing 'is_i18n' parameter to getSearchableTypesVocabulary()

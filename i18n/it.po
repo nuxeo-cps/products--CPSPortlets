@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-02-14 14:25default\n"
+"POT-Creation-Date: 2005-02-15 16:21default\n"
 "PO-Revision-Date: 2005-01-25 17:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -306,6 +306,10 @@ msgid "cpsportlets_image_image_label"
 msgstr "Immagine"
 
 msgid "cpsportlets_image_link_label"
+msgstr "Collegamento"
+
+#, fuzzy
+msgid "cpsportlets_image_caption_label"
 msgstr "Collegamento"
 
 msgid "portal_type_ContentPortlet_description"

@@ -233,6 +233,9 @@ msgstr ""
 msgid "cpsportlets_image_link_label"
 msgstr ""
 
+msgid "cpsportlets_image_caption_label"
+msgstr ""
+
 msgid "portal_type_ContentPortlet_description"
 msgstr ""
 

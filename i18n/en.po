@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2005-02-14 14:25default\n"
+"POT-Creation-Date: 2005-02-15 16:21default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -302,6 +302,9 @@ msgstr "Image file"
 
 msgid "cpsportlets_image_link_label"
 msgstr "Link"
+
+msgid "cpsportlets_image_caption_label"
+msgstr "Image caption"
 
 msgid "portal_type_ContentPortlet_description"
 msgstr "Displays the results of a content search."

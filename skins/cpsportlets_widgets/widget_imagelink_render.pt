@@ -2,11 +2,17 @@
                    mode options/mode;
                    ds options/datastructure;">
 <tal:block condition="python: mode == 'view'">
-  <a href="" tal:omit-tag="not:link"
-   tal:define="image python: cells[0]['widget_rendered'];
-               link python: cells[1]['widget_rendered']"
-   tal:attributes="href link"
-   tal:content="structure image" />
+  <tal:block define="
+    image python: cells[0]['widget_rendered'];
+    link python: cells[1]['widget_rendered'];
+    caption python: cells[2]['widget_rendered']">
+    <a href="" tal:omit-tag="not:link"
+     tal:attributes="href link"
+     tal:content="structure image" />
+    <tal:block condition="caption">
+      <br/><small tal:content="structure caption" />
+    </tal:block>
+  </tal:block>
 </tal:block>
 <tal:block condition="python: mode == 'edit'">
 <br />

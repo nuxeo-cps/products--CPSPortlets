@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2005-02-14 14:25default\n"
+"POT-Creation-Date: 2005-02-15 16:21default\n"
 "PO-Revision-Date: 2004-09-28 03:28+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -175,7 +175,8 @@ msgid "cpsportlets_action_categories_label"
 msgstr "Catégories d'actions à afficher"
 
 msgid "cpsportlets_context_is_portlet_choice_label"
-msgstr "Faire la recherche à partir du répertoire dans lequel se trouve le portlet"
+msgstr ""
+"Faire la recherche à partir du répertoire dans lequel se trouve le portlet"
 
 msgid "cpsportlets_content_search_related_label"
 msgstr "Articles sur le même sujet"
@@ -302,6 +303,9 @@ msgstr "Image"
 
 msgid "cpsportlets_image_link_label"
 msgstr "Lien"
+
+msgid "cpsportlets_image_caption_label"
+msgstr "Légende"
 
 msgid "portal_type_ContentPortlet_description"
 msgstr "Affiche le résultat d'une recherche de contenu."
