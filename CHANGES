@@ -56,3 +56,5 @@ New internal features:
 - added a 'display_hidden_folders' parameter (default: on) in getFolderItems()
 - added a getVisibilityRangeMsgid() method that returns the msgid of a
   portlet's visiblity range.
+- added a 'check_visibility' parameter to getPortlets() to make it possible
+  to turn off the portlet visibility check.
