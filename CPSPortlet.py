@@ -230,12 +230,15 @@ class CPSPortlet(CPSDocument):
 
             # request variable
             elif param.startswith('request:'):
-                for var in getOptions(param):
-                    value = REQUEST.get(var)
+                opts = getOptions(param)
+                index_string = ''
+                prefix = 'request'
+                for opt in opts:
+                    index_string += '_' + opt + ':'
+                    value = REQUEST.get(opt)
                     if value is None:
                         continue
                     index_string += str(value)
-                    param = 'request'
 
             # current user
             elif param == 'user':
