@@ -276,11 +276,15 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def getFolders(self, context=None):
         """Return the list of folders in which portlets can be added
         """
-        if context is None:
-            return []
         folders = []
+        if context is None:
+            return folders
+        mtool = getToolByName(self, 'portal_membership')
+        checkPerm = mtool.checkPermission
         folders_append = folders.append
-        for c in context.objectValues():
+        for c in context.contentValues():
+            if not checkPerm(ManagePortlets, c):
+                continue
             if not c.isPrincipiaFolderish:
                 continue
             if c.getId().startswith('.'):
