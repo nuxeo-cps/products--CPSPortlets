@@ -33,6 +33,13 @@ add_item_portlet_type = {
           'permission': ('Manage Portlets',),
           'category': 'object',
           'visible': False,},
+         {'id': 'view',
+          'name': 'action_view',
+          'action': 'string:${object_url}/render',
+          'condition': '',
+          'permission': ('View',),
+          'category': 'object',
+          'visible': False,},
     )
 }
 
