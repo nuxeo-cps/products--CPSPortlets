@@ -100,9 +100,16 @@ class PortletsTool(UniqueObject, PortletsContainer):
         Returns a portlet by its physical path.
         """
 
-        for portlet in self.listAllPortlets():
-            if portlet.getPhysicalPath() == portlet_path:
-               return portlet
+        if portlet_path is None:
+            return None
+
+        path = '/'.join(portlet_path)
+        try:
+            portlet = self.unrestrictedTraverse(path)
+        except KeyError:
+            return None
+        else:
+            return portlet
 
     #########################################################################
 
