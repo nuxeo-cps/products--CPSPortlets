@@ -187,3 +187,6 @@ msgstr ""
 
 msgid "cpsportlets_rss_channel_label"
 msgstr ""
+
+msgid "cpsportlets_rss_update_frequency_label"
+msgstr ""

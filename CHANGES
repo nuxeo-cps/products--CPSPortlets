@@ -33,3 +33,4 @@ New internal features:
 - new option to pass portlet's attributes in the cache parameters
 - new cache parameters on events (event ids, folder paths, portal types)
   that will cause the portlet's cache to expire.
+- cache timeout in seconds

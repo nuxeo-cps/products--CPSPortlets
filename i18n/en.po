@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-10-27 16:16default\n"
+"POT-Creation-Date: 2004-10-27 21:13default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -237,3 +237,6 @@ msgstr "Display item descriptions"
 
 msgid "cpsportlets_rss_channel_label"
 msgstr "RSS channel"
+
+msgid "cpsportlets_rss_update_frequency_label"
+msgstr "Update frequency (in seconds)"

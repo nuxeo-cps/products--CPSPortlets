@@ -29,7 +29,7 @@ This is a CPSDocument child base class for portlets
 
 import time
 import md5
-
+from zLOG import LOG, ERROR
 from types import ListType, IntType, TupleType
 from App.Common import rfc1123_date
 from Globals import InitializeClass, DTMLFile
@@ -325,6 +325,7 @@ class CPSPortlet(CPSDocument):
             if index_string:
                 index += (prefix + '_' + index_string,)
 
+            LOG('exp', ERROR, param)
         return index
 
     security.declarePublic('render_cache')
@@ -347,10 +348,16 @@ class CPSPortlet(CPSDocument):
         last_cleanup = cache.getLastCleanup(id=portlet_path)
         # cleanup_date: the portlet's cleanup date (ZEO-aware).
         cleanup_date = self.getCacheCleanupDate()
+        # cache timeout
+        timeout = self.getCacheTimeout()
 
         # remove all cache entries associated to this portlet.
         # This will occur on all ZEO instances (lazily).
         if cleanup_date > last_cleanup:
+            cache.delEntries(portlet_path)
+
+        # cache timeout
+        if timeout > 0 and now > last_cleanup + timeout:
             cache.delEntries(portlet_path)
 
         cache_entry = cache.getEntry(index)
@@ -457,6 +464,12 @@ class CPSPortlet(CPSDocument):
         """Return the last cleanup date for this portlet"""
 
         return self.cache_cleanup_date
+
+    security.declarePublic('getCacheTimeout')
+    def getCacheTimeout(self):
+        """Return the cache timeout"""
+
+        return self.cache_timeout
 
     security.declarePublic('getPortletType')
     def getPortletType(self):
