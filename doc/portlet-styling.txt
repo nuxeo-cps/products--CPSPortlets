@@ -200,8 +200,8 @@ The following HTML markup is used to represent boxes:
 
   -- Box Menu ------
     <ul> (*)
-      <li>item</li>
-      <li class="selected">selected item</li>
+      <li><a href="#">item</a></li>
+      <li class="selected"><a href="#">selected item</a></li>
       ...
     </ul>
 
@@ -210,3 +210,14 @@ The following HTML markup is used to represent boxes:
 
 * <ul> may be renamed as <ul class="menu">
   (Requires some cleaning in CPSDefault nuxeo_css2.css)
+
+Indentation:
+------------
+to set an indentation use the 'margin-left' property in the <a> tag.
+
+for instance:
+<ul>
+  <li><a style="margin-left: 1em" href="#link">Item</a><li>
+</ul>
+
+The bullet icon will be indented too.
