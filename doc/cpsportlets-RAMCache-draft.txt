@@ -6,7 +6,7 @@ Authors:
   - Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>
   - Julien Anguenot <mailto:ja@nuxeo.com>
 
-Last-modified: 2004-10-26
+Last-modified: 2005-03-01
 
 
 RAM Cache
@@ -129,6 +129,12 @@ Contextual variables:
 
   used in:
     portal actions
+
+
+- baseurl
+
+  description:
+    the base url of the site.
 
 
 - current_lang

@@ -48,3 +48,4 @@ New internal features:
   portlet is physically located.
 - getFolderItems() takes an optional 'max_title_words' parameter to only
   display the first words of the items' title with an ellipsis (...).
+- added a 'baseurl' cache parameter.

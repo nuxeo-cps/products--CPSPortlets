@@ -317,6 +317,11 @@ class CPSPortlet(CPSDocument):
                 index_string = REQUEST.get('cpsskins_url')
 
             # XXX CPSSkins dependency
+            # current url
+            elif param == 'baseurl':
+                index_string = REQUEST.get('cpsskins_base_url')
+
+            # XXX CPSSkins dependency
             # CMF Actions
             elif param == 'actions':
                 cmf_actions = REQUEST.get('cpsskins_cmfactions')
