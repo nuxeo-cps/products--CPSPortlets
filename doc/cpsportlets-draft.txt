@@ -1,0 +1,35 @@
+                            CPSPortlets draft
+
+           $Id$
+
+Goals :
+
+ Cf. goals.txt
+
+Implementation :
+
+ - CPSPortlets
+   Same as CPSDocument but for the Portlets.
+
+ - PortletsTool
+   Same idea as portal_boxes but will store the global portlets.
+   Has to provide a mapping for porta_themes (portal_id, portlet object)
+
+   API :
+
+     -> (CPSSKins) portal_themes
+     getPortletById(self, id)
+       """Return the portlet object given the id
+       """
+
+     listPortletIds(self):
+       """ Returns the list of all portlet ids
+       """
+
+ - PortletsContainer
+   Will hold local configuration for portlets
+
+ - PortletWidgets
+   This module will hold
+
+To be continued
