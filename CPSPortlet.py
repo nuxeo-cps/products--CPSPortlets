@@ -29,7 +29,6 @@ This is a CPSDocument child base class for portlets
 
 import time
 import md5
-from zLOG import LOG, ERROR
 from types import ListType, IntType, TupleType
 from App.Common import rfc1123_date
 from Globals import InitializeClass, DTMLFile
@@ -325,7 +324,6 @@ class CPSPortlet(CPSDocument):
             if index_string:
                 index += (prefix + '_' + index_string,)
 
-            LOG('exp', ERROR, param)
         return index
 
     security.declarePublic('render_cache')
