@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-01-25 22:12default\n"
+"POT-Creation-Date: 2005-01-27 21:36default\n"
 "PO-Revision-Date: 2005-01-25 17:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -420,6 +420,10 @@ msgstr "Proteggi questo portlet dalla sovrascrittura ?"
 #, fuzzy
 msgid "cpsportlets_document_render_container_label"
 msgstr "Genera un elenco dei risultati ?"
+
+#, fuzzy
+msgid "cpsportlets_navigation_end_depth_label"
+msgstr "Profondità relativa"
 
 #~ msgid "cpsportlets_layout_id_label"
 #~ msgstr "Identificativo del layout"

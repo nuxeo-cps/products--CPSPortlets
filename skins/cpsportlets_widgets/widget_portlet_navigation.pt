@@ -65,7 +65,7 @@
 
   <tal:block condition="python: display == 'subfolder_contents'">
     <tal:block
-     define="folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, start_depth=1, end_depth=2, contextual=1, expand=1)"
+     define="folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, start_depth=1, end_depth=3, contextual=1, expand=1)"
      condition="folderItems">
        <tal:block repeat="item folderItems">
          <tal:block tal:define="depth item/depth">
@@ -88,7 +88,8 @@
      define="show_icons ds/show_icons;
              show_icons python: int(show_icons);
              contextual ds/contextual;
-             folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, contextual=contextual);
+             end_depth ds/end_depth;
+             folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, contextual=contextual, end_depth=int(end_depth));
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul class="cpsskinsMenu">
@@ -111,7 +112,8 @@
     <tal:block
      define="show_icons ds/show_icons;
              show_icons python: int(show_icons);
-             folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, contextual=0, expand=1);
+             end_depth ds/end_depth;
+             folderItems python: context.getNavigationItems(root_uid=root_uid, context_rpath=context_rpath, context_obj=context, contextual=0, expand=1, end_depth=int(end_depth));
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul class="cpsskinsMenu">

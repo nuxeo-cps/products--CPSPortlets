@@ -69,7 +69,7 @@ for tree in nav.getTree():
         if depth < start_depth:
             continue
     if end_depth:
-        if depth > end_depth:
+        if depth >= end_depth:
             continue
 
     folder_items.append({'url': base_url + rpath,
