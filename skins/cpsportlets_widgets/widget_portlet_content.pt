@@ -13,9 +13,9 @@
   <tal:block repeat="item contentitems">
     <tal:block define="item_url item/getURL">
       <h2><a i18n:translate=""
-           tal:attributes="href item/getURL" 
+           tal:attributes="href item_url" 
            tal:content="item/Title">Item title</a></h2>
-      <span tal:condition="display_description"
+      <span tal:condition="python: int(display_description)"
        tal:content="item/Description" />
       <span tal:condition="link_string">
        <a href="" tal:attributes="href item_url"
