@@ -43,6 +43,8 @@ from Products.CPSDocument.CPSDocument import CPSDocument
 from CPSPortletsPermissions import ManagePortlets
 from PortletGuard import PortletGuard
 
+from cpsportlets_utils import html_slimmer
+
 _marker = []
 
 class CPSPortlet(CPSDocument):
@@ -379,7 +381,7 @@ class CPSPortlet(CPSDocument):
 
         # create / recreate the cache entry
         if cache_entry is None:
-            rendered = self.render(**kw)
+            rendered = html_slimmer(self.render(**kw))
             now = time.time()
 
             if REQUEST is None:
