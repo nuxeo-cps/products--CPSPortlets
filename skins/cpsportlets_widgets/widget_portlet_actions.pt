@@ -4,10 +4,11 @@
                    actionitems python: here.getActionsItems(context, categories)"
   condition="actionitems">
   <tal:block repeat="category python: actionitems.keys()">
-    <br tal:condition="not:repeat/category/start" />
     <ul class="cpsskinsMenu"
         tal:define="actions actionitems/?category"
         tal:condition="actions">
+      <li class="hidden" tal:condition="not:repeat/category/start"
+      tal:content="structure string:&nbsp;" />
       <li tal:repeat="action actions"><a i18n:translate=""
        tal:attributes="href action/url"
        tal:content="action/title">Action</a></li>

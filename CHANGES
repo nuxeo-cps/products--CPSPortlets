@@ -34,6 +34,7 @@ Bug fixes:
 - Content Portlet: the sort_on and sort_order options were ignored.
 - Cosmetic: fixed bug #564
 - UI: Language Portlet added a submit button next to the select widget.
+- cosmetic: replaced <br> separator in Action Portlet with <li>
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the
