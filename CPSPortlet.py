@@ -351,12 +351,12 @@ class CPSPortlet(CPSDocument):
         # cache timeout
         timeout = self.getCacheTimeout()
 
-        if last_cleanup is not None:
-            # remove all cache entries associated to this portlet.
-            # This will occur on all ZEO instances (lazily).
-            if cleanup_date > last_cleanup:
-                cache.delEntries(portlet_path)
+        # remove all cache entries associated to this portlet.
+        # This will occur on all ZEO instances (lazily).
+        if cleanup_date > last_cleanup:
+            cache.delEntries(portlet_path)
 
+        if last_cleanup is not None:
             # cache timeout
             if timeout > 0:
                 if now > last_cleanup + timeout:
