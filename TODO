@@ -12,6 +12,11 @@ Portlets:
 - CPS3TaskBox
 - ...
 
+Portlets to port to Plone:
+-------------------------
+- content portlet (cf. getContentItems.py)
+- language portlet (cf. LinguaPlone)
+
 Portlet management:
 ------------------
 - portlet override
@@ -19,7 +24,6 @@ Portlet management:
 User interface:
 ---------------
 - setting the portlet's visibility range
-- direct drag-and-drop of portlets. (cf. Zope4Media)
 - direct editing of portlets. (cf. Zope4Media)
 
 Cache:
