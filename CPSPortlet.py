@@ -838,9 +838,23 @@ class CPSPortlet(CPSDocument):
         """Export the portlet as a Python dictionary.
         """
 
+        data = {}
         ti = self.getTypeInfo()
         dm = ti.getDataModel(self)
-        return dict(dm.items())
+
+        skip_list = ('cache_cleanup_date', 'cache_params', 'Source',
+                     'identifier', 'allow_discussion', 'cache_timeout',
+                     'Format', 'ExpirationDate', 'Coverage', 'ModificationDate',
+                     'review_state', 'portlet', 'EffectiveDate', 'Rights',
+                     'Language''Contributors', 'Creator', 'Relation',
+                     'CreationDate', 'Subject')
+
+        for k, v in dm.items():
+            if k in skip_list:
+                continue
+            data[k] = v
+
+        return data
 
     #################################################################
     # Private
