@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2004-09-06 18:02default\n"
+"POT-Creation-Date: 2004-09-07 02:09default\n"
 "PO-Revision-Date: 2004-09-06 18:03+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -30,8 +30,13 @@ msgstr "Provider"
 msgid "portal_type_DummyPortlet_title"
 msgstr "Dummy portlet"
 
-msgid "portal_type_SeachPortlet_title"
-msgstr "Search Portlet"
+#, fuzzy
+msgid "portal_type_SearchPortlet_title"
+msgstr "Search portlet"
+
+#, fuzzy
+msgid "portal_type_InternalLinksPortlet_title"
+msgstr "Internal links portlet"
 
 msgid "action_portlets"
 msgstr "Manage portlets"
@@ -39,3 +44,5 @@ msgstr "Manage portlets"
 msgid "action_canvas"
 msgstr "Layout"
 
+msgid "cpsportlets_internallinks_links_label"
+msgstr "Internal links"

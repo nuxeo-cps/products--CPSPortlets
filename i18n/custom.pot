@@ -23,11 +23,17 @@ msgstr ""
 msgid "portal_type_DummyPortlet_title"
 msgstr ""
 
-msgid "portal_type_SeachPortlet_title"
+msgid "portal_type_SearchPortlet_title"
+msgstr ""
+
+msgid "portal_type_InternalLinksPortlet_title"
 msgstr ""
 
 msgid "action_portlets"
 msgstr ""
 
 msgid "action_canvas"
+msgstr ""
+
+msgid "cpsportlets_internallinks_links_label"
 msgstr ""
