@@ -32,6 +32,7 @@ Bug fixes:
   of each item is rendered.
 - i18n fr.po fix: "surchargement" => "surcharge"
 - Search Portlet: fixed the contextual search url.
+- added a 'baseurl' cache index for portlets that need to cache the base url.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added an access key to access the portlet management panels.
