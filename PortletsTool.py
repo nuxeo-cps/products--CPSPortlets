@@ -77,7 +77,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def getPortletContainerId(self):
         """Return the id of the portlet container.
         """
-
         return PORTLET_CONTAINER_ID
 
     security.declarePublic('getPortlets')
@@ -169,7 +168,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         portlets = []
         if folder is not None:
             idpc = self.getPortletContainerId()
-            if idpc in folder.objectIds(): 
+            if idpc in folder.objectIds():
                 for obj in getattr(folder, idpc).objectValues():
                     obj = aq_base(obj)
                     if not hasattr(obj, 'isCPSPortlet'):
