@@ -43,7 +43,7 @@ msgstr ""
 #.   <h1>Portlet management</h1>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
 msgid "heading_portlet_manage_form"
-msgstr "Gestion des portlets"
+msgstr "Gérer les portlets"
 
 msgid "label_cpsportlets_provider"
 msgstr "Fournisseur"
