@@ -36,3 +36,5 @@ New internal features:
 - added a 10 minutes timeout on the BreadCrumbs Portlet's cache parameters..
 - converted instance(cls, ListType) to python 2.3's isinstance(cls, list).
   (resp. TupleType => tuple, IntType => int, StringType => str)
+- Search portlet: the search prefix can be the folder inside which the
+  portlet is physically located.

@@ -1,6 +1,7 @@
 <form tal:define="ds options/datastructure;
                   advanced_search_link ds/advanced_search_link;
                   contextual_search_choice ds/contextual_search_choice;
+                  context_is_portlet ds/context_is_portlet;
                   utool nocall:here/portal_url;
                   params here/getSearchFormParams;
                   search_script params/script;
@@ -11,22 +12,32 @@
  method="get" action=""
  tal:attributes="action search_script"
  onsubmit="return checkEmptySearch(this)">
+  <div tal:condition="python: contextual_search_choice and contextual_search"
+   tal:define="id here/getId; id1 string:${id}1; id2 string:${id}2">
+    <tal:block condition="not:context_is_portlet">
+      <label tal:attributes="for id1"
+       i18n:translate="label_search_here">here</label>
+      <input type="radio" name="folder_prefix"
+       tal:attributes="id id1; checked contextualSearch;
+       value python: utool.getRelativeUrl(context)" />
+      <label tal:attributes="for id2"
+       i18n:translate="label_search_all_site">here</label>
+      <input type="radio" name="folder_prefix" value=""
+       tal:attributes="id id2; checked not:contextualSearch" />
+    </tal:block>
+    <tal:block condition="context_is_portlet">
+      <p tal:define="portlet_folder here/getLocalFolder">
+        <input type="hidden" name="folder_prefix"
+         tal:attributes="value python: utool.getRelativeUrl(portlet_folder)" />
+        <tal:block i18n:translate="">cpsportlets_search_in</tal:block>
+        <em tal:content="portlet_folder/title_or_id" />
+      </p>
+    </tal:block>
+  </div>
   <input id="searchGadget" type="text" name="SearchableText" size="20"
    value="" tal:attributes="value request/SearchableText|nothing" />
   <input class="context searchButton" type="submit" value="button_search"
    i18n:attributes="value" />
-  <div tal:condition="python: contextual_search_choice and contextual_search"
-   tal:define="id here/getId; id1 string:${id}1; id2 string:${id}2">
-    <label tal:attributes="for id1"
-     i18n:translate="label_search_here">here</label>
-    <input type="radio" name="folder_prefix"
-     tal:attributes="id id1; checked contextualSearch;
-     value python: utool.getRelativeUrl(context)" />
-    <label tal:attributes="for id2"
-     i18n:translate="label_search_all_site">here</label>
-    <input type="radio" name="folder_prefix" value=""
-     tal:attributes="id id2; checked not:contextualSearch" />
-  </div>
   <div>
     <a href="" tal:condition="advanced_search_link" 
     i18n:translate="cpsportlets_advanced_search"

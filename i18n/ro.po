@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-02-04 14:11default\n"
+"POT-Creation-Date: 2005-02-14 14:25default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -37,11 +37,6 @@ msgstr ""
 #.   <block>Edit</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
-msgstr ""
-
-#.   <input onclick="window.opener.location.reload();window.close()" type="submit" class="standalone" value="button_close" />
-#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
-msgid "button_close"
 msgstr ""
 
 #.   <option disabled="disabled" selected="selected" value="">
@@ -78,6 +73,11 @@ msgstr ""
 #.   <h1>Portlet management</h1>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
 msgid "cpsportlets_portlet_management_heading"
+msgstr ""
+
+#.   <block>cpsportlets_search_in</block>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+msgid "cpsportlets_search_in"
 msgstr ""
 
 #.   <option disabled="disabled" selected="selected" value="">Switch to ...</option>
@@ -169,6 +169,9 @@ msgid "cpsportlets_contextual_search_choice_label"
 msgstr ""
 
 msgid "cpsportlets_action_categories_label"
+msgstr ""
+
+msgid "cpsportlets_context_is_portlet_choice_label"
 msgstr ""
 
 msgid "cpsportlets_content_search_related_label"

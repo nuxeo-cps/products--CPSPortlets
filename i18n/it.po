@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-02-04 14:11default\n"
+"POT-Creation-Date: 2005-02-14 14:25default\n"
 "PO-Revision-Date: 2005-01-25 17:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -41,11 +41,6 @@ msgstr "Titolo dell'elemento"
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
 msgstr "Modifica"
-
-#.   <input onclick="window.opener.location.reload();window.close()" type="submit" class="standalone" value="button_close" />
-#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
-msgid "button_close"
-msgstr "Chiudi"
 
 #.   <option disabled="disabled" selected="selected" value="">
 #.         Add new item ...</option>
@@ -82,6 +77,12 @@ msgstr "contenuto nella cartella"
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
 msgid "cpsportlets_portlet_management_heading"
 msgstr "Gestione dei portlets"
+
+#.   <block>cpsportlets_search_in</block>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+#, fuzzy
+msgid "cpsportlets_search_in"
+msgstr "Ricerca avanzata"
 
 #.   <option disabled="disabled" selected="selected" value="">Switch to ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
@@ -175,6 +176,10 @@ msgstr "Visualizza le opzioni contestuali di ricerca"
 
 msgid "cpsportlets_action_categories_label"
 msgstr "Categorie di azioni da visualizzare"
+
+#, fuzzy
+msgid "cpsportlets_context_is_portlet_choice_label"
+msgstr "Visualizza le opzioni contestuali di ricerca"
 
 msgid "cpsportlets_content_search_related_label"
 msgstr "Oggetti correlati"
@@ -428,6 +433,9 @@ msgstr "Genera un elenco dei risultati ?"
 #, fuzzy
 msgid "cpsportlets_navigation_end_depth_label"
 msgstr "Profondità relativa"
+
+#~ msgid "button_close"
+#~ msgstr "Chiudi"
 
 #~ msgid "cpsportlets_layout_id_label"
 #~ msgstr "Identificativo del layout"

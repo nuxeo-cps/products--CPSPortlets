@@ -95,7 +95,13 @@ msgstr ""
 msgid "cpsportlets_contextual_search_choice_label"
 msgstr ""
 
+msgid "cpsportlets_search_in"
+msgstr ""
+
 msgid "cpsportlets_action_categories_label"
+msgstr ""
+
+msgid "cpsportlets_context_is_portlet_choice_label"
 msgstr ""
 
 msgid "cpsportlets_content_search_related_label"
