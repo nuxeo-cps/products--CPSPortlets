@@ -4,7 +4,8 @@
                    display_site_root ds/display_site_root;
                    first_item ds/first_item;
                    context nocall:options/context_obj|here;
-                   context_url python: context.absolute_url(1);
+                   utool nocall:here/portal_url;
+                   context_url python: utool.getRelativeUrl(context);
                    breadcrumbsItems python: context.getBreadcrumbsItems(url=context_url, display_hidden_folders=display_hidden_folders, first_item=first_item, display_site_root=display_site_root)">
   <form tal:condition="python: display == 'dropdown_list'"
   method="get" action="cpsportlet_url_redirect"

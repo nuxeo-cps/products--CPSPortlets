@@ -3,9 +3,10 @@
                    display ds/display;
                    show_docs ds/show_docs;
                    start_depth python: 2;
-                   context nocall:options/context_obj|here;
-                   context_url python: context.absolute_url(1);
                    root_uid ds/root_uid;
+                   context nocall:options/context_obj|here;
+                   utool nocall:here/portal_url;
+                   context_url python: utool.getRelativeUrl(context);
                    context_rpath python: utool.getRelativeUrl(context)">
   <tal:block condition="python: display == 'vertical_breadcrumbs_menu'">
     <tal:block

@@ -9,9 +9,11 @@ breadcrumb_set = REQUEST.get('breadcrumb_set')
 if breadcrumb_set != None:
     return breadcrumb_set
 
+# XXX cache base_url
+base_url = context.getBaseUrl()
 url = kw.get('url')
 if url is None:
-    url = context.getBaseUrl()
+    url = base_url
 
 display_hidden_folders = int(kw.get('display_hidden_folders', 1))
 display_site_root = int(kw.get('display_site_root', 1))
@@ -27,12 +29,19 @@ checkPermission = context.portal_membership.checkPermission
 items = []
 
 first_item = int(kw.get('first_item', 0))
-bc_range = range(first_item, len(path))
-if first_item > 0 and display_site_root:
-    bc_range.insert(0, 0)
+if first_item == 0 or display_site_root:
+    items.append(
+        {'id': portal_id,
+         'title': portal.title_or_id(),
+         'url': base_url,
+        })
 
+if first_item == 0:
+    first_item = 1
+
+bc_range = range(first_item, len(path) +1)
 for i in bc_range:
-    ipath = path[:i+1]
+    ipath = path[:i]
     obj = portal.restrictedTraverse(ipath)
 
     if not checkPermission('View', obj):
@@ -53,7 +62,7 @@ for i in bc_range:
             continue
 
     rpath = '/'.join(ipath)
-    url = '/%s/' % rpath
+    url = base_url + '%s/' % rpath
     obj_id = ipath[-1]
     if obj_id != portal_id:
         url += 'view'

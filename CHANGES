@@ -17,6 +17,9 @@ Bug fixes:
 - resetInterestingEvents should not set empty events like ((), (), (),)
   this fixes the test_listPortletsInterestedInEvent() test that failed.
 - XHTML fix in the Content Portlet (<h5> not allowed in <a>)
+- Breadcrumbs Portlet / Navigation Portlet with vertical breadcrumbs:
+  added support for Virtual Hosting (/cps => /) to include the site root as
+  the first displayed item.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added an access key to access the portlet management panels.
