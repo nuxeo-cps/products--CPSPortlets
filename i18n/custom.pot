@@ -32,6 +32,9 @@ msgstr ""
 msgid "portal_type_AddItemPortlet_title"
 msgstr ""
 
+msgid "portal_type_BreadcrumbsPortlet_title"
+msgstr ""
+
 msgid "action_portlets"
 msgstr ""
 

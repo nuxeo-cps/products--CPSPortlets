@@ -36,6 +36,7 @@ import PortletsContainer
 import PortletWidgets.DummyWidget
 import PortletWidgets.SearchWidget
 import PortletWidgets.AddItemWidget
+import PortletWidgets.BreadcrumbsWidget
 
 contentClasses = (
     CPSPortlet.CPSPortlet,

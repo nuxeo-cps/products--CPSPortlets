@@ -108,6 +108,7 @@ class CPSPortletsInstaller(CPSInstaller):
                           self.portal.getSearchPortletSchema(),
                           self.portal.getInternalLinksPortletSchema(),
                           self.portal.getAddItemPortletSchema(),
+                          self.portal.getBreadcrumbsPortletSchema(),
                           self.portal.getDummyPortletSchema(),
                          )
 
@@ -124,6 +125,7 @@ class CPSPortletsInstaller(CPSInstaller):
                           self.portal.getSearchPortletLayout(),
                           self.portal.getInternalLinksPortletLayout(),
                           self.portal.getAddItemPortletLayout(),
+                          self.portal.getBreadcrumbsPortletLayout(),
                          )
 
         all_layouts = {}
@@ -139,6 +141,7 @@ class CPSPortletsInstaller(CPSInstaller):
                         self.portal.getSearchPortletType(),
                         self.portal.getInternalLinksPortletType(),
                         self.portal.getAddItemPortletType(),
+                        self.portal.getBreadcrumbsPortletType(),
                        )
 
         all_ptypes = {}

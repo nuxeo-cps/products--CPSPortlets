@@ -1,0 +1,18 @@
+<tal:block define="context python: request.get('context_obj', here);
+                   context_url python: context.absolute_url(1);
+                   context_path request/PATH_TRANSLATED;
+                   breadcrumb_set python: request.get('breadcrumb_set');
+                   breadcrumbsItems python: here.getBreadCrumbs(url=context_url, breadcrumb_set=breadcrumb_set)">
+  <form action="" method="get" action="cpsportlet_url_redirect"
+  tal:attributes="action string:${context/absolute_url}/cpsportlet_url_redirect">
+    <select onchange="submit()" name="url" tal:condition="breadcrumbsItems">
+      <tal:block repeat="item breadcrumbsItems">
+        <option value="" selected=""
+        tal:define="item_url item/url"
+        tal:content="item/title"
+        tal:attributes="value item_url;
+                        selected python:test(item_url == context_url, nothing, 'selected')" />
+      </tal:block>
+    </select>
+  </form>
+</tal:block>

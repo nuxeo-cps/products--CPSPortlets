@@ -15,6 +15,10 @@ widgets = {
     'type': 'CPS Add Item Widget Type',
     'data': {},
     },
+    'CPS Breadcumbs Widget': {
+    'type': 'CPS Breadcrumbs Widget Type',
+    'data': {},
+    },
 }
 
 return widgets
