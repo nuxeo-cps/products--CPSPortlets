@@ -39,10 +39,17 @@ from PortletRAMCache import RAMCache, SimpleRAMCache
 from PortletsContainer import PortletsContainer
 from CPSPortletsPermissions import ManagePortlets
 
+# RAM cache
 PORTLET_CONTAINER_ID = '.cps_portlets'
 PORTLET_RAMCACHE_ID = 'portlets'
+
+# Icons
 ICON_RAMCACHE_ID = 'icons'
 IMG_TAG = '<img src="%s" width="%s" height="%s" alt="%s" border="0" />'
+
+# Actions
+PORTLET_MANAGE_ACTION_ID = 'portlets'
+PORTLET_MANAGE_ACTION_CATEGORY = 'folder'
 
 class PortletsTool(UniqueObject, PortletsContainer):
     """ Portlets Tool
@@ -701,6 +708,43 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 if cache is not None:
                     cache.setEntry(index, img_tag)
         return img_tag
+
+    #
+    # Access key
+    #
+    security.declarePublic('getAccessKey')
+    def getAccessKey(self):
+        """Return the value of the key used to access the tool
+        """
+
+        # XXX make this configurable
+        return '_'
+
+    security.declarePublic('renderAccessKey')
+    def renderAccessKey(self, actions=[], **kw):
+        """Render the access key html markup
+        """
+
+        rendered = ''
+        if not actions:
+            atool = getToolByName(self, 'portal_actions')
+            actions = atool.listFilteredActionsFor(self)
+
+        actions_by_cat = actions.get(PORTLET_MANAGE_ACTION_CATEGORY)
+        if actions_by_cat is None:
+            return rendered
+        portlet_manage_action = [
+            ac for ac in actions_by_cat
+            if ac.get('id') == PORTLET_MANAGE_ACTION_ID]
+
+        if len(portlet_manage_action) > 0:
+            action = portlet_manage_action[0]
+        else:
+            return rendered
+
+        rendered = '<a href="%s" accesskey="%s"></a>' % \
+            (action['url'], self.getAccessKey())
+        return rendered
 
     #
     # Private

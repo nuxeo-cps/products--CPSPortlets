@@ -30,6 +30,8 @@ from Products.CMFCore.CMFCorePermissions import View
 from Products.CPSInstaller.CPSInstaller import CPSInstaller
 
 from Products.CPSPortlets.CPSPortletsPermissions import ManagePortlets
+from Products.CPSPortlets.PortletsTool import PORTLET_MANAGE_ACTION_ID,\
+                                              PORTLET_MANAGE_ACTION_CATEGORY
 
 SECTIONS_ID = 'sections'
 WORKSPACES_ID = 'workspaces'
@@ -85,12 +87,12 @@ class CPSPortletsInstaller(CPSInstaller):
 
         # portlet management screen
         self.verifyAction('portal_actions',
-                id='portlets',
+                id=PORTLET_MANAGE_ACTION_ID,
                 name='action_portlets',
                 action="string:${folder_url}/portlet_manage_form",
                 condition='member',
                 permission=(ManagePortlets,),
-                category='folder',
+                category=PORTLET_MANAGE_ACTION_CATEGORY,
                 visible=1)
 
         self.rebuildPortlets()
