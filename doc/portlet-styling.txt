@@ -235,7 +235,7 @@ The following HTML markup is used to represent boxes: ::
     -- Box Body ------
 
     -- Box Menu ------
-      <ul> (*)
+      <ul class="menu">
         <li><a href="#">item</a></li>
         <li class="selected"><a href="#">selected item</a></li>
         ...
@@ -244,17 +244,13 @@ The following HTML markup is used to represent boxes: ::
     </div>
   </div>
 
-NB:
-  <ul> may be renamed as <ul class="menu">
-  (Requires some cleaning in CPSDefault nuxeo_css2.css)
-
 Indentation:
 ------------
 to set an indentation use the 'margin-left' property in the <a> tag.
 
 for instance: ::
 
-  <ul>
+  <ul class="menu">
     <li><a style="margin-left: 1em" href="#link">Item</a><li>
   </ul>
 
@@ -267,7 +263,7 @@ apply the "noicon" class on <a>.
 
 for example: ::
 
-  <ul>
+  <ul class="menu">
     <li><img src="icon.png" ... /><a class="noicon" href="#link">Item</a><li>
   <ul>
 
@@ -291,7 +287,7 @@ Box styles:
 
 Use the following HTML markup for top-level menu items: ::
 
-      <ul>
+      <ul class="menu">
         <li><a href="#">item</a></li>
         <li class="selected"><a href="#">Selected item</a></li>
         ...
@@ -299,7 +295,7 @@ Use the following HTML markup for top-level menu items: ::
 
 Use the following HTML markup for second-level menu items (*) ::
 
-      <ul>
+      <ul class="menu">
         <li>
           <!-- top level -->
           <a href="#">Top level item 1</a>
