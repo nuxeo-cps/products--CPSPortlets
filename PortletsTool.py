@@ -83,6 +83,37 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
                 returned.append(id)
         return returned
 
+    ######################################################################
 
+    def createPortlet(self, ptype_id, isglobal=1):
+        """Create a new portlet
+
+        Check where it has to be created globally within the tool or locally
+        within the PortletsTool
+
+        returns the id of the new portlet within portal_portlets or Portlet
+        Container or None if something happend
+        """
+
+        # Check if the ptype_id is valid
+        if ptype_id not in self.listPortletTypes():
+            return None
+
+        # Check where we gonna create the portlet
+        destination = self
+
+        # TODO cope with local portlets
+        if not isglobal:
+            pass
+
+        # Create the box nyt
+        # Use the BTreeFolder generateId facility
+        new_id = self.generateId(prefix='portlet_',
+                                 suffix='',
+                                 rand_ceiling=999999999)
+
+        # Don't create proxies but objects.
+        destination.invokeFactory(ptype_id, new_id)
+        return new_id
 
 InitializeClass(PortletsTool)
