@@ -182,7 +182,7 @@ class CPSPortlet(CPSDocument):
         cleanup_date = self.cache_cleanup_date
 
         # ZEO
-        if cleanup_date > last_cleanup:
+        if last_cleanup and cleanup_date > last_cleanup:
             cache.delEntries(portlet_path)
 
         cache_entry = cache.getEntry(index)
