@@ -15,7 +15,7 @@ navigation_portlet_layout = {
                 'hidden_layout_modes': ('view',),
                 'hidden_readonly_layout_modes': (),
                 'hidden_empty': False,
-                'hidden_if_expr': "python: context.display in ['site_map']",
+                'hidden_if_expr': "python: context.display not in ['folder_contents']",
                 'label_false': 'cpsschemas_label_false',
                 'label_true': 'cpsschemas_label_true',
                 'render_format': 'select',
