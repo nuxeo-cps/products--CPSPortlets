@@ -6,7 +6,8 @@
 
 <!-- RSS 2.0 export -->
 <metal:block define-macro="export_rss_2_0">
-TODO: RSS 2.0 export
+  <tal:block define="url string:${request/URL}?export=${export}"
+   content="structure python: here.cpsportlet_export_rss_2_0(box=ds, items=items, url=url, request=request)" />
 </metal:block>
 
 <!-- ATOM export -->

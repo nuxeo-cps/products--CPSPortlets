@@ -1,0 +1,21 @@
+<dtml-call "request.RESPONSE.setHeader('Content-Type', 'text/xml; charset=ISO-8859-15')">
+
+<rss version="2.0">
+  <channel>
+    <title><dtml-var "box['Title']" html_quote></title>
+    <link><dtml-var url html_quote></link>
+    <description><dtml-var "box['Description']" html_quote></description>
+
+    <dtml-in items>
+      <dtml-let item=sequence-item>
+        <item rdf:about="<dtml-var "item['url']" html_quote>">
+          <title><dtml-var "item['title']"></title>
+          <link><dtml-var "item['url']"></link>
+          <guid><dtml-var "item['url']"></guid>
+          <description><dtml-var "item['description']"></description>
+        </item>
+      </dtml-let>
+    </dtml-in>
+
+  </channel>
+</rss>

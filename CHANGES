@@ -34,4 +34,4 @@ New internal features:
 - using cluster 'metadata' instead of layout 'metadata'
 - a layout cluster can be specified in the Content Portlet for rendering items.
 - added an export infrastructure (rss, atom, etc.) for portlets that list items.
-- added an RSS 1.0 exporter
+- added an RSS 1.0 / 2.0 exporter
