@@ -1,15 +1,16 @@
 
 Portlets:
 --------
-- navigation tree
-- folder contents
-- images, ads, ...
 - flash animations
 - event calendar
-- RSS box
 - Presence box
 - CPS3TaskBox
 - ...
+
+Features:
+---------
+- Use the 'livesearch' auto-complete feature in the search portlet
+  http://svn.objectrealms.net/view/public/livesearch/trunk/LiveSearch/
 
 Portlets to port to Plone:
 -------------------------
@@ -22,17 +23,6 @@ Portlet management:
 - set up a portlet browser (image library, RSS channels, folder contents, ...)
   to make it possible for users to create and share portlets.
 
-User interface:
----------------
-- setting the portlet's visibility range
-
-Cache:
------
-
-ESI (Edge-Side-Includes):
-------------------------
-- replacing portlets with <esi> markup
-
 Tests:
 ------
 - cross-platform tests (CMF/CPS/Plone)
@@ -41,7 +31,3 @@ Installation:
 -------------
 - cross-platform installation (CMF/CPS/Plone)
 
-Internal:
--------
-- Create a generic CPSPortletWidget for all portlets based on the
-  CPS Method widget that passes the context object to the render() method.
