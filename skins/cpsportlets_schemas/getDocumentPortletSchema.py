@@ -1,5 +1,5 @@
 document_portlet_schema = {
-    'dummy': {
+    'layout_id': {
         'type': 'CPS String Field',
         'data': {
             'default_expr': 'string:',
@@ -18,6 +18,5 @@ document_portlet_schema = {
         },
     },
 }
-
 schemas = {'document_portlet': document_portlet_schema}
 return schemas

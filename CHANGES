@@ -32,6 +32,7 @@ New features:
 - Add a 'show icons' option in the 'Navigation Portlet'
 - Added a 'Custom Portlet' to allow users to create their own portlets.
 - Added a 'metadata' edition screen
+- The Document Portlet can render different layouts.
 Bug fixes:
 ~~~~~~~~~~
 - storing object paths in the RAM cache instead of the objects themselves

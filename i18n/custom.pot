@@ -277,3 +277,6 @@ msgstr ""
 
 msgid "portal_type_CustomPortlet_description"
 msgstr ""
+
+msgid "cpsportlets_layout_id_label"
+msgstr ""
