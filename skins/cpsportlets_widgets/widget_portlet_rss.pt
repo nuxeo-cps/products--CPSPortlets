@@ -4,7 +4,8 @@
                    first_item ds/first_item;
                    max_items ds/max_items;
                    max_words ds/max_words;
-                   display_description ds/display_description;
+                   display_description ds/display_description|python:0;
+                   display_description python: int(display_description);
                    max_words python: display_description and int(max_words) or 0;
                    rssitems python: here.getRSSItems(channel, int(first_item), int(max_items), int(max_words));
                    link_string ds/link_string"
@@ -17,13 +18,11 @@
                         item_description item/description">
           <a i18n:translate=""
           tal:attributes="href item_url">
-            <strong tal:content="item/title" />
-            <p>
-              <tal:block condition="python: int(display_description)"
-              content="item_description" />
-              <tal:block condition="python: link_string and item_description"
-              content="structure link_string" />
-            </p>
+            <strong tal:content="item/title" /><br/>
+            <small tal:condition="python: item_description and display_description"
+            tal:content="item_description" />
+            <small tal:condition="python: link_string and item_description"
+            tal:content="structure link_string" />
           </a>
         </li>
       </tal:block>

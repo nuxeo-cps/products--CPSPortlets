@@ -16,11 +16,10 @@
                         rendered item/rendered">
           <a tal:attributes="href item_url">
             <strong tal:content="item_title" tal:condition="not:render_items" />
-            <p>
-              <tal:block condition="rendered" content="structure rendered" />
-              <tal:block condition="python: link_string and rendered"
-              i18n:translate="" content="structure link_string" />
-            </p>
+            <br/>
+            <small tal:condition="rendered" tal:content="structure rendered" />
+            <small tal:condition="python: link_string and rendered"
+            i18n:translate="" tal:content="structure link_string" />
           </a>
         </li>
       </tal:block>

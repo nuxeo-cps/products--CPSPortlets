@@ -16,9 +16,11 @@
            tal:attributes="href item/rurl;
                            class linkclass">
           <tal:block condition="show_icons" content="structure item/icon_tag" />
-          <strong tal:omit-tag="not:display_description" tal:content="item/title" />
-          <p tal:condition="python: item_description and display_description"
-            tal:content="item_description" />
+          <strong tal:omit-tag="not:display_description"
+          tal:content="item/title" /><br/>
+          <small
+          tal:condition="python: item_description and display_description"
+          tal:content="item_description" />
         </a>
       </li>
     </ul>
