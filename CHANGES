@@ -7,6 +7,7 @@ New features:
   language-dependent can be set directly in the portlet edit form.
 - Folderish documents listed as documents in folders will not be
   visible if the 'show documents' options is turned off.
+- Text Portlet: the rendering format can be selected ('text', 'stx', 'html')
 Bug fixes:
 ~~~~~~~~~~
 -
