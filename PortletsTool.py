@@ -31,7 +31,12 @@ from Globals import InitializeClass, DTMLFile
 from AccessControl import ClassSecurityInfo, getSecurityManager, Unauthorized
 from Acquisition import aq_base, aq_parent, aq_inner
 
-from Products.CMFCore.permissions import View
+# Fallback to CMF 1.4
+try:
+    from Products.CMFCore.permissions import View
+except ImportError:
+    from Products.CMFCore.CMFCorePermissions import View
+
 from Products.CMFCore.utils import UniqueObject, getToolByName,\
                                   _checkPermission
 

@@ -36,7 +36,11 @@ from Acquisition import aq_inner, aq_parent, aq_base
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.utils import getToolByName, _getViewFor
-from Products.CMFCore.permissions import View, ModifyPortalContent
+try:
+    from Products.CMFCore.permissions import View, ModifyPortalContent
+except ImportError:
+    from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent
+
 from Products.CPSDocument.CPSDocument import CPSDocument
 
 from CPSPortletsPermissions import ManagePortlets

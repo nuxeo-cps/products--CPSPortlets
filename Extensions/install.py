@@ -26,7 +26,13 @@ from zLOG import LOG, INFO, DEBUG
 from Products.ExternalMethod.ExternalMethod import ExternalMethod
 
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.permissions import View
+
+# Fallback to CMF 1.4
+try:
+    from Products.CMFCore.permissions import View
+except ImportError:
+    from Products.CMFCore.CMFCorePermissions import View
+
 from Products.CPSInstaller.CPSInstaller import CPSInstaller
 
 from Products.CPSPortlets.CPSPortletsPermissions import ManagePortlets

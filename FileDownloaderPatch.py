@@ -31,7 +31,12 @@ from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass
 from OFS.Image import File
 
-from Products.CMFCore.permissions import View, ModifyPortalContent
+# Fallback to CMF 1.4
+try:
+    from Products.CMFCore.permissions import View, ModifyPortalContent
+except ImportError:
+    from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent
+
 from CPSPortlet import CPSPortlet
 
 KEYWORD_DOWNLOAD_FILE = 'downloadFile'
