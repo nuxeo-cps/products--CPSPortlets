@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2004-09-04 14:00default\n"
+"POT-Creation-Date: 2004-09-04 14:58default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -53,3 +53,6 @@ msgstr "Portlet pour tester"
 
 msgid "action_portlets"
 msgstr "Gestion des portlets"
+
+msgid "action_canvas"
+msgstr "Mise en page"
