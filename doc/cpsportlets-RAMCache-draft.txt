@@ -115,7 +115,6 @@ Cache parameters are variable names that are used to identify the parameter
 values of the cache index. These are specific to portlet types and could
 be set in the factory type information.
 
-For example:
 - url
   description: the entire currrent url including the query string
   example: 'http://www.yourhost.com/cps/view?pp=1'
@@ -137,6 +136,15 @@ For example:
 
 - request:var
   description: the content of the 'var' request variable
+
+- actions
+  description: all CMF actions in the current context
+  used in: the actions portlet
+
+  actions:cat1,cat2,cat3
+  description: the CMF actions by categories (cat1, cat2, ...)
+  example: actions:object,global,user,maintabs
+  used in: the actions portlet
 
 - no-cache:
   description: the portlet should not be cached.
