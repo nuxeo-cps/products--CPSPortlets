@@ -167,7 +167,10 @@ class PortletsTool(UniqueObject, PortletsContainer):
             if not elem:
                 continue
             obj = getattr(obj, elem)
-            allportlets.extend(self._getFolderPortlets(folder=obj, slot=slot))
+            for portlet in self._getFolderPortlets(folder=obj, slot=slot):
+                if portlet in allportlets:
+                    continue
+                allportlets.append(portlet)
 
         # security check
         for portlet in allportlets:
