@@ -32,8 +32,8 @@ class PortletsTool(UniqueObject, CMFBTreeFolder):
     """ Portlets Tool
     """
 
-    id = 'portal_portlets'
-    meta_type = 'Portlets Tool'
+    id = 'portal_cpsportlets'
+    meta_type = 'CPS Portlets Tool'
 
     def __init__(self):
         """
