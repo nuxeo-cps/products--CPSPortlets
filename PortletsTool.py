@@ -45,6 +45,42 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security = ClassSecurityInfo()
 
+    def listEveryPortlets(self):
+        """List all the portlets over the portal
+
+        Use the catalog.
+        """
+
+        # Use the catalog to get all the portlets and their identifiers
+        catalog = getToolByName(self, 'portal_catalog')
+        portal_types = self.listPortletTypes()
+
+        # Lookup through catalog to get the potlets
+        # We ask the tool to know all the portal_types
+        portlets = catalog.searchResults({'portal_type':portal_types})
+
+        return [x.getObject() for x in portlets]
+
+    def checkIdentifier(self, identifier):
+        """We need to check that the given identifier (coming from the user
+        is not already in use.
+
+        It's necessarly we want to user to be able to use the CPSSkins interface
+        for creating new portlets but as well from an installer too.
+        """
+
+        # Get all portlets all over the portal
+        portlets = self.listEveryPortlets()
+
+        existing_identifiers = []
+
+        for portlet in portlets:
+            existing_identifiers.append(portlet.identifier)
+
+        return (identifier not in existing_identifiers)
+
+    #########################################################################
+
     security.declarePublic('listPortletSlots')
     def listPortletSlots(self):
         """Return all the available slots
@@ -53,15 +89,11 @@ class PortletsTool(UniqueObject, PortletsContainer):
         # Slots defined within portlets defined within the tool
         slots = PortletsContainer.listPortletSlots(self)
 
-        # Cope with local portlets containers
-        catalog = getToolByName(self, 'portal_catalog')
-        portal_types = self.listPortletTypes()
+        # Get all portlets all over the portal
+        portlets = self.listEveryPortlets()
 
-        # Lookup through catalog to get the potlets
-        # We ask the tool to know all the portal_types
-        portlets = catalog.searchResults({'portal_type':portal_types})
         for portlet in portlets:
-            local_slot = portlet.getObject().getSlot()
+            local_slot = portlet.getSlot()
             if local_slot and local_slot not in slots:
                 slots.append(local_slot)
 
@@ -80,6 +112,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
             if getattr(fti, 'cps_is_portlet', 0) == 1:
                 returned.append(id)
         return returned
+
+    ############################################################################
 
     security.declarePublic('getPortletContainerId')
     def getPortletContainerId(self):
