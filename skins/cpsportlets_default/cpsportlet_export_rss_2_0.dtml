@@ -1,6 +1,8 @@
 <dtml-call "request.RESPONSE.setHeader('Content-Type', 'text/xml; charset=ISO-8859-15')">
 <?xml version="1.0" encoding="ISO-8859-15"?>
 
+<dtml-let toW3CDTF="context.cpsportlet_toW3CDTF">
+
 <rss version="2.0">
   <channel>
     <title><dtml-var "portal.Title()"> - <dtml-var "box['Title']" html_quote></title>
@@ -9,7 +11,7 @@
 
     <dtml-in items>
       <dtml-let item=sequence-item>
-        <item rdf:about="<dtml-var "item['url']" html_quote>">
+        <item>
           <title><dtml-var "item['title']"></title>
           <link><dtml-var "item['url']"></link>
           <guid><dtml-var "item['url']"></guid>
@@ -17,7 +19,7 @@
           <dtml-if "item.has_key('metadata')">
             <dtml-let metadata="item['metadata']">
               <dtml-if "metadata.has_key('date')">
-                <pubDate><dtml-var "metadata['date']"></pubDate>
+                <pubDate><dtml-var "toW3CDTF(metadata['date'])"></pubDate>
               </dtml-if>
             </dtml-let>
           </dtml-if>
@@ -27,3 +29,5 @@
 
   </channel>
 </rss>
+
+</dtml-let>
