@@ -27,13 +27,17 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 This is a CPSDocument child base class for portlets
 """
 
-from Globals import InitializeClass
+from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_inner, aq_parent
+from AccessControl import ClassSecurityInfo
+from OFS.PropertyManager import PropertyManager
 
 from Products.CMFCore.utils import getToolByName
 
 from Products.CPSDocument.CPSDocument import CPSDocument
 
+from CPSPortletsPermissions import ManagePortlets
+from PortletGuard import PortletGuard
 
 class CPSPortlet(CPSDocument):
     """ CPS Portlet
@@ -43,6 +47,44 @@ class CPSPortlet(CPSDocument):
 
     meta_type = 'CPS Portlet'
     portal_type = meta_type
+
+    manage_options = (PropertyManager.manage_options +
+                      ({'label': 'Guard', 'action': 'manage_guardForm'},)
+                     )
+
+    security = ClassSecurityInfo()
+    security.declareObjectPublic()
+
+    guard = None
+
+    security.declareProtected(ManagePortlets, 'manage_guardForm')
+    manage_guardForm = DTMLFile('zmi/manage_guardForm', globals())
+
+    # XXX which security declaration?
+    def getGuard(self):
+        return self.guard
+
+    def getTempGuard(self):
+        """Used only by the time of using guard management form."""
+        return PortletGuard().__of__(self)  # Create a temporary guard.
+
+    security.declareProtected(ManagePortlets, 'setGuardProperties')
+    def setGuardProperties(self, props={}, REQUEST=None):
+        """Postprocess guard values."""
+        if REQUEST is not None:
+            # XXX Using REQUEST itself should work.
+            # but update is complaining it is not a dictionary
+            props.update(REQUEST.form)
+
+        # XXX found we must create a new instance every time.
+        # not that much resource friendly...
+        self.guard = PortletGuard()
+        self.guard.changeFromProperties(props)
+
+        if REQUEST is not None:
+            return self.manage_guardForm(REQUEST,
+                management_view='Guard',
+                manage_tabs_message='Guard setting changed.')
 
     def SearchableText(self):
         """ We don't index CPS Portlets

@@ -112,16 +112,21 @@ class PortletsTool(UniqueObject, PortletsContainer):
             bmf = context
 
         # get portlets from the root to current path
-        # XXX no security check is done yet.
-
         portal_url = getToolByName(self, 'portal_url')
         rpath = portal_url.getRelativeContentPath(bmf)
         obj = portal_url.getPortalObject()
         allportlets = []
         for elem in ('',) + rpath:
-            if elem:
-                obj = getattr(obj, elem)
+            if not elem:
+                continue
+            obj = getattr(obj, elem)
             allportlets.extend(self._getFolderPortlets(folder=obj, slot=slot))
+
+        # security check
+        for portlet in allportlets:
+            if portlet.getGuard() and \
+            not portlet.getGuard().check(getSecurityManager(), portlet, context):
+                continue
 
         # sort the portlets
         def cmporder(a, b):
