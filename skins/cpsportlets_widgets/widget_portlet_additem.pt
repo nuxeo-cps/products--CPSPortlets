@@ -4,7 +4,7 @@
            condition="python: checkPerm('Access contents information', context)">
   <form action="content_create" method="get"
   tal:condition="ti"
-  tal:define="creatableItems python: context.getSortedContentTypes(allowed=1)"
+  tal:define="creatableItems context/getCreatableItems"
   tal:attributes="action string:${context/absolute_url}/cpsportlet_additem_create">
     <select onchange="submit()" name="type_name" tal:condition="creatableItems">
       <option i18n:translate="cpsportlet_add_new_item" value="">

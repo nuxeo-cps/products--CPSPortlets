@@ -35,6 +35,10 @@ SECTIONS_ID = 'sections'
 WORKSPACES_ID = 'workspaces'
 SKINS = {'cpsportlets_widgets':
          'Products/CPSPortlets/skins/cpsportlets_widgets',
+# CPS3 specific ---------------------------------------------
+         'cpsportlets_widgets_cps3':
+         'Products/CPSPortlets/skins/cpsportlets_widgets_cps3',
+# -----------------------------------------------------------
          'cpsportlets_default':
          'Products/CPSPortlets/skins/cpsportlets_default',
          'cpsportlets_schemas':
