@@ -93,7 +93,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         ptltool = self.ptltool
 
         # No portlets found already
-        portlets = ptltool.listPortletsInterestedInEvent('fake_event')
+        portlets = ptltool.listPortletsInterestedInEvent('fake_event', '', '')
         self.assertEqual(portlets, [])
 
         new_id = ptltool.createPortlet('Dummy Portlet')
@@ -110,11 +110,11 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         self.assertEqual(res, 1)
 
         events = nportlet.listEvents()
-        self.assertEqual(events, ('fake_event',))
+        self.assertEqual(events, (('fake_event', (), ()),) )
 
         # XXX to be implemented
-        self.assertEqual(nportlet.sendEvent('fake_event'), 0)
-        self.assertEqual(nportlet.sendEvent('fake_eventXXX'), 1)
+        self.assertEqual(nportlet.sendEvent(event_id='fake_event', folder_path='', portal_type=''), 0)
+        self.assertEqual(nportlet.sendEvent(event_id='fake_eventXXX', folder_path='', portal_type=''), 1)
 
     def test_FindCacheEntriesByUser(self):
         user = self.login_id
@@ -132,7 +132,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         # render the portlet
         portlet.render_cache()
         entries = ptltool.findCacheEntriesByUser(user)
-        self.assert_(entries == [(portlet.getPhysicalPath(),)])
+        self.assert_(entries == [(portlet.getPhysicalPath(), 'user_%s' % user)])
 
     def test_invalidateCacheEntriesByUser(self):
         user = self.login_id
@@ -151,7 +151,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         # render the portlet
         portlet.render_cache()
         entries = ptltool.findCacheEntriesByUser(user)
-        self.assert_(entries == [(portlet_path,)])
+        self.assert_(entries == [(portlet_path, 'user_%s' % user)])
         # invalidate the entry for another user
         ptltool.invalidateCacheEntriesByUser('dummy user')
         self.assert_(ptltool.findCacheEntriesByUser(user) != [])
