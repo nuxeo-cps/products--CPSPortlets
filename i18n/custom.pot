@@ -65,7 +65,10 @@ msgstr ""
 msgid "cpsportlets_internallinks_links_label"
 msgstr ""
 
-msgid "psm_portlet_created"
+msgid "cpsportlets_portlet_created_psm"
+msgstr ""
+
+msgid "cpsportlets_content_translated_psm"
 msgstr ""
 
 msgid "cpsportlets_display_dropdown_list_label"

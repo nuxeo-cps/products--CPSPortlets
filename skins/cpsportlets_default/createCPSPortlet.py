@@ -15,7 +15,7 @@ ptltool.insertPortlet(portlet=portlet, **kw)
 portlet_localfolder = portlet.getLocalFolder()
 
 if REQUEST is not None:
-    msg = 'psm_portlet_created'
+    msg = 'cpsportlets_portlet_created_psm'
     redirect_url = portlet.absolute_url() \
                    + '/cpsportlet_edit_form' \
                    + '?portal_status_message=' + msg

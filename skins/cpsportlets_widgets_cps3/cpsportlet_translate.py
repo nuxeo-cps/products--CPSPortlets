@@ -34,7 +34,6 @@ portal = context.portal_url.getPortalObject()
 portal.Localizer.changeLanguage(lang=lang)
 
 if REQUEST is not None:
-    # XXX i18n
-    msg = 'Document translated'
+    msg = 'cpsportlets_content_translated_psm'
     redirect_url = context.absolute_url() + '?portal_status_message=%s' % msg
     REQUEST.RESPONSE.redirect(redirect_url)
