@@ -300,23 +300,27 @@ Use the following HTML markup for top-level menu items: ::
 Use the following HTML markup for second-level menu items (*) ::
 
       <ul>
-        <!-- top level -->
-        <li><a href="#">Top level item 1</a></li>
+        <li>
+          <!-- top level -->
+          <a href="#">Top level item 1</a>
 
-        <!-- sub-level -->
-        <ul>
-           <li><a href="#">Item 1</a></li>
-           <li><a href="#">Item 2</a></li>
-        </ul>
+          <!-- sub-level -->
+          <ul>
+            <li><a href="#">Item 1</a></li>
+            <li><a href="#">Item 2</a></li>
+            <li>...</li>
+          </ul>
+        </li>
 
-        <!-- top level -->
-        <li><a href="#">Top level item 2</a></li>
+        <li>
+          <!-- top level -->
+          <a href="#">Top level item 2</a>
 
-        <!-- sub-level -->
-        <ul>
-           <li><a href="#">Item 1</a></li>
-           <li><a href="#">Item 2</a></li>
-        </ul>
+          <!-- sub-level -->
+          <ul>
+            <li>...</li>
+          </ul>
+        </li>
         ...
       </ul>
 
