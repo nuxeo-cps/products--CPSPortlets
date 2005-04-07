@@ -30,7 +30,7 @@ class TestPortlet(TestPortlets):
         portlet_id = ptltool.createPortlet(ptype_id)
         self.assert_(len(ptltool.items()) == 1)
         portlet = ptltool[portlet_id]
-        portlet.render(context_obj=self.portal)
+        portlet.render(context_obj=self.portal, portlet=portlet)
         self.assert_(portlet.render_js() is not None)
 
 # portal type list
