@@ -1,6 +1,9 @@
-##parameters=context_obj=None, root_uids=[''], REQUEST=None, **kw
+##parameters=context_obj=None, root_uids=None, REQUEST=None, **kw
 
 from Products.CPSNavigation.CPSNavigation import CPSNavigation
+
+if root_uids is None:
+    return []
 
 if REQUEST is not None:
     kw.update(REQUEST.form)
@@ -17,82 +20,68 @@ end_depth = kw.get('end_depth', 0)
 # contextual navigation
 contextual = int(kw.get('contextual', 0)) == 1
 
-# show hidden folders 
+# show hidden folders
 display_hidden_folders = int(kw.get('display_hidden_folders', 0)) == 1
 
 # expand all nodes?
-kw['expand_all'] = int(kw.get('expand', 0)) == 1
+expand_all = int(kw.get('expand', 0)) == 1
 
+# apply view control
+authorized_only = int(kw.get('authorized_only', 1)) == 1
+
+# addition display details
+display_managers = kw.get('display_managers', 0)
+display_description = kw.get('display_description', 0)
+
+current_uid = context_rpath
 if contextual:
-    context_uid = context_rpath
-else:
-    context_uid = None
-
-folder_items = []
-
-# the depth is relative to the current folder in contextual mode
-delta = 0
-if contextual:
-    delta = len(context_rpath.split('/')) -1
+    root_uids = [root_uid for root_uid in root_uids
+                 if current_uid.startswith(root_uid+'/')]
 
 portal_types = context.portal_types
 renderIcon = context.portal_cpsportlets.renderIcon
-
-if root_uids == []:
-    root_uids = ['']
+folder_items = []
 
 for root_uid in root_uids:
-    try:
-        nav = CPSNavigation(context_uid=context_uid,
-                            no_leaves=0,
-                            context=context_obj,
-                            root_uid=root_uid,
-                            request_form=REQUEST.form,
-                            **kw)
-    # root_uid not set
-    except KeyError:
-        nav = None
-
-    if nav is None:
-        continue
-    for tree in nav.getTree():
-        object = tree['object']
-        rpath = object['rpath']
-        ptype = object['portal_type']
-        depth = object['depth'] - delta
-        if depth < 0:
-             continue
-
-        selected = (context_rpath == rpath)
-        open = (context_rpath + '/').startswith(rpath + '/')
-
-        if contextual:
-            if depth == 0 and not selected:
-                 continue
-
-            if not rpath.startswith(context_rpath):
-                continue
-
+    nav = CPSNavigation(current_uid=current_uid,
+                        no_leaves=0,
+                        context=context_obj,
+                        root_uid=root_uid,
+                        expand_all=expand_all,
+                        authorized_only=authorized_only)
+    for node in nav.getTree():
         # filter out items outside the specified depth
-        if start_depth:
-            if depth < start_depth:
-                continue
-        if end_depth:
-            if depth >= end_depth:
-                continue
+        depth = node['level']
+        if start_depth and depth < start_depth:
+            continue
+        if end_depth and depth >= end_depth:
+            continue
+
+        object = node['object']
 
         # filter out hidden folders
-        if not display_hidden_folders:
-            if object.get('hidden_folder', False):
-                continue
+        if not display_hidden_folders and object['hidden_folder']:
+            continue
+
+        # gather data
+        ptype = object['portal_type']
+        selected = node['is_current'] and current_uid == object['rpath']
+        description = ''
+        if display_description:
+            description = object['description']
+        managers = []
+        if display_managers:
+            managers = object['managers']
 
         folder_items.append(
-            {'url': base_url + rpath,
+            {'url': base_url + object['rpath'],
              'title': object['title_or_id'],
              'depth': depth,
              'selected': selected,
-             'open': open,
+             'open': node.get('is_open'),
              'icon_tag': renderIcon(ptype, base_url, ''),
+             'managers': managers,
+             'description': description,
             })
 
 return folder_items
