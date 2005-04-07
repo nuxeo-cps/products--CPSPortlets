@@ -150,7 +150,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-04-06 17:12default\n"
+"POT-Creation-Date: 2005-04-07 17:53default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -198,7 +198,7 @@ msgstr "Editeaza"
 msgid "cpsportlet_add_new_item"
 msgstr "Adauga continut..."
 
-#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
+#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Cautare avansata"
@@ -617,3 +617,15 @@ msgstr "Calea spre director (relativa)"
 
 msgid "cpsportlets_common_syndication_formats_label"
 msgstr ""
+
+#, fuzzy
+msgid "cpsportlets_navigation_display_managers_label"
+msgstr "Afiseaza documentele"
+
+#, fuzzy
+msgid "cpsportlets_navigation_display_description_label"
+msgstr "Afiseaza descrierea"
+
+#, fuzzy
+msgid "cpsportlets_navigation_authorized_only_label"
+msgstr "Afiseaza iconitele documentelor"

@@ -379,3 +379,13 @@ msgstr ""
 
 msgid "cpsportlets_common_syndication_formats_label"
 msgstr ""
+
+msgid "cpsportlets_navigation_display_managers_label"
+msgstr ""
+
+msgid "cpsportlets_navigation_display_description_label"
+msgstr ""
+
+msgid "cpsportlets_navigation_authorized_only_label"
+msgstr ""
+

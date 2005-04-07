@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-04-06 17:12default\n"
+"POT-Creation-Date: 2005-04-07 17:53default\n"
 "PO-Revision-Date: 2005-01-25 17:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -56,7 +56,7 @@ msgstr "Modifica"
 msgid "cpsportlet_add_new_item"
 msgstr "Aggiungi un nuovo elemento ..."
 
-#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
+#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Ricerca avanzata"
@@ -500,6 +500,18 @@ msgstr "Cartella di base:"
 #, fuzzy
 msgid "cpsportlets_common_syndication_formats_label"
 msgstr "Visualizza la descrizione degli elementi ?"
+
+#, fuzzy
+msgid "cpsportlets_navigation_display_managers_label"
+msgstr "Visualizza gli oggetti"
+
+#, fuzzy
+msgid "cpsportlets_navigation_display_description_label"
+msgstr "Visualizza la descrizione degli elementi ?"
+
+#, fuzzy
+msgid "cpsportlets_navigation_authorized_only_label"
+msgstr "Visualizza l'icona degli oggetti"
 
 #~ msgid "Item title"
 #~ msgstr "Titolo dell'elemento"

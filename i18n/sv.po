@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-04-06 17:12default\n"
+"POT-Creation-Date: 2005-04-07 17:53default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -50,7 +50,7 @@ msgstr ""
 msgid "cpsportlet_add_new_item"
 msgstr "Lägg till ny artikel..."
 
-#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
+#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Avancerad sökning"
@@ -466,3 +466,15 @@ msgstr "Visa dokument i samma mapp som den Portlet befinner sig i."
 
 msgid "cpsportlets_common_syndication_formats_label"
 msgstr "Syndikeringsformat"
+
+#, fuzzy
+msgid "cpsportlets_navigation_display_managers_label"
+msgstr "Visa gömda mappar"
+
+#, fuzzy
+msgid "cpsportlets_navigation_display_description_label"
+msgstr "Visa beskrivning"
+
+#, fuzzy
+msgid "cpsportlets_navigation_authorized_only_label"
+msgstr "Visa dokumentikoner"
