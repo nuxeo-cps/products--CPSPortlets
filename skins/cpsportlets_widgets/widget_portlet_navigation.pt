@@ -4,6 +4,7 @@
                    show_docs ds/show_docs;
                    display_hidden_folders ds/display_hidden_folders;
                    display_description ds/display_description;
+                   display_description python: int(display_description);
                    display_managers ds/display_managers;
                    authorized_only ds/authorized_only;
                    start_depth python: 2;
@@ -121,20 +122,19 @@
       <ul class="cpsskinsMenu">
         <li tal:repeat="item folderItems"
         tal:attributes="class python: item['selected'] and 'selected' or None">
-          <p tal:define="style string:margin-left:${item/depth}em"
-             tal:attributes="style style">
-              <a tal:omit-tag='not:item/visible'
-                 tal:attributes="href item/url;
-                                 class linkclass">
-                  <tal:block condition="show_icons"
-                    content="structure item/icon_tag" />
-                  <tal:block content="item/title" />
-              </a>
-          </p>
+          <a tal:define="style string:margin-left:${item/depth}em"
+             tal:condition="item/visible"
+             tal:attributes="style style;
+                             href item/url;
+                             class linkclass">
+            <tal:block condition="show_icons"
+             content="structure item/icon_tag" />
+            <tal:block content="item/title" />
+          </a>
           <p tal:condition="display_description"
              tal:define="style string:margin-left:${item/depth}em"
              tal:attributes="style style"
-             tal:content="item/description">Description</p>
+             tal:content="item/description" />
         </li>
       </ul>
     </tal:block>
@@ -160,16 +160,15 @@
       <ul class="cpsskinsMenu">
         <li tal:repeat="item folderItems"
         tal:attributes="class python: item['selected'] and 'selected' or None">
-          <p tal:define="style string:margin-left:${item/depth}em"
-             tal:attributes="style style">
-              <a tal:omit-tag='not:item/visible'
-                 tal:attributes="href item/url;
-                                 class linkclass">
-                  <tal:block condition="show_icons"
-                    content="structure item/icon_tag" />
-                  <tal:block content="item/title" />
-              </a>
-          </p>
+          <a tal:define="style string:margin-left:${item/depth}em"
+             tal:condition="item/visible"
+             tal:attributes="href item/url;
+                             style style;
+                             class linkclass">
+            <tal:block condition="show_icons"
+              content="structure item/icon_tag" />
+            <tal:block content="item/title" />
+          </a>
           <p tal:condition="display_description"
              tal:define="style string:margin-left:${item/depth}em"
              tal:attributes="style style"

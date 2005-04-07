@@ -79,6 +79,7 @@ for root_uid in root_uids:
              'depth': depth,
              'selected': selected,
              'open': node.get('is_open'),
+             'visible': 1,
              'icon_tag': renderIcon(ptype, base_url, ''),
              'managers': managers,
              'description': description,
