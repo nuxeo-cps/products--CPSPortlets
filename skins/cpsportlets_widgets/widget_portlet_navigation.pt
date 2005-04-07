@@ -3,6 +3,9 @@
                    display ds/display;
                    show_docs ds/show_docs;
                    display_hidden_folders ds/display_hidden_folders;
+                   display_description ds/display_description;
+                   display_managers ds/display_managers;
+                   authorized_only ds/authorized_only;
                    start_depth python: 2;
                    root_uids ds/root_uids;
                    context nocall:options/context_obj|here;
@@ -103,13 +106,23 @@
              show_icons python: int(show_icons);
              contextual ds/contextual;
              end_depth ds/end_depth;
-             folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, contextual=contextual, end_depth=int(end_depth), display_hidden_folders=display_hidden_folders);
+             folderItems python: context.getNavigationItems(
+                 root_uids=root_uids,
+                 context_rpath=context_rpath,
+                 context_obj=context,
+                 contextual=contextual,
+                 end_depth=int(end_depth),
+                 display_hidden_folders=display_hidden_folders,
+                 display_managers=display_managers,
+                 display_description=display_description,
+                 authorized_only=authorized_only);
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul class="cpsskinsMenu">
         <li tal:repeat="item folderItems"
         tal:attributes="class python: item['selected'] and 'selected' or None">
-          <a tal:define="style string:margin-left:${item/depth}em"
+          <a tal:omit-tag='not:item/visible'
+             tal:define="style string:margin-left:${item/depth}em"
              tal:attributes="href item/url;
                              style style;
                              class linkclass">
@@ -117,6 +130,10 @@
              content="structure item/icon_tag" />
             <tal:block content="item/title" />
           </a>
+          <p tal:condition="display_description"
+             tal:define="style string:margin-left:${item/depth}em"
+             tal:attributes="style style"
+             tal:content="item/description">Description</p>
         </li>
       </ul>
     </tal:block>
