@@ -441,10 +441,10 @@ msgid "cpsportlets_navigation_root_uids_label"
 msgstr "Racines d'arborescences"
 
 msgid "cpsportlets_custom_js_render_method_label"
-msgstr "Méthode de rendu javascript (zpt, py, etc.)"
+msgstr "Méthode de rendu JavaScript (zpt, py, etc.)"
 
 msgid "cpsportlets_content_query_title_label"
-msgstr "Recherche sut le titre"
+msgstr "Recherche sur le titre"
 
 msgid "cpsportlets_content_render_items_label"
 msgstr "Générer un rendu des résultats"
