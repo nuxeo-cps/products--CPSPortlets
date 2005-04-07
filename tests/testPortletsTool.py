@@ -17,6 +17,9 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         self.portal.REQUEST.SESSION = {}
         self.portal.REQUEST['AUTHENTICATED_USER'] = self.login_id
         self.ptltool = self.portal.portal_cpsportlets
+        # Remove the default portlets installation
+        if '.cps_portlets' in self.portal.objectIds():
+            self.portal.manage_delObjects(['.cps_portlets'])
 
     def beforeTearDown(self):
         self.logout()
