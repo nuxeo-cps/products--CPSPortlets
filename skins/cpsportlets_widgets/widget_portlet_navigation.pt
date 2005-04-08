@@ -114,9 +114,7 @@
                  contextual=contextual,
                  end_depth=int(end_depth),
                  display_hidden_folders=display_hidden_folders,
-                 display_managers=display_managers,
-                 display_description=display_description,
-                 authorized_only=authorized_only);
+                 );
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul class="cpsskinsMenu">
@@ -130,10 +128,6 @@
             <tal:block condition="show_icons"
              content="structure item/icon_tag" />
             <tal:block content="item/title" />
-            <small tal:condition="display_description"
-             tal:define="style string:margin-left:${item/depth}em"
-             tal:attributes="style style"
-             tal:content="item/description" />
           </a>
         </li>
       </ul>
@@ -154,12 +148,21 @@
                  display_hidden_folders=display_hidden_folders,
                  display_managers=display_managers,
                  display_description=display_description,
-                 authorized_only=authorized_only);
+                 authorized_only=authorized_only
+                 );
               linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul class="cpsskinsMenu">
         <li tal:repeat="item folderItems"
         tal:attributes="class python: item['selected'] and 'selected' or None">
+          <div tal:define="style string:margin-left:${item/depth}em"
+             tal:condition="not:item/visible"
+             tal:attributes="style style;
+                             class linkclass">
+            <tal:block condition="show_icons"
+              content="structure item/icon_tag" />
+            <tal:block content="item/title" />
+          </div>
           <a tal:define="style string:margin-left:${item/depth}em"
              tal:condition="item/visible"
              tal:attributes="href item/url;
@@ -168,11 +171,13 @@
             <tal:block condition="show_icons"
               content="structure item/icon_tag" />
             <tal:block content="item/title" />
-            <small tal:condition="display_description"
-             tal:define="style string:margin-left:${item/depth}em"
-             tal:attributes="style style"
-             tal:content="item/description" />
           </a>
+          <div tal:condition="python:display_description
+                                     and item['description']"
+             class="description"
+             tal:define="style python:'margin-left:%dem' % (item['depth']+1)"
+             tal:attributes="style style"
+             tal:content="item/description">Description</div>
         </li>
       </ul>
     </tal:block>
