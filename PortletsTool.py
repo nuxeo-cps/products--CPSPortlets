@@ -670,7 +670,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
     # RAM cache (portlet, icons, FTI)
     #
     security.declareProtected(ManagePortlets, 'clearCache')
-    def clearCache(self, REQUEST=None, **kw):
+    def clearCache(self, **kw):
         """Clear the cache."""
 
         # Portlets

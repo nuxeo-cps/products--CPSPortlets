@@ -224,7 +224,7 @@ class CPSPortlet(CPSDocument):
         self.cache_cleanup_date = time.time()
 
     security.declarePublic('getCacheObjects')
-    def getCacheObjects(self, REQUEST=None, **kw):
+    def getCacheObjects(self, **kw):
         """Returns the list of cache objects.
         """
 
@@ -235,7 +235,7 @@ class CPSPortlet(CPSDocument):
         params.extend(custom_params)
 
         def getOptions(p):
-            """extract cache parameter options
+            """Extract cache parameter options
             """
             res = []
             for o in p.split(':')[1].split(','):
