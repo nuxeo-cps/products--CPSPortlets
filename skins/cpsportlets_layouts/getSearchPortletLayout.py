@@ -73,7 +73,7 @@ search_portlet_layout = {
                 'fields': ('context_is_portlet',),
                 'is_required': False,
                 'label': '',
-                'label_edit': 'cpsportlets_context_is_portlet_choice_label',
+                'label_edit': 'cpsportlets_search_context_is_portlet_label',
                 'description': '',
                 'help': '',
                 'is_i18n': True,
