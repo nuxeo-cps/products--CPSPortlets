@@ -130,11 +130,11 @@
             <tal:block condition="show_icons"
              content="structure item/icon_tag" />
             <tal:block content="item/title" />
-          </a>
-          <p tal:condition="display_description"
+            <small tal:condition="display_description"
              tal:define="style string:margin-left:${item/depth}em"
              tal:attributes="style style"
              tal:content="item/description" />
+          </a>
         </li>
       </ul>
     </tal:block>
@@ -168,11 +168,11 @@
             <tal:block condition="show_icons"
               content="structure item/icon_tag" />
             <tal:block content="item/title" />
-          </a>
-          <p tal:condition="display_description"
+            <small tal:condition="display_description"
              tal:define="style string:margin-left:${item/depth}em"
              tal:attributes="style style"
-             tal:content="item/description">Description</p>
+             tal:content="item/description" />
+          </a>
         </li>
       </ul>
     </tal:block>
