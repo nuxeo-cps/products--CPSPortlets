@@ -11,6 +11,9 @@ New features:
 - Navigation portlet: added an 'Up to folder parent' display mode.
 - Text portlet: the text content can be translated.
 - Navigation portlet: added an option to show / hide hidden folders
+- Navigation portlet: added an 'Extended site map' display mode along with
+  configuration options (display_description, display_managers,
+  authorized_only)
 Bug fixes:
 ~~~~~~~~~~
 - Removed warnings: replaces CMFCore.CMFCorePermissions by CMFCore.permissions.
