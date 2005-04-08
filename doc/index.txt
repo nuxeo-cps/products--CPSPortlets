@@ -6,6 +6,7 @@ General Documentation
 
 - `Goals <goals.html>`_
 - `Assigning styles to portlets <portlet-styling.html>`_
+- `Portlet creation guidelines <portlet-creation-guidelines.html>`_
 
 Internals
 ---------

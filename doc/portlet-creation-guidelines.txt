@@ -1,0 +1,114 @@
+GUIDELINES FOR PORTLET CREATION
+===============================
+
+Jean-Marc Orliaguet <jmo@chalmers.se>
+
+Last modified: 2005-04-08
+
+
+This documentation presents a series of guidelines to help writing new
+portlets.
+
+
+Portlets can be divided into three categories:
+
+1) Generic portlets
+
+2) Extended portlets
+
+3) Custom portlets
+
+
+Generic portlets:
+-----------------
+
+Generic portlets fulfill very basic functions such as:
+
+- listing the items returned by a catalog search (Content Portlet)
+
+- listing navigation items (Navigation Portlet)
+
+- displaying a text (Text Portlet)
+
+- displaying CMF actions
+
+- ...
+
+For instance under this category, a site map is not necessary a vertical list
+of items represented in a tree-like fashion in the center of the page,
+but it is instead a list of items in a tree structure where all the nodes open.
+The layout used to represent the site map may be a vertical menu,
+horizontal tabs, etc.
+
+The focus is on semantic (not on presentation), hence the HTML used to
+display porlets should be as simple and straightforward as possible,
+i.e. a list is represented in HTML as::
+
+  <ul>
+    <li>...</li>
+    ...
+    <li>...</li>
+  </ul>
+
+
+this HTML code is then used by CPSSkins to display portlets using many
+types of layouts, i.e. in a vertical menu, in horizontal tabs, as a plain
+list of items, etc. (see portlet-styling.txt). The rendering techniques have
+been tested against a series of browsers, and small changes in the HTML code
+may cause the portlet to not be rendered correctly on IE, or Safari, etc.
+
+These portlets are not meant to be extended unless the extension is backward-
+compatible with the original code.
+
+
+Extended portlets:
+------------------
+
+Extended portlets are extensions of generic portlets with specific presentation
+information inside the HTML code. These cannot be used by CPSSkins to create
+horizontal tabs, or menus or any other CSS-based layouts based on precise
+HTML formatting.
+
+These portlets should be configurable through the portlet edit form.
+Every feature should be made optional.
+
+Extended portlets are implemented as new display modes (views):
+(e.g. Site map (generic) -> Extended Site Map (extended))
+
+
+Custom portlets:
+----------------
+
+Custom portlets are too specialized to be stream-lined or be made configurable. 
+They are based on templates (.zpt, .dtml) or PythonScripts and they have no
+configuration options.
+
+
+When creating a new portlet, first see where it fits best. Each portlet
+follows a certain logic for obtaining content:
+
+- the Content Portlet fetches its content from the portal catalog
+
+- the Navigation portlet fetches its content from a navigational structure
+   (cf CPSNavigation)
+
+- the Action Portlet uses CMF actions
+
+- the Document Portlet renders CPS Documents
+
+- ...
+
+
+Getting started:
+----------------
+
+1) If the portlet can be implemented by modifying an existing portlet while
+   preserving the original HTML code, then add new configuration options to
+   the portlet edit form (deselected by default for backward compatibility).
+
+2) If the portlet can be implemented by extending an existing portlet, but by
+   modifying the underlying HTML code add a new display mode
+   (e.g. 'Extended folder contents', 'Extended site map').
+
+3) If the portlet is too specific, implement it as a Custom Portlet.
+
