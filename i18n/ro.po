@@ -150,7 +150,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-04-07 17:53default\n"
+"POT-Creation-Date: 2005-04-08 19:25default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -541,6 +541,10 @@ msgid "w__imagelink"
 msgstr "Imagine legatura"
 
 msgid "cpsportlets_nav_display_site_map_label"
+msgstr "Planul site-ului"
+
+#, fuzzy
+msgid "cpsportlets_nav_display_extended_site_map_label"
 msgstr "Planul site-ului"
 
 msgid "portal_type_CustomPortlet_description"

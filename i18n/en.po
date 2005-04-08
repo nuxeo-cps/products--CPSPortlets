@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2005-04-07 17:53default\n"
+"POT-Creation-Date: 2005-04-08 19:25default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -399,6 +399,9 @@ msgstr "Image link"
 
 msgid "cpsportlets_nav_display_site_map_label"
 msgstr "Site map"
+
+msgid "cpsportlets_nav_display_extended_site_map_label"
+msgstr "Extended site map"
 
 msgid "portal_type_CustomPortlet_description"
 msgstr "Displays a rendered method (.zpt, .py, etc.)"
