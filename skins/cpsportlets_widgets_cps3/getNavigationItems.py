@@ -72,6 +72,13 @@ for root_uid in root_uids:
         managers = []
         if display_managers:
             managers = object['managers']
+        # the visible attribute specify wheter or not the current user as the
+        # view permission on the target object: if authorized_only is set to
+        # False, the user can still view the title/description/managers but
+        # cannot directly access the object (no link to it)
+        visible = 1
+        if not authorized_only:
+            visible = object['visible']
 
         folder_items.append(
             {'url': base_url + object['rpath'],
@@ -79,10 +86,10 @@ for root_uid in root_uids:
              'depth': depth,
              'selected': selected,
              'open': node.get('is_open'),
-             'visible': 1,
              'icon_tag': renderIcon(ptype, base_url, ''),
              'managers': managers,
              'description': description,
+             'visible': visible,
             })
 
 return folder_items
