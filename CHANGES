@@ -38,6 +38,7 @@ Bug fixes:
 - UI: Language Portlet added a submit button next to the select widget.
 - cosmetic: replaced <br> separator in Action Portlet with <li>
 - test fix: testPortletWidgets.py
+- test fix by reseting the default environnement setup by CPSDefault.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the
