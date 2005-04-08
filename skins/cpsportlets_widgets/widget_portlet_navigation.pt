@@ -94,7 +94,7 @@
              </a>
            </p>
            <tal:block tal:condition="python: depth == 2">
-             <a tal:content="item/title" tal:attributes="href item/url" />, 
+             <a tal:content="item/title" tal:attributes="href item/url" />,
            </tal:block>
          </tal:block>
        </tal:block>
@@ -135,6 +135,39 @@
   </tal:block>
 
   <tal:block condition="python: display == 'site_map'">
+    <tal:block
+     define="show_icons ds/show_icons;
+             show_icons python: int(show_icons);
+             contextual ds/contextual;
+             end_depth ds/end_depth;
+             folderItems python: context.getNavigationItems(
+                 root_uids=root_uids,
+                 context_rpath=context_rpath,
+                 context_obj=context,
+                 contextual=0, expand=1,
+                 end_depth=int(end_depth),
+                 display_hidden_folders=display_hidden_folders,
+                 );
+             linkclass python: show_icons and 'noicon' or None"
+     condition="folderItems">
+      <ul class="cpsskinsMenu">
+        <li tal:repeat="item folderItems"
+        tal:attributes="class python: item['selected'] and 'selected' or None">
+          <a tal:define="style string:margin-left:${item/depth}em"
+             tal:condition="item/visible"
+             tal:attributes="style style;
+                             href item/url;
+                             class linkclass">
+            <tal:block condition="show_icons"
+             content="structure item/icon_tag" />
+            <tal:block content="item/title" />
+          </a>
+        </li>
+      </ul>
+    </tal:block>
+  </tal:block>
+
+  <tal:block condition="python: display == 'extended_site_map'">
     <tal:block
      define="show_icons ds/show_icons;
              show_icons python: int(show_icons);
