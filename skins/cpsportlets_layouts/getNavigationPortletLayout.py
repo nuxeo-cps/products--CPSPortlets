@@ -150,7 +150,8 @@ navigation_portlet_layout = {
                 'is_i18n': True,
                 'hidden_layout_modes': ('view',),
                 'hidden_empty': False,
-                'hidden_if_expr': "python: context.display != 'site_map'",
+                'hidden_if_expr':
+                    "python: context.display != 'extended_site_map'",
                 'label_false': 'cpsschemas_label_false',
                 'label_true': 'cpsschemas_label_true',
                 'render_format': 'select',
@@ -164,7 +165,8 @@ navigation_portlet_layout = {
                 'is_i18n': True,
                 'hidden_layout_modes': ('view',),
                 'hidden_empty': False,
-                'hidden_if_expr': "python: context.display != 'site_map'",
+                'hidden_if_expr':
+                    "python: context.display != 'extended_site_map'",
                 'label_false': 'cpsschemas_label_false',
                 'label_true': 'cpsschemas_label_true',
                 'render_format': 'select',
@@ -178,7 +180,8 @@ navigation_portlet_layout = {
                 'is_i18n': True,
                 'hidden_layout_modes': ('view',),
                 'hidden_empty': False,
-                'hidden_if_expr': "python: context.display != 'site_map'",
+                'hidden_if_expr':
+                    "python: context.display != 'extended_site_map'",
                 'label_false': 'cpsschemas_label_false',
                 'label_true': 'cpsschemas_label_true',
                 'render_format': 'select',
