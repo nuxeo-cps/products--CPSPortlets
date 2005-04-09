@@ -272,6 +272,21 @@ but the width taken by the menu icon will be removed to leave some extra space
 for an image (e.g. <img>).
 
 
+Item descriptions:
+------------------
+
+use <span class="itemDescription">
+
+for example: ::
+
+  <ul class="cpsskinsMenu">
+    <li>Item title
+      <span class="itemDescription">description</span>
+    </li>
+  </ul>
+
+
+
 STYLING OF HORIZONTAL MENUS
 ===========================
 
@@ -322,6 +337,12 @@ Use the following HTML markup for second-level menu items (*) ::
 
 (*) some additional javascript code is required for IE.
     cf. http://www.alistapart.com/articles/dropdowns/
+
+
+Item descriptions:
+
+- Item description that use the <span class="itemDescription"> HTML markup
+  are hidden in horizontal menus.
 
 
 STYLING OF TEXT
