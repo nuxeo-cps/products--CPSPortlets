@@ -126,3 +126,12 @@ Testing:
 --------
 
 Write non-regression tests on the rendered HTML code.
+
+
+Scripts:
+--------
+
+As obvious as it may seem, do not change the meaning of variables
+returned by scripts (getBreadcrumbs.py, getNavigationItems.py, etc.).
+If you need a new entry, simply add a new key to the dictionary.
+
