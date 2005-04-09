@@ -74,7 +74,7 @@ internallinks_portlet_schema = {
     'syndication_formats': {
         'type': 'CPS String List Field',
         'data': {
-            'default_expr': "python:['rss_1_0']",
+            'default_expr': "python:[]",
             'is_searchabletext': False,
             'acl_read_permissions': '',
             'acl_read_roles': '',

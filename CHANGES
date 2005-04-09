@@ -19,6 +19,7 @@ New features:
   that show a list of items.
 - added a configuration option to display short xml export name in buttons
   i.e. "RSS", "ATOM" instead of "RSS 1.0", "ATOM 0.3"
+- syndication formats are disabled by default.
 Bug fixes:
 ~~~~~~~~~~
 - Removed warnings: replaces CMFCore.CMFCorePermissions by CMFCore.permissions.
