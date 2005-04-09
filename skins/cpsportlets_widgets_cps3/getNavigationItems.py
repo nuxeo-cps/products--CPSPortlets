@@ -73,8 +73,11 @@ for root_uid in root_uids:
 
     for node in nav.getTree():
 
+        # save the node's level
+        level = node['level']
+
         # compute the item's depth
-        depth = node['level'] - delta
+        depth = level - delta
         if depth < 0:
             continue
 
@@ -121,6 +124,7 @@ for root_uid in root_uids:
             {'url': base_url + rpath,
              'title': object['title_or_id'],
              'depth': depth,
+             'level': level,
              'selected': selected,
              'open': open, # node.get('is_open') returns incorrect information
              'icon_tag': renderIcon(ptype, base_url, ''),
