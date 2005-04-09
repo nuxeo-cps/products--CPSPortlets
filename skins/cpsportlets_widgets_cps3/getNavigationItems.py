@@ -48,12 +48,20 @@ if contextual:
     delta = len(context_rpath.split('/')) -1
 
 for root_uid in root_uids:
-    nav = CPSNavigation(current_uid=current_uid,
-                        no_leaves=0,
-                        context=context_obj,
-                        root_uid=root_uid,
-                        expand_all=expand_all,
-                        authorized_only=authorized_only)
+
+    try:
+        nav = CPSNavigation(current_uid=current_uid,
+            no_leaves=0,
+            context=context_obj,
+            root_uid=root_uid,
+            expand_all=expand_all,
+            authorized_only=authorized_only)
+    except KeyError:
+        nav = None
+
+    if nav is None:
+        continue
+
     for node in nav.getTree():
         # filter out items outside the specified depth
         depth = node['level'] - delta
