@@ -3,11 +3,19 @@ GUIDELINES FOR PORTLET CREATION
 
 Jean-Marc Orliaguet <jmo@chalmers.se>
 
-Last modified: 2005-04-08
+Last modified: 2005-04-09
 
 
 This documentation presents a series of guidelines to help writing new
 portlets.
+
+
+Goal:
+-----
+
+The goal is to make it possible to extend existing portlets while preserving
+backward compatibility, i.e. features added in software updates should
+not break the appearance and functionality of existing sites.
 
 
 Portlets can be divided into three categories:
@@ -112,3 +120,9 @@ Getting started:
 
 3) If the portlet is too specific, implement it as a Custom Portlet.
 
+
+
+Testing:
+--------
+
+Write non-regression tests on the rendered HTML code.
