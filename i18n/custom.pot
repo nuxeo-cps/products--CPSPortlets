@@ -383,6 +383,15 @@ msgstr ""
 msgid "cpsportlets_common_syndication_formats_label"
 msgstr ""
 
+msgid "cpsportlets_syndication_rss_1_0_help"
+msgstr ""
+
+msgid "cpsportlets_syndication_rss_2_0_help"
+msgstr ""
+
+msgid "cpsportlets_syndication_atom_0_3_help"
+msgstr ""
+
 msgid "cpsportlets_navigation_display_managers_label"
 msgstr ""
 

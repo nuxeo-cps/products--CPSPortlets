@@ -21,13 +21,17 @@ cache_params = {
         'event_in_folders:(folder_path)',
         'event_on_types:(searchable_types)',
         'baseurl',
+        'current_lang',
         ],
     'Language Portlet': ['object:path,langs,lang', 'current_lang'],
     'Image Portlet': ['baseurl'],
     'Rotating Image Portlet': ['baseurl'],
     'Navigation Portlet': ['no-cache'],
     'Document Portlet': ['no-cache'],
-    'RSS Portlet': ['event_ids:rss_channel_refresh','timeout:10'],
+    'RSS Portlet': ['event_ids:rss_channel_refresh',
+        'timeout:10',
+        'current_lang'
+        ],
 }
 
 return cache_params

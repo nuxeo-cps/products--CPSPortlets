@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-04-08 19:25default\n"
+"POT-Creation-Date: 2005-04-09 14:19default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -37,6 +37,11 @@ msgid ""
 "item_description\" />"
 msgstr ""
 
+#.   <a content="action/title" attributes="href action/url">Action</a>
+#: from ../skins/cpsportlets_widgets/widget_portlet_actions.pt
+msgid "Action"
+msgstr ""
+
 #.   <strong>ID:</strong>
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
 msgid "ID:"
@@ -47,13 +52,23 @@ msgstr ""
 msgid "_Edit_"
 msgstr ""
 
+#.   <input onclick="window.opener.location.reload();window.close()" type="submit" class="standalone" value="button_close" />
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "button_close"
+msgstr ""
+
+#.   <input type="submit" class="context searchButton" value="button_search" />
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+msgid "button_search"
+msgstr ""
+
 #.   <option disabled="disabled" selected="selected" value="">
 #.         Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
 msgstr ""
 
-#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
+#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr ""
@@ -108,6 +123,16 @@ msgstr ""
 #.           </span>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 msgid "cpsportlets_up_to"
+msgstr ""
+
+#.   <label attributes="for id2">here</label>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+msgid "label_search_all_site"
+msgstr ""
+
+#.   <label attributes="for id1">here</label>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+msgid "label_search_here"
 msgstr ""
 
 #.   <span>this export format has not been implemented yet</span>
@@ -470,6 +495,15 @@ msgid "cpsportlets_nav_context_rpath_label"
 msgstr ""
 
 msgid "cpsportlets_common_syndication_formats_label"
+msgstr ""
+
+msgid "cpsportlets_syndication_rss_1_0_help"
+msgstr ""
+
+msgid "cpsportlets_syndication_rss_2_0_help"
+msgstr ""
+
+msgid "cpsportlets_syndication_atom_0_3_help"
 msgstr ""
 
 msgid "cpsportlets_navigation_display_managers_label"

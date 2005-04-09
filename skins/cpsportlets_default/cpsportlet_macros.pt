@@ -39,9 +39,10 @@
   tal:define="vtool here/portal_vocabularies;
               voc vtool/cpsportlets_syndication_formats_voc">
     <a tal:repeat="format formats"
+     i18n:attributes="title"
      tal:omit-tag="not:voc/?format|nothing"
      tal:attributes="href string:${portlet/absolute_url}?export=${format};
-                     title format"
+                     title string:cpsportlets_syndication_${format}_help"
      tal:content="voc/?format|nothing" />
   </div>
   <div style="clear:right"></div>

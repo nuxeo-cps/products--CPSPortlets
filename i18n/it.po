@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-04-08 19:25default\n"
+"POT-Creation-Date: 2005-04-09 14:19default\n"
 "PO-Revision-Date: 2005-01-25 17:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -40,6 +40,11 @@ msgid ""
 "item_description\" />"
 msgstr ""
 
+#.   <a content="action/title" attributes="href action/url">Action</a>
+#: from ../skins/cpsportlets_widgets/widget_portlet_actions.pt
+msgid "Action"
+msgstr ""
+
 #.   <strong>ID:</strong>
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
 msgid "ID:"
@@ -50,13 +55,23 @@ msgstr "Identificativo:"
 msgid "_Edit_"
 msgstr "Modifica"
 
+#.   <input onclick="window.opener.location.reload();window.close()" type="submit" class="standalone" value="button_close" />
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "button_close"
+msgstr ""
+
+#.   <input type="submit" class="context searchButton" value="button_search" />
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+msgid "button_search"
+msgstr ""
+
 #.   <option disabled="disabled" selected="selected" value="">
 #.         Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
 msgstr "Aggiungi un nuovo elemento ..."
 
-#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
+#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Ricerca avanzata"
@@ -115,6 +130,16 @@ msgstr "Crea una versione in ..."
 #, fuzzy
 msgid "cpsportlets_up_to"
 msgstr "Crea una versione in ..."
+
+#.   <label attributes="for id2">here</label>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+msgid "label_search_all_site"
+msgstr ""
+
+#.   <label attributes="for id1">here</label>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+msgid "label_search_here"
+msgstr ""
 
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
@@ -503,6 +528,18 @@ msgstr "Cartella di base:"
 
 #, fuzzy
 msgid "cpsportlets_common_syndication_formats_label"
+msgstr "Visualizza la descrizione degli elementi ?"
+
+#, fuzzy
+msgid "cpsportlets_syndication_rss_1_0_help"
+msgstr "Visualizza la descrizione degli elementi ?"
+
+#, fuzzy
+msgid "cpsportlets_syndication_rss_2_0_help"
+msgstr "Visualizza la descrizione degli elementi ?"
+
+#, fuzzy
+msgid "cpsportlets_syndication_atom_0_3_help"
 msgstr "Visualizza la descrizione degli elementi ?"
 
 #, fuzzy
