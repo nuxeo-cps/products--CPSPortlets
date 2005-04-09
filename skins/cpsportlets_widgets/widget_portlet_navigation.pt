@@ -67,8 +67,10 @@
         <li tal:repeat="item folderItems">
           <a tal:attributes="href item/url">
             <tal:block content="item/title" />
-            <span class="itemDescription" tal:condition="display_description" 
-             tal:content="item/description" />
+            <span class="itemDescription"
+             tal:define="description item/description"
+             tal:condition="python: description and display_description" 
+             tal:content="description" />
           </a>
         </li>
       </ul>
@@ -101,8 +103,10 @@
            </p>
            <tal:block tal:condition="python: depth == 2">
              <a tal:content="item/title" tal:attributes="href item/url" />,
-             <span class="itemDescription" tal:condition="display_description" 
-              tal:content="item/description" />
+             <span class="itemDescription"
+              tal:define="description item/description"
+              tal:condition="python: description and display_description" 
+              tal:content="description" />
            </tal:block>
          </tal:block>
        </tal:block>
@@ -137,8 +141,10 @@
             <tal:block condition="show_icons"
              content="structure item/icon_tag" />
             <tal:block content="item/title" />
-            <span class="itemDescription" tal:condition="display_description" 
-             tal:content="item/description" />
+            <span class="itemDescription"
+             tal:define="description item/description"
+             tal:condition="python: description and display_description" 
+             tal:content="description" />
           </a>
         </li>
       </ul>
@@ -173,8 +179,10 @@
             <tal:block condition="show_icons"
              content="structure item/icon_tag" />
             <tal:block content="item/title" />
-            <span class="itemDescription" tal:condition="display_description" 
-             tal:content="item/description" />
+            <span class="itemDescription"
+             tal:define="description item/description"
+             tal:condition="python: description and display_description" 
+             tal:content="description" />
           </a>
         </li>
       </ul>
@@ -263,8 +271,10 @@
             <tal:block condition="show_icons"
              content="structure subitem/icon_tag" />
             <tal:block content="subitem/title" />
-            <span class="itemDescription" tal:condition="display_description" 
-             tal:content="item/description" />
+            <span class="itemDescription"
+             tal:define="description item/description"
+             tal:condition="python: description and display_description" 
+             tal:content="description" />
           </a>
           </tal:block>
         </li>
