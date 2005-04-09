@@ -13,7 +13,6 @@ class TestPortlets(CPSDefaultTestCase.CPSDefaultTestCase):
     def afterSetUp(self):
         if self.login_id:
             self.login(self.login_id)
-            self.portal.portal_membership.createMemberArea()
 
         self.portal.REQUEST.SESSION = {}
         self.ptltool = self.portal.portal_cpsportlets
