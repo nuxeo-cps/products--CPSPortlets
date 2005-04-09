@@ -42,6 +42,11 @@ portal_types = context.portal_types
 renderIcon = context.portal_cpsportlets.renderIcon
 folder_items = []
 
+# the relative depth is relative to the current folder in contextual mode
+delta = 0
+if contextual:
+    delta = len(context_rpath.split('/')) -1
+
 for root_uid in root_uids:
     nav = CPSNavigation(current_uid=current_uid,
                         no_leaves=0,
@@ -51,7 +56,8 @@ for root_uid in root_uids:
                         authorized_only=authorized_only)
     for node in nav.getTree():
         # filter out items outside the specified depth
-        depth = node['level']
+        depth = node['level'] - delta
+
         if start_depth and depth < start_depth:
             continue
         if end_depth and depth >= end_depth:
