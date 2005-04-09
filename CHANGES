@@ -49,6 +49,8 @@ Bug fixes:
 - test fix by reseting the default environnement setup by CPSDefault.
 - HTML harmonization in the display of item descriptions.
 - Search portlet: i18n label fix
+- temporary fix for incorrect node.get('is_open') information returned by 
+  CPSNavigation
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the

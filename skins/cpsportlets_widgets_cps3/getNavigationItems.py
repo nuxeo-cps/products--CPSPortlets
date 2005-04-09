@@ -59,13 +59,16 @@ for root_uid in root_uids:
 
         object = node['object']
 
+        rpath = object['rpath']
+        open = (context_rpath + '/').startswith(rpath + '/')
+
         # filter out hidden folders
         if not display_hidden_folders and object['hidden_folder']:
             continue
 
         # gather data
         ptype = object['portal_type']
-        selected = node['is_current'] and current_uid == object['rpath']
+        selected = node['is_current'] and current_uid == rpath
         description = ''
         if display_description:
             description = object['description']
@@ -81,11 +84,11 @@ for root_uid in root_uids:
             visible = object['visible']
 
         folder_items.append(
-            {'url': base_url + object['rpath'],
+            {'url': base_url + rpath,
              'title': object['title_or_id'],
              'depth': depth,
              'selected': selected,
-             'open': node.get('is_open'),
+             'open': open, # node.get('is_open') returns incorrect information
              'icon_tag': renderIcon(ptype, base_url, ''),
              'managers': managers,
              'description': description,
