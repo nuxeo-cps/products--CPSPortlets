@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2005-04-09 14:19default\n"
+"POT-Creation-Date: 2005-04-09 17:34default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -27,17 +27,17 @@ msgstr ""
 msgid " Add "
 msgstr ""
 
-#.   <a attributes="href item_url">
-#.               <block content="item/title" /><br />
-#.               <small content="item_description" condition="python: item_description and display_description" />
-#.               <small content="structure link_string" condition="python: link_string and item_description" />
+#.   <a attributes="href item_url" define="display_description python: item_description and display_description">
+#.               <block content="item/title" />
+#.               <span class="itemDescription" content="item_description" condition="display_description" />
+#.               <block content="structure link_string" condition="python: link_string and display_description" />
 #.             </a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_rss.pt
 msgid ""
-"<block content=\"item/title\" /><br /> <small content=\"item_description\" "
-"condition=\"python: item_description and display_description\" /> <small "
-"content=\"structure link_string\" condition=\"python: link_string and "
-"item_description\" />"
+"<block content=\"item/title\" /> <span class=\"itemDescription\" content="
+"\"item_description\" condition=\"display_description\" /> <block content="
+"\"structure link_string\" condition=\"python: link_string and "
+"display_description\" />"
 msgstr ""
 
 #.   <a content="action/title" attributes="href action/url">Action</a>
@@ -508,6 +508,18 @@ msgstr "To the associated RSS newsfeed"
 
 msgid "cpsportlets_syndication_atom_0_3_help"
 msgstr "To the associated ATOM export"
+
+msgid "cpsportlets_syndication_rss_1_0_label"
+msgstr "RSS 1.0"
+
+msgid "cpsportlets_syndication_rss_2_0_label"
+msgstr "RSS 2.0"
+
+msgid "cpsportlets_syndication_atom_0_3_label"
+msgstr "ATOM 0.3"
+
+msgid "cpsportlets_common_short_syndication_formats_label"
+msgstr "Display short formats on export buttons"
 
 msgid "cpsportlets_navigation_display_managers_label"
 msgstr "Display item managers"

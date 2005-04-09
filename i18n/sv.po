@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-04-09 14:19default\n"
+"POT-Creation-Date: 2005-04-09 16:20default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -21,17 +21,17 @@ msgstr ""
 msgid " Add "
 msgstr ""
 
-#.   <a attributes="href item_url">
-#.               <block content="item/title" /><br />
-#.               <small content="item_description" condition="python: item_description and display_description" />
-#.               <small content="structure link_string" condition="python: link_string and item_description" />
+#.   <a attributes="href item_url" define="display_description python: item_description and display_description">
+#.               <block content="item/title" />
+#.               <span class="itemDescription" content="item_description" condition="display_description" />
+#.               <block content="structure link_string" condition="python: link_string and display_description" />
 #.             </a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_rss.pt
 msgid ""
-"<block content=\"item/title\" /><br /> <small content=\"item_description\" "
-"condition=\"python: item_description and display_description\" /> <small "
-"content=\"structure link_string\" condition=\"python: link_string and "
-"item_description\" />"
+"<block content=\"item/title\" /> <span class=\"itemDescription\" content="
+"\"item_description\" condition=\"display_description\" /> <block content="
+"\"structure link_string\" condition=\"python: link_string and "
+"display_description\" />"
 msgstr ""
 
 #.   <a content="action/title" attributes="href action/url">Action</a>
@@ -419,9 +419,14 @@ msgstr "Bildlänk"
 msgid "cpsportlets_nav_display_site_map_label"
 msgstr "Karta över webbplats"
 
-#, fuzzy
-msgid "cpsportlets_nav_display_extended_site_map_label"
-msgstr "Karta över webbplats"
+msgid "cpsportlets_syndication_rss_1_0_label"
+msgstr "RSS 1.0"
+
+msgid "cpsportlets_syndication_rss_2_0_label"
+msgstr "RSS 2.0"
+
+msgid "cpsportlets_syndication_atom_0_3_label"
+msgstr "ATOM 0.3"
 
 msgid "portal_type_CustomPortlet_description"
 msgstr "En Portlet med anpassat innehåll (.zpt, .py, etc.)"
@@ -503,6 +508,15 @@ msgid "cpsportlets_syndication_rss_2_0_help"
 msgstr "Till RSS-feed"
 
 msgid "cpsportlets_syndication_atom_0_3_help"
+msgstr "Till ATOM-feed"
+
+msgid "cpsportlets_syndication_rss_1_0_label"
+msgstr "Till RSS-feed"
+
+msgid "cpsportlets_syndication_rss_2_0_label"
+msgstr "Till RSS-feed"
+
+msgid "cpsportlets_syndication_atom_0_3_label"
 msgstr "Till ATOM-feed"
 
 msgid "cpsportlets_navigation_display_managers_label"

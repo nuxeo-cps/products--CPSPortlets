@@ -150,7 +150,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-04-09 14:19default\n"
+"POT-Creation-Date: 2005-04-09 17:34default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -169,17 +169,17 @@ msgstr ""
 msgid " Add "
 msgstr ""
 
-#.   <a attributes="href item_url">
-#.               <block content="item/title" /><br />
-#.               <small content="item_description" condition="python: item_description and display_description" />
-#.               <small content="structure link_string" condition="python: link_string and item_description" />
+#.   <a attributes="href item_url" define="display_description python: item_description and display_description">
+#.               <block content="item/title" />
+#.               <span class="itemDescription" content="item_description" condition="display_description" />
+#.               <block content="structure link_string" condition="python: link_string and display_description" />
 #.             </a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_rss.pt
 msgid ""
-"<block content=\"item/title\" /><br /> <small content=\"item_description\" "
-"condition=\"python: item_description and display_description\" /> <small "
-"content=\"structure link_string\" condition=\"python: link_string and "
-"item_description\" />"
+"<block content=\"item/title\" /> <span class=\"itemDescription\" content="
+"\"item_description\" condition=\"display_description\" /> <block content="
+"\"structure link_string\" condition=\"python: link_string and "
+"display_description\" />"
 msgstr ""
 
 #.   <a content="action/title" attributes="href action/url">Action</a>
@@ -657,6 +657,22 @@ msgstr "Legenda"
 
 #, fuzzy
 msgid "cpsportlets_syndication_atom_0_3_help"
+msgstr "Legenda"
+
+#, fuzzy
+msgid "cpsportlets_syndication_rss_1_0_label"
+msgstr "Legenda"
+
+#, fuzzy
+msgid "cpsportlets_syndication_rss_2_0_label"
+msgstr "Legenda"
+
+#, fuzzy
+msgid "cpsportlets_syndication_atom_0_3_label"
+msgstr "Legenda"
+
+#, fuzzy
+msgid "cpsportlets_common_short_syndication_formats_label"
 msgstr "Legenda"
 
 #, fuzzy

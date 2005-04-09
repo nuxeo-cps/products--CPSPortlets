@@ -1,9 +1,9 @@
 cpsportlets_syndication_formats_vocabulary = {
     'data': {
         'tuples': (
-            ('rss_1_0', 'RSS 1.0', ''),
-            ('rss_2_0', 'RSS 2.0', ''),
-            ('atom_0_3', 'ATOM', ''),
+            ('rss_1_0', 'RSS', 'cpsportlets_syndication_rss_1_0_label'),
+            ('rss_2_0', 'RSS', 'cpsportlets_syndication_rss_2_0_label'),
+            ('atom_0_3', 'ATOM', 'cpsportlets_syndication_atom_0_3_label'),
         ),
     },
 }

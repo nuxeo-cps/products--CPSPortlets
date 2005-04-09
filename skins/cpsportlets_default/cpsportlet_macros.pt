@@ -33,17 +33,25 @@
 <!-- Display export buttons -->
 <metal:block define-macro="xml_exports"
   tal:define="formats ds/syndication_formats;
+              short_syndication_formats ds/short_syndication_formats|nothing;
               portlet nocall:options/portlet"
   tal:condition="python: formats and portlet">
   <div class="xmlExportButtons"
   tal:define="vtool here/portal_vocabularies;
               voc vtool/cpsportlets_syndication_formats_voc">
-    <a tal:repeat="format formats"
-     i18n:attributes="title"
-     tal:omit-tag="not:voc/?format|nothing"
-     tal:attributes="href string:${portlet/absolute_url}?export=${format};
-                     title string:cpsportlets_syndication_${format}_help"
-     tal:content="voc/?format|nothing" />
+    <tal:block repeat="format formats">
+      <a
+      i18n:attributes="title"
+      tal:omit-tag="not:voc/?format|nothing"
+      tal:attributes="href string:${portlet/absolute_url}?export=${format};
+                      title string:cpsportlets_syndication_${format}_help">
+        <tal:block condition="short_syndication_formats"
+         content="voc/?format|nothing" />
+        <tal:block condition="not:short_syndication_formats"
+         i18n:translate=""
+         content="python:voc.getMsgid(key=format)" />
+      </a>
+    </tal:block>
   </div>
   <div style="clear:right"></div>
 </metal:block>
