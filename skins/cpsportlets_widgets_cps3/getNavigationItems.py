@@ -72,9 +72,13 @@ for root_uid in root_uids:
         continue
 
     for node in nav.getTree():
-        # filter out items outside the specified depth
-        depth = node['level'] - delta
 
+        # compute the item's depth
+        depth = node['level'] - delta
+        if depth < 0:
+            continue
+
+        # filter out items outside the specified depth
         if start_depth and depth < start_depth:
             continue
         if end_depth and depth >= end_depth:
