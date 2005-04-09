@@ -1,4 +1,4 @@
-##parameters=context_obj=None, root_uids=None, REQUEST=None, **kw
+##parameters=context_obj=None, root_uids=[], REQUEST=None, **kw
 
 from Products.CPSNavigation.CPSNavigation import CPSNavigation
 
@@ -52,8 +52,12 @@ delta = 0
 if contextual:
     delta = len(context_rpath.split('/')) -1
 
-for root_uid in root_uids:
+# this is needed to get into the 'for' loop in case root_uid in not set.
+# in that case, the 'context' is used to determine the root_uid.
+if root_uids == []:
+    root_uids = ['']
 
+for root_uid in root_uids:
     try:
         nav = CPSNavigation(current_uid=current_uid,
             no_leaves=0,
