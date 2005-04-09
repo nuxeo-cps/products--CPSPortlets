@@ -66,3 +66,4 @@ New internal features:
 - Portlet cache: added language discrimination for portlets that have the 'i18n'
   attribute set.
 - using "itemDescription" class for item descriptions.
+- updated html_slimmer() to reduce the size of rendered HTML by ~20-25%

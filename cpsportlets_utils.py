@@ -26,5 +26,8 @@ def html_slimmer(html):
     """Reduce the size of HTML code
     """
     html = re.sub(r'>\s+<','> <', html)
+    html = re.sub(r'>\n+<','><', html)
+    html = re.sub(r'>\s\s+','> ', html)
+    html = re.sub(r'\s\s+<',' <', html)
     html = re.sub(r'\n\s+\n','', html)
     return html
