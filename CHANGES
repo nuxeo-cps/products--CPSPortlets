@@ -15,6 +15,8 @@ New features:
   configuration options (display_description, display_managers,
   authorized_only)
 - added a help title on the XML syndication buttons.
+- added a configuration option to display item descriptions for portlets
+  that show a list of items.
 Bug fixes:
 ~~~~~~~~~~
 - Removed warnings: replaces CMFCore.CMFCorePermissions by CMFCore.permissions.
@@ -58,3 +60,4 @@ New internal features:
 - added ATOM 0.3 export
 - Portlet cache: added language discrimination for portlets that have the 'i18n'
   attribute set.
+- using "itemDescription" class for item descriptions.

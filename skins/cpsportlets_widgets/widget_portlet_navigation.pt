@@ -59,11 +59,17 @@
 
   <tal:block condition="python: display == 'folder_contents'">
     <tal:block
-     define="folderItems python: here.getFolderItems(context_obj=context, **dict(ds))"
+     define="folderItems python: here.getFolderItems(
+         context_obj=context,
+         **dict(ds))"
      condition="folderItems">
       <ul class="cpsskinsMenu">
         <li tal:repeat="item folderItems">
-          <a tal:content="item/title" tal:attributes="href item/url" />
+          <a tal:attributes="href item/url">
+            <tal:block content="item/title" />
+            <span class="itemDescription" tal:condition="display_description" 
+             tal:content="item/description" />
+          </a>
         </li>
       </ul>
     </tal:block>
@@ -95,6 +101,8 @@
            </p>
            <tal:block tal:condition="python: depth == 2">
              <a tal:content="item/title" tal:attributes="href item/url" />,
+             <span class="itemDescription" tal:condition="display_description" 
+              tal:content="item/description" />
            </tal:block>
          </tal:block>
        </tal:block>
@@ -113,6 +121,7 @@
                  context_obj=context,
                  contextual=contextual,
                  end_depth=int(end_depth),
+                 display_description=display_description,
                  display_hidden_folders=display_hidden_folders,
                  );
              linkclass python: show_icons and 'noicon' or None"
@@ -128,6 +137,8 @@
             <tal:block condition="show_icons"
              content="structure item/icon_tag" />
             <tal:block content="item/title" />
+            <span class="itemDescription" tal:condition="display_description" 
+             tal:content="item/description" />
           </a>
         </li>
       </ul>
@@ -146,6 +157,7 @@
                  context_obj=context,
                  contextual=0, expand=1,
                  end_depth=int(end_depth),
+                 display_description=display_description,
                  display_hidden_folders=display_hidden_folders,
                  );
              linkclass python: show_icons and 'noicon' or None"
@@ -161,6 +173,8 @@
             <tal:block condition="show_icons"
              content="structure item/icon_tag" />
             <tal:block content="item/title" />
+            <span class="itemDescription" tal:condition="display_description" 
+             tal:content="item/description" />
           </a>
         </li>
       </ul>
@@ -222,7 +236,14 @@
              show_icons python: int(show_icons);
              show_docs ds/show_docs;
              rel_depth ds/rel_depth;
-             folderItems python: context.getNavigationItems(root_uids=root_uids, context_rpath=context_rpath, context_obj=context, start_depth=int(rel_depth), end_depth=int(rel_depth)+1, display_hidden_folders=display_hidden_folders);
+             folderItems python: context.getNavigationItems(
+                 root_uids=root_uids,
+                 context_rpath=context_rpath,
+                 context_obj=context,
+                 start_depth=int(rel_depth),
+                 end_depth=int(rel_depth)+1,
+                 display_description=display_description,
+                 display_hidden_folders=display_hidden_folders);
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul class="cpsskinsMenu">
@@ -242,6 +263,8 @@
             <tal:block condition="show_icons"
              content="structure subitem/icon_tag" />
             <tal:block content="subitem/title" />
+            <span class="itemDescription" tal:condition="display_description" 
+             tal:content="item/description" />
           </a>
           </tal:block>
         </li>

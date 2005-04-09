@@ -40,6 +40,7 @@ getFTIProperty = context.portal_cpsportlets.getFTIProperty
 getRelativeUrl = context.portal_url.getRelativeUrl
 
 display_hidden_folders = int(kw.get('display_hidden_folders', 1))
+display_description = int(kw.get('display_description', 0))
 
 for object in bmf.objectValues():
     # remove objects with ids beginning with '.'
@@ -79,9 +80,20 @@ for object in bmf.objectValues():
         if len(words) > max_title_words:
             title = ' '.join(words[:int(max_title_words)]) + ' ...'
 
+    # description
+    description = ''
+    if display_description:
+        try:
+            content = object.getContent()
+        except AttributeError:
+            pass
+        else:
+            description = getattr(content, 'Description', '')
+
     folder_items.append(
         {'url': base_url + getRelativeUrl(object),
          'title': title,
+         'description': description,
          'icon_tag': renderIcon(ptype, base_url, ''),
         })
 return folder_items

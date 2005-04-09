@@ -17,12 +17,14 @@
         <li tal:define="item_url item/url;
                         item_description item/description">
           <a i18n:translate=""
-          tal:attributes="href item_url">
-            <tal:block content="item/title" /><br/>
-            <small tal:condition="python: item_description and display_description"
-            tal:content="item_description" />
-            <small tal:condition="python: link_string and item_description"
-            tal:content="structure link_string" />
+          tal:attributes="href item_url"
+          tal:define="display_description python: item_description and display_description">
+            <tal:block content="item/title" />
+            <span class="itemDescription"
+             tal:condition="display_description"
+             tal:content="item_description" />
+            <tal:block condition="python: link_string and display_description"
+             tal:content="structure link_string" />
           </a>
         </li>
       </tal:block>
