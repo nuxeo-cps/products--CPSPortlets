@@ -20,6 +20,11 @@ end_depth = kw.get('end_depth', 0)
 # contextual navigation
 contextual = int(kw.get('contextual', 0)) == 1
 
+if contextual:
+    context_uid = context_rpath
+else:
+    context_uid = None
+
 # show hidden folders
 display_hidden_folders = int(kw.get('display_hidden_folders', 0)) == 1
 
@@ -83,6 +88,13 @@ for root_uid in root_uids:
         # gather data
         ptype = object['portal_type']
         selected = node['is_current'] and current_uid == rpath
+
+        if contextual:
+            if depth == 0 and not selected:
+                continue
+            if not rpath.startswith(context_rpath):
+                continue
+
         description = ''
         if display_description:
             description = object['description']
