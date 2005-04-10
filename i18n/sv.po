@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-04-09 16:20default\n"
+"POT-Creation-Date: 2005-04-10 20:49default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -19,20 +19,7 @@ msgstr ""
 #.   <input type="submit" value=" Add " />
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
 msgid " Add "
-msgstr ""
-
-#.   <a attributes="href item_url" define="display_description python: item_description and display_description">
-#.               <block content="item/title" />
-#.               <span class="itemDescription" content="item_description" condition="display_description" />
-#.               <block content="structure link_string" condition="python: link_string and display_description" />
-#.             </a>
-#: from ../skins/cpsportlets_widgets/widget_portlet_rss.pt
-msgid ""
-"<block content=\"item/title\" /> <span class=\"itemDescription\" content="
-"\"item_description\" condition=\"display_description\" /> <block content="
-"\"structure link_string\" condition=\"python: link_string and "
-"display_description\" />"
-msgstr ""
+msgstr " Lägg till "
 
 #.   <a content="action/title" attributes="href action/url">Action</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_actions.pt
@@ -47,17 +34,44 @@ msgstr "ID"
 #.   <block>Edit</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
-msgstr ""
+msgstr "Redigera"
+
+#.   <input name="addwidget_button" type="submit" class="context" value="button_add" />
+#: from ../skins/cpsportlets_default/layout_portlet_edit.pt
+msgid "button_add"
+msgstr "Lägg till"
+
+#.   <a condition="metadata" href="cpsportlet_edit_form">back</a>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "button_back"
+msgstr "Tillbaka"
 
 #.   <input onclick="window.opener.location.reload();window.close()" type="submit" class="standalone" value="button_close" />
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "button_close"
-msgstr ""
+msgstr "Stäng"
+
+#.   <input type="submit" class="destructive" value="button_delete" attributes="name string:deleterow_${repeat/row/index};
+#.                                 onclick python:'return window.confirm(\'%s\')' %
+#.                                   (cpsmcat('description_confirm_delete'), )" />
+#: from ../skins/cpsportlets_default/layout_portlet_edit.pt
+msgid "button_delete"
+msgstr "Ta bort"
+
+#.   <input type="submit" class="context moveDown" value="button_move_down" attributes="name string:downrow_${repeat/row/index}" condition="not:repeat/row/end" />
+#: from ../skins/cpsportlets_default/layout_portlet_edit.pt
+msgid "button_move_down"
+msgstr "Flytta ner"
+
+#.   <input type="submit" class="context moveUp" value="button_move_up" attributes="name string:uprow_${repeat/row/index}" condition="not:repeat/row/start" />
+#: from ../skins/cpsportlets_default/layout_portlet_edit.pt
+msgid "button_move_up"
+msgstr "Flytta upp"
 
 #.   <input type="submit" class="context searchButton" value="button_search" />
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "button_search"
-msgstr ""
+msgstr "Sök"
 
 #.   <option disabled="disabled" selected="selected" value="">
 #.         Add new item ...</option>
@@ -70,7 +84,7 @@ msgstr "Lägg till ny artikel..."
 msgid "cpsportlets_advanced_search"
 msgstr "Avancerad sökning"
 
-#.   <button>OK</button>
+#.   <button type="submit">OK</button>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_button_OK"
 msgstr "OK"
@@ -125,12 +139,12 @@ msgstr "Upp till"
 #.   <label attributes="for id2">here</label>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "label_search_all_site"
-msgstr ""
+msgstr "hela sajten"
 
 #.   <label attributes="for id1">here</label>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "label_search_here"
-msgstr ""
+msgstr "här"
 
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
@@ -413,20 +427,17 @@ msgstr "Kontextuell visning"
 msgid "cpsportlets_display_mode_label"
 msgstr "Visningsläge"
 
+msgid "cpsportlets_display_mode_help"
+msgstr "Portlets märkta med asterisk (*) har en bestämd layout."
+
 msgid "w__imagelink"
 msgstr "Bildlänk"
 
 msgid "cpsportlets_nav_display_site_map_label"
-msgstr "Karta över webbplats"
+msgstr "Webbkarta"
 
-msgid "cpsportlets_syndication_rss_1_0_label"
-msgstr "RSS 1.0"
-
-msgid "cpsportlets_syndication_rss_2_0_label"
-msgstr "RSS 2.0"
-
-msgid "cpsportlets_syndication_atom_0_3_label"
-msgstr "ATOM 0.3"
+msgid "cpsportlets_nav_display_extended_site_map_label"
+msgstr "Expanderad webbkarta*"
 
 msgid "portal_type_CustomPortlet_description"
 msgstr "En Portlet med anpassat innehåll (.zpt, .py, etc.)"
@@ -511,13 +522,16 @@ msgid "cpsportlets_syndication_atom_0_3_help"
 msgstr "Till ATOM-feed"
 
 msgid "cpsportlets_syndication_rss_1_0_label"
-msgstr "Till RSS-feed"
+msgstr "RSS 1.0"
 
 msgid "cpsportlets_syndication_rss_2_0_label"
-msgstr "Till RSS-feed"
+msgstr "RSS 2.0"
 
 msgid "cpsportlets_syndication_atom_0_3_label"
-msgstr "Till ATOM-feed"
+msgstr "ATOM 0.3"
+
+msgid "cpsportlets_common_short_syndication_formats_label"
+msgstr "Använd korta namn i syndikeringsformat"
 
 msgid "cpsportlets_navigation_display_managers_label"
 msgstr "Visa managers av mappar"
