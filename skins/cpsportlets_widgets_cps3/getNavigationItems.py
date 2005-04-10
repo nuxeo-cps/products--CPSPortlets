@@ -108,7 +108,8 @@ for root_uid in root_uids:
 
         description = ''
         if display_description:
-            description = object['description']
+            description = object['description'] # XXX not acquisition safe
+
         managers = []
         if display_managers:
             managers = object['managers']
