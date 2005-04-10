@@ -12,11 +12,13 @@ langs = lc.get_languages()
 dest_langs = []
 
 # checking whether 'addLanguageToProxy()' is supported
-if getattr(context.aq_explicit, 'addLanguageToProxy', None) is None:
+if getattr(context.aq_inner.aq_explicit,
+    'addLanguageToProxy', None) is None:
     return []
 
 # existing language revisions
-if getattr(context.aq_explicit, 'getLanguageRevisions', None) is not None:
+if getattr(context.aq_inner.aq_explicit,
+    'getLanguageRevisions', None) is not None:
     revs = context.getLanguageRevisions().keys()
     for lang in langs:
         if lang in revs:

@@ -7,7 +7,7 @@ if REQUEST is None:
     REQUEST = context.REQUEST
 
 # existing language revisions
-if getattr(context.aq_explicit, 'getLanguageRevisions', None) is None:
+if getattr(context.aq_inner.aq_explicit, 'getLanguageRevisions', None) is None:
     return
 
 revs = context.getLanguageRevisions().keys()

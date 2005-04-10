@@ -8,13 +8,15 @@ if not mtool.checkPermission('Modify portal content', context):
 del_langs = []
 
 # checking whether 'delLanguageFromProxy()' is supported
-if getattr(context.aq_explicit, 'delLanguageFromProxy', None) is None:
+if getattr(context.aq_inner.aq_explicit,
+    'delLanguageFromProxy', None) is None:
     return []
 
 default_lang = context.getDefaultLanguage()
 
 # existing language revisions
-if getattr(context.aq_explicit, 'getLanguageRevisions', None) is not None:
+if getattr(context.aq_inner.aq_explicit,
+    'getLanguageRevisions', None) is not None:
     revs = context.getLanguageRevisions().keys()
 
     # Cannot delete last language

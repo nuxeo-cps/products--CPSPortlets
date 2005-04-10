@@ -18,7 +18,7 @@ if lang in revs:
     return
 
 # checking whether 'addLanguageToProxy()' is supported
-if getattr(context.aq_explicit, 'addLanguageToProxy', None) is None:
+if getattr(context.aq_inner.aq_explicit, 'addLanguageToProxy', None) is None:
     return
 
 # create a language revision in 'lang'

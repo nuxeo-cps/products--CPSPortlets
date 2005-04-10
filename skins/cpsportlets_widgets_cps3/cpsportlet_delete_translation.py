@@ -24,7 +24,7 @@ if len(revs) == 1:
     return
 
 # checking whether 'delLanguageFromProxy()' is implemented
-if getattr(context.aq_explicit, 'delLanguageFromProxy', None) is None:
+if getattr(context.aq_inner.aq_explicit, 'delLanguageFromProxy', None) is None:
     return
 
 # delete the language revision in 'lang'
