@@ -3,7 +3,7 @@ GUIDELINES FOR PORTLET CREATION
 
 Jean-Marc Orliaguet <jmo@chalmers.se>
 
-Last modified: 2005-04-09
+Last modified: 2005-04-10
 
 
 This documentation presents a series of guidelines to help writing new
@@ -59,21 +59,72 @@ i.e. a list is represented in HTML as::
   </ul>
 
 
-this HTML code is then used by CPSSkins to display portlets using many
+this HTML markup is then used by CPSSkins to display portlets using many
 types of layouts, i.e. in a vertical menu, in horizontal tabs, as a plain
 list of items, etc. (see portlet-styling.txt). The rendering techniques have
-been tested against a series of browsers, and small changes in the HTML code
+been tested against a series of browsers, and small changes in the HTML markup 
 may cause the portlet to not be rendered correctly on IE, or Safari, etc.
 
 These portlets are not meant to be extended unless the extension is backward-
-compatible with the original code.
+compatible with the original markup.
+
+Based on the HTML markup CPSSkins uses CSS to add:
+
+ - styling information (color, backgrounds, border styles, etc.)
+   (separating style from content)
+
+ - CSS layouting of portlet items through CPSSkins' 'box layout' option.
+   (separating layout from content)
+
+One limitation of the CPS3 original implementation (cf. CPSBoxes) is that
+the user had to think about the layout before selecting the functionality since
+boxes did not separate content from layout.
+
+The logic in CPSSkins is instead:
+
+ - select the functionality (navigation, text, actions)
+
+ - select the layout
+
+ - select the style
+
+Layout and style can be changed afterwards, without reconfiguring the portlet.
+
+
+Generic portlets are supposed to be moved around the canvas, so one should not
+make assumptions about there size or location. Users should have the freedom to
+place them where they which, by selecting the box layout that they wish to use.
+
+Also the portlet's own layout should not modify the theme's layout (this is
+especially important for CPSSkins tableless renderer).
+
+ - So avoid using fixed widths in HTML / CSS.
+
+ - Do not design them as if they were going to be displayed vertically or
+   horizontally.
+
+ - make sure that the portlet is rendered in the same way in different
+   browsers (IE, Firefox, ...).
+
+
+The contract with the user is:
+..............................
+
+- Generic portlets can be used in conjunction with any box layout.
+
+- Generic portlets can be used in conjunction with any box style.
+
+- Software upgrades will not change the portlet's configuration.
+
+
+For specific layouts or styles design an extended portlet instead.
 
 
 Extended portlets:
 ------------------
 
 Extended portlets are extensions of generic portlets with specific presentation
-information inside the HTML code. These cannot be used by CPSSkins to create
+information inside the HTML markup. These cannot be used by CPSSkins to create
 horizontal tabs, or menus or any other CSS-based layouts based on precise
 HTML formatting.
 
@@ -83,11 +134,23 @@ Every feature should be made optional.
 Extended portlets are implemented as new display modes (views):
 (e.g. Site map (generic) -> Extended Site Map (extended))
 
+They should be marked with an '*' character next to the display view.
+
+
+The contract with the user is:
+..............................
+
+- Extended portlets have a specific layout, they may not be rendered
+  correctly in all box layouts.
+
+- Software upgrades will not change the portlet's configuration /
+  presentation.
+
 
 Custom portlets:
 ----------------
 
-Custom portlets are too specialized to be stream-lined or be made configurable. 
+Custom portlets are too specialized to be streamlined or be made configurable. 
 They are based on templates (.zpt, .dtml) or PythonScripts and they have no
 configuration options.
 
@@ -107,15 +170,21 @@ follows a certain logic for obtaining content:
 - ...
 
 
+The contract with the user is:
+..............................
+
+- Custom portlets may freely be changed on upcoming software updates.
+
+
 Getting started:
 ----------------
 
 1) If the portlet can be implemented by modifying an existing portlet while
-   preserving the original HTML code, then add new configuration options to
+   preserving the original HTML markup, then add new configuration options to
    the portlet edit form (deselected by default for backward compatibility).
 
 2) If the portlet can be implemented by extending an existing portlet, but by
-   modifying the underlying HTML code add a new display mode
+   modifying the underlying HTML markup add a new display mode
    (e.g. 'Extended folder contents', 'Extended site map').
 
 3) If the portlet is too specific, implement it as a Custom Portlet.
@@ -125,7 +194,7 @@ Getting started:
 Testing:
 --------
 
-Write non-regression tests on the rendered HTML code.
+Write non-regression tests on the rendered HTML markup.
 
 
 Scripts:
