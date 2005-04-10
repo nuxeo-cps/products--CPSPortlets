@@ -159,9 +159,9 @@ def getBrainContent():
     return content
 
 items = []
-render_items = int(kw.get('render_items'), 0) == 1
+render_items = int(kw.get('render_items'), 0)
 cluster_id = kw.get('cluster_id')
-display_description = kw.get('display_description')
+display_description = int(kw.get('display_description'), 0)
 
 # Dublin Core / metadata
 getMetaData = kw.get('getMetaData')

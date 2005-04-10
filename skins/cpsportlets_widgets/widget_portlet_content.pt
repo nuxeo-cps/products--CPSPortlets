@@ -17,7 +17,8 @@
           <a tal:attributes="href item_url">
             <tal:block condition="not:render_items"
              content="item_title" />
-            <span class="itemDescription" tal:omit-tag="render_items">
+            <span class="itemDescription"
+             tal:omit-tag="python: render_items or not rendered">
               <tal:block condition="rendered"
                content="structure rendered" />
               <tal:block condition="python: link_string and rendered"

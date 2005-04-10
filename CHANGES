@@ -55,6 +55,8 @@ Bug fixes:
 - temporary fix for incorrect node.get('is_open') information returned by 
   CPSNavigation
 - Language Portlet: the OK <button> is a submit widget.
+- Content Portlet: removed empty description tags. 
+  Taking into account the "Display description" option.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the
