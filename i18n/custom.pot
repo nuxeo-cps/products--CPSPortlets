@@ -299,6 +299,9 @@ msgstr ""
 msgid "cpsportlets_display_mode_label"
 msgstr ""
 
+msgid "cpsportlets_display_mode_help"
+msgstr ""
+
 msgid "w__imagelink"
 msgstr ""
 

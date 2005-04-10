@@ -25,6 +25,7 @@ navigation_portlet_layout = {
             'type': 'Select Widget',
             'data': {
                 'title': '',
+                'help': 'cpsportlets_display_mode_help',
                 'fields': ('display',),
                 'is_required': False,
                 'label_edit': 'cpsportlets_display_mode_label',

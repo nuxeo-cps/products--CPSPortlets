@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2005-04-10 16:15default\n"
+"POT-Creation-Date: 2005-04-10 16:25default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -393,6 +393,9 @@ msgstr "Contextual display"
 
 msgid "cpsportlets_display_mode_label"
 msgstr "Display mode"
+
+msgid "cpsportlets_display_mode_help"
+msgstr "Portlets marked with * have a predetermined layout."
 
 msgid "w__imagelink"
 msgstr "Image link"
