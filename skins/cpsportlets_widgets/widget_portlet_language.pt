@@ -13,7 +13,7 @@
          tal:content="item/title"
          tal:attributes="value item/lang" />
       </select>
-      <button i18n:translate="cpsportlets_button_OK">OK</button>
+      <button type="submit" i18n:translate="cpsportlets_button_OK">OK</button>
     </form>
   </tal:block>
   <tal:block condition="python: action == 'delete_translation'">
@@ -27,7 +27,7 @@
          tal:content="item/title"
          tal:attributes="value item/lang" />
       </select>
-      <button i18n:translate="cpsportlets_button_OK">OK</button>
+      <button type="submit" i18n:translate="cpsportlets_button_OK">OK</button>
     </form>
   </tal:block>
   <tal:block condition="python: action == 'switch_language'">
@@ -41,7 +41,7 @@
          tal:content="item/title"
          tal:attributes="value item/lang" />
       </select>
-      <button i18n:translate="cpsportlets_button_OK">OK</button>
+      <button type="submit" i18n:translate="cpsportlets_button_OK">OK</button>
     </form>
   </tal:block>
   <tal:block condition="python: action == 'change'">
@@ -55,7 +55,7 @@
          tal:content="item/title"
          tal:attributes="value item/lang" />
       </select>
-      <button i18n:translate="cpsportlets_button_OK">OK</button>
+      <button type="submit" i18n:translate="cpsportlets_button_OK">OK</button>
     </form>
   </tal:block>
 </tal:block>
