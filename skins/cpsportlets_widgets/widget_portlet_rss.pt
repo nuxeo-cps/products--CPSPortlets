@@ -16,7 +16,7 @@
       <tal:block repeat="item rssitems">
         <li tal:define="item_url item/url;
                         item_description item/description">
-          <a i18n:translate=""
+          <a
           tal:attributes="href item_url"
           tal:define="display_description python: item_description and display_description">
             <tal:block content="item/title" />
