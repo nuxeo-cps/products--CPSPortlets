@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-04-09 17:34default\n"
+"POT-Creation-Date: 2005-04-10 16:15default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -37,11 +37,6 @@ msgid ""
 "display_description\" />"
 msgstr ""
 
-#.   <a content="action/title" attributes="href action/url">Action</a>
-#: from ../skins/cpsportlets_widgets/widget_portlet_actions.pt
-msgid "Action"
-msgstr ""
-
 #.   <strong>ID:</strong>
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
 msgid "ID:"
@@ -50,16 +45,6 @@ msgstr ""
 #.   <block>Edit</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
-msgstr ""
-
-#.   <input onclick="window.opener.location.reload();window.close()" type="submit" class="standalone" value="button_close" />
-#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
-msgid "button_close"
-msgstr ""
-
-#.   <input type="submit" class="context searchButton" value="button_search" />
-#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
-msgid "button_search"
 msgstr ""
 
 #.   <option disabled="disabled" selected="selected" value="">
@@ -73,7 +58,7 @@ msgstr ""
 msgid "cpsportlets_advanced_search"
 msgstr ""
 
-#.   <button>OK</button>
+#.   <button type="submit">OK</button>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_button_OK"
 msgstr ""
@@ -123,16 +108,6 @@ msgstr ""
 #.           </span>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 msgid "cpsportlets_up_to"
-msgstr ""
-
-#.   <label attributes="for id2">here</label>
-#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
-msgid "label_search_all_site"
-msgstr ""
-
-#.   <label attributes="for id1">here</label>
-#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
-msgid "label_search_here"
 msgstr ""
 
 #.   <span>this export format has not been implemented yet</span>
