@@ -8,7 +8,7 @@
      tal:condition="langItems"
      tal:attributes="action string:${context_url}/cpsportlet_translate">
      <p i18n:translate="cpsportlets_translate_into">Translate into ...</p>
-      <select onchange="submit()" name="lang">
+      <select name="lang">
         <option tal:repeat="item langItems" i18n:translate=""
          tal:content="item/title"
          tal:attributes="value item/lang" />
@@ -22,7 +22,7 @@
      tal:condition="langItems"
      tal:attributes="action string:${context_url}/cpsportlet_delete_translation">
      <p i18n:translate="cpsportlets_delete_translation">Delete translation ...</p>
-      <select onchange="submit()" name="lang">
+      <select name="lang">
         <option tal:repeat="item langItems" i18n:translate=""
          tal:content="item/title"
          tal:attributes="value item/lang" />
@@ -36,7 +36,7 @@
      tal:condition="langItems"
      tal:attributes="action string:${context_url}/cpsportlet_switch_language">
      <p i18n:translate="cpsportlets_switch_language">Switch to ...</p>
-      <select onchange="submit()" name="lang">
+      <select name="lang">
         <option tal:repeat="item langItems" i18n:translate=""
          tal:content="item/title"
          tal:attributes="value item/lang" />

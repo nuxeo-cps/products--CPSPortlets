@@ -57,6 +57,8 @@ Bug fixes:
 - Language Portlet: the OK <button> is a submit widget.
 - Content Portlet: removed empty description tags. 
   Taking into account the "Display description" option.
+- Language Portlet: not submitting the form when the language selection
+  is changed now that there is a submit button.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the
