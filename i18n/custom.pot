@@ -416,3 +416,11 @@ msgstr ""
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr ""
 
+msgid "cpsportlets_extended_site_map_folder"
+msgstr ""
+
+msgid "cpsportlets_extended_site_map_description"
+msgstr ""
+
+msgid "cpsportlets_extended_site_map_managers"
+msgstr ""

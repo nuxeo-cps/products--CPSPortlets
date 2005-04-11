@@ -150,7 +150,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-04-09 17:34default\n"
+"POT-Creation-Date: 2005-04-11 16:24default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -169,24 +169,6 @@ msgstr ""
 msgid " Add "
 msgstr ""
 
-#.   <a attributes="href item_url" define="display_description python: item_description and display_description">
-#.               <block content="item/title" />
-#.               <span class="itemDescription" content="item_description" condition="display_description" />
-#.               <block content="structure link_string" condition="python: link_string and display_description" />
-#.             </a>
-#: from ../skins/cpsportlets_widgets/widget_portlet_rss.pt
-msgid ""
-"<block content=\"item/title\" /> <span class=\"itemDescription\" content="
-"\"item_description\" condition=\"display_description\" /> <block content="
-"\"structure link_string\" condition=\"python: link_string and "
-"display_description\" />"
-msgstr ""
-
-#.   <a content="action/title" attributes="href action/url">Action</a>
-#: from ../skins/cpsportlets_widgets/widget_portlet_actions.pt
-msgid "Action"
-msgstr ""
-
 #.   <strong>ID:</strong>
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
 msgid "ID:"
@@ -197,28 +179,18 @@ msgstr "ID:"
 msgid "_Edit_"
 msgstr "Editeaza"
 
-#.   <input onclick="window.opener.location.reload();window.close()" type="submit" class="standalone" value="button_close" />
-#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
-msgid "button_close"
-msgstr ""
-
-#.   <input type="submit" class="context searchButton" value="button_search" />
-#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
-msgid "button_search"
-msgstr ""
-
 #.   <option disabled="disabled" selected="selected" value="">
 #.         Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
 msgstr "Adauga continut..."
 
-#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
+#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Cautare avansata"
 
-#.   <button>OK</button>
+#.   <button type="submit">OK</button>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_button_OK"
 msgstr ""
@@ -232,6 +204,24 @@ msgstr "Schimba limba..."
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
 msgstr "Sterge versiunea in..."
+
+#.   <td condition="display_description">cpsportlets_extended_site_map_description</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+#, fuzzy
+msgid "cpsportlets_extended_site_map_description"
+msgstr "Planul site-ului"
+
+#.   <td>cpsportlets_extended_site_map_folder</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+#, fuzzy
+msgid "cpsportlets_extended_site_map_folder"
+msgstr "Planul site-ului"
+
+#.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+#, fuzzy
+msgid "cpsportlets_extended_site_map_managers"
+msgstr "Planul site-ului"
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -268,16 +258,6 @@ msgstr "Creeaza o versiune in..."
 #.           </span>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 msgid "cpsportlets_up_to"
-msgstr ""
-
-#.   <label attributes="for id2">here</label>
-#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
-msgid "label_search_all_site"
-msgstr ""
-
-#.   <label attributes="for id1">here</label>
-#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
-msgid "label_search_here"
 msgstr ""
 
 #.   <span>this export format has not been implemented yet</span>
@@ -560,6 +540,10 @@ msgid "cpsportlets_navigation_contextual_label"
 msgstr "Afisare contextuala"
 
 msgid "cpsportlets_display_mode_label"
+msgstr "Mod de afisare"
+
+#, fuzzy
+msgid "cpsportlets_display_mode_help"
 msgstr "Mod de afisare"
 
 msgid "w__imagelink"

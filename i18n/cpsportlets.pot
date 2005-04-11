@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-04-10 16:25default\n"
+"POT-Creation-Date: 2005-04-11 16:24default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -22,19 +22,6 @@ msgstr ""
 #.   <input type="submit" value=" Add " />
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
 msgid " Add "
-msgstr ""
-
-#.   <a attributes="href item_url" define="display_description python: item_description and display_description">
-#.               <block content="item/title" />
-#.               <span class="itemDescription" content="item_description" condition="display_description" />
-#.               <block content="structure link_string" condition="python: link_string and display_description" />
-#.             </a>
-#: from ../skins/cpsportlets_widgets/widget_portlet_rss.pt
-msgid ""
-"<block content=\"item/title\" /> <span class=\"itemDescription\" content="
-"\"item_description\" condition=\"display_description\" /> <block content="
-"\"structure link_string\" condition=\"python: link_string and "
-"display_description\" />"
 msgstr ""
 
 #.   <strong>ID:</strong>
@@ -53,7 +40,7 @@ msgstr ""
 msgid "cpsportlet_add_new_item"
 msgstr ""
 
-#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
+#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr ""
@@ -71,6 +58,21 @@ msgstr ""
 #.   <p>Delete translation ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
+msgstr ""
+
+#.   <td condition="display_description">cpsportlets_extended_site_map_description</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+msgid "cpsportlets_extended_site_map_description"
+msgstr ""
+
+#.   <td>cpsportlets_extended_site_map_folder</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+msgid "cpsportlets_extended_site_map_folder"
+msgstr ""
+
+#.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+msgid "cpsportlets_extended_site_map_managers"
 msgstr ""
 
 #.   <span>To manage portlets please install CPSSkins.</span>
