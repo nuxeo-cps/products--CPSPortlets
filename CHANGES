@@ -59,6 +59,7 @@ Bug fixes:
   Taking into account the "Display description" option.
 - Language Portlet: not submitting the form when the language selection
   is changed now that there is a submit button.
+- Language Portlet: updated cache parameters (30-minute timeout, user)
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the
