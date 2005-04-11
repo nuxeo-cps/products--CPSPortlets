@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-04-11 16:24default\n"
+"POT-Creation-Date: 2005-04-11 19:01default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Redigera"
 msgid "cpsportlet_add_new_item"
 msgstr "Lägg till ny artikel..."
 
-#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
+#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Avancerad sökning"
@@ -56,24 +56,6 @@ msgstr "Ändra språk ..."
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
 msgstr "Ta bort versionen i ..."
-
-#.   <td condition="display_description">cpsportlets_extended_site_map_description</td>
-#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
-msgid "cpsportlets_extended_site_map_description"
-msgstr "Expanderad webbkarta*"
-
-#.   <td>cpsportlets_extended_site_map_folder</td>
-#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
-msgid "cpsportlets_extended_site_map_folder"
-msgstr "Expanderad webbkarta*"
-
-#.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
-#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
-msgid "cpsportlets_extended_site_map_managers"
-msgstr "Expanderad webbkarta*"
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -507,30 +489,3 @@ msgstr "Visa beskrivning av mapp"
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Visa endast auktoriserade mappar"
-
-#~ msgid "button_add"
-#~ msgstr "Lägg till"
-
-#~ msgid "button_back"
-#~ msgstr "Tillbaka"
-
-#~ msgid "button_close"
-#~ msgstr "Stäng"
-
-#~ msgid "button_delete"
-#~ msgstr "Ta bort"
-
-#~ msgid "button_move_down"
-#~ msgstr "Flytta ner"
-
-#~ msgid "button_move_up"
-#~ msgstr "Flytta upp"
-
-#~ msgid "button_search"
-#~ msgstr "Sök"
-
-#~ msgid "label_search_all_site"
-#~ msgstr "hela sajten"
-
-#~ msgid "label_search_here"
-#~ msgstr "här"

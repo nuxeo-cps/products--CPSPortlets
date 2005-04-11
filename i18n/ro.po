@@ -150,7 +150,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-04-11 16:24default\n"
+"POT-Creation-Date: 2005-04-11 19:01default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -185,7 +185,7 @@ msgstr "Editeaza"
 msgid "cpsportlet_add_new_item"
 msgstr "Adauga continut..."
 
-#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
+#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Cautare avansata"
@@ -204,24 +204,6 @@ msgstr "Schimba limba..."
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
 msgstr "Sterge versiunea in..."
-
-#.   <td condition="display_description">cpsportlets_extended_site_map_description</td>
-#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
-msgid "cpsportlets_extended_site_map_description"
-msgstr "Planul site-ului"
-
-#.   <td>cpsportlets_extended_site_map_folder</td>
-#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
-msgid "cpsportlets_extended_site_map_folder"
-msgstr "Planul site-ului"
-
-#.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
-#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
-msgid "cpsportlets_extended_site_map_managers"
-msgstr "Planul site-ului"
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -445,10 +427,6 @@ msgstr "Adancime relativa"
 msgid "cpsportlets_navigation_show_docs_label"
 msgstr "Afiseaza documentele"
 
-#, fuzzy
-msgid "cpsportlets_navigation_display_hidden_folders_label"
-msgstr "Afiseaza documentele"
-
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Afiseaza iconitele documentelor"
 
@@ -542,18 +520,10 @@ msgstr "Afisare contextuala"
 msgid "cpsportlets_display_mode_label"
 msgstr "Mod de afisare"
 
-#, fuzzy
-msgid "cpsportlets_display_mode_help"
-msgstr "Mod de afisare"
-
 msgid "w__imagelink"
 msgstr "Imagine legatura"
 
 msgid "cpsportlets_nav_display_site_map_label"
-msgstr "Planul site-ului"
-
-#, fuzzy
-msgid "cpsportlets_nav_display_extended_site_map_label"
 msgstr "Planul site-ului"
 
 msgid "portal_type_CustomPortlet_description"
@@ -630,43 +600,3 @@ msgstr "Calea spre director (relativa)"
 
 msgid "cpsportlets_common_syndication_formats_label"
 msgstr ""
-
-#, fuzzy
-msgid "cpsportlets_syndication_rss_1_0_help"
-msgstr "Legenda"
-
-#, fuzzy
-msgid "cpsportlets_syndication_rss_2_0_help"
-msgstr "Legenda"
-
-#, fuzzy
-msgid "cpsportlets_syndication_atom_0_3_help"
-msgstr "Legenda"
-
-#, fuzzy
-msgid "cpsportlets_syndication_rss_1_0_label"
-msgstr "Legenda"
-
-#, fuzzy
-msgid "cpsportlets_syndication_rss_2_0_label"
-msgstr "Legenda"
-
-#, fuzzy
-msgid "cpsportlets_syndication_atom_0_3_label"
-msgstr "Legenda"
-
-#, fuzzy
-msgid "cpsportlets_common_short_syndication_formats_label"
-msgstr "Legenda"
-
-#, fuzzy
-msgid "cpsportlets_navigation_display_managers_label"
-msgstr "Afiseaza documentele"
-
-#, fuzzy
-msgid "cpsportlets_navigation_display_description_label"
-msgstr "Afiseaza descrierea"
-
-#, fuzzy
-msgid "cpsportlets_navigation_authorized_only_label"
-msgstr "Afiseaza iconitele documentelor"

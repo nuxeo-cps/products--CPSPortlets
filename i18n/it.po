@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-04-11 16:24default\n"
+"POT-Creation-Date: 2005-04-11 19:01default\n"
 "PO-Revision-Date: 2005-01-25 17:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -43,16 +43,10 @@ msgstr "Modifica"
 msgid "cpsportlet_add_new_item"
 msgstr "Aggiungi un nuovo elemento ..."
 
-#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
+#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Ricerca avanzata"
-
-#.   <button type="submit">OK</button>
-#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
-#, fuzzy
-msgid "cpsportlets_button_OK"
-msgstr "Crea una versione in ..."
 
 #.   <p>Change language ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
@@ -63,24 +57,6 @@ msgstr "Cambia la lingua ..."
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
 msgstr "Elimina la versione in ..."
-
-#.   <td condition="display_description">cpsportlets_extended_site_map_description</td>
-#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
-msgid "cpsportlets_extended_site_map_description"
-msgstr "Mappa del portale"
-
-#.   <td>cpsportlets_extended_site_map_folder</td>
-#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
-msgid "cpsportlets_extended_site_map_folder"
-msgstr "Mappa del portale"
-
-#.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
-#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
-msgid "cpsportlets_extended_site_map_managers"
-msgstr "Mappa del portale"
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -97,12 +73,6 @@ msgstr "contenuto nella cartella"
 msgid "cpsportlets_portlet_management_heading"
 msgstr "Gestione dei portlets"
 
-#.   <block>cpsportlets_search_in</block>
-#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
-#, fuzzy
-msgid "cpsportlets_search_in"
-msgstr "Ricerca avanzata"
-
 #.   <p>Switch to ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_switch_language"
@@ -111,14 +81,6 @@ msgstr "Visualizza la versione in ..."
 #.   <p>Translate into ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_translate_into"
-msgstr "Crea una versione in ..."
-
-#.   <span>Up to
-#.             ${up_id (tal content="item/title")}
-#.           </span>
-#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
-msgid "cpsportlets_up_to"
 msgstr "Crea una versione in ..."
 
 #.   <span>this export format has not been implemented yet</span>
@@ -195,10 +157,6 @@ msgstr "Lista scorrevole"
 msgid "cpsportlets_bcs_display_horizontal_trail_label"
 msgstr "Percorso a sviluppo orizzontale"
 
-#, fuzzy
-msgid "cpsportlets_bcs_display_site_root_label"
-msgstr "Mappa del portale"
-
 msgid "cpsportlets_advanced_search_link_label"
 msgstr ""
 "Visualizza un collegamento verso il modulo di ricerca avanzata del portale"
@@ -209,20 +167,8 @@ msgstr "Visualizza le opzioni contestuali di ricerca"
 msgid "cpsportlets_action_categories_label"
 msgstr "Categorie di azioni da visualizzare"
 
-#, fuzzy
-msgid "cpsportlets_search_context_is_portlet_label"
-msgstr "Visualizza i risultati per:"
-
-#, fuzzy
-msgid "cpsportlets_nav_context_is_portlet_label"
-msgstr "Visualizza i risultati per:"
-
 msgid "cpsportlets_content_search_related_label"
 msgstr "Oggetti correlati"
-
-#, fuzzy
-msgid "cpsportlets_content_search_all_label"
-msgstr "Avvenimenti del giorno"
 
 msgid "cpsportlets_content_search_type_label"
 msgstr "Contenuto:"
@@ -299,22 +245,10 @@ msgstr "Contenuti della cartella corrente"
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Contenuti delle sottocartelle"
 
-#, fuzzy
-msgid "cpsportlets_nav_display_up_to_parent_label"
-msgstr "Mappa del portale"
-
-#, fuzzy
-msgid "cpsportlets_nav_display_collapsible_menu_label"
-msgstr "Menù di navigazione"
-
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Profondità relativa"
 
 msgid "cpsportlets_navigation_show_docs_label"
-msgstr "Visualizza gli oggetti"
-
-#, fuzzy
-msgid "cpsportlets_navigation_display_hidden_folders_label"
 msgstr "Visualizza gli oggetti"
 
 msgid "cpsportlets_navigation_show_icons_label"
@@ -354,10 +288,6 @@ msgid "cpsportlets_image_image_label"
 msgstr "Immagine"
 
 msgid "cpsportlets_image_link_label"
-msgstr "Collegamento"
-
-#, fuzzy
-msgid "cpsportlets_image_caption_label"
 msgstr "Collegamento"
 
 msgid "portal_type_ContentPortlet_description"
@@ -417,30 +347,14 @@ msgstr "Visualizzazione contestuale"
 msgid "cpsportlets_display_mode_label"
 msgstr "Modalità di visualizzazione"
 
-#, fuzzy
-msgid "cpsportlets_display_mode_help"
-msgstr "Modalità di visualizzazione"
-
 msgid "w__imagelink"
 msgstr "Collegamento immagine"
 
 msgid "cpsportlets_nav_display_site_map_label"
 msgstr "Mappa del portale"
 
-#, fuzzy
-msgid "cpsportlets_nav_display_extended_site_map_label"
-msgstr "Mappa del portale"
-
 msgid "portal_type_CustomPortlet_description"
 msgstr "Visualizza la renderizzazione di un metodo (.zpt, .py, etc.)"
-
-#, fuzzy
-msgid "cpsportlets_document_cluster_id_label"
-msgstr "Ricerca sotto il titolo:"
-
-#, fuzzy
-msgid "cpsportlets_document_render_cluster_no_fallback_label"
-msgstr "Genera un elenco dei risultati ?"
 
 msgid "cpsportlet_rot_image_nb_images_label"
 msgstr "Numero di immagini in rotazione"
@@ -480,79 +394,8 @@ msgstr "Ricerca sotto il titolo:"
 msgid "cpsportlets_content_render_items_label"
 msgstr "Genera un elenco dei risultati ?"
 
-#, fuzzy
-msgid "cpsportlets_content_cluster_id_label"
-msgstr "Ricerca sotto il titolo:"
-
 msgid "cpsportlets_common_slot_override_label"
 msgstr "Sovrascrivi i portlets situati ad un livello superiore ?"
 
 msgid "cpsportlets_common_disable_override_label"
 msgstr "Proteggi questo portlet dalla sovrascrittura ?"
-
-#, fuzzy
-msgid "cpsportlets_document_render_container_label"
-msgstr "Genera un elenco dei risultati ?"
-
-#, fuzzy
-msgid "cpsportlets_navigation_end_depth_label"
-msgstr "Profondità relativa"
-
-#, fuzzy
-msgid "cpsportlets_internallinks_max_title_words_label"
-msgstr "Collegamenti interni"
-
-#, fuzzy
-msgid "cpsportlets_internallinks_show_icons_label"
-msgstr "Collegamenti interni"
-
-#, fuzzy
-msgid "cpsportlets_nav_context_rpath_label"
-msgstr "Cartella di base:"
-
-#, fuzzy
-msgid "cpsportlets_common_syndication_formats_label"
-msgstr "Visualizza la descrizione degli elementi ?"
-
-#, fuzzy
-msgid "cpsportlets_syndication_rss_1_0_help"
-msgstr "Visualizza la descrizione degli elementi ?"
-
-#, fuzzy
-msgid "cpsportlets_syndication_rss_2_0_help"
-msgstr "Visualizza la descrizione degli elementi ?"
-
-#, fuzzy
-msgid "cpsportlets_syndication_atom_0_3_help"
-msgstr "Visualizza la descrizione degli elementi ?"
-
-#, fuzzy
-msgid "cpsportlets_syndication_rss_1_0_label"
-msgstr "Visualizza la descrizione degli elementi ?"
-
-#, fuzzy
-msgid "cpsportlets_syndication_rss_2_0_label"
-msgstr "Visualizza la descrizione degli elementi ?"
-
-#, fuzzy
-msgid "cpsportlets_syndication_atom_0_3_label"
-msgstr "Visualizza la descrizione degli elementi ?"
-
-#, fuzzy
-msgid "cpsportlets_common_short_syndication_formats_label"
-msgstr "Visualizza la descrizione degli elementi ?"
-
-#, fuzzy
-msgid "cpsportlets_navigation_display_managers_label"
-msgstr "Visualizza gli oggetti"
-
-#, fuzzy
-msgid "cpsportlets_navigation_display_description_label"
-msgstr "Visualizza la descrizione degli elementi ?"
-
-#, fuzzy
-msgid "cpsportlets_navigation_authorized_only_label"
-msgstr "Visualizza l'icona degli oggetti"
-
-#~ msgid "Item title"
-#~ msgstr "Titolo dell'elemento"
