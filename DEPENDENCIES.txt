@@ -9,5 +9,5 @@
 # - LinguaPlone >= 0.7
 
 # CPS --------------------
-CPSNavigation >= 1.61
+CPSNavigation >= 0.14.1
 CPSRSS
