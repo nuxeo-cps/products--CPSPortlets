@@ -90,6 +90,12 @@ The logic in CPSSkins is instead:
 
 Layout and style can be changed afterwards, without reconfiguring the portlet.
 
+Since box layouts and styles are associated to slots and not to individual
+portlets, it is possible to share portlets between themes or pages while
+avoiding duplication. It is the slot's identifier that determine which portlets
+will be displayed inside the slot. And for portlets that are cached in RAM
+using the same HTML markup independently of the layout / style allows to reduce
+memory usage and increases performance.
 
 Generic portlets are supposed to be moved around the canvas, so one should not
 make assumptions about there size or location. Users should have the freedom to
