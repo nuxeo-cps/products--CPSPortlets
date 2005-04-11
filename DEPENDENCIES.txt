@@ -7,3 +7,7 @@
 # - CPS4CMF nightly build 2004-09-09
 #   http://zope.org/Members/nuxeo/news/cps4cmf
 # - LinguaPlone >= 0.7
+
+# CPS --------------------
+CPSNavigation >= 1.61
+CPSRSS

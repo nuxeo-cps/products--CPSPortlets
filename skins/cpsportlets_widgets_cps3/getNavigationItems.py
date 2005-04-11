@@ -90,7 +90,6 @@ for root_uid in root_uids:
         object = node['object']
 
         rpath = object['rpath']
-        open = (context_rpath + '/').startswith(rpath + '/')
 
         # filter out hidden folders
         if not display_hidden_folders and object['hidden_folder']:
@@ -127,7 +126,7 @@ for root_uid in root_uids:
              'depth': depth,
              'level': level,
              'selected': selected,
-             'open': open, # node.get('is_open') returns incorrect information
+             'open': node.get('is_open'),
              'icon_tag': renderIcon(ptype, base_url, ''),
              'managers': managers,
              'description': description,

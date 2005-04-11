@@ -74,3 +74,4 @@ New internal features:
   attribute set.
 - using "itemDescription" class for item descriptions.
 - updated html_slimmer() to reduce the size of rendered HTML by ~20-25%
+- using CPSNavigation to obtain information about open nodes.
