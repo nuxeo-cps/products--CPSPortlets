@@ -60,6 +60,8 @@ Bug fixes:
 - Language Portlet: not submitting the form when the language selection
   is changed now that there is a submit button.
 - Language Portlet: updated cache parameters (30-minute timeout, user)
+- Internal Links Portlet: catching TypeError expection in the conversion
+  from list to string (metadata information).
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the

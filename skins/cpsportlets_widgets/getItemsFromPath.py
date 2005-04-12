@@ -57,7 +57,10 @@ for path in links:
         if not value or value is 'None':
             continue
         if not isinstance(value, str):
-            value = ', '.join(value)
+            try:
+                value = ', '.join(value)
+            except TypeError:
+                value = ''
         metadata_info[key] = value
 
     rpath = getRelativeUrl(object)
