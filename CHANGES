@@ -62,6 +62,7 @@ Bug fixes:
 - Language Portlet: updated cache parameters (30-minute timeout, user)
 - Internal Links Portlet: catching TypeError expection in the conversion
   from list to string (metadata information).
+- updated the portlet export dictionary format in the ZMI
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - optimized the portlets tool notify_event() method by not fetching the

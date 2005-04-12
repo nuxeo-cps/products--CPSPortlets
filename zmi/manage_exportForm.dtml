@@ -7,7 +7,7 @@
 </p>
 
 <pre>
-'<dtml-var id>': {'type': '<dtml-var getPortletType>',
+    {'type': '<dtml-var getPortletType>',
 <dtml-in dictExport>
 <dtml-let item=sequence-item>
     '<dtml-var sequence-key>': <dtml-var item>,
