@@ -196,17 +196,42 @@ Getting started:
 3) If the portlet is too specific, implement it as a Custom Portlet.
 
 
+Scripts:
+--------
+
+Portlets are usually written in two stages:
+
+- PythonScripts for the presentation logic (i.e. 'Glue scripts').
+ 
+- ZPT (Zope Page Templates) as the XHTML presentation language.
+
+Glue scripts are needed to adapt the data structures used in CPS3's
+API to data structures ready for presentation.
+These scripts are usually called 'getXYZItems.py' and they typically return
+dictionaries or lists of dictionaries.
+
+As obvious as it may seem, do not change the meaning of variables
+returned by scripts (getBreadcrumbs.py, getNavigationItems.py, etc.).
+This could break existing portlets. If you need a new entry, simply add a
+new key to the dictionary.
+
+
+XHTML:
+------
+
+Design portlets according in XHTML 1.0 using the "Strict" flavor.
+
+see http://www.w3.org/MarkUp/
+
+"XHTML 1.0 Strict - Use this when you want really clean structural mark-up,
+free of any markup associated with layout. Use this together with W3C's
+Cascading Style Sheet language (CSS) to get the font, color, and layout
+effects you want."
+
 
 Testing:
 --------
 
-Write non-regression tests on the rendered HTML markup.
-
-
-Scripts:
---------
-
-As obvious as it may seem, do not change the meaning of variables
-returned by scripts (getBreadcrumbs.py, getNavigationItems.py, etc.).
-If you need a new entry, simply add a new key to the dictionary.
+Write non-regression tests on the rendered HTML markup. 
+A test case framework is wanted.
 
