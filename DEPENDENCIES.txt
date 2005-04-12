@@ -11,3 +11,4 @@
 # CPS --------------------
 CPSNavigation >= 0.14.1
 CPSRSS
+CPSSkins
