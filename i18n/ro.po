@@ -147,10 +147,11 @@
 # , 2005.
 # , 2005.
 # , 2005.
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-04-11 19:01default\n"
+"POT-Creation-Date: 2005-04-13 17:23default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -204,6 +205,24 @@ msgstr "Schimba limba..."
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
 msgstr "Sterge versiunea in..."
+
+#.   <td condition="display_description">cpsportlets_extended_site_map_description</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+#, fuzzy
+msgid "cpsportlets_extended_site_map_description"
+msgstr "Description"
+
+#.   <td>cpsportlets_extended_site_map_folder</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+#, fuzzy
+msgid "cpsportlets_extended_site_map_folder"
+msgstr "Répertoire"
+
+#.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+#, fuzzy
+msgid "cpsportlets_extended_site_map_managers"
+msgstr "Responsable(s)"
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -427,6 +446,10 @@ msgstr "Adancime relativa"
 msgid "cpsportlets_navigation_show_docs_label"
 msgstr "Afiseaza documentele"
 
+#, fuzzy
+msgid "cpsportlets_navigation_display_hidden_folders_label"
+msgstr "Afficher les répertoires cachés"
+
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Afiseaza iconitele documentelor"
 
@@ -520,11 +543,19 @@ msgstr "Afisare contextuala"
 msgid "cpsportlets_display_mode_label"
 msgstr "Mod de afisare"
 
+#, fuzzy
+msgid "cpsportlets_display_mode_help"
+msgstr "Les portlets marqués d'un * ont une mise en forme fixée à l'avance."
+
 msgid "w__imagelink"
 msgstr "Imagine legatura"
 
 msgid "cpsportlets_nav_display_site_map_label"
 msgstr "Planul site-ului"
+
+#, fuzzy
+msgid "cpsportlets_nav_display_extended_site_map_label"
+msgstr "Plan de site étendu*"
 
 msgid "portal_type_CustomPortlet_description"
 msgstr "Afiseaza metoda de redare (.zpt, .py, etc.)"
@@ -600,3 +631,43 @@ msgstr "Calea spre director (relativa)"
 
 msgid "cpsportlets_common_syndication_formats_label"
 msgstr ""
+
+#, fuzzy
+msgid "cpsportlets_syndication_rss_1_0_help"
+msgstr "Vers le fil de nouvelles RSS associé"
+
+#, fuzzy
+msgid "cpsportlets_syndication_rss_2_0_help"
+msgstr "Vers le fil de nouvelles RSS associé"
+
+#, fuzzy
+msgid "cpsportlets_syndication_atom_0_3_help"
+msgstr "Vers l'export ATOM associé"
+
+#, fuzzy
+msgid "cpsportlets_syndication_rss_1_0_label"
+msgstr "RSS 1.0"
+
+#, fuzzy
+msgid "cpsportlets_syndication_rss_2_0_label"
+msgstr "RSS 2.0"
+
+#, fuzzy
+msgid "cpsportlets_syndication_atom_0_3_label"
+msgstr "ATOM 0.3"
+
+#, fuzzy
+msgid "cpsportlets_common_short_syndication_formats_label"
+msgstr "Utiliser des noms courts sur les boutons d'export"
+
+#, fuzzy
+msgid "cpsportlets_navigation_display_managers_label"
+msgstr "Afficher les responsables"
+
+#, fuzzy
+msgid "cpsportlets_navigation_display_description_label"
+msgstr "Afficher les descriptions des répertoires"
+
+#, fuzzy
+msgid "cpsportlets_navigation_authorized_only_label"
+msgstr "Afficher uniquement les répertoires autorisés"
