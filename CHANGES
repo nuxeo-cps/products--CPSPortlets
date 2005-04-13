@@ -3,79 +3,10 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-- Navigation Portlet: several tree roots (sections, workspaces) can be
-  specified.
-- Added syndication for RSS Portlet, Content Portlet, Internal Links Portlet.
-- added an option to display item descriptions in the Internal Links Portlet.
-- Content Portlet: added an option to do a search on all existing documents.
-- Navigation portlet: added an 'Up to folder parent' display mode.
-- Text portlet: the text content can be translated.
-- Navigation portlet: added an option to show / hide hidden folders
-- Navigation portlet: added an 'Extended site map' display mode along with
-  configuration options (display_description, display_managers,
-  authorized_only)
-- added a help title on the XML syndication buttons.
-- added a configuration option to display item descriptions for portlets
-  that show a list of items.
-- added a configuration option to display short xml export name in buttons
-  i.e. "RSS", "ATOM" instead of "RSS 1.0", "ATOM 0.3"
-- syndication formats are disabled by default.
-- adding a help message in the portlet edit form to explain the difference
-  between generic and extended portlets.
+-
 Bug fixes:
 ~~~~~~~~~~
-- Removed warnings: replaces CMFCore.CMFCorePermissions by CMFCore.permissions.
-- Added a fallback to CMF 1.4 for CMFCorePermissions since CPSPortlets is used
-  on CPS-3.2.x instances.
-- Action Portlet: updated the computed cache index to make it work with the
-  CMF 1.5 action information representation.
-- removed the 'wf_actions' cache parameter
-  (it is a special case of actions:workflow)
-- Document portlet, Content Portlet: added a fallback in case the 
-  'layout_clusters' property is not set as a list.
-- fine-tuned cache parameters
-- the 'cache_timeout' portlet attribute was not updated according to the
-  specified cache parameter.
-- removed useless 'i18n' attribute for language-dependent portlets.
-  These parameters are set site-wide in 'getPortletCacheParams.py'
-- the cache timeout attribute is updated when the Custom Portlet gets edited
-  and when it contains a 'timeout:...' custom cache parameter.
-- portlet visibility: some invisible portlets were displayed.
-- custom cache parameters are reset for global portlets too.
-- getFolderItems.py did not work behind virtual hosts
-- fixed syndication urls for the Internal Links Portlet.
-- Content Portlet: the sort_on and sort_order options were ignored.
-- Cosmetic: fixed bug #564
-- UI: Language Portlet added a submit button next to the select widget.
-- cosmetic: replaced <br> separator in Action Portlet with <li>
-- test fix: testPortletWidgets.py
-- test fix by reseting the default environnement setup by CPSDefault.
-- HTML harmonization in the display of item descriptions.
-- Search portlet: i18n label fix
-- temporary fix for incorrect node.get('is_open') information returned by 
-  CPSNavigation
-- Language Portlet: the OK <button> is a submit widget.
-- Content Portlet: removed empty description tags. 
-  Taking into account the "Display description" option.
-- Language Portlet: not submitting the form when the language selection
-  is changed now that there is a submit button.
-- Language Portlet: updated cache parameters (30-minute timeout, user)
-- Internal Links Portlet: catching TypeError expection in the conversion
-  from list to string (metadata information).
-- updated the portlet export dictionary format in the ZMI
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- optimized the portlets tool notify_event() method by not fetching the
-  content of the notification object.
-- using cluster 'metadata' instead of layout 'metadata'
-- a layout cluster can be specified in the Content Portlet for rendering items.
-- added an export infrastructure (rss, atom, etc.) for portlets that list items.
-- added an RSS 1.0 / 2.0 exporter
-- harmonization in the HTML code of portlets containing list items.
-- added the portal's title in syndication feed titles.
-- added ATOM 0.3 export
-- Portlet cache: added language discrimination for portlets that have the 'i18n'
-  attribute set.
-- using "itemDescription" class for item descriptions.
-- updated html_slimmer() to reduce the size of rendered HTML by ~20-25%
-- using CPSNavigation to obtain information about open nodes.
+-
