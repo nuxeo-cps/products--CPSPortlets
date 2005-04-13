@@ -9,6 +9,7 @@
 # - LinguaPlone >= 0.7
 
 # CPS --------------------
+CPSDocument
 CPSNavigation >= 0.14.1
 CPSRSS
 CPSSkins
