@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-04-13 17:28default\n"
+"POT-Creation-Date: 2005-04-15 22:03default\n"
 "PO-Revision-Date: 2005-01-25 17:27+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -321,6 +321,10 @@ msgstr "Afficher les répertoires cachés"
 
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Visualizza l'icona degli oggetti"
+
+#, fuzzy
+msgid "cpsportlets_actions_show_icons_label"
+msgstr "Afficher l'icône des actions"
 
 msgid "cpsportlets_custom_render_method_label"
 msgstr "Metodo di renderizzazione (zpt, py, etc.):"

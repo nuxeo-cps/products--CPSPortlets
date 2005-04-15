@@ -1,8 +1,7 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-04-13 17:23default\n"
+"POT-Creation-Date: 2005-04-15 22:03default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -60,19 +59,16 @@ msgstr "Ta bort versionen i ..."
 
 #.   <td condition="display_description">cpsportlets_extended_site_map_description</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
 msgid "cpsportlets_extended_site_map_description"
-msgstr "Description"
+msgstr "Beskrivning"
 
 #.   <td>cpsportlets_extended_site_map_folder</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
 msgid "cpsportlets_extended_site_map_folder"
-msgstr "Folder"
+msgstr "Mapp"
 
 #.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
 msgid "cpsportlets_extended_site_map_managers"
 msgstr "Manager(s)"
 
@@ -303,6 +299,9 @@ msgstr "Visa gömda mappar"
 
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Visa dokumentikoner"
+
+msgid "cpsportlets_actions_show_icons_label"
+msgstr "Visa kommandoikoner"
 
 msgid "cpsportlets_custom_render_method_label"
 msgstr "Skriptnamn (.zpt, .py, etc.)"
