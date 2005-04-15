@@ -50,6 +50,7 @@ PORTLET_RAMCACHE_ID = 'portlets'
 
 # Icons
 ICON_RAMCACHE_ID = 'icons'
+ACTIONICON_RAMCACHE_ID = 'actioncons'
 IMG_TAG = '<img src="%s" width="%s" height="%s" alt="%s" border="0" />'
 
 # FTI
@@ -545,7 +546,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
     #
     # Portlet RAM Cache
     #
-    security.declarePublic('getPortletCache')
     def getPortletCache(self, create=0):
         """Returns the Portlet RAM cache object"""
 
@@ -679,12 +679,16 @@ class PortletsTool(UniqueObject, PortletsContainer):
             portletcache.invalidate()
 
         # icons
-        iconcache = self.getIconCache()
+        iconcache = self.getCache(ICON_RAMCACHE_ID)
         if iconcache is not None:
             iconcache.invalidate()
 
+        aicache = self.getCache(ACTIONICON_RAMCACHE_ID)
+        if aicache is not None:
+            aicache.invalidate()
+
         # FTI
-        fticache = self.getFTICache()
+        fticache = self.getCache(FTI_RAMCACHE_ID)
         if fticache is not None:
             fticache.invalidate()
 
@@ -692,11 +696,15 @@ class PortletsTool(UniqueObject, PortletsContainer):
     # Icon RAM Cache
     #
 
-    security.declarePublic('getIconCache')
-    def getIconCache(self):
-        """Returns the icon RAM cache object"""
+    security.declarePublic('getCache')
+    def getCache(self, cache_key=None):
+        """Returns the RAM cache object associated to a given cache key
+        """
 
-        cacheid = '_'.join((ICON_RAMCACHE_ID,) + \
+        if cache_key is None:
+            return None
+
+        cacheid = '_'.join((cache_key,) + \
                             self.getPhysicalPath()[1:-1])
         try:
             return self.caches[cacheid]
@@ -713,7 +721,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if portal_type is None:
             return None
 
-        cache = self.getIconCache()
+        cache = self.getCache(ICON_RAMCACHE_ID)
 
         # compute the cache index
         index = (portal_type, base_url, alt)
@@ -737,22 +745,45 @@ class PortletsTool(UniqueObject, PortletsContainer):
         return img_tag
 
     #
+    # Action icons
+    #
+    security.declarePublic('renderActionIcon')
+    def renderActionIcon(self, category=None, action_id=None,
+                         base_url='', alt=''):
+        """Renders the action's icon"""
+
+        if category is None or action_id is None:
+            return None
+
+        aitool = getToolByName(self, 'portal_actionicons', None)
+        if aitool is None:
+            return None
+
+        cache = self.getCache(ACTIONICON_RAMCACHE_ID)
+        # compute the cache index
+        index = (action_id, category, base_url, alt)
+
+        img_tag = cache.getEntry(index)
+        # the icon is not in the cache
+        if img_tag is None:
+            icon_path = aitool.queryActionIcon(category=category,
+                action_id=action_id)
+            if not icon_path:
+                return
+            img = self.unrestrictedTraverse(icon_path, default=None)
+            if img is None:
+                return None
+            img_tag = IMG_TAG % (base_url + icon_path,
+                                 getattr(img, 'width', 0),
+                                 getattr(img, 'height', 0),
+                                 alt)
+            if cache is not None:
+                cache.setEntry(index, img_tag)
+        return img_tag
+
+    #
     # FTI RAM cache
     #
-
-    security.declarePublic('getFTICache')
-    def getFTICache(self):
-        """Returns the icon RAM cache object"""
-
-        cacheid = '_'.join((FTI_RAMCACHE_ID,) + \
-                            self.getPhysicalPath()[1:-1])
-        try:
-            return self.caches[cacheid]
-        except KeyError:
-            cache = SimpleRAMCache()
-            self.caches[cacheid] = cache
-            return cache
-
     security.declarePublic('getFTIProperty')
     def getFTIProperty(self, portal_type=None, prop_id=None):
         """Return some factory type information
@@ -767,7 +798,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if prop_id.startswith('_'):
             return None
 
-        cache = self.getFTICache()
+        cache = self.getCache(FTI_RAMCACHE_ID)
         # compute the cache index
         index = (portal_type, prop_id)
         prop = cache.getEntry(index)

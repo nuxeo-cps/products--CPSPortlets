@@ -45,6 +45,18 @@ actions_portlet_layout = {
                 'format_empty': '',
             },
         },
+        'show_icons': {
+            'type': 'Boolean Widget',
+            'data': {
+                'fields': ('show_icons',),
+                'label_edit': 'cpsportlets_actions_show_icons_label',
+                'is_i18n': True,
+                'hidden_layout_modes': ('view',),
+                'label_false': 'cpsschemas_label_false',
+                'label_true': 'cpsschemas_label_true',
+                'render_format': 'select',
+            },
+        },
     },
     'layout': {
         'style_prefix': 'layout_portlet_',
@@ -54,6 +66,8 @@ actions_portlet_layout = {
             [{'widget_id': 'portlet', 'ncols': 1},
             ],
             [{'widget_id': 'categories', 'ncols': 1},
+            ],
+            [{'widget_id': 'show_icons', 'ncols': 1},
             ],
         ],
     },
