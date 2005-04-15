@@ -1,7 +1,6 @@
 ##parameters=links=[], max_title_words=0, **kw
 
-# XXX get base url from the request
-base_url = context.getBaseUrl()
+base_url = context.cpsskins_getBaseUrl()
 
 max_title_words = int(max_title_words)
 

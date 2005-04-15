@@ -342,22 +342,18 @@ class CPSPortlet(CPSDocument):
             elif param == 'user':
                 index_string = str(REQUEST.get('AUTHENTICATED_USER'))
 
-            # XXX CPSSkins dependency
             # current language
             elif param == 'current_lang':
                 index_string = REQUEST.get('cpsskins_language', 'en')
 
-            # XXX CPSSkins dependency
             # current url
             elif param == 'url':
                 index_string = REQUEST.get('cpsskins_url')
 
-            # XXX CPSSkins dependency
             # current url
             elif param == 'baseurl':
                 index_string = REQUEST.get('cpsskins_base_url')
 
-            # XXX CPSSkins dependency
             # CMF Actions by categories
             elif param.startswith('actions:'):
                 prefix = 'actions'

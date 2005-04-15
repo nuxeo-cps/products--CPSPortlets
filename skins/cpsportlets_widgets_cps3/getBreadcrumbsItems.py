@@ -9,8 +9,7 @@ breadcrumb_set = REQUEST.get('breadcrumb_set')
 if breadcrumb_set != None:
     return breadcrumb_set
 
-# XXX cache base_url
-base_url = context.getBaseUrl()
+base_url = context.cpsskins_getBaseUrl()
 url = kw.get('url')
 if url is None:
     url = base_url

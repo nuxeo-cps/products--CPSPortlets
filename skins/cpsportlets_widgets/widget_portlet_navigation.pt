@@ -236,7 +236,7 @@
               tal:content="item/description">Description</td>
             <td tal:condition="display_managers"
               tal:define="managers python:item['managers'];
-              base_url here/getBaseUrl;
+              base_url here/cpsskins_getBaseUrl;
               mdir here/portal_directories/members;
               mdir_id mdir/getId;
               ">

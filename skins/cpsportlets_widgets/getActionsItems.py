@@ -6,8 +6,7 @@ if actions is None:
 
 renderActionIcon = context.portal_cpsportlets.renderActionIcon
 
-# XXX get base url from the request
-base_url = context.getBaseUrl()
+base_url = context.cpsskins_getBaseUrl()
 
 actionitems = {}
 for category in categories:

@@ -10,8 +10,7 @@ if REQUEST is not None:
 else:
     REQUEST=context.REQUEST
 
-# XXX get base url from the request
-base_url = context.getBaseUrl()
+base_url = context.cpsskins_getBaseUrl()
 
 context_rpath = kw.get('context_rpath')
 start_depth = kw.get('start_depth', 0)
