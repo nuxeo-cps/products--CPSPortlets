@@ -151,7 +151,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-04-15 22:03default\n"
+"POT-Creation-Date: 2005-04-17 16:35default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -181,7 +181,7 @@ msgid "_Edit_"
 msgstr "Editeaza"
 
 #.   <option disabled="disabled" selected="selected" value="">
-#.         Add new item ...</option>
+#.           Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
 msgstr "Adauga continut..."
@@ -439,6 +439,18 @@ msgstr ""
 
 msgid "cpsportlets_nav_display_collapsible_menu_label"
 msgstr "Meniu extensibil"
+
+#, fuzzy
+msgid "cpsportlets_additem_show_icons_label"
+msgstr "Afficher l'icône des actions"
+
+#, fuzzy
+msgid "cpsportlets_additem_dropdown_list_label"
+msgstr "Liste déroulante"
+
+#, fuzzy
+msgid "cpsportlets_additem_standard_menu_label"
+msgstr "Menu de navigation"
 
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Adancime relativa"

@@ -1,18 +1,40 @@
-<tal:block define="context nocall:options/context_obj|here;
+<tal:block define="context nocall:options/context_obj;
+                   ds options/datastructure;
+                   display ds/display;
                    ti context/getTypeInfo|nothing;
                    checkPerm nocall:here/portal_membership/checkPermission"
            condition="python: checkPerm('Access contents information', context)">
-  <form action="cpsportlet_additem_create" method="get"
-  tal:omit-tag="not:creatableItems"
-  tal:condition="ti"
-  tal:define="creatableItems context/getCreatableItems">
-    <select onchange="submit()" name="type_name" tal:condition="creatableItems">
-      <option i18n:translate="cpsportlet_add_new_item" selected="selected"
-       value="" disabled="disabled">
-      Add new item ...</option>
-      <option tal:repeat="item creatableItems"
-      tal:content="item/Title" i18n:translate=""
-      tal:attributes="value item/getId" value="" />
-    </select>
-  </form>
+  <tal:block condition="python: display == 'dropdown_list'">
+    <form action="cpsportlet_additem_create" method="get"
+    tal:omit-tag="not:creatableItems"
+    tal:condition="ti"
+    tal:define="creatableItems context/getCreatableItems">
+      <select onchange="submit()" name="type_name"
+        tal:condition="creatableItems">
+        <option i18n:translate="cpsportlet_add_new_item" selected="selected"
+         value="" disabled="disabled">
+        Add new item ...</option>
+        <option tal:repeat="item creatableItems"
+        tal:content="item/title" i18n:translate=""
+        tal:attributes="value item/id" value="" />
+      </select>
+    </form>
+  </tal:block>
+  <tal:block condition="python: display == 'standard_menu'">
+    <ul class="cpsskinsMenu"
+    tal:define="creatableItems context/getCreatableItems;
+                show_icons ds/show_icons;
+                show_icons python:int(show_icons)">
+      <tal:block repeat="item creatableItems">
+        <li tal:define="icon_tag item/icon_tag">
+          <a tal:attributes="href string:cpsportlet_additem_create?type_name=${item/id};
+                             class python:show_icons and icon_tag and 'noicon' or None">
+            <tal:block condition="show_icons"
+             content="structure icon_tag" />
+            <tal:block i18n:translate="" content="item/title" />
+          </a>
+        </li>
+      </tal:block>
+    </ul>
+  </tal:block>
 </tal:block>

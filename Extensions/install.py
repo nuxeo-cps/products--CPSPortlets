@@ -150,6 +150,7 @@ class CPSPortletsInstaller(CPSInstaller):
                                self.portal.getLanguagePortletVocabulary(),
                                self.portal.getNavigationPortletVocabulary(),
                                self.portal.getRSSPortletVocabulary(),
+                               self.portal.getAddItemPortletVocabulary(),
                                self.portal.getSyndicationFormatsVocabulary(),
                               )
 

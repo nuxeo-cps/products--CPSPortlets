@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-04-15 22:03default\n"
+"POT-Creation-Date: 2005-04-17 16:35default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -32,7 +32,7 @@ msgid "_Edit_"
 msgstr "Redigera"
 
 #.   <option disabled="disabled" selected="selected" value="">
-#.         Add new item ...</option>
+#.           Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
 msgstr "Lägg till ny artikel..."
@@ -287,6 +287,15 @@ msgstr "Till ovanliggande mapp*"
 
 msgid "cpsportlets_nav_display_collapsible_menu_label"
 msgstr "Dynamisk meny"
+
+msgid "cpsportlets_additem_show_icons_label"
+msgstr "Visa ikoner"
+
+msgid "cpsportlets_additem_dropdown_list_label"
+msgstr "Rullgardinsmeny"
+
+msgid "cpsportlets_additem_standard_menu_label"
+msgstr "Standardmeny"
 
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Djupnivå"
