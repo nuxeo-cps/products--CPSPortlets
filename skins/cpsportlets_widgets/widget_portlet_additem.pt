@@ -24,7 +24,8 @@
     <ul class="cpsskinsMenu"
     tal:define="creatableItems context/getCreatableItems;
                 show_icons ds/show_icons;
-                show_icons python:int(show_icons)">
+                show_icons python:int(show_icons)"
+    tal:omit-tag="not:creatableItems">
       <tal:block repeat="item creatableItems">
         <li tal:define="icon_tag item/icon_tag">
           <a tal:attributes="href string:cpsportlet_additem_create?type_name=${item/id};
