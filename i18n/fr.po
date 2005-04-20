@@ -35,7 +35,7 @@ msgstr "ID:"
 #.   <block>Edit</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
-msgstr "Editer"
+msgstr "Modifier"
 
 #.   <option disabled="disabled" selected="selected" value="">
 #.           Add new item ...</option>
