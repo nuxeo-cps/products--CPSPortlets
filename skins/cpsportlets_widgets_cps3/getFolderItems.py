@@ -39,8 +39,32 @@ renderIcon = context.portal_cpsportlets.renderIcon
 getFTIProperty = context.portal_cpsportlets.getFTIProperty
 getRelativeUrl = context.portal_url.getRelativeUrl
 
+display_folders = int(kw.get('display_folders', 1))
 display_hidden_folders = int(kw.get('display_hidden_folders', 1))
+display_hidden_docs = int(kw.get('display_hidden_docs', 0))
 display_description = int(kw.get('display_description', 0))
+
+# Dublin Core / metadata
+getMetaData = int(kw.get('getMetaData', 0))
+metadata_map = {
+    'creator': 'Creator',
+    'date': 'ModificationDate',
+    'issued': 'EffectiveDate',
+    'created': 'CreationDate',
+    'rights': 'Rights',
+    'language': 'Language',
+    'contributor': 'Contributors',
+    'source': 'source',
+    'relation': 'relation',
+    'coverage': 'coverage'}
+
+def getContent(object):
+    content = None
+    try:
+        content = object.getContent()
+    except AttributeError:
+        pass
+    return content
 
 for object in bmf.objectValues():
     # remove objects with ids beginning with '.'
@@ -52,7 +76,6 @@ for object in bmf.objectValues():
     if getattr(object, 'view', None) is None:
         continue
 
-
     # skip documents if show_docs is not set
     ptype = getattr(object, 'portal_type', None)
     # Using a RAM cache to optimize the retrieval of FTI
@@ -62,16 +85,48 @@ for object in bmf.objectValues():
     if int(show_docs) == 0 and (isdocument or display_as_document_in_listing):
         continue
 
-    if not (isdocument or display_hidden_folders):
-        try:
-            content = object.getContent()
-        except AttributeError:
-            continue
-        if content and \
+    content = None
+
+    # a folder is not 'documentish'
+    # folderish documents are not folders.
+    isfolder = not isdocument
+
+    # hide folders?
+    if isfolder and not display_folders:
+        continue
+
+    # hide hidden folders
+    if isfolder and not display_hidden_folders:
+        content = content or getContent(object)
+        if content is not None and \
             getattr(content.aq_inner.aq_explicit, 'hidden_folder', 0):
             continue
 
+    # hide hidden documents
+    # TODO not implemented in document schemas
+    if isdocument and not display_hidden_docs:
+        content = content or getContent(object)
+        if content is not None and \
+            getattr(content.aq_inner.aq_explicit, 'hidden_document', 0):
+            continue
+
     # XXX TODO: Dublin Core effective / expiration dates
+
+    # DublinCore / metadata information
+    metadata_info = {}
+    if getMetaData:
+        content = content or getContent(object)
+        for key, attr in metadata_map.items():
+            meth = getattr(content, attr)
+            if callable(meth):
+                value = meth()
+            else:
+                value = meth
+            if not value or value is 'None':
+                continue
+            if not isinstance(value, str):
+                value = ', '.join(value)
+            metadata_info[key] = value
 
     # title 
     title = object.title_or_id()
@@ -83,11 +138,8 @@ for object in bmf.objectValues():
     # description
     description = ''
     if display_description:
-        try:
-            content = object.getContent()
-        except AttributeError:
-            pass
-        else:
+        content = content or getContent(object)
+        if content is not None:
             description = getattr(content, 'Description', '')
 
     folder_items.append(
@@ -95,5 +147,6 @@ for object in bmf.objectValues():
          'title': title,
          'description': description,
          'icon_tag': renderIcon(ptype, base_url, ''),
+         'metadata': metadata_info,
         })
 return folder_items

@@ -13,3 +13,5 @@ New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added a RAM cache for storing action icons image tags
 - optimizations: the base url is computed only once per request.
+- getFolderItems.py: can return metadata, can hide folders, can hide
+  hidden documents
