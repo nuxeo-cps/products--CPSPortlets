@@ -9,6 +9,7 @@ New features:
 Bug fixes:
 ~~~~~~~~~~
 - more robust access to metadata for Wiki pages.
+- Content Portlet: not displaying '... >>' when the description is empty.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added a RAM cache for storing action icons image tags

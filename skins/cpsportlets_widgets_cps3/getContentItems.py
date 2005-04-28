@@ -142,6 +142,8 @@ if search_type == 'related':
 def summarize(text='', max_words=20):
     """summarize the text by returning the first max_words
     """
+    if not text:
+        return ''
     split_text = text.split(' ', max_words)[0:max_words]
     res = ''
     if split_text:
