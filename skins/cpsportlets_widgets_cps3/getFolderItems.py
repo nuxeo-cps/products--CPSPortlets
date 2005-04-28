@@ -45,7 +45,7 @@ display_hidden_docs = int(kw.get('display_hidden_docs', 0))
 display_description = int(kw.get('display_description', 0))
 
 # Dublin Core / metadata
-getMetaData = int(kw.get('getMetaData', 0))
+get_metadata = int(kw.get('get_metadata', 0))
 metadata_map = {
     'creator': 'Creator',
     'date': 'ModificationDate',
@@ -114,7 +114,7 @@ for object in bmf.objectValues():
 
     # DublinCore / metadata information
     metadata_info = {}
-    if getMetaData:
+    if get_metadata:
         content = content or getContent(object)
         for key, attr in metadata_map.items():
             meth = getattr(content, attr)
@@ -125,7 +125,10 @@ for object in bmf.objectValues():
             if not value or value is 'None':
                 continue
             if not isinstance(value, str):
-                value = ', '.join(value)
+                try:
+                    value = ', '.join(value)
+                except TypeError:
+                    value = str(value)
             metadata_info[key] = value
 
     # title 

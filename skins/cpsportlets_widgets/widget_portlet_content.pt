@@ -1,12 +1,12 @@
 <tal:block define="ds options/datastructure;
                    export request/form/export|nothing;
-                   getMetaData python: export is not None;
+                   get_metadata python: export is not None;
                    render_items ds/render_items;
                    render_items python: int(render_items);
                    show_icons ds/show_icons;
                    show_icons python: int(show_icons);
                    context nocall:options/context_obj|here;
-                   contentitems python: here.getContentItems(obj=context, getMetaData=getMetaData, **dict(ds));
+                   contentitems python: here.getContentItems(obj=context, get_metadata=get_metadata, **dict(ds));
                    link_string ds/link_string;
                    linkclass python: show_icons and 'noicon' or None"
   tal:condition="contentitems">

@@ -8,10 +8,11 @@ New features:
 - Content Portlet: item icons can be displayed.
 Bug fixes:
 ~~~~~~~~~~
--
+- more robust access to metadata for Wiki pages.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added a RAM cache for storing action icons image tags
 - optimizations: the base url is computed only once per request.
 - getFolderItems.py: can return metadata, can hide folders, can hide
   hidden documents
+- renamed the 'getMetaData' parameter as 'get_metadata'

@@ -165,7 +165,7 @@ display_description = int(kw.get('display_description'), 0)
 show_icons = int(kw.get('show_icons'), 0)
 
 # Dublin Core / metadata
-getMetaData = kw.get('getMetaData')
+get_metadata = int(kw.get('get_metadata', 0))
 metadata_map = {
     'creator': 'Creator',
     'date': 'ModificationDate',
@@ -226,7 +226,7 @@ for brain in brains:
     # DublinCore / metadata information
     metadata_info = {}
 
-    if getMetaData:
+    if get_metadata:
         content = content or getBrainContent()
 
         for key, attr in metadata_map.items():
@@ -238,7 +238,10 @@ for brain in brains:
             if not value or value is 'None':
                 continue
             if not isinstance(value, str):
-                value = ', '.join(value)
+                try:
+                    value = ', '.join(value)
+                except TypeError:
+                    value = str(value)
             metadata_info[key] = value
 
     icon_tag = ''
