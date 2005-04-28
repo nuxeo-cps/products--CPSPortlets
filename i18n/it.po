@@ -3,11 +3,10 @@
 # Gettext Message File for default.
 # Your Name <your@email>, Year
 # Julien Anguenot <ja@nuxeo.com>, 2004.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets v. 3321 12/03/2005\n"
-"POT-Creation-Date: 2005-04-17 16:35default\n"
+"POT-Creation-Date: 2005-04-28 11:10default\n"
 "PO-Revision-Date: 2005-03-14 13:51+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -305,7 +304,7 @@ msgstr "Menù estensibile (comparsa/scomparsa)"
 
 #, fuzzy
 msgid "cpsportlets_additem_show_icons_label"
-msgstr "Afficher l'icône des actions"
+msgstr "Afficher les icônes"
 
 #, fuzzy
 msgid "cpsportlets_additem_dropdown_list_label"
@@ -313,7 +312,7 @@ msgstr "Liste déroulante"
 
 #, fuzzy
 msgid "cpsportlets_additem_standard_menu_label"
-msgstr "Menu de navigation"
+msgstr "Menu standard"
 
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Profondità relativa"
@@ -327,6 +326,10 @@ msgstr "Afficher les répertoires cachés"
 
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Visualizza l'icona degli oggetti"
+
+#, fuzzy
+msgid "cpsportlets_content_show_icons_label"
+msgstr "Trier les résultats par"
 
 #, fuzzy
 msgid "cpsportlets_actions_show_icons_label"

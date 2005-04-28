@@ -162,6 +162,7 @@ items = []
 render_items = int(kw.get('render_items'), 0)
 cluster_id = kw.get('cluster_id')
 display_description = int(kw.get('display_description'), 0)
+show_icons = int(kw.get('show_icons'), 0)
 
 # Dublin Core / metadata
 getMetaData = kw.get('getMetaData')
@@ -176,6 +177,12 @@ metadata_map = {
     'source': 'source',
     'relation': 'relation',
     'coverage': 'coverage'}
+
+# portal type icons
+portal_types = context.portal_types
+renderIcon = context.portal_cpsportlets.renderIcon
+
+base_url = context.cpsskins_getBaseUrl()
 
 for brain in brains:
     content = None
@@ -220,8 +227,7 @@ for brain in brains:
     metadata_info = {}
 
     if getMetaData:
-        if content is None:
-            content = getBrainContent()
+        content = content or getBrainContent()
 
         for key, attr in metadata_map.items():
             meth = getattr(content, attr)
@@ -235,12 +241,20 @@ for brain in brains:
                 value = ', '.join(value)
             metadata_info[key] = value
 
+    icon_tag = ''
+    if show_icons:
+        content = content or getBrainContent()
+        ti = content.getTypeInfo()
+        if ti is not None:
+            icon_tag = renderIcon(ti.getId(), base_url, '')
+
     items.append(
         {'url': brain.getURL(),
          'title': brain['Title'],
          'description': brain['Description'],
          'rendered': rendered,
          'metadata': metadata_info,
+         'icon_tag': icon_tag,
         })
 
 return items

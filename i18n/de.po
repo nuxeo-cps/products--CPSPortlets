@@ -3,11 +3,10 @@
 # Gettext Message File for default.
 # Your Name <your@email>, Year
 # Julien Anguenot <ja@nuxeo.com>, 2004.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2005-04-15 22:03default\n"
+"POT-Creation-Date: 2005-04-28 11:09default\n"
 "PO-Revision-Date: 2005-04-13 17:27+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -40,7 +39,7 @@ msgid "_Edit_"
 msgstr ""
 
 #.   <option disabled="disabled" selected="selected" value="">
-#.         Add new item ...</option>
+#.           Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 #, fuzzy
 msgid "cpsportlet_add_new_item"
@@ -371,6 +370,18 @@ msgid "cpsportlets_nav_display_collapsible_menu_label"
 msgstr "Collapsible menu"
 
 #, fuzzy
+msgid "cpsportlets_additem_show_icons_label"
+msgstr "Display icons"
+
+#, fuzzy
+msgid "cpsportlets_additem_dropdown_list_label"
+msgstr "Drop down list"
+
+#, fuzzy
+msgid "cpsportlets_additem_standard_menu_label"
+msgstr "Standard menu"
+
+#, fuzzy
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Relative depth"
 
@@ -385,6 +396,10 @@ msgstr "Display hidden folders"
 #, fuzzy
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Display document icons"
+
+#, fuzzy
+msgid "cpsportlets_content_show_icons_label"
+msgstr "Sort the results by"
 
 #, fuzzy
 msgid "cpsportlets_actions_show_icons_label"

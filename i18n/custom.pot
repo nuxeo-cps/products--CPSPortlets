@@ -215,6 +215,9 @@ msgstr ""
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr ""
 
+msgid "cpsportlets_content_show_icons_label"
+msgstr ""
+
 msgid "cpsportlets_actions_show_icons_label"
 msgstr ""
 

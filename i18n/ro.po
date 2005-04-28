@@ -147,11 +147,10 @@
 # , 2005.
 # , 2005.
 # , 2005.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-04-17 16:35default\n"
+"POT-Creation-Date: 2005-04-28 11:10default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -442,7 +441,7 @@ msgstr "Meniu extensibil"
 
 #, fuzzy
 msgid "cpsportlets_additem_show_icons_label"
-msgstr "Afficher l'icône des actions"
+msgstr "Afficher les icônes"
 
 #, fuzzy
 msgid "cpsportlets_additem_dropdown_list_label"
@@ -450,7 +449,7 @@ msgstr "Liste déroulante"
 
 #, fuzzy
 msgid "cpsportlets_additem_standard_menu_label"
-msgstr "Menu de navigation"
+msgstr "Menu standard"
 
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Adancime relativa"
@@ -464,6 +463,10 @@ msgstr "Afficher les répertoires cachés"
 
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Afiseaza iconitele documentelor"
+
+#, fuzzy
+msgid "cpsportlets_content_show_icons_label"
+msgstr "Trier les résultats par"
 
 #, fuzzy
 msgid "cpsportlets_actions_show_icons_label"
