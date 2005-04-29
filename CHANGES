@@ -10,6 +10,8 @@ Bug fixes:
 ~~~~~~~~~~
 - more robust access to metadata for Wiki pages.
 - Content Portlet: not displaying '... >>' when the description is empty.
+- Extended Site Map (Navigation Portlet): show managers only if the members
+  dir isVisible to avoid displaying links to unauthorized dir entries
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added a RAM cache for storing action icons image tags
