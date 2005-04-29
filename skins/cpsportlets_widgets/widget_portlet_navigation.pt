@@ -195,6 +195,9 @@
      define="show_icons ds/show_icons;
              show_icons python: int(show_icons);
              end_depth ds/end_depth;
+             mdir here/portal_directories/members;
+             mdir_id mdir/getId;
+             display_managers python:ds['display_managers'] and mdir.isVisible;
              folderItems python: context.getNavigationItems(
                  root_uids=root_uids,
                  context_rpath=context_rpath,
@@ -237,8 +240,6 @@
             <td tal:condition="display_managers"
               tal:define="managers python:item['managers'];
               base_url here/cpsskins_getBaseUrl;
-              mdir here/portal_directories/members;
-              mdir_id mdir/getId;
               ">
               <ul class="cpsskinsMenu">
                 <li tal:repeat="manager managers"><tal:block
