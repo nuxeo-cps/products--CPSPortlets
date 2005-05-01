@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-04-28 11:10default\n"
+"POT-Creation-Date: 2005-05-01 16:02default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -185,6 +185,9 @@ msgstr "Horisontell lista"
 
 msgid "cpsportlets_bcs_display_site_root_label"
 msgstr "Visa webbplats rot"
+
+msgid "cpsportlets_bcs_highlight_last_item_label"
+msgstr "Göra det nuvarande dokumentet mer synligt"
 
 msgid "cpsportlets_advanced_search_link_label"
 msgstr "Visa en länk till avancerad sökning"

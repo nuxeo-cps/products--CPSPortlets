@@ -2,6 +2,8 @@
                    display ds/display;
                    display_hidden_folders ds/display_hidden_folders;
                    display_site_root ds/display_site_root;
+                   highlight_last_item ds/highlight_last_item;
+                   highlight_last_item python:int(highlight_last_item);
                    first_item ds/first_item;
                    context nocall:options/context_obj|here;
                    utool nocall:here/portal_url;
@@ -22,9 +24,13 @@
   </form>
   <tal:block condition="python: display == 'horizontal_trail'"
   repeat="item breadcrumbsItems">
-    <a href="" tal:attributes="href item/url"
-     tal:content="python: item['title']" />
-    <tal:block condition="not:repeat/item/end" 
-     content="structure string:&gt;" />
+    <tal:block define="last_item repeat/item/end">
+      <strong tal:omit-tag="python: not (highlight_last_item and last_item)">
+      <a href="" tal:attributes="href item/url"
+       tal:content="python: item['title']" />
+      </strong>
+      <tal:block condition="not:last_item"
+       content="structure string:&gt;" />
+    </tal:block>
   </tal:block>
 </tal:block>

@@ -19,3 +19,4 @@ New internal features:
 - getFolderItems.py: can return metadata, can hide folders, can hide
   hidden documents
 - renamed the 'getMetaData' parameter as 'get_metadata'
+- Breadcrumbs: the last trail item can be highlighted (visual hint).

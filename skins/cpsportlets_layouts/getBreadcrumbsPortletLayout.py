@@ -115,6 +115,19 @@ breadcrumbs_portlet_layout = {
                 'render_format': 'select',
             },
         },
+        'highlight_last_item': {
+            'type': 'Boolean Widget',
+            'data': {
+                'fields': ('highlight_last_item',),
+                'label_edit': 'cpsportlets_bcs_highlight_last_item_label',
+                'is_i18n': True,
+                'hidden_if_expr': "python: context.display in ['dropdown_list']",
+                'hidden_layout_modes': ('view',),
+                'label_false': 'cpsschemas_label_false',
+                'label_true': 'cpsschemas_label_true',
+                'render_format': 'select',
+            },
+        },
     },
     'layout': {
         'style_prefix': 'layout_portlet_',
@@ -127,6 +140,7 @@ breadcrumbs_portlet_layout = {
             ],
             [{'widget_id': 'first_item', 'ncols': 1},
              {'widget_id': 'display_site_root', 'ncols': 1},
+             {'widget_id': 'highlight_last_item', 'ncols': 1},
             ],
             [{'widget_id': 'display_hidden_folders', 'ncols': 2},
             ],

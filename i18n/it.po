@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets v. 3321 12/03/2005\n"
-"POT-Creation-Date: 2005-04-28 11:10default\n"
+"POT-Creation-Date: 2005-05-01 16:02default\n"
 "PO-Revision-Date: 2005-03-14 13:51+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -194,6 +194,10 @@ msgstr "Percorso a sviluppo orizzontale"
 msgid "cpsportlets_bcs_display_site_root_label"
 msgstr "Visualizza l'origine del portale"
 
+#, fuzzy
+msgid "cpsportlets_bcs_highlight_last_item_label"
+msgstr "Accentuer l'élément courant"
+
 msgid "cpsportlets_advanced_search_link_label"
 msgstr ""
 "Visualizza un collegamento verso il modulo di ricerca avanzata del portale"
@@ -329,7 +333,7 @@ msgstr "Visualizza l'icona degli oggetti"
 
 #, fuzzy
 msgid "cpsportlets_content_show_icons_label"
-msgstr "Trier les résultats par"
+msgstr "Afficher l'icône des documents"
 
 #, fuzzy
 msgid "cpsportlets_actions_show_icons_label"
