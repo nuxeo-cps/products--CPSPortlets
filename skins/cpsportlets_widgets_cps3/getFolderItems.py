@@ -146,7 +146,7 @@ for object in bmf.objectValues():
             description = getattr(content, 'Description', '')
 
     folder_items.append(
-        {'id': content.getId(),
+        {'id': object.getId(),
          'url': base_url + getRelativeUrl(object),
          'title': title,
          'description': description,
