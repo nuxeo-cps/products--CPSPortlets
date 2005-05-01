@@ -20,3 +20,4 @@ New internal features:
   hidden documents
 - renamed the 'getMetaData' parameter as 'get_metadata'
 - Breadcrumbs: the last trail item can be highlighted (visual hint).
+- getFolderItems.py: returns item ids.
