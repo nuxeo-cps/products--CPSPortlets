@@ -197,7 +197,8 @@
              end_depth ds/end_depth;
              mdir here/portal_directories/members;
              mdir_id mdir/getId;
-             display_managers python:ds['display_managers'] and mdir.isVisible;
+             display_managers ds/display_managers;
+             display_managers python:int(display_managers) and mdir.isVisible();
              folderItems python: context.getNavigationItems(
                  root_uids=root_uids,
                  context_rpath=context_rpath,
