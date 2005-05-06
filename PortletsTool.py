@@ -99,7 +99,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         # We ask the tool to know all the portal_types
 
         portlets = []
-        for res in catalog.searchResults({'portal_type':portal_types}):
+        for res in catalog.searchResults(portal_type=portal_types):
             portlet = res.getObject()
             if portlet is None:
                 continue
