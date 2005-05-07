@@ -45,17 +45,23 @@
     </form>
   </tal:block>
   <tal:block condition="python: action == 'change'">
-    <form method="get" action=""
+    <form method="get" action="" id="languageForm"
      tal:define="langItems context/getChangeLangItems"
      tal:condition="langItems"
      tal:attributes="action string:${context_url}/cpsportlet_change_language">
-     <p i18n:translate="cpsportlets_change_language">Change language ...</p>
-      <select name="lang">
-        <option tal:repeat="item langItems" i18n:translate=""
-         tal:content="item/title"
-         tal:attributes="value item/lang" />
-      </select>
-      <button type="submit" i18n:translate="cpsportlets_button_OK">OK</button>
+      <p>
+        <label for="languageChooser"
+         i18n:translate="cpsportlets_change_language"
+         >Change language:</label><br/>
+        <select name="lang" id="languageChooser"
+         onchange="var elt = document.getElementById('languageForm'); if (elt) {elt.submit()}"
+         >
+          <option tal:repeat="item langItems" i18n:translate=""
+           tal:content="item/title"
+           tal:attributes="value item/lang" />
+        </select>
+        <button type="submit" i18n:translate="cpsportlets_button_OK">OK</button>
+      </p>
     </form>
   </tal:block>
 </tal:block>

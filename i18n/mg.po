@@ -61,7 +61,7 @@ msgstr "OK"
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 #, fuzzy
 msgid "cpsportlets_change_language"
-msgstr "Changer de langue ..."
+msgstr "Changer de langue :"
 
 #.   <p>Delete translation ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
