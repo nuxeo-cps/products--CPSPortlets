@@ -1,4 +1,5 @@
 <tal:block define="ds options/datastructure;
+                   portlet nocall:options/portlet;
                    context nocall:options/context_obj|here;
                    context_url context/absolute_url;
                    action ds/action">
@@ -47,7 +48,7 @@
   <tal:block condition="python: action == 'change'">
     <form method="get" action=""
      tal:define="langItems context/getChangeLangItems;
-                 language_chooser_id here/getId"
+                 language_chooser_id portlet/getId"
      tal:condition="langItems"
      tal:attributes="action string:${context_url}/cpsportlet_change_language">
       <p>
