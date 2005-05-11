@@ -22,6 +22,7 @@
 """
 
 from zLOG import LOG, INFO, DEBUG
+from Acquisition import aq_base
 
 from Products.ExternalMethod.ExternalMethod import ExternalMethod
 
@@ -85,6 +86,9 @@ class CPSPortletsInstaller(CPSInstaller):
         self.installPortletSchemas()
         self.installPortletLayouts()
         self.installFlexibleTypes()
+
+        # cache parameters are stored in the tool
+        self.setupCacheParameters()
 
         # importing po files
         # Non CPS Installation may not have Localizer
@@ -240,6 +244,13 @@ class CPSPortletsInstaller(CPSInstaller):
 
         self.verifyFlexibleTypes(all_ptypes)
 
+    def setupCacheParameters(self):
+        ptltool = getToolByName(self.portal, 'portal_cpsportlets')
+        cache_parameters = getattr(aq_base(ptltool), 'cache_parameters', {})
+
+        if len(cache_parameters) == 0:
+            ptltool.initializeCacheParameters()
+            ptltool.resetCacheParameters()
 
     def rebuildPortlets(self):
         """Rebuild all portlets to make sure that their schema

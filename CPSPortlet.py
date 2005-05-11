@@ -160,32 +160,19 @@ class CPSPortlet(CPSDocument):
         """Get the cache parameters that will be used to compute the
            cache index.
         """
-        params = self.cache_params[:]
+        ptltool = getToolByName(self, 'portal_cpsportlets')
+        params = ptltool.getCacheParametersFor(ptype_id=self.portal_type)
         # parameters set on the fly: i18n
         if getattr(self, 'i18n', 0):
             params.append('current_lang')
+        params.extend(self.getCustomCacheParams())
         return params
 
-    security.declareProtected(ManagePortlets, 'resetCacheParams')
-    def resetCacheParams(self, ptype_id=None):
-        """Reset cache parameters
+    security.declareProtected(ManagePortlets, 'resetCacheTimeout')
+    def resetCacheTimeout(self):
+        """Reset cache cache timeout
         """
-        params = []
-        cache_params_dict = self.getCPSPortletCacheParams()
-        if cache_params_dict.has_key(ptype_id):
-            params = cache_params_dict[ptype_id]
-            self._setCacheParams(params)
-
-        params.extend(self.getCustomCacheParams())
-        self._setCacheTimeout(params)
-
-    security.declarePrivate('_setCacheParams')
-    def _setCacheParams(self, cache_params=[]):
-        """Set the cache parameters
-        """
-        if isinstance(cache_params, list):
-            if self.cache_params != cache_params:
-                self.cache_params = cache_params
+        self._setCacheTimeout(self.getCacheParams())
 
     security.declarePrivate('_setCacheTimeout')
     def _setCacheTimeout(self, cache_params=[]):
@@ -203,7 +190,7 @@ class CPSPortlet(CPSDocument):
             except ValueError:
                 pass
 
-        if self.cache_timeout != timeout:
+        if timeout >= 0 and self.cache_timeout != timeout:
             self.cache_timeout = timeout
 
     security.declarePrivate('_setJavaScript')
@@ -229,10 +216,7 @@ class CPSPortlet(CPSDocument):
         """
 
         context = kw.get('context_obj')
-
         params = self.getCacheParams()
-        custom_params = self.getCustomCacheParams()
-        params.extend(custom_params)
 
         def getOptions(p):
             """Extract cache parameter options
@@ -280,10 +264,7 @@ class CPSPortlet(CPSDocument):
             REQUEST = self.REQUEST
 
         context = kw.get('context_obj')
-
         params = self.getCacheParams()
-        custom_params = self.getCustomCacheParams()
-        params.extend(custom_params)
 
         def getOptions(p):
             """extract cache parameter options
@@ -445,11 +426,14 @@ class CPSPortlet(CPSDocument):
         if cleanup_date > last_cleanup:
             cache.delEntries(portlet_path)
 
-        if last_cleanup is not None:
-            # cache timeout
-            if timeout > 0:
-                if now > last_cleanup + timeout:
-                    cache.delEntries(portlet_path)
+        # bootstrap: if last_cleanup is None we delete entries to set
+        #            an initial cleanup date.
+        if last_cleanup is None:
+            cache.delEntries(portlet_path)
+        # cache timeout
+        elif timeout > 0:
+            if now > last_cleanup + timeout:
+                cache.delEntries(portlet_path)
 
         cache_entry = cache.getEntry(index)
         # compare the cache entry creation date with the modification date
@@ -901,7 +885,7 @@ class CPSPortlet(CPSDocument):
 
         ptype_id = ti.getId()
         # reset cache parameters
-        self.resetCacheParams(ptype_id)
+        self.resetCacheTimeout()
 
         # reset the javascript methods
         javascript_dict = self.getCPSPortletJavaScript()

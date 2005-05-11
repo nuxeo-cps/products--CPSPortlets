@@ -12,6 +12,9 @@ Bug fixes:
 - Content Portlet: not displaying '... >>' when the description is empty.
 - Extended Site Map (Navigation Portlet): show managers only if the members
   dir isVisible to avoid displaying links to unauthorized dir entries
+- negative timeout cache parameter value are not allowed
+- portlet RAM cache: fixed bootstrapping problem which caused the portlet
+  cleanup date to always be set to None.
 - Added more accessibility to the language portlet.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -22,3 +25,5 @@ New internal features:
 - renamed the 'getMetaData' parameter as 'get_metadata'
 - Breadcrumbs: the last trail item can be highlighted (visual hint).
 - getFolderItems.py: returns item ids.
+- Cache parameters are now stored in the portlet tool (managed through the ZMI)
+- API simplification: the 'ptype_id' argument is not used in resetCacheTimeout()

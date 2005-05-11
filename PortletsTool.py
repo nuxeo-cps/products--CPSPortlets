@@ -26,10 +26,12 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 from zLOG import LOG, DEBUG, ERROR
 
-from Globals import InitializeClass
 from Globals import InitializeClass, DTMLFile
+from Globals import  PersistentMapping
 from AccessControl import ClassSecurityInfo, getSecurityManager, Unauthorized
 from Acquisition import aq_base, aq_parent, aq_inner
+
+from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
 
 # Fallback to CMF 1.4
 try:
@@ -71,6 +73,10 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     # RAM Cache
     caches = {}
+
+    def __init__(self):
+        self.initializeCacheParameters()
+        CMFBTreeFolder.__init__(self, self.id)
 
     #
     # Catalog
@@ -546,6 +552,42 @@ class PortletsTool(UniqueObject, PortletsContainer):
     #
     # Portlet RAM Cache
     #
+
+    security.declareProtected(ManagePortlets, 'initializeCacheParameters')
+    def initializeCacheParameters(self):
+        """Initialize the cache parameter mapping
+        """
+        self.cache_parameters = PersistentMapping()
+
+    security.declareProtected(ManagePortlets, 'getCacheParameters')
+    def getCacheParameters(self):
+        """Return all cache parameters
+        """
+        return self.cache_parameters
+
+    security.declareProtected(ManagePortlets, 'resetCacheParameters')
+    def resetCacheParameters(self):
+        """Reset all cache parameters
+        """
+        self.cache_parameters = {}
+        self.updateCacheParameters(params=self.getCPSPortletCacheParams())
+
+    security.declareProtected(View, 'getCacheParametersFor')
+    def getCacheParametersFor(self, ptype_id=''):
+        """Return the cache parameters by portal type
+        """
+        cache_parameters = self.cache_parameters
+        if ptype_id in cache_parameters.keys():
+            return cache_parameters[ptype_id][:]
+        return ['no-cache']
+
+    def updateCacheParameters(self, params={}):
+        """update the cache parameters
+        """
+        self.cache_parameters.update(params)
+        # rebuild portlets
+        self.rebuild_portlets()
+
     def getPortletCache(self, create=0):
         """Returns the Portlet RAM cache object"""
 
@@ -981,12 +1023,17 @@ class PortletsTool(UniqueObject, PortletsContainer):
     security.declareProtected(ManagePortlets, 'manage_RAMCache')
     manage_RAMCache = DTMLFile('zmi/manage_RAMCache',
                                        globals())
+    security.declareProtected(ManagePortlets, 'manage_CacheParameters')
+    manage_CacheParameters = DTMLFile('zmi/manage_CacheParameters',
+                                       globals())
     manage_options = (
         PortletsContainer.manage_options +
         ({'label': 'Rebuild',
           'action': 'manage_rebuildPortlets'},
          {'label': 'Cache',
-          'action': 'manage_RAMCache'}, )
+          'action': 'manage_RAMCache'},
+         {'label': 'Cache parameters',
+          'action': 'manage_CacheParameters'}, )
         )
 
     security.declareProtected(ManagePortlets, 'rebuild_portlets')
@@ -1031,6 +1078,42 @@ class PortletsTool(UniqueObject, PortletsContainer):
             redirect_url = self.absolute_url()\
                 + '/manage_RAMCache' \
                 + '?manage_tabs_message=Cache orphans removed'
+            REQUEST.RESPONSE.redirect(redirect_url)
+
+    security.declareProtected(ManagePortlets, 'manage_updateCacheParameters')
+    def manage_updateCacheParameters(self, REQUEST=None, **kw):
+        """Update cache parameters"""
+
+        if REQUEST is not None:
+            kw.update(REQUEST.form)
+
+        params = {}
+        suffix = '_type'
+        suffix_length = len(suffix)
+        for k, v in kw.items():
+            if not k.endswith(suffix):
+                continue
+            params[k[:-suffix_length]] = v
+
+        self.cache_parameters = {}
+        self.updateCacheParameters(params)
+
+        if REQUEST is not None:
+            redirect_url = self.absolute_url()\
+                + '/manage_CacheParameters' \
+                + '?manage_tabs_message=Parameters updated'
+            REQUEST.RESPONSE.redirect(redirect_url)
+
+    security.declareProtected(ManagePortlets, 'manage_resetCacheParameters')
+    def manage_resetCacheParameters(self, REQUEST=None):
+        """Reset cache parameters"""
+
+        self.resetCacheParameters()
+
+        if REQUEST is not None:
+            redirect_url = self.absolute_url()\
+                + '/manage_CacheParameters' \
+                + '?manage_tabs_message=Cache parameters reset'
             REQUEST.RESPONSE.redirect(redirect_url)
 
     ######################################################################

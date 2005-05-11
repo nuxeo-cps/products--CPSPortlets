@@ -46,7 +46,7 @@ else:
                                                 {})
 # update cache parameters
 ptype_id = doc.getPortletType()
-doc.resetCacheParams(ptype_id)
+doc.resetCacheTimeout()
 doc.resetInterestingEvents(ptype_id)
 doc.expireCache()
 
