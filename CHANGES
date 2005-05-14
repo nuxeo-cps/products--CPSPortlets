@@ -16,6 +16,8 @@ Bug fixes:
 - portlet RAM cache: fixed bootstrapping problem which caused the portlet
   cleanup date to always be set to None.
 - Added more accessibility to the language portlet.
+- Content Portlet: rendered content items where not rendered in the
+  correct context.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added a RAM cache for storing action icons image tags

@@ -151,14 +151,15 @@ def summarize(text='', max_words=20):
     return res
 
 # return the catalog brain's actual content
-def getBrainContent():
+def getBrainInfo():
     content = None
+    object = None
     if getattr(brain.aq_inner.aq_explicit, 'getRID', None) is not None:
-        obj = brain.getObject()
-        getContent = getattr(obj.aq_inner.aq_explicit, 'getContent', None)
+        object = brain.getObject()
+        getContent = getattr(object.aq_inner.aq_explicit, 'getContent', None)
         if getContent is not None:
             content = getContent()
-    return content
+    return content, object
 
 items = []
 render_items = int(kw.get('render_items'), 0)
@@ -192,7 +193,7 @@ for brain in brains:
     rendered = ''
     # render the item
     if render_items:
-        content = getBrainContent()
+        content, object = getBrainInfo()
         renderable = 1
         # check whether the cluster exists.
         # XXX: this could be done in CPSDocument.FlexibleTypeInformation.py
@@ -210,9 +211,8 @@ for brain in brains:
         if renderable:
             render = getattr(content, 'render', None)
             if render is not None:
-                # render the document by cluster (if specified)
                 try:
-                    rendered = render(proxy=obj, cluster=cluster_id)
+                    rendered = render(proxy=object, cluster=cluster_id)
                 except TypeError:
                     pass
 
