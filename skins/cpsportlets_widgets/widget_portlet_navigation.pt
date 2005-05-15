@@ -11,13 +11,11 @@
                    start_depth python: 2;
                    root_uids ds/root_uids;
                    context nocall:options/context_obj|here;
-                   utool nocall:here/portal_url;
-                   context_url python: utool.getRelativeUrl(context);
                    context_rpath python: utool.getRelativeUrl(context)">
   <tal:block condition="python: display == 'vertical_breadcrumbs_menu'">
     <tal:block
      define="rel_depth ds/rel_depth;
-             trailItems python: context.getBreadcrumbsItems(url=context_url, display_hidden_folders=display_hidden_folders);
+             trailItems python: context.getBreadcrumbsItems(url=context_rpath, display_hidden_folders=display_hidden_folders);
              folderItems python: context.getFolderItems(context_obj=context, show_docs=show_docs, display_hidden_folders=display_hidden_folders);
              trailItems python: trailItems[int(rel_depth):];
              depth python: len(trailItems)">

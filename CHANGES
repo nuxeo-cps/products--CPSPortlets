@@ -29,3 +29,4 @@ New internal features:
 - getFolderItems.py: returns item ids.
 - Cache parameters are now stored in the portlet tool (managed through the ZMI)
 - API simplification: the 'ptype_id' argument is not used in resetCacheTimeout()
+- trivial optimizations in widget_portlet_navigation.pt
