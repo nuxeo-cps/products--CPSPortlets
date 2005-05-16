@@ -229,7 +229,7 @@ for brain in brains:
     metadata_info = {}
 
     if get_metadata:
-        content = content or getBrainContent()
+        content = content or getBrainInfo()[0]
 
         for key, attr in metadata_map.items():
             meth = getattr(content, attr)
@@ -248,7 +248,7 @@ for brain in brains:
 
     icon_tag = ''
     if show_icons:
-        content = content or getBrainContent()
+        content = content or getBrainInfo()[0]
         ti = content.getTypeInfo()
         if ti is not None:
             icon_tag = renderIcon(ti.getId(), base_url, '')
