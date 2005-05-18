@@ -63,11 +63,10 @@ for i in bc_range:
     rpath = '/'.join(ipath)
     url = base_url + '%s/' % rpath
     obj_id = ipath[-1]
-    if obj_id != portal_id:
-        url += 'view'
 
     items.append({'id': obj_id,
                   'title': title,
                   'url': url,
                  })
+
 return items

@@ -18,6 +18,7 @@ Bug fixes:
 - Added more accessibility to the language portlet.
 - Content Portlet: rendered content items where not rendered in the
   correct context.
+- removed extra '/view' from breadcrumbs item urls.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added a RAM cache for storing action icons image tags
