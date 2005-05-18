@@ -30,3 +30,4 @@ New internal features:
 - Cache parameters are now stored in the portlet tool (managed through the ZMI)
 - API simplification: the 'ptype_id' argument is not used in resetCacheTimeout()
 - trivial optimizations in widget_portlet_navigation.pt
+- Portlet box states are stored in a cookie instead of being persistent.

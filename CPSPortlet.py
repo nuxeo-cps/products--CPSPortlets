@@ -697,21 +697,33 @@ class CPSPortlet(CPSDocument):
     #################################################################
 
     security.declarePublic('getState')
-    def getState(self):
+    def getState(self, REQUEST=None):
         """Return the portlet's state
-           (minimized, maximized, closed ...)
-           default is 'maximized'
+        (minimized, maximized, closed ...)
+        default is 'maximized'
         """
-        state = self.state
-        if not state:
-            state = 'maximized'
+        state = 'maximized'
+        if REQUEST is None:
+            REQUEST = self.REQUEST
+        boxid = self.getId()
+        cookie_name = 'cpsportlets_box_%s' % boxid
+        if REQUEST is not None:
+            state = REQUEST.cookies.get(cookie_name, 'maximized')
         return state
 
-    security.declareProtected(ManagePortlets, 'setState')
-    def setState(self, state=''):
-        """Set the portlet's state
+    security.declarePublic('setState')
+    def setState(self, state='', REQUEST=None):
+        """Set the portlet state
         """
-        self.edit(state=state)
+        if REQUEST is None:
+            REQUEST = self.REQUEST
+        boxid = self.getId()
+        cookie_name = 'cpsportlets_box_%s' % boxid
+        if state not in ('minimized', 'maximized', 'closed'):
+            return
+        if REQUEST is not None:
+            path = self.cpsskins_getBaseUrl()
+            REQUEST.RESPONSE.setCookie(cookie_name, state, path=path)
 
     #################################################################
     # Cache / Events
