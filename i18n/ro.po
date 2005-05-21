@@ -1,8 +1,7 @@
-
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-05-01 16:02default\n"
+"POT-Creation-Date: 2005-05-21 15:46default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -47,7 +46,7 @@ msgstr "Cautare avansata"
 msgid "cpsportlets_button_OK"
 msgstr ""
 
-#.   <p>Change language ...</p>
+#.   <label attributes="for language_chooser_id">Change language:</label>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_change_language"
 msgstr "Schimba limba:"
@@ -191,7 +190,7 @@ msgstr "Afiseaza radacina site-ului"
 
 #, fuzzy
 msgid "cpsportlets_bcs_highlight_last_item_label"
-msgstr "Accentuer l'élément courant"
+msgstr "Mettre en valeur le document courant"
 
 msgid "cpsportlets_advanced_search_link_label"
 msgstr "Afiseaza o legatura catre un formular de cautare avansata"
@@ -312,6 +311,10 @@ msgstr "Adancime relativa"
 
 msgid "cpsportlets_navigation_show_docs_label"
 msgstr "Afiseaza documentele"
+
+#, fuzzy
+msgid "cpsportlets_navigation_folder_prefixes_label"
+msgstr "Profondeur relative"
 
 #, fuzzy
 msgid "cpsportlets_navigation_display_hidden_folders_label"

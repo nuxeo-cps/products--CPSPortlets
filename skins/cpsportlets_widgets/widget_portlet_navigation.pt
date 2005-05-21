@@ -156,11 +156,13 @@
              show_icons python: int(show_icons);
              contextual ds/contextual;
              end_depth ds/end_depth;
+             folder_prefixes ds/folder_prefixes|python:[];
              folderItems python: context.getNavigationItems(
                  root_uids=root_uids,
                  context_rpath=context_rpath,
                  context_obj=context,
                  contextual=0, expand=1,
+                 folder_prefixes=folder_prefixes,
                  end_depth=int(end_depth),
                  display_description=display_description,
                  display_hidden_folders=display_hidden_folders,

@@ -212,6 +212,9 @@ msgstr ""
 msgid "cpsportlets_navigation_show_docs_label"
 msgstr ""
 
+msgid "cpsportlets_navigation_folder_prefixes_label"
+msgstr ""
+
 msgid "cpsportlets_navigation_display_hidden_folders_label"
 msgstr ""
 

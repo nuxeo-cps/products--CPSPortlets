@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-05-01 16:02default\n"
+"POT-Creation-Date: 2005-05-21 15:46default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -47,7 +47,7 @@ msgstr "Avancerad sökning"
 msgid "cpsportlets_button_OK"
 msgstr "OK"
 
-#.   <p>Change language ...</p>
+#.   <label attributes="for language_chooser_id">Change language:</label>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_change_language"
 msgstr "Ändra språk:"
@@ -305,6 +305,9 @@ msgstr "Djupnivå"
 
 msgid "cpsportlets_navigation_show_docs_label"
 msgstr "Visa dokument"
+
+msgid "cpsportlets_navigation_folder_prefixes_label"
+msgstr "Synliga mappar"
 
 msgid "cpsportlets_navigation_display_hidden_folders_label"
 msgstr "Visa gömda mappar"

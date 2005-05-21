@@ -6,6 +6,7 @@ New features:
 - Action Portlet: added support for CMF Action Icons
 - Add item Portlet: added a standard menu view with optional icons.
 - Content Portlet: item icons can be displayed.
+- Navigation Portlet: folder prefixes can be specified for the site map.
 Bug fixes:
 ~~~~~~~~~~
 - more robust access to metadata for Wiki pages.

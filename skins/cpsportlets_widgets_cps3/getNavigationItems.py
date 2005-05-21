@@ -24,6 +24,9 @@ if contextual:
 else:
     context_uid = None
 
+# folder prefixes
+folder_prefixes = kw.get('folder_prefixes', [])
+
 # show hidden folders
 display_hidden_folders = int(kw.get('display_hidden_folders', 0)) == 1
 
@@ -90,6 +93,16 @@ for root_uid in root_uids:
 
         rpath = object['rpath']
 
+        # keeps items located under specified folder prefixes
+        if folder_prefixes:
+            ok = False
+            for folder_prefix in folder_prefixes:
+                if rpath.startswith(folder_prefix):
+                    ok = True
+                    break
+            if not ok:
+                continue
+
         # filter out hidden folders
         if not display_hidden_folders and object['hidden_folder']:
             continue
@@ -103,6 +116,7 @@ for root_uid in root_uids:
                 continue
             if not rpath.startswith(context_rpath):
                 continue
+
 
         description = ''
         if display_description:

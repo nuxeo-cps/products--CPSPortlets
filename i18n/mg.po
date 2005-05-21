@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2005-05-01 16:02default\n"
+"POT-Creation-Date: 2005-05-21 15:46default\n"
 "PO-Revision-Date: 2005-04-13 17:27+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -57,7 +57,7 @@ msgstr "Recherche avancée"
 msgid "cpsportlets_button_OK"
 msgstr "OK"
 
-#.   <p>Change language ...</p>
+#.   <label attributes="for language_chooser_id">Change language:</label>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 #, fuzzy
 msgid "cpsportlets_change_language"
@@ -235,7 +235,7 @@ msgstr "Afficher la racine du site"
 
 #, fuzzy
 msgid "cpsportlets_bcs_highlight_last_item_label"
-msgstr "Accentuer l'élément courant"
+msgstr "Mettre en valeur le document courant"
 
 #, fuzzy
 msgid "cpsportlets_advanced_search_link_label"
@@ -393,6 +393,10 @@ msgstr "Profondeur relative"
 #, fuzzy
 msgid "cpsportlets_navigation_show_docs_label"
 msgstr "Afficher les documents"
+
+#, fuzzy
+msgid "cpsportlets_navigation_folder_prefixes_label"
+msgstr "Profondeur relative"
 
 #, fuzzy
 msgid "cpsportlets_navigation_display_hidden_folders_label"

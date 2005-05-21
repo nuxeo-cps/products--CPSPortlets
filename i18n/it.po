@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets v. 3321 12/03/2005\n"
-"POT-Creation-Date: 2005-05-01 16:02default\n"
+"POT-Creation-Date: 2005-05-21 15:46default\n"
 "PO-Revision-Date: 2005-03-14 13:51+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -51,7 +51,7 @@ msgstr "Ricerca avanzata"
 msgid "cpsportlets_button_OK"
 msgstr "OK"
 
-#.   <p>Change language ...</p>
+#.   <label attributes="for language_chooser_id">Change language:</label>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_change_language"
 msgstr "Cambia la lingua :"
@@ -196,7 +196,7 @@ msgstr "Visualizza l'origine del portale"
 
 #, fuzzy
 msgid "cpsportlets_bcs_highlight_last_item_label"
-msgstr "Accentuer l'élément courant"
+msgstr "Mettre en valeur le document courant"
 
 msgid "cpsportlets_advanced_search_link_label"
 msgstr ""
@@ -323,6 +323,10 @@ msgstr "Profondità relativa"
 
 msgid "cpsportlets_navigation_show_docs_label"
 msgstr "Visualizza gli oggetti"
+
+#, fuzzy
+msgid "cpsportlets_navigation_folder_prefixes_label"
+msgstr "Profondeur relative"
 
 #, fuzzy
 msgid "cpsportlets_navigation_display_hidden_folders_label"
