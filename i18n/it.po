@@ -14,9 +14,9 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language-Name: Italian\n"
-"Language-Code: it\n"
 "Preferred-encodings: utf-8 latin1\n"
+"Language-Code: it\n"
+"Language-Name: Italian\n"
 "Domain: default\n"
 
 #.   <input type="submit" value=" Add " />

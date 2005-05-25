@@ -9,11 +9,11 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language-code: ro\n"
-"Language-name: Romanian\n"
 "Preferred-encodings: utf-8 latin1\n"
-"Domain: default\n"
 "X-Generator: KBabel 1.9.1\n"
+"Language-Code: ro\n"
+"Language-Name: Romanian\n"
+"Domain: default\n"
 
 #.   <input type="submit" value=" Add " />
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
