@@ -33,3 +33,5 @@ New internal features:
 - API simplification: the 'ptype_id' argument is not used in resetCacheTimeout()
 - trivial optimizations in widget_portlet_navigation.pt
 - Portlet box states are stored in a cookie instead of being persistent.
+- getParentItem() now returns the first authorized parent folder
+  (or finally: the portal)
