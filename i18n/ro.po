@@ -1,3 +1,4 @@
+# Alin Voinea <avoinea@nuxeo.com>, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
@@ -18,7 +19,7 @@ msgstr ""
 #.   <input type="submit" value=" Add " />
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
 msgid " Add "
-msgstr ""
+msgstr "Adauga"
 
 #.   <strong>ID:</strong>
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
@@ -44,7 +45,7 @@ msgstr "Cautare avansata"
 #.   <button type="submit">OK</button>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_button_OK"
-msgstr ""
+msgstr "OK"
 
 #.   <label attributes="for language_chooser_id">Change language:</label>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
@@ -66,13 +67,13 @@ msgstr "Description"
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 #, fuzzy
 msgid "cpsportlets_extended_site_map_folder"
-msgstr "Répertoire"
+msgstr "Director"
 
 #.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 #, fuzzy
 msgid "cpsportlets_extended_site_map_managers"
-msgstr "Responsable(s)"
+msgstr "Administrator(i)"
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -109,15 +110,15 @@ msgstr "Creeaza o versiune in..."
 #.           </span>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 msgid "cpsportlets_up_to"
-msgstr ""
+msgstr "Inapoi la"
 
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
 msgid "this export format has not been implemented yet"
-msgstr ""
+msgstr "Acest tip nu a fost inca implementat"
 
 msgid "label_cpsportlets_provider"
-msgstr "Furnizeaza"
+msgstr "Furnizor"
 
 msgid "label_cpsportlets_title"
 msgstr "Titlul portlet-ului"
@@ -144,19 +145,19 @@ msgid "portal_type_AddItemPortlet_title"
 msgstr "Portlet pentru crearea de continut"
 
 msgid "portal_type_BreadcrumbsPortlet_title"
-msgstr "Portlet pentru drum de navigare"
+msgstr "Portlet pentru navigare"
 
 msgid "portal_type_ActionsPortlet_title"
-msgstr "Portlet de actiuni"
+msgstr "Portlet pentru actiuni"
 
 msgid "portal_type_ContentPortlet_title"
-msgstr "Portlet de continut"
+msgstr "Portlet pentru continut"
 
 msgid "portal_type_LanguagePortlet_title"
 msgstr "Portlet pentru limbi"
 
 msgid "portal_type_NavigationPortlet_title"
-msgstr "Portlet de navigare"
+msgstr "Portlet pentru navigare"
 
 msgid "portal_type_DocumentPortlet_title"
 msgstr "Portlet Document"
@@ -188,9 +189,8 @@ msgstr "Urma orizontala"
 msgid "cpsportlets_bcs_display_site_root_label"
 msgstr "Afiseaza radacina site-ului"
 
-#, fuzzy
 msgid "cpsportlets_bcs_highlight_last_item_label"
-msgstr "Mettre en valeur le document courant"
+msgstr "Subliniaza ultimul item"
 
 msgid "cpsportlets_advanced_search_link_label"
 msgstr "Afiseaza o legatura catre un formular de cautare avansata"
@@ -211,13 +211,13 @@ msgid "cpsportlets_content_search_related_label"
 msgstr "Articole cu acelasi subiect"
 
 msgid "cpsportlets_content_search_all_label"
-msgstr ""
+msgstr "Toate documentele"
 
 msgid "cpsportlets_content_search_type_label"
 msgstr "Continut"
 
 msgid "cpsportlets_content_search_pending_label"
-msgstr "Documente in asteptare de a fi publicate "
+msgstr "Documente in asteptare de a fi publicate"
 
 msgid "cpsportlets_content_search_last_modified_label"
 msgstr "Ultimele documente modificate"
@@ -229,7 +229,7 @@ msgid "cpsportlets_content_search_recent_label"
 msgstr "Documente recente"
 
 msgid "cpsportlets_content_search_upcoming_label"
-msgstr "Evenimente care vor urma"
+msgstr "Evenimentele viitoare"
 
 msgid "cpsportlets_content_search_today_label"
 msgstr "Evenimentele zilei"
@@ -289,22 +289,19 @@ msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Continutul sub-directoarelor"
 
 msgid "cpsportlets_nav_display_up_to_parent_label"
-msgstr ""
+msgstr "Inapoi la directorul parinte*"
 
 msgid "cpsportlets_nav_display_collapsible_menu_label"
 msgstr "Meniu extensibil"
 
-#, fuzzy
 msgid "cpsportlets_additem_show_icons_label"
-msgstr "Afficher les icônes"
+msgstr "Afisare pictograme"
 
-#, fuzzy
 msgid "cpsportlets_additem_dropdown_list_label"
-msgstr "Liste déroulante"
+msgstr "Lista extensibila"
 
-#, fuzzy
 msgid "cpsportlets_additem_standard_menu_label"
-msgstr "Menu standard"
+msgstr "Meniu standard"
 
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Adancime relativa"
@@ -312,24 +309,20 @@ msgstr "Adancime relativa"
 msgid "cpsportlets_navigation_show_docs_label"
 msgstr "Afiseaza documentele"
 
-#, fuzzy
 msgid "cpsportlets_navigation_folder_prefixes_label"
-msgstr "Profondeur relative"
+msgstr "Titluri vizibile pentru directoare"
 
-#, fuzzy
 msgid "cpsportlets_navigation_display_hidden_folders_label"
-msgstr "Afficher les répertoires cachés"
+msgstr "Afiseaza directoarelor ascunse"
 
 msgid "cpsportlets_navigation_show_icons_label"
-msgstr "Afiseaza iconitele documentelor"
+msgstr "Afiseaza pictogramele documentelor"
 
-#, fuzzy
 msgid "cpsportlets_content_show_icons_label"
-msgstr "Afficher l'icône des documents"
+msgstr "Afiseaza pictogramele continutului"
 
-#, fuzzy
 msgid "cpsportlets_actions_show_icons_label"
-msgstr "Afficher l'icône des actions"
+msgstr "Afiseaza pictogramele actiunilor"
 
 msgid "cpsportlets_custom_render_method_label"
 msgstr "Metoda de redare (zpt, py, etc.)"
@@ -421,9 +414,8 @@ msgstr "Afisare contextuala"
 msgid "cpsportlets_display_mode_label"
 msgstr "Mod de afisare"
 
-#, fuzzy
 msgid "cpsportlets_display_mode_help"
-msgstr "Les portlets marqués d'un * ont une mise en forme fixée à l'avance."
+msgstr "Portlet-urile marcate cu * au un layout predeterminat."
 
 msgid "w__imagelink"
 msgstr "Imagine legatura"
@@ -431,9 +423,8 @@ msgstr "Imagine legatura"
 msgid "cpsportlets_nav_display_site_map_label"
 msgstr "Planul site-ului"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_extended_site_map_label"
-msgstr "Plan de site étendu*"
+msgstr "Planul site-ului extins*"
 
 msgid "portal_type_CustomPortlet_description"
 msgstr "Afiseaza metoda de redare (.zpt, .py, etc.)"
@@ -510,42 +501,32 @@ msgstr "Calea spre director (relativa)"
 msgid "cpsportlets_common_syndication_formats_label"
 msgstr ""
 
-#, fuzzy
 msgid "cpsportlets_syndication_rss_1_0_help"
-msgstr "Vers le fil de nouvelles RSS associé"
+msgstr "Conform cu alimentarea cu stiri de tip RSS"
 
-#, fuzzy
 msgid "cpsportlets_syndication_rss_2_0_help"
-msgstr "Vers le fil de nouvelles RSS associé"
+msgstr "Conform cu alimentarea cu stiri de tip RSS"
 
-#, fuzzy
 msgid "cpsportlets_syndication_atom_0_3_help"
-msgstr "Vers l'export ATOM associé"
+msgstr "Conform cu exportul de tip ATOM"
 
-#, fuzzy
 msgid "cpsportlets_syndication_rss_1_0_label"
 msgstr "RSS 1.0"
 
-#, fuzzy
 msgid "cpsportlets_syndication_rss_2_0_label"
 msgstr "RSS 2.0"
 
-#, fuzzy
 msgid "cpsportlets_syndication_atom_0_3_label"
 msgstr "ATOM 0.3"
 
-#, fuzzy
 msgid "cpsportlets_common_short_syndication_formats_label"
-msgstr "Utiliser des noms courts sur les boutons d'export"
+msgstr "Afiseaza mesaje scurt pe butoanele exportate"
 
-#, fuzzy
 msgid "cpsportlets_navigation_display_managers_label"
-msgstr "Afficher les responsables"
+msgstr "Afiseaza administratori obiectelor"
 
-#, fuzzy
 msgid "cpsportlets_navigation_display_description_label"
-msgstr "Afficher les descriptions des répertoires"
+msgstr "Afiseaza descrierea obiectelor"
 
-#, fuzzy
 msgid "cpsportlets_navigation_authorized_only_label"
-msgstr "Afficher uniquement les répertoires autorisés"
+msgstr "Afiseaza doar obiectele autorizate"
