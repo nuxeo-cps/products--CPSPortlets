@@ -111,7 +111,7 @@ msgstr "Créer une version en ..."
 #.           </span>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 msgid "cpsportlets_up_to"
-msgstr "Vers"
+msgstr "Vers ${up_id}"
 
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt

@@ -107,7 +107,7 @@ msgstr "Skapa en version i ..."
 #.           </span>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 msgid "cpsportlets_up_to"
-msgstr "Upp till"
+msgstr "Upp till ${up_id}"
 
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
