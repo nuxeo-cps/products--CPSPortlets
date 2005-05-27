@@ -22,6 +22,7 @@ Bug fixes:
 - removed extra '/view' from breadcrumbs item urls.
 - optimization in getContentItems(): the folder path was evaluated even when
   the no path was given.
+- breadcrumbs did not show the last item if it is not a folder (#681)
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added a RAM cache for storing action icons image tags

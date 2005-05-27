@@ -1,8 +1,6 @@
 ##parameters=**kw
 
 parent = kw.get('parent')
-if not context.isPrincipiaFolderish:
-    parent = 1
 
 REQUEST = context.REQUEST
 breadcrumb_set = REQUEST.get('breadcrumb_set')
