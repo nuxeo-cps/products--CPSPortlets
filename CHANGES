@@ -20,6 +20,8 @@ Bug fixes:
 - Content Portlet: rendered content items where not rendered in the
   correct context.
 - removed extra '/view' from breadcrumbs item urls.
+- optimization in getContentItems(): the folder path was evaluated even when
+  the no path was given.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added a RAM cache for storing action icons image tags

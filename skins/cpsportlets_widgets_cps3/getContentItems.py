@@ -20,7 +20,7 @@ query['cps_filter_sets'] = {'query': ('searchable', 'leaves'),
                             'operator': 'and'}
 # folder path
 folder_path = kw.get('folder_path')
-if folder_path is not None:
+if folder_path:
     portal_path = context.portal_url.getPortalPath()
     query['path'] = portal_path + folder_path
 
