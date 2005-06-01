@@ -385,6 +385,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         # remove invisible and overriden portlets
         for portlet in remove_list:
+            if portlet not in allportlets:
+                continue
             allportlets.remove(portlet)
 
         # sort the remaining portlets
