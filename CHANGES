@@ -24,6 +24,7 @@ Bug fixes:
   the no path was given.
 - breadcrumbs did not show the last item if it is not a folder (#681)
 - getPortlets() fix when attempting to remove a portlet from the list.
+- fix when 'portlet' is not passed as an argument.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added a RAM cache for storing action icons image tags
