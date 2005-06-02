@@ -1,4 +1,50 @@
 *******************************************
+** CPSPortlets V0.4.0 [R1 build 2005/06/02-09:39 by fguillaume]
+** SVN URL: https://svn.nuxeo.org/pub/CPSPortlets/trunk Revision: 22058
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- Action Portlet: added support for CMF Action Icons
+- Add item Portlet: added a standard menu view with optional icons.
+- Content Portlet: item icons can be displayed.
+- Navigation Portlet: folder prefixes can be specified for the site map.
+Bug fixes:
+~~~~~~~~~~
+- more robust access to metadata for Wiki pages.
+- Content Portlet: not displaying '... >>' when the description is empty.
+- Extended Site Map (Navigation Portlet): show managers only if the members
+  dir isVisible to avoid displaying links to unauthorized dir entries
+- negative timeout cache parameter value are not allowed
+- portlet RAM cache: fixed bootstrapping problem which caused the portlet
+  cleanup date to always be set to None.
+- Added more accessibility to the language portlet.
+- Content Portlet: rendered content items where not rendered in the
+  correct context.
+- removed extra '/view' from breadcrumbs item urls.
+- optimization in getContentItems(): the folder path was evaluated even when
+  the no path was given.
+- breadcrumbs did not show the last item if it is not a folder (#681)
+- getPortlets() fix when attempting to remove a portlet from the list.
+- fix when 'portlet' is not passed as an argument.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- added a RAM cache for storing action icons image tags
+- optimizations: the base url is computed only once per request.
+- getFolderItems.py: can return metadata, can hide folders, can hide
+  hidden documents
+- renamed the 'getMetaData' parameter as 'get_metadata'
+- Breadcrumbs: the last trail item can be highlighted (visual hint).
+- getFolderItems.py: returns item ids.
+- Cache parameters are now stored in the portlet tool (managed through the ZMI)
+- API simplification: the 'ptype_id' argument is not used in resetCacheTimeout()
+- trivial optimizations in widget_portlet_navigation.pt
+- Portlet box states are stored in a cookie instead of being persistent.
+- getParentItem() now returns the first authorized parent folder
+  (or finally: the portal)
+
+*******************************************
 ** CPSPortlets V0.3.1 [R1 build 2005/04/13-15:34 by madarche]
 
 Requires:
