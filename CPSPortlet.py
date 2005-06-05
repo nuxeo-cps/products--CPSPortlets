@@ -272,11 +272,14 @@ class CPSPortlet(CPSDocument):
             res = []
             for o in p.split(':')[1].split(','):
                 if o[0] == '(' and o[-1] == ')':
-                    o = getattr(self, o[1:-1], None)
+                    o = getattr(aq_base(self), o[1:-1], None)
                     if o is None:
                         continue
                     if isinstance(o, (list, tuple)):
                         res.extend(o)
+                        continue
+                    if isinstance(o, int):
+                        res.append(o)
                         continue
                 res.append(str(o))
             return res
@@ -290,6 +293,13 @@ class CPSPortlet(CPSDocument):
             # not cacheable
             if param == 'no-cache':
                 return None, data
+
+            # disable the cache is a field value is True
+            elif param.startswith('no-cache:'):
+                opts = getOptions(param)
+                for opt in opts:
+                    if opt:
+                        return None, data
 
             # random integer
             elif param.startswith('random:'):

@@ -271,6 +271,23 @@ Contextual variables:
   description:
     the portlet should not be cached.
 
+
+- no-cache:(field1),(field2),...
+
+  description:
+    the portlet will not be cached if any of the specified field's value is
+    True
+
+  example:
+
+    no-cache:(contextual)
+
+    will disable the portlet's cache if the 'contextual' option is set.
+
+  used in:
+    the content portlet
+
+
 - random:n
 
   description:

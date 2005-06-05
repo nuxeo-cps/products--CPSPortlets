@@ -3,10 +3,12 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- Content Portlet: added an option to perform contextual searches.
 Bug fixes:
 ~~~~~~~~~~
 -
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- added some basic sorting options in getFolderItems()
+- new cache parameter: no-cache:(field1),(field2),... to disable the caching of
+  a portlet if any of the portlet's field values is True

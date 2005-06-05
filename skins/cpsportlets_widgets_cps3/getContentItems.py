@@ -18,11 +18,23 @@ if len(searchable_types) > 0:
 # cps filter (portal_xyz, .___)
 query['cps_filter_sets'] = {'query': ('searchable', 'leaves'),
                             'operator': 'and'}
-# folder path
-folder_path = kw.get('folder_path')
-if folder_path:
-    portal_path = context.portal_url.getPortalPath()
-    query['path'] = portal_path + folder_path
+
+# path
+query_rpath = ''
+
+# contextual search (using the context as the path prefix)
+contextual = int(kw.get('contextual', 0))
+if contextual:
+    if not obj.isPrincipiaFolderish:
+        obj = obj.aq_inner.aq_parent
+    query_rpath = context.portal_url.getRelativeUrl(obj)
+
+# explicit folder path
+else:
+    query_rpath = kw.get('folder_path')
+
+if query_rpath:
+    query['path'] = context.portal_url.getPortalPath() + '/' + query_rpath
 
 # sort on
 query['sort_on'] = kw.get('sort_on')

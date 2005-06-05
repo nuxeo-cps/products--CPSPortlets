@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2005-05-01 16:02default\n"
+"POT-Creation-Date: 2005-05-27 09:30default\n"
 "PO-Revision-Date: 2005-04-13 17:27+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -55,7 +55,7 @@ msgstr "Advanced search"
 msgid "cpsportlets_button_OK"
 msgstr "OK"
 
-#.   <p>Change language ...</p>
+#.   <label attributes="for language_chooser_id">Change language:</label>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 #, fuzzy
 msgid "cpsportlets_change_language"
@@ -127,7 +127,7 @@ msgstr "Create a version in ..."
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 #, fuzzy
 msgid "cpsportlets_up_to"
-msgstr "Up to"
+msgstr "Up to ${up_id}"
 
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
@@ -328,6 +328,10 @@ msgid "cpsportlets_content_searchable_types_label"
 msgstr "Content types to display"
 
 #, fuzzy
+msgid "cpsportlets_content_contextual_label"
+msgstr "Contextual search"
+
+#, fuzzy
 msgid "cpsportlets_language_action_label"
 msgstr "Action"
 
@@ -390,6 +394,10 @@ msgstr "Relative depth"
 #, fuzzy
 msgid "cpsportlets_navigation_show_docs_label"
 msgstr "Display documents"
+
+#, fuzzy
+msgid "cpsportlets_navigation_folder_prefixes_label"
+msgstr "Visible folder prefixes"
 
 #, fuzzy
 msgid "cpsportlets_navigation_display_hidden_folders_label"

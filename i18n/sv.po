@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-05-21 15:46default\n"
+"POT-Creation-Date: 2005-06-05 20:14default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -257,6 +257,9 @@ msgstr "Rotmapp"
 
 msgid "cpsportlets_content_searchable_types_label"
 msgstr "Innehållstyper att visa"
+
+msgid "cpsportlets_content_contextual_label"
+msgstr "kontextuell sökning"
 
 msgid "cpsportlets_language_action_label"
 msgstr "Handling"

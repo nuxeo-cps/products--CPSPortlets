@@ -62,6 +62,23 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         expected_index = None
         self.assert_(cache_index == expected_index)
 
+    def test_getCacheIndex_no_cache_with_fields(self):
+        portlet = self.portlet
+        self.ptltool.updateCacheParameters(
+            {'Dummy Portlet': ['no-cache:(dummy)']})
+        # no cache since 'dummy' has a true value
+        portlet.dummy = 'do not cache'
+        kw = self.default_kw
+        cache_index, data = portlet.getCacheIndex(**kw)
+        expected_index = None
+        self.assert_(cache_index == expected_index)
+        # cache since 'dummy' has a false value.
+        portlet.dummy = ''
+        kw = self.default_kw
+        cache_index, data = portlet.getCacheIndex(**kw)
+        expected_index = ()
+        self.assert_(cache_index == expected_index)
+
     def test_getCacheIndex_request(self):
         portlet = self.portlet
         kw = self.default_kw

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2005-05-21 15:46default\n"
+"POT-Creation-Date: 2005-06-05 20:14default\n"
 "PO-Revision-Date: 2005-04-13 17:27+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -127,7 +127,7 @@ msgstr "Créer une version en ..."
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 #, fuzzy
 msgid "cpsportlets_up_to"
-msgstr "Vers"
+msgstr "Vers ${up_id}"
 
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
@@ -329,6 +329,10 @@ msgid "cpsportlets_content_searchable_types_label"
 msgstr "Types de contenu à afficher"
 
 #, fuzzy
+msgid "cpsportlets_content_contextual_label"
+msgstr "Recherche contextuelle"
+
+#, fuzzy
 msgid "cpsportlets_language_action_label"
 msgstr "Action"
 
@@ -394,7 +398,7 @@ msgstr "Afficher les documents"
 
 #, fuzzy
 msgid "cpsportlets_navigation_folder_prefixes_label"
-msgstr "Profondeur relative"
+msgstr "Répertoires visibles"
 
 #, fuzzy
 msgid "cpsportlets_navigation_display_hidden_folders_label"

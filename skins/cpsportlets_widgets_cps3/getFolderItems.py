@@ -43,6 +43,7 @@ display_folders = int(kw.get('display_folders', 1))
 display_hidden_folders = int(kw.get('display_hidden_folders', 1))
 display_hidden_docs = int(kw.get('display_hidden_docs', 0))
 display_description = int(kw.get('display_description', 0))
+sort_by = kw.get('sort_by')
 
 # Dublin Core / metadata
 get_metadata = int(kw.get('get_metadata', 0))
@@ -114,7 +115,7 @@ for object in bmf.objectValues():
 
     # DublinCore / metadata information
     metadata_info = {}
-    if get_metadata:
+    if get_metadata or sort_by in ('date', 'author'):
         content = content or getContent(object)
         for key, attr in metadata_map.items():
             meth = getattr(content, attr)
@@ -153,4 +154,34 @@ for object in bmf.objectValues():
          'icon_tag': renderIcon(ptype, base_url, ''),
          'metadata': metadata_info,
         })
+
+# sorting
+def id_sortkey(a):
+    return a['id']
+def title_sortkey(a):
+    return a['title'].lower()
+def date_sortkey(a):
+    return str(a['metadata']['date']) + a['id']
+def author_sortkey(a):
+    return a['metadata']['creator'] + a['id']
+def cmp_desc(x, y):
+    return -cmp(x, y)
+
+if sort_by:
+    sort_direction = kw.get('sort_direction')
+    make_sortkey = id_sortkey
+    if sort_by == 'date':
+        make_sortkey = date_sortkey
+        sort_direction = sort_direction or 'desc'
+    elif sort_by == 'title':
+        make_sortkey = title_sortkey
+    elif sort_by == 'author':
+        make_sortkey = author_sortkey
+    items = [ (make_sortkey(x), x) for x in folder_items ]
+    if sort_direction == 'desc':
+        items.sort(cmp_desc)
+    else:
+        items.sort()
+    folder_items = [x[1] for x in items]
+
 return folder_items
