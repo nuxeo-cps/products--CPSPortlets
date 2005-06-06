@@ -203,9 +203,11 @@ renderIcon = context.portal_cpsportlets.renderIcon
 
 base_url = context.cpsskins_getBaseUrl()
 
+order = 0
 for brain in brains:
-    content = None
+    order += 1
 
+    content = None
     if render_items or render_method is not None:
         content, object = getBrainInfo()
 
@@ -236,7 +238,8 @@ for brain in brains:
 
     # render the item using a custom method (.zpt, .py, .dtml)
     elif render_method is not None:
-        rendered = apply(render_method, (), {'item': content})
+        rendered = apply(render_method, (),
+                         {'item': content, 'order': order})
 
     # default item presentation (summary of description)
     if not rendered:
