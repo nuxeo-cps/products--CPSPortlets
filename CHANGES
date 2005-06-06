@@ -4,6 +4,7 @@ Requires:
 New features:
 ~~~~~~~~~~~~~
 - Content Portlet: added an option to perform contextual searches.
+- Content Portlet: items can be displayed using a custom render method. (#705)
 Bug fixes:
 ~~~~~~~~~~
 - reset the Language Selection flag in SESSION in the language selection portlet

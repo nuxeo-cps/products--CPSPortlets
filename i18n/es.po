@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2005-06-05 20:14default\n"
+"POT-Creation-Date: 2005-06-06 14:43default\n"
 "PO-Revision-Date: 2005-04-13 17:26+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -314,6 +314,10 @@ msgstr "Author"
 #, fuzzy
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Invert the display order"
+
+#, fuzzy
+msgid "cpsportlets_content_render_method_label"
+msgstr "Render items"
 
 #, fuzzy
 msgid "cpsportlets_common_max_items_label"

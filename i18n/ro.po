@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-06-05 20:14default\n"
+"POT-Creation-Date: 2005-06-06 14:43default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -251,6 +251,10 @@ msgstr "Autor"
 
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Inverseaza ordinea afisarii"
+
+#, fuzzy
+msgid "cpsportlets_content_render_method_label"
+msgstr "Générer un rendu des résultats"
 
 msgid "cpsportlets_common_max_items_label"
 msgstr "Numar de rezultate"

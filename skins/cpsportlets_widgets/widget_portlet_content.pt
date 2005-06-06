@@ -21,14 +21,13 @@
                              class linkclass">
             <tal:block condition="show_icons"
              content="structure item/icon_tag" />
-            <tal:block condition="not:render_items"
+            <tal:block condition="not:rendered"
              content="item_title" />
-            <span class="itemDescription"
-             tal:omit-tag="python: render_items or not rendered">
-              <tal:block condition="rendered"
-               content="structure rendered" />
-              <tal:block condition="python: link_string and rendered"
-              i18n:translate="" content="structure link_string" />
+            <span class="itemDescription" tal:omit-tag="rendered">
+              <tal:block condition="rendered" content="structure rendered" />
+              <tal:block i18n:translate=""
+              condition="python: link_string and rendered"
+              content="structure link_string" />
             </span>
           </a>
         </li>

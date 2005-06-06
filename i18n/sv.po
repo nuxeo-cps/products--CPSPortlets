@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-06-05 20:14default\n"
+"POT-Creation-Date: 2005-06-06 14:43default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -248,6 +248,9 @@ msgstr "Författare"
 
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Omvänd visningsordning"
+
+msgid "cpsportlets_content_render_method_label"
+msgstr "Visningsmetod (.zpt, .py, .dtml)"
 
 msgid "cpsportlets_common_max_items_label"
 msgstr "Antal artiklar"

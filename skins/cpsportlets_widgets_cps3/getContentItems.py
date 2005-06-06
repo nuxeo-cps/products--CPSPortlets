@@ -179,6 +179,10 @@ cluster_id = kw.get('cluster_id')
 display_description = int(kw.get('display_description'), 0)
 show_icons = int(kw.get('show_icons'), 0)
 
+render_method = kw.get('render_method')
+if render_method is not None:
+    render_method = getattr(context, render_method, None)
+
 # Dublin Core / metadata
 get_metadata = int(kw.get('get_metadata', 0))
 metadata_map = {
@@ -202,10 +206,12 @@ base_url = context.cpsskins_getBaseUrl()
 for brain in brains:
     content = None
 
-    rendered = ''
-    # render the item
-    if render_items:
+    if render_items or render_method is not None:
         content, object = getBrainInfo()
+
+    rendered = ''
+    # render the item using CPSDocument render()
+    if render_items:
         renderable = 1
         # check whether the cluster exists.
         # XXX: this could be done in CPSDocument.FlexibleTypeInformation.py
@@ -221,12 +227,16 @@ for brain in brains:
                     break
 
         if renderable:
-            render = getattr(content, 'render', None)
-            if render is not None:
+            renderer = getattr(content, 'render', None)
+            if renderer is not None:
                 try:
-                    rendered = render(proxy=object, cluster=cluster_id)
+                    rendered = renderer(proxy=object, cluster=cluster_id)
                 except TypeError:
                     pass
+
+    # render the item using a custom method (.zpt, .py, .dtml)
+    elif render_method is not None:
+        rendered = apply(render_method, (), {'item': content})
 
     # default item presentation (summary of description)
     if not rendered:
