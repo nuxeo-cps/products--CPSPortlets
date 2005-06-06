@@ -18,7 +18,7 @@ portal.Localizer.changeLanguage(lang=lang)
 if REQUEST is not None:
     redirect_url = REQUEST['HTTP_REFERER']
     # Avoid redirection to a switchLanguage action
-    index = redirect_url.find('/switchLanguage')
-    if index != -1:
+    if '/switchLanguage' in redirect_url:
+        index = redirect_url.find('/switchLanguage')
         redirect_url = redirect_url[:index]
     REQUEST.RESPONSE.redirect(redirect_url)
