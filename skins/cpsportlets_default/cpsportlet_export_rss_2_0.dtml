@@ -5,21 +5,21 @@
 
 <rss version="2.0">
   <channel>
-    <title><dtml-var "portal.Title()"> - <dtml-var "box['Title']" html_quote></title>
+    <title><dtml-var "portal.Title()" html_quote> - <dtml-var "box['Title']" html_quote></title>
     <link><dtml-var url html_quote></link>
     <description><dtml-var "box['Description']" html_quote></description>
 
     <dtml-in items>
       <dtml-let item=sequence-item>
         <item>
-          <title><dtml-var "item['title']"></title>
-          <link><dtml-var "item['url']"></link>
-          <guid><dtml-var "item['url']"></guid>
-          <description><dtml-var "item['description']"></description>
+          <title><dtml-var "item['title']" html_quote></title>
+          <link><dtml-var "item['url']" html_quote></link>
+          <guid><dtml-var "item['url']" html_quote></guid>
+          <description><dtml-var "item['description']" html_quote></description>
           <dtml-if "item.has_key('metadata')">
             <dtml-let metadata="item['metadata']">
               <dtml-if "metadata.has_key('date')">
-                <pubDate><dtml-var "convert_date(metadata['date'], 'rfc822')"></pubDate>
+                <pubDate><dtml-var "convert_date(metadata['date'], 'rfc822')" html_quote></pubDate>
               </dtml-if>
             </dtml-let>
           </dtml-if>

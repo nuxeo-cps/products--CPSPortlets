@@ -6,11 +6,11 @@
 
 <feed version="0.3" xmlns="http://purl.org/atom/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
 
-  <title mode="escaped" type="text/html"><dtml-var "portal.Title()"> - <dtml-var "box['Title']" html_quote></title>
-  <link rel="alternate" type="text/html" href="<dtml-var url>" />
-  <id><dtml-var "construct_atomid(url, context.created())"></id>
+  <title mode="escaped" type="text/html"><dtml-var "portal.Title()" html_quote> - <dtml-var "box['Title']" html_quote></title>
+  <link rel="alternate" type="text/html" href="<dtml-var url html_quote>" />
+  <id><dtml-var "construct_atomid(url, context.created())" html_quote></id>
   <generator url="http://nuxeo.com" version="3.3">CPS</generator>
-  <modified><dtml-var "convert_date(context.ModificationDate(), 'W3CDTF')"></modified>
+  <modified><dtml-var "convert_date(context.ModificationDate(), 'W3CDTF')" html_quote></modified>
   <tagline type="text/plain">ATOM feed</tagline>
 
   <dtml-in items>
@@ -18,27 +18,27 @@
        <entry>
          <dtml-if "item.has_key('metadata')">
            <dtml-let metadata="item['metadata']">
-             <id><dtml-var "construct_atomid(item['url'], metadata.get('created'))"></id>
+             <id><dtml-var "construct_atomid(item['url'], metadata.get('created'))" html_quote></id>
              <title mode="escaped" type="text/html"><dtml-var "item['title']" html_quote></title>
-             <link rel="alternate" type="text/html" href="<dtml-var "item['url']">" />
+             <link rel="alternate" type="text/html" href="<dtml-var "item['url']" html_quote>" />
 
              <dtml-if "metadata.has_key('issued')">
-               <issued><dtml-var "convert_date(metadata['issued'], 'W3CDTF')"></issued>
+               <issued><dtml-var "convert_date(metadata['issued'], 'W3CDTF')" html_quote></issued>
              </dtml-if>
              <dtml-if "metadata.has_key('date')">
-               <modified><dtml-var "convert_date(metadata['date'], 'W3CDTF')"></modified>
+               <modified><dtml-var "convert_date(metadata['date'], 'W3CDTF')" html_quote></modified>
              </dtml-if>
              <dtml-if "metadata.has_key('creator')">
                <author>
-                 <name><dtml-var "metadata['creator']"></name>
+                 <name><dtml-var "metadata['creator']" html_quote></name>
                </author>
              </dtml-if>
              <dtml-if "metadata.has_key('contributor')">
                <contributor>
-                 <name><dtml-var "metadata['contributor']"></name>
+                 <name><dtml-var "metadata['contributor']" html_quote></name>
                </contributor>
              </dtml-if>
-             <summary xml:lang="<dtml-var "metadata.get('language', 'en')">"><dtml-var "item['description']"></summary>
+             <summary xml:lang="<dtml-var "metadata.get('language', 'en')" html_quote>"><dtml-var "item['description']" html_quote></summary>
            </dtml-let>
          </dtml-if>
 

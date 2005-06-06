@@ -10,7 +10,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <channel rdf:about="<dtml-var url html_quote>">
-    <title><dtml-var "portal.Title()"> - <dtml-var "box['Title']" html_quote></title>
+    <title><dtml-var "portal.Title()" html_quote> - <dtml-var "box['Title']" html_quote></title>
     <description><dtml-var "box['Description']" html_quote></description>
     <link><dtml-var url html_quote></link>
 
@@ -18,7 +18,7 @@
       <rdf:Seq>
         <dtml-in items>
           <dtml-let item=sequence-item>
-            <rdf:li rdf:resource="<dtml-var "item['url']">" />
+            <rdf:li rdf:resource="<dtml-var "item['url']" html_quote>" />
           </dtml-let>
         </dtml-in>
       </rdf:Seq>
@@ -28,25 +28,25 @@
   <dtml-in items>
      <dtml-let item=sequence-item>
        <item rdf:about="<dtml-var "item['url']" html_quote>">
-         <title><dtml-var "item['title']"></title>
-         <description><dtml-var "item['description']"></description>
-         <link><dtml-var "item['url']"></link>
+         <title><dtml-var "item['title']" html_quote></title>
+         <description><dtml-var "item['description']" html_quote></description>
+         <link><dtml-var "item['url']" html_quote></link>
          <dtml-if "item.has_key('metadata')">
            <dtml-let metadata="item['metadata']">
              <dtml-if "metadata.has_key('contributor')">
-               <dc:contributor><dtml-var "metadata['contributor']"></dc:contributor>
+               <dc:contributor><dtml-var "metadata['contributor']" html_quote></dc:contributor>
              </dtml-if>
              <dtml-if "metadata.has_key('language')">
-               <dc:language><dtml-var "metadata['language']"></dc:language>
+               <dc:language><dtml-var "metadata['language']" html_quote></dc:language>
              </dtml-if>
              <dtml-if "metadata.has_key('date')">
-               <dc:date><dtml-var "convert_date(metadata['date'], 'W3CDTF')"></dc:date>
+               <dc:date><dtml-var "convert_date(metadata['date'], 'W3CDTF')" html_quote></dc:date>
              </dtml-if>
              <dtml-if "metadata.has_key('coverage')">
-               <dc:coverage><dtml-var "metadata['coverage']"></dc:coverage>
+               <dc:coverage><dtml-var "metadata['coverage']" html_quote></dc:coverage>
              </dtml-if>
              <dtml-if "metadata.has_key('rights')">
-               <dc:rights><dtml-var "metadata['rights']"></dc:rights>
+               <dc:rights><dtml-var "metadata['rights']" html_quote></dc:rights>
              </dtml-if>
            </dtml-let>
          </dtml-if>
