@@ -6,7 +6,7 @@ New features:
 - Content Portlet: added an option to perform contextual searches.
 Bug fixes:
 ~~~~~~~~~~
--
+- reset the Language Selection flag in SESSION in the language selection portlet
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added some basic sorting options in getFolderItems()
