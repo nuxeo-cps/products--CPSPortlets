@@ -9,6 +9,8 @@ Bug fixes:
 ~~~~~~~~~~
 - reset the Language Selection flag in SESSION in the language selection portlet
 - XML exported content must be html quoted
+- Don't use 0-length __init__.py files, they cause problems with stupid
+  windows unarchivers.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added some basic sorting options in getFolderItems()
