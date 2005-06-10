@@ -1,38 +1,26 @@
 <tal:block define="ds options/datastructure;
                    export request/form/export|nothing;
                    get_metadata python: export is not None;
-                   display_description ds/display_description;
-                   display_description python: int(display_description);
                    render_items ds/render_items;
                    render_items python: int(render_items);
                    show_icons ds/show_icons;
                    show_icons python: int(show_icons);
                    context nocall:options/context_obj|here;
                    contentitems python: here.getContentItems(obj=context, get_metadata=get_metadata, **dict(ds));
-                   link_string ds/link_string;
                    linkclass python: show_icons and 'noicon' or None"
   tal:condition="contentitems">
 
   <tal:block condition="not:export">
     <ul class="cpsskinsMenu">
       <tal:block repeat="item contentitems">
-        <li tal:define="item_title item/title;
-                        item_url item/url;
+        <li tal:define="item_url item/url;
                         rendered item/rendered">
           <a tal:attributes="href item_url;
                              class linkclass">
             <tal:block condition="show_icons"
              content="structure item/icon_tag" />
-            <tal:block condition="not:rendered"
-             content="item_title" />
-            <span class="itemDescription" tal:omit-tag="rendered">
-              <tal:block condition="rendered" content="structure rendered" />
-              <tal:block condition="python: not rendered and display_description"
-                content="item/description" />
-              <tal:block i18n:translate=""
-              condition="python: link_string and rendered"
-              content="structure link_string" />
-            </span>
+            <tal:block condition="rendered"
+             content="structure rendered" />
           </a>
         </li>
       </tal:block>

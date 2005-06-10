@@ -179,9 +179,9 @@ cluster_id = kw.get('cluster_id')
 display_description = int(kw.get('display_description'), 0)
 show_icons = int(kw.get('show_icons'), 0)
 
-render_method = kw.get('render_method')
-if render_method is not None:
-    render_method = getattr(context, render_method, None)
+DEFAULT_CONTENT_ITEM_DISPLAY = 'cpsportlet_contentitem_display'
+render_method = kw.get('render_method') or DEFAULT_CONTENT_ITEM_DISPLAY
+render_method = getattr(context, render_method, None)
 
 # Dublin Core / metadata
 get_metadata = int(kw.get('get_metadata', 0))
@@ -208,9 +208,46 @@ for brain in brains:
     order += 1
 
     content = None
-    if render_items or render_method is not None:
+    if render_items or render_method != DEFAULT_CONTENT_ITEM_DISPLAY:
         content, object = getBrainInfo()
 
+    # DublinCore / metadata information
+    metadata_info = {}
+    if get_metadata:
+        content = content or getBrainInfo()[0]
+
+        for key, attr in metadata_map.items():
+            meth = getattr(content, attr)
+            if callable(meth):
+                value = meth()
+            else:
+                value = meth
+            if not value or value is 'None':
+                continue
+            if not isinstance(value, str):
+                try:
+                    value = ', '.join(value)
+                except TypeError:
+                    value = str(value)
+            metadata_info[key] = value
+
+    # Item's icon
+    icon_tag = ''
+    if show_icons:
+        content = content or getBrainInfo()[0]
+        ti = content.getTypeInfo()
+        if ti is not None:
+            icon_tag = renderIcon(ti.getId(), base_url, '')
+
+    # Item's summary
+    summary = ''
+    if display_description:
+        summary = brain['Description']
+        max_words = int(kw.get('max_words', 20))
+        if max_words > 0:
+            summary = summarize(summary, max_words)
+
+    # Item rendering and display
     rendered = ''
     # render the item using CPSDocument render()
     if render_items:
@@ -236,48 +273,18 @@ for brain in brains:
                 except TypeError:
                     pass
 
-    # render the item using a custom method (.zpt, .py, .dtml)
+    # render the item using a custom display method (.zpt, .py, .dtml)
     elif render_method is not None:
-        rendered = apply(render_method, (),
-                         {'item': content, 'order': order})
+        kw.update({'item': content,
+                   'brain': brain,
+                   'summary': summary,
+                   'order': order,
+                   'metadata_info': metadata_info,
+                   'icon_tag': icon_tag})
+        rendered = apply(render_method, (), kw)
 
-        # default item presentation (summary of description)
-        if not rendered:
-            if display_description:
-                description = brain['Description']
-                max_words = int(kw.get('max_words', 20))
-                if max_words > 0:
-                    description = summarize(description, max_words)
-                rendered = description
-
-    # DublinCore / metadata information
-    metadata_info = {}
-
-    if get_metadata:
-        content = content or getBrainInfo()[0]
-
-        for key, attr in metadata_map.items():
-            meth = getattr(content, attr)
-            if callable(meth):
-                value = meth()
-            else:
-                value = meth
-            if not value or value is 'None':
-                continue
-            if not isinstance(value, str):
-                try:
-                    value = ', '.join(value)
-                except TypeError:
-                    value = str(value)
-            metadata_info[key] = value
-
-    icon_tag = ''
-    if show_icons:
-        content = content or getBrainInfo()[0]
-        ti = content.getTypeInfo()
-        if ti is not None:
-            icon_tag = renderIcon(ti.getId(), base_url, '')
-
+    # this information is used by custom emplates that call getContentItems()
+    # directly.
     items.append(
         {'url': brain.getURL(),
          'title': brain['Title'],

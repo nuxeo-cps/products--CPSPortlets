@@ -6,6 +6,7 @@ content_portlet_layout = {
                 'fields': ('link_string',),
                 'label_edit': 'cpsportlets_common_link_string_label',
                 'is_i18n': True,
+                'hidden_if_expr': 'context/render_method',
                 'hidden_layout_modes': ('view',),
                 'display_width': 36,
             },

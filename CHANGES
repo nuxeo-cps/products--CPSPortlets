@@ -19,3 +19,5 @@ New internal features:
 - new cache parameter: no-cache:(field1),(field2),... to disable the caching of
   a portlet if any of the portlet's field values is True
 - getContentItems.py: the item's order is passed to the display method.
+- Content Portlet: refactored the display of content items to use a default
+  display method if none is specified (#735).
