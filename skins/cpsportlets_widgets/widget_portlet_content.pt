@@ -1,6 +1,8 @@
 <tal:block define="ds options/datastructure;
                    export request/form/export|nothing;
                    get_metadata python: export is not None;
+                   display_description ds/display_description;
+                   display_description python: int(display_description);
                    render_items ds/render_items;
                    render_items python: int(render_items);
                    show_icons ds/show_icons;
@@ -25,6 +27,8 @@
              content="item_title" />
             <span class="itemDescription" tal:omit-tag="rendered">
               <tal:block condition="rendered" content="structure rendered" />
+              <tal:block condition="python: not rendered and display_description"
+                content="item/description" />
               <tal:block i18n:translate=""
               condition="python: link_string and rendered"
               content="structure link_string" />

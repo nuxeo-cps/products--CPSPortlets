@@ -11,6 +11,8 @@ Bug fixes:
 - XML exported content must be html quoted
 - Don't use 0-length __init__.py files, they cause problems with stupid
   windows unarchivers.
+- display titles as well as description with the default rendering of content
+  portlets ( #734 )
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added some basic sorting options in getFolderItems()

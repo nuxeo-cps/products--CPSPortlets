@@ -241,14 +241,14 @@ for brain in brains:
         rendered = apply(render_method, (),
                          {'item': content, 'order': order})
 
-    # default item presentation (summary of description)
-    if not rendered:
-        if display_description:
-            description = brain['Description']
-            max_words = int(kw.get('max_words', 20))
-            if max_words > 0:
-                description = summarize(description, max_words)
-            rendered = description
+        # default item presentation (summary of description)
+        if not rendered:
+            if display_description:
+                description = brain['Description']
+                max_words = int(kw.get('max_words', 20))
+                if max_words > 0:
+                    description = summarize(description, max_words)
+                rendered = description
 
     # DublinCore / metadata information
     metadata_info = {}
