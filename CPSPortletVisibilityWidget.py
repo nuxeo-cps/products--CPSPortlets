@@ -93,7 +93,7 @@ class CPSPortletVisibilityWidget(CPSSelectWidget):
         value = datastructure[self.getWidgetId()]
         vocabulary = self._getVocabulary(datastructure)
         portal = getToolByName(self, 'portal_url').getPortalObject()
-        cpsmcat = portal.Localizer.default
+        cpsmcat = portal.translation_service
         if mode == 'view':
             if getattr(self, 'translated', None):
                 return escape(cpsmcat(vocabulary.getMsgid(value, value)).encode('ISO-8859-15', 'ignore'))

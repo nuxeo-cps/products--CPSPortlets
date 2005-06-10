@@ -14,8 +14,7 @@
               first_layout options/first_layout|python:0;
               last_layout options/last_layout|python:0;
               is_flexible options/is_flexible;
-              cpsmcat nocall:here/Localizer/default;
-              cpstrans nocall:here/translation_service
+              cpsmcat nocall:here/translation_service
              ">
 <tal:block condition="first_layout">
   <tal:block
@@ -65,7 +64,7 @@
               tal:content="widget/help">This is the help for this field</tal:block>
           </div>
           <tal:block condition="err">
-              <tal:block define="msg python:cpstrans(err, mapping=err_mapping)">
+              <tal:block define="msg python:cpsmcat(err, mapping=err_mapping)">
                 <br /><em style="color: red"
                   tal:content="msg">err</em>
               </tal:block>
@@ -92,7 +91,7 @@
 </table>
 
 <tal:block condition="is_flexible">
-<div style="float: right;" 
+<div style="float: right;"
     tal:define="flexible_widgets options/flexible_widgets">
   <input type="hidden" name="layout_id" value="."
     tal:attributes="value layout/layout_id" />
@@ -116,9 +115,9 @@
   </tal:select>
   <tal:button condition="python:len(flexible_widgets) == 1"
               define="widget python:flexible_widgets[0]">
-    <input type="hidden" name="widget_type" 
+    <input type="hidden" name="widget_type"
       tal:attributes="value widget/getWidgetId">
-    <input type="submit" name="addwidget_button" 
+    <input type="submit" name="addwidget_button"
       tal:define="button_add python:cpsmcat('button_add');
         widget_title python:cpsmcat(widget.title_or_id())"
       tal:attributes="value string:${button_add} ${widget_title}"
