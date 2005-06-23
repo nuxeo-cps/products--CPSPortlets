@@ -22,6 +22,7 @@ msgstr ""
 "Language-Code: es \n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-Country: SPAIN\n"
+"Language-Code: es\n"
 
 #.   <input type="submit" value=" Add " />
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt

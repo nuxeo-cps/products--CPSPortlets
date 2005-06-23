@@ -14,6 +14,7 @@ Bug fixes:
 - display titles as well as description with the default rendering of content
   portlets ( #734 )
 - Taking advantage of the new centralized CPSI18n.tests.translations module.
+- Fixed translation files through the CPSI18n/bin/fix_pos script.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added some basic sorting options in getFolderItems()
