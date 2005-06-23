@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets v. 3321 12/03/2005\n"
-"POT-Creation-Date: 2005-06-06 14:43default\n"
+"POT-Creation-Date: 2005-06-23 17:28default\n"
 "PO-Revision-Date: 2005-03-14 13:51+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -265,7 +265,7 @@ msgstr "Inverti l'ordine di visualizzazione ?"
 
 #, fuzzy
 msgid "cpsportlets_content_render_method_label"
-msgstr "Générer un rendu des résultats"
+msgstr "Méthode d'affichage (.zpt, .py, .dtml)"
 
 msgid "cpsportlets_common_max_items_label"
 msgstr "Numero di elementi:"
