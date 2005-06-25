@@ -292,6 +292,11 @@ class CPSPortletsInstaller(CPSInstaller):
                     notification_type='synchronous')
             self.log("Portal CPS Portlets :: already subscriber")
 
+            # Check Status
+            subscriber = evtool.getSubscriberByName('portal_cpsportlets')
+            if not subscriber.activated:
+                subscriber.enable()
+
         self.log('Event service tool not found')
 
 ###############################################
