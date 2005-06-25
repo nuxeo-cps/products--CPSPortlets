@@ -297,7 +297,8 @@ class CPSPortletsInstaller(CPSInstaller):
             if not subscriber.activated:
                 subscriber.enable()
 
-        self.log('Event service tool not found')
+        else:
+            self.log('Event service tool not found')
 
 ###############################################
 # __call__
