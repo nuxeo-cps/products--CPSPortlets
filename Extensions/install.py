@@ -288,6 +288,7 @@ class CPSPortletsInstaller(CPSInstaller):
                     action='event',
                     meta_type='*',
                     event_type='*',
+                    activated=True,
                     notification_type='synchronous')
             self.log("Portal CPS Portlets :: already subscriber")
 
