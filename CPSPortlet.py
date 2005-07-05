@@ -331,7 +331,7 @@ class CPSPortlet(CPSDocument):
 
             # current user
             elif param == 'user':
-                index_string = str(REQUEST.get('AUTHENTICATED_USER'))
+                index_string = str(REQUEST.get('AUTHENTICATED_USER', ''))
 
             # current language
             elif param == 'current_lang':
@@ -479,7 +479,7 @@ class CPSPortlet(CPSDocument):
 
             # current user if the cache entry is user-dependent
             if 'user' in self.getCacheParams():
-                user = REQUEST.get('AUTHENTICATED_USER')
+                user = str(REQUEST.get('AUTHENTICATED_USER', ''))
             else:
                 user = ''
 

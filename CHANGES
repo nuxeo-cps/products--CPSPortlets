@@ -19,6 +19,8 @@ Bug fixes:
 - Modified some ZPT files so that they are valid XHTML 1.0 Strict. This is a
   work in progress to fix #773 "Using XHTML 1.0 Strict by default for CPS
   sites".
+- Cache: the user object should not be stored in RAM. The user name string
+  is now stored instead (#810):
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added some basic sorting options in getFolderItems()
