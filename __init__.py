@@ -79,4 +79,4 @@ def initialize(registrar):
         'CPS Portlets Tool',
         tools=tools,
         product_name='CPSPortlets',
-        icon='tool.gif',).initialize(registrar)
+        icon='tool.png',).initialize(registrar)
