@@ -16,8 +16,8 @@ Bug fixes:
 - Taking advantage of the new centralized CPSI18n.tests.translations module.
 - Fixed translation files through the CPSI18n/bin/fix_pos script.
 - #787 : subscriber should be activated at install time
-- Modified some ZPT files so that they are valid XHTML 1.0 Strict. This is a
-  work in progress to fix #773 "Using XHTML 1.0 Strict by default for CPS
+- Modified some code and ZPT files so that they are valid XHTML 1.0 Strict. This
+  is a work in progress to fix #773 "Using XHTML 1.0 Strict by default for CPS
   sites".
 - Cache: the user object should not be stored in RAM. The user name string
   is now stored instead (#810):

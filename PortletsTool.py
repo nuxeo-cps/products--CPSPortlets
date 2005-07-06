@@ -53,7 +53,7 @@ PORTLET_RAMCACHE_ID = 'portlets'
 # Icons
 ICON_RAMCACHE_ID = 'icons'
 ACTIONICON_RAMCACHE_ID = 'actioncons'
-IMG_TAG = '<img src="%s" width="%s" height="%s" alt="%s" border="0" />'
+IMG_TAG = '<img src="%s" width="%s" height="%s" alt="%s" />'
 
 # FTI
 FTI_RAMCACHE_ID = 'fti'
