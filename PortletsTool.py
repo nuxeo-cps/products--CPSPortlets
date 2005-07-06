@@ -1162,10 +1162,16 @@ class PortletsTool(UniqueObject, PortletsContainer):
         returned = []
         portlets = self.listAllPortlets()
         for portlet in portlets:
-            if portlet.isInterestedInEvent(event_id=event_id,
-                                           folder_path=folder_path,
-                                           portal_type=portal_type):
-                returned.append(portlet)
+            try:
+                interested = portlet.isInterestedInEvent(event_id=event_id,
+                                                         folder_path=folder_path,
+                                                         portal_type=portal_type)
+            except AttributeError:
+                # Not a portlet even if it claimed to be one in its FTI
+                continue
+            else:
+                if interested:
+                    returned.append(portlet)
         return returned
 
 InitializeClass(PortletsTool)

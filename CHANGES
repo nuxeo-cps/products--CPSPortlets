@@ -21,6 +21,8 @@ Bug fixes:
   sites".
 - Cache: the user object should not be stored in RAM. The user name string
   is now stored instead (#810):
+- Portlets event notification crashed when a content type claimed to be a
+  portlet in its FTI but was not.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added some basic sorting options in getFolderItems()
