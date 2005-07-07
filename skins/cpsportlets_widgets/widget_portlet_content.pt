@@ -25,7 +25,9 @@
         </li>
       </tal:block>
     </ul>
-    <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
+    <tal:block condition="contentitems">
+      <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
+    </tal:block>
   </tal:block>
 
   <tal:block tal:condition="export">

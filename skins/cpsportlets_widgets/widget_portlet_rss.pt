@@ -18,7 +18,7 @@
     </tal:block>
   </tal:block>
 
-  <tal:block tal:condition="export">
+  <tal:block condition="export">
     <tal:block define="export_macro string:export_${export};
                        items rssitems">
       <metal:block use-macro="here/cpsportlet_macros/macros/?export_macro|

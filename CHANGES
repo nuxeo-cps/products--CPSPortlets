@@ -24,6 +24,8 @@ Bug fixes:
   is now stored instead (#810):
 - Portlets event notification crashed when a content type claimed to be a
   portlet in its FTI but was not.
+- Internal Links / Content Portlet: syndication buttons should not be displayed
+  if no internal link is listed (#792)
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added some basic sorting options in getFolderItems()
