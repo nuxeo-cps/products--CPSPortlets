@@ -187,7 +187,7 @@ rss_portlet_layout = {
                 'hidden_layout_modes': ('view',),
                 'hidden_readonly_layout_modes': (),
                 'hidden_empty': False,
-                'hidden_if_expr': 'context/render_method',
+                'hidden_if_expr': 'not:context/display_description',
                 'css_class': '',
                 'widget_mode_expr': '',
                 'is_limited': False,
