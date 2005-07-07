@@ -187,14 +187,14 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         ttool = self.portal.portal_types
         # first rendering: storing the result in the cache
         res = ptltool.renderIcon('Dummy Portlet', '/cps/', 'dummy portlet')
-        expected = '<img src="/cps/portlet_icon.png" width="16" height="16" alt="dummy portlet" border="0" />'
+        expected = '<img src="/cps/portlet_icon.png" width="16" height="16" alt="dummy portlet" />'
         self.assert_(res == expected)
         # fetching the entry from the cache
         res = ptltool.renderIcon('Dummy Portlet', '/cps/', 'dummy portlet')
         self.assert_(res == expected)
         # default parameters
         res = ptltool.renderIcon('Dummy Portlet')
-        expected = '<img src="portlet_icon.png" width="16" height="16" alt="" border="0" />'
+        expected = '<img src="portlet_icon.png" width="16" height="16" alt="" />'
         self.assert_(res == expected)
         # unknown type
         res = ptltool.renderIcon('Unknown type for testing', '/', '')
