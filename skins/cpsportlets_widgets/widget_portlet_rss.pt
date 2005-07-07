@@ -1,35 +1,21 @@
 <tal:block define="ds options/datastructure;
                    export request/form/export|nothing;
-                   channel ds/channel;
-                   first_item ds/first_item;
-                   max_items ds/max_items;
-                   max_words ds/max_words;
-                   display_description ds/display_description|python:0;
-                   display_description python: int(display_description);
-                   max_words python: display_description and int(max_words) or 0;
-                   rssitems python: here.getRSSItems(channel, int(first_item), int(max_items), int(max_words));
-                   link_string ds/link_string"
+                   rssitems python: here.getRSSItems(**dict(ds))"
            condition="rssitems">
 
   <tal:block condition="not:export">
     <ul class="cpsskinsMenu">
       <tal:block repeat="item rssitems">
         <li tal:define="item_url item/url;
-                        item_description item/description">
-          <a
-          tal:attributes="href item_url"
-          tal:define="display_description python: item_description and display_description">
-            <tal:block content="item/title" />
-            <span class="itemDescription"
-             tal:condition="display_description"
-             tal:content="item_description" />
-            <tal:block condition="python: link_string and display_description"
-             tal:content="structure link_string" />
-          </a>
+                        rendered item/rendered">
+          <a tal:attributes="href item_url"
+             tal:content="structure rendered" />
         </li>
       </tal:block>
     </ul>
-    <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
+    <tal:block condition="rssitems">
+      <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
+    </tal:block>
   </tal:block>
 
   <tal:block tal:condition="export">
@@ -39,5 +25,4 @@
                               here/cpsportlet_macros/macros/export_not_implemented" />
     </tal:block>
   </tal:block>
-
 </tal:block>

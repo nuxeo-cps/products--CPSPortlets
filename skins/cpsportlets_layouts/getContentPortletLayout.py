@@ -103,7 +103,7 @@ content_portlet_layout = {
             'type': 'String Widget',
             'data': {
                 'fields': ('render_method',),
-                'label_edit': 'cpsportlets_content_render_method_label',
+                'label_edit': 'cpsportlets_common_render_method_label',
                 'is_i18n': True,
                 'hidden_layout_modes': ('view',),
                 'hidden_if_expr': 'context/render_items',

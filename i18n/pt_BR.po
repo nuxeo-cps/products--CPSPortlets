@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2005-06-23 17:28default\n"
+"POT-Creation-Date: 2005-07-07 13:37default\n"
 "PO-Revision-Date: 2005-06-17 17:34-0300\n"
 "Last-Translator: Mario Olimpio de Menezes\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
@@ -256,8 +256,8 @@ msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Inverter a ordem de mostra"
 
 #, fuzzy
-msgid "cpsportlets_content_render_method_label"
-msgstr "Display method (.zpt, .py, .dtml)"
+msgid "cpsportlets_common_render_method_label"
+msgstr "Display method (.zpt, .py, etc.)"
 
 msgid "cpsportlets_common_max_items_label"
 msgstr "Número de itens"
@@ -540,3 +540,7 @@ msgstr "Mostra descrições de itens"
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Mostra somente itens autorizados"
+
+#, fuzzy
+msgid "cpsportlets_content_render_method_label"
+msgstr "Display method (.zpt, .py, .dtml)"

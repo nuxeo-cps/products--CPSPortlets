@@ -1,0 +1,14 @@
+<tal:block define="item nocall:options/item;
+                   display_description options/display_description;
+                   display_description python:int(display_description);
+                   link_string options/link_string">
+  <tal:block content="item/title" />
+  <span class="itemDescription"
+   tal:omit-tag="python: not (display_description or link_string)">
+    <tal:block condition="display_description"
+     content="item/summary" />
+    <tal:block i18n:translate=""
+     condition="link_string"
+     content="structure link_string" />
+  </span>
+</tal:block>

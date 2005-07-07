@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-06-23 17:28default\n"
+"POT-Creation-Date: 2005-07-07 13:37default\n"
 "PO-Revision-Date: 2005-05-18 17:32+0100\n"
 "Last-Translator: Jesús <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
@@ -261,8 +261,8 @@ msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Invertir el orden en que se muestran"
 
 #, fuzzy
-msgid "cpsportlets_content_render_method_label"
-msgstr "Display method (.zpt, .py, .dtml)"
+msgid "cpsportlets_common_render_method_label"
+msgstr "Display method (.zpt, .py, etc.)"
 
 msgid "cpsportlets_common_max_items_label"
 msgstr "Número de ítem"
@@ -552,3 +552,7 @@ msgstr "Mostrar la descripción del contenido"
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Mostrar sólo los contenidos autorizados"
+
+#, fuzzy
+msgid "cpsportlets_content_render_method_label"
+msgstr "Display method (.zpt, .py, .dtml)"

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-06-23 17:28default\n"
+"POT-Creation-Date: 2005-07-07 13:37default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -253,8 +253,8 @@ msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Inverseaza ordinea afisarii"
 
 #, fuzzy
-msgid "cpsportlets_content_render_method_label"
-msgstr "Méthode d'affichage (.zpt, .py, .dtml)"
+msgid "cpsportlets_common_render_method_label"
+msgstr "Méthode d'affichage (.zpt, .py, etc.)"
 
 msgid "cpsportlets_common_max_items_label"
 msgstr "Numar de rezultate"
@@ -538,3 +538,7 @@ msgstr "Afiseaza descrierea obiectelor"
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Afiseaza doar obiectele autorizate"
+
+#, fuzzy
+msgid "cpsportlets_content_render_method_label"
+msgstr "Méthode d'affichage (.zpt, .py, .dtml)"

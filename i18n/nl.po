@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2005-06-23 17:28default\n"
+"POT-Creation-Date: 2005-07-07 13:37default\n"
 "PO-Revision-Date: 2005-04-13 17:28+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -316,8 +316,8 @@ msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Invert the display order"
 
 #, fuzzy
-msgid "cpsportlets_content_render_method_label"
-msgstr "Display method (.zpt, .py, .dtml)"
+msgid "cpsportlets_common_render_method_label"
+msgstr "Display method (.zpt, .py, etc.)"
 
 #, fuzzy
 msgid "cpsportlets_common_max_items_label"
@@ -690,3 +690,7 @@ msgstr "Display item descriptions"
 #, fuzzy
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Display only authorized items"
+
+#, fuzzy
+msgid "cpsportlets_content_render_method_label"
+msgstr "Display method (.zpt, .py, .dtml)"

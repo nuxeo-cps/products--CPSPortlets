@@ -155,7 +155,7 @@ msgstr ""
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr ""
 
-msgid "cpsportlets_content_render_method_label"
+msgid "cpsportlets_common_render_method_label"
 msgstr ""
 
 msgid "cpsportlets_common_max_items_label"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-06-23 17:28default\n"
+"POT-Creation-Date: 2005-07-07 13:37default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -249,7 +249,7 @@ msgstr "Författare"
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Omvänd visningsordning"
 
-msgid "cpsportlets_content_render_method_label"
+msgid "cpsportlets_common_render_method_label"
 msgstr "Visningsmetod (.zpt, .py, .dtml)"
 
 msgid "cpsportlets_common_max_items_label"
@@ -531,3 +531,4 @@ msgstr "Visa beskrivning av mapp"
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Visa endast auktoriserade mappar"
+
