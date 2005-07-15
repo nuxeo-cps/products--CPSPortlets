@@ -335,6 +335,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
         bmf = self.getBottomMostFolder(context=context)
 
         # get portlets from the root to current path
+        # XXX This is badly reinventing traversal.
+        # XXX Use aq_parent(aq_inner(ob)) the other way round instead.
         utool = getToolByName(self, 'portal_url')
         rpath = utool.getRelativeContentPath(bmf)
         obj = utool.getPortalObject()
@@ -344,7 +346,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
         for elem in ('',) + rpath:
             if not elem:
                 continue
-            obj = getattr(obj, elem)
+            obj = getattr(obj, elem, None)
+            if obj is None:
+                break
             allportlets.extend(self._getFolderPortlets(folder=obj, slot=slot))
 
         # list of portlets that will not be displayed
