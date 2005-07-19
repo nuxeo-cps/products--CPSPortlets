@@ -93,7 +93,6 @@
     tal:define="folderItems python: here.getFolderItems(
                 context_obj=context,
                 **dict(ds))"
-    tal:attributes="action string:cpsportlet_url_redirect"
     tal:condition="folderItems">
       <select onchange="submit()" name="url">
         <option value="" selected="selected">...</option>
