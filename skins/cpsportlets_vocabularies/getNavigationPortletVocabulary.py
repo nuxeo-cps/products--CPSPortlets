@@ -5,6 +5,8 @@ cpsportlets_navigation_display_voc_vocabulary = {
              'cpsportlets_nav_display_navtree_menu_label'),
             ('folder_contents', 'Folder contents',
              'cpsportlets_nav_display_folder_contents_menu_label'),
+            ('folder_contents_dropdown_list', 'Folder contents (drop-down list)',
+             'cpsportlets_nav_display_folder_contents_dropdown_list_label'),
             ('collapsible_menu', 'Collapsible menu',
              'cpsportlets_nav_display_collapsible_menu_label'),
             ('site_map', 'Site map',

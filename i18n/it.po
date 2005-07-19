@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets v. 3321 12/03/2005\n"
-"POT-Creation-Date: 2005-07-07 13:37default\n"
+"POT-Creation-Date: 2005-07-19 17:32default\n"
 "PO-Revision-Date: 2005-03-14 13:51+0100\n"
 "Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
 "Language-Team: ita <fabnos@fastwebnet.it>\n"
@@ -304,6 +304,10 @@ msgstr "Percorso di navigazione a sviluppo verticale"
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Contenuti della cartella corrente"
 
+#, fuzzy
+msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
+msgstr "Contenu du répertoire courant"
+
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Contenuti delle sottocartelle"
 
@@ -578,10 +582,6 @@ msgstr "Afficher les descriptions des répertoires"
 #, fuzzy
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Afficher uniquement les répertoires autorisés"
-
-#, fuzzy
-msgid "cpsportlets_content_render_method_label"
-msgstr "Méthode d'affichage (.zpt, .py, .dtml)"
 
 #~ msgid "Item title"
 #~ msgstr "Titolo dell'elemento"

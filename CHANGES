@@ -6,6 +6,7 @@ New features:
 - Content Portlet: added an option to perform contextual searches.
 - Content Portlet: items can be displayed using a custom render method. (#705)
 - RSS Portlet: items can be displayed using a custom render method. (#812)
+- Navigation Portlet: added a dropdown-list display for folder contents (#812)
 Bug fixes:
 ~~~~~~~~~~
 - reset the Language Selection flag in SESSION in the language selection portlet

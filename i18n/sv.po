@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-07-07 13:37default\n"
+"POT-Creation-Date: 2005-07-19 17:32default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -288,6 +288,9 @@ msgstr "Vertikal meny med breadcrumbs*"
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Mappinnehåll"
 
+msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
+msgstr "Mappinnehåll* (rullgardinsmeny)"
+
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Innehåll undermapp*"
 
@@ -531,4 +534,3 @@ msgstr "Visa beskrivning av mapp"
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Visa endast auktoriserade mappar"
-

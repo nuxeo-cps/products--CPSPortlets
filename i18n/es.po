@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-07-07 13:37default\n"
+"POT-Creation-Date: 2005-07-19 17:32default\n"
 "PO-Revision-Date: 2005-05-18 17:32+0100\n"
 "Last-Translator: Jesús <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
@@ -301,6 +301,10 @@ msgstr "Menú vertical desplegable*"
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Contenidos de la carpeta"
 
+#, fuzzy
+msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
+msgstr "Folder contents"
+
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Contenidos de los subdirectorios*"
 
@@ -552,7 +556,3 @@ msgstr "Mostrar la descripción del contenido"
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Mostrar sólo los contenidos autorizados"
-
-#, fuzzy
-msgid "cpsportlets_content_render_method_label"
-msgstr "Display method (.zpt, .py, .dtml)"

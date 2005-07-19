@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2005-07-07 13:37default\n"
+"POT-Creation-Date: 2005-07-19 17:32default\n"
 "PO-Revision-Date: 2005-06-17 17:34-0300\n"
 "Last-Translator: Mario Olimpio de Menezes\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
@@ -296,6 +296,10 @@ msgstr "Menu vertical de navegação (breadcrumbs)*"
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Conteúdo da pasta"
 
+#, fuzzy
+msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
+msgstr "Folder contents"
+
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Conteúdo da subpasta"
 
@@ -540,7 +544,3 @@ msgstr "Mostra descrições de itens"
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Mostra somente itens autorizados"
-
-#, fuzzy
-msgid "cpsportlets_content_render_method_label"
-msgstr "Display method (.zpt, .py, .dtml)"

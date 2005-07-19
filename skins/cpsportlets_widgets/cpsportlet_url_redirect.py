@@ -1,6 +1,6 @@
 ##parameters=url=None, REQUEST=None, **kw
 
-if url is None:
+if not url:
     return
 
 if REQUEST is not None:

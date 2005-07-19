@@ -194,6 +194,9 @@ msgstr ""
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr ""
 
+msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
+msgstr ""
+
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr ""
 

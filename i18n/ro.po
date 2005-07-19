@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-07-07 13:37default\n"
+"POT-Creation-Date: 2005-07-19 17:32default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -293,6 +293,10 @@ msgstr "Urma de navigare verticala"
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Continutul locatiei curente"
 
+#, fuzzy
+msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
+msgstr "Contenu du répertoire courant"
+
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Continutul sub-directoarelor"
 
@@ -538,7 +542,3 @@ msgstr "Afiseaza descrierea obiectelor"
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Afiseaza doar obiectele autorizate"
-
-#, fuzzy
-msgid "cpsportlets_content_render_method_label"
-msgstr "Méthode d'affichage (.zpt, .py, .dtml)"
