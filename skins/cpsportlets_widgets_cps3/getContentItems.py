@@ -138,10 +138,6 @@ if not query:
 query['sort_limit'] = max_items
 
 brains = context.portal_catalog(**query)
-try:
-    brains = context.portal_catalog(**query)
-except: # XXX
-    brains = []
 
 # post-filtering
 if search_type == 'related':

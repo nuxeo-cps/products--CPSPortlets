@@ -27,6 +27,7 @@ Bug fixes:
   portlet in its FTI but was not.
 - Internal Links / Content Portlet: syndication buttons should not be displayed
   if no internal link is listed (#792)
+- optimization in getContentItems(): the catalog was searched twice.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added some basic sorting options in getFolderItems()
