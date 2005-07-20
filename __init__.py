@@ -78,5 +78,4 @@ def initialize(registrar):
     utils.ToolInit(
         'CPS Portlets Tool',
         tools=tools,
-        product_name='CPSPortlets',
         icon='tool.png',).initialize(registrar)
