@@ -55,7 +55,7 @@ for obj in breadcrumbs[first_item:]:
     items.append({
         'id': obj.getId(),
         'title': title,
-        'url': utool.getRpath(obj),
+        'url': obj.absolute_url_path(),
         })
 
 return items
