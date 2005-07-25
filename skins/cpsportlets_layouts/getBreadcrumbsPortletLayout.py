@@ -110,6 +110,7 @@ breadcrumbs_portlet_layout = {
                 'label_edit': 'cpsportlets_bcs_display_site_root_label',
                 'is_i18n': True,
                 'hidden_layout_modes': ('view',),
+                'hidden_if_expr': 'python: context.first_item <= 0',
                 'label_false': 'cpsschemas_label_false',
                 'label_true': 'cpsschemas_label_true',
                 'render_format': 'select',

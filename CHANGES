@@ -28,6 +28,8 @@ Bug fixes:
 - Internal Links / Content Portlet: syndication buttons should not be displayed
   if no internal link is listed (#792)
 - optimization in getContentItems(): the catalog was searched twice.
+- Breadcrumbs portlet: the "display site root" option is shown only if the
+  first trail item is higher than 0.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added some basic sorting options in getFolderItems()
