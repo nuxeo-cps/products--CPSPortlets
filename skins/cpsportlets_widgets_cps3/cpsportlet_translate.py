@@ -26,7 +26,7 @@ context.addLanguageToProxy(lang=lang, from_lang=doc_lang)
 
 # switch to 'lang'
 if REQUEST is not None:
-    context_url = REQUEST.get('context_url', context.getContextUrl())
+    context_url = context.absolute_url_path()
     psm = 'cpsportlets_content_translated_psm'
     redirect_url = '%s/switchLanguage/%s/?portal_status_message=%s' % \
                    (context_url, lang, psm)

@@ -15,7 +15,7 @@ revs = context.getLanguageRevisions().keys()
 if lang not in revs:
     return
 
-context_url = REQUEST.get('context_url', context.getContextUrl())
+context_url = context.absolute_url_path()
 
 if REQUEST is not None:
     redirect_url = '%s/switchLanguage/%s/' % (context_url, lang)

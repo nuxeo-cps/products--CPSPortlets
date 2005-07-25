@@ -33,7 +33,7 @@ context.delLanguageFromProxy(lang=lang)
 # switch to 'default_lang'
 if REQUEST is not None:
     default_lang = context.getDefaultLanguage()
-    context_url = REQUEST.get('context_url', context.getContextUrl())
+    context_url = context.absolute_url_path()
     psm = 'cpsportlets_translation_deleted_psm'
     redirect_url = '%s/switchLanguage/%s/?portal_status_message=%s' % \
                    (context_url, default_lang, psm)
