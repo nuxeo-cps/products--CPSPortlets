@@ -587,6 +587,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
             return cache_parameters[ptype_id][:]
         return ['no-cache']
 
+    security.declareProtected(ManagePortlets, 'updateCacheParameters')
     def updateCacheParameters(self, params={}):
         """update the cache parameters
         """
