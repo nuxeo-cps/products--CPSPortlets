@@ -8,7 +8,7 @@
                    context nocall:options/context_obj|here;
                    utool nocall:here/portal_url;
                    context_url python: utool.getRelativeUrl(context);
-                   breadcrumbsItems python: context.getBreadcrumbsItems(url=context_url, display_hidden_folders=display_hidden_folders, first_item=first_item, display_site_root=display_site_root)">
+                   breadcrumbsItems python: context.getBreadcrumbsItems(context=context, display_hidden_folders=display_hidden_folders, first_item=first_item, display_site_root=display_site_root)">
   <form tal:condition="python: display == 'dropdown_list'"
   method="get" action="cpsportlet_url_redirect"
   tal:attributes="action string:${context_url}/cpsportlet_url_redirect">

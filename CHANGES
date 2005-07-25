@@ -36,3 +36,4 @@ New internal features:
 - getContentItems.py: the item's order is passed to the display method.
 - Content Portlet: refactored the display of content items to use a default
   display method if none is specified (#735).
+- the Breadcumbs Portlet is using the new URLTool API.
