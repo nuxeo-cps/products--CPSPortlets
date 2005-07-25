@@ -7,6 +7,7 @@ if actions is None:
 renderActionIcon = context.portal_cpsportlets.renderActionIcon
 
 utool = context.portal_url
+# Note: this will not work in CMF
 base_url = utool.getBaseUrl()
 
 actionitems = {}

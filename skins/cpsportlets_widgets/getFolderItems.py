@@ -1,6 +1,7 @@
 ##parameters=context_obj=None, show_docs=None, max_title_words=0, context_rpath='', context_is_portlet=0, **kw
 
 utool = context.portal_url
+# Note: this will not work in CMF
 base_url = utool.getBaseUrl()
 
 if not not context_is_portlet:

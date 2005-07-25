@@ -1,5 +1,6 @@
 mtool = context.portal_membership
 utool = context.portal_url
+# Note: this will not work in CMF
 base_url = utool.getBaseUrl()
 
 rpath = utool.getRelativeContentPath(context)

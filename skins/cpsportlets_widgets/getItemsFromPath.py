@@ -1,6 +1,7 @@
 ##parameters=links=[], max_title_words=0, **kw
 
 utool = context.portal_url
+# Note: this will not work in CMF
 base_url = utool.getBaseUrl()
 
 max_title_words = int(max_title_words)
