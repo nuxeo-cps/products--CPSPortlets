@@ -197,7 +197,8 @@ metadata_map = {
 portal_types = context.portal_types
 renderIcon = context.portal_cpsportlets.renderIcon
 
-base_url = context.cpsskins_getBaseUrl()
+utool = context.portal_url
+base_url = utool.getBaseUrl()
 
 order = 0
 for brain in brains:

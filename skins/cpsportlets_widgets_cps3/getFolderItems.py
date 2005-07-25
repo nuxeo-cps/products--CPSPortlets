@@ -1,6 +1,7 @@
 ##parameters=context_obj=None, show_docs=None, max_title_words=0, context_rpath='', context_is_portlet=0, **kw
 
-base_url = context.cpsskins_getBaseUrl()
+utool = context.portal_url
+base_url = utool.getBaseUrl()
 
 if context_is_portlet:
     context_obj = context.getLocalFolder()

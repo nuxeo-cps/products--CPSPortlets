@@ -1,6 +1,7 @@
 
 items = []
-base_url = context.cpsskins_getBaseUrl()
+utool = context.portal_url
+base_url = utool.getBaseUrl()
 
 content_types = context.getSortedContentTypes(allowed=1)
 renderIcon = context.portal_cpsportlets.renderIcon

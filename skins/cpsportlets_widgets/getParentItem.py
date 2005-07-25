@@ -1,6 +1,6 @@
 mtool = context.portal_membership
 utool = context.portal_url
-base_url = context.cpsskins_getBaseUrl()
+base_url = utool.getBaseUrl()
 
 rpath = utool.getRelativeContentPath(context)
 parent = context

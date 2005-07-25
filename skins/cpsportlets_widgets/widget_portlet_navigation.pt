@@ -258,7 +258,7 @@
               tal:content="item/description">Description</td>
             <td tal:condition="display_managers"
               tal:define="managers python:item['managers'];
-              base_url here/cpsskins_getBaseUrl;
+              base_url utool/getBaseUrl;
               ">
               <ul class="cpsskinsMenu">
                 <li tal:repeat="manager managers"><tal:block

@@ -1,18 +1,18 @@
 ##parameters=links=[], max_title_words=0, **kw
 
-base_url = context.cpsskins_getBaseUrl()
+utool = context.portal_url
+base_url = utool.getBaseUrl()
 
 max_title_words = int(max_title_words)
 
-portal_url = context.portal_url
-portal = portal_url.getPortalObject()
+portal = utool.getPortalObject()
 
 items = []
 mtool = context.portal_membership
 checkPerm = mtool.checkPermission
 portal_types = context.portal_types
 renderIcon = context.portal_cpsportlets.renderIcon
-getRelativeUrl = portal_url.getRelativeUrl
+getRelativeUrl = utool.getRelativeUrl
 
 metadata_map = {
     'creator': 'Creator',
