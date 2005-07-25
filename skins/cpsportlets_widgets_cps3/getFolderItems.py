@@ -38,7 +38,6 @@ portal_types = context.portal_types
 renderIcon = context.portal_cpsportlets.renderIcon
 
 getFTIProperty = context.portal_cpsportlets.getFTIProperty
-getRelativeUrl = context.portal_url.getRelativeUrl
 
 display_folders = int(kw.get('display_folders', 1))
 display_hidden_folders = int(kw.get('display_hidden_folders', 1))
@@ -69,8 +68,9 @@ def getContent(object):
     return content
 
 for object in bmf.objectValues():
+    object_id = object.getId()
     # remove objects with ids beginning with '.'
-    if object.getId().startswith('.'):
+    if object_id.startswith('.') or object_id.startswith('portal_'):
         continue
     # filter out objects that cannot be viewed
     if not checkPerm('View', object):
@@ -148,8 +148,8 @@ for object in bmf.objectValues():
             description = getattr(content, 'Description', '')
 
     folder_items.append(
-        {'id': object.getId(),
-         'url': base_url + getRelativeUrl(object),
+        {'id': object_id,
+         'url': object.absolute_url_path(),
          'title': title,
          'description': description,
          'icon_tag': renderIcon(ptype, base_url, ''),
