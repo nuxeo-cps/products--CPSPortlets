@@ -1,4 +1,20 @@
 *******************************************
+** CPSPortlets V0.5.1 [R1 build 2005/08/05-15:42 by fguillaume]
+** SVN URL: https://svn.nuxeo.org/pub/CPSPortlets/trunk Revision: 25573
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Correctly import CMFBTreeFolder.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSPortlets V0.5.0 [R1 build 2005/08/05-13:57 by ben]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSPortlets/trunk Revision: 25426
 Requires:
