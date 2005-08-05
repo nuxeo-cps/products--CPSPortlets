@@ -31,7 +31,10 @@ from Globals import  PersistentMapping
 from AccessControl import ClassSecurityInfo, getSecurityManager, Unauthorized
 from Acquisition import aq_base, aq_parent, aq_inner
 
-from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
+try:
+    from Products.CMFCore.CMFBTreeFolder import CMFBTreeFolder
+except ImportError: # BBB: CMF < 1.5.2
+    from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
 
 # Fallback to CMF 1.4
 try:

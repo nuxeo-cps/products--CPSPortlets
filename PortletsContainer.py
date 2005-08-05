@@ -30,7 +30,10 @@ from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
 
-from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
+try:
+    from Products.CMFCore.CMFBTreeFolder import CMFBTreeFolder
+except ImportError: # BBB: CMF < 1.5.2
+    from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
 from Products.CMFCore.utils import getToolByName
 
 class PortletsContainer(CMFBTreeFolder):
