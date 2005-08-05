@@ -3,39 +3,10 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-- Content Portlet: added an option to perform contextual searches.
-- Content Portlet: items can be displayed using a custom render method. (#705)
-- RSS Portlet: items can be displayed using a custom render method. (#812)
-- Navigation Portlet: added a dropdown-list display for folder contents (#812)
+-
 Bug fixes:
 ~~~~~~~~~~
-- reset the Language Selection flag in SESSION in the language selection portlet
-- XML exported content must be html quoted
-- Don't use 0-length __init__.py files, they cause problems with stupid
-  windows unarchivers.
-- display titles as well as description with the default rendering of content
-  portlets ( #734 )
-- Taking advantage of the new centralized CPSI18n.tests.translations module.
-- Fixed translation files through the CPSI18n/bin/fix_pos script.
-- #787 : subscriber should be activated at install time
-- Modified some code and ZPT files so that they are valid XHTML 1.0 Strict. This
-  is a work in progress to fix #773 "Using XHTML 1.0 Strict by default for CPS
-  sites".
-- Cache: the user object should not be stored in RAM. The user name string
-  is now stored instead (#810):
-- Portlets event notification crashed when a content type claimed to be a
-  portlet in its FTI but was not.
-- Internal Links / Content Portlet: syndication buttons should not be displayed
-  if no internal link is listed (#792)
-- optimization in getContentItems(): the catalog was searched twice.
-- Breadcrumbs portlet: the "display site root" option is shown only if the
-  first trail item is higher than 0.
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- added some basic sorting options in getFolderItems()
-- new cache parameter: no-cache:(field1),(field2),... to disable the caching of
-  a portlet if any of the portlet's field values is True
-- getContentItems.py: the item's order is passed to the display method.
-- Content Portlet: refactored the display of content items to use a default
-  display method if none is specified (#735).
-- using the new URLTool API.
+-
