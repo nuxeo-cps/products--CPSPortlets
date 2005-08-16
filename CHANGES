@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- updateCacheParameters(): trigger persistence after updating cache parameters.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

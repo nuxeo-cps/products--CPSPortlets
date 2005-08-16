@@ -595,6 +595,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """update the cache parameters
         """
         self.cache_parameters.update(params)
+        self._p_changed = 1
         # rebuild portlets
         self.rebuild_portlets()
 
