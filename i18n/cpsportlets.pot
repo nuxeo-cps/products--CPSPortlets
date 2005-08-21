@@ -533,3 +533,6 @@ msgstr ""
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr ""
+
+msgid "cpsportlets_document_context_rpath_label"
+msgstr ""

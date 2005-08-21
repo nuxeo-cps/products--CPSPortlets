@@ -537,3 +537,6 @@ msgstr "Display item descriptions"
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Display only authorized items"
+
+msgid "cpsportlets_document_context_rpath_label"
+msgstr "Document path (relative)"

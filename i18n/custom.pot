@@ -344,6 +344,9 @@ msgstr ""
 msgid "portal_type_CustomPortlet_description"
 msgstr ""
 
+msgid "cpsportlets_document_context_rpath_label"
+msgstr ""
+
 msgid "cpsportlets_document_cluster_id_label"
 msgstr ""
 

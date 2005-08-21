@@ -500,7 +500,7 @@ msgid "cpsportlets_internallinks_show_icons_label"
 msgstr "Visa ikoner"
 
 msgid "cpsportlets_nav_context_rpath_label"
-msgstr "Visa dokument i samma mapp som den Portlet befinner sig i."
+msgstr "Sökväg till mappen (relativt till portalen)."
 
 msgid "cpsportlets_common_syndication_formats_label"
 msgstr "Syndikeringsformat"
@@ -534,3 +534,6 @@ msgstr "Visa beskrivning av mapp"
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Visa endast auktoriserade mappar"
+
+msgid "cpsportlets_document_context_rpath_label"
+msgstr "Sökväg till dokumentet (relativt till portalen)"

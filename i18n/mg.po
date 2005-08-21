@@ -366,11 +366,11 @@ msgstr "Piste de navigation verticale*"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
-msgstr "Contenu du répertoire courant"
+msgstr "Contenu du répertoire"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
-msgstr "Contenu du répertoire courant"
+msgstr "Contenu du répertoire* (menu déroulant)"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
@@ -698,3 +698,7 @@ msgstr "Afficher les descriptions des répertoires"
 #, fuzzy
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Afficher uniquement les répertoires autorisés"
+
+#, fuzzy
+msgid "cpsportlets_document_context_rpath_label"
+msgstr "Chemin du répertoire (relatif)"

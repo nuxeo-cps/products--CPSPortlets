@@ -303,7 +303,7 @@ msgstr "Contenidos de la carpeta"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
-msgstr "Folder contents"
+msgstr "Folder contents* (drop-down list)"
 
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Contenidos de los subdirectorios*"
@@ -556,3 +556,7 @@ msgstr "Mostrar la descripción del contenido"
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Mostrar sólo los contenidos autorizados"
+
+#, fuzzy
+msgid "cpsportlets_document_context_rpath_label"
+msgstr "Folder path (relative)"

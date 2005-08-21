@@ -7,9 +7,23 @@ rendered = ''
 
 ds = kw['datastructure']
 
+context_rpath = ds.get('context_rpath')
+
+render_obj = None
+# a document  path is specified
+if context_rpath:
+    render_obj = context.restrictedTraverse(context_rpath, None)
+    checkPerm = context.portal_membership.checkPermission
+    if render_obj is not None:
+        if not checkPerm('View', render_obj):
+            render_obj = None
+
+# fallback to standard rendering
+if render_obj is None:
+    render_obj = context_obj.aq_inner.aq_explicit
+
 # render the container
-render_obj = context_obj.aq_inner.aq_explicit
-if int(ds.get('render_container', 0)):
+if int(ds.get('render_container', 0)) and not context_rpath:
     if not render_obj.isPrincipiaFolderish:
         render_obj = context_obj.aq_inner.aq_parent
 

@@ -369,7 +369,7 @@ msgstr "Folder contents"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
-msgstr "Folder contents"
+msgstr "Folder contents* (drop-down list)"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
@@ -694,3 +694,7 @@ msgstr "Display item descriptions"
 #, fuzzy
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Display only authorized items"
+
+#, fuzzy
+msgid "cpsportlets_document_context_rpath_label"
+msgstr "Folder path (relative)"

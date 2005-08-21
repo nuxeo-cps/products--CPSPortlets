@@ -541,3 +541,6 @@ msgstr "Afficher les descriptions des répertoires"
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Afficher uniquement les répertoires autorisés"
+
+msgid "cpsportlets_document_context_rpath_label"
+msgstr "Chemin du document (relatif)"

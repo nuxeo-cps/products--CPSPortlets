@@ -295,7 +295,7 @@ msgstr "Continutul locatiei curente"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
-msgstr "Contenu du répertoire courant"
+msgstr "Contenu du répertoire* (menu déroulant)"
 
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Continutul sub-directoarelor"
@@ -542,3 +542,7 @@ msgstr "Afiseaza descrierea obiectelor"
 
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Afiseaza doar obiectele autorizate"
+
+#, fuzzy
+msgid "cpsportlets_document_context_rpath_label"
+msgstr "Chemin du répertoire (relatif)"

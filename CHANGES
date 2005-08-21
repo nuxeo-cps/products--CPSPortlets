@@ -3,7 +3,8 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- Document Portlet: added an option to specify explicitly the document to 
+  render.
 Bug fixes:
 ~~~~~~~~~~
 - updateCacheParameters(): trigger persistence after updating cache parameters.
