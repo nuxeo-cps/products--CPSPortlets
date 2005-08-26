@@ -10,4 +10,5 @@ Bug fixes:
 - updateCacheParameters(): trigger persistence after updating cache parameters.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- added an optional parameter in getFolderItems (display_valid_docs) to filter
+  out documents that have expired and documents that are not yet effective.

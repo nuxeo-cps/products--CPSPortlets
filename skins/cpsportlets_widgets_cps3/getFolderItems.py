@@ -43,6 +43,7 @@ display_folders = int(kw.get('display_folders', 1))
 display_hidden_folders = int(kw.get('display_hidden_folders', 1))
 display_hidden_docs = int(kw.get('display_hidden_docs', 0))
 display_description = int(kw.get('display_description', 0))
+display_valid_docs = int(kw.get('display_valid_docs', 0))
 sort_by = kw.get('sort_by')
 
 # Dublin Core / metadata
@@ -132,6 +133,15 @@ for object in bmf.objectValues():
                 except TypeError:
                     value = str(value)
             metadata_info[key] = value
+
+    # filter out documents not yet effective and expired documents
+    if display_valid_docs:
+        now = context.ZopeTime()
+        content = content or getContent(object)
+        if content is None:
+            continue
+        if now < content.effective() or now > content.expires():
+            continue
 
     # title 
     title = object.title_or_id()
