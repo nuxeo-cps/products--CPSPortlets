@@ -26,10 +26,10 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 from zLOG import LOG, DEBUG, ERROR
 
-from Globals import InitializeClass, DTMLFile
-from Globals import  PersistentMapping
 from AccessControl import ClassSecurityInfo, getSecurityManager, Unauthorized
 from Acquisition import aq_base, aq_parent, aq_inner
+from Globals import InitializeClass, DTMLFile
+from Globals import  PersistentMapping
 
 try:
     from Products.CMFCore.CMFBTreeFolder import CMFBTreeFolder
@@ -42,8 +42,9 @@ try:
 except ImportError:
     from Products.CMFCore.CMFCorePermissions import View
 
-from Products.CMFCore.utils import UniqueObject, getToolByName,\
-                                  _checkPermission
+from Products.CMFCore.utils import UniqueObject
+from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.utils import _checkPermission
 
 from PortletRAMCache import RAMCache, SimpleRAMCache
 from PortletsContainer import PortletsContainer
@@ -225,7 +226,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def getPortletContainer(self, context=None, create=0, local=0):
         """Returns the portlet container within the given context if it
         exists. Otherwise return the tool
-        If the 'local' parameter is 1 then only local containers will be returned.
+
+        If the 'local' parameter is 1 then only local containers will
+        be returned.
         """
         if context is not None:
             container_id = self.getPortletContainerId()
@@ -1152,9 +1155,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         # expire the portlets interested in the event
         # ZEO-aware invalidation.
-        for portlet in self.listPortletsInterestedInEvent(event_id=event_type,
-                                                          folder_path=object_path,
-                                                          portal_type=portal_type):
+        for portlet in self.listPortletsInterestedInEvent(
+            event_id=event_type, folder_path=object_path,
+            portal_type=portal_type):
             portlet.expireCache()
 
         # remove all cache entries of a user who logs out.
@@ -1172,9 +1175,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
         portlets = self.listAllPortlets()
         for portlet in portlets:
             try:
-                interested = portlet.isInterestedInEvent(event_id=event_id,
-                                                         folder_path=folder_path,
-                                                         portal_type=portal_type)
+                interested = portlet.isInterestedInEvent(
+                    event_id=event_id, folder_path=folder_path,
+                    portal_type=portal_type)
             except AttributeError:
                 # Not a portlet even if it claimed to be one in its FTI
                 continue
