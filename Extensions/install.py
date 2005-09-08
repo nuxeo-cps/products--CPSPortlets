@@ -314,5 +314,5 @@ def install(self):
 
 def upgrade_335_336(self):
     from Products.CPSPortlets.upgrade import upgrade_335_336_portlets
-    upgrade_335_336_portlets(self)
+    return upgrade_335_336_portlets(self)
     

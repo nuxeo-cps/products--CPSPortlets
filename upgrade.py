@@ -24,8 +24,13 @@ def upgrade_335_336_portlets(context):
     """
     ptool = getToolByName(context, 'portal_cpsportlets')
     catalog = getToolByName(context, 'portal_catalog')
-    portlets = catalog.searchResults(portal_types=ptool.listPortletTypes())
-    for portlet in [x.getObject() for x in portlets]:
+    portlets = catalog.searchResults(portal_type=ptool.listPortletTypes())
+    for portlet in portlets:
+        try:
+            catalog.unindexObject(portlet)
+        except KeyError:
+            # Already removed.
+            pass
+        # Reindex within the dedicated catalog
         portlet.reindexObject()
-    catalog.refreshCatalog(clear=1)
     return "Portlet indexes migrated"
