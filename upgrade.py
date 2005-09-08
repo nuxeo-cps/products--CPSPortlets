@@ -25,7 +25,8 @@ def upgrade_335_336_portlets(context):
     ptool = getToolByName(context, 'portal_cpsportlets')
     catalog = getToolByName(context, 'portal_catalog')
     portlets = catalog.searchResults(portal_type=ptool.listPortletTypes())
-    for portlet in portlets:
+    for brain in portlets:
+        portlet = brain.getObject()
         try:
             catalog.unindexObject(portlet)
         except KeyError:
