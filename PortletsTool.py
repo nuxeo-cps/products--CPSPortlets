@@ -89,9 +89,10 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def _getPortletCatalog(self):
         """Return the portlet catalog
         """
-
-        # XXX change later to a dedicated catalog
-        catalog = getToolByName(self, 'portal_catalog')
+        catalog = getToolByName(self, 'portal_cpsportlets_catalog', None)
+        if catalog is None:
+            # BBB for installer
+            catalog = getToolByName(self, 'portal_catalog')
         return catalog
 
     security.declarePublic('listAllPortlets')
@@ -1170,7 +1171,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """Return the list of all portlets interested in an event given its
         event_id
         """
-
         returned = []
         portlets = self.listAllPortlets()
         for portlet in portlets:

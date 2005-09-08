@@ -46,6 +46,7 @@ from Products.CPSDocument.CPSDocument import CPSDocument
 
 from CPSPortletsPermissions import ManagePortlets
 from PortletGuard import PortletGuard
+from CPSPortletCatalogAware import CPSPortletCatalogAware
 from cpsportlets_utils import html_slimmer
 
 _marker = []
@@ -66,7 +67,7 @@ ESI_CODE = """
 
 VISIBILITY_VOC = 'cpsportlets_visibility_range_voc'
 
-class CPSPortlet(CPSDocument):
+class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
     """ CPS Portlet
     This is a CPSPortlet child base class for portlets
     """

@@ -76,6 +76,8 @@ class CPSPortletsInstaller(CPSInstaller):
         """
 
         self.log("Install/Update : CPSPortlets Product")
+        self.verifyTool('portal_cpsportlets_catalog', 'CPSPortlets',
+                        'CPS Portlets Catalog Tool')
         self.verifyTool('portal_cpsportlets', 'CPSPortlets',
                          'CPS Portlets Tool')
         self.verifySkins(SKINS)
@@ -110,7 +112,6 @@ class CPSPortletsInstaller(CPSInstaller):
         self.doSubscribeToEventServiceTool()
         self.finalize()
         self.log("End of Install/Update : CPSPortlets Product")
-
 
     def setupSpecificPermissions(self):
         """Setup specific permissions
@@ -310,3 +311,8 @@ def install(self):
     installer = CPSPortletsInstaller(self)
     installer.install()
     return installer.logResult()
+
+def upgrade_335_336(self):
+    from Products.CPSPortlets.upgrade import upgrade_335_336_portlets
+    upgrade_335_336_portlets(self)
+    

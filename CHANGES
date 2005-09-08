@@ -1,6 +1,6 @@
 Requires:
 ~~~~~~~~~
--
+- CPSCompat > 0.4.0
 New features:
 ~~~~~~~~~~~~~
 - Document Portlet: added an option to specify explicitly the document to 
@@ -12,3 +12,4 @@ New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added an optional parameter in getFolderItems (display_valid_docs) to filter
   out documents that have expired and documents that are not yet effective.
+- dedicated catalog for the portlets (portal_cpsportlets_catalog)

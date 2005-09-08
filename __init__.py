@@ -34,6 +34,7 @@ except ImportError:
 import CPSPortletsPermissions
 import FlexibleTypeInformationPatch
 import PortletsTool
+import PortletsCatalogTool
 import CPSPortlet
 import CPSPortletWidget
 import CPSPortletVisibilityWidget
@@ -57,7 +58,9 @@ contentConstructors = (
 
 fti = ()
 
-tools = (PortletsTool.PortletsTool,)
+tools = (PortletsTool.PortletsTool,
+         PortletsCatalogTool.PortletsCatalogTool,
+         )
 
 
 registerDirectory('skins', globals())

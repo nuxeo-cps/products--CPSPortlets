@@ -9,6 +9,7 @@
 # - LinguaPlone >= 0.7
 
 # CPS --------------------
+CPSCompat > 0.4.0
 CPSDocument
 CPSNavigation >= 0.14.1
 CPSRSS
