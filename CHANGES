@@ -1,6 +1,8 @@
 Requires:
 ~~~~~~~~~
 - CPSCompat > 0.4.0
+- CPSDefault.cpsinstall.cpsupdate()
+- CPSDefault.upgrade.upgrade_335_336
 New features:
 ~~~~~~~~~~~~~
 - Document Portlet: added an option to specify explicitly the document to 
