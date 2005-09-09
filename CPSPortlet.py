@@ -754,6 +754,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             self._interesting_events += ((event_ids,
                                           folder_paths,
                                           portal_types), )
+            self.reindexObject()
             return 0
         return 1
 

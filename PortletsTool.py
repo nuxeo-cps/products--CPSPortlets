@@ -85,6 +85,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
     #
     # Catalog
     #
+
     security.declarePrivate('_getPortletCatalog')
     def _getPortletCatalog(self):
         """Return the portlet catalog
@@ -96,25 +97,25 @@ class PortletsTool(UniqueObject, PortletsContainer):
         return catalog
 
     security.declarePublic('listAllPortlets')
-    def listAllPortlets(self):
+    def listAllPortlets(self, event_ids=[]):
         """List all the portlets over the portal
 
-        Use the catalog.
+        Use the portlets catalog and the dedicated indexes for the
+        query.
         """
 
-        # Use the catalog to get all the portlets and their identifiers
-        catalog = self._getPortletCatalog()
-        portal_types = self.listPortletTypes()
+        query = {
+            'portal_type' : self.listPortletTypes(),
+            }
 
-        # Lookup through catalog to get the portlets
-        # We ask the tool to know all the portal_types
+        if event_ids:
+            query['eventIds'] = event_ids
 
         portlets = []
-        for res in catalog.searchResults(portal_type=portal_types):
+        for res in self._getPortletCatalog()(**query):
             portlet = res.getObject()
-            if portlet is None:
-                continue
-            portlets.append(portlet)
+            if portlet is not None:
+                portlets.append(portlet)
         return portlets
 
     security.declarePublic('listPortlets')
@@ -1172,9 +1173,12 @@ class PortletsTool(UniqueObject, PortletsContainer):
         event_id
         """
         returned = []
-        portlets = self.listAllPortlets()
+        portlets = self.listAllPortlets(event_ids=[event_id])
+
+        # Here the portlets are already filtered by events right.
         for portlet in portlets:
             try:
+                # XXX event_id is given as parameter but is useless.
                 interested = portlet.isInterestedInEvent(
                     event_id=event_id, folder_path=folder_path,
                     portal_type=portal_type)

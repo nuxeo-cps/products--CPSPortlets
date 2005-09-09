@@ -6,6 +6,8 @@ import unittest
 
 from Testing import ZopeTestCase
 
+from Products.CMFCore.tests.base.utils import has_path
+
 from Products.CPSDefault.tests import CPSDefaultTestCase
 
 PORTLET_CONTAINER_ID = '.cps_portlets'
@@ -199,6 +201,85 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         # unknown type
         res = ptltool.renderIcon('Unknown type for testing', '/', '')
         self.assert_(res == None)
+
+    def test_portlet_eventIds_indexes(self):
+        ptltool = self.ptltool
+        cat = self.portal.portal_cpsportlets_catalog
+
+        # Index is setup
+        self.assert_('eventIds' in cat.indexes())
+
+        # No portlet shows up
+        self.assertEqual(
+            len(ptltool.listAllPortlets(event_ids=['fake_event'])), 0)
+
+        # Create a portlet interested about one (1) event
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
+        portlet = ptltool.getPortletById(portlet_id)
+        portlet.addEvent(event_ids=('fake_event',))
+        self.assertEqual(['fake_event'], portlet.eventIds())
+
+        # record within the catalog
+        self.assert_(has_path(cat, "/portal/portal_cpsportlets/%s"%portlet_id))
+        rid = cat._catalog.uids['/portal/portal_cpsportlets/%s'%portlet_id]
+        self.assert_(['fake_event'] in cat._catalog.data[rid])
+
+        # Test the queries
+        self.assertEqual(len(ptltool.listAllPortlets()), 1)
+
+        brains = cat(portal_type=ptltool.listPortletTypes())
+        self.assertEqual(len(brains), 1)
+
+        brains = cat(portal_type=ptltool.listPortletTypes(),
+                     eventIds=['fake_event'])
+        self.assertEqual(len(brains), 1)
+
+        # Test queries from the portlets tool API
+        self.assertEqual(
+            len(ptltool.listAllPortlets(event_ids=['fake_event'])), 1)
+        self.assertEqual(
+            len(ptltool.listAllPortlets()), 1)
+        self.assertEqual(len(ptltool.listAllPortlets(event_ids=['xxx'])), 0)
+
+        # Add another event on the portlet.
+        portlet.addEvent(event_ids=('fake_event2',))
+        self.assertEqual(['fake_event', 'fake_event2'], portlet.eventIds())
+
+        # Test the queries
+        self.assertEqual(len(ptltool.listAllPortlets()), 1)
+
+        brains = cat(portal_type=ptltool.listPortletTypes())
+        self.assertEqual(len(brains), 1)
+
+        brains = cat(portal_type=ptltool.listPortletTypes(),
+                     eventIds=['fake_event'])
+        self.assertEqual(len(brains), 1)
+
+        brains = cat(portal_type=ptltool.listPortletTypes(),
+                     eventIds=['fake_event2'])
+        self.assertEqual(len(brains), 1)
+
+        brains = cat(portal_type=ptltool.listPortletTypes(),
+                     eventIds=['fake_event', 'fake_event2'])
+        self.assertEqual(len(brains), 1)
+
+        brains = cat(portal_type=ptltool.listPortletTypes(),
+                     eventIds=['fake_event2', 'fake_event'])
+        self.assertEqual(len(brains), 1)
+
+        # Test queries from the portlets tool API
+        self.assertEqual(
+            len(ptltool.listAllPortlets(event_ids=['fake_event'])), 1)
+        self.assertEqual(
+            len(ptltool.listAllPortlets(event_ids=['fake_event2'])), 1)
+        self.assertEqual(
+            len(ptltool.listAllPortlets(
+            event_ids=['fake_event', 'fake_event2'])), 1)
+        self.assertEqual(
+            len(ptltool.listAllPortlets()), 1)
+        self.assertEqual(len(ptltool.listAllPortlets(event_ids=['xxx'])), 0)
+        self.assertEqual(len(ptltool.listAllPortlets(event_ids=['fake_'])), 0)
+        self.assertEqual(len(ptltool.listAllPortlets(event_ids=['_event'])), 0)
 
 def test_suite():
     suite = unittest.TestSuite()

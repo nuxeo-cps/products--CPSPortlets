@@ -38,4 +38,17 @@ class CPSPortletCatalogAware(CMFCatalogAware):
             catalog = getToolByName(self, 'portal_catalog')
         return catalog
 
+    #
+    # Keyword index methods
+    #
+
+    def eventIds(self):
+        """Return the event ids the portlet is interested in
+        """
+        value = []
+        for info in self.listEvents():
+            for event in info[0]:
+                value.append(event)
+        return value
+
 InitializeClass(CPSPortletCatalogAware)

@@ -110,6 +110,7 @@ class CPSPortletsInstaller(CPSInstaller):
         self.rebuildPortlets()
         self.clearCache()
         self.doSubscribeToEventServiceTool()
+        self.setupPortletsCatalog()
         self.finalize()
         self.log("End of Install/Update : CPSPortlets Product")
 
@@ -300,6 +301,33 @@ class CPSPortletsInstaller(CPSInstaller):
 
         else:
             self.log('Event service tool not found')
+
+    #######################################################
+    # PORTLETS CATALOG
+    #######################################################
+
+    def setupPortletsCatalog(self):
+        self.setupPortletIndexes()
+        self.setupPortletMetadata()
+            
+    def setupPortletIndexes(self):
+        catalog = getToolByName(self.portal, 'portal_cpsportlets_catalog')
+        indexes = (
+            ('eventIds', 'KeywordIndex', None),
+            )
+        for id, type, extra in indexes:
+            if id in catalog.indexes() is not None:
+                catalog.delIndex(id)
+            catalog.addIndex(id, type, extra)
+
+    def setupPortletMetadata(self):
+        catalog = getToolByName(self.portal, 'portal_cpsportlets_catalog')
+        metadata = (
+            'eventIds',
+            )
+        for id in metadata:
+            if not catalog._catalog.schema.has_key(id):
+                catalog.addColumn(id, None)
 
 ###############################################
 # __call__
