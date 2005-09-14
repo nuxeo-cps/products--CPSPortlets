@@ -13,6 +13,7 @@ Bug fixes:
 - #421 listPortletsInterestedInEvent() does not scale well
 - #926 removed unused skins (skins/cpsportlets_widgets_plone2)
        moved CPS3 specific skins to 'skins/cpsportlets_widgets'
+       updated the upgrade script to remove obsolete skins.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added an optional parameter in getFolderItems (display_valid_docs) to filter

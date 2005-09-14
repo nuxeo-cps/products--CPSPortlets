@@ -35,3 +35,14 @@ def upgrade_335_336_portlets(context):
         # Reindex within the dedicated catalog
         portlet.reindexObject()
     return "Portlet indexes migrated"
+
+def upgrade_335_336_skins(context):
+    """Remove obsolete skins
+    """
+    SKINS_TO_REMOVE = ('cpsportlets_widgets_cps3', 'cpsportlets_widgets_plone2')
+    stool = getToolByName(context, 'portal_skins')
+    skins = stool.objectIds()
+    for skin_id in SKINS_TO_REMOVE:
+        if skin_id in skins:
+            stool.manage_delObjects(skin_id)
+    return "Obsolete CPSPortlets skins removed."
