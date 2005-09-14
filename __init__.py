@@ -38,7 +38,6 @@ import PortletsCatalogTool
 import CPSPortlet
 import CPSPortletWidget
 import CPSPortletVisibilityWidget
-import FileDownloaderPatch
 import PortletsContainer
 import PortletRAMCache
 

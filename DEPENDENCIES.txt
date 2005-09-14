@@ -1,13 +1,4 @@
 # $Id$
-# For CPS3:
-# - CPS > 3.3.2
-# - CPSSkins development branch on Nuxeo's CVS
-#
-# For Plone-2.0.x:
-# - CPS4CMF nightly build 2004-09-09
-#   http://zope.org/Members/nuxeo/news/cps4cmf
-# - LinguaPlone >= 0.7
-
 # CPS --------------------
 CPSCompat > 0.4.0
 CPSDocument
