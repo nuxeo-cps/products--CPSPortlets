@@ -11,6 +11,8 @@ Bug fixes:
 ~~~~~~~~~~
 - updateCacheParameters(): trigger persistence after updating cache parameters.
 - #421 listPortletsInterestedInEvent() does not scale well
+- #926 removed unused skins (skins/cpsportlets_widgets_plone2)
+       moved CPS3 specific skins to 'skins/cpsportlets_widgets'
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added an optional parameter in getFolderItems (display_valid_docs) to filter

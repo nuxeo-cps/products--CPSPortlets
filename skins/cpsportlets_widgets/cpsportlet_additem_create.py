@@ -5,5 +5,5 @@ if type_name == '':
 
 if REQUEST is not None:
     redirect_url = context.absolute_url() +\
-    '/cpsportlet_additem_factories?type_name=' + type_name
+    '/content_create?type_name=' + type_name
     REQUEST.RESPONSE.redirect(redirect_url)
