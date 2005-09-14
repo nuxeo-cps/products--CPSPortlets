@@ -44,15 +44,8 @@ SECTIONS_ID = 'sections'
 WORKSPACES_ID = 'workspaces'
 SKINS = {'cpsportlets_widgets':
          'Products/CPSPortlets/skins/cpsportlets_widgets',
-# CPS3 specific ---------------------------------------------
          'cpsportlets_widgets_cps3':
          'Products/CPSPortlets/skins/cpsportlets_widgets_cps3',
-# -----------------------------------------------------------
-
-# Plone2 specific ---------------------------------------------
-#         'cpsportlets_widgets_plone2':
-#         'Products/CPSPortlets/skins/cpsportlets_widgets_plone2',
-# -----------------------------------------------------------
          'cpsportlets_default':
          'Products/CPSPortlets/skins/cpsportlets_default',
          'cpsportlets_schemas':
@@ -343,4 +336,4 @@ def install(self):
 def upgrade_335_336(self):
     from Products.CPSPortlets.upgrade import upgrade_335_336_portlets
     return upgrade_335_336_portlets(self)
-    
+
