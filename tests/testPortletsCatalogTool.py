@@ -32,29 +32,6 @@ from Products.CMFCore.tests.base.security import OmnipotentUser
 from Products.CMFCore.tests.base.security import UserWithRoles
 from Products.CMFCore.tests.base.testcase import SecurityTest
 
-
-class IndexableObjectWrapperTests(TestCase):
-
-    def test_z2interfaces(self):
-        from Interface.Verify import verifyClass
-        from Products.CMFCore.CatalogTool import IndexableObjectWrapper
-        from Products.CMFCore.interfaces.portal_catalog \
-                import IndexableObjectWrapper as IIndexableObjectWrapper
-
-        verifyClass(IIndexableObjectWrapper, IndexableObjectWrapper)
-
-    def test_z3interfaces(self):
-        try:
-            from zope.interface.verify import verifyClass
-        except ImportError:
-            # BBB: for Zope 2.7
-            return
-        from Products.CMFCore.CatalogTool import IndexableObjectWrapper
-        from Products.CMFCore.interfaces import IIndexableObjectWrapper
-
-        verifyClass(IIndexableObjectWrapper, IndexableObjectWrapper)
-
-
 class CatalogToolTests(SecurityTest):
 
     def _makeOne(self, *args, **kw):
@@ -79,13 +56,13 @@ class CatalogToolTests(SecurityTest):
     def test_z3interfaces(self):
         try:
             from zope.interface.verify import verifyClass
+            from Products.CMFCore.interfaces import IActionProvider
+            from Products.CMFCore.interfaces import ICatalogTool
         except ImportError:
             # BBB: for Zope 2.7
             return
         from Products.CPSPortlets.PortletsCatalogTool import \
              PortletsCatalogTool as CatalogTool
-        from Products.CMFCore.interfaces import IActionProvider
-        from Products.CMFCore.interfaces import ICatalogTool
 
         verifyClass(IActionProvider, CatalogTool)
         verifyClass(ICatalogTool, CatalogTool)
@@ -320,7 +297,6 @@ class CatalogToolTests(SecurityTest):
 
 def test_suite():
     return TestSuite((
-        makeSuite(IndexableObjectWrapperTests),
         makeSuite(CatalogToolTests),
         ))
 
