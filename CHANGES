@@ -1,25 +1,12 @@
 Requires:
 ~~~~~~~~~
-- CPSCompat > 0.4.0
-- CPSDefault.cpsinstall.cpsupdate()
-- CPSDefault.upgrade.upgrade_335_336
+-
 New features:
 ~~~~~~~~~~~~~
-- Document Portlet: added an option to specify explicitly the document to 
-  render.
+-
 Bug fixes:
 ~~~~~~~~~~
-- updateCacheParameters(): trigger persistence after updating cache parameters.
-- #421 listPortletsInterestedInEvent() does not scale well
-- #926 removed unused skins (skins/cpsportlets_widgets_plone2)
-       moved CPS3 specific skins to 'skins/cpsportlets_widgets'
-       updated the upgrade script to remove obsolete skins.
-- #404 : Import FileDownLoader and __getitem__() for CPSPortlet class
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- added an optional parameter in getFolderItems (display_valid_docs) to filter
-  out documents that have expired and documents that are not yet effective.
-- dedicated catalog for the portlets (portal_cpsportlets_catalog) 
-- optimize the catalog queries while looking for portlets interested in events.
-  Add an eventIds indexes restricting the lookup
-- CMF / Plone support removed.
+-
