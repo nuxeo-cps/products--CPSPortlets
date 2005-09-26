@@ -23,6 +23,7 @@ def upgrade_335_336_portlets(context):
     """Migrates the CPS Portlets indexes to portal_cpsportlets
     """
     ptool = getToolByName(context, 'portal_cpsportlets')
+    ptcatalog = getToolByName(context, 'portal_cpsportlets_catalog')	
     catalog = getToolByName(context, 'portal_catalog')
     portlets = catalog.searchResults(portal_type=ptool.listPortletTypes())
     for brain in portlets:
@@ -33,7 +34,7 @@ def upgrade_335_336_portlets(context):
             # Already removed.
             pass
         # Reindex within the dedicated catalog
-        portlet.reindexObject()
+        ptcatalog.indexObject(portlet)
     return "Portlet indexes migrated"
 
 def upgrade_335_336_skins(context):
