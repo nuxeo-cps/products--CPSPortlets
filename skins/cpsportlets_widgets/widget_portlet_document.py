@@ -9,7 +9,7 @@ ds = kw['datastructure']
 
 context_rpath = ds.get('context_rpath')
 
-render_obj = None
+render_obj = context_obj
 # a document  path is specified
 if context_rpath:
     render_obj = context.restrictedTraverse(context_rpath, None)
@@ -57,10 +57,10 @@ if getContent is not None:
             if not found:
                 return ''
         try:
-            rendered = render(proxy=context_obj, cluster=cluster_id)
+            rendered = render(proxy=render_obj, cluster=cluster_id)
         except TypeError:
             pass
     else:
-        rendered = render(proxy=context_obj)
+        rendered = render(proxy=render_obj)
 
 return rendered

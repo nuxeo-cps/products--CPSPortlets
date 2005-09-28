@@ -7,6 +7,8 @@ New features:
 Bug fixes:
 ~~~~~~~~~~
 - Fix upgrade portlet catalog
+- #964 Document Portlet: the document was not rendered in the proxy's context
+  when the (optional) document path was specified.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
