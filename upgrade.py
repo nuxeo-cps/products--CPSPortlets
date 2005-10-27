@@ -46,4 +46,9 @@ def upgrade_335_336_skins(context):
     for skin_id in SKINS_TO_REMOVE:
         if skin_id in skins:
             stool.manage_delObjects(skin_id)
+
+    # Reset the skin cache
+    portal = getToolByName(context, 'portal_url').getPortalObject()
+    portal._v_reset_skins = 1
+
     return "Obsolete CPSPortlets skins removed."
