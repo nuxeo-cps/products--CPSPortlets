@@ -26,6 +26,7 @@ value in order to see the portlet. Any blank value is ignored.
   <strong>here</strong>: The context.<br>
   <strong>portal</strong>: The CPS portal object.<br>
   <strong>request</strong>: The REQUEST object.<br>
+  <strong>published</strong>: The id of the PUBLISHED object.<br>
   <strong>user</strong>: The user object.<br>
   <strong>nothing</strong>: None<br>
 </p>

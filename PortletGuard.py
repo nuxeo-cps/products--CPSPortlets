@@ -31,11 +31,21 @@ from Products.DCWorkflow.Guard import Guard
 def createExpressionContext(sm, portlet, context):
     """Create a name space for TALES expressions."""
     portal = getToolByName(context, 'portal_url').getPortalObject()
+    request = getattr(context, 'REQUEST', None)
+    published = ''
+    if request is not None:
+        published_obj = request.get('PUBLISHED')
+        if published_obj is not None:
+            try:
+                published = published_obj.getId()
+            except AttributeError:
+                pass
     data = {
         'portlet': portlet,
         'here': context,
         'portal': portal,
-        'request': getattr(context, 'REQUEST', None),
+        'request': request,
+        'published': published,
         'user': sm.getUser(),
         'nothing': None,
         }
