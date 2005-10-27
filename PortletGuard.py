@@ -72,4 +72,15 @@ class PortletGuard(Guard):
             if not res:
                 return 0
         return 1
+
+    def dictExport(self):
+        """Export the guard structure"""
+        dict = {
+            'guard_permissions': self.getPermissionsText(),
+            'guard_roles': self.getRolesText(),
+            'guard_group': self.getGroupsText(),
+            'guard_expr': self.getExprText(),
+            }
+        return dict.items()
+
 InitializeClass(PortletGuard)

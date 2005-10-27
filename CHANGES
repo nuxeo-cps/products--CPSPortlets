@@ -13,4 +13,5 @@ Bug fixes:
   when the (optional) document path was specified.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
--
+- ZMI: the portlet guard is exported with other portlet settings
+- the portlet guard can be set during portlet creation.

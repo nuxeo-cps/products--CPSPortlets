@@ -132,6 +132,10 @@ class PortletsContainer(CMFBTreeFolder):
             # create the portlet
             self.invokeFactory(ptype_id, new_id)
             new_portlet = getattr(self, new_id)
+            # set the portlet's guard
+            if 'guard' in kw:
+                new_portlet.setGuardProperties(props=kw['guard'])
+                del kw['guard']
             new_portlet.edit(kw)
             # rebuild the portlet to add javascript and cache parameters
             new_portlet._rebuild()
