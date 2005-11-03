@@ -55,10 +55,61 @@ for ptype_id in ['Dummy Portlet',
         ptype_id = ptype_id
     tests.append(TestOnePortlet)
 
+class TestCustomPortletWidget(TestPortlets):
+
+    def test_without_rendering_method(self):
+        ptype_id = 'Custom Portlet'
+        ptltool = self.ptltool
+        self.assert_(len(ptltool.items()) == 0)
+        portlet_id = ptltool.createPortlet(ptype_id)
+        self.assert_(len(ptltool.items()) == 1)
+        portlet = ptltool[portlet_id]
+        rendering = portlet.render(context_obj=self.portal, portlet=portlet)
+        self.assertEqual('Unknown render method <cite></cite>.',
+                         rendering)
+
+    def test_with_rendering_method_ok(self):
+
+        # Callable
+        def meth(**kw):
+            return 'RENDERING'
+
+        ptype_id = 'Custom Portlet'
+        ptltool = self.ptltool
+        self.assert_(len(ptltool.items()) == 0)
+        portlet_id = ptltool.createPortlet(ptype_id)
+        self.assert_(len(ptltool.items()) == 1)
+        portlet = ptltool[portlet_id]
+        setattr(self.portal, 'portlet_meth', meth)
+        portlet.render_method = 'portlet_meth'
+        self.assertEqual(getattr(portlet, portlet.render_method, None), meth)
+        rendering = portlet.render(context_obj=self.portal, portlet=portlet)
+        self.assertEqual(meth(), rendering)
+
+    def test_with_rendering_method_ko(self):
+
+        # Not a callable
+        meth = 'RENDERING'
+
+        ptype_id = 'Custom Portlet'
+        ptltool = self.ptltool
+        self.assert_(len(ptltool.items()) == 0)
+        portlet_id = ptltool.createPortlet(ptype_id)
+        self.assert_(len(ptltool.items()) == 1)
+        portlet = ptltool[portlet_id]
+        setattr(self.portal, 'portlet_meth', meth)
+        portlet.render_method = 'portlet_meth'
+        self.assertEqual(getattr(portlet, portlet.render_method, None), meth)
+        rendering = portlet.render(context_obj=self.portal, portlet=portlet)
+        self.assertEqual(
+            rendering,
+            "<cite>portlet_meth</cite> is not a callable object.")
+
 def test_suite():
     suite = unittest.TestSuite()
     for test in tests:
         suite.addTest(unittest.makeSuite(test))
+    suite.addTest(unittest.makeSuite(TestCustomPortletWidget))
     return suite
 
 if __name__ == '__main__':

@@ -16,3 +16,6 @@ New internal features:
 - ZMI: the portlet guard is exported with other portlet settings
 - the portlet guard can be set during portlet creation.
 - added the published object's id to the guard's expression context
+- CustomPortletWidget.render() checks if the object registred by name
+as rendering meth is an actual callable to avoid non user friendly
+traceback

@@ -44,6 +44,10 @@ class PortletCustomWidget(CPSStringWidget):
         if meth is None:
             msg = "Unknown render method <cite>%s</cite>." % self.render_method
             return msg
+        if not callable(meth):
+            msg = "<cite>%s</cite> is not a callable object." \
+                  % self.render_method
+            return msg
         return meth(**kw)
 
 InitializeClass(PortletCustomWidget)
