@@ -74,7 +74,6 @@ class CPSPortletsInstaller(CPSInstaller):
         self.verifySkins(SKINS)
         self.resetSkinCache()
         self.setupSpecificPermissions()
-        self.verifyWidgets(self.portal.getCPSPortletWidgets())
         self.installPortletVocabularies()
         self.installPortletSchemas()
         self.installPortletLayouts()

@@ -29,8 +29,7 @@ from cgi import escape
 
 from Products.CMFCore.utils import getToolByName
 
-from Products.CPSSchemas.Widget import CPSWidgetType
-from Products.CPSSchemas.WidgetTypesTool import WidgetTypeRegistry
+from Products.CPSSchemas.Widget import widgetRegistry
 
 from Products.CPSSchemas.BasicWidgets import renderHtmlTag, CPSSelectWidget
 
@@ -38,7 +37,7 @@ from Products.CPSSchemas.BasicWidgets import renderHtmlTag, CPSSelectWidget
 
 class CPSPortletVisibilityWidget(CPSSelectWidget):
     """CPS Portlet Visibility widget."""
-    meta_type = "CPS Portlet Visibility Widget"
+    meta_type = 'CPS Portlet Visibility Widget'
 
     field_types = ('CPS Couple Field',)
 
@@ -124,13 +123,4 @@ class CPSPortletVisibilityWidget(CPSSelectWidget):
 
 InitializeClass(CPSPortletVisibilityWidget)
 
-
-class CPSPortletVisibilityWidgetType(CPSWidgetType):
-    """CPS Portlet Visibility widget type."""
-    meta_type = "CPS Portlet Visibility Widget Type"
-    cls = CPSPortletVisibilityWidget
-
-InitializeClass(CPSPortletVisibilityWidgetType)
-
-WidgetTypeRegistry.register(CPSPortletVisibilityWidgetType,
-                            CPSPortletVisibilityWidget)
+widgetRegistry.register(CPSPortletVisibilityWidget)

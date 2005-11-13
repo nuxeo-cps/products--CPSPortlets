@@ -27,13 +27,13 @@ __author__ = "Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>"
 from zLOG import LOG, DEBUG
 from Globals import InitializeClass
 
-from Products.CPSSchemas.Widget import CPSWidget, CPSWidgetType
-from Products.CPSSchemas.WidgetTypesTool import WidgetTypeRegistry
+from Products.CPSSchemas.Widget import CPSWidget
+from Products.CPSSchemas.Widget import widgetRegistry
 
 class CPSPortletWidget(CPSWidget):
     """Generic Portlet Widget."""
 
-    meta_type = "CPS Generic Portlet Widget"
+    meta_type = 'Generic Portlet Widget'
 
     _properties = CPSWidget._properties + (
         {'id': 'render_method', 'type': 'string', 'mode': 'w',
@@ -79,13 +79,4 @@ class CPSPortletWidget(CPSWidget):
 
 InitializeClass(CPSPortletWidget)
 
-class CPSPortletWidgetType(CPSWidgetType):
-    """Generic CPS Portlet Widget Type
-    """
-    meta_type = "CPS Generic Portlet Widget Type"
-    cls = CPSPortletWidget
-
-InitializeClass(CPSPortletWidgetType)
-
-WidgetTypeRegistry.register(CPSPortletWidgetType,
-                            CPSPortletWidget)
+widgetRegistry.register(CPSPortletWidget)

@@ -24,19 +24,15 @@ __author__ = "Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>"
 """ Custom Portlet.
 """
 
-from zLOG import LOG, DEBUG
 from Globals import InitializeClass
 
-from Products.CPSSchemas.BasicWidgets import CPSStringWidget, \
-     CPSStringWidgetType, \
-     renderHtmlTag
-from Products.CPSSchemas.WidgetTypesTool import WidgetTypeRegistry
+from Products.CPSSchemas.BasicWidgets import CPSStringWidget
+from Products.CPSSchemas.Widget import widgetRegistry
 
 class PortletCustomWidget(CPSStringWidget):
     """Custom Portlet widget
     """
-
-    meta_type = "CPS Portlet Custom Widget"
+    meta_type = 'CPS Portlet Custom Widget'
 
     def render(self, mode, datastructure, **kw):
         """Render in mode from datastructure."""
@@ -52,14 +48,4 @@ class PortletCustomWidget(CPSStringWidget):
 
 InitializeClass(PortletCustomWidget)
 
-class PortletCustomWidgetType(CPSStringWidgetType):
-    """Custom Portlet Widget Type
-    """
-    meta_type = "CPS Portlet Custom Widget Type"
-    cls = PortletCustomWidget
-
-InitializeClass(PortletCustomWidgetType)
-
-WidgetTypeRegistry.register(PortletCustomWidgetType,
-                            PortletCustomWidget)
-
+widgetRegistry.register(PortletCustomWidget)

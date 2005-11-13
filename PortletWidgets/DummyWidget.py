@@ -24,19 +24,15 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 """ Widgets related to portlets.
 """
 
-from zLOG import LOG, DEBUG
 from Globals import InitializeClass
 
-from Products.CPSSchemas.BasicWidgets import CPSStringWidget, \
-     CPSStringWidgetType, \
-     renderHtmlTag
-from Products.CPSSchemas.WidgetTypesTool import WidgetTypeRegistry
+from Products.CPSSchemas.BasicWidgets import CPSStringWidget
+from Products.CPSSchemas.Widget import widgetRegistry
 
 class PortletDummyWidget(CPSStringWidget):
     """Dummy Portlet widget
     """
-
-    meta_type = "CPS Portlet Dummy Widget"
+    meta_type = 'CPS Portlet Dummy Widget'
 
     def render(self, mode, datastructure, **kw):
         """Render in mode from datastructure
@@ -45,14 +41,4 @@ class PortletDummyWidget(CPSStringWidget):
 
 InitializeClass(PortletDummyWidget)
 
-class PortletDummyWidgetType(CPSStringWidgetType):
-    """Dummy Portlet Widget Type
-    """
-    meta_type = "CPS Portlet Dummy Widget Type"
-    cls = PortletDummyWidget
-
-InitializeClass(PortletDummyWidgetType)
-
-WidgetTypeRegistry.register(PortletDummyWidgetType,
-                            PortletDummyWidget)
-
+widgetRegistry.register(PortletDummyWidget)
