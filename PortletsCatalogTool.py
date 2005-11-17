@@ -22,10 +22,9 @@
 
 from Globals import InitializeClass
 
-from Products.CMFCore.utils import UniqueObject
 from Products.CMFCore.CatalogTool import CatalogTool
 
-class PortletsCatalogTool(UniqueObject, CatalogTool):
+class PortletsCatalogTool(CatalogTool):
     """Portlets Catalog Tool
 
     Dedicated catalog for CPS Portlets
