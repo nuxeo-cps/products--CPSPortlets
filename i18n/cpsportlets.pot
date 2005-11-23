@@ -536,3 +536,9 @@ msgstr ""
 
 msgid "cpsportlets_document_context_rpath_label"
 msgstr ""
+
+msgid "cpsportlets_guard_explanation"
+msgstr ""
+
+msgid "action_portlet_guard"
+msgstr ""

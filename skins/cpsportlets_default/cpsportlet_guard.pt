@@ -1,0 +1,33 @@
+<tal:block define="emptybody python: 1">
+  <metal:block use-macro="here/main_template_popup/macros/master|here/main_template/macros/master">
+  <metal:block fill-slot="css_slot">
+  </metal:block>
+
+  <metal:block fill-slot="main">
+  <div style="padding: 0.5em">
+
+    <div style="text-align: right">
+       <a i18n:translate="button_back" href="cpsportlet_edit_form">back</a>
+    </div>
+
+    <h1>Portlet guard</h1>
+    <p i18n:translate="cpsportlets_guard_explanation">
+    The guard form allows you to control the visibility of portlets.
+    All the expressions that are filled in must be true for the portlet to be
+    visible.</p>
+
+    <form action="">
+      <!-- TODO guard form -->
+    </form>
+
+    <form action="" style="text-align: center">
+      <input class="standalone" type="submit"
+       onclick="window.opener.location.reload();window.close()"
+       value="button_close" i18n:attributes="value" />
+    </form>
+
+  </div>
+  </metal:block>
+
+</metal:block>
+</tal:block>

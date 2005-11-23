@@ -40,8 +40,12 @@
                portal_status_message python: res[1];
                error python: res[2]">
 
+  <div style="padding: 0.5em">
+
     <div style="text-align: right"
      tal:define="metadata python: cluster == 'metadata'">
+       <a i18n:translate="action_portlet_guard"
+        href="cpsportlet_guard">guard</a> |
        <a tal:condition="not:metadata" i18n:translate="action_metadata"
         href="cpsportlet_metadata">metadata</a>
        <a tal:condition="metadata" i18n:translate="button_back"
@@ -69,6 +73,8 @@
        onclick="window.opener.location.reload();window.close()"
        value="button_close" i18n:attributes="value" />
     </form>
+
+  </div>
   </metal:block>
 
 </metal:block>

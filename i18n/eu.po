@@ -698,4 +698,14 @@ msgstr "Mostrar sólo los contenidos autorizados"
 
 #, fuzzy
 msgid "cpsportlets_document_context_rpath_label"
-msgstr "Folder path (relative)"
+msgstr "Document path (relative)"
+
+#, fuzzy
+msgid "cpsportlets_guard_explanation"
+msgstr ""
+"The guard form allows you to control the visibility of portlets.All the "
+"expressions that are filled in must be true for the portlet to be visible."
+
+#, fuzzy
+msgid "action_portlet_guard"
+msgstr "Manage portlets"

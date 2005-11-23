@@ -544,3 +544,11 @@ msgstr "Afficher uniquement les répertoires autorisés"
 
 msgid "cpsportlets_document_context_rpath_label"
 msgstr "Chemin du document (relatif)"
+
+msgid "cpsportlets_guard_explanation"
+msgstr ""
+"Le formulaire de garde permet de contrôller la visibilité du portlet. Les "
+"expressions doivent toutes être verifiées pour que le portlet soit visible."
+
+msgid "action_portlet_guard"
+msgstr "Garde"

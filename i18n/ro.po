@@ -61,19 +61,19 @@ msgstr "Sterge versiunea in..."
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 #, fuzzy
 msgid "cpsportlets_extended_site_map_description"
-msgstr "Descriere"
+msgstr "Description"
 
 #.   <td>cpsportlets_extended_site_map_folder</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 #, fuzzy
 msgid "cpsportlets_extended_site_map_folder"
-msgstr "Director"
+msgstr "Répertoire"
 
 #.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 #, fuzzy
 msgid "cpsportlets_extended_site_map_managers"
-msgstr "Responsabili"
+msgstr "Responsable(s)"
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -254,7 +254,7 @@ msgstr "Inverseaza ordinea afisarii"
 
 #, fuzzy
 msgid "cpsportlets_common_render_method_label"
-msgstr "Metoda de redare (.zpt, .py, etc.)"
+msgstr "Méthode d'affichage (.zpt, .py, etc.)"
 
 msgid "cpsportlets_common_max_items_label"
 msgstr "Numar de rezultate"
@@ -267,7 +267,7 @@ msgstr "Tipuri de continut pentru afisare"
 
 #, fuzzy
 msgid "cpsportlets_content_contextual_label"
-msgstr "Cautare contextuala"
+msgstr "Recherche contextuelle"
 
 msgid "cpsportlets_language_action_label"
 msgstr "Actiune"
@@ -295,7 +295,7 @@ msgstr "Continutul locatiei curente"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
-msgstr "Continutul directorului* (meniu derulant)"
+msgstr "Contenu du répertoire* (menu déroulant)"
 
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Continutul sub-directoarelor"
@@ -545,4 +545,14 @@ msgstr "Afiseaza doar obiectele autorizate"
 
 #, fuzzy
 msgid "cpsportlets_document_context_rpath_label"
-msgstr "Calea folderului (relativa)"
+msgstr "Chemin du document (relatif)"
+
+#, fuzzy
+msgid "cpsportlets_guard_explanation"
+msgstr ""
+"Le formulaire de garde permet de contrôller la visibilité du portlet.Les "
+"expressions doivent toutes être verifiées pour que le portlet soit visible."
+
+#, fuzzy
+msgid "action_portlet_guard"
+msgstr "Gérer les portlets"

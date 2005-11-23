@@ -457,3 +457,10 @@ msgstr ""
 
 msgid "cpsportlets_extended_site_map_managers"
 msgstr ""
+
+msgid "cpsportlets_guard_explanation"
+msgstr ""
+
+msgid "action_portlet_guard"
+msgstr ""
+

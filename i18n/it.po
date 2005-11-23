@@ -585,7 +585,17 @@ msgstr "Afficher uniquement les répertoires autorisés"
 
 #, fuzzy
 msgid "cpsportlets_document_context_rpath_label"
-msgstr "Chemin du répertoire (relatif)"
+msgstr "Chemin du document (relatif)"
+
+#, fuzzy
+msgid "cpsportlets_guard_explanation"
+msgstr ""
+"Le formulaire de garde permet de contrôller la visibilité du portlet.Les "
+"expressions doivent toutes être verifiées pour que le portlet soit visible."
+
+#, fuzzy
+msgid "action_portlet_guard"
+msgstr "Gérer les portlets"
 
 #~ msgid "Item title"
 #~ msgstr "Titolo dell'elemento"

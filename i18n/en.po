@@ -540,3 +540,11 @@ msgstr "Display only authorized items"
 
 msgid "cpsportlets_document_context_rpath_label"
 msgstr "Document path (relative)"
+
+msgid "cpsportlets_guard_explanation"
+msgstr ""
+"The guard form allows you to control the visibility of portlets. All the "
+"expressions that are filled in must be true for the portlet to be visible."
+
+msgid "action_portlet_guard"
+msgstr "Guard"
