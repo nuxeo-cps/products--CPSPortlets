@@ -3,7 +3,8 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- #1077 the portlet guard form is available in the portlet editor
+  (see the "Guard" link)
 Bug fixes:
 ~~~~~~~~~~
 -

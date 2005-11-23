@@ -550,9 +550,41 @@ msgstr "Chemin du document (relatif)"
 #, fuzzy
 msgid "cpsportlets_guard_explanation"
 msgstr ""
-"Le formulaire de garde permet de contrôller la visibilité du portlet.Les "
+"Le formulaire de garde permet de contrôller la visibilité du portlet. Les "
 "expressions doivent toutes être verifiées pour que le portlet soit visible."
 
 #, fuzzy
 msgid "action_portlet_guard"
-msgstr "Gérer les portlets"
+msgstr "Garde"
+
+#, fuzzy
+msgid "cpsportlet_guard_tales_explain"
+msgstr "Les variable suivantes sont définies pour l'expression TALES"
+
+#, fuzzy
+msgid "cpsportlet_guard_tales_portlet"
+msgstr "L'object 'portlet'"
+
+#, fuzzy
+msgid "cpsportlet_guard_tales_here"
+msgstr "L'objet 'context'"
+
+#, fuzzy
+msgid "cpsportlet_guard_tales_portal"
+msgstr "L'objet 'portal'"
+
+#, fuzzy
+msgid "cpsportlet_guard_tales_request"
+msgstr "L'object 'REQUEST'"
+
+#, fuzzy
+msgid "cpsportlet_guard_tales_published"
+msgstr "L'identifiant de l'objet 'PUBLISHED'"
+
+#, fuzzy
+msgid "cpsportlet_guard_tales_user"
+msgstr "L'objet 'user'"
+
+#, fuzzy
+msgid "cpsportlet_psm_settings_updated"
+msgstr "Voir la version en ..."

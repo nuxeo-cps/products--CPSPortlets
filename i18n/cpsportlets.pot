@@ -542,3 +542,27 @@ msgstr ""
 
 msgid "action_portlet_guard"
 msgstr ""
+
+msgid "cpsportlet_guard_tales_explain"
+msgstr ""
+
+msgid "cpsportlet_guard_tales_portlet"
+msgstr ""
+
+msgid "cpsportlet_guard_tales_here"
+msgstr ""
+
+msgid "cpsportlet_guard_tales_portal"
+msgstr ""
+
+msgid "cpsportlet_guard_tales_request"
+msgstr ""
+
+msgid "cpsportlet_guard_tales_published"
+msgstr ""
+
+msgid "cpsportlet_guard_tales_user"
+msgstr ""
+
+msgid "cpsportlet_psm_settings_updated"
+msgstr ""

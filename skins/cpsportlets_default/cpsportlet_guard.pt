@@ -1,7 +1,6 @@
-<tal:block define="emptybody python: 1">
+<tal:block define="emptybody python: 1;
+                   psm options/portal_status_message|nothing">
   <metal:block use-macro="here/main_template_popup/macros/master|here/main_template/macros/master">
-  <metal:block fill-slot="css_slot">
-  </metal:block>
 
   <metal:block fill-slot="main">
   <div style="padding: 0.5em">
@@ -10,23 +9,28 @@
        <a i18n:translate="button_back" href="cpsportlet_edit_form">back</a>
     </div>
 
+    <div class="message" i18n:translate="" tal:condition="psm" tal:content="psm" />
+
     <h1>Portlet guard</h1>
     <p i18n:translate="cpsportlets_guard_explanation">
     The guard form allows you to control the visibility of portlets.
     All the expressions that are filled in must be true for the portlet to be
     visible.</p>
 
-    <form action="">
-      <!-- TODO guard form -->
-    </form>
-
-    <form action="" style="text-align: center">
-      <input class="standalone" type="submit"
-       onclick="window.opener.location.reload();window.close()"
-       value="button_close" i18n:attributes="value" />
+    <form class="group" action="setGuardProperties" method="post">
+      <tal:block content="structure here/renderGuardForm" />
+      <input type="submit" class="standalone"
+       value="button_submit" i18n:attributes="value" />
     </form>
 
   </div>
+
+  <form action="" style="text-align: center">
+    <input class="standalone" type="submit"
+     onclick="window.opener.location.reload();window.close()"
+     value="button_close" i18n:attributes="value" />
+  </form>
+
   </metal:block>
 
 </metal:block>

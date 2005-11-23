@@ -552,3 +552,27 @@ msgstr ""
 
 msgid "action_portlet_guard"
 msgstr "Garde"
+
+msgid "cpsportlet_guard_tales_explain"
+msgstr "Les variable suivantes sont définies pour l'expression TALES"
+
+msgid "cpsportlet_guard_tales_portlet"
+msgstr "L'object 'portlet'"
+
+msgid "cpsportlet_guard_tales_here"
+msgstr "L'objet 'context'"
+
+msgid "cpsportlet_guard_tales_portal"
+msgstr "L'objet 'portal'"
+
+msgid "cpsportlet_guard_tales_request"
+msgstr "L'object 'REQUEST'"
+
+msgid "cpsportlet_guard_tales_published"
+msgstr "L'identifiant de l'objet 'PUBLISHED'"
+
+msgid "cpsportlet_guard_tales_user"
+msgstr "L'objet 'user'"
+
+msgid "cpsportlet_psm_settings_updated"
+msgstr "Les propriétés ont été mises à jour"

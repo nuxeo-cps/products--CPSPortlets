@@ -128,6 +128,19 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         """Used only by the time of using guard management form."""
         return PortletGuard().__of__(self)  # Create a temporary guard.
 
+    security.declarePublic('renderGuardForm')
+    def renderGuardForm(self):
+        """Render the guard form"""
+        guard = self.getGuard() or self.getTempGuard()
+        if guard is not None:
+            return guard.guardForm()
+        return ''
+
+    security.declarePublic('guardExprDocs')
+    def guardExprDocs(self):
+        """Render the guard expression documentation"""
+        return self.cpsportlet_guard_tales_help()
+
     security.declareProtected(ManagePortlets, 'setGuardProperties')
     def setGuardProperties(self, props={}, REQUEST=None):
         """Postprocess guard values."""
@@ -142,9 +155,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         self.guard.changeFromProperties(props)
 
         if REQUEST is not None:
-            return self.manage_guardForm(REQUEST,
-                management_view='Guard',
-                manage_tabs_message='Guard setting changed.')
+            return self.cpsportlet_guard(REQUEST,
+                portal_status_message='cpsportlet_psm_settings_updated')
 
     security.declarePublic('SearchableText')
     def SearchableText(self):
@@ -1010,11 +1022,9 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
     #################################################################
 
     security.declareProtected(ManagePortlets, 'manage_guardForm')
-    manage_guardForm = DTMLFile('zmi/manage_guardForm', globals())
     manage_exportForm = DTMLFile('zmi/manage_exportForm', globals())
 
     manage_options = (CPSDocument.manage_options + (
-                      {'label': 'Guard', 'action': 'manage_guardForm'},
                       {'label': 'Export', 'action': 'manage_exportForm'},
                       )
                      )

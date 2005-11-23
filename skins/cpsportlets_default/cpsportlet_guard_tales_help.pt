@@ -1,0 +1,44 @@
+<tal:block define="emptybody python: 1">
+  <metal:block use-macro="here/main_template_popup/macros/master">
+
+  <metal:block fill-slot="main">
+  <div style="padding: 0.5em">
+
+  <span i18n:translate="cpsportlet_guard_tales_explain">
+  The following names are defined for the TALES expression</span>:
+
+  <dl>
+  <dt>portlet</dt>
+  <dd i18n:translate="cpsportlet_guard_tales_portlet">The portlet object</dd>
+
+  <dt>here</dt>
+  <dd i18n:translate="cpsportlet_guard_tales_here">The context</dd>
+
+  <dt>portal</dt>
+  <dd i18n:translate="cpsportlet_guard_tales_portal">The portal object</dd>
+
+  <dt>request</dt>
+  <dd i18n:translate="cpsportlet_guard_tales_request">The REQUEST object</dd>
+
+  <dt>published</dt>
+  <dd i18n:translate="cpsportlet_guard_tales_published">
+  The id of the PUBLISHED object</dd>
+
+  <dt>user</dt>
+  <dd i18n:translate="cpsportlet_guard_tales_user">The user object</dd>
+
+  <dt>nothing</dt>
+  <dd>None</dd>
+  </dl>
+
+  <form action="" style="text-align: center" method="post">
+    <input class="standalone" type="submit"
+     onclick="window.opener.location.reload();window.close()"
+     value="button_close" i18n:attributes="value" />
+  </form>
+
+</div>
+</metal:block>
+
+</metal:block>
+</tal:block>
