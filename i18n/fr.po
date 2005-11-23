@@ -583,5 +583,8 @@ msgstr "Propriétés incorrectes"
 msgid "button_submit_changes"
 msgstr "Sauver les changements"
 
-msgid "cpsportlet_guard_tales_here_rpath"
-msgstr "Le chemin de l'objet courant relatif au portail (par ex. 'sections/')"
+#, fuzzy
+msgid "cpsportlet_guard_tales_rpath_slash"
+msgstr ""
+"Le chemin relatif de l'objet courant finissant par un '/' (par ex. "
+"'sections/')"

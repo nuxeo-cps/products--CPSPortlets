@@ -707,7 +707,7 @@ msgstr "Chemin du document (relatif)"
 msgid "cpsportlets_guard_explanation"
 msgstr ""
 "Le formulaire de garde permet de contrôller la visibilité du portlet. Les "
-"expressions doivent toutes être verifiées pour que le portlet soit visible."
+"conditions doivent toutes être verifiées pour que le portlet soit visible."
 
 #, fuzzy
 msgid "action_portlet_guard"
@@ -753,5 +753,7 @@ msgid "button_submit_changes"
 msgstr ""
 
 #, fuzzy
-msgid "cpsportlet_guard_tales_here_rpath"
-msgstr "L'objet 'context'"
+msgid "cpsportlet_guard_tales_rpath_slash"
+msgstr ""
+"Le chemin relatif de l'objet courant finissant par un '/' (par ex. "
+"'sections/')"

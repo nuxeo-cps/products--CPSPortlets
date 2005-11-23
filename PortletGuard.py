@@ -49,7 +49,7 @@ def createExpressionContext(sm, portlet, context):
         'portal': portal,
         'request': request,
         'published': published,
-        'here_rpath': utool.getRelativeContentURL(context) + '/',
+        'rpath_slash': utool.getRpath(context) + '/',
         'user': sm.getUser(),
         'nothing': None,
         }

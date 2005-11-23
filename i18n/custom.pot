@@ -488,7 +488,7 @@ msgstr ""
 msgid "cpsportlet_guard_tales_user"
 msgstr ""
 
-msgid "cpsportlet_guard_tales_here_rpath"
+msgid "cpsportlet_guard_tales_rpath_slash"
 msgstr ""
 
 msgid "cpsportlet_psm_settings_updated"
