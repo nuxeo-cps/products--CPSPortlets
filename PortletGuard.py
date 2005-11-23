@@ -32,7 +32,8 @@ from Products.DCWorkflow.Guard import Guard
 
 def createExpressionContext(sm, portlet, context):
     """Create a name space for TALES expressions."""
-    portal = getToolByName(context, 'portal_url').getPortalObject()
+    utool = getToolByName(context, 'portal_url')
+    portal = utool.getPortalObject()
     request = getattr(context, 'REQUEST', None)
     published = ''
     if request is not None:
@@ -48,6 +49,7 @@ def createExpressionContext(sm, portlet, context):
         'portal': portal,
         'request': request,
         'published': published,
+        'here_rpath': utool.getRelativeContentURL(context) + '/',
         'user': sm.getUser(),
         'nothing': None,
         }
@@ -82,7 +84,7 @@ class PortletGuard(Guard):
             econtext = createExpressionContext(sm, portlet, context)
             try:
                 res = expr(econtext)
-            except (NameError, CompilerError), e:
+            except (NameError, CompilerError, AttributeError), e:
                 LOG('PortletGuard:check', INFO, e)
                 return 0
             if not res:

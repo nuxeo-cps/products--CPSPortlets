@@ -605,6 +605,11 @@ msgstr "Settings updated"
 
 #, fuzzy
 msgid "cpsportlet_psm_guard_error"
+msgstr "Settings incorrect"
+
+msgid "button_submit_changes"
 msgstr ""
-"The guard form allows you to control the visibility of portlets. All the "
-"expressions that are filled in must be true for the portlet to be visible. "
+
+#, fuzzy
+msgid "cpsportlet_guard_tales_here_rpath"
+msgstr "The context"

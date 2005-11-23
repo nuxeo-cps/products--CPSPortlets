@@ -579,3 +579,9 @@ msgstr "Les propriétés ont été mises à jour"
 
 msgid "cpsportlet_psm_guard_error"
 msgstr "Propriétés incorrectes"
+
+msgid "button_submit_changes"
+msgstr "Sauver les changements"
+
+msgid "cpsportlet_guard_tales_here_rpath"
+msgstr "Le chemin de l'objet courant relatif au portail (par ex. 'sections/')"

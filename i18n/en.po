@@ -575,3 +575,9 @@ msgstr "Settings updated"
 
 msgid "cpsportlet_psm_guard_error"
 msgstr "Settings incorrect"
+
+msgid "button_submit_changes"
+msgstr "Submit changes"
+
+msgid "cpsportlet_guard_tales_here_rpath"
+msgstr "The context's path relative to the portal (e.g. 'sections/')"

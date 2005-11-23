@@ -248,6 +248,9 @@ msgstr ""
 msgid "button_portlet_management"
 msgstr ""
 
+msgid "button_submit_changes"
+msgstr ""
+
 msgid "cpsportlets_display_hidden_folders_label"
 msgstr ""
 
@@ -483,6 +486,9 @@ msgid "cpsportlet_guard_tales_published"
 msgstr ""
 
 msgid "cpsportlet_guard_tales_user"
+msgstr ""
+
+msgid "cpsportlet_guard_tales_here_rpath"
 msgstr ""
 
 msgid "cpsportlet_psm_settings_updated"

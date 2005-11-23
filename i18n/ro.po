@@ -591,6 +591,11 @@ msgstr "Les propriétés ont été mises à jour"
 
 #, fuzzy
 msgid "cpsportlet_psm_guard_error"
+msgstr "Propriétés incorrectes"
+
+msgid "button_submit_changes"
 msgstr ""
-"Le formulaire de garde permet de contrôller la visibilité du portlet. Les "
-"expressions doivent toutes être verifiées pour que le portlet soit visible."
+
+#, fuzzy
+msgid "cpsportlet_guard_tales_here_rpath"
+msgstr "L'objet 'context'"

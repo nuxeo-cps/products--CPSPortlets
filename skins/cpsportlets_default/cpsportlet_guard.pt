@@ -24,7 +24,7 @@
     <form class="group" action="setGuardProperties" method="post">
       <tal:block content="structure here/renderGuardForm" />
       <input type="submit" class="standalone"
-       value="button_submit" i18n:attributes="value" />
+       value="button_submit_changes" i18n:attributes="value" />
     </form>
 
   </div>

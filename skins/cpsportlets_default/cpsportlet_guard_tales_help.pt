@@ -14,6 +14,10 @@
   <dt>here</dt>
   <dd i18n:translate="cpsportlet_guard_tales_here">The context</dd>
 
+  <dt>here_rpath</dt>
+  <dd i18n:translate="cpsportlet_guard_tales_here_rpath">
+  The context's path relative to the portal (e.g. 'sections/')</dd>
+
   <dt>portal</dt>
   <dd i18n:translate="cpsportlet_guard_tales_portal">The portal object</dd>
 

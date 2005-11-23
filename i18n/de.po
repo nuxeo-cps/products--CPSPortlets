@@ -740,3 +740,10 @@ msgstr "The user object"
 #, fuzzy
 msgid "cpsportlet_psm_settings_updated"
 msgstr "Settings updated"
+
+#, fuzzy
+msgid "cpsportlet_psm_guard_error"
+msgstr "Settings incorrect"
+
+msgid "button_submit_changes"
+msgstr ""

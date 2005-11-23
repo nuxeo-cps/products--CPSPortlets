@@ -18,3 +18,5 @@ New internal features:
   independent of 'visibility_check'. In the editor the guard check is disabled
   in WYSIWYG and in "Portlet slots" mode, the visibility check and the guard
   check are both disabled.
+- defined a 'here_rpath' variable in the portlet guard's expression context
+  that contains the content path relative to the portal ending with a '/'

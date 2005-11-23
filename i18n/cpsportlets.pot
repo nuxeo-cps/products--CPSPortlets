@@ -569,3 +569,9 @@ msgstr ""
 
 msgid "cpsportlet_psm_guard_error"
 msgstr ""
+
+msgid "button_submit_changes"
+msgstr ""
+
+msgid "cpsportlet_guard_tales_here_rpath"
+msgstr ""
