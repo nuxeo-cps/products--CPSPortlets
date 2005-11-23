@@ -332,7 +332,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security.declarePublic('getPortlets')
     def getPortlets(self, context=None, slot=None, sort=1, override=1,
-                    visibility_check=1, **kw):
+                    visibility_check=1, guard_check=1, **kw):
         """Return a list of portlets.
         """
 
@@ -363,14 +363,13 @@ class PortletsTool(UniqueObject, PortletsContainer):
         remove_list = []
 
         # portlet guard and visibility range check
-        if visibility_check:
-            for portlet in allportlets:
-                if portlet.getGuard() and \
-                not portlet.getGuard().check(
-                    getSecurityManager(),
-                    portlet,
-                    context) or \
-                not self._isPortletVisible(portlet, context):
+        for portlet in allportlets:
+            if visibility_check:
+                if not self._isPortletVisible(portlet, context):
+                    remove_list.append(portlet)
+            if guard_check:
+                if portlet.getGuard() and not portlet.getGuard().check(
+                    getSecurityManager(), portlet, context):
                     remove_list.append(portlet)
 
         # portlet override

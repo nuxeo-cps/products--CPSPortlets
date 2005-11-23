@@ -14,3 +14,7 @@ New internal features:
 - Removed usless UniqueObject inheritance on PortletsCatalogTool
 - #1077 more robust evalution of TAL expressions, for form validation
   and during the rendering of the page.
+- better granularity for the portlet visibility: added a 'guard_check' option
+  independent of 'visibility_check'. In the editor the guard check is disabled
+  in WYSIWYG and in "Portlet slots" mode, the visibility check and the guard
+  check are both disabled.
