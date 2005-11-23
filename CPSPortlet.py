@@ -35,8 +35,11 @@ from App.Common import rfc1123_date
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_inner, aq_parent, aq_base
 from AccessControl import ClassSecurityInfo
+from zLOG import LOG, INFO
 
+from Products.PageTemplates.TALES import CompilerError
 from Products.CMFCore.utils import getToolByName, _getViewFor
+
 try:
     from Products.CMFCore.permissions import View, ModifyPortalContent
 except ImportError:
@@ -152,11 +155,19 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         # XXX found we must create a new instance every time.
         # not that much resource friendly...
         self.guard = PortletGuard()
-        self.guard.changeFromProperties(props)
+
+        psm = err = ''
+        try:
+            self.guard.changeFromProperties(props)
+        except CompilerError, e:
+            LOG('CPSPortlet:setGuardProperties', INFO, e)
+            psm = 'cpsportlet_psm_guard_error'
+            err = e
 
         if REQUEST is not None:
-            return self.cpsportlet_guard(REQUEST,
-                portal_status_message='cpsportlet_psm_settings_updated')
+            psm = psm or 'cpsportlet_psm_settings_updated'
+            return self.cpsportlet_guard(REQUEST, portal_status_message=psm,
+                                         err=err)
 
     security.declarePublic('SearchableText')
     def SearchableText(self):

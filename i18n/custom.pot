@@ -487,3 +487,6 @@ msgstr ""
 
 msgid "cpsportlet_psm_settings_updated"
 msgstr ""
+
+msgid "cpsportlet_psm_guard_error"
+msgstr ""

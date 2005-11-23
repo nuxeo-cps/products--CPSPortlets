@@ -576,3 +576,6 @@ msgstr "L'objet 'user'"
 
 msgid "cpsportlet_psm_settings_updated"
 msgstr "Les propriétés ont été mises à jour"
+
+msgid "cpsportlet_psm_guard_error"
+msgstr "Propriétés incorrectes"

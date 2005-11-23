@@ -12,3 +12,5 @@ New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Removed obsolete widget types registration.
 - Removed usless UniqueObject inheritance on PortletsCatalogTool
+- #1077 more robust evalution of TAL expressions, for form validation
+  and during the rendering of the page.

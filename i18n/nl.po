@@ -739,4 +739,10 @@ msgstr "The user object"
 
 #, fuzzy
 msgid "cpsportlet_psm_settings_updated"
-msgstr "View the version in ..."
+msgstr "Settings updated"
+
+#, fuzzy
+msgid "cpsportlet_psm_guard_error"
+msgstr ""
+"The guard form allows you to control the visibility of portlets. All the "
+"expressions that are filled in must be true for the portlet to be visible. "

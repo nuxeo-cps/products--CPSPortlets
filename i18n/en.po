@@ -572,3 +572,6 @@ msgstr "The user object"
 
 msgid "cpsportlet_psm_settings_updated"
 msgstr "Settings updated"
+
+msgid "cpsportlet_psm_guard_error"
+msgstr "Settings incorrect"

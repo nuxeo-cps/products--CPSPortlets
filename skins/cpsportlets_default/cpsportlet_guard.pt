@@ -1,5 +1,6 @@
 <tal:block define="emptybody python: 1;
-                   psm options/portal_status_message|nothing">
+                   psm options/portal_status_message|nothing;
+                   err options/err|nothing">
   <metal:block use-macro="here/main_template_popup/macros/master|here/main_template/macros/master">
 
   <metal:block fill-slot="main">
@@ -9,7 +10,10 @@
        <a i18n:translate="button_back" href="cpsportlet_edit_form">back</a>
     </div>
 
-    <div class="message" i18n:translate="" tal:condition="psm" tal:content="psm" />
+    <div class="message" tal:condition="psm">
+      <strong i18n:translate="" tal:content="psm" />
+      <cite tal:condition="err" tal:content="err" />
+    </div>
 
     <h1>Portlet guard</h1>
     <p i18n:translate="cpsportlets_guard_explanation">

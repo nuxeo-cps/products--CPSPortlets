@@ -23,8 +23,10 @@
   Portlet Guard
 """
 
+from zLOG import LOG, INFO
 from Globals import InitializeClass
 from Products.PageTemplates.Expressions import getEngine
+from Products.PageTemplates.TALES import CompilerError
 from Products.CMFCore.utils import getToolByName
 from Products.DCWorkflow.Guard import Guard
 
@@ -78,7 +80,11 @@ class PortletGuard(Guard):
         expr = self.expr
         if expr is not None:
             econtext = createExpressionContext(sm, portlet, context)
-            res = expr(econtext)
+            try:
+                res = expr(econtext)
+            except (NameError, CompilerError), e:
+                LOG('PortletGuard:check', INFO, e)
+                return 0
             if not res:
                 return 0
         return 1

@@ -736,3 +736,7 @@ msgstr "The ID of the PUBLISHED object"
 #, fuzzy
 msgid "cpsportlet_guard_tales_user"
 msgstr "The user object"
+
+#, fuzzy
+msgid "cpsportlet_psm_settings_updated"
+msgstr "Settings updated"
