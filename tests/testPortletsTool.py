@@ -5,6 +5,8 @@ if __name__ == '__main__':
 import unittest
 
 from Testing import ZopeTestCase
+from AccessControl.SecurityManagement import newSecurityManager
+from AccessControl import Unauthorized
 
 from Products.CMFCore.tests.base.utils import has_path
 
@@ -25,6 +27,21 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
 
     def beforeTearDown(self):
         self.logout()
+
+    def loginWsManager(self):
+        # for some tests, we need an user with WorkspaceManager role
+        mdir = self.portal.portal_directories['members']
+        mdir._createEntry({'id' : 'wsman', 
+                           'sn' : 'wsman',
+                           'passwd' : 'secret',
+                           'roles' : ['Member', 'WorkspaceManager',],
+                           }
+                          )
+
+        # Now login as the Workspace Manager
+        uf = self.portal.acl_users
+        user = uf.getUserById('wsman').__of__(uf)        
+        newSecurityManager(None, user)
 
     def test_listPortletSlots_global(self):
         ptltool = self.ptltool
@@ -86,6 +103,36 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         members_portlets = ptltool.getPortlets(context=members_folder)
         members_portlets_ids = [p.getId() for p in members_portlets]
         self.assert_(members_portlets_ids == [portlet1_id, portlet2_id])
+
+    def test_copyPortletPerm(self):
+        # create a portlet at root of portal
+        ptltool = self.ptltool
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                            context=self.portal)
+
+        self.loginWsManager()
+        
+        # try to copy it 
+        cont = ptltool.getPortletContainer(context=self.portal)
+        orig = cont.getPortletById(portlet_id)
+        copy = ptltool.movePortlet(orig, self.portal.workspaces, leave=1)
+        ws_cont = ptltool.getPortletContainer(context=self.portal.workspaces)
+        self.assertNotEqual(getattr(ws_cont, copy.getId(), None), None)
+        self.assertNotEqual(getattr(cont, orig.getId(), None), None)
+
+    def test_movePortletPerm(self):
+        # create a portlet at root of portal
+        ptltool = self.ptltool
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                            context=self.portal)
+
+        self.loginWsManager()
+        
+        # should not be able to move it 
+        cont = ptltool.getPortletContainer(context=self.portal)
+        orig = cont.getPortletById(portlet_id)
+        self.failUnlessRaises(Unauthorized, ptltool.movePortlet, orig,
+                              self.portal.workspaces, leave=0)
 
     def test_notify_event(self):
         ptltool = self.ptltool

@@ -7,7 +7,7 @@ New features:
   (see the "Guard" link)
 Bug fixes:
 ~~~~~~~~~~
--
+- #1078 to copy a portlet, user needed to have ManagePortlets perm at source
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Removed obsolete widget types registration.

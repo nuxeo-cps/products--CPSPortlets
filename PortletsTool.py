@@ -527,7 +527,11 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if dest_slot is None:
             dest_slot = portlet.getSlot()
 
-        if not _checkPermission(ManagePortlets, src_folder) or \
+        if leave:
+            src_perm = View
+        else:
+            src_perm = ManagePortlets
+        if not _checkPermission(src_perm, src_folder) or \
             not _checkPermission(ManagePortlets, dest_folder):
             raise Unauthorized(
                 "You are not allowed to move portlets from %s to %s" %(
