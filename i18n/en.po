@@ -544,7 +544,7 @@ msgstr "Document path (relative)"
 msgid "cpsportlets_guard_explanation"
 msgstr ""
 "The guard form allows you to control the visibility of portlets. All the "
-"expressions that are filled in must be true for the portlet to be visible. "
+"conditions that are filled in must be true for the portlet to be visible. "
 
 msgid "action_portlet_guard"
 msgstr "Guard"
