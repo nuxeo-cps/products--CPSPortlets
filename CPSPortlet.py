@@ -1032,7 +1032,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
     # ZMI
     #################################################################
 
-    security.declareProtected(ManagePortlets, 'manage_guardForm')
+    security.declareProtected(ManagePortlets, 'manage_exportForm')
     manage_exportForm = DTMLFile('zmi/manage_exportForm', globals())
 
     manage_options = (CPSDocument.manage_options + (
