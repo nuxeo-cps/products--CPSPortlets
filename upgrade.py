@@ -52,3 +52,64 @@ def upgrade_335_336_skins(context):
     portal._v_reset_skins = 1
 
     return "Obsolete CPSPortlets skins removed."
+
+def upgrade_338_340_themes(context):
+    """Attempts to upgrade existing themes to support the boxless setup
+ 
+    see: http://svn.nuxeo.org/trac/pub/ticket/1161
+
+    For each theme:
+    - the script looks for the cell that contains the "Main Content Templet"
+    - it adds a 'content_well' slot above it
+
+    if a 'content_well' slot is found, nothing will be done.
+
+    if the "Main Content Templet" is not found nothing is done.
+    (the upgrade must be done manually)
+
+    """
+
+    logger = []
+    log = logger.append
+    log('CPSPortlets: migrating to the boxless setup: upgrading themes.')
+
+    SLOT_ID = 'content_well'
+    SLOT_TYPE = 'Portal Box Group Templet'
+
+    tmtool = getToolByName(context, 'portal_themes')
+    for theme in tmtool.getThemes():
+        for templet in theme.getTemplets():
+            if not templet.meta_type == 'Main Content Templet':
+                continue
+            log("  Main Content Templet found in the '%s' theme" % \
+                theme.getId())
+
+            container = templet.getContainer()
+            if SLOT_ID in [slot.box_group for slot in
+                             container.objectValues(SLOT_TYPE)]:
+                log("  '%s' slot already present, skipping ..." % SLOT_ID)
+                continue
+            slot = container.addContent(type_name=SLOT_TYPE, xpos=templet.xpos,
+                                        ypos=templet.getVerticalPosition()-1)
+            slot.setProperty('title', 'Content well')
+            slot.setProperty('box_group', SLOT_ID)
+            slot.setProperty('macroless', 1)
+            slot.setProperty('boxlayout', 'plain')
+            log("  Added a '%s' slot." % SLOT_ID)
+    return '\n'.join(logger)
+
+def upgrade_338_340_portlets(context):
+    """Attempts to update portlets to support the boxless setup
+
+    see: http://svn.nuxeo.org/trac/pub/ticket/1161
+    """
+
+    logger = []
+    log = logger.append
+    log('CPSPortlets: migrating to the boxless setup: upgrading portlets.')
+
+    # TODO
+    log(' TODO ...')
+
+    return '\n'.join(logger)
+

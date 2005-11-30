@@ -20,3 +20,4 @@ New internal features:
   check are both disabled.
 - defined a 'rpath_slash' variable in the portlet guard's expression context
   that contains the content path relative to the portal ending with a '/'
+- added a migration script for a boxless setup
