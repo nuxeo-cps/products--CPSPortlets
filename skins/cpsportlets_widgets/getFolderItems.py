@@ -12,6 +12,7 @@ if context_rpath:
 if context_obj is None:
     return []
 
+context_url = context_obj.absolute_url_path()
 folder_items = []
 
 # Find bottom-most folder:
@@ -157,13 +158,15 @@ for object in bmf.objectValues():
         if content is not None:
             description = getattr(content, 'Description', '')
 
+    object_url = object.absolute_url_path()
     folder_items.append(
         {'id': object_id,
-         'url': object.absolute_url_path(),
+         'url': object_url,
          'title': title,
          'description': description,
          'icon_tag': renderIcon(ptype, base_url, ''),
          'metadata': metadata_info,
+         'selected': (context_url + '/').startswith(object_url + '/'),
         })
 
 # sorting
