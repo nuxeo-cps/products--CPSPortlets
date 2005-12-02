@@ -4,10 +4,10 @@
 
 # notify the event service that the user has logged out
 user = context.portal_membership.getAuthenticatedMember()
-etool = getattr(context, 'portal_eventservice', None)
-if etool is not None:
-    if user:
-        etool.notifyEvent('user_logout', user, {})
+if user:
+    from Products.CPSCore.EventServiceTool import getPublicEventService
+    evtool = getPublicEventService(context)
+    evtool.notifyEvent('user_logout', user, {})
 
 REQUEST = context.REQUEST
 if REQUEST.has_key('portal_skin'):

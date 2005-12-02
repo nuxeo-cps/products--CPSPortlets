@@ -40,10 +40,10 @@ else:
     # Has to be handled in here since the workflow doesn't take care
     # of that yet.
     error = 0
-    if getattr(context, 'portal_eventservice', None) is not None:
-        context.portal_eventservice.notifyEvent('workflow_modify',
-                                                context,
-                                                {})
+    from Products.CPSCore.EventServiceTool import getPublicEventService
+    evtool = getPublicEventService(context)
+    evtool.notifyEvent('workflow_modify', context, {})
+
 # update cache parameters
 ptype_id = doc.getPortletType()
 doc.resetCacheTimeout()
