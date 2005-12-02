@@ -78,6 +78,12 @@ class PortletsTool(UniqueObject, PortletsContainer):
     # RAM Cache
     caches = {}
 
+    _properties = PortletsContainer._properties + (
+        {'id': 'ignore_events', 'type': 'boolean', 'mode': 'w',
+         'label': "Ignore events"},
+        )
+    ignore_events = False
+
     def __init__(self):
         self.initializeCacheParameters()
         CMFBTreeFolder.__init__(self, self.id)
@@ -1146,6 +1152,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def notify_event(self, event_type, object, infos):
         """Standard event hook
         """
+        if self.ignore_events:
+            return
+
         ##LOG(":: CPS Portlets Tool :: ", DEBUG, 'notify_event()')
         ##LOG(":: EVENT TYPE ::", DEBUG, event_type)
         ##LOG(":: OBJECT ::", DEBUG, repr(object))

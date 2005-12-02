@@ -22,3 +22,4 @@ New internal features:
   that contains the content path relative to the portal ending with a '/'
 - added a migration script for a boxless setup
 - added information about the selected item in getFolderItems
+- Added ignore_events flag on portlets tool.
