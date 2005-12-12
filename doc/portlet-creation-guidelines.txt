@@ -1,56 +1,61 @@
+===============================
 GUIDELINES FOR PORTLET CREATION
 ===============================
 
-Jean-Marc Orliaguet <jmo@chalmers.se>
+:Author: Jean-Marc Orliaguet <jmo@chalmers.se>
+:Revision: $Id$
 
-Last modified: 2005-04-10
-
-
-This documentation presents a series of guidelines to help writing new
-portlets.
+.. sectnum::    :depth: 4
+.. contents::   :depth: 4
 
 
-Goal:
------
+This documentation presents a series of guidelines to help writing
+new portlets.
 
-The goal is to make it possible to extend existing portlets while preserving
-backward compatibility, i.e. features added in software updates should
-not break the appearance and functionality of existing sites.
+
+Goal
+====
+
+The goal is to make it possible to extend existing portlets while
+preserving backward compatibility, i.e. features added in software
+updates should not break the appearance and functionality of
+existing sites.
 
 
 Portlets can be divided into three categories:
 
-1) Generic portlets
+1. Generic portlets
 
-2) Extended portlets
+2. Extended portlets
 
-3) Custom portlets
+3. Custom portlets
 
 
 Generic portlets:
------------------
+=================
 
 Generic portlets fulfill very basic functions such as:
 
-- listing the items returned by a catalog search (Content Portlet)
+- Listing the items returned by a catalog search (Content
+  Portlet).
 
-- listing navigation items (Navigation Portlet)
+- Listing navigation items (Navigation Portlet).
 
-- displaying a text (Text Portlet)
+- Displaying a text (Text Portlet).
 
-- displaying CMF actions
+- Displaying CMF actions.
 
 - ...
 
-For instance under this category, a site map is not necessary a vertical list
-of items represented in a tree-like fashion in the center of the page,
-but it is instead a list of items in a tree structure where all the nodes open.
-The layout used to represent the site map may be a vertical menu,
-horizontal tabs, etc.
+For instance under this category, a site map is not necessarily a
+vertical list of items represented in a tree-like fashion in the
+center of the page, but it is instead a list of items in a tree
+structure where all the nodes open. The layout used to represent
+the site map may be a vertical menu, horizontal tabs, etc.
 
-The focus is on semantic (not on presentation), hence the HTML used to
-display porlets should be as simple and straightforward as possible,
-i.e. a list is represented in HTML as::
+The focus is on semantics (not on presentation), hence the HTML
+used to display portlets should be as simple and straightforward as
+possible, i.e. a list is represented in HTML as::
 
   <ul>
     <li>...</li>
@@ -59,62 +64,70 @@ i.e. a list is represented in HTML as::
   </ul>
 
 
-this HTML markup is then used by CPSSkins to display portlets using many
-types of layouts, i.e. in a vertical menu, in horizontal tabs, as a plain
-list of items, etc. (see portlet-styling.txt). The rendering techniques have
-been tested against a series of browsers, and small changes in the HTML markup 
-may cause the portlet to not be rendered correctly on IE, or Safari, etc.
+This HTML markup is then used by CPSSkins to display portlets
+using many types of layouts, i.e. in a vertical menu, in
+horizontal tabs, as a plain list of items, etc. (see
+`portlet-styling.txt <portlet-styling.html>`_). The rendering
+techniques have been tested against a series of browsers, and
+small changes in the HTML markup may cause the portlet to not be
+rendered correctly on MS IE, or Safari, etc.
 
-These portlets are not meant to be extended unless the extension is backward-
-compatible with the original markup.
+These portlets are not meant to be extended unless the extension
+is backward-compatible with the original markup.
 
 Based on the HTML markup CPSSkins uses CSS to add:
 
- - styling information (color, backgrounds, border styles, etc.)
-   (separating style from content)
+- styling information (color, backgrounds, border styles, etc.)
+  (separating style from content)
 
- - CSS layouting of portlet items through CPSSkins' 'box layout' option.
-   (separating layout from content)
+- CSS layout of portlet items through CPSSkins' ``box layout``
+  option. (separating layout from content)
 
-One limitation of the CPS3 original implementation (cf. CPSBoxes) is that
-the user had to think about the layout before selecting the functionality since
-boxes did not separate content from layout.
+One limitation of the CPS3 original implementation (cf. CPSBoxes)
+is that the user had to think about the layout before selecting
+the functionality since boxes did not separate content from
+layout.
 
 The logic in CPSSkins is instead:
 
- - select the functionality (navigation, text, actions)
+- Select the functionality (navigation, text, actions)
 
- - select the layout
+- Select the layout
 
- - select the style
+- Select the style
 
-Layout and style can be changed afterwards, without reconfiguring the portlet.
+Layout and style can be changed afterwards, without reconfiguring
+the portlet.
 
-Since box layouts and styles are associated to slots and not to individual
-portlets, it is possible to share portlets between themes or pages while
-avoiding duplication. It is the slot's identifier that determine which portlets
-will be displayed inside the slot. And for portlets that are cached in RAM
-using the same HTML markup independently of the layout / style allows to reduce
-memory usage and increases performance.
+Since box layouts and styles are associated to slots and not to
+individual portlets, it is possible to share portlets between
+themes or pages while avoiding duplication. It is the slot's
+identifier that determines which portlets will be displayed inside
+the slot. And for portlets that are cached in RAM using the same
+HTML markup independently of the layout / style enables us to
+reduce memory usage and increases performance.
 
-Generic portlets are supposed to be moved around the canvas, so one should not
-make assumptions about there size or location. Users should have the freedom to
-place them where they which, by selecting the box layout that they wish to use.
+Generic portlets are supposed to be moved around the canvas, so
+one should not make assumptions about their size or location.
+Users should have the freedom to place them where they wish, by
+selecting the box layout that they wish to use.
 
-Also the portlet's own layout should not modify the theme's layout (this is
-especially important for CPSSkins tableless renderer).
+Also the portlet's own layout should not modify the theme's layout
+(this is especially important for CPSSkins tableless renderer).
 
- - So avoid using fixed widths in HTML / CSS.
+Therefore:
 
- - Do not design them as if they were going to be displayed vertically or
-   horizontally.
+- Avoid using fixed widths in HTML / CSS.
 
- - make sure that the portlet is rendered in the same way in different
-   browsers (IE, Firefox, ...).
+- Do not design them as if they were going to be displayed
+  vertically or horizontally.
+
+- Make sure that the portlet is rendered in the same way in
+  different browsers (IE, Firefox, ...).
 
 
 The contract with the user is:
-..............................
+------------------------------
 
 - Generic portlets can be used in conjunction with any box layout.
 
@@ -122,82 +135,84 @@ The contract with the user is:
 
 - Software upgrades will not change the portlet's configuration.
 
-
 For specific layouts or styles design an extended portlet instead.
 
 
 Extended portlets:
-------------------
+==================
 
-Extended portlets are extensions of generic portlets with specific presentation
-information inside the HTML markup. These cannot be used by CPSSkins to create
-horizontal tabs, or menus or any other CSS-based layouts based on precise
-HTML formatting.
+Extended portlets are extensions of generic portlets with specific
+presentation information inside the HTML markup. These cannot be
+used by CPSSkins to create horizontal tabs, or menus or any other
+CSS-based layouts based on precise HTML formatting.
 
-These portlets should be configurable through the portlet edit form.
-Every feature should be made optional.
+These portlets should be configurable through the portlet edit
+form. Every feature should be made optional.
 
 Extended portlets are implemented as new display modes (views):
 (e.g. Site map (generic) -> Extended Site Map (extended))
 
-They should be marked with an '*' character next to the display view.
+They should be marked with an '*' character next to the display
+view.
 
 
 The contract with the user is:
-..............................
+------------------------------
 
-- Extended portlets have a specific layout, they may not be rendered
-  correctly in all box layouts.
+- Extended portlets have a specific layout; they may not be
+  rendered correctly in all box layouts.
 
 - Software upgrades will not change the portlet's configuration /
   presentation.
 
 
-Custom portlets:
-----------------
+Custom portlets
+===============
 
-Custom portlets are too specialized to be streamlined or be made configurable. 
-They are based on templates (.zpt, .dtml) or PythonScripts and they have no
-configuration options.
+Custom portlets are too specialized to be streamlined or be made
+configurable.  They are based on templates (.zpt, .dtml) or
+PythonScripts and they have no configuration options.
 
+When creating a new portlet, first see where it fits best. Each
+portlet follows a certain logic for obtaining content:
 
-When creating a new portlet, first see where it fits best. Each portlet
-follows a certain logic for obtaining content:
+- The Content Portlet fetches its content from the portal catalog.
 
-- the Content Portlet fetches its content from the portal catalog
+- The Navigation portlet fetches its content from a navigational
+  structure (cf CPSNavigation).
 
-- the Navigation portlet fetches its content from a navigational structure
-   (cf CPSNavigation)
+- The Action Portlet uses CMF actions.
 
-- the Action Portlet uses CMF actions
-
-- the Document Portlet renders CPS Documents
+- The Document Portlet renders CPS Documents.
 
 - ...
 
 
 The contract with the user is:
-..............................
+------------------------------
 
 - Custom portlets may freely be changed on upcoming software updates.
 
 
-Getting started:
-----------------
+Getting started
+===============
 
-1) If the portlet can be implemented by modifying an existing portlet while
-   preserving the original HTML markup, then add new configuration options to
-   the portlet edit form (deselected by default for backward compatibility).
+1. If the portlet can be implemented by modifying an existing
+   portlet while preserving the original HTML markup, then add new
+   configuration options to the portlet edit form (deselected by
+   default for backward compatibility).
 
-2) If the portlet can be implemented by extending an existing portlet, but by
-   modifying the underlying HTML markup add a new display mode
-   (e.g. 'Extended folder contents', 'Extended site map').
+2. If the portlet can be implemented by extending an existing
+   portlet, but by modifying the underlying HTML markup add a new
+   display mode (e.g. 'Extended folder contents', 'Extended site
+   map').
 
-3) If the portlet is too specific, implement it as a Custom Portlet.
+3. If the portlet is too specific, implement it as a Custom
+   Portlet.
 
 
-Scripts:
---------
+Scripts
+=======
 
 Portlets are usually written in two stages:
 
@@ -205,33 +220,33 @@ Portlets are usually written in two stages:
  
 - ZPT (Zope Page Templates) as the XHTML presentation language.
 
-Glue scripts are needed to adapt the data structures used in CPS3's
-API to data structures ready for presentation.
-These scripts are usually called 'getXYZItems.py' and they typically return
-dictionaries or lists of dictionaries.
+Glue scripts are needed to adapt the data structures used in
+CPS3's API to data structures ready for presentation. These
+scripts are usually called ``getXYZItems.py`` and they typically
+return dictionaries or lists of dictionaries.
 
 As obvious as it may seem, do not change the meaning of variables
-returned by scripts (getBreadcrumbs.py, getNavigationItems.py, etc.).
-This could break existing portlets. If you need a new entry, simply add a
-new key to the dictionary.
+returned by scripts (``getBreadcrumbs.py``, ``getNavigationItems.py``,
+etc.). This could break existing portlets. If you need a new
+entry, simply add a new key to the dictionary.
 
 
-XHTML:
-------
+XHTML
+=====
 
 Design portlets according in XHTML 1.0 using the "Strict" flavor.
 
-see http://www.w3.org/MarkUp/
+See http://www.w3.org/MarkUp/
 
-"XHTML 1.0 Strict - Use this when you want really clean structural mark-up,
-free of any markup associated with layout. Use this together with W3C's
-Cascading Style Sheet language (CSS) to get the font, color, and layout
-effects you want."
+    "XHTML 1.0 Strict - Use this when you want really clean
+    structural mark-up, free of any markup associated with layout.
+    Use this together with W3C's Cascading Style Sheet language
+    (CSS) to get the font, color, and layout effects you want."
 
 
-Testing:
---------
+Testing
+=======
 
-Write non-regression tests on the rendered HTML markup. 
-A test case framework is wanted.
+Write non-regression tests on the rendered HTML markup.  A test
+case framework is wanted.
 
