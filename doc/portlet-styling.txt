@@ -1,19 +1,24 @@
+===============
+Portlet Styling
+===============
 
-PORTLET STYLING:
-================
-  Last-updated:
-    2004-12-13
+:Author: Jean-Marc Orliaguet <jmo@ita.chalmers.se>
+:Description:
+    The complete list of style properties that can be used for the
+    styling of portlets.
 
-  Author:
-    Jean-Marc Orliaguet <jmo@ita.chalmers.se>
+:Revision: $Id$
 
-  Description:
-    the complete list of style properties that
-    can be used for the styling of portlets.
+.. sectnum::    :depth: 4
+.. contents::   :depth: 4
 
+
+Styling of Portlets
+===================
 
 Area Color
 ----------
+
 Applies to the area surrounding the portlet box.::
 
   LABEL                           CSS property
@@ -27,6 +32,7 @@ Applies to the area surrounding the portlet box.::
 
 Area Shape
 ----------
+
 Applies to the area surrounding the portlet box.::
 
   LABEL                           CSS property
@@ -37,6 +43,7 @@ Applies to the area surrounding the portlet box.::
 
 Box Color
 ---------
+
 Applies to the portlet box.::
 
   LABEL                           CSS property
@@ -59,6 +66,7 @@ Applies to the portlet box.::
 
 Box Shape
 ---------
+
 Applies to the portlet box.::
 
   LABEL                           CSS property
@@ -86,6 +94,7 @@ Applies to the portlet box.::
 
 Box Corners
 -----------
+
 Applies to the portlet box frame.::
 
   LABEL                           CSS property
@@ -100,6 +109,7 @@ Applies to the portlet box frame.::
 
 Font Color
 ----------
+
 Applies to the portlet's characters.::
 
   LABEL                           CSS property
@@ -128,6 +138,7 @@ Applies to the portlet's characters.::
 
 Font Shape
 ----------
+
 Applies to the portlet's characters.::
 
   LABEL                           CSS property
@@ -167,6 +178,7 @@ Applies to the portlet's characters.::
 
 Form Style
 ----------
+
 Applies to forms and to form elements.::
 
   LABEL                           CSS property
@@ -189,6 +201,7 @@ Applies to forms and to form elements.::
 
 Tab Style
 ---------
+
 Applies to menu tabs. ::
 
   LABEL                           CSS property
@@ -207,25 +220,25 @@ Applies to menu tabs. ::
   Sel. tab bottom border color    border-color (bottom)
 
 
-STYLING OF BOXES:
-=================
+Styling of Boxes
+================
 
 Box layouts:
 
-  - all except 'horizontal menu'
+- all except 'horizontal menu'
 
 Box styles:
 
-  - Box color
-  - Box shape
+- Box color
+- Box shape
 
 List orientations:
 
-  - vertical
-  - horizontal
+- vertical
+- horizontal
 
 
-The following HTML markup is used to represent boxes: ::
+The following HTML markup is used to represent boxes::
 
   <div class="box">
     <div class="title">
@@ -246,7 +259,8 @@ The following HTML markup is used to represent boxes: ::
 
 Indentation:
 ------------
-to set an indentation use the 'margin-left' property in the <a> tag.
+
+To set an indentation use the 'margin-left' property in the <a> tag.
 
 for instance: ::
 
@@ -256,10 +270,12 @@ for instance: ::
 
 The bullet icon will be indented too.
 
+
 Not displaying menu icons
 -------------------------
-to not display the menu icons (menuin, menuout) defined in box styles,
-apply the "noicon" class on <a>.
+
+To not display the menu icons (menuin, menuout) defined in box
+styles, apply the "noicon" class on <a>.
 
 for example: ::
 
@@ -267,17 +283,17 @@ for example: ::
     <li><img src="icon.png" ... /><a class="noicon" href="#link">Item</a><li>
   <ul>
 
-the indentation set with 'margin-left' will be preserved (see above),
-but the width taken by the menu icon will be removed to leave some extra space
-for an image (e.g. <img>).
+The indentation set with 'margin-left' will be preserved (see
+above), but the width taken by the menu icon will be removed to
+leave some extra space for an image (e.g. <img>).
 
 
 Item descriptions:
 ------------------
 
-use <span class="itemDescription">
+Use <span class="itemDescription">
 
-for example: ::
+For example::
 
   <ul class="cpsskinsMenu">
     <li>Item title
@@ -286,21 +302,20 @@ for example: ::
   </ul>
 
 
-
-STYLING OF HORIZONTAL MENUS
+Styling of Horizontal Menus
 ===========================
 
 Box layout:
 
-  - horizontal menu
+- horizontal menu
 
 Box styles:
 
-  - Box color
-  - Box shape
-  - Portal Tab style (w/ rounded tabs)
+- Box color
+- Box shape
+- Portal Tab style (w/ rounded tabs)
 
-Use the following HTML markup for top-level menu items: ::
+Use the following HTML markup for top-level menu items::
 
       <ul class="cpsskinsMenu">
         <li><a href="#">item</a></li>
@@ -308,7 +323,7 @@ Use the following HTML markup for top-level menu items: ::
         ...
       </ul>
 
-Use the following HTML markup for second-level menu items (*) ::
+Use the following HTML markup for second-level menu items::
 
       <ul class="cpsskinsMenu">
         <li>
@@ -335,17 +350,17 @@ Use the following HTML markup for second-level menu items (*) ::
         ...
       </ul>
 
-(*) some additional javascript code is required for IE.
-    cf. http://www.alistapart.com/articles/dropdowns/
+**Note:** Some additional javascript code is required for IE
+(cf. http://www.alistapart.com/articles/dropdowns/).
 
 
 Item descriptions:
 
-- Item description that use the <span class="itemDescription"> HTML markup
-  are hidden in horizontal menus.
+- Item description that use the <span class="itemDescription">
+  HTML markup are hidden in horizontal menus.
 
 
-STYLING OF TEXT
+Styling of Text
 ===============
 
 Headers:
@@ -355,8 +370,8 @@ Use the standard h1, h2, h3, h4, h5, h6 tags for the headers.
 
 NB: h4, h5, and h6 are all stylized in the same way by CPSSkins
 
-If you need to apply header styles to other HTML elements than h1, h2 ...
-use instead the following markup: ::
+If you need to apply header styles to other HTML elements than h1,
+h2 ..., use instead the following markup::
 
   <div class="h1">Header 1</div>
 
