@@ -1,123 +1,147 @@
-
+===============================
 CPSPortlets - RAM cache (draft)
 ===============================
 
-Authors:
+:Authors:
   - Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>
   - Julien Anguenot <mailto:ja@nuxeo.com>
+:Revision: $Id$
 
-Last-modified: 2005-03-01
+.. sectnum::    :depth: 4
+.. contents::   :depth: 4
 
 
 RAM Cache
----------
+=========
+
 The cache implementation in CPSPortlets is the same as in CPSSkins
-(see CPSSkins/RAMCache.py) but the caching algorithm is different (see below)
+(see CPSSkins/RAMCache.py) but the caching algorithm is different
+(see below)
 
 Cache entries are also stored in a dictionary: {(index, ): value}
 where '(index, )' is a tuple that represents the cached object.
 
-The tuple consist of: (object_path, (..., ..., ) ) where 'object_path' is
-the physical path of the cached object and (..., ..., ) is a collection
-of values that uniquely describes the object's context (the url, the current
-language, ...).
+The tuple consist of: (object_path, (..., ..., ) ) where
+'object_path' is the physical path of the cached object and (...,
+..., ) is a collection of values that uniquely describes the
+object's context (the URL, the current language, ...).
 
 
 Cache entries can be:
 
 - put in the cache.
-  see: setEntry(index, data)
+  See: ``setEntry(index, data)``
 
 - retrieved from the cache.
-  see: getEntry(index)
+  See: ``getEntry(index)``
 
 - deleted from the cache.
-  see: deleteEntries(id) where 'id' is the object's physical path.
+  See: ``deleteEntries(id)`` where 'id' is the object's physical path.
 
 The entire cache can be:
 
 - invalidated.
-  see: invalidate()
+  See: ``invalidate()``
 
-- queried for information
-  see: getStats(), getReport(), getSize(), getLastCleanup()
+- queried for information.
+  See: ``getStats()``, ``getReport()``, ``getSize()``,
+  ``getLastCleanup()``.
 
 
 Caching algorithm
------------------
-A portlet can be global or local and while the content displayed may be the
-same the presentation logic is different:
+=================
 
-- Global portlets are universal inside the portal, they take part in the
-  portal's graphical profile as any other fixed elements of the interface.
-  The graphical elements of CPSSkins are global.
+A portlet can be global or local and while the content displayed
+may be the same the presentation logic is different:
 
-- Local portlets have a particular function inside the portal. They are only
-  shown inside certain folders and restricted to some users or groups of
-  users. The graphical elements of CPSPortlets are local.
+- Global portlets are universal inside the portal, they take part
+  in the portal's graphical profile as any other fixed elements of
+  the interface. The graphical elements of CPSSkins are global.
 
-The caching algorithms are different in CPSSkins and in CPSPortlets.
+- Local portlets have a particular function inside the portal.
+  They are only shown inside certain folders and restricted to
+  some users or groups of users. The graphical elements of
+  CPSPortlets are local.
+
+The caching algorithms are different in CPSSkins and in
+CPSPortlets.
+
 
 In CPSSkins:
-............
-The caching algorithm in CPSSkins is based on the principle that cache
-entries are updated or invalidated only when the cached object is being
-displayed. There is no other purging mechanism other than this one...
+------------
 
-Each object that is in the cache has a time-to-live (TTL) that, when it has
-expired causes all cache entries associated to the object to be removed from
-the cache. The cache entries for a given object can also be invalidated
-manually by calling the expireCache() method on the cached object.
+The caching algorithm in CPSSkins is based on the principle that
+cache entries are updated or invalidated only when the cached
+object is being displayed. There is no other purging mechanism
+other than this one...
 
-This caching mechanism works well with objects that are displayed often such as
-the global UI elements of a portal (images, breadcrumbs, menus, global boxes,
-global portlets...). But the mechanism is not efficient when the elements of
-the portal are seldom displayed -- such as the local portlets..
+Each object that is in the cache has a time-to-live (TTL) that,
+when it has expired causes all cache entries associated to the
+object to be removed from the cache. The cache entries for a given
+object can also be invalidated manually by calling the
+``expireCache()`` method on the cached object.
+
+This caching mechanism works well with objects that are displayed
+often such as the global UI elements of a portal (images,
+breadcrumbs, menus, global boxes, global portlets...). But the
+mechanism is not efficient when the elements of the portal are
+seldom displayed -- such as the local portlets..
+
 
 In CPSPortlets:
-...............
-The local portlets in CPSPortlets are designed to be specifically associated
-to some given users or group of users; they may be visible only inside some
-limited areas of the portal. Hence they are in comparison to global portlets
-very seldom displayed and it is not very efficient to use the same algorithm
-as the one used with global portlets.
+---------------
 
-Instead the current implementation relies entirely on the event service of
-CPS3 to invalidate cache entries whenever an invalidation is required,
-i.e. when content has been created, deleted, published, etc.
+The local portlets in CPSPortlets are designed to be specifically
+associated to some given users or group of users; they may be
+visible only inside some limited areas of the portal. Hence they
+are in comparison to global portlets very seldom displayed and it
+is not very efficient to use the same algorithm as the one used
+with global portlets.
+
+Instead the current implementation relies entirely on the event
+service of CPS3 to invalidate cache entries whenever an
+invalidation is required, i.e. when content has been created,
+deleted, published, etc.
+
 
 Cache index
 -----------
-The cache index is a mininal collection of parameter values that represent
-a portlet in a unique way.
+
+The cache index is a minimal collection of parameter values that
+represent a portlet in a unique way.
 
 The cache index may include:
 
 - the current language name
-- the current url
+- the current URL
 - the current month name
 - the current user
 - ...
 
-Some portlets are completely independent of the context; for instance an image
-portlet is the same for every user, in all languages, and the cache index
-associated to it will be reduced to the portlet's path.
+Some portlets are completely independent of the context; for
+instance an image portlet is the same for every user, in all
+languages, and the cache index associated to it will be reduced to
+the portlet's path.
 
-To increase performance the parameter values must be fast to compute, these
-can typically be:
+To increase performance the parameter values must be fast to
+compute, these can typically be:
 
- - request variables
- - variables that can be obtained through a simple method (absolute_url(),
-   getId(), ...)
+- request variables
+ 
+- variables that can be obtained through a simple method
+  (``absolute_url()``, ``getId()``, ...)
+
 
 Cache parameters
 ----------------
+
 Cache parameters are variable names that are used to identify the parameter
 values of the cache index. These are specific to portlet types and could
 be set in the factory type information.
 
+
 Contextual variables:
-.....................
+---------------------
 
 - url
 
@@ -125,7 +149,7 @@ Contextual variables:
     the entire current url including the query string
 
   example:
-    'http://www.yourhost.com/cps/view?pp=1'
+    ``http://www.yourhost.com/cps/view?pp=1``
 
   used in:
     portal actions
@@ -135,7 +159,6 @@ Contextual variables:
 
   description:
     the base url of the site.
-
 
 - current_lang
 
@@ -152,7 +175,7 @@ Contextual variables:
     the path of the object
 
   example:
-    '/cps/workspaces/members'
+    ``/cps/workspaces/members``
 
 
 - object:published_path
@@ -161,7 +184,7 @@ Contextual variables:
     the path of the published object
 
   example:
-    '/cps/workspaces/members/view'
+    ``/cps/workspaces/members/view``
 
   used in:
     breadcrumbs
@@ -173,7 +196,7 @@ Contextual variables:
     the default language of the current object
 
   example:
-    "('en', 'fr')"
+    ``('en', 'fr')``
 
   used in:
     language portlet
@@ -185,7 +208,7 @@ Contextual variables:
     the list of existing language revisions of the current object
 
   example:
-    "('en', 'fr')"
+    ``('en', 'fr')``
 
   used in:
     language portlet
@@ -275,12 +298,11 @@ Contextual variables:
 - no-cache:(field1),(field2),...
 
   description:
-    the portlet will not be cached if any of the specified field's value is
-    True
+    the portlet will not be cached if any of the specified field's
+    value is True.
 
   example:
-
-    no-cache:(contextual)
+    ``no-cache:(contextual)``
 
     will disable the portlet's cache if the 'contextual' option is set.
 
@@ -292,15 +314,15 @@ Contextual variables:
 
   description:
     generates a random integer between 0 and n-1.
-    the integer is passed as a keyword parameter to the portlet
-    as 'random_int'
+    The integer is passed as a keyword parameter to the portlet
+    as 'random_int'.
 
   used in:
     Image Portlet (banner rotation, etc.)
 
 
 Contextual objects:
-...................
+-------------------
 
 - objects:relative_path
 
@@ -337,6 +359,7 @@ Cache invalidation
 # works as expected
 #
 
+
 Principal
 ---------
 
@@ -344,6 +367,7 @@ The cache invalidation has to be lazy. It means that when a portlet has to
 invalided its cache, we will set a flag on the portlet (Like the datetime)
 just wait for the next time he will be rendered to set the destroy the cache
 and to set the new one.
+
 
 Actors
 ------
@@ -353,41 +377,50 @@ The portlet tool is a subscriber of the central event service and will check
 for interested events. Then after, it will lookup for all the portlets
 interested about this event and flag the portlet.
 
+
 API on the tool
 ---------------
-::
 
- - notify_event(self, event_type, object, infos)
-   """ Standard event hook
-   """
+- ``notify_event``::
 
- - listPortletsInterestedInEvent(self, event_id, context=None)
-   """ return all the portlets interested about a particular event
-   """
+      notify_event(self, event_type, object, infos)
+      """ Standard event hook
+      """
+
+- listPortletsInterestedInEvent``::
+
+      listPortletsInterestedInEvent(self, event_id, context=None)
+      """ return all the portlets interested about a particular event
+      """
 
 API on the portlet
 ------------------
-::
 
- - isInterestedInEvent(self, event_id):
-   """Is the portlet interested in a particular event
+- ``isInterestedInEvent``::
 
-   The portlet will have to store in a certain way the list of events
-   in which he's interested about
-   """
+      isInterestedInEvent(self, event_id):
+      """Is the portlet interested in a particular event
 
- - expireCache(self)
-   """...
-   Already in here.
-   Will be call from sendEvent() if the event_id is related to cache invalidation
-   """
+      The portlet will have to store in a certain way the list of events
+      in which he's interested about
+      """
 
- - sendEvent(self, event_id)
-   """React on a given event
+- ``expireCache``::
 
-   It's designed to be used primarly for cache invalidation
-   but it's intended to be generic enough to do other stuffs than that.
-   """
+      expireCache(self)
+      """...
+      Already in here.
+      Will be call from sendEvent() if the event_id is related to cache invalidation
+      """
+
+- ``sendEvent``::
+
+      sendEvent(self, event_id)
+      """React on a given event
+
+      It's designed to be used primarily for cache invalidation
+      but it's intended to be generic enough to do other stuffs than that.
+      """
 
 
 Storing "event-reactive" objects in the cache
@@ -395,12 +428,12 @@ Storing "event-reactive" objects in the cache
 
 The cache entries currently consist of:
 
-- the portlet's physical path
-- the cache index
-- the rendered portlet
-- the cache entry creation date
-- the name of the user for whom the entry has been created
-- a list of "reactive" objects (see below) ::
+- The portlet's physical path
+- The cache index
+- The rendered portlet
+- The cache entry creation date
+- The name of the user for whom the entry has been created
+- A list of "reactive" objects (see below)::
 
     { ((portlet1_path), (cache index)): {'rendered': rendered,
                                          'user': user,
@@ -408,58 +441,58 @@ The cache entries currently consist of:
                                          'objects': [...],
                                         }, }
 
-* the CACHE INDEX is used for DISCRIMINATION purposes to make sure that
-  the cache entries are specific to the context.
+Notes:
 
-* the USER NAME is stored for CLEANING purposes to increase the efficiency of
-  the cache, for instance to find and remove all user-dependent entries when
-  a user logs out.
+- The CACHE INDEX is used for DISCRIMINATION purposes to make sure
+  that the cache entries are specific to the context.
 
-  SCOPE:
-    The cleaning of the cache does not need to propagate between all
-    ZEO instances.
+- The USER NAME is stored for CLEANING purposes to increase the
+  efficiency of the cache, for instance to find and remove all
+  user-dependent entries when a user logs out.
 
-  API:
-    ptltool.invalidateCacheEntriesById(), ...
+  + Scope: The cleaning of the cache does not need to propagate
+    between all ZEO instances.
+
+  + API: ``ptltool.invalidateCacheEntriesById()``, ...
 
 
-* REACTIVE OBJECTS are stored for INVALIDATION purposes.
+- REACTIVE OBJECTS are stored for INVALIDATION purposes.
 
-  METHOD A)
-  The list of objects that have been used to create the portlet's
-  content are recorded in the cache. If any of these objects were to be
-  affected by an event then the cache entries associated to the portlet should
-  be invalidated.
+  + Method A:
 
-  For instance, if the portlet is a "Breadcumbs portlet" and its content is
-  "Workspaces > members", the objects <workspaces proxy folder> and
-  <members proxy folder> will be stored in the cache as object reactive to
-  events.
+    The list of objects that have been used to create the
+    portlet's content are recorded in the cache. If any of these
+    objects were to be affected by an event then the cache entries
+    associated to the portlet should be invalidated.
 
-  SCOPE:
-    global - the invalidation of cache entries must propagate between all
-    ZEO instances.
+    For instance, if the portlet is a "Breadcumbs portlet" and its
+    content is "Workspaces > members", the objects <workspaces
+    proxy folder> and <members proxy folder> will be stored in the
+    cache as object reactive to events.
 
-  API:
-    portlet.expireCache(), ...
+    * Scope: global - the invalidation of cache entries must
+      propagate between all ZEO instances.
 
-  METHOD B)
-  When the portlet is rendered, we compare the modification date of
-  the cache objects with the cache entry creation date. If any of the cache
-  objects were modified after the cache entry creation date we consider
-  the cache entry as invalid and the portlet must be rendered again.
+    * API: ``portlet.expireCache()``, ...
 
-  SCOPE:
-    local - the invalidation concerns the cache entry which is being used
-    when rendering the portlet. The other cache entries associated to the
-    portlet are not affected.
+  + Method B:
 
-  API:
-    see CPSPortlet.render_cache()
+    When the portlet is rendered, we compare the modification date
+    of the cache objects with the cache entry creation date. If
+    any of the cache objects were modified after the cache entry
+    creation date we consider the cache entry as invalid and the
+    portlet must be rendered again.
+
+    * Scope: local - the invalidation concerns the cache entry
+      which is being used when rendering the portlet. The other
+      cache entries associated to the portlet are not affected.
+
+    * API: See ``CPSPortlet.render_cache()``.
 
 
 Cache Policy Manager
 ====================
 
-  The RAM cache acts as a cache policy manager by setting the HTTP headers
-  to inform frontend proxy caches when pages have expired, etc.
+The RAM cache acts as a cache policy manager by setting the HTTP
+headers to inform front-end proxy caches when pages have expired,
+etc.
