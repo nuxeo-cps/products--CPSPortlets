@@ -1,74 +1,97 @@
-$Id$
+==============================================
+How to register new portlets from CPSInstaller
+==============================================
 
-How to register new portlets from CPSInstaller ?
-------------------------------------------------
+:Revision: $Id$
 
-1. What is it ?
+.. sectnum::    :depth: 4
+.. contents::   :depth: 4
 
-  CPSInstaller allows you to register your portlets from the installer of
-  your product. It means it can create for you the portlets given a specific
-  configuration. (right now it's Python structure but it has to change...)
 
-2. Available API
+What is it?
+===========
 
- Within CPSInstaller module ::
+CPSInstaller allows you to register your portlets from the
+installer of your product. This means it can create for you the
+portlets given a specific configuration. (right now it's Python
+structure, but it has to change...)
 
-   - getPortletContainer(self, object=None, create=0):
-     """get a portlet container and create it if not found and asked for"""
 
-   - verifyPortletContainer(self, object=None):
-     ""Verify the existence of the portlet container and create it if not
-       found.
-       If object is None then it's gonna verify it the root of the portal
-     thus within the portlets tool.
-     """
-   - verifyPortlets(self, portlets, object=None):
-     """Verify the existence of given portet in the object's portlet
-        containe r.  If not found, a portlet is instantied. Existing
-        portlets are not affecte d.
+Available API
+=============
 
-        portlets is a dictionary with keys begins the box ids, and values being
-        the dictionary given by the export tab.
-        The default object is the portal itself.
+Within CPSInstaller module::
 
-        return the list a new portlet ids.
-        """
+    getPortletContainer(self, object=None, create=0):
+    """get a portlet container and create it if not found and asked for"""
 
-3. Examples
+    verifyPortletContainer(self, object=None):
+    ""Verify the existence of the portlet container and create it if not
+      found.
+      If object is None then it's gonna verify it the root of the portal
+    thus within the portlets tool.
+    """
 
- Use it through the verifyPortlets() method.
+    verifyPortlets(self, portlets, object=None):
+    """Verify the existence of given portet in the object's portlet
+       containe r.  If not found, a portlet is instantied. Existing
+       portlets are not affecte d.
 
- You need to specify the context such as : portal.workspaces,
- portal.sections or portal.whatever.
+       portlets is a dictionary with keys begins the box ids, and values being
+       the dictionary given by the export tab.
+       The default object is the portal itself.
 
- and then a Python dictionnary describing the portlets you wanna add.
+       return the list a new portlet ids.
+       """
 
- This example takes place within the installer of your product. (Check out the
- CPSInstaller documentation if you don't know what I'm talking about)
 
- (Below installer is a CPSInstaller instance) ::
+Examples
+========
 
-  >> portlets = ({'type'  : 'Dummy Portlet',
-                  'identifier' : 'Dummy1',
-                  'Title' : 'Fake Portlet',
-                  'slot'  : 'left',
-                  'order' : 0},
-                 {'type'  : 'Dummy Portlet',
-                  'identifier' : 'Dummy2',
-                  'Title' : 'Fake Portlet 2',
-                  'slot'  : 'right',
-                  'order' : 2},
-                )
+Use it through the ``verifyPortlets()`` method.
 
-  >> installer.verifyPortlets(portlets, self.portal.workspaces)
+You need to specify the context such as: ``portal.workspaces``,
+``portal.sections`` or ``portal.whatever``.
 
- HUOM !
- type is compulsory
- identifier is compulsory if you wanna do update in the future
+And then a Python dictionary describing the portlets you want to
+add.
 
- for the others there's default values.
+This example takes place within the installer of your product.
+(Check out the CPSInstaller documentation if you don't know what
+I'm talking about.)
 
-4. CPSSkins exports configuration. So you should be able to manage through
-   the CPSSkins interface and then export and import your configuration.
+The installer below is a CPSInstaller instance::
 
-  less is more :)
+    >> portlets = ({'type'  : 'Dummy Portlet',
+                    'identifier' : 'Dummy1',
+                    'Title' : 'Fake Portlet',
+                    'slot'  : 'left',
+                    'order' : 0},
+                   {'type'  : 'Dummy Portlet',
+                    'identifier' : 'Dummy2',
+                    'Title' : 'Fake Portlet 2',
+                    'slot'  : 'right',
+                    'order' : 2},
+                  )
+
+    >> installer.verifyPortlets(portlets, self.portal.workspaces)
+
+A few notes:
+
+- HUOM!
+
+- ``type`` is compulsory.
+
+- ``identifier`` is compulsory if you want to do updates in the
+  future.
+
+For the others there are default values.
+
+
+CPSSkins exports configuration
+==============================
+
+So you should be able to manage through the CPSSkins interface and
+then export and import your configuration.
+
+less is more :)
