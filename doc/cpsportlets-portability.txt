@@ -1,71 +1,80 @@
+=====================
+A note on portability
+=====================
 
-A note on portability.
-======================
+:Author: Jean-Marc Orliaguet <jmo@ita.chalmers.se>
+:Revision: $Id$
 
-author:
-  Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>
+.. sectnum::    :depth: 4
+.. contents::   :depth: 4
 
-last updated:
-  2004-09-20
 
 Widgets
--------
-  CMF-compatible skins are stored in skins/cpsportlets_widgets.
-  CPS3-specific skins are stored in skins/cpsportlets_widgets_cps3.
-  Plone2-specific skins are stored in skins/cpsportlets_widgets_plone2.
+=======
 
-  The CPS3 (or the Plone2) skin is installed on top of the CMF skin.
+Notes on widgets:
+
+- CMF-compatible skins are stored in skins/cpsportlets_widgets.
+
+- CPS3-specific skins are stored in skins/cpsportlets_widgets_cps3.
+
+- Plone2-specific skins are stored in skins/cpsportlets_widgets_plone2.
+
+The CPS3 (or the Plone2) skin is installed on top of the CMF skin.
 
 Page templates / python scripts
--------------------------------
-  * The page templates are used for the presentation. They should be generic
-    and cross-platform unless the presentation differs between platforms.
+===============================
 
-  * The python scripts are used to prepare the data that will be presented.
+- The page templates are used for the presentation. They should be
+  generic and cross-platform unless the presentation differs
+  between platforms.
 
-  Specific implementations (CPS3/Plone) should be done in the scripts not
-  in the page templates.
+- The python scripts are used to prepare the data that will be
+  presented.
 
-  For instance we write:
+Specific implementations (CPS3/Plone) should be done in the
+scripts not in the page templates.
 
-showData.pt: ::
+For instance we write:
 
-  ...
-  <div tal:define="data here/getData" tal:content="data/title" />
-  ...
+- showData.pt::
 
-with the getData.py file located in skins/cpsportlets_widgets, in
-skins/cpsportlets_widgets_plone2 and in skins/cpsportlets_widgets_cps3
+      ...
+      <div tal:define="data here/getData" tal:content="data/title" />
+      ...
 
-getData.py: ::
+with the ``getData.py`` file located in skins/cpsportlets_widgets, in
+skins/cpsportlets_widgets_plone2 and in skins/cpsportlets_widgets_cps3.
 
-  title = ...
-  return {'title': title}
+- getData.py::
+
+      title = ...
+      return {'title': title}
 
 
 Instead of::
 
-  showData.pt:
+- showData.pt:
 
-  <div tal:define="data here/getCPSData" tal:content="data/title" />
+      <div tal:define="data here/getCPSData" tal:content="data/title" />
 
 
-i18n:
------
+i18n
+----
 
 i18n is compatible. Use Localizer (not for a long time) if Localizer is
-present. Otherweise, the po are PlacelessTranslationService compliant.
+present. Otherwise, the po are PlacelessTranslationService compliant.
 
 
 CPS4CMFPlone
 ============
 
-You'll need either to install the build package CPS4CMFPlone or either
-install the following :
+You'll need either to install the build package CPS4CMFPlone or
+either install the following:
 
- - CPSchemas
- - CPSDocument
- - CPSInstaller
+- CPSchemas
+- CPSDocument
+- CPSInstaller
 
-Check the DEPENDENCIES.txt file within this product for the version fter
-which the compatibility is ok.
+Check the ``DEPENDENCIES.txt`` file within this product for the
+version after which the compatibility is OK.
