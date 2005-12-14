@@ -3,7 +3,6 @@
   <metal:block use-macro="here/main_template_popup/macros/master">
   <metal:block fill-slot="css_slot">
     <metal:block define-macro="widgets_javascript">
-
     <!-- XXX this has to move to CPSSchemas -->
     <style type="text/css"
       tal:content="string:@import url(${base_url}calendar-win2k-1.css);"></style>
@@ -15,19 +14,32 @@
     <script type="text/javascript" src="calendar-setup.js"
       tal:attributes="src string:${base_url}calendar-setup.js"></script>
 
-    <!-- XXX this has to move to CPSSchemas -->
+    <tal:block condition="python:modules['Products.CPSUtil.integration'].isProductPresent('Products.FCKeditor')">
+      <script type="text/javascript">
+        var popup_editor_form = 'popup_fckeditor_form';
+        var width = 640;
+        var height = 520;
+      </script>
+    </tal:block>
+    <tal:block condition="python:modules['Products.CPSUtil.integration'].isProductPresent('Products.Epoz')">
+      <script type="text/javascript">
+        var popup_editor_form = 'popup_rte_form';
+        var width = 640;
+        var height = 480;
+      </script>
+    </tal:block>
     <script type="text/javascript">
-    <!--
      function popup_rte(input_id, label_edit) {
-       var args, value
+       var args, value;
        value = document.getElementById(input_id).value;
-       args='?input_id='+input_id+'&label_edit='+escape(label_edit);
-       popup = window.open('popup_rte_form'+args, input_id, 'toolbar=0, scrollbars=0, location=0, statusbar=0, menubar=0, resizable=0, dependent=1, width=640, height=480')
-       if(!popup.opener)
+       args = '?input_id='+input_id+'&amp;label_edit='+escape(label_edit);
+       str_window_features = 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,dependent=1,width=' + width + ',height=' + height;
+       popup = window.open(popup_editor_form + args, input_id, str_window_features);
+       if (!popup.opener) {
          popup.opener = window;
+       }
        return false;
-   }
-   //-->
+     }
    </script>
    </metal:block>
   </metal:block>

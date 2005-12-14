@@ -8,6 +8,7 @@ New features:
 Bug fixes:
 ~~~~~~~~~~
 - #1078 to copy a portlet, user needed to have ManagePortlets perm at source
+- #1197 added support for FckEditor in the portlet edit form.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Removed obsolete widget types registration.
