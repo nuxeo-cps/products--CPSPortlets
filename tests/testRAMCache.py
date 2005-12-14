@@ -105,6 +105,26 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         expected_index = ('user_%s' % self.login_id,)
         self.assert_(cache_index == expected_index)
 
+    def test_getCacheIndex_protocol(self):
+        portlet = self.portlet
+        self.ptltool.updateCacheParameters({'Dummy Portlet': ['protocol']})
+        kw = self.default_kw
+        #
+        self.portal.REQUEST['SERVER_URL'] = 'http://some.site.org/'
+        expected_index = ('protocol_http',)
+        cache_index, data = portlet.getCacheIndex(**kw)
+        self.assert_(cache_index == expected_index)
+        #
+        self.portal.REQUEST['SERVER_URL'] = 'https://some.secure.site.org/'
+        expected_index = ('protocol_https',)
+        cache_index, data = portlet.getCacheIndex(**kw)
+        self.assert_(cache_index == expected_index)
+        #
+        self.portal.REQUEST['SERVER_URL'] = ''
+        expected_index = ()
+        cache_index, data = portlet.getCacheIndex(**kw)
+        self.assert_(cache_index == expected_index)
+
     def test_getCacheIndex_current_lang(self):
         portlet = self.portlet
         self.ptltool.updateCacheParameters({'Dummy Portlet': ['current_lang']})

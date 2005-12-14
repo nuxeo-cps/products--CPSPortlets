@@ -160,6 +160,13 @@ Contextual variables:
   description:
     the base url of the site.
 
+
+- protocol
+
+  description:
+    the protocol used in the URL scheme (http, https)
+
+
 - current_lang
 
   description:

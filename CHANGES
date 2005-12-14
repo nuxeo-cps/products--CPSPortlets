@@ -23,3 +23,6 @@ New internal features:
 - added a migration script for a boxless setup
 - added information about the selected item in getFolderItems
 - Added ignore_events flag on portlets tool.
+- #1204 Added a 'protocol' cache parameter to discriminate between http://
+  and https://
+

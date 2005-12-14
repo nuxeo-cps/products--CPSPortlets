@@ -404,6 +404,13 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             elif param == 'baseurl':
                 index_string = REQUEST.get('cpsskins_base_url')
 
+            # protocol 
+            elif param == 'protocol':
+                url = REQUEST.get('SERVER_URL', '')
+                pos = url.find('://')
+                if pos > 0:
+                    index_string = url[:pos]
+
             # CMF Actions by categories
             elif param.startswith('actions:'):
                 prefix = 'actions'
