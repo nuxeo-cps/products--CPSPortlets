@@ -113,7 +113,7 @@
        <tal:block repeat="item folderItems">
          <tal:block tal:define="depth item/depth">
            <p tal:condition="python: depth == 1">
-             <a href="" alt=""  tal:attributes="href item/url">
+             <a href="" tal:attributes="href item/url">
                <tal:block content="structure item/icon_tag" />
                <strong tal:content="item/title" />
              </a>
