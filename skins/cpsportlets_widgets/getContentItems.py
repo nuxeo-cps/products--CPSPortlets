@@ -170,10 +170,10 @@ def getBrainInfo():
     return content, object
 
 items = []
-render_items = int(kw.get('render_items'), 0)
+render_items = int(kw.get('render_items', 0))
 cluster_id = kw.get('cluster_id')
-display_description = int(kw.get('display_description'), 0)
-show_icons = int(kw.get('show_icons'), 0)
+display_description = int(kw.get('display_description', 0))
+show_icons = int(kw.get('show_icons', 0))
 
 DEFAULT_CONTENT_ITEM_DISPLAY = 'cpsportlet_contentitem_display'
 render_method = kw.get('render_method') or DEFAULT_CONTENT_ITEM_DISPLAY
