@@ -98,18 +98,3 @@ def upgrade_338_340_themes(context):
             log("  Added a '%s' slot." % SLOT_ID)
     return '\n'.join(logger)
 
-def upgrade_338_340_portlets(context):
-    """Attempts to update portlets to support the boxless setup
-
-    see: http://svn.nuxeo.org/trac/pub/ticket/1161
-    """
-
-    logger = []
-    log = logger.append
-    log('CPSPortlets: migrating to the boxless setup: upgrading portlets.')
-
-    # TODO
-    log(' TODO ...')
-
-    return '\n'.join(logger)
-
