@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<object name="portal_skins" meta_type="CMF Skins Tool">
+ <object name="cpsportlets_default" meta_type="Filesystem Directory View"
+    directory="CPSPortlets/skins/cpsportlets_default"/>
+ <object name="cpsportlets_layouts" meta_type="Filesystem Directory View"
+    directory="CPSPortlets/skins/cpsportlets_layouts"/>
+ <object name="cpsportlets_schemas" meta_type="Filesystem Directory View"
+    directory="CPSPortlets/skins/cpsportlets_schemas"/>
+ <object name="cpsportlets_types" meta_type="Filesystem Directory View"
+    directory="CPSPortlets/skins/cpsportlets_vocabularies"/>
+ <object name="cpsportlets_vocabularies" meta_type="Filesystem Directory View"
+    directory="CPSPortlets/skins/cpsportlets_types"/>
+ <object name="cpsportlets_widgets" meta_type="Filesystem Directory View"
+    directory="CPSPortlets/skins/cpsportlets_widgets"/>
+ <skin-path name="CPSSkins">
+  <layer name="cpsportlets_default" insert-after="CPSSkins"/>
+  <layer name="cpsportlets_widgets" insert-after="CPSSkins"/>
+ </skin-path>
+ <skin-path name="CPSSkins-macroless">
+  <layer name="cpsportlets_default" insert-after="CPSSkins"/>
+  <layer name="cpsportlets_widgets" insert-after="CPSSkins"/>
+ </skin-path>
+</object>

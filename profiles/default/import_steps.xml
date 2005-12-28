@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<import-steps>
+ <import-step id="layouts" version="20051226-01"
+              handler="Products.CPSSchemas.exportimport.layout.importLayoutTool"
+              title="Layout Tool">
+  <dependency step="toolset"/>
+  Import layout tool, layouts and widgets.
+ </import-step>
+ <import-step id="schemas" version="20051224-01"
+              handler="Products.CPSSchemas.exportimport.schema.importSchemaTool"
+              title="Schema Tool">
+  <dependency step="toolset"/>
+  Import schema tool, schemas and fields.
+ </import-step>
+ <import-step id="skins" version="20040630-01"
+              handler="Products.CMFCore.exportimport.skins.importSkinsTool"
+              title="Skins Tool">
+  <dependency step="toolset"/>
+  Import skins tool's filesystem directory views and skin path definitions.
+ </import-step>
+ <import-step id="typeinfo" version="20040630-01"
+              handler="Products.CMFCore.exportimport.typeinfo.importTypesTool"
+              title="Types Tool">
+  <dependency step="toolset"/>
+  Import types tool's type information objects.
+ </import-step>
+ <import-step id="vocabularies" version="20051224-01"
+              handler="Products.CPSSchemas.exportimport.vocabulary.importVocabularyTool"
+              title="Vocabulary Tool">
+  <dependency step="toolset"/>
+  Import vocabulary tool and vocabularies.
+ </import-step>
+</import-steps>
