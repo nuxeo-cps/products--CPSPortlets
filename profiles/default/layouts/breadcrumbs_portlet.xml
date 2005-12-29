@@ -43,7 +43,7 @@
   <property name="hidden_layout_modes">
    <element value="view"/>
   </property>
-  <property name="hidden_if_expr">python: context.first_item <= 0</property>
+  <property name="hidden_if_expr">python: context.first_item &lt;= 0</property>
  </widget>
  <widget name="first_item" meta_type="Int Widget">
   <property name="fields">

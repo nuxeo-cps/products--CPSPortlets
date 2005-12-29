@@ -15,7 +15,7 @@
   <property name="hidden_layout_modes">
    <element value="view"/>
   </property>
-  <property name="min_value">1.0</property>
+  <property name="min_value">1</property>
  </widget>
  <widget name="portlet" meta_type="Generic Portlet Widget">
   <property name="fields">
