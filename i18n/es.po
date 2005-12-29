@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2005-07-19 17:32default\n"
+"POT-Creation-Date: 2005-12-29 16:28default\n"
 "PO-Revision-Date: 2005-05-18 17:32+0100\n"
 "Last-Translator: Jesús <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
@@ -39,11 +39,73 @@ msgstr "ID:"
 msgid "_Edit_"
 msgstr "Editar"
 
+#.   <a href="cpsportlet_guard">guard</a>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+#, fuzzy
+msgid "action_portlet_guard"
+msgstr "Guard"
+
+#.   <input type="submit" class="standalone" value="button_submit_changes" />
+#: from ../skins/cpsportlets_default/cpsportlet_guard.pt
+msgid "button_submit_changes"
+msgstr ""
+
 #.   <option disabled="disabled" selected="selected" value="">
 #.           Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
 msgstr "Añadir nuevo contenido"
+
+#.   <span>
+#.     The following names are defined for the TALES expression</span>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+#, fuzzy
+msgid "cpsportlet_guard_tales_explain"
+msgstr "The following names are defined for the TALES expression"
+
+#.   <dd>The context</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+#, fuzzy
+msgid "cpsportlet_guard_tales_here"
+msgstr "The context"
+
+#.   <dd>The portal object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+#, fuzzy
+msgid "cpsportlet_guard_tales_portal"
+msgstr "The portal object"
+
+#.   <dd>The portlet object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+#, fuzzy
+msgid "cpsportlet_guard_tales_portlet"
+msgstr "The portlet object"
+
+#.   <dd>
+#.     The id of the PUBLISHED object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+#, fuzzy
+msgid "cpsportlet_guard_tales_published"
+msgstr "The ID of the PUBLISHED object"
+
+#.   <dd>The REQUEST object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+#, fuzzy
+msgid "cpsportlet_guard_tales_request"
+msgstr "The REQUEST object"
+
+#.   <dd>
+#.     The context's relative path ending with a '/' (e.g. 'sections/')</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+#, fuzzy
+msgid "cpsportlet_guard_tales_rpath_slash"
+msgstr "The context's relative path ending with a slash (e.g. 'sections/')"
+
+#.   <dd>The user object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+#, fuzzy
+msgid "cpsportlet_guard_tales_user"
+msgstr "The user object"
 
 #.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
@@ -80,6 +142,17 @@ msgstr "Carpeta"
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 msgid "cpsportlets_extended_site_map_managers"
 msgstr "Administrador(es)"
+
+#.   <p>
+#.       The guard form allows you to control the visibility of portlets.
+#.       All the expressions that are filled in must be true for the portlet to be
+#.       visible.</p>
+#: from ../skins/cpsportlets_default/cpsportlet_guard.pt
+#, fuzzy
+msgid "cpsportlets_guard_explanation"
+msgstr ""
+"The guard form allows you to control the visibility of portlets. All the "
+"conditions that are filled in must be true for the portlet to be visible. "
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -455,6 +528,10 @@ msgstr "Administrar portlets"
 msgid "portal_type_CustomPortlet_description"
 msgstr "Muestra un método de visualización (.zpt, .py, etc.)"
 
+#, fuzzy
+msgid "cpsportlets_document_context_rpath_label"
+msgstr "Document path (relative)"
+
 msgid "cpsportlets_document_cluster_id_label"
 msgstr "Clúster ID"
 
@@ -558,58 +635,9 @@ msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Mostrar sólo los contenidos autorizados"
 
 #, fuzzy
-msgid "cpsportlets_document_context_rpath_label"
-msgstr "Document path (relative)"
-
-#, fuzzy
-msgid "cpsportlets_guard_explanation"
-msgstr ""
-"The guard form allows you to control the visibility of portlets. All the "
-"conditions that are filled in must be true for the portlet to be visible. "
-
-#, fuzzy
-msgid "action_portlet_guard"
-msgstr "Guard"
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_explain"
-msgstr "The following names are defined for the TALES expression"
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_portlet"
-msgstr "The portlet object"
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_here"
-msgstr "The context"
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_portal"
-msgstr "The portal object"
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_request"
-msgstr "The REQUEST object"
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_published"
-msgstr "The ID of the PUBLISHED object"
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_user"
-msgstr "The user object"
-
-#, fuzzy
 msgid "cpsportlet_psm_settings_updated"
 msgstr "Settings updated"
 
 #, fuzzy
 msgid "cpsportlet_psm_guard_error"
 msgstr "Settings incorrect"
-
-msgid "button_submit_changes"
-msgstr ""
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_rpath_slash"
-msgstr "The context's relative path ending with a slash (e.g. 'sections/')"

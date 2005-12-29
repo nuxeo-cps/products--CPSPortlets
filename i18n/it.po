@@ -5,19 +5,20 @@
 # Julien Anguenot <ja@nuxeo.com>, 2004.
 msgid ""
 msgstr ""
-"Project-Id-Version: CPSPortlets v. 3321 12/03/2005\n"
-"POT-Creation-Date: 2005-07-19 17:32default\n"
-"PO-Revision-Date: 2005-03-14 13:51+0100\n"
-"Last-Translator: Fabio Nosari <fabnos@fastwebnet.it>\n"
-"Language-Team: ita <fabnos@fastwebnet.it>\n"
+"Project-Id-Version: CPSPortlets Italian Translation\n"
+"POT-Creation-Date: 2005-12-29 16:28default\n"
+"PO-Revision-Date: 2005-11-29 09:28+0100\n"
+"Last-Translator: Stefano Schintu <schintu@gmail.com>\n"
+"Language-Team: CPS Italian <schintu@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "Preferred-encodings: utf-8 latin1\n"
 "Language-Code: it\n"
 "Language-Name: Italian\n"
 "Domain: default\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
 
 #.   <input type="submit" value=" Add " />
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
@@ -27,18 +28,71 @@ msgstr "Aggiungi"
 #.   <strong>ID:</strong>
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
 msgid "ID:"
-msgstr "Identificativo:"
+msgstr "ID:"
 
 #.   <block>Edit</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
 msgstr "Modifica"
 
+#.   <a href="cpsportlet_guard">guard</a>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "action_portlet_guard"
+msgstr "Proteggi"
+
+#.   <input type="submit" class="standalone" value="button_submit_changes" />
+#: from ../skins/cpsportlets_default/cpsportlet_guard.pt
+msgid "button_submit_changes"
+msgstr "Salva modifiche"
+
 #.   <option disabled="disabled" selected="selected" value="">
 #.           Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
 msgstr "Aggiungi un nuovo elemento ..."
+
+#.   <span>
+#.     The following names are defined for the TALES expression</span>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_explain"
+msgstr "I nomi seguenti dono definiti per le espressioni TAL."
+
+#.   <dd>The context</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_here"
+msgstr "Il contesto"
+
+#.   <dd>The portal object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_portal"
+msgstr "L'oggetto portale"
+
+#.   <dd>The portlet object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_portlet"
+msgstr "L'oggetto portlet"
+
+#.   <dd>
+#.     The id of the PUBLISHED object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_published"
+msgstr "L'ID dell'oggetto pubblicato"
+
+#.   <dd>The REQUEST object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_request"
+msgstr "L'oggetto RICHIESTA"
+
+#.   <dd>
+#.     The context's relative path ending with a '/' (e.g. 'sections/')</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_rpath_slash"
+msgstr "Il percorso relativo al contesto seguito da / (p.es.: 'sezioni/)"
+
+#.   <dd>The user object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_user"
+msgstr "L'oggetto utente"
 
 #.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
@@ -47,7 +101,6 @@ msgstr "Ricerca avanzata"
 
 #.   <button type="submit">OK</button>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
-#, fuzzy
 msgid "cpsportlets_button_OK"
 msgstr "OK"
 
@@ -59,25 +112,33 @@ msgstr "Cambia la lingua :"
 #.   <p>Delete translation ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
-msgstr "Elimina la versione in ..."
+msgstr "Elimina la traduzione in ..."
 
 #.   <td condition="display_description">cpsportlets_extended_site_map_description</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
 msgid "cpsportlets_extended_site_map_description"
-msgstr "Description"
+msgstr "Descrizione"
 
 #.   <td>cpsportlets_extended_site_map_folder</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
 msgid "cpsportlets_extended_site_map_folder"
-msgstr "Répertoire"
+msgstr "Cartelle"
 
 #.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
 msgid "cpsportlets_extended_site_map_managers"
-msgstr "Responsable(s)"
+msgstr "Responsabile(i)"
+
+#.   <p>
+#.       The guard form allows you to control the visibility of portlets.
+#.       All the expressions that are filled in must be true for the portlet to be
+#.       visible.</p>
+#: from ../skins/cpsportlets_default/cpsportlet_guard.pt
+msgid "cpsportlets_guard_explanation"
+msgstr ""
+"Il modulo di controllo consente di controllare la visibilità dei portlet. "
+"Tutte le condizioni che vengono inserite devono essere vere per poter "
+"visualizzare il portlet."
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -107,20 +168,19 @@ msgstr "Visualizza la versione in ..."
 #.   <p>Translate into ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_translate_into"
-msgstr "Crea una versione in ..."
+msgstr "Traduci in ..."
 
 #.   <span>Up to
 #.             ${up_id (tal content="item/title")}
 #.           </span>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
 msgid "cpsportlets_up_to"
-msgstr "Vers ${up_id}"
+msgstr "Ritorna a ${up_id}"
 
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
 msgid "this export format has not been implemented yet"
-msgstr ""
+msgstr "questo formato di esportazione non è stato ancora implementato"
 
 msgid "label_cpsportlets_provider"
 msgstr "Fornitore"
@@ -186,7 +246,7 @@ msgid "cpsportlets_content_translated_psm"
 msgstr "Il contenuto è stato tradotto."
 
 msgid "cpsportlets_bcs_display_dropdown_list_label"
-msgstr "Lista scorrevole"
+msgstr "Lista a cascata"
 
 msgid "cpsportlets_bcs_display_horizontal_trail_label"
 msgstr "Percorso a sviluppo orizzontale"
@@ -194,9 +254,8 @@ msgstr "Percorso a sviluppo orizzontale"
 msgid "cpsportlets_bcs_display_site_root_label"
 msgstr "Visualizza l'origine del portale"
 
-#, fuzzy
 msgid "cpsportlets_bcs_highlight_last_item_label"
-msgstr "Mettre en valeur le document courant"
+msgstr "Evidenzia il documento attuale"
 
 msgid "cpsportlets_advanced_search_link_label"
 msgstr ""
@@ -220,9 +279,8 @@ msgstr ""
 msgid "cpsportlets_content_search_related_label"
 msgstr "Oggetti correlati"
 
-#, fuzzy
 msgid "cpsportlets_content_search_all_label"
-msgstr "Tous les documents"
+msgstr "Tutti i documenti"
 
 msgid "cpsportlets_content_search_type_label"
 msgstr "Contenuto:"
@@ -263,9 +321,8 @@ msgstr "Autore"
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Inverti l'ordine di visualizzazione ?"
 
-#, fuzzy
 msgid "cpsportlets_common_render_method_label"
-msgstr "Méthode d'affichage (.zpt, .py, etc.)"
+msgstr "Metodo di renderizzazione (.zpt, .py, etc.)"
 
 msgid "cpsportlets_common_max_items_label"
 msgstr "Numero di elementi:"
@@ -276,9 +333,8 @@ msgstr "Cartella di base:"
 msgid "cpsportlets_content_searchable_types_label"
 msgstr "Tipi di contenuto da visualizzare:"
 
-#, fuzzy
 msgid "cpsportlets_content_contextual_label"
-msgstr "Recherche contextuelle"
+msgstr "Ricerca contestuale"
 
 msgid "cpsportlets_language_action_label"
 msgstr "Azione"
@@ -304,31 +360,26 @@ msgstr "Percorso di navigazione a sviluppo verticale"
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Contenuti della cartella corrente"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
-msgstr "Contenu du répertoire* (menu déroulant)"
+msgstr "Contenuto delle cartelle (menu a cascata)"
 
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Contenuti delle sottocartelle"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_up_to_parent_label"
-msgstr "Vers le répertoire parent"
+msgstr "Ritorna alla cartella superiore:"
 
 msgid "cpsportlets_nav_display_collapsible_menu_label"
 msgstr "Menù estensibile (comparsa/scomparsa)"
 
-#, fuzzy
 msgid "cpsportlets_additem_show_icons_label"
-msgstr "Afficher les icônes"
+msgstr "Mostra le icone"
 
-#, fuzzy
 msgid "cpsportlets_additem_dropdown_list_label"
-msgstr "Liste déroulante"
+msgstr "Lista a cascata"
 
-#, fuzzy
 msgid "cpsportlets_additem_standard_menu_label"
-msgstr "Menu standard"
+msgstr "Menù standard"
 
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Profondità relativa"
@@ -336,24 +387,20 @@ msgstr "Profondità relativa"
 msgid "cpsportlets_navigation_show_docs_label"
 msgstr "Visualizza gli oggetti"
 
-#, fuzzy
 msgid "cpsportlets_navigation_folder_prefixes_label"
-msgstr "Répertoires visibles"
+msgstr "Cartelle visibili"
 
-#, fuzzy
 msgid "cpsportlets_navigation_display_hidden_folders_label"
-msgstr "Afficher les répertoires cachés"
+msgstr "Mostra le cartelle nascoste"
 
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Visualizza l'icona degli oggetti"
 
-#, fuzzy
 msgid "cpsportlets_content_show_icons_label"
-msgstr "Afficher l'icône des documents"
+msgstr "Mostra l'icona dei documenti"
 
-#, fuzzy
 msgid "cpsportlets_actions_show_icons_label"
-msgstr "Afficher l'icône des actions"
+msgstr "Mostra l'icona delle azioni"
 
 msgid "cpsportlets_custom_render_method_label"
 msgstr "Metodo di renderizzazione (zpt, py, etc.):"
@@ -451,9 +498,8 @@ msgstr "Visualizzazione contestuale"
 msgid "cpsportlets_display_mode_label"
 msgstr "Modalità di visualizzazione"
 
-#, fuzzy
 msgid "cpsportlets_display_mode_help"
-msgstr "Les portlets marqués d'un * ont une mise en forme fixée à l'avance."
+msgstr "I portlet segnato con un * subiranno delle modifiche già programmate."
 
 msgid "w__imagelink"
 msgstr "Collegamento immagine"
@@ -461,12 +507,14 @@ msgstr "Collegamento immagine"
 msgid "cpsportlets_nav_display_site_map_label"
 msgstr "Mappa del portale"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_extended_site_map_label"
-msgstr "Plan de site étendu*"
+msgstr "Mappa del sito estesa*"
 
 msgid "portal_type_CustomPortlet_description"
 msgstr "Visualizza la renderizzazione di un metodo (.zpt, .py, etc.)"
+
+msgid "cpsportlets_document_context_rpath_label"
+msgstr "Radice della cartella (relativo)"
 
 msgid "cpsportlets_document_cluster_id_label"
 msgstr "Identificativo di raggruppamento degli aspetti (cluster)"
@@ -502,9 +550,8 @@ msgstr "Esclusivamente in questa cartella"
 msgid "cpsportlets_common_visibility_range_label"
 msgstr "Visualizzabile:"
 
-#, fuzzy
 msgid "cpsportlets_navigation_root_uids_label"
-msgstr "Racines d'arborescences"
+msgstr "Radice dell'albero"
 
 msgid "cpsportlets_custom_js_render_method_label"
 msgstr "Metodo di renderizzazione javascript (zpt, py, etc.):"
@@ -539,108 +586,41 @@ msgstr "Visualizza l'icona dei documenti ?"
 msgid "cpsportlets_nav_context_rpath_label"
 msgstr "Percorso della cartella (relativo)"
 
-#, fuzzy
 msgid "cpsportlets_common_syndication_formats_label"
-msgstr "Formats de syndication"
+msgstr "Formati di sindicazione"
 
-#, fuzzy
 msgid "cpsportlets_syndication_rss_1_0_help"
-msgstr "Vers le fil de nouvelles RSS associé"
+msgstr "RSS"
 
-#, fuzzy
 msgid "cpsportlets_syndication_rss_2_0_help"
-msgstr "Vers le fil de nouvelles RSS associé"
+msgstr "RSS"
 
-#, fuzzy
 msgid "cpsportlets_syndication_atom_0_3_help"
-msgstr "Vers l'export ATOM associé"
+msgstr "ATOM"
 
-#, fuzzy
 msgid "cpsportlets_syndication_rss_1_0_label"
 msgstr "RSS 1.0"
 
-#, fuzzy
 msgid "cpsportlets_syndication_rss_2_0_label"
 msgstr "RSS 2.0"
 
-#, fuzzy
 msgid "cpsportlets_syndication_atom_0_3_label"
 msgstr "ATOM 0.3"
 
-#, fuzzy
 msgid "cpsportlets_common_short_syndication_formats_label"
-msgstr "Utiliser des noms courts sur les boutons d'export"
+msgstr "Utilizzare nomi corti nel pulsante di esportazione"
 
-#, fuzzy
 msgid "cpsportlets_navigation_display_managers_label"
-msgstr "Afficher les responsables"
+msgstr "Mostra i responsabili"
 
-#, fuzzy
 msgid "cpsportlets_navigation_display_description_label"
-msgstr "Afficher les descriptions des répertoires"
+msgstr "Mostra la descrizione delle cartelle"
 
-#, fuzzy
 msgid "cpsportlets_navigation_authorized_only_label"
-msgstr "Afficher uniquement les répertoires autorisés"
+msgstr "Mostra solo le cartelle autorizzate"
 
-#, fuzzy
-msgid "cpsportlets_document_context_rpath_label"
-msgstr "Chemin du document (relatif)"
-
-#, fuzzy
-msgid "cpsportlets_guard_explanation"
-msgstr ""
-"Le formulaire de garde permet de contrôller la visibilité du portlet. Les "
-"conditions doivent toutes être verifiées pour que le portlet soit visible."
-
-#, fuzzy
-msgid "action_portlet_guard"
-msgstr "Garde"
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_explain"
-msgstr "Les variable suivantes sont définies pour l'expression TALES"
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_portlet"
-msgstr "L'object 'portlet'"
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_here"
-msgstr "L'objet 'context'"
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_portal"
-msgstr "L'objet 'portal'"
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_request"
-msgstr "L'object 'REQUEST'"
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_published"
-msgstr "L'identifiant de l'objet 'PUBLISHED'"
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_user"
-msgstr "L'objet 'user'"
-
-#, fuzzy
 msgid "cpsportlet_psm_settings_updated"
-msgstr "Les propriétés ont été mises à jour"
+msgstr "Impostazioni aggiornate"
 
-#, fuzzy
 msgid "cpsportlet_psm_guard_error"
-msgstr "Propriétés incorrectes"
-
-msgid "button_submit_changes"
-msgstr ""
-
-#, fuzzy
-msgid "cpsportlet_guard_tales_rpath_slash"
-msgstr ""
-"Le chemin relatif de l'objet courant finissant par un '/' (par ex. "
-"'sections/')"
-
-#~ msgid "Item title"
-#~ msgstr "Titolo dell'elemento"
+msgstr "Impostazioni non corrette"

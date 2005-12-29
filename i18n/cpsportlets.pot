@@ -3,17 +3,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2005-07-19 17:32default\n"
+"POT-Creation-Date: 2005-12-29 16:28default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language-code: LL\n"
-"Language-name: Language\n"
-"Preferred-encodings: utf-8 latin1\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-encodings: latin9 utf-8\n"
 "Domain: default\n"
 
 #.   <input type="submit" value=" Add " />
@@ -31,10 +31,63 @@ msgstr ""
 msgid "_Edit_"
 msgstr ""
 
+#.   <a href="cpsportlet_guard">guard</a>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "action_portlet_guard"
+msgstr ""
+
+#.   <input type="submit" class="standalone" value="button_submit_changes" />
+#: from ../skins/cpsportlets_default/cpsportlet_guard.pt
+msgid "button_submit_changes"
+msgstr ""
+
 #.   <option disabled="disabled" selected="selected" value="">
 #.           Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
+msgstr ""
+
+#.   <span>
+#.     The following names are defined for the TALES expression</span>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_explain"
+msgstr ""
+
+#.   <dd>The context</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_here"
+msgstr ""
+
+#.   <dd>The portal object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_portal"
+msgstr ""
+
+#.   <dd>The portlet object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_portlet"
+msgstr ""
+
+#.   <dd>
+#.     The id of the PUBLISHED object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_published"
+msgstr ""
+
+#.   <dd>The REQUEST object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_request"
+msgstr ""
+
+#.   <dd>
+#.     The context's relative path ending with a '/' (e.g. 'sections/')</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_rpath_slash"
+msgstr ""
+
+#.   <dd>The user object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_user"
 msgstr ""
 
 #.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
@@ -70,6 +123,14 @@ msgstr ""
 #.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 msgid "cpsportlets_extended_site_map_managers"
+msgstr ""
+
+#.   <p>
+#.       The guard form allows you to control the visibility of portlets.
+#.       All the expressions that are filled in must be true for the portlet to be
+#.       visible.</p>
+#: from ../skins/cpsportlets_default/cpsportlet_guard.pt
+msgid "cpsportlets_guard_explanation"
 msgstr ""
 
 #.   <span>To manage portlets please install CPSSkins.</span>
@@ -435,6 +496,9 @@ msgstr ""
 msgid "portal_type_CustomPortlet_description"
 msgstr ""
 
+msgid "cpsportlets_document_context_rpath_label"
+msgstr ""
+
 msgid "cpsportlets_document_cluster_id_label"
 msgstr ""
 
@@ -534,44 +598,8 @@ msgstr ""
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr ""
 
-msgid "cpsportlets_document_context_rpath_label"
-msgstr ""
-
-msgid "cpsportlets_guard_explanation"
-msgstr ""
-
-msgid "action_portlet_guard"
-msgstr ""
-
-msgid "cpsportlet_guard_tales_explain"
-msgstr ""
-
-msgid "cpsportlet_guard_tales_portlet"
-msgstr ""
-
-msgid "cpsportlet_guard_tales_here"
-msgstr ""
-
-msgid "cpsportlet_guard_tales_portal"
-msgstr ""
-
-msgid "cpsportlet_guard_tales_request"
-msgstr ""
-
-msgid "cpsportlet_guard_tales_published"
-msgstr ""
-
-msgid "cpsportlet_guard_tales_user"
-msgstr ""
-
 msgid "cpsportlet_psm_settings_updated"
 msgstr ""
 
 msgid "cpsportlet_psm_guard_error"
-msgstr ""
-
-msgid "button_submit_changes"
-msgstr ""
-
-msgid "cpsportlet_guard_tales_rpath_slash"
 msgstr ""
