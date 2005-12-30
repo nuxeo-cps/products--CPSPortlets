@@ -1,7 +1,7 @@
 <tal:block define="emptybody python: 1">
 <metal:block define-macro="edit_form">
   <metal:block use-macro="here/main_template_popup/macros/master">
-  <metal:block fill-slot="css_slot">
+  <metal:block fill-slot="style_slot">
     <metal:block define-macro="widgets_javascript">
     <!-- XXX this has to move to CPSSchemas -->
     <style type="text/css"
