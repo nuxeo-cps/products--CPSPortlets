@@ -31,21 +31,14 @@ from Acquisition import aq_base, aq_parent, aq_inner
 from Globals import InitializeClass, DTMLFile
 from Globals import  PersistentMapping
 
-try:
-    from Products.CMFCore.CMFBTreeFolder import CMFBTreeFolder
-except ImportError: # BBB: CMF < 1.5.2
-    from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
-
-# Fallback to CMF 1.4
-try:
-    from Products.CMFCore.permissions import View
-except ImportError:
-    from Products.CMFCore.CMFCorePermissions import View
-
+from Products.CMFCore.CMFBTreeFolder import CMFBTreeFolder
+from Products.CMFCore.permissions import View
 from Products.CMFCore.utils import UniqueObject
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import _checkPermission
 
+from zope.interface import implements
+from Products.CPSPortlets.interfaces import IPortletTool
 from PortletRAMCache import RAMCache, SimpleRAMCache
 from PortletsContainer import PortletsContainer
 from CPSPortletsPermissions import ManagePortlets
@@ -69,6 +62,8 @@ PORTLET_MANAGE_ACTION_CATEGORY = 'folder'
 class PortletsTool(UniqueObject, PortletsContainer):
     """ Portlets Tool
     """
+
+    implements(IPortletTool)
 
     id = 'portal_cpsportlets'
     meta_type = 'CPS Portlets Tool'

@@ -39,12 +39,7 @@ from zLOG import LOG, INFO
 
 from Products.PageTemplates.TALES import CompilerError
 from Products.CMFCore.utils import getToolByName, _getViewFor
-
-try:
-    from Products.CMFCore.permissions import View, ModifyPortalContent
-except ImportError:
-    from Products.CMFCore.CMFCorePermissions import View, ModifyPortalContent
-
+from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.CPSCore.ProxyBase import FileDownloader
 from Products.CPSDocument.CPSDocument import CPSDocument
 

@@ -1,8 +1,5 @@
-# -*- coding: iso-8859-15 -*-
-# Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
-# Copyright (c) 2004 Chalmers University of Technology <http://www.chalmers.se>
-# Authors : Julien Anguenot <ja@nuxeo.com>
-#           Jean-Marc Orliaguet <jmo@ita.chalmers.se>
+# (C) Copyright 2005 Nuxeo SAS <http://nuxeo.com>
+# Author: Florent Guillaume <fg@nuxeo.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as published
@@ -19,14 +16,20 @@
 # 02111-1307, USA.
 #
 # $Id$
-"""CPS Portlets Permissions
-
-Here it's defined the specific permissions for the CPS Portlets
-
-'Manage Portlets': Permission to add new portlet at global scope (within portal)
+"""Portlet interfaces.
 """
 
-from Products.CMFCore.permissions import setDefaultRoles
+from zope.interface import Interface
 
-ManagePortlets = 'Manage Portlets'
-setDefaultRoles(ManagePortlets, ('Manager', 'Owner'))
+
+class IPortletContainer(Interface):
+    """Portlet Container.
+    """
+
+class IPortletTool(IPortletContainer):
+    """Portlet Tool.
+    """
+
+class IPortlet(Interface):
+    """Portlet.
+    """

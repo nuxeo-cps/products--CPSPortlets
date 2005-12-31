@@ -30,15 +30,18 @@ from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
 
-try:
-    from Products.CMFCore.CMFBTreeFolder import CMFBTreeFolder
-except ImportError: # BBB: CMF < 1.5.2
-    from Products.BTreeFolder2.CMFBTreeFolder import CMFBTreeFolder
+from Products.CMFCore.CMFBTreeFolder import CMFBTreeFolder
 from Products.CMFCore.utils import getToolByName
+
+from zope.interface import implements
+from Products.CPSPortlets.interfaces import IPortletContainer
+
 
 class PortletsContainer(CMFBTreeFolder):
     """ Portlets Container
     """
+
+    implements(IPortletContainer)
 
     meta_type = 'CPS Placeful Portlets Container'
     portal_type = meta_type

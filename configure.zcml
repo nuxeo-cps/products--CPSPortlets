@@ -1,0 +1,27 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five">
+
+  <adapter
+      factory=".exportimport.PortletToolXMLAdapter"
+      provides="Products.GenericSetup.interfaces.IBody"
+      for="Products.CPSPortlets.interfaces.IPortletTool
+           Products.GenericSetup.interfaces.ISetupEnviron"
+      />
+
+  <adapter
+      factory=".exportimport.PortletContainerXMLAdapter"
+      provides="Products.GenericSetup.interfaces.IBody"
+      for="Products.CPSPortlets.interfaces.IPortletContainer
+           Products.GenericSetup.interfaces.ISetupEnviron"
+      />
+
+  <adapter
+      factory=".exportimport.PortletXMLAdapter"
+      provides="Products.GenericSetup.interfaces.IBody"
+      for="Products.CPSPortlets.interfaces.IPortlet
+           Products.GenericSetup.interfaces.ISetupEnviron"
+      />
+
+</configure>
