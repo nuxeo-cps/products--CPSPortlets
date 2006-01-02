@@ -21,8 +21,10 @@
 """
 
 from Globals import InitializeClass
+from zope.interface import implements
 
 from Products.CMFCore.CatalogTool import CatalogTool
+from Products.CPSPortlets.interfaces import IPortletCatalogTool
 
 class PortletsCatalogTool(CatalogTool):
     """Portlets Catalog Tool
@@ -30,8 +32,9 @@ class PortletsCatalogTool(CatalogTool):
     Dedicated catalog for CPS Portlets
     """
 
+    implements(IPortletCatalogTool)
+
     id = 'portal_cpsportlets_catalog'
     meta_type = 'CPS Portlets Catalog Tool'
 
 InitializeClass(PortletsCatalogTool)
-    

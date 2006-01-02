@@ -18,9 +18,9 @@
       />
 
   <adapter
-      factory=".exportimport.PortletXMLAdapter"
+      factory=".exportimport.PortletCatalogToolXMLAdapter"
       provides="Products.GenericSetup.interfaces.IBody"
-      for="Products.CPSPortlets.interfaces.IPortlet
+      for="Products.CPSPortlets.interfaces.IPortletCatalogTool
            Products.GenericSetup.interfaces.ISetupEnviron"
       />
 

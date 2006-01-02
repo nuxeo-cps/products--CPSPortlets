@@ -24,8 +24,6 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 from Products.CMFCore import utils
 from Products.CMFCore.DirectoryView import registerDirectory
-from Products.GenericSetup import EXTENSION
-from Products.GenericSetup import profile_registry
 
 from Products.CMFCore.permissions import AddPortalContent
 
@@ -82,11 +80,3 @@ def initialize(registrar):
         'CPS Portlets Tool',
         tools=tools,
         icon='tool.png',).initialize(registrar)
-
-    profile_registry.registerProfile('default',
-                                     'CPS Default Portlets',
-                                     "Default portlets for a CPS site.",
-                                     'profiles/default',
-                                     'CPSPortlets',
-                                     EXTENSION,
-                                     for_=ICPSSite)

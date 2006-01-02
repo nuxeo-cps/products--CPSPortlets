@@ -24,26 +24,33 @@ from zope.app import zapi
 from zope.component import adapts
 from zope.interface import implements
 import Products
+from ZODB.loglevels import BLATHER as VERBOSE
 from Products.CMFCore.utils import getToolByName
 from Products.GenericSetup.utils import exportObjects
 from Products.GenericSetup.utils import importObjects
 from Products.GenericSetup.utils import XMLAdapterBase
 from Products.GenericSetup.utils import ObjectManagerHelpers
 from Products.GenericSetup.utils import PropertyManagerHelpers
+from Products.GenericSetup.ZCatalog.exportimport import ZCatalogXMLAdapter
+from Products.CPSDocument.exportimport import exportCPSObjects
+from Products.CPSDocument.exportimport import importCPSObjects
+from Products.CPSDocument.exportimport import CPSObjectManagerHelpers
+from Products.CPSPortlets.PortletsContainer import addPortletsContainer
 
 from Products.GenericSetup.interfaces import INode
 from Products.GenericSetup.interfaces import IBody
 from Products.GenericSetup.interfaces import ISetupEnviron
-
 from Products.CPSPortlets.interfaces import IPortletTool
 from Products.CPSPortlets.interfaces import IPortletContainer
-from Products.CPSPortlets.interfaces import IPortlet
 
 
 _marker = object()
 
-TOOL = 'portal_cpsportlets'
 NAME = 'portlets'
+
+TOOL = 'portal_cpsportlets'
+CATALOG_TOOL = 'portal_cpsportlets_catalog'
+ROOT_PORTLETS = '.cps_portlets'
 
 def exportPortletTool(context):
     """Export portlet tool and portlets a set of XML files.
@@ -56,6 +63,16 @@ def exportPortletTool(context):
         return
     exportObjects(tool, '', context)
 
+    # Export catalog
+    catalog = getToolByName(site, CATALOG_TOOL, None)
+    if catalog is not None:
+        exportObjects(catalog, '', context)
+
+    # Export root portlets
+    root_portlets = getattr(site, ROOT_PORTLETS, None)
+    if root_portlets is not None:
+        exportCPSObjects(root_portlets, '', context)
+
 def importPortletTool(context):
     """Import portlet tool and portlets from XML files.
     """
@@ -63,8 +80,18 @@ def importPortletTool(context):
     tool = getToolByName(site, TOOL)
     importObjects(tool, '', context)
 
+    # Import catalog
+    catalog = getToolByName(site, CATALOG_TOOL)
+    importObjects(catalog, '', context)
 
-class PortletToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
+    # Import root portlets
+    if ROOT_PORTLETS not in site.objectIds():
+        addPortletsContainer(site, ROOT_PORTLETS)
+    root_portlets = getattr(site, ROOT_PORTLETS)
+    importCPSObjects(root_portlets, '', context)
+
+
+class PortletToolXMLAdapter(XMLAdapterBase, CPSObjectManagerHelpers,
                             PropertyManagerHelpers):
     """XML importer and exporter for portlet tool.
     """
@@ -109,9 +136,8 @@ class PortletToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
             for param in params:
                 if not param:
                     continue
-                paramnode = self._doc.createElement('parameter')
-                textnode = self._doc.createTextNode(param)
-                paramnode.appendChild(textnode)
+                paramnode = self._doc.createElement('element')
+                paramnode.setAttribute('value', param)
                 node.appendChild(paramnode)
             fragment.appendChild(node)
         return fragment
@@ -128,15 +154,15 @@ class PortletToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers,
             portlet_type = str(child.getAttribute('type'))
             params = []
             for subchild in child.childNodes:
-                if subchild.nodeName != 'parameter':
+                if subchild.nodeName != 'element':
                     continue
-                param = str(self._getNodeText(subchild))
+                param = str(subchild.getAttribute('value'))
                 params.append(param)
             cache_params[portlet_type] = params
         tool.updateCacheParameters(cache_params)
 
 
-class PortletContainerXMLAdapter(XMLAdapterBase, ObjectManagerHelpers):
+class PortletContainerXMLAdapter(XMLAdapterBase, CPSObjectManagerHelpers):
     """XML importer and exporter for a portlet container.
     """
 
@@ -145,13 +171,20 @@ class PortletContainerXMLAdapter(XMLAdapterBase, ObjectManagerHelpers):
 
     _LOGGER_ID = NAME
 
+    def __init__(self, context, environ):
+        XMLAdapterBase.__init__(self, context, environ)
+        # Don't keep initial dot in name, which hides it in the filesystem
+        id = context.getId()
+        if id[0] == '.':
+            self.name = id[1:].replace(' ', '_')
+
     def _exportNode(self):
         """Export the object as a DOM node.
         """
         node = self._getObjectNode('object')
         node.appendChild(self._extractObjects())
-        self._logger.info("%s portlets exported." %
-                          '/'.join(self.context.getPhysicalPath()))
+        msg = "Portlets %r exported."% '/'.join(self.context.getPhysicalPath())
+        self._logger.log(VERBOSE, msg)
         return node
 
     def _importNode(self, node):
@@ -160,28 +193,13 @@ class PortletContainerXMLAdapter(XMLAdapterBase, ObjectManagerHelpers):
         if self.environ.shouldPurge():
             self._purgeObjects()
         self._initObjects(node)
-        self._logger.info("%s portlets imported." %
-                          '/'.join(self.context.getPhysicalPath()))
-
-    node = property(_exportNode, _importNode)
+        msg = "Portlets %r imported."% '/'.join(self.context.getPhysicalPath())
+        self._logger.log(VERBOSE, msg)
 
 
-class PortletXMLAdapter(XMLAdapterBase, PropertyManagerHelpers):
-    """XML importer and exporter for a portlet.
-    """
-
-    adapts(IPortlet, ISetupEnviron)
+class PortletCatalogToolXMLAdapter(ZCatalogXMLAdapter):
+    adapts(IPortletContainer, ISetupEnviron)
     implements(IBody)
 
     _LOGGER_ID = NAME
-
-    def _exportNode(self):
-        """Export the object as a DOM node.
-        """
-        return self._getObjectNode('object', False)
-
-    def _importNode(self, node):
-        """Import the object from the DOM node.
-        """
-
-    node = property(_exportNode, _importNode)
+    name = 'portlets_catalog'

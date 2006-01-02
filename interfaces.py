@@ -20,6 +20,7 @@
 """
 
 from zope.interface import Interface
+from Products.CMFCore.interfaces import ICatalogTool
 
 
 class IPortletContainer(Interface):
@@ -30,6 +31,6 @@ class IPortletTool(IPortletContainer):
     """Portlet Tool.
     """
 
-class IPortlet(Interface):
-    """Portlet.
+class IPortletCatalogTool(ICatalogTool):
+    """Porlet Catalog Tool.
     """

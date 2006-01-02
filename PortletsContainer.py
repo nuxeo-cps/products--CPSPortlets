@@ -182,8 +182,7 @@ def addPortletsContainer(dispatcher, id='', REQUEST=None):
     if not id:
         id = dispatcher.portal_cpsportlets.getPortletContainerId()
     ob = PortletsContainer(id)
-    container = dispatcher.Destination()
-    container._setObject(id, ob)
+    dispatcher._setObject(id, ob)
     if REQUEST is not None:
         url = dispatcher.DestinationURL()
         REQUEST.RESPONSE.redirect('%s/manage_main' % url)
