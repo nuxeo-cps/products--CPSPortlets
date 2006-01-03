@@ -116,7 +116,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             # XXX Maybe incorrect if complex wrapping.
             res = aq_base(res).__of__(self)
         return res
-    
+
     security.declarePublic('getGuard')
     def getGuard(self):
         return self.guard
@@ -399,7 +399,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             elif param == 'baseurl':
                 index_string = REQUEST.get('cpsskins_base_url')
 
-            # protocol 
+            # protocol
             elif param == 'protocol':
                 url = REQUEST.get('SERVER_URL', '')
                 pos = url.find('://')
