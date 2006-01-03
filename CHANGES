@@ -28,3 +28,4 @@ New internal features:
 - #1204 Added a 'protocol' cache parameter to discriminate between http://
   and https://
 - CPS css_slot was renamed style_slot to comply with later CMF/Zope 3 standard.
+- added GenericSetup support for portlet guards

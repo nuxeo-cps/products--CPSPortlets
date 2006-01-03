@@ -48,6 +48,9 @@ from PortletGuard import PortletGuard
 from CPSPortletCatalogAware import CPSPortletCatalogAware
 from cpsportlets_utils import html_slimmer
 
+from zope.interface import implements
+from Products.CPSPortlets.interfaces import ICPSPortlet
+
 _marker = []
 
 # Edge-Side-Includes
@@ -71,6 +74,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
     """ CPS Portlet
     This is a CPSPortlet child base class for portlets
     """
+
+    implements(ICPSPortlet)
 
     meta_type = 'CPS Portlet'
     portal_type = meta_type

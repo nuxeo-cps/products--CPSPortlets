@@ -35,11 +35,14 @@ from Products.GenericSetup.ZCatalog.exportimport import ZCatalogXMLAdapter
 from Products.CPSDocument.exportimport import exportCPSObjects
 from Products.CPSDocument.exportimport import importCPSObjects
 from Products.CPSDocument.exportimport import CPSObjectManagerHelpers
+from Products.CPSDocument.exportimport import CPSDocumentXMLAdapter
 from Products.CPSPortlets.PortletsContainer import addPortletsContainer
+from Products.CPSPortlets.PortletGuard import PortletGuard
 
 from Products.GenericSetup.interfaces import INode
 from Products.GenericSetup.interfaces import IBody
 from Products.GenericSetup.interfaces import ISetupEnviron
+from Products.CPSPortlets.interfaces import ICPSPortlet
 from Products.CPSPortlets.interfaces import IPortletTool
 from Products.CPSPortlets.interfaces import IPortletContainer
 
@@ -89,6 +92,70 @@ def importPortletTool(context):
         addPortletsContainer(site, ROOT_PORTLETS)
     root_portlets = getattr(site, ROOT_PORTLETS)
     importCPSObjects(root_portlets, '', context)
+
+
+class CPSPortletXMLAdapter(CPSDocumentXMLAdapter):
+    """XML importer and exporter for CPS Portlet
+
+    add guard I/O to standard CPSDocumentXMLAdapter
+    """
+    adapts(ICPSPortlet, ISetupEnviron)
+
+    def _exportNode(self):
+        """Export the object as a DOM node.
+        """
+        node = self._getObjectNode('object')
+        node.appendChild(self._extractObjects())
+        node.appendChild(self._extractDocumentFields())
+        guard_node = self._extractPortletGuard()
+        if guard_node is not None:
+            node.appendChild(guard_node)
+        msg = "Portlet %r exported." % self.context.getId()
+        self._logger.log(VERBOSE, msg)
+        return node
+
+    def _importNode(self, node):
+        """Import the object from the DOM node.
+        """
+        if self.environ.shouldPurge():
+            self._purgeObjects()
+            self._purgeDocumentFields()
+            self._purgePortletGuard()
+        # Init fields before objects, as some None files may be objects
+        # and need to be imported after their ini
+        self._initDocumentFields(node)
+        self._initObjects(node)
+        self._initPortletGuard(node)
+        msg = "Portlet %r imported." % self.context.getId()
+        self._logger.log(VERBOSE, msg)
+
+    def _extractPortletGuard(self):
+        guard = self.context.getGuard()
+        if guard is None:
+            return
+        node = self.createStrictTextElement("guard")
+        node.setAttribute('roles', guard.getRolesText().encode('utf-8'))
+        node.setAttribute('groups', guard.getGroupsText().encode('utf-8'))
+        node.setAttribute('permissions',
+                          guard.getPermissionsText().encode('utf-8'))
+        self.setNodeText(node, guard.getExprText())
+        return node
+
+    def _initPortletGuard(self, node):
+        ob = self.context
+        guard_props = {}
+        for child in node.childNodes:
+            if not child.nodeName == 'guard':
+                continue
+            ob.guard = PortletGuard()
+            guard_props['guard_permissions'] = child.getAttribute('permissions')
+            guard_props['guard_roles'] = child.getAttribute('roles')
+            guard_props['guard_groups'] = child.getAttribute('groups')
+            guard_props['guard_expr'] = self.getNodeText(child)
+            ob.guard.changeFromProperties(guard_props)
+
+    def _purgePortletGuard(self):
+        self.context.guard = None # XXX: or shall it be 'PortalGuard()'?
 
 
 class PortletToolXMLAdapter(XMLAdapterBase, CPSObjectManagerHelpers,

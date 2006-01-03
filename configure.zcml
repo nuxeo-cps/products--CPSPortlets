@@ -4,6 +4,13 @@
     xmlns:five="http://namespaces.zope.org/five">
 
   <adapter
+      factory=".exportimport.CPSPortletXMLAdapter"
+      provides="Products.GenericSetup.interfaces.IBody"
+      for="Products.CPSPortlets.interfaces.ICPSPortlet
+           Products.GenericSetup.interfaces.ISetupEnviron"
+      />
+
+  <adapter
       factory=".exportimport.PortletToolXMLAdapter"
       provides="Products.GenericSetup.interfaces.IBody"
       for="Products.CPSPortlets.interfaces.IPortletTool
