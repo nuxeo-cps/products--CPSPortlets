@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2005-12-30 12:59default\n"
+"POT-Creation-Date: 2006-01-03 14:47default\n"
 "PO-Revision-Date: 2005-09-29 10:26-0300\n"
 "Last-Translator: Mario Olimpio de Menezes\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
