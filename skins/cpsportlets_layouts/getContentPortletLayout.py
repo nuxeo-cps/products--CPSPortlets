@@ -52,8 +52,8 @@ content_portlet_layout = {
                 'is_i18n': True,
                 'hidden_layout_modes': ('view',),
                 'is_limited': True,
-                'min_value': 1.0,
-                'max_value': 20.0,
+                'min_value': 1,
+                'max_value': 20,
             },
         },
         'search_type': {
@@ -175,8 +175,8 @@ content_portlet_layout = {
                 'is_i18n': True,
                 'hidden_layout_modes': ('view',),
                 'hidden_if_expr': 'python: context.render_items or context.render_method',
-                'min_value': 0.0,
-                'max_value': 0.0,
+                'min_value': 0,
+                'max_value': 0,
             },
         },
         'syndication_formats': {
