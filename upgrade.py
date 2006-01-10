@@ -19,11 +19,15 @@
 
 from Products.CMFCore.utils import getToolByName
 
-def upgrade_335_336_portlets(context):
+def upgrade_335_336_portlets_catalog(context):
     """Migrates the CPS Portlets indexes to portal_cpsportlets
     """
     ptool = getToolByName(context, 'portal_cpsportlets')
-    ptcatalog = getToolByName(context, 'portal_cpsportlets_catalog')	
+    ptcatalog = getToolByName(context, 'portal_cpsportlets_catalog', None)
+    if ptcatalog is None:
+        mt = 'CPS Portlets Catalog Tool'
+        context.manage_addProduct['CPSPortlets'].manage_addTool(mt)
+        ptcatalog = getToolByName(context, 'portal_cpsportlets_catalog')
     catalog = getToolByName(context, 'portal_catalog')
     portlets = catalog.searchResults(portal_type=ptool.listPortletTypes())
     for brain in portlets:
@@ -36,6 +40,12 @@ def upgrade_335_336_portlets(context):
         # Reindex within the dedicated catalog
         ptcatalog.indexObject(portlet)
     return "Portlet indexes migrated"
+
+def check_upgrade_335_336_portlets_catalog(portal, source):
+    ptcatalog = getToolByName(portal, 'portal_cpsportlets_catalog', None)
+    if ptcatalog is None:
+        return True
+    return not bool(len(ptcatalog.unrestrictedSearchResults()))
 
 def upgrade_335_336_skins(context):
     """Remove obsolete skins
@@ -53,7 +63,7 @@ def upgrade_335_336_skins(context):
 
     return "Obsolete CPSPortlets skins removed."
 
-def upgrade_338_340_themes(context):
+def upgrade_338_340_themes(context, check=False):
     """Attempts to upgrade existing themes to support the boxless setup
  
     see: http://svn.nuxeo.org/trac/pub/ticket/1161
@@ -69,9 +79,10 @@ def upgrade_338_340_themes(context):
 
     """
 
-    logger = []
-    log = logger.append
-    log('CPSPortlets: migrating to the boxless setup: upgrading themes.')
+    if not check:
+        logger = []
+        log = logger.append
+        log('CPSPortlets: migrating to the boxless setup: upgrading themes.')
 
     SLOT_ID = 'content_well'
     SLOT_TYPE = 'Portal Box Group Templet'
@@ -81,14 +92,18 @@ def upgrade_338_340_themes(context):
         for templet in theme.getTemplets():
             if not templet.meta_type == 'Main Content Templet':
                 continue
-            log("  Main Content Templet found in the '%s' theme" % \
-                theme.getId())
+            if not check:
+                log("  Main Content Templet found in the '%s' theme" %
+                    theme.getId())
 
             container = templet.getContainer()
             if SLOT_ID in [slot.box_group for slot in
                              container.objectValues(SLOT_TYPE)]:
-                log("  '%s' slot already present, skipping ..." % SLOT_ID)
+                if not check:
+                    log("  '%s' slot already present, skipping ..." % SLOT_ID)
                 continue
+            if check:
+                return True
             slot = container.addContent(type_name=SLOT_TYPE, xpos=templet.xpos,
                                         ypos=templet.getVerticalPosition()-1)
             slot.setProperty('title', 'Content well')
@@ -96,5 +111,10 @@ def upgrade_338_340_themes(context):
             slot.setProperty('macroless', 1)
             slot.setProperty('boxlayout', 'plain')
             log("  Added a '%s' slot." % SLOT_ID)
+    if check:
+        return False
     return '\n'.join(logger)
 
+
+def check_upgrade_338_340_themes(portal, source):
+    return upgrade_338_340_themes(portal, check=True)

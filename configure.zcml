@@ -1,7 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:five="http://namespaces.zope.org/five">
+    xmlns:cps="http://namespaces.nuxeo.org/cps">
 
   <adapter
       factory=".exportimport.CPSPortletXMLAdapter"
@@ -29,6 +28,20 @@
       provides="Products.GenericSetup.interfaces.IBody"
       for="Products.CPSPortlets.interfaces.IPortletCatalogTool
            Products.GenericSetup.interfaces.ISetupEnviron"
+      />
+
+  <cps:upgradeStep
+      title="Migrate portlets to their own catalog"
+      source="3.3.5" destination="3.3.6"
+      handler=".upgrade.upgrade_335_336_portlets_catalog"
+      checker=".upgrade.check_upgrade_335_336_portlets_catalog"
+      />
+
+  <cps:upgradeStep
+      title="Upgrade themes to a boxless setup"
+      source="3.3.8" destination="3.4.0"
+      handler=".upgrade.upgrade_338_340_themes"
+      checker=".upgrade.check_upgrade_338_340_themes"
       />
 
 </configure>
