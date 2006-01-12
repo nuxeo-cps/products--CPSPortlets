@@ -29,3 +29,6 @@ New internal features:
   and https://
 - CPS css_slot was renamed style_slot to comply with later CMF/Zope 3 standard.
 - added GenericSetup support for portlet guards
+- #561 Navigation Portlet: added detailed folder contents display mode
+- #1166 Navigation Portlet: added optional syndication buttons (RSS/ATOM)
+

@@ -359,6 +359,9 @@ msgstr "Piste de navigation verticale*"
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Contenu du répertoire"
 
+msgid "cpsportlets_nav_display_folder_contents_detailed_label"
+msgstr "Contenu du répertoire* (détailé)"
+
 msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
 msgstr "Contenu du répertoire* (menu déroulant)"
 
