@@ -5,28 +5,28 @@
   <adapter
       factory=".exportimport.CPSPortletXMLAdapter"
       provides="Products.GenericSetup.interfaces.IBody"
-      for="Products.CPSPortlets.interfaces.ICPSPortlet
+      for=".interfaces.ICPSPortlet
            Products.GenericSetup.interfaces.ISetupEnviron"
       />
 
   <adapter
       factory=".exportimport.PortletToolXMLAdapter"
       provides="Products.GenericSetup.interfaces.IBody"
-      for="Products.CPSPortlets.interfaces.IPortletTool
+      for=".interfaces.IPortletTool
            Products.GenericSetup.interfaces.ISetupEnviron"
       />
 
   <adapter
       factory=".exportimport.PortletContainerXMLAdapter"
       provides="Products.GenericSetup.interfaces.IBody"
-      for="Products.CPSPortlets.interfaces.IPortletContainer
+      for=".interfaces.IPortletContainer
            Products.GenericSetup.interfaces.ISetupEnviron"
       />
 
   <adapter
       factory=".exportimport.PortletCatalogToolXMLAdapter"
       provides="Products.GenericSetup.interfaces.IBody"
-      for="Products.CPSPortlets.interfaces.IPortletCatalogTool
+      for=".interfaces.IPortletCatalogTool
            Products.GenericSetup.interfaces.ISetupEnviron"
       />
 
