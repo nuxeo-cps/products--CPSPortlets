@@ -27,7 +27,7 @@ from Products.CMFCore.DirectoryView import registerDirectory
 
 from Products.CMFCore.permissions import AddPortalContent
 
-from Products.CPSDefault.interfaces import ICPSSite
+from Products.CPSCore.interfaces import ICPSSite
 
 
 import CPSPortletsPermissions
