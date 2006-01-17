@@ -1,4 +1,6 @@
-<tal:block define="emptybody python: 1">
+<tal:block define="emptybody python: 1;
+                   creation python: False;
+                   edition python: True">
 <metal:block define-macro="edit_form">
   <metal:block use-macro="here/main_template_popup/macros/master">
   <metal:block fill-slot="style_slot">
@@ -45,23 +47,13 @@
   </metal:block>
 
   <metal:block fill-slot="main"
-   tal:define="cluster cluster|nothing;
-               metadata python: cluster == 'metadata';
-               res python:here.editCPSPortlet(cluster=cluster, REQUEST=request);
-               rendered_main python: res[0];
-               portal_status_message python: res[1];
-               error python: res[2]">
+   tal:define="rendered_main python:here.cpsdocument_edit_render(request=request)">
 
   <div style="padding: 0.5em">
 
-    <div style="text-align: right"
-     tal:define="metadata python: cluster == 'metadata'">
+    <div style="text-align: right">
        <a i18n:translate="action_portlet_guard"
-        href="cpsportlet_guard">guard</a> |
-       <a tal:condition="not:metadata" i18n:translate="action_metadata"
-        href="cpsportlet_metadata">metadata</a>
-       <a tal:condition="metadata" i18n:translate="button_back"
-        href="cpsportlet_edit_form">back</a>
+        href="cpsportlet_guard">guard</a>
     </div>
 
     <h1>
@@ -75,10 +67,19 @@
         "<tal:block replace="folder/title_or_id" />"
       </tal:block>
     </h1>
-    <div tal:condition="error"
-         tal:replace="structure rendered_main" />
-    <div tal:condition="not:error"
-         tal:replace="structure python: here.render(layout_mode='edit', context_obj=here, cluster=cluster)" />
+
+    <form action="cpsdocument_edit" method="post" id="editForm"
+          enctype="multipart/form-data">
+
+      <!-- Form redirection -->
+      <input type="hidden" name="action" value="/cpsportlet_edit_form" />
+
+      <div class="group" tal:content="structure rendered_main" />
+
+      <input type="submit" name="cpsdocument_edit_button"
+           class="standalone" value="Save Changes"
+           id="cpsdocument_edit_button" />
+    </form>
 
     <form action="" style="text-align: center">
       <input class="standalone" type="submit"
