@@ -33,4 +33,4 @@ New internal features:
 - added GenericSetup support for portlet guards
 - #561 Navigation Portlet: added detailed folder contents display mode
 - #1166 Navigation Portlet: added optional syndication buttons (RSS/ATOM)
-
+- added a "back" button on the portlet guard form

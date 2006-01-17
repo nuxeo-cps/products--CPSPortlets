@@ -30,6 +30,10 @@
   </div>
 
   <form action="" style="text-align: center">
+    <input class="standalone" type="button"
+     onclick="history.back()"
+     value="button_back" i18n:attributes="value" />
+
     <input class="standalone" type="submit"
      onclick="window.opener.location.reload();window.close()"
      value="button_close" i18n:attributes="value" />
