@@ -69,7 +69,7 @@
             <tal:block content="item/title" />
             <span class="itemDescription"
              tal:define="description item/description"
-             tal:condition="python: description and display_description" 
+             tal:condition="python: description and display_description"
              tal:content="description" />
           </a>
         </li>
@@ -133,7 +133,7 @@
              <a tal:content="item/title" tal:attributes="href item/url" />,
              <span class="itemDescription"
               tal:define="description item/description"
-              tal:condition="python: description and display_description" 
+              tal:condition="python: description and display_description"
               tal:content="description" />
            </tal:block>
          </tal:block>
@@ -171,7 +171,7 @@
             <tal:block content="item/title" />
             <span class="itemDescription"
              tal:define="description item/description"
-             tal:condition="python: description and display_description" 
+             tal:condition="python: description and display_description"
              tal:content="description" />
           </a>
         </li>
@@ -211,7 +211,7 @@
             <tal:block content="item/title" />
             <span class="itemDescription"
              tal:define="description item/description"
-             tal:condition="python: description and display_description" 
+             tal:condition="python: description and display_description"
              tal:content="description" />
           </a>
         </li>
@@ -325,7 +325,7 @@
             <tal:block content="subitem/title" />
             <span class="itemDescription"
              tal:define="description item/description"
-             tal:condition="python: description and display_description" 
+             tal:condition="python: description and display_description"
              tal:content="description" />
           </a>
           </tal:block>
@@ -334,7 +334,7 @@
     </tal:block>
   </tal:block>
 
-  <tal:block condition="syndication_formats" 
+  <tal:block condition="syndication_formats"
              define="export request/form/export|nothing">
 
     <tal:block condition="not:export" tal:define="path context_rpath">
