@@ -6,6 +6,8 @@ New features:
 - #1077 the portlet guard form is available in the portlet editor
   (see the "Guard" link)
 - removed the portlet metadata edit form
+- the navigation portlet can be used as a drop area from the
+  folder_contents view to move elements
 Bug fixes:
 ~~~~~~~~~~
 - #1078 to copy a portlet, user needed to have ManagePortlets perm at source

@@ -161,19 +161,20 @@
       <ul class="cpsskinsMenu">
         <li tal:repeat="item folderItems"
         tal:attributes="class python: item['selected'] and 'selected' or None">
-          <a tal:define="style string:margin-left:${item/depth}em"
-             tal:condition="item/visible"
-             tal:attributes="style style;
-                             href item/url;
-                             class linkclass">
-            <tal:block condition="show_icons"
-             content="structure item/icon_tag" />
-            <tal:block content="item/title" />
-            <span class="itemDescription"
-             tal:define="description item/description"
-             tal:condition="python: description and display_description"
-             tal:content="description" />
-          </a>
+          <div class="droppable-in" tal:attributes="id item/url">
+             <a tal:define="style string:margin-left:${item/depth}em"
+                 tal:condition="item/visible"
+                 tal:attributes="style style; href item/url;
+                                 class python:linkclass">
+                 <tal:block condition="show_icons"
+                  content="structure item/icon_tag" />
+                 <tal:block content="item/title" />
+                 <span class="itemDescription"
+                  tal:define="description item/description"
+                  tal:condition="python: description and display_description"
+                  tal:content="description" />
+             </a>
+         </div>
         </li>
       </ul>
     </tal:block>
