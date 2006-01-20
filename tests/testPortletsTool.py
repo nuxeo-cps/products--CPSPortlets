@@ -31,7 +31,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
     def beforeTearDown(self):
         self.logout()
 
-    def loginWsManager(self):
+    def loginAsWsManager(self):
         # for some tests, we need an user with WorkspaceManager role
         mdir = self.portal.portal_directories['members']
         mdir._createEntry({'id' : 'wsman', 
@@ -111,15 +111,15 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         # create a portlet at root of portal
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
-                                            context=self.portal)
+                                           context=self.ws)
 
-        self.loginWsManager()
+        self.loginAsWsManager()
         
         # try to copy it 
-        cont = ptltool.getPortletContainer(context=self.portal)
+        cont = ptltool.getPortletContainer(context=self.ws)
         orig = cont.getPortletById(portlet_id)
-        copy = ptltool.movePortlet(orig, self.portal.workspaces, leave=1)
-        ws_cont = ptltool.getPortletContainer(context=self.portal.workspaces)
+        copy = ptltool.movePortlet(orig, self.ws.subws, leave=1)
+        ws_cont = ptltool.getPortletContainer(context=self.ws.subws)
         self.assertNotEqual(getattr(ws_cont, copy.getId(), None), None)
         self.assertNotEqual(getattr(cont, orig.getId(), None), None)
 
@@ -127,9 +127,9 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         # create a portlet at root of portal
         ptltool = self.ptltool
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
-                                            context=self.portal)
+                                           context=self.portal)
 
-        self.loginWsManager()
+        self.loginAsWsManager()
         
         # should not be able to move it 
         cont = ptltool.getPortletContainer(context=self.portal)

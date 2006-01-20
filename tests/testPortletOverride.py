@@ -17,6 +17,9 @@ class TestPortlets(CPSDefaultTestCase.CPSDefaultTestCase):
         self.portal.REQUEST.SESSION = {}
         self.ptltool = self.portal.portal_cpsportlets
 
+        self.ws = self.portal.workspaces
+        self.ws.invokeFactory('Workspace', 'subws')
+
     def beforeTearDown(self):
         self.logout()
 
@@ -32,7 +35,7 @@ class TestPortletOverride(TestPortlets):
     login_id = 'manager'
 
     def test_same_folder_same_slot(self):
-        context = self.portal.workspaces
+        context = self.ws
         slot = 'any slot'
         portlet1 = createTestPortlet(self, context=context, slot=slot)
         portlet2 = createTestPortlet(self, context=context, slot=slot)
@@ -46,8 +49,8 @@ class TestPortletOverride(TestPortlets):
 
     def test_different_folders_same_slot(self):
         ptltool = self.ptltool
-        context1 = self.portal.workspaces
-        context2 = self.portal.members
+        context1 = self.ws
+        context2 = self.ws.subws
         slot = 'any slot'
         portlet1 = createTestPortlet(self, context=context1, slot=slot)
         portlet2 = createTestPortlet(self, context=context2, slot=slot)
@@ -63,8 +66,8 @@ class TestPortletOverride(TestPortlets):
 
     def test_different_folders_different_slots(self):
         ptltool = self.ptltool
-        context1 = self.portal.workspaces
-        context2 = self.portal.members
+        context1 = self.ws
+        context2 = self.ws.subws
         slot1 = 'any slot'
         slot2 = 'another slot'
         portlet1 = createTestPortlet(self, context=context1, slot=slot1)
@@ -82,8 +85,8 @@ class TestPortletOverride(TestPortlets):
 
     def test_disable_override(self):
         ptltool = self.ptltool
-        context1 = self.portal.workspaces
-        context2 = self.portal.members
+        context1 = self.ws
+        context2 = self.ws.subws
         slot = 'any slot'
         portlet1 = createTestPortlet(self, context=context1, slot=slot)
         portlet2 = createTestPortlet(self, context=context2, slot=slot)

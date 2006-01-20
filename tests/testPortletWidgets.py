@@ -46,7 +46,7 @@ for ptype_id in ['Dummy Portlet',
                  'Image Portlet',
                  'Rotating Image Portlet',
                  'Navigation Portlet',
-                 'RSS Portlet',
+                 #'RSS Portlet', will fail if portal_rss is not present
                  #'Document Portlet', fails
                  'Text Portlet',
                  'Custom Portlet',
