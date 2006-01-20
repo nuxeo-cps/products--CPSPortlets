@@ -94,6 +94,7 @@
         cpsmcat nocall:here/translation_service;
         base_url utool/getBaseUrl;
         items python: context.getFolderContents(hide_folder=1);
+        format string:compact;
         no_form python:1;">
       <metal:block use-macro="here/content_lib_display_contents/macros/display_contents" />
     </tal:block>
