@@ -13,7 +13,6 @@ navigation_portlet_type = {
     'cps_is_searchable': False,
     'cps_proxy_type': '',
     'cps_display_as_document_in_listing': False,
-    'cps_is_portalbox': False,
     'schemas': ('portlet_common', 'navigation_portlet', 'common', 'metadata'),
     'layouts': ('portlet_common', 'navigation_portlet'),
     'layout_clusters': ('metadata:metadata',),
