@@ -25,6 +25,9 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         if '.cps_portlets' in self.portal.objectIds():
             self.portal.manage_delObjects(['.cps_portlets'])
 
+        self.ws = self.portal.workspaces
+        self.ws.invokeFactory('Workspace', 'subws')
+
     def beforeTearDown(self):
         self.logout()
 
@@ -48,11 +51,11 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         ptltool.createPortlet(ptype_id='Dummy Portlet',
                               slot='slot1')
         slots = ptltool.listPortletSlots()
-        self.assert_(slots == ['slot1'])
+        self.assertEquals(slots, ['slot1'])
         ptltool.createPortlet(ptype_id='Dummy Portlet',
                               slot='slot2')
         slots = ptltool.listPortletSlots()
-        self.assert_(slots == ['slot1', 'slot2'])
+        self.assertEquals(slots, ['slot1', 'slot2'])
 
     def test_listPortletSlots_local(self):
         ptltool = self.ptltool
@@ -60,12 +63,12 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
                               slot='slot1',
                               context=self.portal.workspaces)
         slots = ptltool.listPortletSlots()
-        self.assert_(slots == ['slot1'])
+        self.assertEquals(slots, ['slot1'])
         ptltool.createPortlet(ptype_id='Dummy Portlet',
                               slot='slot2',
                               context=self.portal.sections)
         slots = ptltool.listPortletSlots()
-        self.assert_(slots == ['slot1', 'slot2'])
+        self.assertEquals(slots, ['slot1', 'slot2'])
 
     def test_listPortletTypes(self):
         ptltool = self.ptltool
@@ -76,7 +79,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
     def test_getPortletContainerId(self):
         ptltool = self.ptltool
         container_id = ptltool.getPortletContainerId()
-        self.assert_(container_id == PORTLET_CONTAINER_ID)
+        self.assertEquals(container_id, PORTLET_CONTAINER_ID)
 
     def test_getPortlets_in_workspaces(self):
         ptltool = self.ptltool
@@ -86,23 +89,23 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
                                             context=self.portal.workspaces)
         ws_portlets = ptltool.getPortlets(context=self.portal.workspaces)
         ws_portlets_ids = [p.getId() for p in ws_portlets]
-        self.assert_(ws_portlets_ids == [portlet1_id, portlet2_id])
+        self.assertEquals(ws_portlets_ids, [portlet1_id, portlet2_id])
         s_portlets = ptltool.getPortlets(context=self.portal.sections)
-        self.assert_(s_portlets == [])
+        self.assertEquals(s_portlets, [])
 
-    def test_getPortlets_in_workspaces_members(self):
+    def test_getPortlets_in_sub_workspaces(self):
         ptltool = self.ptltool
-        members_folder = self.portal.workspaces.members
         portlet1_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
-                                            context=self.portal.workspaces)
+                                            context=self.ws)
         portlet2_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
-                                            context=members_folder)
-        ws_portlets = ptltool.getPortlets(context=self.portal.workspaces)
+                                            context=self.ws.subws)
+        ws_portlets = ptltool.getPortlets(context=self.ws)
         ws_portlets_ids = [p.getId() for p in ws_portlets]
-        self.assert_(ws_portlets_ids == [portlet1_id])
-        members_portlets = ptltool.getPortlets(context=members_folder)
-        members_portlets_ids = [p.getId() for p in members_portlets]
-        self.assert_(members_portlets_ids == [portlet1_id, portlet2_id])
+        self.assertEquals(ws_portlets_ids, [portlet1_id])
+
+        subws_portlets = ptltool.getPortlets(context=self.ws.subws)
+        subws_portlets_ids = [p.getId() for p in subws_portlets]
+        self.assertEquals(subws_portlets_ids, [portlet1_id, portlet2_id])
 
     def test_copyPortletPerm(self):
         # create a portlet at root of portal
@@ -139,14 +142,14 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         # XXX
         # To be sure the tests will be updated when the implementation will be
         # done
-        self.assertEqual(ptltool.notify_event('fake_event', None, {}), None)
+        self.assertEquals(ptltool.notify_event('fake_event', None, {}), None)
 
     def test_listPortletsInterestedInEvent(self):
         ptltool = self.ptltool
 
         # No portlets found already
         portlets = ptltool.listPortletsInterestedInEvent('fake_event', '', '')
-        self.assertEqual(portlets, [])
+        self.assertEquals(portlets, [])
 
         new_id = ptltool.createPortlet('Dummy Portlet')
         self.assertNotEqual(new_id, None)
@@ -155,18 +158,18 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         self.assertNotEqual(nportlet, None)
 
         res = nportlet.addEvent('fake_event')
-        self.assertEqual(res, 0)
+        self.assertEquals(res, 0)
 
         # No way to add two time the same event
         res = nportlet.addEvent('fake_event')
-        self.assertEqual(res, 1)
+        self.assertEquals(res, 1)
 
         events = nportlet.listEvents()
-        self.assertEqual(events, (('fake_event', (), ()),) )
+        self.assertEquals(events, (('fake_event', (), ()),) )
 
         # XXX to be implemented
-        self.assertEqual(nportlet.sendEvent(event_id='fake_event', folder_path='', portal_type=''), 0)
-        self.assertEqual(nportlet.sendEvent(event_id='fake_eventXXX', folder_path='', portal_type=''), 1)
+        self.assertEquals(nportlet.sendEvent(event_id='fake_event', folder_path='', portal_type=''), 0)
+        self.assertEquals(nportlet.sendEvent(event_id='fake_eventXXX', folder_path='', portal_type=''), 1)
 
     def test_FindCacheEntriesByUser(self):
         user = self.login_id
@@ -177,14 +180,15 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
                                            context=context)
         portlets_container = ptltool.getPortletContainer(context=context)
         portlet = portlets_container.getPortletById(portlet_id)
-        self.assert_(ptltool.findCacheEntriesByUser(user) == [])
+        self.assertEquals(ptltool.findCacheEntriesByUser(user), [])
         # clean the cache
         cache = ptltool.getPortletCache()
         cache.invalidate()
         # render the portlet
         portlet.render_cache()
         entries = ptltool.findCacheEntriesByUser(user)
-        self.assert_(entries == [(portlet.getPhysicalPath(), 'user_%s' % user)])
+        self.assertEquals(entries, 
+                          [(portlet.getPhysicalPath(), 'user_%s' % user)])
 
     def test_invalidateCacheEntriesByUser(self):
         user = self.login_id
@@ -199,17 +203,17 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         # clean the cache
         cache = ptltool.getPortletCache()
         cache.invalidate()
-        self.assert_(ptltool.findCacheEntriesByUser(user) == [])
+        self.assertEquals(ptltool.findCacheEntriesByUser(user), [])
         # render the portlet
         portlet.render_cache()
         entries = ptltool.findCacheEntriesByUser(user)
-        self.assert_(entries == [(portlet_path, 'user_%s' % user)])
+        self.assertEquals(entries, [(portlet_path, 'user_%s' % user)])
         # invalidate the entry for another user
         ptltool.invalidateCacheEntriesByUser('dummy user')
         self.assert_(ptltool.findCacheEntriesByUser(user) != [])
         # invalidate the entry for this user
         ptltool.invalidateCacheEntriesByUser(user)
-        self.assert_(ptltool.findCacheEntriesByUser(user) == [])
+        self.assertEquals(ptltool.findCacheEntriesByUser(user), [])
 
     def test_invalidateCacheEntriesById(self):
         user = self.login_id
@@ -229,7 +233,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         self.assert_(len(cache.getEntries()) > 0)
         # invalidate the entry
         ptltool.invalidateCacheEntriesById(portlet_path)
-        self.assert_(len(cache.getEntries()) == 0)
+        self.assertEquals(len(cache.getEntries()), 0)
 
     def test_renderIcon(self):
         ptltool = self.ptltool
@@ -237,17 +241,17 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         # first rendering: storing the result in the cache
         res = ptltool.renderIcon('Dummy Portlet', '/cps/', 'dummy portlet')
         expected = '<img src="/cps/portlet_icon.png" width="16" height="16" alt="dummy portlet" />'
-        self.assert_(res == expected)
+        self.assertEquals(res, expected)
         # fetching the entry from the cache
         res = ptltool.renderIcon('Dummy Portlet', '/cps/', 'dummy portlet')
-        self.assert_(res == expected)
+        self.assertEquals(res, expected)
         # default parameters
         res = ptltool.renderIcon('Dummy Portlet')
         expected = '<img src="portlet_icon.png" width="16" height="16" alt="" />'
-        self.assert_(res == expected)
+        self.assertEquals(res, expected)
         # unknown type
         res = ptltool.renderIcon('Unknown type for testing', '/', '')
-        self.assert_(res == None)
+        self.assertEquals(res, None)
 
     def test_portlet_eventIds_indexes(self):
         ptltool = self.ptltool
@@ -257,14 +261,14 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         self.assert_('eventIds' in cat.indexes())
 
         # No portlet shows up
-        self.assertEqual(
+        self.assertEquals(
             len(ptltool.listAllPortlets(event_ids=['fake_event'])), 0)
 
         # Create a portlet interested about one (1) event
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet')
         portlet = ptltool.getPortletById(portlet_id)
         portlet.addEvent(event_ids=('fake_event',))
-        self.assertEqual(['fake_event'], portlet.eventIds())
+        self.assertEquals(['fake_event'], portlet.eventIds())
 
         # record within the catalog
         self.assert_(has_path(cat, "/portal/portal_cpsportlets/%s"%portlet_id))
@@ -272,61 +276,61 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         self.assert_(['fake_event'] in cat._catalog.data[rid])
 
         # Test the queries
-        self.assertEqual(len(ptltool.listAllPortlets()), 1)
+        self.assertEquals(len(ptltool.listAllPortlets()), 1)
 
         brains = cat(portal_type=ptltool.listPortletTypes())
-        self.assertEqual(len(brains), 1)
+        self.assertEquals(len(brains), 1)
 
         brains = cat(portal_type=ptltool.listPortletTypes(),
                      eventIds=['fake_event'])
-        self.assertEqual(len(brains), 1)
+        self.assertEquals(len(brains), 1)
 
         # Test queries from the portlets tool API
-        self.assertEqual(
+        self.assertEquals(
             len(ptltool.listAllPortlets(event_ids=['fake_event'])), 1)
-        self.assertEqual(
+        self.assertEquals(
             len(ptltool.listAllPortlets()), 1)
-        self.assertEqual(len(ptltool.listAllPortlets(event_ids=['xxx'])), 0)
+        self.assertEquals(len(ptltool.listAllPortlets(event_ids=['xxx'])), 0)
 
         # Add another event on the portlet.
         portlet.addEvent(event_ids=('fake_event2',))
-        self.assertEqual(['fake_event', 'fake_event2'], portlet.eventIds())
+        self.assertEquals(['fake_event', 'fake_event2'], portlet.eventIds())
 
         # Test the queries
-        self.assertEqual(len(ptltool.listAllPortlets()), 1)
+        self.assertEquals(len(ptltool.listAllPortlets()), 1)
 
         brains = cat(portal_type=ptltool.listPortletTypes())
-        self.assertEqual(len(brains), 1)
+        self.assertEquals(len(brains), 1)
 
         brains = cat(portal_type=ptltool.listPortletTypes(),
                      eventIds=['fake_event'])
-        self.assertEqual(len(brains), 1)
+        self.assertEquals(len(brains), 1)
 
         brains = cat(portal_type=ptltool.listPortletTypes(),
                      eventIds=['fake_event2'])
-        self.assertEqual(len(brains), 1)
+        self.assertEquals(len(brains), 1)
 
         brains = cat(portal_type=ptltool.listPortletTypes(),
                      eventIds=['fake_event', 'fake_event2'])
-        self.assertEqual(len(brains), 1)
+        self.assertEquals(len(brains), 1)
 
         brains = cat(portal_type=ptltool.listPortletTypes(),
                      eventIds=['fake_event2', 'fake_event'])
-        self.assertEqual(len(brains), 1)
+        self.assertEquals(len(brains), 1)
 
         # Test queries from the portlets tool API
-        self.assertEqual(
+        self.assertEquals(
             len(ptltool.listAllPortlets(event_ids=['fake_event'])), 1)
-        self.assertEqual(
+        self.assertEquals(
             len(ptltool.listAllPortlets(event_ids=['fake_event2'])), 1)
-        self.assertEqual(
+        self.assertEquals(
             len(ptltool.listAllPortlets(
             event_ids=['fake_event', 'fake_event2'])), 1)
-        self.assertEqual(
+        self.assertEquals(
             len(ptltool.listAllPortlets()), 1)
-        self.assertEqual(len(ptltool.listAllPortlets(event_ids=['xxx'])), 0)
-        self.assertEqual(len(ptltool.listAllPortlets(event_ids=['fake_'])), 0)
-        self.assertEqual(len(ptltool.listAllPortlets(event_ids=['_event'])), 0)
+        self.assertEquals(len(ptltool.listAllPortlets(event_ids=['xxx'])), 0)
+        self.assertEquals(len(ptltool.listAllPortlets(event_ids=['fake_'])), 0)
+        self.assertEquals(len(ptltool.listAllPortlets(event_ids=['_event'])), 0)
 
 def test_suite():
     suite = unittest.TestSuite()

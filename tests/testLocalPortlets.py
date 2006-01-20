@@ -172,7 +172,7 @@ class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
 
     def test_createPortlet(self):
         ptltool = self.ptltool
-        working_context = self.portal.workspaces.members.member
+        working_context = self.portal.members.member
         container_id = ptltool.getPortletContainerId()
         self.assert_(len(ptltool.items()) == 0)
         portlets = ptltool.getPortlets(context=working_context)
@@ -185,7 +185,7 @@ class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
 
     def test_render(self):
         ptltool = self.ptltool
-        working_context = self.portal.workspaces.members.member
+        working_context = self.portal.members.member
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet', context=working_context)
         portlets_container = ptltool.getPortletContainer(context=working_context)
         self.assertEqual(portlets_container in working_context.objectValues(), 1)
@@ -195,7 +195,7 @@ class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
 
     def test_isCPSPortlet(self):
         ptltool = self.ptltool
-        working_context = self.portal.workspaces.members.member
+        working_context = self.portal.members.member
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet', context=working_context)
         portlets_container = ptltool.getPortletContainer(context=working_context)
         self.assertEqual(portlets_container in working_context.objectValues(), 1)
@@ -205,7 +205,7 @@ class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
 
     def test_createPortlet_with_slot(self):
         ptltool = self.ptltool
-        working_context = self.portal.workspaces.members.member
+        working_context = self.portal.members.member
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
                                            context=working_context,
                                            slot='any slot')
@@ -217,7 +217,7 @@ class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
 
     def test_createPortlet_with_order(self):
         ptltool = self.ptltool
-        working_context = self.portal.workspaces.members.member
+        working_context = self.portal.members.member
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
                                            context=working_context,
                                            order=1)
@@ -229,7 +229,7 @@ class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
 
     def test_getSlot(self):
         ptltool = self.ptltool
-        working_context = self.portal.workspaces.members.member
+        working_context = self.portal.members.member
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
                                            context=working_context,
                                            slot='any slot')
@@ -241,7 +241,7 @@ class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
 
     def test_setSlot(self):
         ptltool = self.ptltool
-        working_context = self.portal.workspaces.members.member
+        working_context = self.portal.members.member
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet', context=working_context)
         portlets_container = ptltool.getPortletContainer(context=working_context)
         self.assertEqual(portlets_container in working_context.objectValues(), 1)
@@ -252,7 +252,7 @@ class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
 
     def test_getOrder(self):
         ptltool = self.ptltool
-        working_context = self.portal.workspaces.members.member
+        working_context = self.portal.members.member
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
                                            context=working_context,
                                            order=3)
@@ -264,7 +264,7 @@ class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
 
     def test_setOrder(self):
         ptltool = self.ptltool
-        working_context = self.portal.workspaces.members.member
+        working_context = self.portal.members.member
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
                                            context=working_context)
         portlets_container = ptltool.getPortletContainer(context=working_context)
@@ -276,7 +276,7 @@ class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
 
     def test_isLocal(self):
         ptltool = self.ptltool
-        working_context = self.portal.workspaces.members.member
+        working_context = self.portal.members.member
         portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
                                            context=working_context)
         portlets_container = ptltool.getPortletContainer(context=working_context)
