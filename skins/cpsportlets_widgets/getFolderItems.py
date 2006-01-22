@@ -72,9 +72,6 @@ def getContent(object):
 for object in bmf.contentValues():
 
     object_id = object.getId()
-    # remove objects with ids beginning with '.'
-    if object_id.startswith('.') or object_id.startswith('portal_'):
-        continue
     # filter out objects that cannot be viewed
     if not checkPerm('View', object):
         continue
