@@ -17,6 +17,7 @@ Bug fixes:
 - Removed dependency to CPSBoxes property cps_is_portalbox in portlets types
   definitions
 - 'path' was undefined in the Content Portlet when syndication was selected
+- no longer raise an unauthorized exception in getFolderItems().
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Removed obsolete widget types registration.

@@ -69,7 +69,8 @@ def getContent(object):
         pass
     return content
 
-for object in bmf.objectValues():
+for object in bmf.contentValues():
+
     object_id = object.getId()
     # remove objects with ids beginning with '.'
     if object_id.startswith('.') or object_id.startswith('portal_'):
