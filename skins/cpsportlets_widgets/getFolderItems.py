@@ -161,6 +161,7 @@ for object in bmf.contentValues():
         {'id': object_id,
          'url': object_url,
          'title': title,
+         'content': content,
          'description': description,
          'icon_tag': renderIcon(ptype, base_url, ''),
          'metadata': metadata_info,
