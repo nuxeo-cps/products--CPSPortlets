@@ -18,6 +18,7 @@ Bug fixes:
   definitions
 - 'path' was undefined in the Content Portlet when syndication was selected
 - no longer raise an unauthorized exception in getFolderItems().
+- the portlet's cache entries where not invalidated when a portlet is edited.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Removed obsolete widget types registration.
