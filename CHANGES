@@ -3,42 +3,10 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
-- #1077 the portlet guard form is available in the portlet editor
-  (see the "Guard" link)
-- removed the portlet metadata edit form
-- the navigation portlet can be used as a drop area from the
-  folder_contents view to move elements
+-
 Bug fixes:
 ~~~~~~~~~~
-- #1078 to copy a portlet, user needed to have ManagePortlets perm at source
-- #1197 added support for FckEditor in the portlet edit form.
-- #1211 fixed some typos that caused the content portlet to crash.
-- #1274 fixed the rendering of the portlet edit form
-- Removed dependency to CPSBoxes property cps_is_portalbox in portlets types
-  definitions
-- 'path' was undefined in the Content Portlet when syndication was selected
-- no longer raise an unauthorized exception in getFolderItems().
-- the portlet's cache entries where not invalidated when a portlet is edited.
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- Removed obsolete widget types registration.
-- Removed usless UniqueObject inheritance on PortletsCatalogTool
-- #1077 more robust evalution of TAL expressions, for form validation
-  and during the rendering of the page.
-- better granularity for the portlet visibility: added a 'guard_check' option
-  independent of 'visibility_check'. In the editor the guard check is disabled
-  in WYSIWYG and in "Portlet slots" mode, the visibility check and the guard
-  check are both disabled.
-- defined a 'rpath_slash' variable in the portlet guard's expression context
-  that contains the content path relative to the portal ending with a '/'
-- added a migration script for a boxless setup
-- added information about the selected item in getFolderItems
-- Added ignore_events flag on portlets tool.
-- #1204 Added a 'protocol' cache parameter to discriminate between http://
-  and https://
-- CPS css_slot was renamed style_slot to comply with later CMF/Zope 3 standard.
-- added GenericSetup support for portlet guards
-- #561 Navigation Portlet: added detailed folder contents display mode
-- #1166 Navigation Portlet: added optional syndication buttons (RSS/ATOM)
-- added a "back" button on the portlet guard form
-- getFolderItems() also returns the item's actual content.
+-
