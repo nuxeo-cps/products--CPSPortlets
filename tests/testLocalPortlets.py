@@ -154,7 +154,7 @@ class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
     def afterSetUp(self):
         #create cps test user
         for u in ('member',):
-            self.portal.acl_users._addUser(name=u, password=u, confirm=u,
+            self.portal.acl_users._doAddUser(name=u, password=u, confirm=u,
                 roles=('Member',), domains=None)
 
         if self.login_id:
