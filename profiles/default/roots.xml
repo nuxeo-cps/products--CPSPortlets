@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <roots>
-  <root name="sections" local_workflows="sections_workflows"/>
-  <root name="workspaces" local_workflows="workspaces_workflows"/>
-  <root name="members" local_workflows="workspaces_workflows"/>
+  <root name="sections" 
+        local_workflows="sections_workflows"
+        rolemap="sections_rolemap"/>
+  <root name="workspaces" 
+        local_workflows="workspaces_workflows"
+        rolemap="workspaces_rolemap"/>
+  <root name="members" 
+        local_workflows="workspaces_workflows"
+        rolemap="workspaces_rolemap"/>
 </roots>
