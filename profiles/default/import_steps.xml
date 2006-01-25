@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<import-steps>
+ <import-step id="portlets" version="20051230-01"
+              handler="Products.CPSPortlets.exportimport.importPortletTool"
+              title="Portlet Tool">
+  <dependency step="toolset"/>
+  <dependency step="typeinfo"/>
+  <dependency step="schemas"/>
+  Import portlet tool and portlets.
+ </import-step>
+</import-steps>

@@ -29,6 +29,8 @@ from Products.CMFCore.permissions import AddPortalContent
 
 from Products.CPSCore.interfaces import ICPSSite
 
+from Products.GenericSetup import profile_registry
+from Products.GenericSetup import EXTENSION
 
 import CPSPortletsPermissions
 import FlexibleTypeInformationPatch
@@ -80,3 +82,12 @@ def initialize(registrar):
         'CPS Portlets Tool',
         tools=tools,
         icon='tool.png',).initialize(registrar)
+
+    profile_registry.registerProfile(
+        'default',
+        'CPS Portlets',
+        "Portlets product for CPS.",
+        'profiles/default',
+        'CPSPortlets',
+        EXTENSION,
+        for_=ICPSSite)
