@@ -8,6 +8,7 @@
                    context nocall:options/context_obj|here;
                    utool nocall:here/portal_url;
                    context_url python: utool.getRelativeUrl(context);
+                   base_url python: request.get('cpsskins_base_url');
                    breadcrumbsItems python: context.getBreadcrumbsItems(context=context, display_hidden_folders=display_hidden_folders, first_item=first_item, display_site_root=display_site_root)">
   <form tal:condition="python: display == 'dropdown_list'"
   method="get" action="cpsportlet_url_redirect"
