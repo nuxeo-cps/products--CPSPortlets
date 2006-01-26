@@ -115,7 +115,7 @@ for root_uid in root_uids:
         if contextual:
             if depth == 0 and not selected:
                 continue
-            if not rpath.startswith(context_rpath):
+            if not rpath.startswith(context_rpath + '/'):
                 continue
 
 
