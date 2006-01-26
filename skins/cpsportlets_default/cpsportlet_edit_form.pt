@@ -68,7 +68,7 @@
       </tal:block>
     </h1>
 
-    <form action="cpsportlet_edit" method="post" id="editForm"
+    <form action="cpsdocument_edit" method="post" id="editForm"
           enctype="multipart/form-data">
 
       <!-- Form redirection -->

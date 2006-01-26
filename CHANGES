@@ -4,9 +4,16 @@ Requires:
 New features:
 ~~~~~~~~~~~~~
 -
+- removed the portlet metadata edit form
+- the navigation portlet can be used as a drop area from the
+  folder_contents view to move elements
 Bug fixes:
 ~~~~~~~~~~
 -
+- #1274 fixed the rendering of the portlet edit form
+- Removed dependency to CPSBoxes property cps_is_portalbox in portlets types
+  definitions
+- 'path' was undefined in the Content Portlet when syndication was selected
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added extension profile

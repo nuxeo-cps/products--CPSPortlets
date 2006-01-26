@@ -8,7 +8,11 @@
                   context nocall:options/context_obj;
                   contextual_search params/contextual;
                   advanced_search_form params/advanced;
-                  contextualSearch request/folder_prefix|nothing"
+                  contextualSearch request/folder_prefix|nothing;
+                  cpsmcat nocall:here/translation_service;
+                  value_search
+                    request/SearchableText|python:cpsmcat('button_search');
+                  base_url python: request.get('cpsskins_base_url');"
  method="get" action=""
  tal:attributes="action search_script"
  onsubmit="return checkEmptySearch(this)">
@@ -34,13 +38,17 @@
       </p>
     </tal:block>
   </div>
-  <input id="searchGadget" type="text" name="SearchableText" size="20"
-   value="" tal:attributes="value request/SearchableText|nothing" />
-  <input class="context searchButton" type="submit" value="button_search"
-   i18n:attributes="value" />
+  <img tal:attributes="src
+    string:${base_url}cpsskins_images/portlet_search_icon.png;
+    alt value_search" />
+  <input id="searchGadget" type="text" name="SearchableText" size="15"
+    value="" tal:attributes="value value_search"
+    onclick="this.value='';"/>
+  <input class="context searchButton" type="submit" value="button_ok"
+    i18n:attributes="value" />
   <div>
-    <a href="" tal:condition="advanced_search_link" 
+    <a href="" tal:condition="advanced_search_link"
     i18n:translate="cpsportlets_advanced_search"
-    tal:attributes="href advanced_search_form">Advanced search</a>
+    tal:attributes="href string:${here/portal_url}/advanced_search_form">Advanced search</a>
   </div>
 </form>

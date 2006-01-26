@@ -16,7 +16,7 @@
        tal:attributes="href action/url;
                        class python:show_icons and icon_tag and 'noicon' or None">
          <tal:block condition="show_icons"
-          content="structure icon_tag" />
+           content="structure icon_tag"/>
          <tal:block i18n:translate="" content="action/title" />
        </a></li>
     </ul>

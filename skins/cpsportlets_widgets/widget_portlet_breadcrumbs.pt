@@ -22,15 +22,20 @@
       </tal:block>
     </select>
   </form>
-  <tal:block condition="python: display == 'horizontal_trail'"
-  repeat="item breadcrumbsItems">
-    <tal:block define="last_item repeat/item/end">
-      <strong tal:omit-tag="python: not (highlight_last_item and last_item)">
-      <a href="" tal:attributes="href item/url"
-       tal:content="python: item['title']" />
-      </strong>
-      <tal:block condition="not:last_item"
-       content="structure string:&gt;" />
+  <tal:block condition="python: display == 'horizontal_trail'">
+    <!-- the icon should be made optional, e.g. with a "show icon" option -->
+    <img tal:attributes="src
+      string:${base_url}cpsskins_images/UpFolder_icon.png;
+      alt string:Up Folder">
+    <tal:block repeat="item breadcrumbsItems">
+      <tal:block define="last_item repeat/item/end">
+        <strong tal:omit-tag="python: not (highlight_last_item and last_item)">
+        <a href="" tal:attributes="href item/url"
+         tal:content="python: item['title']" />
+        </strong>
+        <tal:block condition="not:last_item"
+         content="structure string:&gt;" />
+      </tal:block>
     </tal:block>
   </tal:block>
 </tal:block>
