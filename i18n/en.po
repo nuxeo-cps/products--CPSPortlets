@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2006-01-03 14:47default\n"
+"POT-Creation-Date: 2006-01-17 13:50default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -94,7 +94,7 @@ msgstr "The context's relative path ending with a slash (e.g. 'sections/')"
 msgid "cpsportlet_guard_tales_user"
 msgstr "The user object"
 
-#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
+#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Advanced search"
@@ -501,6 +501,9 @@ msgstr "Site map"
 
 msgid "cpsportlets_nav_display_extended_site_map_label"
 msgstr "Extended site map*"
+
+msgid "cpsportlets_nav_display_expandable_tree_menu_label"
+msgstr "Secondary navigation menu"
 
 msgid "portal_type_CustomPortlet_description"
 msgstr "Displays a rendered method (.zpt, .py, etc.)"

@@ -347,6 +347,9 @@ msgstr ""
 msgid "cpsportlets_nav_display_extended_site_map_label"
 msgstr ""
 
+msgid "cpsportlets_nav_display_expandable_tree_menu_label"
+msgstr ""
+
 msgid "portal_type_CustomPortlet_description"
 msgstr ""
 

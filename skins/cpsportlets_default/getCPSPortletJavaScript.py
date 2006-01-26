@@ -12,7 +12,7 @@ javascript = {
     'Language Portlet': '',
     'Image Portlet': '',
     'Rotating Image Portlet': 'widget_portlet_rotating_image_js',
-    'Navigation Portlet': '',
+    'Navigation Portlet': 'widget_portlet_navigation_js',
     'Document Portlet': '',
     'RSS Portlet': '',
 }

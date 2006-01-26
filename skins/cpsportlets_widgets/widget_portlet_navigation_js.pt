@@ -1,0 +1,24 @@
+
+function showBranch(branch){
+  var objBranch = document.getElementById(branch).style;
+  if(objBranch.display!="none")
+    objBranch.display="none";
+  else
+    objBranch.display="block";
+}
+
+function swapFolder(img, toggle_plus, toggle_minus){
+  objImg = document.getElementById(img);
+  if(objImg){
+    indexPlus = objImg.src.indexOf(toggle_plus);
+    if(indexPlus > -1){
+      srcBase = objImg.src.substring(0,indexPlus);
+      objImg.src = srcBase + toggle_minus;
+    }
+    else{
+      indexMinus = objImg.src.indexOf(toggle_minus);
+      srcBase = objImg.src.substring(0,indexMinus);
+      objImg.src = srcBase + toggle_plus;
+    }
+  }
+}
