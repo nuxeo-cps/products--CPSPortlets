@@ -189,7 +189,7 @@ function swapFolder(img, toggle_plus, toggle_minus){
       <ul class="cpsskinsMenu">
         <li tal:repeat="item folderItems"
         tal:attributes="class python: item['selected'] and 'selected' or None">
-          <div class="droppable-in" tal:attributes="id item/url">
+          <div class="droppable-in" tal:attributes="id python:'url:%s' % item['url'].replace('/', '.')">
              <a tal:define="style string:margin-left:${item/depth}em"
                  tal:condition="item/visible"
                  tal:attributes="style style; href item/url;
@@ -263,7 +263,8 @@ function swapFolder(img, toggle_plus, toggle_minus){
            <ul style="padding: 0px">
              <li tal:attributes="class python:
                  node['selected'] and 'selected' or None">
-               <div class="droppable-in" tal:attributes="id node/url">
+               <div class="droppable-in" tal:attributes="id python:'url:%s'
+                                         % node['url'].replace('/', '.')">
                <a tal:condition="node/visible"
                  tal:attributes="href node/url;
                  class linkclass">
