@@ -78,8 +78,10 @@
           <div class="toggle_icon">
             <img tal:attributes="
                 src string:${base_url}cpsskins_images/${toggle_icon};
-              id folder;onclick string:showBranch('${sub_branch}');;
-                swapFolder('${folder}', '${toggle_plus}', '${toggle_minus}');;"
+                id folder;
+                alt toggle_icon;
+                onclick string:showBranch('${sub_branch}');;
+                  swapFolder('${folder}', '${toggle_plus}', '${toggle_minus}');;"
                 tal:condition="children_branch"/>
           </div>
           <ul tal:attributes="style string:padding: 0px">

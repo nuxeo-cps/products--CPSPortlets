@@ -250,8 +250,9 @@ function swapFolder(img, toggle_plus, toggle_minus){
                 <img tal:attributes="src
                     string:${base_url}cpsskins_images/${toggle_icon};
                 id folder;
+                alt toggle_icon;
                 onclick string:showBranch('${branch}');;
-                swapFolder('${folder}', '${toggle_plus}', '${toggle_minus}');;"
+                  swapFolder('${folder}', '${toggle_plus}', '${toggle_minus}');;"
                 tal:condition="python:children_branch" />
                 <div tal:condition="python:
                     (not children_branch) and root_has_nephew"
