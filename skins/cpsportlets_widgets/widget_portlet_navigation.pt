@@ -1,4 +1,4 @@
-<script>
+<script type="text/javascript">
 function showBranch(branch){
   var objBranch = document.getElementById(branch).style;
   if(objBranch.display!="none")
