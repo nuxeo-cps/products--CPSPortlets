@@ -72,26 +72,28 @@
         children_branch python:context.getNodeChildren(folderItems, node);
         branch_selected_heir python:context.hasSelectedHeir(folderItems, node);
         branch_class python:test(children_branch, 'tree_node', 'tree_leaf');
-        toggle_icon python:test(branch_selected_heir or node['selected'], 
+        toggle_icon python:test(branch_selected_heir or node['selected'],
           toggle_minus, toggle_plus);" tal:attributes="class branch_class">
         <li>
           <div class="toggle_icon">
             <img tal:attributes="
                 src string:${base_url}cpsskins_images/${toggle_icon};
               id folder;onclick string:showBranch('${sub_branch}');;
-                swapFolder('${folder}', '${toggle_plus}', '${toggle_minus}');;" 
+                swapFolder('${folder}', '${toggle_plus}', '${toggle_minus}');;"
                 tal:condition="children_branch"/>
           </div>
           <ul tal:attributes="style string:padding: 0px">
-            <li tal:attributes="class python: 
+            <li tal:attributes="class python:
                 node['selected'] and 'selected' or None">
-              <a tal:condition="node/visible"
-                tal:attributes="href node/url;
-                class linkclass">
-                  <tal:block condition="show_icons"
-                    content="structure node/icon_tag" />
-                  <tal:block content="node/title" />
-              </a>
+              <div class="droppable-in" tal:attributes="id node/url">
+                <a tal:condition="node/visible"
+                    tal:attributes="href node/url;
+                    class linkclass">
+                    <tal:block condition="show_icons"
+                        content="structure node/icon_tag" />
+                    <tal:block content="node/title" />
+                </a>
+              </div>
             </li>
           </ul>
           <metal:block use-macro="here/cpsportlet_macros/macros/view_tree" />

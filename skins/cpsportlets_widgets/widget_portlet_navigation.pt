@@ -1,3 +1,30 @@
+<script>
+function showBranch(branch){
+  var objBranch = document.getElementById(branch).style;
+  if(objBranch.display!="none")
+    objBranch.display="none";
+  else
+    objBranch.display="block";
+}
+
+function swapFolder(img, toggle_plus, toggle_minus){
+  objImg = document.getElementById(img);
+  if(objImg){
+    indexPlus = objImg.src.indexOf(toggle_plus);
+    if(indexPlus > -1){
+      srcBase = objImg.src.substring(0,indexPlus);
+      objImg.src = srcBase + toggle_minus;
+    }
+    else{
+      indexMinus = objImg.src.indexOf(toggle_minus);
+      srcBase = objImg.src.substring(0,indexMinus);
+      objImg.src = srcBase + toggle_plus;
+    }
+  }
+}
+
+</script>
+
 <tal:block define="utool nocall:here/portal_url;
                    ds options/datastructure;
                    display ds/display;
@@ -202,7 +229,7 @@
              base_url python: request.get('cpsskins_base_url');
              tree_roots python:[item for item in folderItems
                if item.get('level') == 0];
-             root_has_nephew python:[1 for item in tree_roots if 
+             root_has_nephew python:[1 for item in tree_roots if
                context.getNodeChildren(folderItems, item)];
              toggle_plus string:toggle_plus.png;
              toggle_minus string:toggle_minus.png;"
@@ -217,24 +244,25 @@
          toggle_icon python:test(selected_heir or node['selected'],
            toggle_minus, toggle_plus);"
          class="cpsskinsMenu">
-         <li tal:define="children_branch 
+         <li tal:define="children_branch
              python:context.getNodeChildren(folderItems, node);">
-           <div class="toggle_icon">
-             <img tal:attributes="src 
-                 string:${base_url}cpsskins_images/${toggle_icon};
-               id folder;
-               onclick string:showBranch('${branch}');;
-               swapFolder('${folder}', '${toggle_plus}', '${toggle_minus}');;"
-               tal:condition="python:children_branch" />
-            <div tal:condition="python:
-                (not children_branch) and root_has_nephew"
-              class="missing_toggle">
-              &nbsp;
+              <div class="toggle_icon">
+                <img tal:attributes="src
+                    string:${base_url}cpsskins_images/${toggle_icon};
+                id folder;
+                onclick string:showBranch('${branch}');;
+                swapFolder('${folder}', '${toggle_plus}', '${toggle_minus}');;"
+                tal:condition="python:children_branch" />
+                <div tal:condition="python:
+                    (not children_branch) and root_has_nephew"
+                class="missing_toggle">
+                &nbsp;
+                </div>
             </div>
-           </div>
            <ul style="padding: 0px">
-             <li tal:attributes="class python: 
+             <li tal:attributes="class python:
                  node['selected'] and 'selected' or None">
+               <div class="droppable-in" tal:attributes="id node/url">
                <a tal:condition="node/visible"
                  tal:attributes="href node/url;
                  class linkclass">
@@ -242,6 +270,7 @@
                    content="structure node/icon_tag" />
                  <tal:block content="node/title" />
                </a>
+               </div>
              </li>
            </ul>
            <metal:block use-macro="here/cpsportlet_macros/macros/view_tree" />
