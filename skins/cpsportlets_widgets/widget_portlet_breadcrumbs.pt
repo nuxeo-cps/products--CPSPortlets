@@ -27,7 +27,7 @@
     <!-- the icon should be made optional, e.g. with a "show icon" option -->
     <img tal:attributes="src
       string:${base_url}cpsskins_images/UpFolder_icon.png;
-      alt string:Up Folder">
+      alt string:Up Folder" />
     <tal:block repeat="item breadcrumbsItems">
       <tal:block define="last_item repeat/item/end">
         <strong tal:omit-tag="python: not (highlight_last_item and last_item)">
