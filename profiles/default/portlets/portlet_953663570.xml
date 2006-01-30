@@ -36,7 +36,7 @@
  <f id="slot_override" v="0"/>
  <f
     id="text">This site is powered by &lt;a href="http://www.nuxeo.com"&gt;Nuxeo&lt;/a&gt; with &lt;a href="http://www.cps-project.org"&gt;CPS&lt;/a&gt; including &lt;a href="http://www.medic.chalmers.se/~jmo/CPS/"&gt;CPSSkins&lt;/a&gt;.
-     CPS and its design is Copyright &copy; 2002-2006 by &lt;a href="http://www.nuxeo.com/nuxeo"&gt;Nuxeo SAS&lt;/a&gt;. CPSSkins is Copyright &copy; 2003-2006 by Jean-Marc Orliaguet.</f>
+     CPS and its design is Copyright &amp;copy; 2002-2006 by &lt;a href="http://www.nuxeo.com/nuxeo"&gt;Nuxeo SAS&lt;/a&gt;. CPSSkins is Copyright &amp;copy; 2003-2006 by Jean-Marc Orliaguet.</f>
  <f id="text_format" v="normal"/>
  <f id="text_position" v="html"/>
  <f id="visibility_range" v="0-0"/>
