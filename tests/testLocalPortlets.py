@@ -30,13 +30,13 @@ class TestLocalPortletsAsRoot(TestPortlets):
         ptltool = self.ptltool
         working_context = self.portal.workspaces
         container_id = ptltool.getPortletContainerId()
-        self.assert_(len(ptltool.items()) == 0)
+        len_portlet_before = len(ptltool.items())
         portlets = ptltool.getPortlets(context=working_context)
-        self.assertEqual(len(portlets), 0)
+        len_before = len(portlets) 
         ptltool.createPortlet(ptype_id='Dummy Portlet', context=working_context)
-        self.assert_(len(ptltool.items()) == 0)
+        self.assert_(len(ptltool.items()) == len_portlet_before)
         portlets = ptltool.getPortlets(context=working_context)
-        self.assertEqual(len(portlets), 1)
+        self.assertEqual(len(portlets), len_before + 1)
         self.assertEqual(container_id in working_context.objectIds(), 1)
 
     def test_render(self):
@@ -174,13 +174,13 @@ class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
         ptltool = self.ptltool
         working_context = self.portal.members.member
         container_id = ptltool.getPortletContainerId()
-        self.assert_(len(ptltool.items()) == 0)
+        len_before = len(ptltool.items())
         portlets = ptltool.getPortlets(context=working_context)
-        self.assertEqual(len(portlets), 0)
+        len_portlet_before = len(portlets)
         ptltool.createPortlet(ptype_id='Dummy Portlet', context=working_context)
-        self.assert_(len(ptltool.items()) == 0)
+        self.assert_(len(ptltool.items()) == len_before)
         portlets = ptltool.getPortlets(context=working_context)
-        self.assertEqual(len(portlets), 1)
+        self.assertEqual(len(portlets), len_portlet_before + 1)
         self.assertEqual(container_id in working_context.objectIds(), 1)
 
     def test_render(self):

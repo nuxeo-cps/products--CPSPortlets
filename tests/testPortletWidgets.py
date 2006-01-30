@@ -26,9 +26,9 @@ class TestPortlet(TestPortlets):
     def testPortlet(self):
         ptype_id = self.ptype_id
         ptltool = self.ptltool
-        self.assertEquals(len(ptltool.items()), 0)
+        len_before = len(ptltool.items())
         portlet_id = ptltool.createPortlet(ptype_id)
-        self.assertEquals(len(ptltool.items()), 1)
+        self.assertEquals(len(ptltool.items()), len_before+1)
         portlet = ptltool[portlet_id]
         portlet.render(context_obj=self.portal, portlet=portlet)
         self.assert_(portlet.render_js() is not None)
@@ -60,9 +60,9 @@ class TestCustomPortletWidget(TestPortlets):
     def test_without_rendering_method(self):
         ptype_id = 'Custom Portlet'
         ptltool = self.ptltool
-        self.assertEquals(len(ptltool.items()), 0)
+        len_before = len(ptltool.items())
         portlet_id = ptltool.createPortlet(ptype_id)
-        self.assertEquals(len(ptltool.items()), 1)
+        self.assertEquals(len(ptltool.items()), len_before + 1)
         portlet = ptltool[portlet_id]
         rendering = portlet.render(context_obj=self.portal, portlet=portlet)
         self.assertEquals('Unknown render method <cite></cite>.',
@@ -76,9 +76,9 @@ class TestCustomPortletWidget(TestPortlets):
 
         ptype_id = 'Custom Portlet'
         ptltool = self.ptltool
-        self.assertEquals(len(ptltool.items()), 0)
+        len_before = len(ptltool.items())
         portlet_id = ptltool.createPortlet(ptype_id)
-        self.assertEquals(len(ptltool.items()), 1)
+        self.assertEquals(len(ptltool.items()), len_before + 1)
         portlet = ptltool[portlet_id]
         setattr(self.portal, 'portlet_meth', meth)
         portlet.render_method = 'portlet_meth'
@@ -93,9 +93,9 @@ class TestCustomPortletWidget(TestPortlets):
 
         ptype_id = 'Custom Portlet'
         ptltool = self.ptltool
-        self.assertEquals(len(ptltool.items()), 0)
+        len_before = len(ptltool.items())
         portlet_id = ptltool.createPortlet(ptype_id)
-        self.assertEquals(len(ptltool.items()), 1)
+        self.assertEquals(len(ptltool.items()), len_before + 1)
         portlet = ptltool[portlet_id]
         setattr(self.portal, 'portlet_meth', meth)
         portlet.render_method = 'portlet_meth'
