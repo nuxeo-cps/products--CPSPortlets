@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <object name="portlet_529492592" meta_type="CPS Portlet"
    portal_type="Image Portlet">
- <object name="bluecorpcpslogo.png" meta_type="Image"/>
+ <object name="image" meta_type="Image"/>
  <f id="Contributors">
   <e v="CPS Manager Manager"/>
  </f>

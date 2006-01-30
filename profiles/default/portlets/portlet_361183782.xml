@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <object name="portlet_361183782" meta_type="CPS Portlet"
    portal_type="Image Portlet">
- <object name="cpslogo2.png" meta_type="Image"/>
+ <object name="image" meta_type="Image"/>
  <f id="Contributors">
   <e v="admin"/>
   <e v="Soulcié tibo"/>
