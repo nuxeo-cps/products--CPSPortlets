@@ -26,9 +26,9 @@ class TestPortletsAsRoot(TestPortlets):
     def test_createPortlet(self):
         ptltool = self.ptltool
         # CMFBTreeFolder
-        self.assert_(len(ptltool.items()) == 0)
+        len_before = len(ptltool.items())
         ptltool.createPortlet(ptype_id='Dummy Portlet')
-        self.assert_(len(ptltool.items()) == 1)
+        self.assert_(len_before + 1)
 
     def test_render(self):
         ptltool = self.ptltool
