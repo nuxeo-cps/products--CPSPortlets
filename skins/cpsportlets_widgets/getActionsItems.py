@@ -23,7 +23,7 @@ for category in categories:
              'icon_tag': renderActionIcon(action_id=action['id'],
                  category=category,
                  base_url=base_url,
-                 alt=''),
+                 alt=action['name']),
             })
     actionitems[category] = items
 
