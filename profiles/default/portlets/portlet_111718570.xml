@@ -33,7 +33,7 @@
  <f id="slot" v=""/>
  <f id="slot_override" v="0"/>
  <f
-    id="text">&lt;div align="center"&gt;
+    id="text">&lt;div style="text-align: center"&gt;
 &lt;a href="portal_url/accessibility/"&gt;Accessibility&lt;/a&gt; / Contact / &lt;a href="javascript:if%20(window.print)%20window.print();"&gt;Print&lt;/a&gt;
 &lt;/div&gt;</f>
  <f id="text_format" v="normal"/>
