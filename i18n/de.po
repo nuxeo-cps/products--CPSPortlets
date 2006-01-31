@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPS-Portlets CPS-3.3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-03 14:47default\n"
+"POT-Creation-Date: 2006-01-31 20:16default\n"
 "PO-Revision-Date: 2005-10-08 22:25+0200\n"
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: German <rheinland@dzug.org>\n"
@@ -98,7 +98,7 @@ msgstr "The context's relative path ending with a slash (e.g. 'sections/')"
 msgid "cpsportlet_guard_tales_user"
 msgstr "The user object"
 
-#.   <a href="" attributes="href advanced_search_form" condition="advanced_search_link">Advanced search</a>
+#.   <a href="" attributes="href string:${here/portal_url}/advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "erweiterte Suche"
@@ -360,6 +360,10 @@ msgstr "Vertikales Brotkrumen Men&uuml;*"
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Folder Inhalt"
 
+#, fuzzy
+msgid "cpsportlets_nav_display_folder_contents_detailed_label"
+msgstr "Folder contents* (detailed)"
+
 msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
 msgstr "Folder Inhalte* (Drop-Down Liste)"
 
@@ -395,6 +399,34 @@ msgstr "Anzeigen der versteckten Folder"
 
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Anzeigen der Dokument Icons"
+
+#, fuzzy
+msgid "cpsportlets_navigation_sort_by_label"
+msgstr "Sort items by"
+
+#, fuzzy
+msgid "cpsportlets_navigation_sort_direction_label"
+msgstr "Sorting direction"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_by_date_label"
+msgstr "Date"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_by_title_label"
+msgstr "Title"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_by_author_label"
+msgstr "Author"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_asc_label"
+msgstr "Ascending"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_desc_label"
+msgstr "Descending"
 
 msgid "cpsportlets_content_show_icons_label"
 msgstr "Anzeigen der Dokument Icons"
@@ -503,6 +535,10 @@ msgstr "Portal Landkarte"
 
 msgid "cpsportlets_nav_display_extended_site_map_label"
 msgstr "Erweiterte Portal Landkarte*"
+
+#, fuzzy
+msgid "cpsportlets_nav_display_expandable_tree_menu_label"
+msgstr "Secondary navigation menu"
 
 msgid "portal_type_CustomPortlet_description"
 msgstr "Anzeigen einer Rendering Methode (.zpt, .py, etc.)"

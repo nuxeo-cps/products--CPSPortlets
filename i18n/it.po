@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets Italian Translation\n"
-"POT-Creation-Date: 2006-01-17 13:50default\n"
+"POT-Creation-Date: 2006-01-31 20:21default\n"
 "PO-Revision-Date: 2005-11-29 09:28+0100\n"
 "Last-Translator: Stefano Schintu <schintu@gmail.com>\n"
 "Language-Team: CPS Italian <schintu@gmail.com>\n"
@@ -94,7 +94,7 @@ msgstr "Il percorso relativo al contesto seguito da / (p.es.: 'sezioni/)"
 msgid "cpsportlet_guard_tales_user"
 msgstr "L'oggetto utente"
 
-#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
+#.   <a href="" attributes="href string:${here/portal_url}/advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Ricerca avanzata"
@@ -360,6 +360,10 @@ msgstr "Percorso di navigazione a sviluppo verticale"
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Contenuti della cartella corrente"
 
+#, fuzzy
+msgid "cpsportlets_nav_display_folder_contents_detailed_label"
+msgstr "Contenu du répertoire* (détailé)"
+
 msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
 msgstr "Contenuto delle cartelle (menu a cascata)"
 
@@ -395,6 +399,34 @@ msgstr "Mostra le cartelle nascoste"
 
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Visualizza l'icona degli oggetti"
+
+#, fuzzy
+msgid "cpsportlets_navigation_sort_by_label"
+msgstr "Trier les articles selon"
+
+#, fuzzy
+msgid "cpsportlets_navigation_sort_direction_label"
+msgstr "Direction du tri"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_by_date_label"
+msgstr "leur date de modification"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_by_title_label"
+msgstr "leur titre"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_by_author_label"
+msgstr "leur auteur"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_asc_label"
+msgstr "Ascendant"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_desc_label"
+msgstr "Descendant"
 
 msgid "cpsportlets_content_show_icons_label"
 msgstr "Mostra l'icona dei documenti"
@@ -512,7 +544,7 @@ msgstr "Mappa del sito estesa*"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_expandable_tree_menu_label"
-msgstr "Menu de navigation"
+msgstr "Menu de navigation secondaire"
 
 msgid "portal_type_CustomPortlet_description"
 msgstr "Visualizza la renderizzazione di un metodo (.zpt, .py, etc.)"

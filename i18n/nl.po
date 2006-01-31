@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2006-01-17 13:50default\n"
+"POT-Creation-Date: 2006-01-31 20:21default\n"
 "PO-Revision-Date: 2005-04-13 17:28+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -105,7 +105,7 @@ msgstr "The context's relative path ending with a slash (e.g. 'sections/')"
 msgid "cpsportlet_guard_tales_user"
 msgstr "The user object"
 
-#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
+#.   <a href="" attributes="href string:${here/portal_url}/advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 #, fuzzy
 msgid "cpsportlets_advanced_search"
@@ -441,6 +441,10 @@ msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Folder contents"
 
 #, fuzzy
+msgid "cpsportlets_nav_display_folder_contents_detailed_label"
+msgstr "Folder contents* (detailed)"
+
+#, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
 msgstr "Folder contents* (drop-down list)"
 
@@ -487,6 +491,34 @@ msgstr "Display hidden folders"
 #, fuzzy
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Display document icons"
+
+#, fuzzy
+msgid "cpsportlets_navigation_sort_by_label"
+msgstr "Sort items by"
+
+#, fuzzy
+msgid "cpsportlets_navigation_sort_direction_label"
+msgstr "Sorting direction"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_by_date_label"
+msgstr "Date"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_by_title_label"
+msgstr "Title"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_by_author_label"
+msgstr "Author"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_asc_label"
+msgstr "Ascending"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_desc_label"
+msgstr "Descending"
 
 #, fuzzy
 msgid "cpsportlets_content_show_icons_label"
@@ -634,7 +666,7 @@ msgstr "Extended site map*"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_expandable_tree_menu_label"
-msgstr "Navigation tree"
+msgstr "Secondary navigation menu"
 
 #, fuzzy
 msgid "portal_type_CustomPortlet_description"

@@ -230,6 +230,39 @@
   <property
      name="hidden_if_expr">python: context.display in ['vertical_breadcrumbs_menu', 'folder_contents', 'folder_contents_detailed', 'subfolder_contents', 'up_to_parent', 'folder_contents_dropdown_list']</property>
  </widget>
+ <widget name="sort_by" meta_type="Select Widget">
+  <property name="fields">
+   <element value="sort_by"/>
+  </property>
+  <property name="label_edit">cpsportlets_navigation_sort_by_label</property>
+  <property name="is_i18n">True</property>
+  <property name="readonly_layout_modes"/>
+  <property name="hidden_layout_modes">
+   <element value="view"/>
+  </property>
+  <property name="hidden_readonly_layout_modes"/>
+  <property
+     name="hidden_if_expr">python: context.display not in ('folder_contents', 'collapsible_menu', 'folder_contents_dropdown_list')</property>
+  <property name="vocabulary">cpsportlets_folder_sorting_criteria</property>
+  <property name="translated">True</property>
+ </widget>
+ <widget name="sort_direction" meta_type="Select Widget">
+  <property name="fields">
+   <element value="sort_direction"/>
+  </property>
+  <property
+     name="label_edit">cpsportlets_navigation_sort_direction_label</property>
+  <property name="is_i18n">True</property>
+  <property name="readonly_layout_modes"/>
+  <property name="hidden_layout_modes">
+   <element value="view"/>
+  </property>
+  <property name="hidden_readonly_layout_modes"/>
+  <property
+     name="hidden_if_expr">python: context.display not in ('folder_contents', 'collapsible_menu', 'folder_contents_dropdown_list')  or not getattr(context, 'sort_by', '')</property>
+  <property name="vocabulary">cpsportlets_folder_sorting_direction</property>
+  <property name="translated">True</property>
+ </widget>
  <widget name="syndication_formats" meta_type="MultiSelect Widget">
   <property name="fields">
    <element value="syndication_formats"/>
@@ -278,6 +311,10 @@
   <row>
    <cell name="syndication_formats" ncols="5"/>
    <cell name="short_syndication_formats"/>
+  </row>
+  <row>
+   <cell name="sort_by" ncols="1"/>
+   <cell name="sort_direction" ncoles="5"/>
   </row>
  </table>
 </object>

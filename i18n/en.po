@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2006-01-17 13:50default\n"
+"POT-Creation-Date: 2006-01-31 20:21default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -94,7 +94,7 @@ msgstr "The context's relative path ending with a slash (e.g. 'sections/')"
 msgid "cpsportlet_guard_tales_user"
 msgstr "The user object"
 
-#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
+#.   <a href="" attributes="href string:${here/portal_url}/advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Advanced search"
@@ -355,11 +355,11 @@ msgstr "Vertical breadcrumbs menu*"
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Folder contents"
 
-msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
-msgstr "Folder contents* (drop-down list)"
-
 msgid "cpsportlets_nav_display_folder_contents_detailed_label"
 msgstr "Folder contents* (detailed)"
+
+msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
+msgstr "Folder contents* (drop-down list)"
 
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Subfolder contents*"
@@ -393,6 +393,27 @@ msgstr "Display hidden folders"
 
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Display document icons"
+
+msgid "cpsportlets_navigation_sort_by_label"
+msgstr "Sort items by"
+
+msgid "cpsportlets_navigation_sort_direction_label"
+msgstr "Sorting direction"
+
+msgid "cpsportlets_folder_sort_by_date_label"
+msgstr "Date"
+
+msgid "cpsportlets_folder_sort_by_title_label"
+msgstr "Title"
+
+msgid "cpsportlets_folder_sort_by_author_label"
+msgstr "Author"
+
+msgid "cpsportlets_folder_sort_asc_label"
+msgstr "Ascending"
+
+msgid "cpsportlets_folder_sort_desc_label"
+msgstr "Descending"
 
 msgid "cpsportlets_content_show_icons_label"
 msgstr "Display content icons"

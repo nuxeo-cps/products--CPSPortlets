@@ -14,4 +14,8 @@
  <object name="cpsportlets_syndication_formats_voc"
     meta_type="CPS Vocabulary"/>
  <object name="cpsportlets_visibility_range_voc" meta_type="CPS Vocabulary"/>
+ <object name="cpsportlets_folder_sorting_criteria"
+    meta_type="CPS Vocabulary"/>
+ <object name="cpsportlets_folder_sorting_direction"
+    meta_type="CPS Vocabulary"/>
 </object>

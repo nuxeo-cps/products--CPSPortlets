@@ -17,3 +17,4 @@ Bug fixes:
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added extension profile
+- #1341: Navigation portlet: folder items can be sorted by date, title, author.

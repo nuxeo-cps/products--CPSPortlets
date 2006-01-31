@@ -233,6 +233,27 @@ msgstr ""
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr ""
 
+msgid "cpsportlets_navigation_sort_by_label"
+msgstr ""
+
+msgid "cpsportlets_navigation_sort_direction_label"
+msgstr ""
+
+msgid "cpsportlets_folder_sort_by_date_label"
+msgstr ""
+
+msgid "cpsportlets_folder_sort_by_title_label"
+msgstr ""
+
+msgid "cpsportlets_folder_sort_by_author_label"
+msgstr ""
+
+msgid "cpsportlets_folder_sort_asc_label"
+msgstr ""
+
+msgid "cpsportlets_folder_sort_desc_label"
+msgstr ""
+
 msgid "cpsportlets_content_show_icons_label"
 msgstr ""
 

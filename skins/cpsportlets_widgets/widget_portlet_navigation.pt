@@ -40,6 +40,7 @@ function swapFolder(img, toggle_plus, toggle_minus){
                    root_uids ds/root_uids;
                    context nocall:options/context_obj|here;
                    context_rpath python: utool.getRelativeUrl(context)">
+
   <tal:block condition="python: display == 'vertical_breadcrumbs_menu'">
     <tal:block
      define="rel_depth ds/rel_depth;
@@ -86,9 +87,8 @@ function swapFolder(img, toggle_plus, toggle_minus){
 
   <tal:block condition="python: display == 'folder_contents'">
     <tal:block
-     define="folderItems python: here.getFolderItems(
-         context_obj=context,
-         **dict(ds))"
+     define="folderItems python: here.getFolderItems(context_obj=context,
+                                                     **dict(ds))"
      condition="folderItems">
       <ul class="cpsskinsMenu">
         <li tal:repeat="item folderItems">
@@ -400,6 +400,8 @@ function swapFolder(img, toggle_plus, toggle_minus){
              show_icons python: int(show_icons);
              show_docs ds/show_docs;
              rel_depth ds/rel_depth;
+             sort_by ds/sort_by|nothing;
+             sort_direction ds/sort_direction|nothing;
              folderItems python: context.getNavigationItems(
                  root_uids=root_uids,
                  context_rpath=context_rpath,
@@ -407,7 +409,9 @@ function swapFolder(img, toggle_plus, toggle_minus){
                  start_depth=int(rel_depth),
                  end_depth=int(rel_depth)+1,
                  display_description=display_description,
-                 display_hidden_folders=display_hidden_folders);
+                 display_hidden_folders=display_hidden_folders,
+                 sort_by=sort_by,
+                 sort_direction=sort_direction);
              linkclass python: show_icons and 'noicon' or None"
      condition="folderItems">
       <ul class="cpsskinsMenu">
@@ -419,7 +423,7 @@ function swapFolder(img, toggle_plus, toggle_minus){
             <tal:block content="item/title" />
           </a>
           <tal:block condition="python: item['open']"
-           define="subfolderItems python: context.getFolderItems(context_obj=context, show_docs=int(show_docs))"
+           define="subfolderItems python: context.getFolderItems(context_obj=context, show_docs=int(show_docs), sort_by=sort_by)"
      repeat="subitem subfolderItems">
           <a style="margin-left: 1em"
              tal:attributes="href subitem/url;

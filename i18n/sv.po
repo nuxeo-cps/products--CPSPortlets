@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2006-01-17 13:50default\n"
+"POT-Creation-Date: 2006-01-31 20:21default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -99,7 +99,7 @@ msgstr "The context's relative path ending with a slash (e.g. 'sections/')"
 msgid "cpsportlet_guard_tales_user"
 msgstr "The user object"
 
-#.   <a attributes="href advanced_search_form" condition="advanced_search_link" href="">Advanced search</a>
+#.   <a href="" attributes="href string:${here/portal_url}/advanced_search_form" condition="advanced_search_link">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Avancerad sökning"
@@ -361,11 +361,11 @@ msgstr "Vertikal meny med breadcrumbs*"
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Mappinnehåll"
 
-msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
-msgstr "Mappinnehåll* (rullgardinsmeny)"
-
 msgid "cpsportlets_nav_display_folder_contents_detailed_label"
 msgstr "Mappinnehåll* (detaljerat)"
+
+msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
+msgstr "Mappinnehåll* (rullgardinsmeny)"
 
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Innehåll undermapp*"
@@ -399,6 +399,34 @@ msgstr "Visa gömda mappar"
 
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Visa dokumentikoner"
+
+#, fuzzy
+msgid "cpsportlets_navigation_sort_by_label"
+msgstr "Sort items by"
+
+#, fuzzy
+msgid "cpsportlets_navigation_sort_direction_label"
+msgstr "Sorting direction"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_by_date_label"
+msgstr "Date"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_by_title_label"
+msgstr "Title"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_by_author_label"
+msgstr "Author"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_asc_label"
+msgstr "Ascending"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_desc_label"
+msgstr "Descending"
 
 msgid "cpsportlets_content_show_icons_label"
 msgstr "Visa dokumentikoner"
@@ -510,7 +538,7 @@ msgstr "Expanderad webbkarta*"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_expandable_tree_menu_label"
-msgstr "Navigation tree"
+msgstr "Secondary navigation menu"
 
 msgid "portal_type_CustomPortlet_description"
 msgstr "En Portlet med anpassat innehåll (.zpt, .py, etc.)"
