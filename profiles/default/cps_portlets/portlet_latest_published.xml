@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<object name="portlet_546814750" meta_type="CPS Portlet"
+<object name="portlet_latest_published" meta_type="CPS Portlet"
    portal_type="Content Portlet">
  <f id="Contributors">
   <e v="Soulcié tibo"/>
@@ -30,7 +30,7 @@
  <f id="display_description" v="False"/>
  <f id="first_item" v="1"/>
  <f id="folder_path" v=""/>
- <f id="identifier" v="portlet_546814750"/>
+ <f id="identifier" v="portlet_latest_published"/>
  <f id="javascript" v=""/>
  <f id="link_string" v=""/>
  <f id="max_items" v="10"/>

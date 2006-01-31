@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<object name="portlet_8855557" meta_type="CPS Portlet"
+<object name="portlet_content_breaking_news" meta_type="CPS Portlet"
    portal_type="Content Portlet">
  <f id="Contributors">
   <e v="CPS Manager Manager"/>
@@ -29,7 +29,7 @@
  <f id="display_description" v="True"/>
  <f id="first_item" v="1"/>
  <f id="folder_path" v=""/>
- <f id="identifier" v="portlet_8855557"/>
+ <f id="identifier" v="portlet_content_breaking_news"/>
  <f id="javascript" v=""/>
  <f id="link_string" v=""/>
  <f id="max_items" v="10"/>
