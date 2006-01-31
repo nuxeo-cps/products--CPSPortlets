@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<object name="portlet_529492592" meta_type="CPS Portlet"
+<object name="portlet_cps_logo2" meta_type="CPS Portlet"
    portal_type="Image Portlet">
  <object name="image" meta_type="Image"/>
  <f id="Contributors">
@@ -25,7 +25,7 @@
  <f id="cache_timeout" v="0"/>
  <f id="caption" v=""/>
  <f id="disable_override" v="0"/>
- <f id="identifier" v="portlet_529492592"/>
+ <f id="identifier" v="portlet_cps_logo2"/>
  <f id="image"/>
  <f id="javascript" v=""/>
  <f id="link" v="portal_url"/>

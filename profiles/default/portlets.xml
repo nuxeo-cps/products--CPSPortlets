@@ -64,54 +64,56 @@
   <element value="no-cache"/>
  </cache-parameters>
  <cache-parameters type="Text Portlet"/>
- <object name="portlet_106725784" meta_type="CPS Portlet"
+ <object name="portlet_text_welcome" meta_type="CPS Portlet"
          portal_type="Text Portlet"/>
- <object name="portlet_111718570" meta_type="CPS Portlet"
+ <object name="portlet_text_accessibility" meta_type="CPS Portlet"
          portal_type="Text Portlet"/>
- <object name="portlet_128984311" meta_type="CPS Portlet"
+ <object name="portlet_documents" meta_type="CPS Portlet"
          portal_type="Document Portlet"/>
- <object name="portlet_361183782" meta_type="CPS Portlet"
+ <object name="portlet_cps_logo3" meta_type="CPS Portlet"
          portal_type="Image Portlet"/>
- <object name="portlet_529492592" meta_type="CPS Portlet"
+ <object name="portlet_cps_logo2" meta_type="CPS Portlet"
          portal_type="Image Portlet"/>
- <object name="portlet_814020079" meta_type="CPS Portlet"
+ <object name="portlet_text_1" meta_type="CPS Portlet"
          portal_type="Text Portlet"/>
- <object name="portlet_814020080" meta_type="CPS Portlet"
+ <object name="portlet_text_nuxeo_offers" meta_type="CPS Portlet"
          portal_type="Text Portlet"/>
- <object name="portlet_862706992" meta_type="CPS Portlet"
+ <object name="portlet_cps_logo" meta_type="CPS Portlet"
          portal_type="Image Portlet"/>
- <object name="portlet_862706993" meta_type="CPS Portlet"
+ <object name="portlet_image_powered_by_cps2" meta_type="CPS Portlet"
+         portal_type="Image Portlet"/>
+ <object name="portlet_image_powered_by_cps" meta_type="CPS Portlet"
+         portal_type="Image Portlet"/>
+ <object name="portlet_text_cps" meta_type="CPS Portlet"
          portal_type="Text Portlet"/>
- <object name="portlet_899150525" meta_type="CPS Portlet"
-         portal_type="Image Portlet"/>
- <object name="portlet_923549666" meta_type="CPS Portlet"
+ <object name="portlet_navigation_root2" meta_type="CPS Portlet"
          portal_type="Navigation Portlet"/>
- <object name="portlet_923549667" meta_type="CPS Portlet"
+ <object name="portlet_navigation_root2" meta_type="CPS Portlet"
          portal_type="Navigation Portlet"/>
- <object name="portlet_923549668" meta_type="CPS Portlet"
+ <object name="portlet_text_2" meta_type="CPS Portlet"
          portal_type="Text Portlet"/>
- <object name="portlet_946367957" meta_type="CPS Portlet"
+ <object name="portlet_text_welcome2" meta_type="CPS Portlet"
          portal_type="Text Portlet"/>
- <object name="portlet_946367958" meta_type="CPS Portlet"
+ <object name="portlet_text_welcome3" meta_type="CPS Portlet"
          portal_type="Text Portlet"/>
- <object name="portlet_946367959" meta_type="CPS Portlet"
+ <object name="portlet_text_about_cps" meta_type="CPS Portlet"
          portal_type="Text Portlet"/>
- <object name="portlet_946367960" meta_type="CPS Portlet"
+ <object name="portlet_text_start_cps" meta_type="CPS Portlet"
          portal_type="Text Portlet"/>
- <object name="portlet_946367961" meta_type="CPS Portlet"
+ <object name="portlet_image_round_top_right_corner" meta_type="CPS Portlet"
          portal_type="Image Portlet"/>
- <object name="portlet_953663570" meta_type="CPS Portlet"
+ <object name="portlet_text_powered_by" meta_type="CPS Portlet"
          portal_type="Text Portlet"/>
- <object name="portlet_953663571" meta_type="CPS Portlet"
+ <object name="portlet_actions_1" meta_type="CPS Portlet"
          portal_type="Actions Portlet"/>
  <object name="portlet_953663572" meta_type="CPS Portlet"
          portal_type="Image Portlet"/>
- <object name="portlet_953663574" meta_type="CPS Portlet"
+ <object name="portlet_image_valid_xhtml" meta_type="CPS Portlet"
          portal_type="Image Portlet"/>
- <object name="portlet_953663575" meta_type="CPS Portlet"
+ <object name="portlet_image_valid_rss" meta_type="CPS Portlet"
          portal_type="Image Portlet"/>
- <object name="portlet_953663576" meta_type="CPS Portlet"
+ <object name="portlet_image_cpsskins" meta_type="CPS Portlet"
          portal_type="Image Portlet"/>
- <object name="portlet_953663577" meta_type="CPS Portlet"
+ <object name="portlet_image_valid_rss2" meta_type="CPS Portlet"
     portal_type="Image Portlet"/> 
 </object>

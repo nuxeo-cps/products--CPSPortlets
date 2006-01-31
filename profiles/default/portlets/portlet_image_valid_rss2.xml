@@ -1,32 +1,31 @@
 <?xml version="1.0"?>
-<object name="portlet_946367961" meta_type="CPS Portlet"
+<object name="portlet_image_valid_rss2" meta_type="CPS Portlet"
    portal_type="Image Portlet">
  <object name="image" meta_type="Image"/>
  <f id="Contributors">
-  <e v="CPS Manager Manager"/>
   <e v="admin"/>
  </f>
  <f id="Coverage" v=""/>
- <f id="CreationDate" v="20060123182838Z"/>
- <f id="Creator" v="manager"/>
+ <f id="CreationDate" v="20060116183942Z"/>
+ <f id="Creator" v="admin"/>
  <f id="Description" v=""/>
  <f id="EffectiveDate" v=""/>
  <f id="ExpirationDate" v=""/>
  <f id="Format" v="text/html"/>
  <f id="Language" v=""/>
- <f id="ModificationDate" v="20060123203443Z"/>
+ <f id="ModificationDate" v="20060116184106Z"/>
  <f id="Relation" v=""/>
  <f id="Rights" v=""/>
  <f id="Source" v=""/>
  <f id="Subject"/>
  <f id="Title" v=""/>
  <f id="allow_discussion" v="False"/>
- <f id="cache_cleanup_date" v="1138048483.83"/>
+ <f id="cache_cleanup_date" v="1137436866.66"/>
  <f id="cache_params"/>
  <f id="cache_timeout" v="0"/>
  <f id="caption" v=""/>
  <f id="disable_override" v="0"/>
- <f id="identifier" v="portlet_946367961"/>
+ <f id="identifier" v="portlet_image_valid_rss2"/>
  <f id="image"/>
  <f id="javascript" v=""/>
  <f id="link" v=""/>

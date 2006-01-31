@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<object name="portlet_862706993" meta_type="CPS Portlet"
+<object name="portlet_text_cps" meta_type="CPS Portlet"
    portal_type="Text Portlet">
  <f id="Contributors">
   <e v="Soulcié tibo"/>
@@ -26,7 +26,7 @@
  <f id="cache_timeout" v="0"/>
  <f id="disable_override" v="0"/>
  <f id="i18n" v="0"/>
- <f id="identifier" v="portlet_862706993"/>
+ <f id="identifier" v="portlet_text_cps"/>
  <f id="javascript" v=""/>
  <f id="order" v="0"/>
  <f id="portlet" v=""/>

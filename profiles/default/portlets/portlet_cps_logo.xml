@@ -1,31 +1,31 @@
 <?xml version="1.0"?>
-<object name="portlet_953663572" meta_type="CPS Portlet"
+<object name="portlet_cps_logo" meta_type="CPS Portlet"
    portal_type="Image Portlet">
- <object name="POWEREDBYCPS2.png" meta_type="Image"/>
+ <object name="image" meta_type="Image"/>
  <f id="Contributors">
-  <e v="admin"/>
+  <e v="Soulcié tibo"/>
  </f>
  <f id="Coverage" v=""/>
- <f id="CreationDate" v="20060116170236Z"/>
- <f id="Creator" v="admin"/>
+ <f id="CreationDate" v="20060119135513Z"/>
+ <f id="Creator" v="manager"/>
  <f id="Description" v=""/>
  <f id="EffectiveDate" v=""/>
  <f id="ExpirationDate" v=""/>
  <f id="Format" v="text/html"/>
  <f id="Language" v=""/>
- <f id="ModificationDate" v="20060116170927Z"/>
+ <f id="ModificationDate" v="20060119143240Z"/>
  <f id="Relation" v=""/>
  <f id="Rights" v=""/>
  <f id="Source" v=""/>
  <f id="Subject"/>
  <f id="Title" v=""/>
  <f id="allow_discussion" v="False"/>
- <f id="cache_cleanup_date" v="1137431367.74"/>
+ <f id="cache_cleanup_date" v="1137681160.67"/>
  <f id="cache_params"/>
  <f id="cache_timeout" v="0"/>
  <f id="caption" v=""/>
  <f id="disable_override" v="0"/>
- <f id="identifier" v="portlet_953663572"/>
+ <f id="identifier" v="portlet_cps_logo"/>
  <f id="image"/>
  <f id="javascript" v=""/>
  <f id="link" v=""/>
