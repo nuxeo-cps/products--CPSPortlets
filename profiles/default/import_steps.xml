@@ -6,6 +6,7 @@
   <dependency step="toolset"/>
   <dependency step="typeinfo"/>
   <dependency step="schemas"/>
+  <dependency step="skins"/> <!-- calls to getCPSPortletJavaScript -->
   Import portlet tool and portlets.
  </import-step>
 </import-steps>
