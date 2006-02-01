@@ -991,9 +991,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         if ptype_id is None:
             return
-        cache_params_dict = self.getCPSPortletCacheParams()
-        if not cache_params_dict.has_key(ptype_id):
-            return
+        ptltool = getToolByName(self, 'portal_cpsportlets')
 
         def getOptions(p):
             """extract cache parameter options
@@ -1015,17 +1013,17 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         event_ids = ()
         folder_paths = ()
         portal_types = ()
-        for param in cache_params_dict[ptype_id]:
+        for param in ptltool.getCacheParametersFor(ptype_id):
             # event ids
             if param.startswith('event_ids:'):
                 event_ids = getOptions(param)
 
             # folders in which the event occurs
-            if param.startswith('event_in_folders:'):
+            elif param.startswith('event_in_folders:'):
                 folder_paths = getOptions(param)
 
             # portal types on which the event occurs
-            if param.startswith('event_on_types:'):
+            elif param.startswith('event_on_types:'):
                 portal_types = getOptions(param)
 
         self.clearEvents()
