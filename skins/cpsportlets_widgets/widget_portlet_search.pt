@@ -38,6 +38,7 @@
       </p>
     </tal:block>
   </div>
+  <div>
   <img tal:attributes="src
     string:${base_url}cpsskins_images/portlet_search_icon.png;
     alt value_search" />
@@ -46,6 +47,7 @@
     onclick="this.value='';"/>
   <input class="context searchButton" type="submit" value="button_ok"
     i18n:attributes="value" />
+  </div>
   <div>
     <a href="" tal:condition="advanced_search_link"
     i18n:translate="cpsportlets_advanced_search"
