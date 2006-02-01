@@ -1,4 +1,21 @@
-<script type="text/javascript">
+<tal:block define="utool nocall:here/portal_url;
+                   ds options/datastructure;
+                   display ds/display;
+                   show_docs ds/show_docs;
+                   display_hidden_folders ds/display_hidden_folders;
+                   display_description ds/display_description;
+                   display_description python: int(display_description);
+                   display_managers ds/display_managers;
+                   display_managers python:int(display_managers);
+                   authorized_only ds/authorized_only;
+                   syndication_formats ds/syndication_formats|python:[];
+                   start_depth python: 2;
+                   root_uids ds/root_uids;
+                   context nocall:options/context_obj|here;
+                   context_rpath python: utool.getRelativeUrl(context)">
+
+<script type="text/javascript"
+        tal:condition="python: display == 'expandable_tree'">
 function showBranch(branch){
   var objBranch = document.getElementById(branch).style;
   if(objBranch.display!="none")
@@ -24,22 +41,6 @@ function swapFolder(img, toggle_plus, toggle_minus){
 }
 
 </script>
-
-<tal:block define="utool nocall:here/portal_url;
-                   ds options/datastructure;
-                   display ds/display;
-                   show_docs ds/show_docs;
-                   display_hidden_folders ds/display_hidden_folders;
-                   display_description ds/display_description;
-                   display_description python: int(display_description);
-                   display_managers ds/display_managers;
-                   display_managers python:int(display_managers);
-                   authorized_only ds/authorized_only;
-                   syndication_formats ds/syndication_formats|python:[];
-                   start_depth python: 2;
-                   root_uids ds/root_uids;
-                   context nocall:options/context_obj|here;
-                   context_rpath python: utool.getRelativeUrl(context)">
 
   <tal:block condition="python: display == 'vertical_breadcrumbs_menu'">
     <tal:block
