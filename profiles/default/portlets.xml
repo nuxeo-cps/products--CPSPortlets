@@ -17,6 +17,7 @@
   <element value="object:published_path"/>
   <element value="objects:relative_path"/>
   <element value="timeout:300"/>
+  <element value="request:breadcrumb_set"/>
  </cache-parameters>
  <cache-parameters type="Content Portlet">
   <element value="no-cache:(contextual)"/>
