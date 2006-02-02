@@ -16,7 +16,7 @@ if len(searchable_types) > 0:
     query['portal_type'] = searchable_types
 
 # cps filter (portal_xyz, .___)
-query['cps_filter_sets'] = {'query': ('searchable', 'leaves'),
+query['cps_filter_sets'] = {'query': ('searchable',),
                             'operator': 'and'}
 
 # path
