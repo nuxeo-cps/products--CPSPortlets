@@ -2,8 +2,6 @@
 <object name="portal_vocabularies">
  <object name="cpsportlets_additem_display_voc" meta_type="CPS Vocabulary"/>
  <object name="cpsportlets_bcs_display_voc" meta_type="CPS Vocabulary"/>
- <object name="cpsportlets_content_portal_types_voc"
-    meta_type="CPS Method Vocabulary"/>
  <object name="cpsportlets_content_search_voc" meta_type="CPS Vocabulary"/>
  <object name="cpsportlets_content_sort_on_voc" meta_type="CPS Vocabulary"/>
  <object name="cpsportlets_language_action_voc" meta_type="CPS Vocabulary"/>

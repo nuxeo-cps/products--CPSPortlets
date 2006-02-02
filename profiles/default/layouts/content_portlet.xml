@@ -157,8 +157,8 @@
   <property name="hidden_layout_modes">
    <element value="view"/>
   </property>
-  <property name="vocabulary">cpsportlets_content_portal_types_voc</property>
-  <property name="translated">True</property>
+  <property name="vocabulary">search_portal_type</property>
+  <property name="translated">False</property>
   <property name="size">7</property>
  </widget>
  <widget name="short_syndication_formats" meta_type="CheckBox Widget">
@@ -194,7 +194,7 @@
    <element value="view"/>
   </property>
   <property
-     name="hidden_if_expr">python: context.search_type in ['last_modified', 'upcoming']</property>
+     name="hidden_if_expr">python: context.search_type in ['last_modified', 'upcoming', 'last_published']</property>
   <property name="vocabulary">cpsportlets_content_sort_on_voc</property>
   <property name="translated">True</property>
  </widget>
