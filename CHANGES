@@ -15,6 +15,7 @@ Bug fixes:
   definitions
 - 'path' was undefined in the Content Portlet when syndication was selected
 - #1353: content portlet did not display folder documents
+- #1345: directories breadcrumbs were wrong
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added extension profile

@@ -14,6 +14,7 @@ cache_params = {
         'object:published_path',
         'objects:relative_path',
         'timeout:300',
+        'request:breadcrumb_set',
         ],
     'Actions Portlet': ['actions:(categories)', 'current_lang'],
     'Content Portlet': ['no-cache:(contextual)',
