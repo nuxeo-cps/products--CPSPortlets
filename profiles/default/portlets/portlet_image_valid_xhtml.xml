@@ -6,21 +6,21 @@
   <e v="admin"/>
  </f>
  <f id="Coverage" v=""/>
- <f id="CreationDate" v="20060116172302Z"/>
+ <f id="CreationDate" v="20060206112652Z"/>
  <f id="Creator" v="admin"/>
  <f id="Description" v=""/>
  <f id="EffectiveDate" v=""/>
  <f id="ExpirationDate" v=""/>
  <f id="Format" v="text/html"/>
  <f id="Language" v=""/>
- <f id="ModificationDate" v="20060116172308Z"/>
+ <f id="ModificationDate" v="20060206113116Z"/>
  <f id="Relation" v=""/>
  <f id="Rights" v=""/>
  <f id="Source" v=""/>
  <f id="Subject"/>
  <f id="Title" v=""/>
  <f id="allow_discussion" v="False"/>
- <f id="cache_cleanup_date" v="1137432188.14"/>
+ <f id="cache_cleanup_date" v="1139225476.91"/>
  <f id="cache_params"/>
  <f id="cache_timeout" v="0"/>
  <f id="caption" v=""/>
@@ -28,7 +28,7 @@
  <f id="identifier" v="portlet_image_valid_xhtml"/>
  <f id="image"/>
  <f id="javascript" v=""/>
- <f id="link" v=""/>
+ <f id="link" v="http://validator.w3.org/check/referer"/>
  <f id="order" v="0"/>
  <f id="portlet" v=""/>
  <f id="preview"/>
