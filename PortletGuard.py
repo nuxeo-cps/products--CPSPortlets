@@ -63,7 +63,7 @@ class PortletGuard(Guard):
         if pp:
             found = 0
             for p in pp:
-                if sm.checkPermission(p, portlet):
+                if sm.checkPermission(p, context):
                     found = 1
                     break
             if not found:
@@ -72,7 +72,7 @@ class PortletGuard(Guard):
         if roles:
             # Require at least one of the given roles.
             found = 0
-            u_roles = sm.getUser().getRolesInContext(portlet)
+            u_roles = sm.getUser().getRolesInContext(context)
             for role in roles:
                 if role in u_roles:
                     found = 1

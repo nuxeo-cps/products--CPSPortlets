@@ -18,6 +18,8 @@ Bug fixes:
 - #1345: directories breadcrumbs were wrong
 - #1360: accessibility portlet is a Custom Portlet instead of Text Portlet, 
   to cope with rendering the portal_url
+- #1377: guard used to check permissions and roles on the portlet instead of
+  	 the context
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added extension profile

@@ -9,6 +9,9 @@ from AccessControl.SecurityManagement import newSecurityManager
 from AccessControl import Unauthorized
 
 from Products.CMFCore.tests.base.utils import has_path
+from Products.CMFCore.permissions import AddPortalContent, setDefaultRoles
+from Products.CMFCore.utils import _checkPermission
+from Products.DCWorkflow.utils import modifyRolesForPermission
 
 from Products.CPSDefault.tests import CPSDefaultTestCase
 
@@ -31,20 +34,24 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
     def beforeTearDown(self):
         self.logout()
 
-    def loginAsWsManager(self):
-        # for some tests, we need an user with WorkspaceManager role
+    def loginAsMember(self):
+        # for some tests, we need an user with basic rights
         mdir = self.portal.portal_directories['members']
         mdir._createEntry({'id' : 'wsman', 
                            'sn' : 'wsman',
                            'passwd' : 'secret',
-                           'roles' : ['Member', 'WorkspaceManager',],
+                           'roles' : ['Member',],
                            }
                           )
 
-        # Now login as the Workspace Manager
+        # Now login as this user
         uf = self.portal.acl_users
         user = uf.getUserById('wsman').__of__(uf)        
         newSecurityManager(None, user)
+
+    def loginAsWsManager(self):
+        self.loginAsMember()
+        self.ws.manage_setLocalRoles('wsman', ['WorkspaceManager'])
 
     def test_listPortletSlots_global(self):
         ptltool = self.ptltool
@@ -107,6 +114,49 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         subws_portlets_ids = [p.getId() for p in subws_portlets]
         self.assertEquals(subws_portlets_ids, [portlet1_id, portlet2_id])
 
+    def test_getPortlets_permission_guard(self):
+        # tests that guard permission does its work
+        ptltool = self.ptltool
+
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                           context=self.ws)
+        portlet = ptltool.getPortlets(context=self.ws)[0]
+        portlet.setGuardProperties(
+            props={'guard_permissions': AddPortalContent})
+        
+        self.loginAsMember() 
+        
+        modifyRolesForPermission(self.ws, AddPortalContent, ('Manager',)) 
+        self.failIf(_checkPermission(AddPortalContent, self.ws))
+        portlets = ptltool.getPortlets(context=self.ws)
+        self.assertEquals(portlets, [])
+        
+        modifyRolesForPermission(self.ws, AddPortalContent,
+                        ('Manager', 'Member'))
+        self.failUnless(_checkPermission(AddPortalContent, self.ws))
+        portlets = ptltool.getPortlets(context=self.ws)
+        self.assertEquals(portlets, [portlet])
+
+    def test_getPortlets_roles_guard(self):
+        # tests that guard permission does its work
+        ptltool = self.ptltool
+
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                           context=self.ws)
+        portlet = ptltool.getPortlets(context=self.ws)[0]
+        portlet.setGuardProperties(
+            props={'guard_roles': 'TestRole'})
+        
+        self.loginAsMember() 
+        
+        self.ws.manage_setLocalRoles('wsman', ['TestRole'])
+        portlets = ptltool.getPortlets(context=self.ws)
+        self.assertEquals(portlets, [portlet])
+
+        self.ws.manage_setLocalRoles('wsman', ['OtherRole'])
+        portlets = ptltool.getPortlets(context=self.ws)
+        self.assertEquals(portlets, [])
+
     def test_copyPortletPerm(self):
         # create a portlet at root of portal
         ptltool = self.ptltool
@@ -131,7 +181,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
 
         self.loginAsWsManager()
         
-        # should not be able to move it 
+        # should not be able to move it because not manager at root of portal
         cont = ptltool.getPortletContainer(context=self.portal)
         orig = cont.getPortletById(portlet_id)
         self.failUnlessRaises(Unauthorized, ptltool.movePortlet, orig,
