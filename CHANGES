@@ -16,6 +16,8 @@ Bug fixes:
 - 'path' was undefined in the Content Portlet when syndication was selected
 - #1353: content portlet did not display folder documents
 - #1345: directories breadcrumbs were wrong
+- #1360: accessibility portlet is a Custom Portlet instead of Text Portlet, 
+  to cope with rendering the portal_url
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added extension profile

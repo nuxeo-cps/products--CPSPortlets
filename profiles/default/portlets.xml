@@ -67,8 +67,8 @@
  <cache-parameters type="Text Portlet"/>
  <object name="portlet_text_welcome" meta_type="CPS Portlet"
          portal_type="Text Portlet"/>
- <object name="portlet_text_accessibility" meta_type="CPS Portlet"
-         portal_type="Text Portlet"/>
+ <object name="portlet_custom_accessibility" meta_type="CPS Portlet"
+         portal_type="Custom Portlet"/>
  <object name="portlet_documents" meta_type="CPS Portlet"
          portal_type="Document Portlet"/>
  <object name="portlet_cps_logo3" meta_type="CPS Portlet"
