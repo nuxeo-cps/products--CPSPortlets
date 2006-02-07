@@ -150,6 +150,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         if REQUEST is not None:
             # XXX Using REQUEST itself should work.
             # but update is complaining it is not a dictionary
+            # XXX GR: should make a copy and not use {} as default, isn't it ? 
             props.update(REQUEST.form)
 
         # XXX found we must create a new instance every time.
