@@ -3,7 +3,8 @@
                    context nocall:options/context_obj|here;
                    show_icons ds/show_icons|python:1;
                    show_icons python: int(show_icons);
-                   actionitems python: here.getActionsItems(context, categories)"
+                   actionitems python: here.getActionsItems(context, categories);
+                   base_url python: request.get('cpsskins_base_url')"
   condition="actionitems">
   <tal:block repeat="category python: actionitems.keys()">
     <ul class="cpsskinsMenu"
@@ -15,8 +16,13 @@
        tal:define="icon_tag action/icon_tag"
        tal:attributes="href action/url;
                        class python:show_icons and icon_tag and 'noicon' or None">
-         <tal:block condition="show_icons"
+         <tal:block condition="python:show_icons and icon_tag"
            content="structure icon_tag"/>
+         <tal:block condition="python:show_icons and not icon_tag">
+           <img tal:attributes="src
+             string:${base_url}cpsskins_images/noicon_16.png;
+             alt action/title" />
+         </tal:block>
          <tal:block i18n:translate="" content="action/title" />
        </a></li>
     </ul>
