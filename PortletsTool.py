@@ -803,13 +803,13 @@ class PortletsTool(UniqueObject, PortletsContainer):
             if '/' not in icon_path:
                 icon_name = icon_path
                 tmtool = getToolByName(self, 'portal_themes')
+                utool = getToolByName(self, 'portal_url')
                 theme, page = tmtool.getEffectiveThemeAndPageName()
                 theme_container = tmtool.getThemeContainer(theme)
 
                 icon_folder = theme_container.icons
                 if icon_name in icon_folder.objectIds():
-                    icon_path = '/'.join(icon_folder.getPhysicalPath() +
-                                         (icon_name,))
+                    icon_path = utool.getRpath(icon_folder) + '/' + icon_name
 
             img = self.unrestrictedTraverse(icon_path, default=None)
             if img is None:
@@ -855,13 +855,13 @@ class PortletsTool(UniqueObject, PortletsContainer):
             if '/' not in icon_path:
                 icon_name = icon_path
                 tmtool = getToolByName(self, 'portal_themes')
+                utool = getToolByName(self, 'portal_url')
                 theme, page = tmtool.getEffectiveThemeAndPageName()
                 theme_container = tmtool.getThemeContainer(theme)
 
                 icon_folder = theme_container.icons
                 if icon_name in icon_folder.objectIds():
-                    icon_path = '/'.join(icon_folder.getPhysicalPath() +
-                                         (icon_name,))
+                    icon_path = utool.getRpath(icon_folder) + '/' + icon_name
 
             # fall back to the icon path specified in CMFActionIcons
             img = self.unrestrictedTraverse(icon_path, default=None)
