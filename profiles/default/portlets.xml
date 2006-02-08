@@ -115,6 +115,6 @@
          portal_type="Image Portlet"/>
  <object name="portlet_image_cpsskins" meta_type="CPS Portlet"
          portal_type="Image Portlet"/>
- <object name="portlet_image_valid_rss2" meta_type="CPS Portlet"
+ <object name="portlet_image_valid_wai" meta_type="CPS Portlet"
     portal_type="Image Portlet"/> 
 </object>
