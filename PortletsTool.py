@@ -793,17 +793,33 @@ class PortletsTool(UniqueObject, PortletsContainer):
         if img_tag is None:
             ttool = getToolByName(self, 'portal_types')
             ti = ttool.getTypeInfo(portal_type)
-            if ti is not None:
-                icon_path = ti.getIcon()
-                img = self.unrestrictedTraverse(icon_path, default=None)
-                if img is None:
-                    return None
-                img_tag = IMG_TAG % (base_url + icon_path,
-                                     getattr(img, 'width', 0),
-                                     getattr(img, 'height', 0),
-                                     alt)
-                if cache is not None:
-                    cache.setEntry(index, img_tag)
+            if ti is None:
+                return None
+            icon_path = ti.getIcon()
+
+            # see if an icon with the same name is present in the current
+            # theme's icon folder. The path must be relative and cannot contain
+            # any '/'.
+            if '/' not in icon_path:
+                icon_name = icon_path
+                tmtool = getToolByName(self, 'portal_themes')
+                theme, page = tmtool.getEffectiveThemeAndPageName()
+                theme_container = tmtool.getThemeContainer(theme)
+
+                icon_folder = theme_container.icons
+                if icon_name in icon_folder.objectIds():
+                    icon_path = '/'.join(icon_folder.getPhysicalPath() +
+                                         (icon_name,))
+
+            img = self.unrestrictedTraverse(icon_path, default=None)
+            if img is None:
+                return None
+            img_tag = IMG_TAG % (base_url + icon_path,
+                                 getattr(img, 'width', 0),
+                                 getattr(img, 'height', 0),
+                                 alt)
+            if cache is not None:
+                cache.setEntry(index, img_tag)
         return img_tag
 
     #
