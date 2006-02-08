@@ -25,3 +25,4 @@ New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added extension profile
 - #1341: Navigation portlet: folder items can be sorted by date, title, author.
+- #1334: action icons are first looked up in the current theme's icon folder.

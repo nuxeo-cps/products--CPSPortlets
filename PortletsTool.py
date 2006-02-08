@@ -832,6 +832,22 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 action_id=action_id)
             if not icon_path:
                 return
+
+            # see if an icon with the same name is present in the current
+            # theme's icon folder. The path must be relative and cannot contain
+            # any '/'.
+            if '/' not in icon_path:
+                icon_name = icon_path
+                tmtool = getToolByName(self, 'portal_themes')
+                theme, page = tmtool.getEffectiveThemeAndPageName()
+                theme_container = tmtool.getThemeContainer(theme)
+
+                icon_folder = theme_container.icons
+                if icon_name in icon_folder.objectIds():
+                    icon_path = '/'.join(icon_folder.getPhysicalPath() +
+                                         (icon_name,))
+
+            # fall back to the icon path specified in CMFActionIcons
             img = self.unrestrictedTraverse(icon_path, default=None)
             if img is None:
                 return None
