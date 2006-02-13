@@ -22,6 +22,9 @@ Bug fixes:
 - #1377: guard used to check permissions and roles on the portlet instead of
   the context
 - #1358: replaced RSS portlet with a WAI portlet
+- During importing CPSDefault profile on CPS3.3.8 instance
+  AttributeError: getCPSPortletJavaScript popups. Provided crude fix to allow
+  import process go on.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - added extension profile
