@@ -3,16 +3,17 @@
    portal_type="Navigation Portlet">
  <f id="Contributors">
   <e v="Soulcié tibo"/>
+  <e v="admin"/>
  </f>
  <f id="Coverage" v=""/>
- <f id="CreationDate" v="20060116130312Z"/>
- <f id="Creator" v="manager"/>
+ <f id="CreationDate" v="20060208102704Z"/>
+ <f id="Creator" v="admin"/>
  <f id="Description" v=""/>
  <f id="EffectiveDate" v=""/>
  <f id="ExpirationDate" v=""/>
  <f id="Format" v="text/html"/>
  <f id="Language" v=""/>
- <f id="ModificationDate" v="20060116151807Z"/>
+ <f id="ModificationDate" v="20060208102708Z"/>
  <f id="Relation" v=""/>
  <f id="Rights" v=""/>
  <f id="Source" v=""/>
@@ -50,6 +51,8 @@
  <f id="show_icons" v="True"/>
  <f id="slot" v=""/>
  <f id="slot_override" v="0"/>
+ <f id="sort_by" v=""/>
+ <f id="sort_direction" v=""/>
  <f id="syndication_formats"/>
  <f id="visibility_range" v="0-0"/>
 </object>

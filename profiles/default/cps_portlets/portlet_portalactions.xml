@@ -5,14 +5,14 @@
   <e v="admin"/>
  </f>
  <f id="Coverage" v=""/>
- <f id="CreationDate" v="20060103165529Z"/>
+ <f id="CreationDate" v="20060208102710Z"/>
  <f id="Creator" v="admin"/>
  <f id="Description" v=""/>
  <f id="EffectiveDate" v=""/>
  <f id="ExpirationDate" v=""/>
  <f id="Format" v="text/html"/>
  <f id="Language" v=""/>
- <f id="ModificationDate" v="20060103165530Z"/>
+ <f id="ModificationDate" v="20060208102714Z"/>
  <f id="Relation" v=""/>
  <f id="Rights" v=""/>
  <f id="Source" v=""/>
@@ -33,7 +33,7 @@
  <f id="portlet" v=""/>
  <f id="preview"/>
  <f id="provider" v=""/>
- <f id="show_icons" v="True"/>
+ <f id="show_icons" v="False"/>
  <f id="slot" v="left"/>
  <f id="slot_override" v="0"/>
  <f id="visibility_range" v="0-0"/>
