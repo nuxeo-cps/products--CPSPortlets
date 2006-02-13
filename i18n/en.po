@@ -505,6 +505,9 @@ msgstr "First item"
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Navigation tree"
 
+msgid "cpsportlets_nav_display_dyn_navtree_menu_label"
+msgstr "Dynamic navigation tree"
+
 msgid "cpsportlets_navigation_contextual_label"
 msgstr "Contextual display"
 

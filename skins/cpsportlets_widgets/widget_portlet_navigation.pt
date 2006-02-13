@@ -209,6 +209,30 @@ function swapFolder(img, toggle_plus, toggle_minus){
     </tal:block>
   </tal:block>
 
+  <tal:block condition="python: display == 'dynamic_tree'">
+    <tal:block tal:define="dummy python:request.set('ds', ds);
+                           context_url context/absolute_url_path;
+                           dummy python:request.set('context_url', context_url);
+                           contextual python:ds.get('contextual', True);
+                           end_depth python:ds.get('end_depth', 0);
+                           folder_prefixes python:ds.get('folder_prefixes', []);
+                           folderItems python: context.getNavigationItems(
+                                                root_uids=root_uids,
+                                                context_rpath=context_rpath,
+                                                context_obj=context,
+                                                contextual=0, expand=1,
+                                                folder_prefixes=folder_prefixes,
+                                                end_depth=int(end_depth),
+                                                display_description=display_description,
+                                                display_hidden_folders=display_hidden_folders,
+                                                );
+                           dummy python:request.set('folderItems', folderItems);
+                                                ">
+      <tal:block tal:content="structure context/getTreeView"/>
+    </tal:block>
+
+  </tal:block>
+
   <tal:block condition="python: display == 'expandable_tree'">
     <tal:block
      define="show_icons ds/show_icons;
@@ -247,19 +271,17 @@ function swapFolder(img, toggle_plus, toggle_minus){
          class="cpsskinsMenu">
          <li tal:define="children_branch
              python:context.getNodeChildren(folderItems, node);">
-              <div class="toggle_icon">
-                <img tal:attributes="src
-                    string:${base_url}cpsskins_images/${toggle_icon};
-                id folder;
-                alt toggle_icon;
-                onclick string:showBranch('${branch}');;
-                  swapFolder('${folder}', '${toggle_plus}', '${toggle_minus}');;"
-                tal:condition="python:children_branch" />
-                <div tal:condition="python:
-                    (not children_branch) and root_has_nephew"
-                class="missing_toggle">
-                &nbsp;
-                </div>
+           <div class="toggle_icon">
+             <img tal:attributes="src
+                 string:${base_url}cpsskins_images/${toggle_icon};
+               id folder;
+               onclick string:showBranch('${branch}');;
+               swapFolder('${folder}', '${toggle_plus}', '${toggle_minus}');;"
+               tal:condition="python:children_branch" />
+            <div tal:condition="python:
+                (not children_branch) and root_has_nephew"
+              class="missing_toggle">
+              &nbsp;
             </div>
            <ul style="padding: 0px">
              <li tal:attributes="class python:

@@ -1,0 +1,55 @@
+<tal:block tal:replace="nothing">
+  this style will be outsourced in a cpsskins style
+</tal:block>
+<style>
+  div.nodeselected {
+    background-color: #ffc02a;
+  }
+
+</style>
+<script type="text/javascript">
+  function loadScript(id, url) {
+    if (document.getElementById(id))
+        return false;
+    var e = document.createElement("script");
+    e.src = url;
+    e.type="text/javascript";
+    document.getElementsByTagName("head")[0].appendChild(e);
+
+    return true;
+  }
+  loadScript('prototype', 'prototype.js');
+  loadScript('effect', 'effects.js');
+  loadScript('dragdrop', 'dragdrop.js');
+  loadScript('cpsdefault', 'cpsdefault.js');
+  loadScript('treeview', '++resource++treenodeview.js');
+</script>
+<tal:block define="ds python: request.get('ds');
+                   show_icons python:ds.get('show_icons', True);
+                   show_icons python: int(show_icons);
+                   folderItems python:request.get('folderItems');
+                   linkclass python: show_icons and 'noicon' or None;
+                   base_url python: request.get('cpsskins_base_url');
+                   tree_roots python:[item for item in folderItems
+                     if item.get('level') == 0];
+                   root_has_nephew python:[1 for item in tree_roots if
+                     context.getNodeChildren(folderItems, item)];
+                   toggle_plus string:toggle_plus.png;
+                   toggle_minus string:toggle_minus.png;"
+           condition="folderItems">
+<ul style="list-style-type: none!important; padding-left: 0px!important">
+  <tal:block tal:repeat="node tree_roots">
+    <li>
+      <tal:block tal:define="dummy python:request.set('root', node['url'])">
+        <div tal:content="structure context/getTreeviewNode">
+        Dynamic treeview
+        </div>
+      </tal:block>
+    </li>
+  </tal:block>
+</ul>
+<script type="text/javascript" tal:content="string:
+  var treeview_editor = new CPSTreeViewEditor('nodeloader', 'getTreeviewBranch', ${show_icons});">
+</script>
+
+</tal:block>

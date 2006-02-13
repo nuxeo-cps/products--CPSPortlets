@@ -8,6 +8,7 @@ New features:
 - the navigation portlet can be used as a drop area from the
   folder_contents view to move elements
 - enable action icons in default profile's action portlets
+- added a dynamic treeview navigation portlet
 Bug fixes:
 ~~~~~~~~~~
 -

@@ -1,0 +1,15 @@
+<tal:block tal:define="show_icons python:int(request.get('show_icons', 1));
+                       base_url python:request.get('base_url', '');
+                       toggle_icon string:toggle_plus.png;
+                       toggle_icon2 string:toggle_minus.png;
+                       toggle_none string:toggle_none.png;
+                       linkclass python: show_icons and 'noicon' or None">
+<ul style="display: block;list-style-type: none!important; padding-left: 20px!important">
+  <tal:block tal:repeat="node python:view.getBranch()">
+    <li>
+      <metal:block metal:use-macro="context/tree_macros/macros/treenode"/>
+    </li>
+  </tal:block>
+</ul>
+</tal:block>
+

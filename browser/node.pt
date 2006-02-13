@@ -1,0 +1,25 @@
+<tal:block tal:define="ds python:request.get('ds');
+                       show_icons python:ds.get('show_icons', 1);
+                       contextual python:ds.get('contextual', True);
+                       base_url python:request.get('base_url', '');
+                       toggle_icon string:toggle_plus.png;
+                       toggle_none string:toggle_none.png;
+                       toggle_icon2 string:toggle_minus.png;
+                       contextual python:ds.get('contextual', True);
+                       linkclass python: show_icons and 'noicon' or None">
+  <tal:block tal:condition="contextual">
+    <tal:block tal:define="node python:view.getNode()">
+       <metal:block metal:use-macro="context/tree_macros/macros/treenode"/>
+    </tal:block>
+  </tal:block>
+  <tal:block tal:condition="not:contextual">
+    <ul style="display: block;list-style-type: none!important; padding-left: 0px!important">
+      <tal:block tal:repeat="node python:view.getBranch()">
+        <li>
+          <metal:block metal:use-macro="context/tree_macros/macros/treenode"/>
+        </li>
+      </tal:block>
+    </ul>
+  </tal:block>
+</tal:block>
+

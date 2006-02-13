@@ -1,0 +1,42 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+           i18n_domain="cpsdefault"
+           >
+
+  <five:traversable class="OFS.Folder.Folder" />
+
+  <browser:page
+    for="OFS.interfaces.IObjectManager"
+    name="getTreeviewBranch"
+    class=".browser.treenodeview.TreeNodeView"
+    template="branch.pt"
+    permission="zope.Public"/> <!-- TODO: secure the method -->
+
+  <browser:page
+    for="OFS.interfaces.IObjectManager"
+    name="getTreeviewNode"
+    class=".browser.treenodeview.TreeNodeView"
+    template="node.pt"
+    permission="zope.Public"/> <!-- TODO: secure the method -->
+
+  <browser:page
+    for="OFS.interfaces.IObjectManager"
+    name="getTreeView"
+    class=".browser.treenodeview.TreeNodeView"
+    template="tree.pt"
+    permission="zope.Public"/> <!-- TODO: secure the method -->
+
+  <browser:page
+    for="OFS.interfaces.IObjectManager"
+    template="tree_macros.pt"
+    name="tree_macros"
+    permission="zope.Public"
+    />
+
+  <browser:resource
+    file="treenodeview.js"
+    name="treenodeview.js"/>
+
+</configure>

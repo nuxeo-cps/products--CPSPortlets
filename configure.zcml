@@ -44,4 +44,5 @@
       checker=".upgrade.check_upgrade_338_340_themes"
       />
 
+  <include file="browser/configure.zcml" />
 </configure>

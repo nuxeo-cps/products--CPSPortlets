@@ -1,0 +1,48 @@
+<metal:block define-macro="treenode">
+<div class="droppable-in" tal:attributes="id node/safe_url">
+  <div tal:attributes="class string:node${node/selected}">
+    <tal:block tal:condition="not:node/dynamic">
+      <img tal:condition="node/has_folderish_children"
+        tal:attributes="id python:'load-caller-%s' % node['id'];
+                src
+                string:${base_url}cpsskins_images/${toggle_icon2};
+                class python:'nodeloader ' + node['safe_url'];
+                "/>
+    </tal:block>
+    <tal:block tal:condition="node/dynamic">
+      <img tal:condition="node/has_folderish_children"
+        tal:attributes="id python:'load-caller-%s' % node['id'];
+                src
+                string:${base_url}cpsskins_images/${toggle_icon};
+                class python:'nodeloader ' + node['safe_url'];
+                "/>
+    </tal:block>
+    <img tal:condition="not:node/has_folderish_children"
+    tal:attributes="src
+                string:${base_url}cpsskins_images/${toggle_none};"/>
+    <a tal:attributes="href node/url;class linkclass">
+    <tal:block condition="show_icons"
+            content="structure node/icon_tag" />
+    <tal:block content="node/title" />
+    </a>
+  </div>
+  <tal:block tal:condition="node/dynamic">
+    <div class="load-area" tal:attributes="id python:'load-area-%s' % node['id']"
+        style="display:none">
+    LOADING..
+    </div>
+  </tal:block>
+  <tal:block tal:condition="not:node/dynamic">
+    <div class="load-area" tal:attributes="id python:'load-area-%s' % node['id']">
+        <ul style="list-style-type: none!important; padding-left: 20px!important">
+        <tal:block tal:repeat="node node/folderish_children">
+          <li>
+            <metal:block use-macro="context/tree_macros/macros/treenode">
+            </metal:block>
+          </li>
+        </tal:block>
+        </ul>
+    </div>
+  </tal:block>
+</div>
+</metal:block>
