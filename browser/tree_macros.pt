@@ -6,6 +6,7 @@
         tal:attributes="id python:'load-caller-%s' % node['id'];
                 src
                 string:${base_url}cpsskins_images/${toggle_icon2};
+                alt string:toggle;
                 class python:'nodeloader ' + node['safe_url'];
                 "/>
     </tal:block>
@@ -19,7 +20,8 @@
     </tal:block>
     <img tal:condition="not:node/has_folderish_children"
     tal:attributes="src
-                string:${base_url}cpsskins_images/${toggle_none};"/>
+                string:${base_url}cpsskins_images/${toggle_none};
+                alt string:toggle;"/>
     <a tal:attributes="href node/url;class linkclass">
     <tal:block condition="show_icons"
             content="structure node/icon_tag" />
