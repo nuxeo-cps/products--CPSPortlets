@@ -302,6 +302,7 @@ function swapFolder(img, toggle_plus, toggle_minus){
            <metal:block use-macro="here/cpsportlet_macros/macros/view_tree" />
          </li>
        </ul>
+       <div style="clear:left"></div>
      </tal:block>
 
     </tal:block>
