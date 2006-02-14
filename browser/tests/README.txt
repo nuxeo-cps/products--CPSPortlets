@@ -2,8 +2,7 @@
 TreeNode View
 ===============
 :Version: $Id$
-:Author: Tarek Ziadé
-
+:Author: Tarek Ziadï¿½
 TreeNodeView let the client-side retrieve display-oriented informations about
 the current location.
 
@@ -42,7 +41,7 @@ Let's create a fake folder for our tests and plug the view::
     >>> from zope.interface import implements
     >>> from OFS.interfaces import IObjectManager
     >>> class FakeFolder:
-    ...     implements(IObjectManager)
+    ...     isPrincipiaFolderish = 1
     ...     portal_url = FakePortalUrl()
     ...     portal_membership = FakeMemberShip()
     ...     portal_types = FakePortalType()
@@ -113,9 +112,6 @@ Let's create a fake folder for our tests and plug the view::
     ...         else:
     ...             parent = ''
     ...         return  '%s/%s' % (parent, self.id)
-    ...
-    ...     def isPrincipiaFolderish(self):
-    ...         return True
     ...
     ...     def contentValues(self):
     ...         return self.items

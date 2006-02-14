@@ -24,8 +24,6 @@
 from Products.CMFCore.utils import getToolByName
 from AccessControl import Unauthorized
 from OFS.CopySupport import CopyError
-from OFS.interfaces import IObjectManager
-
 from Products.Five import BrowserView
 
 class TreeNodeView(BrowserView):
@@ -92,14 +90,13 @@ class TreeNodeView(BrowserView):
 
     def _hasSubFolders(self, folder):
         for id, item in folder.objectItems():
-            if (IObjectManager.providedBy(item) and
-                not (item.getId().startswith('.') or
-                     item.getId().startswith('_'))):
+            if self._isFolderish(item):
                 return True
         return False
 
     def _isFolderish(self, object):
-        return (IObjectManager.providedBy(object) and
+        return ((hasattr(object, 'isPrincipiaFolderish') and
+                object.isPrincipiaFolderish==1) and
                 not (object.getId().startswith('.') or
                      object.getId().startswith('_')))
 
