@@ -145,12 +145,13 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         return self.cpsportlet_guard_tales_help()
 
     security.declareProtected(ManagePortlets, 'setGuardProperties')
-    def setGuardProperties(self, props={}, REQUEST=None):
+    def setGuardProperties(self, props=None, REQUEST=None):
         """Postprocess guard values."""
         if REQUEST is not None:
             # XXX Using REQUEST itself should work.
             # but update is complaining it is not a dictionary
-            # XXX GR: should make a copy and not use {} as default, isn't it ?
+            if props is None:
+                props = {}
             props.update(REQUEST.form)
 
         # XXX found we must create a new instance every time.
