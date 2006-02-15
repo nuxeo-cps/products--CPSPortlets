@@ -102,8 +102,16 @@ CPSTreeViewEditor.prototype = {
       return;
 
     // unhooking elements
-    Event.unloadCache();
-
+    for (var i = 0; i < this.nodeloaders.length; i++) {
+      var nodeloader = this.nodeloaders[i];
+      for (var y = 0; y < Event.observers.length; y++) {
+        var element = Event.observers[y][0];
+        if (element==nodeloader) {
+          Event.stopObserving.apply(nodeloader, Event.observers[y]);
+          Event.observers[y][0] = null;
+        }
+      }
+    }
     this.hooked = false;
     this.enabled = false;
   },
