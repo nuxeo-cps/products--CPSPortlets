@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<export-steps>
- <export-step id="portlets"
-              handler="Products.CPSPortlets.exportimport.exportPortletTool"
-              title="Portlet Tool">
-  Export portlet tool and portlets.
- </export-step>
-</export-steps>

@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<tool-setup>
- <required tool_id="portal_cpsportlets"
-           class="Products.CPSPortlets.PortletsTool.PortletsTool"/>
- <required tool_id="portal_cpsportlets_catalog"
-           class="Products.CPSPortlets.PortletsCatalogTool.PortletsCatalogTool"/>
-</tool-setup>
