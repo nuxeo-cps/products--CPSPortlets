@@ -26,6 +26,8 @@ Bug fixes:
 - During importing CPSDefault profile on CPS3.3.8 instance
   AttributeError: getCPSPortletJavaScript popups. Provided crude fix to allow
   import process go on.
+- Fixed search portlet: advanced search form was not taken into account and was
+  never contextual
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - #1341: Navigation portlet: folder items can be sorted by date, title, author.
