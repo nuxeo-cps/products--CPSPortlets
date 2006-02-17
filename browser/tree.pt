@@ -23,8 +23,6 @@
   }
   loadScript('prototype', 'prototype.js');
   loadScript('effect', 'effects.js');
-  loadScript('dragdrop', 'dragdrop.js');
-  loadScript('cpsdefault', 'cpsdefault.js');
   loadScript('treeview', '++resource++treenodeview.js');
 </script>
 <tal:block define="ds python: request.get('ds');
