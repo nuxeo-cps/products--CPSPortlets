@@ -195,9 +195,7 @@ CPSTreeViewEditor.prototype = {
     this.current_area.innerHTML = result;
     // reloading nodes that where added
     this.reloadNodes();
-  },
-
-
+  }
 }
 
 
