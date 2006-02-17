@@ -1,4 +1,46 @@
 *******************************************
+** CPSPortlets V0.9.0 [R1 build 2006/02/17-20:22 by fermigier]
+** SVN URL: https://svn.nuxeo.org/pub/CPSPortlets/trunk Revision: 32986
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+- removed the portlet metadata edit form
+- the navigation portlet can be used as a drop area from the
+  folder_contents view to move elements
+- enable action icons in default profile's action portlets
+- added a dynamic treeview navigation portlet
+Bug fixes:
+~~~~~~~~~~
+-
+- #1274 fixed the rendering of the portlet edit form
+- Removed dependency to CPSBoxes property cps_is_portalbox in portlets types
+  definitions
+- 'path' was undefined in the Content Portlet when syndication was selected
+- #1353: content portlet did not display folder documents
+- #1345: directories breadcrumbs were wrong
+- #1360: accessibility portlet is a Custom Portlet instead of Text Portlet,
+  to cope with rendering the portal_url
+- #1377: guard used to check permissions and roles on the portlet instead of
+  the context
+- #1358: replaced RSS portlet with a WAI portlet
+- During importing CPSDefault profile on CPS3.3.8 instance
+  AttributeError: getCPSPortletJavaScript popups. Provided crude fix to allow
+  import process go on.
+- Fixed search portlet: advanced search form was not taken into account and was
+  never contextual
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- #1341: Navigation portlet: folder items can be sorted by date, title, author.
+- #1334: action icons and portal type icons are first looked up in the current
+  theme's icon folder.
+- register the CPS Placeful Portlets Container class / meta type to make it
+  possible to recursively build local portlets in the importVarious step of
+  profiles
+
+*******************************************
 ** CPSPortlets V0.8.0 [R1 build 2006/01/23-17:30 by fermigier]
 ** SVN URL: https://svn.nuxeo.org/pub/CPSPortlets/trunk Revision: 31976
 Requires:
