@@ -28,6 +28,11 @@ class PortletView(BrowserView):
 
     def render(self, portlet_id):
         portlets = getToolByName(self.context, 'portal_cpsportlets')
+        if portlet_id in portlets.objectIds():
+            return portlets[portlet_id].render(context_obj=self.context)
 
-        # will raise a key error if the given id cannot be found
-        return portlets[portlet_id].render(context_obj=self.context)
+        portlets = getToolByName(self.context, '.cps_portlets')
+        if portlet_id in portlets.objectIds():
+            return portlets[portlet_id].render(context_obj=self.context)
+
+        raise KeyError(portlet_id)

@@ -64,15 +64,18 @@ class PortletViewTests(CPSPortletsTestCase.CPSPortletsTestCase):
         </html>
         """
 
-        # XXX portlets to be checked (img tag issue)
+        # XXX portlets to be checked (img tag issue, encodings to fix)
         not_tested = ('portlet_language', 'portlet_text_about_cps',
                       'portlet_text_cps', 'portlet_text_start_cps',
-                      'portlet_text_welcome3')
+                      'portlet_text_welcome3', 'portlet_foldercontents',
+                      'portlet_navigation_left', 'portlet_navigation_sections',
+                      'portlet_navigation_workspaces', 'portlet_welcome')
 
         portlets = getToolByName(self.portal, 'portal_cpsportlets')
+        cpsportlets = getToolByName(self.portal, '.cps_portlets')
 
         fakepage = ''
-        for portlet_id in portlets.objectIds():
+        for portlet_id in list(portlets.objectIds()) + list(cpsportlets.objectIds()):
             if portlet_id in not_tested:
                 continue
             portletviewer = PortletView(self.portal, None)
