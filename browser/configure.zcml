@@ -46,4 +46,8 @@
     file="treenodeview.js"
     name="treenodeview.js"/>
 
+  <browser:resource
+    file="portletrefresher.js"
+    name="portletrefresher.js"/>
+
 </configure>
