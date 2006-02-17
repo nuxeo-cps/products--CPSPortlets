@@ -8,6 +8,13 @@
   <five:traversable class="OFS.Folder.Folder" />
 
   <browser:page
+    for="*"
+    name="viewPortlet"
+    class=".browser.portletview.PortletView"
+    attribute="render"
+    permission="zope.Public"/> <!-- TODO: secure the method -->
+
+  <browser:page
     for="OFS.interfaces.IObjectManager"
     name="getTreeviewBranch"
     class=".browser.treenodeview.TreeNodeView"
