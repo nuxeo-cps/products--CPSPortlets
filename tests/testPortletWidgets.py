@@ -1,4 +1,5 @@
 import os, sys
+import re
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
@@ -57,6 +58,8 @@ for ptype_id in ['Dummy Portlet',
 
 class TestCustomPortletWidget(TestPortlets):
 
+    pattern = '<div id="\w*?">%s</div>'
+
     def test_without_rendering_method(self):
         ptype_id = 'Custom Portlet'
         ptltool = self.ptltool
@@ -65,8 +68,8 @@ class TestCustomPortletWidget(TestPortlets):
         self.assertEquals(len(ptltool.items()), len_before + 1)
         portlet = ptltool[portlet_id]
         rendering = portlet.render(context_obj=self.portal, portlet=portlet)
-        self.assertEquals('Unknown render method <cite></cite>.',
-                         rendering)
+        self.assertNotEqual(re.match(pattern % 'Unknown render method <cite></cite>.',
+                            rendering), None)
 
     def test_with_rendering_method_ok(self):
 
@@ -84,7 +87,8 @@ class TestCustomPortletWidget(TestPortlets):
         portlet.render_method = 'portlet_meth'
         self.assertEquals(getattr(portlet, portlet.render_method, None), meth)
         rendering = portlet.render(context_obj=self.portal, portlet=portlet)
-        self.assertEquals(meth(), rendering)
+
+        self.assertNotEqual(re.findall(pattern % meth(), rendering), None)
 
     def test_with_rendering_method_ko(self):
 
@@ -101,9 +105,8 @@ class TestCustomPortletWidget(TestPortlets):
         portlet.render_method = 'portlet_meth'
         self.assertEquals(getattr(portlet, portlet.render_method, None), meth)
         rendering = portlet.render(context_obj=self.portal, portlet=portlet)
-        self.assertEquals(
-            rendering,
-            "<cite>portlet_meth</cite> is not a callable object.")
+        content = "<cite>portlet_meth</cite> is not a callable object."
+        self.assertNotEqual(re.findall(pattern % content, rendering), None)
 
 def test_suite():
     suite = unittest.TestSuite()
