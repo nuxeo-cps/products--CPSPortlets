@@ -15,6 +15,7 @@
         tal:attributes="id python:'load-caller-%s' % node['id'];
                 src
                 string:${base_url}cpsskins_images/${toggle_icon};
+                alt string:toggle;
                 class python:'nodeloader ' + node['safe_url'];
                 "/>
     </tal:block>
