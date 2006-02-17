@@ -71,6 +71,13 @@ class TreeNodeView(BrowserView):
                                  recursive=0)
         return folder_items
 
+    def _rootRestrictedTraverse(self, path):
+        utool = getToolByName(self.context, 'portal_url')
+        portal_path = utool.getPortalPath()
+        if not path.startswith(portal_path):
+            path = portal_path + path
+        return self.context.restrictedTraverse(path, default=None)
+
     def _getRoot(self, root=''):
         if (root is None or root == '') and (self.request is None
                                         or self.request.get('root', '') == ''):
@@ -78,7 +85,7 @@ class TreeNodeView(BrowserView):
         else:
             if root is None or root == '':
                 root = self.request.get('root', '')
-            return self.context.restrictedTraverse(root, default=None)
+            return self._rootRestrictedTraverse(root)
 
     def _getContent(self, object):
         content = None

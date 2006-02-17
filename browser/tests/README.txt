@@ -24,6 +24,8 @@ Let's create a fake folder for our tests and plug the view::
     >>> class FakePortalUrl:
     ...     def getBaseUrl(self):
     ...         return '/'
+    ...     def getPortalPath(self):
+    ...         return '/cps'
     ...
     >>> class FakeMemberShip:
     ...     def checkPermission(self, *args, **kwargs):
