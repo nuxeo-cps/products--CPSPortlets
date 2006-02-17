@@ -56,9 +56,9 @@ for ptype_id in ['Dummy Portlet',
         ptype_id = ptype_id
     tests.append(TestOnePortlet)
 
-class TestCustomPortletWidget(TestPortlets):
+pattern = '<div id="\w*?">%s</div>'
 
-    pattern = '<div id="\w*?">%s</div>'
+class TestCustomPortletWidget(TestPortlets):
 
     def test_without_rendering_method(self):
         ptype_id = 'Custom Portlet'
