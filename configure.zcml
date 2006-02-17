@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:cps="http://namespaces.nuxeo.org/cps">
+    xmlns:cps="http://namespaces.nuxeo.org/cps"
+    xmlns:five="http://namespaces.zope.org/five">
 
   <adapter
       factory=".exportimport.CPSPortletXMLAdapter"
@@ -43,6 +44,14 @@
       handler=".upgrade.upgrade_338_340_themes"
       checker=".upgrade.check_upgrade_338_340_themes"
       />
+
+  <five:registerClass
+      class=".PortletsContainer.PortletsContainer"
+      meta_type="CPS Placeful Portlets Container"
+      permission="cmf.ManagePortal"
+      global="False"
+      />
+
 
   <include file="browser/configure.zcml" />
 </configure>

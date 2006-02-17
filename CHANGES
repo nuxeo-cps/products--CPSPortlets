@@ -33,3 +33,6 @@ New internal features:
 - #1341: Navigation portlet: folder items can be sorted by date, title, author.
 - #1334: action icons and portal type icons are first looked up in the current
   theme's icon folder.
+- register the CPS Placeful Portlets Container class / meta type to make it
+  possible to recursively build local portlets in the importVarious step of
+  profiles
