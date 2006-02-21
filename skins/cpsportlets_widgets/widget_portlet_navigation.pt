@@ -279,11 +279,11 @@ function swapFolder(img, toggle_plus, toggle_minus){
                onclick string:showBranch('${branch}');;
                swapFolder('${folder}', '${toggle_plus}', '${toggle_minus}');;"
                tal:condition="python:children_branch" />
-            <div tal:condition="python:
-                (not children_branch) and root_has_nephew"
-              class="missing_toggle">
-              &nbsp;
-            </div>
+           </div>
+           <div tal:condition="python: (not children_branch) and root_has_nephew"
+             class="missing_toggle">
+             &nbsp;
+           </div>
            <ul style="padding: 0px">
              <li tal:attributes="class python:
                  node['selected'] and 'selected' or None">

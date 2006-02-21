@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- fixed missing </div> in expandable navigation portlet widget
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
