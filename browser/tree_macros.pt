@@ -1,6 +1,6 @@
 <metal:block define-macro="treenode">
-<div class="droppable-in" tal:attributes="id node/safe_url">
-  <div tal:attributes="class string:node${node/selected}">
+  <div tal:attributes="class string:node${node/selected} droppable-in;
+                       id node/safe_url">
     <tal:block tal:condition="not:node/dynamic">
       <img tal:condition="node/has_folderish_children"
         tal:attributes="id python:'load-caller-%s' % node['id'];
@@ -47,5 +47,4 @@
         </ul>
     </div>
   </tal:block>
-</div>
 </metal:block>
