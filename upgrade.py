@@ -121,11 +121,13 @@ def check_upgrade_338_340_themes(portal, source):
 def upgrade_338_340_portlets_cache(context):
     ptool = getToolByName(context, 'portal_cpsportlets')
     cache_params = ptool.getCacheParameters()
-    cache_params['Breadcrumbs Portlet'].append('request:breadcrumb_set')
-    ptool.updateCacheParameters(cache_params)
-    return 'Cache params updated'
+    bc_params = cache_params['Breadcrumbs Portlet']
+    if 'request:breadcrumb_set' not in bc_params:
+        bc_params.append('request:breadcrumb_set')
+        ptool.updateCacheParameters(cache_params)
+    return "Cache parameters updated"
 
 def check_upgrade_338_340_portlets_cache(portal, source):
     ptool = getToolByName(portal, 'portal_cpsportlets')
-    return ('request:breadcrumb_set' in
+    return ('request:breadcrumb_set' not in
             ptool.getCacheParametersFor('Breadcrumbs Portlet'))
