@@ -115,6 +115,17 @@ def upgrade_338_340_themes(context, check=False):
         return False
     return '\n'.join(logger)
 
-
 def check_upgrade_338_340_themes(portal, source):
     return upgrade_338_340_themes(portal, check=True)
+
+def upgrade_320_340_portlets_cache(context):
+    ptool = getToolByName(context, 'portal_cpsportlets')
+    cache_params = ptool.getCacheParameters()
+    cache_params['Breadcrumbs Portlet'].append('request:breadcrumb_set')
+    ptool.updateCacheParameters(cache_params)
+    return 'Cache params updated'
+
+def check_upgrade_320_340_portlets_cache(portal, source):
+    ptool = getToolByName(portal, 'portal_cpsportlets')
+    return ('request:breadcrumb_set' in
+            ptool.getCacheParametersFor('Breadcrumbs Portlet'))

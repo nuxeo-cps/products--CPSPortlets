@@ -45,6 +45,13 @@
       checker=".upgrade.check_upgrade_338_340_themes"
       />
 
+  <cps:upgradeStep
+      title="Upgrade the portlets cache params."
+      source="3.2.0" destination="3.4.0"
+      handler=".upgrade.upgrade_320_340_portlets_cache"
+      checker=".upgrade.check_upgrade_320_340_portlets_cache"
+      />
+
   <five:registerClass
       class=".PortletsContainer.PortletsContainer"
       meta_type="CPS Placeful Portlets Container"
