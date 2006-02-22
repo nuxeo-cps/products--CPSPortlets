@@ -46,10 +46,10 @@
       />
 
   <cps:upgradeStep
-      title="Upgrade portlets cache parameters"
-      source="3.2.0" destination="3.4.0"
-      handler=".upgrade.upgrade_320_340_portlets_cache"
-      checker=".upgrade.check_upgrade_320_340_portlets_cache"
+      title="Upgrade breadcrumbs portlet cache parameters"
+      source="3.3.8" destination="3.4.0"
+      handler=".upgrade.upgrade_338_340_portlets_cache"
+      checker=".upgrade.check_upgrade_338_340_portlets_cache"
       />
 
   <five:registerClass
