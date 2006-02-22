@@ -72,12 +72,12 @@ elif search_type == 'pending':
 
 # Last modified documents
 elif search_type == 'last_modified':
-    query.update({'sort_on': 'Date'})
+    query.update({'sort_on': 'modified'})
 
 # Last published documents
 elif search_type == 'last_published':
     query.update({'review_state': 'published',
-                  'sort_on': 'Date'})
+                  'sort_on': 'modified'})
 
 # Upcoming events:
 # - published
@@ -107,7 +107,7 @@ elif search_type == 'upcoming':
     now = context.ZopeTime()
     query.update({'review_state': 'published',
                   'effective': {'query': now, 'range': 'max'},
-                  'sort_on': 'Date',
+                  'sort_on': 'modified',
                  })
 
 # Recent documents:
