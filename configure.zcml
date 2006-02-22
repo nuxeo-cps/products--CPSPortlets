@@ -46,7 +46,7 @@
       />
 
   <cps:upgradeStep
-      title="Upgrade the portlets cache params."
+      title="Upgrade portlets cache parameters"
       source="3.2.0" destination="3.4.0"
       handler=".upgrade.upgrade_320_340_portlets_cache"
       checker=".upgrade.check_upgrade_320_340_portlets_cache"
