@@ -41,7 +41,7 @@ def upgrade_335_336_portlets_catalog(context):
         ptcatalog.indexObject(portlet)
     return "Portlet indexes migrated"
 
-def check_upgrade_335_336_portlets_catalog(portal, source):
+def check_upgrade_335_336_portlets_catalog(portal):
     ptcatalog = getToolByName(portal, 'portal_cpsportlets_catalog', None)
     if ptcatalog is None:
         return True
@@ -115,7 +115,7 @@ def upgrade_338_340_themes(context, check=False):
         return False
     return '\n'.join(logger)
 
-def check_upgrade_338_340_themes(portal, source):
+def check_upgrade_338_340_themes(portal):
     return upgrade_338_340_themes(portal, check=True)
 
 def upgrade_338_340_portlets_cache(context):
@@ -127,7 +127,7 @@ def upgrade_338_340_portlets_cache(context):
         ptool.updateCacheParameters(cache_params)
     return "Cache parameters updated"
 
-def check_upgrade_338_340_portlets_cache(portal, source):
+def check_upgrade_338_340_portlets_cache(portal):
     ptool = getToolByName(portal, 'portal_cpsportlets')
     return ('request:breadcrumb_set' not in
             ptool.getCacheParametersFor('Breadcrumbs Portlet'))
