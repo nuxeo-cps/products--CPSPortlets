@@ -35,7 +35,7 @@ for category in categories:
             orderedActions[actions_order.index(action['id'])] = item
 
 for action in orderedActions:
-    # remove actions in actions_order that does not really exist
+    # keep only actions that really exist (have been replaced with an item)
     if not isinstance(action, str):
         reorderedActions.append(action)
 
