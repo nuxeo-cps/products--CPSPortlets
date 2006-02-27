@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2006-02-27 11:22default\n"
+"POT-Creation-Date: 2006-02-27 20:25default\n"
 "PO-Revision-Date: 2005-04-13 17:27+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -34,6 +34,11 @@ msgstr "ID:"
 #.   <block>Edit</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
+msgstr ""
+
+#.   <div class="mainContentArea">_Main content_</div>
+#: from ../skins/cpsportlets_widgets/widget_portlet_maincontent.pt
+msgid "_Main content_"
 msgstr ""
 
 #.   <a href="cpsportlet_guard">guard</a>
@@ -241,7 +246,7 @@ msgstr "Portlet de recherche"
 
 #, fuzzy
 msgid "portal_type_MainContentPortlet_title"
-msgstr "Portlet de contenu"
+msgstr "Portlet de contenu de la région principale"
 
 #, fuzzy
 msgid "portal_type_InternalLinksPortlet_title"
@@ -325,6 +330,10 @@ msgstr "Afficher l'option de recherche contextuelle"
 
 #, fuzzy
 msgid "cpsportlets_action_categories_label"
+msgstr "Catégories d'actions à afficher"
+
+#, fuzzy
+msgid "cpsportlets_actions_order_label"
 msgstr "Catégories d'actions à afficher"
 
 #, fuzzy

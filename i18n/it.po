@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets Italian Translation\n"
-"POT-Creation-Date: 2006-02-27 11:22default\n"
+"POT-Creation-Date: 2006-02-27 20:25default\n"
 "PO-Revision-Date: 2005-11-29 09:28+0100\n"
 "Last-Translator: Stefano Schintu <schintu@gmail.com>\n"
 "Language-Team: CPS Italian <schintu@gmail.com>\n"
@@ -34,6 +34,11 @@ msgstr "ID:"
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
 msgstr "Modifica"
+
+#.   <div class="mainContentArea">_Main content_</div>
+#: from ../skins/cpsportlets_widgets/widget_portlet_maincontent.pt
+msgid "_Main content_"
+msgstr ""
 
 #.   <a href="cpsportlet_guard">guard</a>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
@@ -206,7 +211,7 @@ msgstr "Portlet di ricerca"
 
 #, fuzzy
 msgid "portal_type_MainContentPortlet_title"
-msgstr "Portlet de contenu"
+msgstr "Portlet de contenu de la région principale"
 
 msgid "portal_type_InternalLinksPortlet_title"
 msgstr "Portlet dei collegamenti interni"
@@ -271,6 +276,10 @@ msgstr "Visualizza le opzioni contestuali di ricerca"
 
 msgid "cpsportlets_action_categories_label"
 msgstr "Categorie di azioni da visualizzare"
+
+#, fuzzy
+msgid "cpsportlets_actions_order_label"
+msgstr "Catégories d'actions à afficher"
 
 msgid "cpsportlets_search_context_is_portlet_label"
 msgstr ""

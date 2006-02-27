@@ -107,6 +107,9 @@ msgstr ""
 msgid "cpsportlets_action_categories_label"
 msgstr ""
 
+msgid "cpsportlets_actions_order_label"
+msgstr ""
+
 msgid "cpsportlets_search_context_is_portlet_label"
 msgstr ""
 

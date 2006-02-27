@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2006-02-27 11:22default\n"
+"POT-Creation-Date: 2006-02-27 20:25default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -30,6 +30,11 @@ msgstr "ID:"
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
 msgstr "Editeaza"
+
+#.   <div class="mainContentArea">_Main content_</div>
+#: from ../skins/cpsportlets_widgets/widget_portlet_maincontent.pt
+msgid "_Main content_"
+msgstr ""
 
 #.   <a href="cpsportlet_guard">guard</a>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
@@ -214,7 +219,7 @@ msgstr "Portlet pentru cautare"
 
 #, fuzzy
 msgid "portal_type_MainContentPortlet_title"
-msgstr "Content portlet"
+msgstr "Main Content portlet"
 
 msgid "portal_type_InternalLinksPortlet_title"
 msgstr "Portlet pentru legaturi interne"
@@ -278,6 +283,10 @@ msgstr "Afiseaza optiunea pentru cautarea contextuala"
 
 msgid "cpsportlets_action_categories_label"
 msgstr "Categorii de actiuni pentru afisat"
+
+#, fuzzy
+msgid "cpsportlets_actions_order_label"
+msgstr "Ordered actions to display"
 
 msgid "cpsportlets_search_context_is_portlet_label"
 msgstr "Efectueaza cautarea pornind de la locatia unde se gaseste portlet-ul"

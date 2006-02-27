@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2006-02-27 11:22default\n"
+"POT-Creation-Date: 2006-02-27 20:25default\n"
 "PO-Revision-Date: 2006-02-22 19:38+0100\n"
 "Last-Translator: Jesús Martín <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
@@ -31,6 +31,11 @@ msgstr "ID"
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
 msgstr "Modificar"
+
+#.   <div class="mainContentArea">_Main content_</div>
+#: from ../skins/cpsportlets_widgets/widget_portlet_maincontent.pt
+msgid "_Main content_"
+msgstr ""
 
 #.   <a href="cpsportlet_guard">guard</a>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
@@ -205,7 +210,7 @@ msgstr "Buscar portlet"
 
 #, fuzzy
 msgid "portal_type_MainContentPortlet_title"
-msgstr "Content portlet"
+msgstr "Main Content portlet"
 
 msgid "portal_type_InternalLinksPortlet_title"
 msgstr "Portlet de enlaces internos"
@@ -269,6 +274,10 @@ msgstr "Mostrar la opción de búsqueda contextual"
 
 msgid "cpsportlets_action_categories_label"
 msgstr "Categorías a mostrar"
+
+#, fuzzy
+msgid "cpsportlets_actions_order_label"
+msgstr "Ordered actions to display"
 
 msgid "cpsportlets_search_context_is_portlet_label"
 msgstr "Ejecutar la búsquda empezando por la ubicación del portlet"

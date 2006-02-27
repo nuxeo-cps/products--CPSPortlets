@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2006-02-27 11:22default\n"
+"POT-Creation-Date: 2006-02-27 20:25default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -33,6 +33,11 @@ msgstr "ID"
 #.   <block>Edit</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
+msgstr ""
+
+#.   <div class="mainContentArea">_Main content_</div>
+#: from ../skins/cpsportlets_widgets/widget_portlet_maincontent.pt
+msgid "_Main content_"
 msgstr ""
 
 #.   <a href="cpsportlet_guard">guard</a>
@@ -268,6 +273,9 @@ msgstr "Display the contextual search option"
 
 msgid "cpsportlets_action_categories_label"
 msgstr "Action categories to display"
+
+msgid "cpsportlets_actions_order_label"
+msgstr "Ordered actions to display"
 
 msgid "cpsportlets_search_context_is_portlet_label"
 msgstr "Perform the search starting from the location of the portlet"

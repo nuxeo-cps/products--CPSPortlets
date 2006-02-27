@@ -1,4 +1,6 @@
-##parameters=obj=None, categories=[]
+##parameters=obj=None, categories=[], actions_order=[]
+
+from zLOG import LOG, DEBUG
 
 actions = context.REQUEST.get('cpsskins_cmfactions', None)
 if actions is None:
@@ -10,21 +12,34 @@ utool = context.portal_url
 # Note: this will not work in CMF
 base_url = utool.getBaseUrl()
 
-actionitems = {}
+actionitems = []
+orderedActions = list(actions_order)
+reorderedActions = []
+
 for category in categories:
     if not actions.has_key(category):
         continue
     actions_by_cat = actions[category]
-    items = []
     for action in actions_by_cat:
-        items.append(
-            {'title': action['name'],
-             'url': action['url'],
-             'icon_tag': renderActionIcon(action_id=action['id'],
-                 category=category,
-                 base_url=base_url,
-                 alt=action['name']),
-            })
-    actionitems[category] = items
+        LOG('getActionsItems', DEBUG, 'action: %s' % action['id'])
+        item = {'title': action['name'],
+                 'url': action['url'],
+                 'icon_tag': renderActionIcon(action_id=action['id'],
+                     category=category,
+                     base_url=base_url,
+                     alt=action['name']),
+                }
+        # if action is not in the preordered list, append it as usual
+        if not action['id'] in actions_order:
+            actionitems.append(item)
+        else:
+            # replace the action id in the preordered list with the action 
+            # vocabulary
+            orderedActions[actions_order.index(action['id'])] = item
 
-return actionitems
+for action in orderedActions:
+    # remove actions in actions_order that does not really exist
+    if not isinstance(action, str):
+        reorderedActions.append(action)
+
+return reorderedActions + actionitems

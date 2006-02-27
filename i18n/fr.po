@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2006-02-27 11:22default\n"
+"POT-Creation-Date: 2006-02-27 20:25default\n"
 "PO-Revision-Date: 2004-09-28 03:28+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -34,6 +34,11 @@ msgstr "ID:"
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
 msgstr "Modifier"
+
+#.   <div class="mainContentArea">_Main content_</div>
+#: from ../skins/cpsportlets_widgets/widget_portlet_maincontent.pt
+msgid "_Main content_"
+msgstr ""
 
 #.   <a href="cpsportlet_guard">guard</a>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
@@ -269,6 +274,10 @@ msgid "cpsportlets_contextual_search_choice_label"
 msgstr "Afficher l'option de recherche contextuelle"
 
 msgid "cpsportlets_action_categories_label"
+msgstr "Catégories d'actions à afficher"
+
+#, fuzzy
+msgid "cpsportlets_actions_order_label"
 msgstr "Catégories d'actions à afficher"
 
 msgid "cpsportlets_search_context_is_portlet_label"

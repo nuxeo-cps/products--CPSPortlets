@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPS-Portlets CPS-3.3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-31 20:21default\n"
+"POT-Creation-Date: 2006-02-27 20:24default\n"
 "PO-Revision-Date: 2005-10-08 22:25+0200\n"
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: German <rheinland@dzug.org>\n"
@@ -29,6 +29,11 @@ msgstr "ID"
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
 msgstr " Editieren "
+
+#.   <div class="mainContentArea">_Main content_</div>
+#: from ../skins/cpsportlets_widgets/widget_portlet_maincontent.pt
+msgid "_Main content_"
+msgstr ""
 
 #.   <a href="cpsportlet_guard">guard</a>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
@@ -98,7 +103,8 @@ msgstr "The context's relative path ending with a slash (e.g. 'sections/')"
 msgid "cpsportlet_guard_tales_user"
 msgstr "The user object"
 
-#.   <a href="" attributes="href string:${here/portal_url}/advanced_search_form" condition="advanced_search_link">Advanced search</a>
+#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "erweiterte Suche"
@@ -207,6 +213,10 @@ msgstr "Text Portlet"
 msgid "portal_type_SearchPortlet_title"
 msgstr "Such Portlet"
 
+#, fuzzy
+msgid "portal_type_MainContentPortlet_title"
+msgstr "Main Content portlet"
+
 msgid "portal_type_InternalLinksPortlet_title"
 msgstr "internalLink Portlet"
 
@@ -269,6 +279,10 @@ msgstr "Anzeigen der kontextbezogenen Such Option"
 
 msgid "cpsportlets_action_categories_label"
 msgstr "Aktion Kategorien zur Ansicht bestimmt"
+
+#, fuzzy
+msgid "cpsportlets_actions_order_label"
+msgstr "Ordered actions to display"
 
 msgid "cpsportlets_search_context_is_portlet_label"
 msgstr "Suche ausführen startend vom Ort des Portlets"
@@ -518,7 +532,8 @@ msgstr "Erstes Objekt"
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Navigations Baum"
 
-msgid "cpsportlets_nav_display_dyn_navtree_menu_label"
+#, fuzzy
+msgid "portlets_nav_display_dyn_navtree_menu_label"
 msgstr "Dynamic navigation tree"
 
 msgid "cpsportlets_navigation_contextual_label"

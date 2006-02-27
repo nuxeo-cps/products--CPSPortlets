@@ -1,18 +1,14 @@
 <tal:block define="ds options/datastructure;
                    categories ds/categories;
+                   actions_order ds/actions_order;
                    context nocall:options/context_obj|here;
                    show_icons ds/show_icons|python:1;
                    show_icons python: int(show_icons);
-                   actionitems python: here.getActionsItems(context, categories);
+                   actionitems python: here.getActionsItems(context, categories, actions_order);
                    base_url python: request.get('cpsskins_base_url')"
   condition="actionitems">
-  <tal:block repeat="category python: actionitems.keys()">
-    <ul class="cpsskinsMenu"
-        tal:define="actions actionitems/?category"
-        tal:condition="actions">
-      <li class="hidden" tal:condition="not:repeat/category/start"
-      tal:content="structure string:&nbsp;" />
-      <li tal:repeat="action actions"><a
+    <ul class="cpsskinsMenu">
+      <li tal:repeat="action actionitems"><a
        tal:define="icon_tag action/icon_tag"
        tal:attributes="href action/url;
                        class python:show_icons and icon_tag and 'noicon' or None">
@@ -24,7 +20,7 @@
              alt action/title" />
          </tal:block>
          <tal:block i18n:translate="" content="action/title" />
-       </a></li>
+       </a>
+       </li>
     </ul>
-  </tal:block>
 </tal:block>
