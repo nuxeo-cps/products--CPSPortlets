@@ -38,6 +38,9 @@ msgstr ""
 msgid "portal_type_SearchPortlet_title"
 msgstr ""
 
+msgid "portal_type_MainContentPortlet_title"
+msgstr ""
+
 msgid "portal_type_InternalLinksPortlet_title"
 msgstr ""
 

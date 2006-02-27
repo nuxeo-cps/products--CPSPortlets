@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2006-01-31 20:21default\n"
+"POT-Creation-Date: 2006-02-27 11:22default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -90,7 +90,8 @@ msgstr ""
 msgid "cpsportlet_guard_tales_user"
 msgstr ""
 
-#.   <a href="" attributes="href string:${here/portal_url}/advanced_search_form" condition="advanced_search_link">Advanced search</a>
+#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr ""
@@ -194,6 +195,9 @@ msgid "portal_type_TextPortlet_title"
 msgstr ""
 
 msgid "portal_type_SearchPortlet_title"
+msgstr ""
+
+msgid "portal_type_MainContentPortlet_title"
 msgstr ""
 
 msgid "portal_type_InternalLinksPortlet_title"
@@ -499,7 +503,7 @@ msgstr ""
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr ""
 
-msgid "cpsportlets_nav_display_dyn_navtree_menu_label"
+msgid "portlets_nav_display_dyn_navtree_menu_label"
 msgstr ""
 
 msgid "cpsportlets_navigation_contextual_label"

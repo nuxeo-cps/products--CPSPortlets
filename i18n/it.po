@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets Italian Translation\n"
-"POT-Creation-Date: 2006-01-31 20:21default\n"
+"POT-Creation-Date: 2006-02-27 11:22default\n"
 "PO-Revision-Date: 2005-11-29 09:28+0100\n"
 "Last-Translator: Stefano Schintu <schintu@gmail.com>\n"
 "Language-Team: CPS Italian <schintu@gmail.com>\n"
@@ -94,7 +94,8 @@ msgstr "Il percorso relativo al contesto seguito da / (p.es.: 'sezioni/)"
 msgid "cpsportlet_guard_tales_user"
 msgstr "L'oggetto utente"
 
-#.   <a href="" attributes="href string:${here/portal_url}/advanced_search_form" condition="advanced_search_link">Advanced search</a>
+#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Ricerca avanzata"
@@ -202,6 +203,10 @@ msgstr "Portlet di testo"
 
 msgid "portal_type_SearchPortlet_title"
 msgstr "Portlet di ricerca"
+
+#, fuzzy
+msgid "portal_type_MainContentPortlet_title"
+msgstr "Portlet de contenu"
 
 msgid "portal_type_InternalLinksPortlet_title"
 msgstr "Portlet dei collegamenti interni"
@@ -523,6 +528,10 @@ msgstr "Primo elemento"
 
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Menù di navigazione"
+
+#, fuzzy
+msgid "portlets_nav_display_dyn_navtree_menu_label"
+msgstr "Menu de navigation dynamique"
 
 msgid "cpsportlets_navigation_contextual_label"
 msgstr "Visualizzazione contestuale"

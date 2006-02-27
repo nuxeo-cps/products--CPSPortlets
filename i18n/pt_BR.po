@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2006-01-31 20:21default\n"
+"POT-Creation-Date: 2006-02-27 11:22default\n"
 "PO-Revision-Date: 2005-09-29 10:26-0300\n"
 "Last-Translator: Mario Olimpio de Menezes\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
@@ -105,7 +105,8 @@ msgstr "The context's relative path ending with a slash (e.g. 'sections/')"
 msgid "cpsportlet_guard_tales_user"
 msgstr "The user object"
 
-#.   <a href="" attributes="href string:${here/portal_url}/advanced_search_form" condition="advanced_search_link">Advanced search</a>
+#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Busca avançada"
@@ -213,6 +214,10 @@ msgstr "Portlet de Texto"
 
 msgid "portal_type_SearchPortlet_title"
 msgstr "Portlet de busca"
+
+#, fuzzy
+msgid "portal_type_MainContentPortlet_title"
+msgstr "Content portlet"
 
 msgid "portal_type_InternalLinksPortlet_title"
 msgstr "Portlet de links internos"
@@ -524,6 +529,10 @@ msgstr "Primeiro item"
 
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Árvore de Navegação"
+
+#, fuzzy
+msgid "portlets_nav_display_dyn_navtree_menu_label"
+msgstr "Dynamic navigation tree"
 
 msgid "cpsportlets_navigation_contextual_label"
 msgstr "Mostra contextual"
