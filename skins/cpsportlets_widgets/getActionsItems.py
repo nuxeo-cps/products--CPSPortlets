@@ -1,7 +1,5 @@
 ##parameters=obj=None, categories=[], actions_order=[]
 
-from zLOG import LOG, DEBUG
-
 actions = context.REQUEST.get('cpsskins_cmfactions', None)
 if actions is None:
     actions = context.portal_actions.listFilteredActionsFor(obj)
@@ -21,7 +19,6 @@ for category in categories:
         continue
     actions_by_cat = actions[category]
     for action in actions_by_cat:
-        LOG('getActionsItems', DEBUG, 'action: %s' % action['id'])
         item = {'title': action['name'],
                  'url': action['url'],
                  'icon_tag': renderActionIcon(action_id=action['id'],
