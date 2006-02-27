@@ -40,6 +40,7 @@ import PortletRAMCache
 # Import new widgets in here
 import PortletWidgets.DummyWidget
 import PortletWidgets.CustomWidget
+import PortletWidgets.MainContentWidget
 
 contentClasses = (
     CPSPortlet.CPSPortlet,
