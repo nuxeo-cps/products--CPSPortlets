@@ -13,6 +13,8 @@ Bug fixes:
 - #1470: added missing workflow_accept and workflow_reject eventids that the
   Content Portlet should subscribe to. Added an upgrade step.
 - #1473: Content portlet with '*' in the query_title field crashed the portlet
+- Upgrade steps: GenericSetup complained that the tool's 'cache_parameters'
+  was an unknown attribute.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Upgrade step CPS from 3.2.0 to 3.4.0 for #1345
