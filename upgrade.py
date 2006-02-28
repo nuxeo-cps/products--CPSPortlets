@@ -131,3 +131,41 @@ def check_upgrade_338_340_portlets_cache(portal):
     ptool = getToolByName(portal, 'portal_cpsportlets')
     return ('request:breadcrumb_set' not in
             ptool.getCacheParametersFor('Breadcrumbs Portlet'))
+
+def upgrade_338_340_portlets_cache_bug_1470(context):
+    ptool = getToolByName(context, 'portal_cpsportlets')
+    old_params = ptool.getCacheParametersFor('Content Portlet')
+    new_params = []
+    upgrade = False
+    for param in old_params:
+        if param.startswith('event_ids:'):
+            values = param.split(':')[1].split(',')
+            if 'workflow_accept' not in values:
+                values.append('workflow_accept')
+            if 'workflow_reject' not in values:
+                values.append('workflow_reject')
+            new_params.append('event_ids:' + ','.join(values))
+            upgrade = True
+        else:
+            new_params.append(param)
+    if upgrade:
+        ptool.updateCacheParameters({'Content Portlet': new_params})
+    return "Cache parameters updated"
+
+def check_upgrade_338_340_portlets_cache_bug_1470(portal):
+    ptool = getToolByName(portal, 'portal_cpsportlets')
+    params = ptool.getCacheParametersFor('Content Portlet')
+    for param in params:
+        if not param.startswith('event_ids:'):
+            # if there is now 'event_ids' information, obviously the user has
+            # changed parameters a lot. we do nothing
+            continue
+        if param == 'event_ids:':
+            # the user has removed all values for 'event_ids:', we do nothing
+            return False
+        values = param.split(':')[1].split(',')
+        if 'workflow_accept' not in values:
+            return True
+        if 'workflow_reject' not in values:
+            return True
+    return False
