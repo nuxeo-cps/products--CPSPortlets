@@ -10,6 +10,8 @@ Bug fixes:
 - #1434
 - navigation portlet (folder contents detailed) has one_column format
 - added a fallback value on actions orders.
+- #1470: added missing workflow_accept and workflow_reject eventids that the
+  Content Portlet should subscribe to.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Upgrade step CPS from 3.2.0 to 3.4.0 for #1345

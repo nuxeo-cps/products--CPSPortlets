@@ -19,7 +19,7 @@ cache_params = {
     'Actions Portlet': ['actions:(categories)', 'current_lang'],
     'Content Portlet': ['no-cache:(contextual)',
         'user',
-        'event_ids:workflow_create,workflow_publish,workflow_modify,sys_del_object,workflow_cut_copy_paste,workflow_copy_submit',
+        'event_ids:workflow_create,workflow_accept,workflow_reject,workflow_publish,workflow_modify,sys_del_object,workflow_cut_copy_paste,workflow_copy_submit',
         'event_in_folders:(folder_path)',
         'event_on_types:(searchable_types)',
         'baseurl',
