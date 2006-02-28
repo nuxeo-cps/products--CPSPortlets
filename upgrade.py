@@ -120,42 +120,59 @@ def check_upgrade_338_340_themes(portal):
 
 def upgrade_338_340_portlets_cache(context):
     ptool = getToolByName(context, 'portal_cpsportlets')
-    cache_params = ptool.getCacheParameters()
-    bc_params = cache_params['Breadcrumbs Portlet']
-    if 'request:breadcrumb_set' not in bc_params:
-        bc_params.append('request:breadcrumb_set')
-        ptool.updateCacheParameters(cache_params)
-    return "Cache parameters updated"
+    try:
+        bc_params = ptool.getCacheParametersFor('Breadcrumbs Portlet')
+    except AttributeError:
+        ptool.initializeCacheParameters()
+        ptool.resetCacheParameters()
+    else:
+        if 'request:breadcrumb_set' not in bc_params:
+            bc_params.append('request:breadcrumb_set')
+            ptool.updateCacheParameters({'Breadcrumbs Portlet': bc_params})
+    return "Cache parameters for the Breadcrumbs Portlet updated"
 
 def check_upgrade_338_340_portlets_cache(portal):
     ptool = getToolByName(portal, 'portal_cpsportlets')
-    return ('request:breadcrumb_set' not in
-            ptool.getCacheParametersFor('Breadcrumbs Portlet'))
+    try:
+        bc_params = ptool.getCacheParametersFor('Breadcrumbs Portlet')
+    except AttributeError:
+        # ptool.cache_parameters is missing
+        return True
+    return ('request:breadcrumb_set' not in bc_params)
 
 def upgrade_338_340_portlets_cache_bug_1470(context):
     ptool = getToolByName(context, 'portal_cpsportlets')
-    old_params = ptool.getCacheParametersFor('Content Portlet')
-    new_params = []
-    upgrade = False
-    for param in old_params:
-        if param.startswith('event_ids:'):
-            values = param.split(':')[1].split(',')
-            if 'workflow_accept' not in values:
-                values.append('workflow_accept')
-                upgrade = True
-            if 'workflow_reject' not in values:
-                values.append('workflow_reject')
-                upgrade = True
-            new_params.append('event_ids:' + ','.join(values))
-        else:
-            new_params.append(param)
-    if upgrade:
-        ptool.updateCacheParameters({'Content Portlet': new_params})
-    return "Cache parameters updated"
+    try:
+        old_params = ptool.getCacheParametersFor('Content Portlet')
+    except AttributeError:
+        ptool.initializeCacheParameters()
+        ptool.resetCacheParameters()
+    else:
+        new_params = []
+        upgrade = False
+        for param in old_params:
+            if param.startswith('event_ids:'):
+                values = param.split(':')[1].split(',')
+                if 'workflow_accept' not in values:
+                    values.append('workflow_accept')
+                    upgrade = True
+                if 'workflow_reject' not in values:
+                    values.append('workflow_reject')
+                    upgrade = True
+                new_params.append('event_ids:' + ','.join(values))
+            else:
+                new_params.append(param)
+        if upgrade:
+            ptool.updateCacheParameters({'Content Portlet': new_params})
+    return "Cache parameters for the Content Portlet updated"
 
 def check_upgrade_338_340_portlets_cache_bug_1470(portal):
     ptool = getToolByName(portal, 'portal_cpsportlets')
-    params = ptool.getCacheParametersFor('Content Portlet')
+    try:
+        params = ptool.getCacheParametersFor('Content Portlet')
+    except AttributeError:
+        # ptool.cache_parameters is missing
+        return True
     for param in params:
         if not param.startswith('event_ids:'):
             # if there is now 'event_ids' information, obviously the user has
