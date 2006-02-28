@@ -142,10 +142,11 @@ def upgrade_338_340_portlets_cache_bug_1470(context):
             values = param.split(':')[1].split(',')
             if 'workflow_accept' not in values:
                 values.append('workflow_accept')
+                upgrade = True
             if 'workflow_reject' not in values:
                 values.append('workflow_reject')
+                upgrade = True
             new_params.append('event_ids:' + ','.join(values))
-            upgrade = True
         else:
             new_params.append(param)
     if upgrade:
