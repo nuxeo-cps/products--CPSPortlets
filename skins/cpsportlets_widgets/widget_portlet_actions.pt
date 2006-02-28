@@ -1,6 +1,6 @@
 <tal:block define="ds options/datastructure;
                    categories ds/categories;
-                   actions_order ds/actions_order;
+                   actions_order ds/actions_order|python:[];
                    context nocall:options/context_obj|here;
                    show_icons ds/show_icons|python:1;
                    show_icons python: int(show_icons);
