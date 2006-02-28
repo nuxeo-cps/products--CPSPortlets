@@ -46,6 +46,8 @@ if int(kw.get('sort_reverse', 0)) == 1:
 # Title search (if specified)
 query_title = kw.get('query_title')
 if query_title is not None:
+    if query_title == '*':
+        query_title = ''
     query['ZCTitle'] = query_title
 
 # Override some of the query options depending on the type of search
