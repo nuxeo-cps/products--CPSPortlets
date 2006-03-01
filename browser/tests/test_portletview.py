@@ -64,28 +64,28 @@ class PortletViewTests(CPSPortletsTestCase.CPSPortletsTestCase):
         </html>
         """
 
-        # XXX portlets to be checked (img tag issue, encodings to fix)
-        not_tested = ('portlet_language', 'portlet_text_about_cps',
-                      'portlet_text_cps', 'portlet_text_start_cps',
-                      'portlet_text_welcome3', 'portlet_foldercontents',
-                      'portlet_navigation_left', 'portlet_navigation_sections',
-                      'portlet_navigation_workspaces', 'portlet_welcome')
-
+        # XXX portlets to be checked
+        not_tested = (
+            'portlet_language', # widget_portlet_language needs options/portlet
+            'portlet_text_cps', # img border, bad closing div
+            'portlet_foldercontents', # width in td
+            )
         portlets = getToolByName(self.portal, 'portal_cpsportlets')
         cpsportlets = getToolByName(self.portal, '.cps_portlets')
 
-        fakepage = ''
-        for portlet_id in list(portlets.objectIds()) + list(cpsportlets.objectIds()):
+        for portlet_id in (list(portlets.objectIds())
+                           + list(cpsportlets.objectIds()):
             if portlet_id in not_tested:
                 continue
             portletviewer = PortletView(self.portal, None)
             result = portletviewer.render(portlet_id)
             if result.strip() == '':
                 continue
-            fakepage += '\n<div>**** portlet %s ****</div>\n%s\n\n' \
-                        % (portlet_id, result)
+            result = result.decode('iso-8859-15').encode('utf-8')
+            fakepage = ('\n<div>**** portlet %s ****</div>\n%s\n'
+                        % (portlet_id, result))
 
-        self.assertValidXHTML(htmlpage % fakepage)
+            self.assertValidXHTML(htmlpage % fakepage, portlet_id)
 
 def test_suite():
     return unittest.TestSuite((
