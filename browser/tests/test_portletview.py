@@ -74,7 +74,7 @@ class PortletViewTests(CPSPortletsTestCase.CPSPortletsTestCase):
         cpsportlets = getToolByName(self.portal, '.cps_portlets')
 
         for portlet_id in (list(portlets.objectIds())
-                           + list(cpsportlets.objectIds()):
+                           + list(cpsportlets.objectIds())):
             if portlet_id in not_tested:
                 continue
             portletviewer = PortletView(self.portal, None)
