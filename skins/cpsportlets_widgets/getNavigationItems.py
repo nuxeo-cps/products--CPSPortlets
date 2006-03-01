@@ -111,6 +111,8 @@ for root_uid in root_uids:
         # gather data
         ptype = object['portal_type']
         selected = node['is_current'] and current_uid == rpath
+        # used for navigation tabs
+        selected_tab = (current_uid + '/').startswith(rpath + '/')
 
         if contextual:
             if depth == 0 and not selected:
@@ -140,6 +142,7 @@ for root_uid in root_uids:
              'depth': depth,
              'level': level,
              'selected': selected,
+             'selected_tab': selected_tab,
              'open': node.get('is_open'),
              'icon_tag': renderIcon(ptype, base_url, ''),
              'managers': managers,

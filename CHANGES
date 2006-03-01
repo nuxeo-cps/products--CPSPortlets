@@ -22,3 +22,5 @@ New internal features:
 - Upgrade step CPS from 3.2.0 to 3.4.0 for #1345
 - #1413: added a Main Content Portlet
 - #1319: actions in the Actions Portlet can now be custom ordered
+- #1391: navigation tabs can be selected and remain selected if user browses 
+  inside
