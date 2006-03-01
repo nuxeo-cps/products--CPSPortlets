@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2006-02-27 20:25default\n"
+"POT-Creation-Date: 2006-03-01 17:57default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -527,6 +527,9 @@ msgid "w__imagelink"
 msgstr ""
 
 msgid "cpsportlets_nav_display_site_map_label"
+msgstr ""
+
+msgid "cpsportlets_nav_display_site_map_3_tabs_label"
 msgstr ""
 
 msgid "cpsportlets_nav_display_extended_site_map_label"

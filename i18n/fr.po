@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2006-02-27 20:25default\n"
+"POT-Creation-Date: 2006-03-01 17:57default\n"
 "PO-Revision-Date: 2004-09-28 03:28+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -539,6 +539,9 @@ msgstr "Lien image"
 
 msgid "cpsportlets_nav_display_site_map_label"
 msgstr "Plan de site"
+
+msgid "cpsportlets_nav_display_site_map_3_tabs_label"
+msgstr "Plan de site (avec membres)"
 
 msgid "cpsportlets_nav_display_extended_site_map_label"
 msgstr "Plan de site étendu*"

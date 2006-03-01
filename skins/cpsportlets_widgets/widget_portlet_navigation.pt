@@ -332,7 +332,7 @@ function swapFolder(img, toggle_plus, toggle_minus){
      condition="folderItems">
       <ul class="cpsskinsMenu">
         <li tal:repeat="item folderItems"
-        tal:attributes="class python: item['selected_tab'] and 'selected' or None">
+        tal:attributes="class python: item['selected'] and 'selected' or None">
           <a tal:define="style string:margin-left:${item/depth}em"
              tal:condition="item/visible"
              tal:attributes="style style;
@@ -351,6 +351,47 @@ function swapFolder(img, toggle_plus, toggle_minus){
     </tal:block>
   </tal:block>
 
+  <tal:block condition="python: display == 'site_map_3_tabs'">
+      <tal:block define="show_icons ds/show_icons;
+                show_icons python: int(show_icons);
+                contextual ds/contextual;
+                end_depth ds/end_depth;
+                folder_prefixes ds/folder_prefixes|python:[];
+                folderItems python: context.getNavigationItems(
+                    root_uids=root_uids,
+                    context_rpath=context_rpath,
+                    context_obj=context,
+                    contextual=0, expand=1,
+                    folder_prefixes=folder_prefixes,
+                    end_depth=int(end_depth),
+                    display_description=display_description,
+                    display_hidden_folders=display_hidden_folders,);
+                linkclass python: show_icons and 'noicon' or None;
+                folderItems python: folderItems + context.getMembersTab(
+                    context_rpath=context_rpath)"
+                condition="folderItems">
+          <ul class="cpsskinsMenu">
+              <li tal:repeat="item folderItems"
+                  tal:attributes="class python: item['selected_tab'] and 'selected' or None">
+                  <a tal:define="style string:margin-left:${item/depth}em"
+                     tal:condition="item/visible"
+                     tal:attributes="style style;
+                     href item/url;
+                     class linkclass">
+                      <tal:block condition="show_icons"
+                                 content="structure item/icon_tag" />
+                      <tal:block content="item/title" />
+                      <span class="itemDescription"
+                            tal:define="description item/description"
+                            tal:condition="python: description and display_description"
+                            tal:content="description" />
+                  </a>
+              </li>
+          </ul>
+      </tal:block>
+  </tal:block>
+
+  
   <tal:block condition="python: display == 'extended_site_map'">
     <tal:block
      define="show_icons ds/show_icons;

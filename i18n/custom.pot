@@ -374,6 +374,9 @@ msgstr ""
 msgid "cpsportlets_nav_display_site_map_label"
 msgstr ""
 
+msgid "cpsportlets_nav_display_site_map_3_tabs_label"
+msgstr ""
+
 msgid "cpsportlets_nav_display_extended_site_map_label"
 msgstr ""
 

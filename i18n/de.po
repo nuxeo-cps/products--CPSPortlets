@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPS-Portlets CPS-3.3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-27 20:24default\n"
+"POT-Creation-Date: 2006-03-01 16:10default\n"
 "PO-Revision-Date: 2005-10-08 22:25+0200\n"
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: German <rheinland@dzug.org>\n"
@@ -550,6 +550,10 @@ msgstr "Bild Verweis"
 
 msgid "cpsportlets_nav_display_site_map_label"
 msgstr "Portal Landkarte"
+
+#, fuzzy
+msgid "cpsportlets_nav_display_site_map_3_tabs_label"
+msgstr "Site map (with members)"
 
 msgid "cpsportlets_nav_display_extended_site_map_label"
 msgstr "Erweiterte Portal Landkarte*"
