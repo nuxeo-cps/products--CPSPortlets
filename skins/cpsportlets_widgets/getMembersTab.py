@@ -14,6 +14,7 @@ else:
 
 utool = context.portal_url
 pmtool = context.portal_membership
+checkPerm = pmtool.checkPermission
 base_url = utool.getBaseUrl()
 mcat = context.translation_service
 
@@ -23,7 +24,15 @@ current_uid = context_rpath
 
 renderIcon = context.portal_cpsportlets.renderIcon
 
+members = pmtool.getMembersFolder()
 homeFolder = pmtool.getHomeFolder()
+# translatable title
+label = 'My stuff'
+
+# if user has rights to view the members folder, this will be the private space
+if checkPerm('View', members):
+    homeFolder = members
+    label = 'label_private_spaces'
 if not homeFolder:
     return []
 
@@ -38,7 +47,7 @@ selected_tab = (current_uid + '/').startswith(rpath + '/')
 # XXX hardcoded for now
 visible = True
 ptype = homeFolder.portal_type
-description = title = mcat("My stuff")
+description = title = mcat(label)
 
 item.append({'url': url,
              'title': title,
