@@ -311,6 +311,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         self.assert_('eventIds' in cat.indexes())
 
         # No portlet shows up
+        N = len(ptltool.listAllPortlets()) # number of previous portlets
         self.assertEquals(
             len(ptltool.listAllPortlets(event_ids=['fake_event'])), 0)
 
@@ -326,10 +327,10 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         self.assert_(['fake_event'] in cat._catalog.data[rid])
 
         # Test the queries
-        self.assertEquals(len(ptltool.listAllPortlets()), 1)
+        self.assertEquals(len(ptltool.listAllPortlets()), N+1)
 
         brains = cat(portal_type=ptltool.listPortletTypes())
-        self.assertEquals(len(brains), 1)
+        self.assertEquals(len(brains), N+1)
 
         brains = cat(portal_type=ptltool.listPortletTypes(),
                      eventIds=['fake_event'])
@@ -338,8 +339,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         # Test queries from the portlets tool API
         self.assertEquals(
             len(ptltool.listAllPortlets(event_ids=['fake_event'])), 1)
-        self.assertEquals(
-            len(ptltool.listAllPortlets()), 1)
+        self.assertEquals(len(ptltool.listAllPortlets()), N+1)
         self.assertEquals(len(ptltool.listAllPortlets(event_ids=['xxx'])), 0)
 
         # Add another event on the portlet.
@@ -347,10 +347,10 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         self.assertEquals(['fake_event', 'fake_event2'], portlet.eventIds())
 
         # Test the queries
-        self.assertEquals(len(ptltool.listAllPortlets()), 1)
+        self.assertEquals(len(ptltool.listAllPortlets()), N+1)
 
         brains = cat(portal_type=ptltool.listPortletTypes())
-        self.assertEquals(len(brains), 1)
+        self.assertEquals(len(brains), N+1)
 
         brains = cat(portal_type=ptltool.listPortletTypes(),
                      eventIds=['fake_event'])
@@ -376,8 +376,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         self.assertEquals(
             len(ptltool.listAllPortlets(
             event_ids=['fake_event', 'fake_event2'])), 1)
-        self.assertEquals(
-            len(ptltool.listAllPortlets()), 1)
+        self.assertEquals(len(ptltool.listAllPortlets()), N+1)
         self.assertEquals(len(ptltool.listAllPortlets(event_ids=['xxx'])), 0)
         self.assertEquals(len(ptltool.listAllPortlets(event_ids=['fake_'])), 0)
         self.assertEquals(len(ptltool.listAllPortlets(event_ids=['_event'])), 0)
