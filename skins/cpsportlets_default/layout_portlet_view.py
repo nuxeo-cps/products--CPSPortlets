@@ -8,4 +8,7 @@ result = ''.join(rendered)
 if result == '':
     return ''
 
-return '<div id="%s">%s</div>' % (context.getId(), result)
+if result.startswith("<?xml"):
+    return result
+else:
+    return '<div id="%s">%s</div>' % (context.getId(), result)

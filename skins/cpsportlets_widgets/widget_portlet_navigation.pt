@@ -1,4 +1,5 @@
 <tal:block define="utool nocall:here/portal_url;
+                   export request/form/export|nothing;
                    ds options/datastructure;
                    display ds/display;
                    show_docs ds/show_docs;
@@ -13,6 +14,8 @@
                    root_uids ds/root_uids;
                    context nocall:options/context_obj|here;
                    context_rpath python: utool.getRelativeUrl(context)">
+
+<tal:block condition="not:export">
 
 <script type="text/javascript"
         tal:condition="python: display == 'expandable_tree'">
@@ -467,22 +470,20 @@ function swapFolder(img, toggle_plus, toggle_minus){
     </tal:block>
   </tal:block>
 
-  <tal:block condition="syndication_formats"
-             define="export request/form/export|nothing">
-
-    <tal:block condition="not:export" tal:define="path context_rpath">
-      <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
-    </tal:block>
-
-    <tal:block tal:condition="export">
-      <tal:block define="export_macro string:export_${export};
-                         items python: context.getFolderItems(
-                           context_rpath=request.form.get('path'),
-                           show_docs=1, display_hidden_folders=0)">
-        <metal:block use-macro="here/cpsportlet_macros/macros/?export_macro|
-                                here/cpsportlet_macros/macros/export_not_implemented" />
-      </tal:block>
-    </tal:block>
+  <tal:block condition="syndication_formats" define="path context_rpath">
+    <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
   </tal:block>
+
+</tal:block>
+
+<tal:block tal:condition="export">
+  <tal:block define="export_macro string:export_${export};
+                     items python: context.getFolderItems(
+                     context_rpath=request.form.get('path'),
+                     show_docs=1, display_hidden_folders=0)">
+    <metal:block use-macro="here/cpsportlet_macros/macros/?export_macro|
+                            here/cpsportlet_macros/macros/export_not_implemented" />
+  </tal:block>
+</tal:block>
 
 </tal:block>
