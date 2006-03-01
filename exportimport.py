@@ -31,7 +31,7 @@ from Products.GenericSetup.utils import importObjects
 from Products.GenericSetup.utils import XMLAdapterBase
 from Products.GenericSetup.utils import ObjectManagerHelpers
 from Products.GenericSetup.utils import PropertyManagerHelpers
-from Products.GenericSetup.ZCatalog.exportimport import ZCatalogXMLAdapter
+from Products.CPSCore.exportimport.catalog import CatalogToolXMLAdapter
 from Products.CPSDocument.exportimport import exportCPSObjects
 from Products.CPSDocument.exportimport import importCPSObjects
 from Products.CPSDocument.exportimport import CPSObjectManagerHelpers
@@ -264,7 +264,7 @@ class PortletContainerXMLAdapter(XMLAdapterBase, CPSObjectManagerHelpers):
         self._logger.log(VERBOSE, msg)
 
 
-class PortletCatalogToolXMLAdapter(ZCatalogXMLAdapter):
+class PortletCatalogToolXMLAdapter(CatalogToolXMLAdapter):
     adapts(IPortletContainer, ISetupEnviron)
     implements(IBody)
 
