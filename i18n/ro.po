@@ -1,17 +1,19 @@
+# translation of ro.po to
 # Alin Voinea <avoinea@nuxeo.com>, 2005.
+# Dragos Ivan <div@nuxeo.com>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: default\n"
+"Project-Id-Version: ro\n"
 "POT-Creation-Date: 2006-03-01 17:57default\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Your Name <your@email>\n"
-"Language-Team: Name <email>\n"
+"PO-Revision-Date: 2006-03-02 18:01+0200\n"
+"Last-Translator: Dragos Ivan <div@nuxeo.com>\n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Preferred-encodings: utf-8 latin1\n"
-"X-Generator: KBabel 1.9.1\n"
+"X-Generator: KBabel 1.11.1\n"
 "Language-Code: ro\n"
 "Language-Name: Romanian\n"
 "Domain: default\n"
@@ -38,14 +40,13 @@ msgstr ""
 
 #.   <a href="cpsportlet_guard">guard</a>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
-#, fuzzy
 msgid "action_portlet_guard"
-msgstr "Guard"
+msgstr "Protejeaza"
 
 #.   <input type="submit" class="standalone" value="button_submit_changes" />
 #: from ../skins/cpsportlets_default/cpsportlet_guard.pt
 msgid "button_submit_changes"
-msgstr ""
+msgstr "Salveaza schimbarile"
 
 #.   <option disabled="disabled" selected="selected" value="">
 #.           Add new item ...</option>
@@ -56,53 +57,45 @@ msgstr "Adauga continut..."
 #.   <span>
 #.     The following names are defined for the TALES expression</span>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_explain"
-msgstr "The following names are defined for the TALES expression"
+msgstr "Urmatoarele nume sunt definite pentru expresiile TALES"
 
 #.   <dd>The context</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_here"
-msgstr "The context"
+msgstr "Obiectul 'context'"
 
 #.   <dd>The portal object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_portal"
-msgstr "The portal object"
+msgstr "Obiectul 'portal'"
 
 #.   <dd>The portlet object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_portlet"
-msgstr "The portlet object"
+msgstr "Obiectul 'portlet'"
 
 #.   <dd>
 #.     The id of the PUBLISHED object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_published"
-msgstr "The ID of the PUBLISHED object"
+msgstr "ID-ul obiectului 'PUBLISHED'"
 
 #.   <dd>The REQUEST object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_request"
-msgstr "The REQUEST object"
+msgstr "Obiectul 'REQUEST'"
 
 #.   <dd>
 #.     The context's relative path ending with a '/' (e.g. 'sections/')</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_rpath_slash"
-msgstr "The context's relative path ending with a slash (e.g. 'sections/')"
+msgstr "Calea relativa a contextului, terminandu-se cu un slash (de exemplu: 'sections/')"
 
 #.   <dd>The user object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_user"
-msgstr "The user object"
+msgstr "Obiectul 'user'"
 
 #.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
 #.                                  context.absolute_url() or utool()">Advanced search</a>
@@ -127,32 +120,26 @@ msgstr "Sterge versiunea in..."
 
 #.   <td condition="display_description">cpsportlets_extended_site_map_description</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
 msgid "cpsportlets_extended_site_map_description"
-msgstr "Description"
+msgstr "Descriere"
 
 #.   <td>cpsportlets_extended_site_map_folder</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
 msgid "cpsportlets_extended_site_map_folder"
-msgstr "Folder"
+msgstr "Director"
 
 #.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
 msgid "cpsportlets_extended_site_map_managers"
-msgstr "Manager(s)"
+msgstr "Manager(i)"
 
 #.   <p>
 #.       The guard form allows you to control the visibility of portlets.
 #.       All the expressions that are filled in must be true for the portlet to be
 #.       visible.</p>
 #: from ../skins/cpsportlets_default/cpsportlet_guard.pt
-#, fuzzy
 msgid "cpsportlets_guard_explanation"
-msgstr ""
-"The guard form allows you to control the visibility of portlets. All the "
-"conditions that are filled in must be true for the portlet to be visible. "
+msgstr "Formularul de protejare iti permite sa controlezi vizibilitatea portlet-urilor. Toate conditiile completate trebuie sa fie adevarate pentru ca portlet-ul sa fie vizibil."
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -217,9 +204,8 @@ msgstr "Portlet pentru text"
 msgid "portal_type_SearchPortlet_title"
 msgstr "Portlet pentru cautare"
 
-#, fuzzy
 msgid "portal_type_MainContentPortlet_title"
-msgstr "Main Content portlet"
+msgstr "Portletul de continut a zonei principale"
 
 msgid "portal_type_InternalLinksPortlet_title"
 msgstr "Portlet pentru legaturi interne"
@@ -284,9 +270,8 @@ msgstr "Afiseaza optiunea pentru cautarea contextuala"
 msgid "cpsportlets_action_categories_label"
 msgstr "Categorii de actiuni pentru afisat"
 
-#, fuzzy
 msgid "cpsportlets_actions_order_label"
-msgstr "Ordered actions to display"
+msgstr "Actiunile ordonate"
 
 msgid "cpsportlets_search_context_is_portlet_label"
 msgstr "Efectueaza cautarea pornind de la locatia unde se gaseste portlet-ul"
@@ -339,9 +324,8 @@ msgstr "Autor"
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Inverseaza ordinea afisarii"
 
-#, fuzzy
 msgid "cpsportlets_common_render_method_label"
-msgstr "Display method (.zpt, .py, etc.)"
+msgstr "Metoda de afisare (.zpt, .py, etc.)"
 
 msgid "cpsportlets_common_max_items_label"
 msgstr "Numar de rezultate"
@@ -352,9 +336,8 @@ msgstr "Locatia de baza"
 msgid "cpsportlets_content_searchable_types_label"
 msgstr "Tipuri de continut pentru afisare"
 
-#, fuzzy
 msgid "cpsportlets_content_contextual_label"
-msgstr "Contextual search"
+msgstr "Cautare contextuala"
 
 msgid "cpsportlets_language_action_label"
 msgstr "Actiune"
@@ -380,13 +363,11 @@ msgstr "Urma de navigare verticala"
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Continutul locatiei curente"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_detailed_label"
-msgstr "Folder contents* (detailed)"
+msgstr "Continutul directorului* (detaliat)"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
-msgstr "Folder contents* (drop-down list)"
+msgstr "Continutul directorului* (selector combo)"
 
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Continutul sub-directoarelor"
@@ -421,33 +402,26 @@ msgstr "Afiseaza directoarelor ascunse"
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Afiseaza pictogramele documentelor"
 
-#, fuzzy
 msgid "cpsportlets_navigation_sort_by_label"
-msgstr "Sort items by"
+msgstr "Sorteaza dupa"
 
-#, fuzzy
 msgid "cpsportlets_navigation_sort_direction_label"
-msgstr "Sorting direction"
+msgstr "Directia de sortare"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_by_date_label"
-msgstr "Date"
+msgstr "Data"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_by_title_label"
-msgstr "Title"
+msgstr "Titlu"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_by_author_label"
-msgstr "Author"
+msgstr "Autor"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_asc_label"
-msgstr "Ascending"
+msgstr "Crescator"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_desc_label"
-msgstr "Descending"
+msgstr "Descrescator"
 
 msgid "cpsportlets_content_show_icons_label"
 msgstr "Afiseaza pictogramele continutului"
@@ -539,9 +513,8 @@ msgstr "Primul articol"
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Meniu de navigare"
 
-#, fuzzy
 msgid "portlets_nav_display_dyn_navtree_menu_label"
-msgstr "Dynamic navigation tree"
+msgstr "Arbore de navigare"
 
 msgid "cpsportlets_navigation_contextual_label"
 msgstr "Afisare contextuala"
@@ -564,23 +537,20 @@ msgstr "Planul site-ului (cu membri)"
 msgid "cpsportlets_nav_display_extended_site_map_label"
 msgstr "Planul site-ului extins*"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_expandable_tree_menu_label"
-msgstr "Secondary navigation menu"
+msgstr "Meniu de navigare secundar"
 
 msgid "portal_type_CustomPortlet_description"
 msgstr "Afiseaza metoda de redare (.zpt, .py, etc.)"
 
-#, fuzzy
 msgid "cpsportlets_document_context_rpath_label"
-msgstr "Document path (relative)"
+msgstr "Calea (relativa) a documentului"
 
 msgid "cpsportlets_document_cluster_id_label"
 msgstr "Identificatorul gruparii de layout-uri"
 
 msgid "cpsportlets_document_render_cluster_no_fallback_label"
-msgstr ""
-"Realizeaza redarea documentului doar pentru grupul de layout-uri specificat"
+msgstr "Realizeaza redarea documentului doar pentru grupul de layout-uri specificat"
 
 msgid "cpsportlet_rot_image_nb_images_label"
 msgstr "Numar de imagini in rotatie"
@@ -645,7 +615,7 @@ msgid "cpsportlets_nav_context_rpath_label"
 msgstr "Calea spre director (relativa)"
 
 msgid "cpsportlets_common_syndication_formats_label"
-msgstr ""
+msgstr "Formate sindicalizare"
 
 msgid "cpsportlets_syndication_rss_1_0_help"
 msgstr "Conform cu alimentarea cu stiri de tip RSS"
@@ -677,10 +647,9 @@ msgstr "Afiseaza descrierea obiectelor"
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Afiseaza doar obiectele autorizate"
 
-#, fuzzy
 msgid "cpsportlet_psm_settings_updated"
-msgstr "Settings updated"
+msgstr "Configuratie salvata"
 
-#, fuzzy
 msgid "cpsportlet_psm_guard_error"
-msgstr "Settings incorrect"
+msgstr "Configuratie incorecta"
+
