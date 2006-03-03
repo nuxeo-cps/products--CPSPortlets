@@ -22,7 +22,9 @@ from Products.CMFCore.utils import getToolByName
 def upgrade_335_336_portlets_catalog(context):
     """Migrates the CPS Portlets indexes to portal_cpsportlets
     """
-    ptool = getToolByName(context, 'portal_cpsportlets')
+    ptool = getToolByName(context, 'portal_cpsportlets', None)
+    if ptool is None:
+        return 
     ptcatalog = getToolByName(context, 'portal_cpsportlets_catalog', None)
     if ptcatalog is None:
         mt = 'CPS Portlets Catalog Tool'
@@ -87,7 +89,9 @@ def upgrade_338_340_themes(context, check=False):
     SLOT_ID = 'content_well'
     SLOT_TYPE = 'Portal Box Group Templet'
 
-    tmtool = getToolByName(context, 'portal_themes')
+    tmtool = getToolByName(context, 'portal_themes', None)
+    if tmtool is None and check:
+        return False
     for theme in tmtool.getThemes():
         for templet in theme.getTemplets():
             if not templet.meta_type == 'Main Content Templet':
@@ -132,7 +136,9 @@ def upgrade_338_340_portlets_cache(context):
     return "Cache parameters for the Breadcrumbs Portlet updated"
 
 def check_upgrade_338_340_portlets_cache(portal):
-    ptool = getToolByName(portal, 'portal_cpsportlets')
+    ptool = getToolByName(portal, 'portal_cpsportlets', None)
+    if ptool is None:
+        return False
     try:
         bc_params = ptool.getCacheParametersFor('Breadcrumbs Portlet')
     except AttributeError:
@@ -167,7 +173,9 @@ def upgrade_338_340_portlets_cache_bug_1470(context):
     return "Cache parameters for the Content Portlet updated"
 
 def check_upgrade_338_340_portlets_cache_bug_1470(portal):
-    ptool = getToolByName(portal, 'portal_cpsportlets')
+    ptool = getToolByName(portal, 'portal_cpsportlets', None)
+    if ptool is None:
+        return False
     try:
         params = ptool.getCacheParametersFor('Content Portlet')
     except AttributeError:
