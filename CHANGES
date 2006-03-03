@@ -6,23 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
-- fixed missing </div> in expandable navigation portlet widget
-- #1434
-- navigation portlet (folder contents detailed) has one_column format
-- added a fallback value on actions orders.
-- #1470: added missing workflow_accept and workflow_reject eventids that the
-  Content Portlet should subscribe to. Added an upgrade step.
-- #1473: Content portlet with '*' in the query_title field crashed the portlet
-- Upgrade steps: GenericSetup complained that the tool's 'cache_parameters'
-  was an unknown attribute.
-- the XML export of the navigation portlet (folder contents mode) and of
-  the Content Portlet were incorrectly rendered (#1166).
-- #1491: Test portlets XHTML validity one by one, to not have conflicting id
-attributes
+-
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
-- Upgrade step CPS from 3.2.0 to 3.4.0 for #1345
-- #1413: added a Main Content Portlet
-- #1319: actions in the Actions Portlet can now be custom ordered
-- #1391: navigation tabs can be selected and remain selected if user browses 
-  inside; private space added to the navigation's portlet tabs
+-
