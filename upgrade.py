@@ -44,6 +44,9 @@ def upgrade_335_336_portlets_catalog(context):
     return "Portlet indexes migrated"
 
 def check_upgrade_335_336_portlets_catalog(portal):
+    ptool = getToolByName(portal, 'portal_cpsportlets', None)
+    if ptool is None:
+        return False
     ptcatalog = getToolByName(portal, 'portal_cpsportlets_catalog', None)
     if ptcatalog is None:
         return True
