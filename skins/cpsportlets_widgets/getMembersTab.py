@@ -36,7 +36,7 @@ if checkPerm('View', members):
 if not homeFolder:
     return []
 
-url = homeFolder.absolute_url(relative=1)
+url = homeFolder.absolute_url_path()
 if not url.startswith('/'):
     url = '/' + url
 
