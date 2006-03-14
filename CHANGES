@@ -8,6 +8,7 @@ Bug fixes:
 ~~~~~~~~~~
 - Made the upgrades more stable.
 - #1535: the "private spaces" tab url was not virtual host safe
+- #1545: fixed wrong link in rss/atom feeds
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
