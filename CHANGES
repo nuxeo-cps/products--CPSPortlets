@@ -3,7 +3,7 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- Now sorts the unordered actions per the ActionIcon priority.
 Bug fixes:
 ~~~~~~~~~~
 - Made the upgrades more stable.
