@@ -2,7 +2,7 @@
 
 from Products.CMFCore.utils import getToolByName
 
-DEFAULT_PRIORITY = 8
+DEFAULT_PRIORITY = 200
 
 actions = context.REQUEST.get('cpsskins_cmfactions', None)
 
