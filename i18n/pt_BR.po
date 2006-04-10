@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
 "POT-Creation-Date: 2006-03-01 17:57default\n"
-"PO-Revision-Date: 2005-09-29 10:26-0300\n"
+"PO-Revision-Date: 2006-04-03 15:37-0300\n"
 "Last-Translator: Mario Olimpio de Menezes\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -40,18 +40,17 @@ msgstr "Editar"
 #.   <div class="mainContentArea">_Main content_</div>
 #: from ../skins/cpsportlets_widgets/widget_portlet_maincontent.pt
 msgid "_Main content_"
-msgstr ""
+msgstr "_Conteúdo Principal_"
 
 #.   <a href="cpsportlet_guard">guard</a>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
-#, fuzzy
 msgid "action_portlet_guard"
-msgstr "Guard"
+msgstr "Guardar"
 
 #.   <input type="submit" class="standalone" value="button_submit_changes" />
 #: from ../skins/cpsportlets_default/cpsportlet_guard.pt
 msgid "button_submit_changes"
-msgstr ""
+msgstr "Submeter"
 
 #.   <option disabled="disabled" selected="selected" value="">
 #.           Add new item ...</option>
@@ -62,53 +61,47 @@ msgstr "Adicionar um novo item ..."
 #.   <span>
 #.     The following names are defined for the TALES expression</span>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_explain"
-msgstr "The following names are defined for the TALES expression"
+msgstr "Os seguintes nomes são definidos para as expressões TALES"
 
 #.   <dd>The context</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_here"
-msgstr "The context"
+msgstr "O contexto"
 
 #.   <dd>The portal object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_portal"
-msgstr "The portal object"
+msgstr "O objeto portal"
 
 #.   <dd>The portlet object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_portlet"
-msgstr "The portlet object"
+msgstr "O objeto portlet"
 
 #.   <dd>
 #.     The id of the PUBLISHED object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_published"
-msgstr "The ID of the PUBLISHED object"
+msgstr "O ID do objeto PUBLICADO"
 
 #.   <dd>The REQUEST object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_request"
-msgstr "The REQUEST object"
+msgstr "O objeto PEDIDO"
 
 #.   <dd>
 #.     The context's relative path ending with a '/' (e.g. 'sections/')</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_rpath_slash"
-msgstr "The context's relative path ending with a slash (e.g. 'sections/')"
+msgstr ""
+"O caminho relativo do contexto terminando com uma barra '/' (por exemplo, "
+"'seções/')"
 
 #.   <dd>The user object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_user"
-msgstr "The user object"
+msgstr "O objeto usuário"
 
 #.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
 #.                                  context.absolute_url() or utool()">Advanced search</a>
@@ -151,11 +144,11 @@ msgstr "Administrador(es)"
 #.       All the expressions that are filled in must be true for the portlet to be
 #.       visible.</p>
 #: from ../skins/cpsportlets_default/cpsportlet_guard.pt
-#, fuzzy
 msgid "cpsportlets_guard_explanation"
 msgstr ""
-"The guard form allows you to control the visibility of portlets. All the "
-"conditions that are filled in must be true for the portlet to be visible. "
+"O formulário guarda permite que você controle a visibilidade dos portlets. "
+"Todas as condições que são preenchidas devem ser verdade para que o portlet "
+"seja visível."
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -220,9 +213,8 @@ msgstr "Portlet de Texto"
 msgid "portal_type_SearchPortlet_title"
 msgstr "Portlet de busca"
 
-#, fuzzy
 msgid "portal_type_MainContentPortlet_title"
-msgstr "Main Content portlet"
+msgstr "Portlet do Conteúdo Principal"
 
 msgid "portal_type_InternalLinksPortlet_title"
 msgstr "Portlet de links internos"
@@ -287,9 +279,8 @@ msgstr "Mostra a opção de busca contextual"
 msgid "cpsportlets_action_categories_label"
 msgstr "Categorias de ação a mostrar"
 
-#, fuzzy
 msgid "cpsportlets_actions_order_label"
-msgstr "Ordered actions to display"
+msgstr "Ações ordenadas a mostrar"
 
 msgid "cpsportlets_search_context_is_portlet_label"
 msgstr "Realiza a busca iniciando da localização do portlet"
@@ -381,9 +372,8 @@ msgstr "Menu vertical de navegação (breadcrumbs)*"
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Conteúdo da pasta"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_detailed_label"
-msgstr "Folder contents* (detailed)"
+msgstr "Conteúdo da Pasta* (detalhado)"
 
 msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
 msgstr "Conteúdo da pasta* (lista drop-down)"
@@ -421,33 +411,26 @@ msgstr "Mostra pastas ocultas"
 msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Mostra ícones de documentos"
 
-#, fuzzy
 msgid "cpsportlets_navigation_sort_by_label"
-msgstr "Sort items by"
+msgstr "Ordenar itens por"
 
-#, fuzzy
 msgid "cpsportlets_navigation_sort_direction_label"
-msgstr "Sorting direction"
+msgstr "Direção de ordenação"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_by_date_label"
-msgstr "Date"
+msgstr "Data"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_by_title_label"
-msgstr "Title"
+msgstr "Título"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_by_author_label"
-msgstr "Author"
+msgstr "Autor"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_asc_label"
-msgstr "Ascending"
+msgstr "Crescente"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_desc_label"
-msgstr "Descending"
+msgstr "Decrescente"
 
 msgid "cpsportlets_content_show_icons_label"
 msgstr "Mostrar ícones de conteúdo"
@@ -539,9 +522,8 @@ msgstr "Primeiro item"
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Árvore de Navegação"
 
-#, fuzzy
 msgid "portlets_nav_display_dyn_navtree_menu_label"
-msgstr "Dynamic navigation tree"
+msgstr "Árvore dinâmica de navegação"
 
 msgid "cpsportlets_navigation_contextual_label"
 msgstr "Mostra contextual"
@@ -558,16 +540,14 @@ msgstr "Link da imagem"
 msgid "cpsportlets_nav_display_site_map_label"
 msgstr "Mapa do Site"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_site_map_3_tabs_label"
-msgstr "Site map (with members)"
+msgstr "Mapa do Site (com membros)"
 
 msgid "cpsportlets_nav_display_extended_site_map_label"
 msgstr "Mapa do Site extendido*"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_expandable_tree_menu_label"
-msgstr "Secondary navigation menu"
+msgstr "Menu secundário de navegação"
 
 msgid "portal_type_CustomPortlet_description"
 msgstr "Mostra um método renderizado (.zpt, .py, etc)."
@@ -676,10 +656,8 @@ msgstr "Mostra descrições de itens"
 msgid "cpsportlets_navigation_authorized_only_label"
 msgstr "Mostra somente itens autorizados"
 
-#, fuzzy
 msgid "cpsportlet_psm_settings_updated"
-msgstr "Settings updated"
+msgstr "Definições atualizadas"
 
-#, fuzzy
 msgid "cpsportlet_psm_guard_error"
-msgstr "Settings incorrect"
+msgstr "Definições incorretas"

@@ -10,6 +10,7 @@ Bug fixes:
 - #1535: the "private spaces" tab url was not virtual host safe
 - #1545: fixed wrong link in rss/atom feeds
 - #1552: modifying a portlet did not reset the cache
+- Updated brazilian portugese translations (thanks to mo.menezes@gmail.com).
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
