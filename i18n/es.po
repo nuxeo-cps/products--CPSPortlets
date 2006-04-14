@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
 "POT-Creation-Date: 2006-03-01 17:57default\n"
-"PO-Revision-Date: 2006-02-22 19:38+0100\n"
+"PO-Revision-Date: 2006-04-05 13:36+0100\n"
 "Last-Translator: Jesús Martín <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
 "MIME-Version: 1.0\n"
@@ -89,8 +89,7 @@ msgstr "El objeto \"REQUEST\" (petición)"
 #.     The context's relative path ending with a '/' (e.g. 'sections/')</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
 msgid "cpsportlet_guard_tales_rpath_slash"
-msgstr ""
-"La ruta relativa del contexto con la barra \"slash\" final (ej. secciones/)"
+msgstr "La ruta relativa del contexto con la barra \"slash\" final (ej. secciones/)"
 
 #.   <dd>The user object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
@@ -139,16 +138,12 @@ msgstr "Administrador(es)"
 #.       visible.</p>
 #: from ../skins/cpsportlets_default/cpsportlet_guard.pt
 msgid "cpsportlets_guard_explanation"
-msgstr ""
-"El formulario guardián te permite controlar la visibilidad de los portlets. "
-"Todas las condiciones deben estar verificadas para que el portlet sea "
-"visible."
+msgstr "El formulario guardián te permite controlar la visibilidad de los portlets. Todas las condiciones deben estar verificadas para que el portlet sea visible."
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
 msgid "cpsportlets_install_cpsskins"
-msgstr ""
-"Para administrar portlets (componentes de presentación), instale CPSSkins."
+msgstr "Para administrar portlets (componentes de presentación), instale CPSSkins."
 
 #.   <block>located in the folder</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
@@ -208,9 +203,8 @@ msgstr "Portlet de texto"
 msgid "portal_type_SearchPortlet_title"
 msgstr "Buscar portlet"
 
-#, fuzzy
 msgid "portal_type_MainContentPortlet_title"
-msgstr "Main Content portlet"
+msgstr "Portlet de contenido del área principal"
 
 msgid "portal_type_InternalLinksPortlet_title"
 msgstr "Portlet de enlaces internos"
@@ -275,9 +269,8 @@ msgstr "Mostrar la opción de búsqueda contextual"
 msgid "cpsportlets_action_categories_label"
 msgstr "Categorías a mostrar"
 
-#, fuzzy
 msgid "cpsportlets_actions_order_label"
-msgstr "Ordered actions to display"
+msgstr "Categorías de acciones a mostrar"
 
 msgid "cpsportlets_search_context_is_portlet_label"
 msgstr "Ejecutar la búsquda empezando por la ubicación del portlet"
@@ -519,15 +512,14 @@ msgstr "Primer ítem"
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Árbol del navegación"
 
-#, fuzzy
 msgid "portlets_nav_display_dyn_navtree_menu_label"
-msgstr "Dynamic navigation tree"
+msgstr "Menú de navegación dinámico"
 
 msgid "cpsportlets_navigation_contextual_label"
 msgstr "Muestra contextual"
 
 msgid "cpsportlets_display_mode_label"
-msgstr "Mostrar modo"
+msgstr "Modo de presentación"
 
 msgid "cpsportlets_display_mode_help"
 msgstr "Los portlets con un * tienen un diseño predeterminado."
@@ -538,9 +530,8 @@ msgstr "Enlace de imagen"
 msgid "cpsportlets_nav_display_site_map_label"
 msgstr "Mapa del sitio"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_site_map_3_tabs_label"
-msgstr "Site map (with members)"
+msgstr "Mapa del sitio (con miembros)"
 
 msgid "cpsportlets_nav_display_extended_site_map_label"
 msgstr "Mapa extendido del sitio*"
@@ -658,3 +649,4 @@ msgstr "Configuración actualizada"
 
 msgid "cpsportlet_psm_guard_error"
 msgstr "Configuración incorrecta"
+
