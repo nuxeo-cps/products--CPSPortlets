@@ -27,6 +27,7 @@ from Products.CMFCore.utils import getToolByName
 from Testing import ZopeTestCase
 from Products.CPSPortlets.tests import CPSPortletsTestCase
 from Products.CPSPortlets.browser.portletview import PortletView
+from Products.CPSUtil.tests.web_conformance import assertValidXhtml
 
 class PortletViewTests(CPSPortletsTestCase.CPSPortletsTestCase):
     def afterSetUp(self):
@@ -85,7 +86,7 @@ class PortletViewTests(CPSPortletsTestCase.CPSPortletsTestCase):
             fakepage = ('\n<div>**** portlet %s ****</div>\n%s\n'
                         % (portlet_id, result))
 
-            self.assertValidXHTML(htmlpage % fakepage, portlet_id)
+            assertValidXhtml(htmlpage % fakepage, portlet_id)
 
 def test_suite():
     return unittest.TestSuite((
