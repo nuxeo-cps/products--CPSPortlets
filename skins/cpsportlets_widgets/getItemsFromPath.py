@@ -63,11 +63,16 @@ for path in links:
                 value = ''
         metadata_info[key] = value
 
-    rpath = getRelativeUrl(object)
+    if ptype == 'Link':
+        rpath = metadata_info['relation']
+        rurl = rpath
+    else:
+        rpath = getRelativeUrl(object)
+        rurl = base_url + rpath
 
     items.append(
         {'url': object.absolute_url(),
-         'rurl': base_url + rpath,
+         'rurl':  rurl,
          'rpath': rpath,
          'title': object.title_or_id(),
          'description': content.Description(),

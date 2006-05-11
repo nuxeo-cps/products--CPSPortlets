@@ -12,6 +12,8 @@ Bug fixes:
 - #1552: modifying a portlet did not reset the cache
 - Updated brazilian portugese translations (thanks to mo.menezes@gmail.com).
 - Made guard setting and checking error messages more meaningful.
+- The Internal Links Portlet now will send you directly to the link target
+  if you select a Link document, instead of showing the document.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
