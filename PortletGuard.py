@@ -24,6 +24,7 @@
 """Portlet Guard
 """
 
+import sys
 from zLOG import LOG, PROBLEM
 from Globals import InitializeClass
 from Products.PageTemplates.Expressions import getEngine
@@ -87,7 +88,7 @@ class PortletGuard(Guard):
                 res = expr(econtext)
             except (NameError, CompilerError, AttributeError), e:
                 LOG('PortletGuard.check', PROBLEM,
-                    "Failed because: " + str(e))
+                    "%s: %s" % (str(sys.exc_info()[0]), str(e)))
                 return 0
             if not res:
                 return 0

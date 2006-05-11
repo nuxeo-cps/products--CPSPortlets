@@ -28,6 +28,7 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 This is a CPSDocument child base class for portlets
 """
 
+import sys
 import time
 import md5
 from cgi import escape
@@ -163,8 +164,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         try:
             self.guard.changeFromProperties(props)
         except CompilerError, e:
-            LOG('CPSPortlet.setGuardProperties', PROBLEM,
-                 "Failed because: " + str(e))
+            LOG('PortletGuard.setGuardProperties', PROBLEM,
+                "%s: %s" % (str(sys.exc_info()[0]), str(e)))
             psm = 'cpsportlet_psm_guard_error'
             err = e
 
