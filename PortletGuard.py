@@ -88,7 +88,8 @@ class PortletGuard(Guard):
                 res = expr(econtext)
             except (NameError, CompilerError, AttributeError), e:
                 LOG('PortletGuard.check', PROBLEM,
-                    "%s: %s" % (str(sys.exc_info()[0]), str(e)))
+                    "\"%s\" => %s: %s"
+                    % (expr.text, str(sys.exc_info()[0]), str(e)))
                 return 0
             if not res:
                 return 0

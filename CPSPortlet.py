@@ -165,7 +165,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             self.guard.changeFromProperties(props)
         except CompilerError, e:
             LOG('PortletGuard.setGuardProperties', PROBLEM,
-                "%s: %s" % (str(sys.exc_info()[0]), str(e)))
+                "\"%s\" => %s: %s"
+                % (props, str(sys.exc_info()[0]), str(e)))
             psm = 'cpsportlet_psm_guard_error'
             err = e
 
