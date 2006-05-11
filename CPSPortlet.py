@@ -1,23 +1,24 @@
-# -*- coding: ISO-8859-15 -*-
-# Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
+# Copyright (c) 2004-2006 Nuxeo SAS <http://nuxeo.com>
 # Copyright (c) 2004 Chalmers University of Technology
 #               <http://www.chalmers.se>
-# Authors : Julien Anguenot <ja@nuxeo.com>
-#           Jean-Marc Orliaguet <jmo@ita.chalmers.se>
-
+# Authors:
+# Julien Anguenot <ja@nuxeo.com>
+# Jean-Marc Orliaguet <jmo@ita.chalmers.se>
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
-
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
 # $Id$
 
 __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
@@ -35,7 +36,7 @@ from App.Common import rfc1123_date
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_inner, aq_parent, aq_base
 from AccessControl import ClassSecurityInfo
-from zLOG import LOG, INFO
+from zLOG import LOG, PROBLEM
 
 from Products.PageTemplates.TALES import CompilerError
 from Products.CMFCore.utils import getToolByName, _getViewFor
@@ -162,7 +163,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         try:
             self.guard.changeFromProperties(props)
         except CompilerError, e:
-            LOG('CPSPortlet:setGuardProperties', INFO, e)
+            LOG('CPSPortlet.setGuardProperties', PROBLEM,
+                 "Failed because: " + str(e))
             psm = 'cpsportlet_psm_guard_error'
             err = e
 

@@ -11,6 +11,7 @@ Bug fixes:
 - #1545: fixed wrong link in rss/atom feeds
 - #1552: modifying a portlet did not reset the cache
 - Updated brazilian portugese translations (thanks to mo.menezes@gmail.com).
+- Made guard setting and checking error messages more meaningful.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

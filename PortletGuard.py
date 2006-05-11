@@ -1,9 +1,10 @@
 # -*- coding: iso-8859-15 -*-
-# Copyright (c) 2003 Nuxeo SARL <http://nuxeo.com>
+# Copyright (c) 2003-2006 Nuxeo SAS <http://nuxeo.com>
 # Copyright (c) 2004 Chalmers University of Technology
 #               <http://www.chalmers.se>
-# Authors: Hervé Cauwelier <hc@nuxeo.com>
-#          Jean-Marc Orliaguet <jmo@ita.chalmers.se>
+# Authors:
+# Hervé Cauwelier <hc@nuxeo.com>
+# Jean-Marc Orliaguet <jmo@ita.chalmers.se>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as published
@@ -19,11 +20,11 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 # 02111-1307, USA.
 #
-"""
-  Portlet Guard
+# $Id$
+"""Portlet Guard
 """
 
-from zLOG import LOG, INFO
+from zLOG import LOG, PROBLEM
 from Globals import InitializeClass
 from Products.PageTemplates.Expressions import getEngine
 from Products.PageTemplates.TALES import CompilerError
@@ -85,7 +86,8 @@ class PortletGuard(Guard):
             try:
                 res = expr(econtext)
             except (NameError, CompilerError, AttributeError), e:
-                LOG('PortletGuard:check', INFO, e)
+                LOG('PortletGuard.check', PROBLEM,
+                    "Failed because: " + str(e))
                 return 0
             if not res:
                 return 0
