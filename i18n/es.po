@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
 "POT-Creation-Date: 2006-03-01 17:57default\n"
-"PO-Revision-Date: 2006-04-05 13:36+0100\n"
+"PO-Revision-Date: 2006-05-07 09:05+0100\n"
 "Last-Translator: Jesús Martín <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr ""
 #.   <a href="cpsportlet_guard">guard</a>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "action_portlet_guard"
-msgstr "Guardián"
+msgstr "Guardas"
 
 #.   <input type="submit" class="standalone" value="button_submit_changes" />
 #: from ../skins/cpsportlets_default/cpsportlet_guard.pt
@@ -138,7 +138,7 @@ msgstr "Administrador(es)"
 #.       visible.</p>
 #: from ../skins/cpsportlets_default/cpsportlet_guard.pt
 msgid "cpsportlets_guard_explanation"
-msgstr "El formulario guardián te permite controlar la visibilidad de los portlets. Todas las condiciones deben estar verificadas para que el portlet sea visible."
+msgstr "El formulario de guardas te permite controlar la visibilidad de los portlets. Todas las condiciones deben estar verificadas para que el portlet sea visible."
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -195,13 +195,13 @@ msgid "portal_type_DummyPortlet_title"
 msgstr "Imitar portlet"
 
 msgid "portal_type_CustomPortlet_title"
-msgstr "Personalizar el portlet"
+msgstr "Portlet personalizado"
 
 msgid "portal_type_TextPortlet_title"
 msgstr "Portlet de texto"
 
 msgid "portal_type_SearchPortlet_title"
-msgstr "Buscar portlet"
+msgstr "Portlet de búsqueda"
 
 msgid "portal_type_MainContentPortlet_title"
 msgstr "Portlet de contenido del área principal"
@@ -213,7 +213,7 @@ msgid "portal_type_AddItemPortlet_title"
 msgstr "Portlet de creación de contenidos"
 
 msgid "portal_type_BreadcrumbsPortlet_title"
-msgstr "Portlet con menú desplegable"
+msgstr "Portlet de ruta"
 
 msgid "portal_type_ActionsPortlet_title"
 msgstr "Portlet de acciones"
@@ -555,7 +555,7 @@ msgid "cpsportlet_rot_image_nb_images_label"
 msgstr "Número de imágenes a rotar entre"
 
 msgid "portal_type_RotatingImagePortlet_title"
-msgstr "Rotando la imagen del portlet"
+msgstr "Portlet de imágenes rotatorias"
 
 msgid "portal_type_RotatingImagePortlet_description"
 msgstr "Muestra aleatorialmente una colección de imágenes"
