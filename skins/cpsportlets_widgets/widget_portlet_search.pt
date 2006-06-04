@@ -39,9 +39,11 @@
     </tal:block>
   </div>
   <div>
-  <img tal:attributes="src
-    string:${base_url}cpsskins_images/portlet_search_icon.png;
-    alt value_search" />
+  <label for="searchGadget">
+    <img tal:attributes="
+         src string:${base_url}cpsskins_images/portlet_search_icon.png;
+         alt value_search" />
+  </label>
   <input id="searchGadget" type="text" name="SearchableText" size="15"
     value="" tal:attributes="value value_search"
     onclick="this.value='';"/>
