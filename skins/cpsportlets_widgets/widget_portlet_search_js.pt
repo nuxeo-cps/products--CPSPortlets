@@ -1,3 +1,17 @@
+/**
+ * Blank the search form input only if there isn't any ongoing search.
+ */
+function blankSearchFormInput(previousSearchValue, formElem) {
+    if (previousSearchValue == '') {
+        formElem.value = '';
+    }
+}
+
+/**
+ * Return whether the search form is empty or not.
+ * This script is to be used to avoid to request a search for an empty request,
+ * to save the server from useless load.
+ */
 function checkEmptySearch(formElem) {
     var query = trim(formElem.SearchableText.value);
     if (query != '') {
@@ -9,6 +23,9 @@ function checkEmptySearch(formElem) {
     return false;
 }
 
+/**
+ * Return a copy of the string with leading and trailing characters removed.
+ */
 function trim(s) {
     if (s) {
         return s.replace(/^\s*|\s*$/g, "");

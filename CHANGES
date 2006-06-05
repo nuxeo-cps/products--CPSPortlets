@@ -6,6 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
+- Fixed #1653: Search box always clearing text.
 - Made the search portlet more accessible through the use of a label tag.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~

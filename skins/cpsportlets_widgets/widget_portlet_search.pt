@@ -10,8 +10,9 @@
                   advanced_search_form params/advanced;
                   folder_prefix request/folder_prefix|nothing;
                   cpsmcat nocall:here/translation_service;
-                  value_search
-                    request/SearchableText|python:cpsmcat('button_search');
+                  search_label python:cpsmcat('button_search');
+                  previous_search_value request/SearchableText|string:;
+                  search_value python:previous_search_value or search_label;
                   base_url python:request.get('cpsskins_base_url');"
  method="get" action=""
  tal:attributes="action search_script"
@@ -42,11 +43,13 @@
   <label for="searchGadget">
     <img tal:attributes="
          src string:${base_url}cpsskins_images/portlet_search_icon.png;
-         alt value_search" />
+         alt search_label" />
   </label>
-  <input id="searchGadget" type="text" name="SearchableText" size="15"
-    value="" tal:attributes="value value_search"
-    onclick="this.value='';"/>
+  <input id="searchGadget" type="text" name="SearchableText" size="15" value=""
+         tal:attributes="value search_value;
+                         onclick python:'blankSearchFormInput(\'%s\', this)'
+                         % previous_search_value;
+      "/>
   <input class="context searchButton" type="submit" value="button_ok"
     i18n:attributes="value" />
   </div>
