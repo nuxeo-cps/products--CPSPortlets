@@ -28,7 +28,11 @@ import sys
 from zLOG import LOG, PROBLEM
 from Globals import InitializeClass
 from Products.PageTemplates.Expressions import getEngine
-from Products.PageTemplates.TALES import CompilerError
+try:
+    from zope.tales.tales import CompilerError
+except ImportError:
+    # BBB: Zope < 2.10
+    from Products.PageTemplates.TALES import CompilerError
 from Products.CMFCore.utils import getToolByName
 from Products.DCWorkflow.Guard import Guard
 

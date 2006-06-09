@@ -39,7 +39,11 @@ from Acquisition import aq_inner, aq_parent, aq_base
 from AccessControl import ClassSecurityInfo
 from zLOG import LOG, PROBLEM
 
-from Products.PageTemplates.TALES import CompilerError
+try:
+    from zope.tales.tales import CompilerError
+except ImportError:
+    # BBB: Zope < 2.10
+    from Products.PageTemplates.TALES import CompilerError
 from Products.CMFCore.utils import getToolByName, _getViewFor
 from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.CPSCore.ProxyBase import FileDownloader
