@@ -1,0 +1,64 @@
+<form tal:define="ds options/datastructure;
+                  advanced_search_link ds/advanced_search_link;
+                  contextual_search_choice ds/contextual_search_choice;
+                  context_is_portlet ds/context_is_portlet;
+                  utool nocall:here/portal_url;
+                  params here/getSearchFormParams;
+                  search_script params/script;
+                  context nocall:options/context_obj;
+                  contextual_search params/contextual;
+                  advanced_search_form params/advanced;
+                  folder_prefix request/folder_prefix|nothing;
+                  cpsmcat nocall:here/translation_service;
+                  search_label python:cpsmcat('button_search');
+                  previous_search_value request/SearchableText|string:;
+                  search_value python:previous_search_value or search_label;
+                  base_url python:request.get('cpsskins_base_url');"
+ method="get" action="" accept-charset="utf-8"
+ tal:attributes="action search_script"
+ onsubmit="return checkEmptySearch(this)">
+  <div tal:condition="python:contextual_search_choice and contextual_search"
+   tal:define="id here/getId; id1 string:${id}1; id2 string:${id}2">
+    <tal:block condition="not:context_is_portlet">
+      <label tal:attributes="for id1"
+       i18n:translate="label_search_here">here</label>
+      <input type="radio" name="folder_prefix"
+       tal:attributes="id id1; checked folder_prefix;
+       value python:utool.getRelativeUrl(context)" />
+      <label tal:attributes="for id2"
+       i18n:translate="label_search_all_site">here</label>
+      <input type="radio" name="folder_prefix" value=""
+       tal:attributes="id id2; checked not:folder_prefix" />
+    </tal:block>
+    <tal:block condition="context_is_portlet">
+      <p tal:define="portlet_folder here/getLocalFolder">
+        <input type="hidden" name="folder_prefix"
+         tal:attributes="value python:utool.getRelativeUrl(portlet_folder)" />
+        <tal:block i18n:translate="">cpsportlets_search_in</tal:block>
+        <em tal:content="portlet_folder/title_or_id" />
+      </p>
+    </tal:block>
+  </div>
+  <div>
+  <label for="searchGadget">
+    <img tal:attributes="
+         src string:${base_url}cpsskins_images/portlet_search_icon.png;
+         alt search_label" />
+  </label>
+  <input id="searchGadget" type="text" name="SearchableText:utf8:ustring"
+         size="15" value=""
+         tal:attributes="value search_value;
+                         onclick python:'blankSearchFormInput(\'%s\', this)'
+                         % previous_search_value;
+      "/>
+  <input class="context searchButton" type="submit" value="button_ok"
+    i18n:attributes="value" />
+  </div>
+  <div>
+    <a href="" tal:condition="advanced_search_link"
+    tal:define="adv_url python:contextual_search and
+                               context.absolute_url() or utool()"
+    i18n:translate="cpsportlets_advanced_search"
+    tal:attributes="href string:${adv_url}/${advanced_search_form}">Advanced search</a>
+  </div>
+</form>
