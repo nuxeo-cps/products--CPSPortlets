@@ -24,7 +24,9 @@
     </select>
   </form>
   <tal:block condition="python: display == 'horizontal_trail'">
-    <!-- the icon should be made optional, e.g. with a "show icon" option -->
+    <tal:comment condition="nothing">
+      the icon should be made optional, e.g. with a "show icon" option
+    </tal:comment>
     <img tal:attributes="src
       string:${base_url}cpsskins_images/UpFolder_icon.png;
       alt string:Up Folder" />
