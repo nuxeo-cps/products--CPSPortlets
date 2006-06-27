@@ -31,7 +31,7 @@
   </div>
   <tal:block tal:condition="node/dynamic">
     <div class="load-area" tal:attributes="id python:'load-area-%s' % node['id']"
-        style="display:none">
+        style="display:none" i18n:translate="loading_text">
     LOADING..
     </div>
   </tal:block>
