@@ -22,7 +22,6 @@ javascript layer for tree views
 the treeview editor knows how to load nodes dynamically
 
 */
-
 var CPSTreeViewEditor = Class.create();
 
 CPSTreeViewEditor.prototype = {
@@ -63,7 +62,6 @@ CPSTreeViewEditor.prototype = {
   hookElements: function() {
     if (this.hooked)
       return;
-
     this.nodeloaders = document.getElementsByClassName(this.nodeloader_class);
     if (this.nodeloaders.length==0) {
       // nothing to drag
@@ -126,8 +124,9 @@ CPSTreeViewEditor.prototype = {
 
   onClickNodeFlipping: function(event) {
     // xxx weak, need a regexp here
+    var target = (typeof event.target != "undefined" ? event.target : event.srcElement);
 
-    droppable_id = event.target.id.replace('load-caller-', 'load-area-');
+    droppable_id = target.id.replace('load-caller-', 'load-area-');
 
     if ($(droppable_id)) {
       current_style = $(droppable_id).style;
@@ -141,7 +140,7 @@ CPSTreeViewEditor.prototype = {
       else {
         current_style.display = 'none';
       }
-      trigger_node = event.target;
+      trigger_node = target;
 
       if (trigger_node.src.indexOf('minus')!=-1)
         trigger_node.src = trigger_node.src.replace('minus', 'plus');
@@ -151,10 +150,10 @@ CPSTreeViewEditor.prototype = {
   },
 
   onClickNodeLoader: function(event) {
-    var target_id = event.target.id;
-    var classes = event.target.className.split(' ');
+    var target = (typeof event.target != "undefined" ? event.target : event.srcElement);
+    var target_id = target.id;
+    var classes = target.className.split(' ');
     var url = '';
-
     for (var i = 0; i < classes.length; i++) {
       var class_ = classes[i];
       if (class_.indexOf('url:') == 0) {
@@ -166,7 +165,6 @@ CPSTreeViewEditor.prototype = {
         break;
       }
     }
-
     if (url!='') {
       area_id = target_id.replace('load-caller-', 'load-area-');
       this.current_target_id = target_id;
