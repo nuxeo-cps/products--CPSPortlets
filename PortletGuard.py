@@ -25,6 +25,7 @@
 """
 
 import sys
+import types
 from zLOG import LOG, PROBLEM
 from Globals import InitializeClass
 from Products.PageTemplates.Expressions import getEngine
@@ -46,7 +47,15 @@ def createExpressionContext(sm, portlet, context):
         published_obj = request.get('PUBLISHED')
         if published_obj is not None:
             try:
-                published = published_obj.getId()
+                if isinstance(published_obj, types.MethodType):
+                    # z3 view?
+                    if published_obj.im_func.func_name == 'view_html':
+                        # Convention for default view method name
+                        # XXX Could check request['URL'] too
+                        ob = request['PARENTS'][1]
+                        published = ob.getTypeInfo().queryMethodID('view', '')
+                else:
+                    published = published_obj.getId()
             except AttributeError:
                 pass
     data = {
