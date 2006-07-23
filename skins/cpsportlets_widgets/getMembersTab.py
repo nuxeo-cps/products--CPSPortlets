@@ -46,7 +46,7 @@ depth = 0
 selected_tab = (current_uid + '/').startswith(rpath + '/')
 # XXX hardcoded for now
 visible = True
-ptype = homeFolder.portal_type
+ptype = homeFolder.getPortalTypeName()
 description = title = mcat(label)
 
 item.append({'url': url,

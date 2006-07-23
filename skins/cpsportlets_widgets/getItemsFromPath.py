@@ -36,7 +36,7 @@ for path in links:
     if not checkPerm('View', object):
         continue
 
-    ptype = getattr(object, 'portal_type', None)
+    ptype = object.getPortalTypeName()
 
     # title 
     title = object.title_or_id()

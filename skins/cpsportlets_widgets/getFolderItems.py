@@ -79,7 +79,7 @@ for object in bmf.contentValues():
         continue
 
     # skip documents if show_docs is not set
-    ptype = getattr(object, 'portal_type', None)
+    ptype = object.getPortalTypeName()
     # Using a RAM cache to optimize the retrieval of FTI
     isdocument = getFTIProperty(ptype, 'cps_proxy_type') == 'document'
     display_as_document_in_listing = getFTIProperty(
