@@ -18,7 +18,8 @@ first_item = int(kw.get('first_item', 0))
 # compute the breadcrumbs
 base_url = utool.getBaseUrl()
 portal = utool.getPortalObject()
-breadcrumbs = utool.getBreadCrumbs(context=context, only_parents=parent)
+breadcrumbs = utool.getBreadCrumbs(context=context, only_parents=parent,
+                                   restricted=True)
 
 items = []
 if first_item == 0 or display_site_root:
@@ -32,10 +33,6 @@ if first_item == 0:
     first_item = 1
 
 for obj in breadcrumbs[first_item:]:
-    # continue if the object is not visible
-    if not checkPermission('View', obj):
-        continue
-
     # compute the title
     title = obj.title_or_id()
     try:
