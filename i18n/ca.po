@@ -1,0 +1,654 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CPSPortlets\n"
+"POT-Creation-Date: 2006-03-01 17:57default\n"
+"PO-Revision-Date: 2006-07-14 22:36+0100\n"
+"Last-Translator: Domènec Arcalís <darcalis@gmail.com>\n"
+"Language-Team: català <darcalis@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Preferred-encodings: utf-8 latin1\n"
+"Language-Code: ca\n"
+"Language-Name: Catalan\n"
+"Domain: default\n"
+"X-Poedit-Language: Catalan\n"
+"X-Poedit-Country: SPAIN\n"
+
+#.   <input type="submit" value=" Add " />
+#: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
+msgid " Add "
+msgstr "Afegir"
+
+#.   <strong>ID:</strong>
+#: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
+msgid "ID:"
+msgstr "ID"
+
+#.   <block>Edit</block>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "_Edit_"
+msgstr "Modificar"
+
+#.   <div class="mainContentArea">_Main content_</div>
+#: from ../skins/cpsportlets_widgets/widget_portlet_maincontent.pt
+msgid "_Main content_"
+msgstr "Principal"
+
+msgid "action_canvas"
+msgstr "Disseny"
+
+#.   <a href="cpsportlet_guard">guard</a>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "action_portlet_guard"
+msgstr "Guardià"
+
+msgid "action_portlets"
+msgstr "Administrar portlets"
+
+msgid "button_portlet_management"
+msgstr "Administració del portlet"
+
+#.   <input type="submit" class="standalone" value="button_submit_changes" />
+#: from ../skins/cpsportlets_default/cpsportlet_guard.pt
+msgid "button_submit_changes"
+msgstr "Enviar canvis"
+
+#.   <option disabled="disabled" selected="selected" value="">
+#.           Add new item ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
+msgid "cpsportlet_add_new_item"
+msgstr "Afegir nou contingut"
+
+#.   <span>
+#.     The following names are defined for the TALES expression</span>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_explain"
+msgstr "Els següents noms són definits per l'expressió TALES"
+
+#.   <dd>The context</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_here"
+msgstr "Context"
+
+#.   <dd>The portal object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_portal"
+msgstr "L'objecte \"portal\""
+
+#.   <dd>The portlet object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_portlet"
+msgstr "L'objecte \"portlet\""
+
+#.   <dd>
+#.     The id of the PUBLISHED object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_published"
+msgstr "La ID d'un objecte publicat"
+
+#.   <dd>The REQUEST object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_request"
+msgstr "L'objecte \"REQUEST\" (petició)"
+
+#.   <dd>
+#.     The context's relative path ending with a '/' (e.g. 'sections/')</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_rpath_slash"
+msgstr ""
+"La ruta relativa del context amb la barra \"slash\" final (ex. seccions/)"
+
+#.   <dd>The user object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_user"
+msgstr "L'objecte  \"usuari\""
+
+msgid "cpsportlet_psm_guard_error"
+msgstr "Configuració incorrecta"
+
+msgid "cpsportlet_psm_settings_updated"
+msgstr "Configuració actualizada"
+
+msgid "cpsportlet_rot_image_nb_images_label"
+msgstr "Número d'imatges a rotar entre"
+
+msgid "cpsportlets_action_categories_label"
+msgstr "Categories a mostrar"
+
+msgid "cpsportlets_actions_order_label"
+msgstr "Ordre"
+
+msgid "cpsportlets_actions_show_icons_label"
+msgstr "Mostrar icones d'accions"
+
+msgid "cpsportlets_additem_dropdown_list_label"
+msgstr "Llista desplegable"
+
+msgid "cpsportlets_additem_show_icons_label"
+msgstr "Mostrar icones"
+
+msgid "cpsportlets_additem_standard_menu_label"
+msgstr "Menú estàndard"
+
+#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()">Advanced search</a>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+msgid "cpsportlets_advanced_search"
+msgstr "Recerca avançada"
+
+msgid "cpsportlets_advanced_search_link_label"
+msgstr "Posar un enllaç al formulari de recerca avançada"
+
+msgid "cpsportlets_bcs_display_dropdown_list_label"
+msgstr "Llistat desplegable"
+
+msgid "cpsportlets_bcs_display_horizontal_trail_label"
+msgstr "Rastre horitzontal"
+
+msgid "cpsportlets_bcs_display_site_root_label"
+msgstr "Mostrar el directori arrel"
+
+msgid "cpsportlets_bcs_highlight_last_item_label"
+msgstr "Resaltar l'últim objecte desplegable"
+
+#.   <button type="submit">OK</button>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_button_OK"
+msgstr "D'acord"
+
+#.   <label attributes="for language_chooser_id">Change language:</label>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_change_language"
+msgstr "Canviar idioma"
+
+msgid "cpsportlets_common_custom_cache_params_label"
+msgstr "Personalitzar paràmetres del caché"
+
+msgid "cpsportlets_common_disable_override_label"
+msgstr "Evitar que es sobreescrigui aquest portlet?"
+
+msgid "cpsportlets_common_display_description_label"
+msgstr "Mostrar descripcions dels ítems"
+
+msgid "cpsportlets_common_first_item_label"
+msgstr "Primer ítem"
+
+msgid "cpsportlets_common_link_string_label"
+msgstr "Cadena d'enllaç"
+
+msgid "cpsportlets_common_max_items_label"
+msgstr "Número d'ítem"
+
+msgid "cpsportlets_common_render_method_label"
+msgstr "Mostrar mètode (.zpt, .py, etc.)"
+
+msgid "cpsportlets_common_short_syndication_formats_label"
+msgstr "Mostra formats curts en exportar botons"
+
+msgid "cpsportlets_common_slot_override_label"
+msgstr "Sobreescriure els portlets existents?"
+
+msgid "cpsportlets_common_syndication_formats_label"
+msgstr "Formats de sindicació"
+
+msgid "cpsportlets_common_visibility_range_label"
+msgstr "Rang de visibilitat"
+
+msgid "cpsportlets_content_cluster_id_label"
+msgstr "Clúster ID"
+
+msgid "cpsportlets_content_contextual_label"
+msgstr "Recerca contextual"
+
+msgid "cpsportlets_content_folder_path_label"
+msgstr "Directori base"
+
+msgid "cpsportlets_content_max_words_label"
+msgstr "Número de paraules al sumari"
+
+msgid "cpsportlets_content_query_title_label"
+msgstr "Recerca per títol"
+
+msgid "cpsportlets_content_render_items_label"
+msgstr "Visualitzar els ítems"
+
+msgid "cpsportlets_content_search_all_label"
+msgstr "Tots els documents"
+
+msgid "cpsportlets_content_search_last_modified_label"
+msgstr "Últims documents modificats"
+
+msgid "cpsportlets_content_search_last_published_label"
+msgstr "Últims documents publicats"
+
+msgid "cpsportlets_content_search_pending_label"
+msgstr "Documents pendents"
+
+msgid "cpsportlets_content_search_recent_label"
+msgstr "Documents recents"
+
+msgid "cpsportlets_content_search_related_label"
+msgstr "Documents relacionats"
+
+msgid "cpsportlets_content_search_today_label"
+msgstr "Esdeveniments d'avui"
+
+msgid "cpsportlets_content_search_type_label"
+msgstr "Contingut"
+
+msgid "cpsportlets_content_search_upcoming_label"
+msgstr "Pujant esdeveniments"
+
+msgid "cpsportlets_content_searchable_types_label"
+msgstr "Tipus de contingut a mostrar"
+
+msgid "cpsportlets_content_show_icons_label"
+msgstr "Mostrar icones de contingut"
+
+msgid "cpsportlets_content_sort_on_Creator_label"
+msgstr "Autor"
+
+msgid "cpsportlets_content_sort_on_Date_label"
+msgstr "Data"
+
+msgid "cpsportlets_content_sort_on_Title_label"
+msgstr "Títol"
+
+msgid "cpsportlets_content_sort_on_label"
+msgstr "Ordenar resultats per"
+
+msgid "cpsportlets_content_sort_on_review_state_label"
+msgstr "Revisar estat"
+
+msgid "cpsportlets_content_sort_reverse_label"
+msgstr "Invertir l'ordre en què es mostren"
+
+msgid "cpsportlets_content_translated_psm"
+msgstr "Contingut traslladat"
+
+msgid "cpsportlets_contextual_search_choice_label"
+msgstr "Mostrar l'opció de recerca contextual"
+
+msgid "cpsportlets_custom_js_render_method_label"
+msgstr "Mètode de renderitzat Javascript (zpt, py, etc.)"
+
+msgid "cpsportlets_custom_render_method_label"
+msgstr "Mètode de renderitzat (zpt, py, etc.)"
+
+#.   <p>Delete translation ...</p>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_delete_translation"
+msgstr "Esborra la versió en..."
+
+msgid "cpsportlets_display_hidden_folders_label"
+msgstr "Mostrar carpetes ocultes"
+
+msgid "cpsportlets_display_mode_help"
+msgstr "Els portlets amb un * tenen un disseny predeterminat."
+
+msgid "cpsportlets_display_mode_label"
+msgstr "Mostrar mode"
+
+msgid "cpsportlets_document_cluster_id_label"
+msgstr "Clúster ID"
+
+msgid "cpsportlets_document_context_rpath_label"
+msgstr "Ruta del document (relativa)"
+
+msgid "cpsportlets_document_render_cluster_no_fallback_label"
+msgstr "Visualitzar el document només si el clúster específic existeix"
+
+msgid "cpsportlets_document_render_container_label"
+msgstr "Visualitzar el contenidor"
+
+#.   <td condition="display_description">cpsportlets_extended_site_map_description</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+msgid "cpsportlets_extended_site_map_description"
+msgstr "Descripció"
+
+#.   <td>cpsportlets_extended_site_map_folder</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+msgid "cpsportlets_extended_site_map_folder"
+msgstr "Carpeta"
+
+#.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+msgid "cpsportlets_extended_site_map_managers"
+msgstr "Administrador(s)"
+
+msgid "cpsportlets_folder_sort_asc_label"
+msgstr "Ascendent"
+
+msgid "cpsportlets_folder_sort_by_author_label"
+msgstr "Autor"
+
+msgid "cpsportlets_folder_sort_by_date_label"
+msgstr "Data"
+
+msgid "cpsportlets_folder_sort_by_title_label"
+msgstr "Títol"
+
+msgid "cpsportlets_folder_sort_desc_label"
+msgstr "Descendent"
+
+#.   <p>
+#.       The guard form allows you to control the visibility of portlets.
+#.       All the expressions that are filled in must be true for the portlet to be
+#.       visible.</p>
+#: from ../skins/cpsportlets_default/cpsportlet_guard.pt
+msgid "cpsportlets_guard_explanation"
+msgstr ""
+"El formulari guardià permet controlar la visibilitat dels portlets. Totes "
+"les condicions han d'estar verificades per que el portlet sigui visible."
+
+msgid "cpsportlets_image_caption_label"
+msgstr "Captura d'imatge"
+
+msgid "cpsportlets_image_image_label"
+msgstr "Arxiu d'imatge"
+
+msgid "cpsportlets_image_link_label"
+msgstr "Enllaç"
+
+#.   <span>To manage portlets please install CPSSkins.</span>
+#: from ../skins/cpsportlets_default/portlet_manage_form.pt
+msgid "cpsportlets_install_cpsskins"
+msgstr ""
+"Per a administrar portlets (components de presentació), instal·li CPSSkins."
+
+msgid "cpsportlets_internallinks_links_label"
+msgstr "Enlaços interns"
+
+msgid "cpsportlets_internallinks_max_title_words_label"
+msgstr "Número de paraules al títol"
+
+msgid "cpsportlets_internallinks_show_icons_label"
+msgstr "Mostrar icones del document"
+
+msgid "cpsportlets_language_action_change_label"
+msgstr "Canviar idioma"
+
+msgid "cpsportlets_language_action_delete_translation_label"
+msgstr "Esborrar traducció"
+
+msgid "cpsportlets_language_action_label"
+msgstr "Acció"
+
+msgid "cpsportlets_language_action_switch_language_label"
+msgstr "Canviar d'idioma"
+
+msgid "cpsportlets_language_action_translate_label"
+msgstr "Traduir"
+
+#.   <block>located in the folder</block>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "cpsportlets_located_in_the_folder"
+msgstr "localitzat a la carpeta"
+
+msgid "cpsportlets_nav_context_is_portlet_label"
+msgstr "Utilitzar la localització del portlet com a context"
+
+msgid "cpsportlets_nav_context_rpath_label"
+msgstr "Ruta de la carpeta (relativa)"
+
+msgid "cpsportlets_nav_display_collapsible_menu_label"
+msgstr "Menú plegable"
+
+msgid "cpsportlets_nav_display_expandable_tree_menu_label"
+msgstr "Menú secundari de navegació"
+
+msgid "cpsportlets_nav_display_extended_site_map_label"
+msgstr "Mapa extès del lloc web*"
+
+msgid "cpsportlets_nav_display_folder_contents_detailed_label"
+msgstr "Continguts de la carpeta* (detallats)"
+
+msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
+msgstr "Continguts de les carpetes* (llistat desplegable)"
+
+msgid "cpsportlets_nav_display_folder_contents_menu_label"
+msgstr "Continguts de la carpeta*"
+
+msgid "cpsportlets_nav_display_navtree_menu_label"
+msgstr "Arbre de navegació"
+
+msgid "cpsportlets_nav_display_site_map_3_tabs_label"
+msgstr "Mapa del lloc web (amb membres)"
+
+msgid "cpsportlets_nav_display_site_map_label"
+msgstr "Mapa del lloc web"
+
+msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
+msgstr "Continguts dels subdirectoris*"
+
+msgid "cpsportlets_nav_display_up_to_parent_label"
+msgstr "Pujar al directori superior*"
+
+msgid "cpsportlets_nav_display_vertical_breadcrumbs_menu_label"
+msgstr "Menú vertical desplegable"
+
+msgid "cpsportlets_navigation_authorized_only_label"
+msgstr "Mostrar només els ítems autoritzats"
+
+msgid "cpsportlets_navigation_contextual_label"
+msgstr "Mostra contextual"
+
+msgid "cpsportlets_navigation_display_description_label"
+msgstr "Mostrar la descripció dels ítems"
+
+msgid "cpsportlets_navigation_display_hidden_folders_label"
+msgstr "Mostrar carpetes ocultes"
+
+msgid "cpsportlets_navigation_display_managers_label"
+msgstr "Mostrar els administradors de contingut"
+
+msgid "cpsportlets_navigation_end_depth_label"
+msgstr "Profunditat final"
+
+msgid "cpsportlets_navigation_folder_prefixes_label"
+msgstr "Prefixos de les carpetes visibles"
+
+msgid "cpsportlets_navigation_rel_depth_label"
+msgstr "Profunditat relativa"
+
+msgid "cpsportlets_navigation_root_uids_label"
+msgstr "Arrels de l'arbre"
+
+msgid "cpsportlets_navigation_show_docs_label"
+msgstr "Mostrar documents"
+
+msgid "cpsportlets_navigation_show_icons_label"
+msgstr "Mostrar icones dels documents"
+
+msgid "cpsportlets_navigation_sort_by_label"
+msgstr "Ordenar ítem per"
+
+msgid "cpsportlets_navigation_sort_direction_label"
+msgstr "Direcció d'ordenació"
+
+msgid "cpsportlets_portlet_created_psm"
+msgstr "Portlet creat"
+
+#.   <h1>Portlet management</h1>
+#: from ../skins/cpsportlets_default/portlet_manage_form.pt
+msgid "cpsportlets_portlet_management_heading"
+msgstr "Administració de portlets (components de presentació)"
+
+msgid "cpsportlets_rss_channel_label"
+msgstr "Canal RSS"
+
+msgid "cpsportlets_rss_max_words_label"
+msgstr "Número de paraules al sumari"
+
+msgid "cpsportlets_rss_update_frequency_label"
+msgstr "Freqüència d'actualització (en segons)"
+
+msgid "cpsportlets_search_context_is_portlet_label"
+msgstr "Executar la recerca començant per la ubicació del portlet"
+
+#.   <block>cpsportlets_search_in</block>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+msgid "cpsportlets_search_in"
+msgstr "Cercar a"
+
+#.   <p>Switch to ...</p>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_switch_language"
+msgstr "Veure la versió en..."
+
+msgid "cpsportlets_syndication_atom_0_3_help"
+msgstr "Exportar cap a l'ATOM associat"
+
+msgid "cpsportlets_syndication_atom_0_3_label"
+msgstr "ATOM 0.3"
+
+msgid "cpsportlets_syndication_rss_1_0_help"
+msgstr "Cap a l'alimentador de notícies RSS associat"
+
+msgid "cpsportlets_syndication_rss_1_0_label"
+msgstr "RSS 1.0"
+
+msgid "cpsportlets_syndication_rss_2_0_help"
+msgstr "Cap a l'alimentador de notícies RSS associat"
+
+msgid "cpsportlets_syndication_rss_2_0_label"
+msgstr "RSS 2.0"
+
+#.   <p>Translate into ...</p>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_translate_into"
+msgstr "Crear una versió en..."
+
+msgid "cpsportlets_translation_deleted_psm"
+msgstr "Traducció esborrada."
+
+#.   <span>Up to
+#.             ${up_id (tal content="item/title")}
+#.           </span>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+msgid "cpsportlets_up_to"
+msgstr "Pujar a ${up_id}"
+
+msgid "cpsportlets_visibility_range_0-0_label"
+msgstr "A aquesta carpeta i tots els subdirectoris"
+
+msgid "cpsportlets_visibility_range_0-1_label"
+msgstr "Només a aquesta carpeta"
+
+msgid "cpsportlets_visibility_range_1-0_label"
+msgstr "Només als subdirectoris"
+
+msgid "label_cpsportlets_i18n"
+msgstr "Traduir el contingut del portlet"
+
+msgid "label_cpsportlets_provider"
+msgstr "Proveïdor"
+
+msgid "label_cpsportlets_title"
+msgstr "Títol del portlet"
+
+msgid "portal_type_ActionsPortlet_description"
+msgstr "Mostra una llista de les accions del portal per categoria."
+
+msgid "portal_type_ActionsPortlet_title"
+msgstr "Portlet d'accions"
+
+msgid "portal_type_AddItemPortlet_description"
+msgstr "Mostra un menú per a afegir continguts dintre d'una carpeta."
+
+msgid "portal_type_AddItemPortlet_title"
+msgstr "Portlet de creació de continguts"
+
+msgid "portal_type_BreadcrumbsPortlet_description"
+msgstr "Mstra un llistat d'enllaços a les carpetes de què depèn."
+
+msgid "portal_type_BreadcrumbsPortlet_title"
+msgstr "Portlet amb menú desplegable"
+
+msgid "portal_type_ContentPortlet_description"
+msgstr "Mostra el resultat d'una recerca de contingut"
+
+msgid "portal_type_ContentPortlet_title"
+msgstr "Portlet de continguts"
+
+msgid "portal_type_CustomPortlet_description"
+msgstr "Mostra un mètode de visualització (.zpt, .py, etc.)"
+
+msgid "portal_type_CustomPortlet_title"
+msgstr "Personalitzar el portlet"
+
+msgid "portal_type_DocumentPortlet_description"
+msgstr "Mostra la visualització del document actual"
+
+msgid "portal_type_DocumentPortlet_title"
+msgstr "Portlet de documents"
+
+msgid "portal_type_DummyPortlet_description"
+msgstr "Un portlet de proves"
+
+msgid "portal_type_DummyPortlet_title"
+msgstr "Imitar portlet"
+
+msgid "portal_type_ImagePortlet_description"
+msgstr "Mostra una imatge decorativa amb un enllaç."
+
+msgid "portal_type_ImagePortlet_title"
+msgstr "Portlet d'imatge"
+
+msgid "portal_type_InternalLinksPortlet_description"
+msgstr "Mostra un llistat d'enllaços interns."
+
+msgid "portal_type_InternalLinksPortlet_title"
+msgstr "Portlet d'enllaços interns"
+
+msgid "portal_type_LanguagePortlet_description"
+msgstr "Mostra les accions relacionades amb els idiomes"
+
+msgid "portal_type_LanguagePortlet_title"
+msgstr "Portlet d'idiomes"
+
+msgid "portal_type_MainContentPortlet_title"
+msgstr "Contingut principal"
+
+msgid "portal_type_NavigationPortlet_description"
+msgstr "Mostra els ítems de navegació, continguts de les carpetes, etc."
+
+msgid "portal_type_NavigationPortlet_title"
+msgstr "Portlet de navegació"
+
+msgid "portal_type_RSSPortlet_description"
+msgstr "Mostra les fonts d'on s'alimenta el canal RSS"
+
+msgid "portal_type_RSSPortlet_title"
+msgstr "Portlet de RSS"
+
+msgid "portal_type_RotatingImagePortlet_description"
+msgstr "Mostra aleatòriament una col·lecció d'imatges"
+
+msgid "portal_type_RotatingImagePortlet_title"
+msgstr "Rotant la imatge del portlet"
+
+msgid "portal_type_SearchPortlet_description"
+msgstr "Mostra una interfície per a recerques"
+
+msgid "portal_type_SearchPortlet_title"
+msgstr "Cercar portlet"
+
+msgid "portal_type_TextPortlet_description"
+msgstr "Mostra un text en format HTML."
+
+msgid "portal_type_TextPortlet_title"
+msgstr "Portlet de text"
+
+msgid "portlets_nav_display_dyn_navtree_menu_label"
+msgstr "Arbre de navegació dinàmic"
+
+#.   <span>this export format has not been implemented yet</span>
+#: from ../skins/cpsportlets_default/cpsportlet_macros.pt
+msgid "this export format has not been implemented yet"
+msgstr "aquest format d'exportació encara no s'ha implementat"
+
+msgid "w__imagelink"
+msgstr "Enllaç d'imatge"

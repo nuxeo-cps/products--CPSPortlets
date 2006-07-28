@@ -3,7 +3,7 @@ Requires:
 -
 New features:
 ~~~~~~~~~~~~~
--
+- #1702: Added new Catalan translation thanks to Santi Camps.
 Bug fixes:
 ~~~~~~~~~~
 - Fixed #1653: Search box always clearing text.
