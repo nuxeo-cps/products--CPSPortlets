@@ -1,4 +1,23 @@
 *******************************************
+** CPSPortlets V0.10.2 [R1 build 2006/08/03-09:19 by fermigier]
+** SVN URL: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk Revision: 47779
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- #1702: Added new Catalan translation thanks to Santi Camps.
+Bug fixes:
+~~~~~~~~~~
+- Fixed #1653: Search box always clearing text.
+- Made the search portlet more accessible through the use of a label tag.
+- Fixed the dynamic treeview for IE 6
+- Breadcrumbs visibility filtering is now done by the url tool itself.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
 ** CPSPortlets V0.10.1 [R1 build 2006/05/19-12:40 by fermigier]
 ** SVN URL: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk Revision: 45740
 Requires:
