@@ -12,7 +12,7 @@
       tal:attributes="src string:${base_url}calendar.js"></script>
     <script type="text/javascript" src="lang/calendar-en.js"
       tal:define="local cpsmcat/getSelectedLanguage"
-      tal:attributes="src string:${base_url}lang/calendar-${local}.js"></script>
+      tal:attributes="src string:${base_url}calendar-lang/calendar-${local}.js"></script>
     <script type="text/javascript" src="calendar-setup.js"
       tal:attributes="src string:${base_url}calendar-setup.js"></script>
 
