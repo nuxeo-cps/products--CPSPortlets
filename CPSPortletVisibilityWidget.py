@@ -93,9 +93,13 @@ class CPSPortletVisibilityWidget(CPSSelectWidget):
         vocabulary = self._getVocabulary(datastructure)
         portal = getToolByName(self, 'portal_url').getPortalObject()
         cpsmcat = portal.translation_service
+        charset = portal.default_charset
         if mode == 'view':
             if getattr(self, 'translated', None):
-                return escape(cpsmcat(vocabulary.getMsgid(value, value)).encode('ISO-8859-15', 'ignore'))
+                value = cpsmcat(vocabulary.getMsgid(value, value))
+                if charset != 'unicode':
+                    value = value.encode(charset, 'ignore')
+                return escape(value)
             else:
                 return escape(vocabulary.get(value, value))
         elif mode == 'edit':
@@ -104,9 +108,10 @@ class CPSPortletVisibilityWidget(CPSSelectWidget):
             in_selection = 0
             for k, v in vocabulary.items():
                 if getattr(self, 'translated', None):
-                    kw = {'value': k,
-                          'contents': cpsmcat(vocabulary.getMsgid(k, k)).encode('ISO-8859-15', 'ignore')
-                          }
+                    v = cpsmcat(vocabulary.getMsgid(k, k))
+                    if charset != 'unicode':
+                        v = v.encode(charset, 'ignore')
+                    kw = {'value': k, 'contents': v}
                 else:
                     kw = {'value': k, 'contents': v}
                 if '%s-%s' % (value[0], value[1]) == k:
