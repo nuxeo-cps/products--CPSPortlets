@@ -815,8 +815,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
             if img is None:
                 return None
             img_tag = IMG_TAG % (base_url + icon_path,
-                                 getattr(img, 'width', 0),
-                                 getattr(img, 'height', 0),
+                                 getattr(img, 'width', 16),
+                                 getattr(img, 'height', 16),
                                  alt)
             if cache is not None:
                 cache.setEntry(index, img_tag)
