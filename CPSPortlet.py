@@ -96,37 +96,16 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
     guard = None
 
     def __getitem__(self, name):
-        """Transparent traversal of the proxy to the real subobjects.
-
-        Used for skins that don't take proxies enough into account.
-
-        Parses URL revision switch of the form:
-          mydoc/archivedRevision/n/...
-
-        Parses URL translation switch of the form:
-          mydoc/switchLanguage/<lang>/...
+        """File Downloader.
 
         Parses URLs for download of the form:
           mydoc/downloadFile/attrname/mydocname.pdf
         """
-        ob = self
-        if ob is None:
-            raise KeyError(name)
         if name == KEYWORD_DOWNLOAD_FILE:
+            ob = self
             downloader = FileDownloader(ob, self)
             return downloader.__of__(self)
-        try:
-            res = getattr(aq_base(ob), name)
-        except AttributeError:
-            try:
-                #res = ob[name]
-                res = None
-            except (KeyError, IndexError, TypeError, AttributeError):
-                raise KeyError, name
-        if hasattr(res, '__of__'):
-            # XXX Maybe incorrect if complex wrapping.
-            res = aq_base(res).__of__(self)
-        return res
+        raise KeyError(name)
 
     security.declarePublic('getGuard')
     def getGuard(self):
