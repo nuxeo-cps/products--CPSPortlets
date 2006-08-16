@@ -276,9 +276,8 @@ msgstr "Afficher l'option de recherche contextuelle"
 msgid "cpsportlets_action_categories_label"
 msgstr "Catégories d'actions à afficher"
 
-#, fuzzy
 msgid "cpsportlets_actions_order_label"
-msgstr "Catégories d'actions à afficher"
+msgstr "Actions avec un ordre spécifique"
 
 msgid "cpsportlets_search_context_is_portlet_label"
 msgstr ""
