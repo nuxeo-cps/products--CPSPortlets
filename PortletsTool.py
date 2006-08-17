@@ -274,7 +274,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
                  'editable': checkPerm('ManagePortlets', obj),
                 }
             )
-            obj = getattr(obj, elem)
+            obj = obj._getOb(elem)
 
         # include the current folder
         folders.append(
