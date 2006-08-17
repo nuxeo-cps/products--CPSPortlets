@@ -11,3 +11,5 @@ Bug fixes:
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Moved jscalendar lang/ subdir to calendar-lang/ to avoid name collisions.
+- Use _getOb instead of getattr to get subobjects in
+  portal_cpsportlets.getBreadCrumbs
