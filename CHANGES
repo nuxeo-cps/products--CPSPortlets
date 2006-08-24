@@ -8,6 +8,8 @@ Bug fixes:
 ~~~~~~~~~~
 - better default size for icon tags (esp. useful for non persistent images
   such as Z3 style resources)
+- do not use the cpsskins_images/ skin folder to store search portlet icon
+  (make it easier to customize)
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Moved jscalendar lang/ subdir to calendar-lang/ to avoid name collisions.

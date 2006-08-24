@@ -42,7 +42,7 @@
   <div>
   <label for="searchGadget">
     <img tal:attributes="
-         src string:${base_url}cpsskins_images/portlet_search_icon.png;
+         src string:${base_url}portlet_search_icon.png;
          alt search_label" />
   </label>
   <input id="searchGadget" type="text" name="SearchableText" size="15" value=""
