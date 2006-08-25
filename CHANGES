@@ -10,6 +10,7 @@ Bug fixes:
   such as Z3 style resources)
 - do not use the cpsskins_images/ skin folder to store search portlet icon
   (make it easier to customize)
+- the max_words parameter did not affect the content portlet rendering
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Moved jscalendar lang/ subdir to calendar-lang/ to avoid name collisions.

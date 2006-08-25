@@ -150,15 +150,13 @@ if search_type == 'related':
 
 # build results dictionary
 def summarize(text='', max_words=20):
-    """summarize the text by returning the first max_words
-    """
+    """summarize the text by returning the first max_words"""
     if not text:
         return ''
-    split_text = text.split(' ', max_words)[0:max_words]
-    res = ''
-    if split_text:
-        res = ' '.join(split_text) + ' ...'
-    return res
+    words = text.split(' ')
+    if len(words) > max_words:
+        words = words[:max_words] + [' ...']
+    return ' '.join(words)
 
 # return the catalog brain's actual content
 def getBrainInfo():
@@ -239,9 +237,8 @@ for brain in brains:
             icon_tag = renderIcon(ti.getId(), base_url, '')
 
     # Item's summary
-    summary = ''
+    summary = brain['Description']
     if display_description:
-        summary = brain['Description']
         max_words = int(kw.get('max_words', 20))
         if max_words > 0:
             summary = summarize(summary, max_words)
@@ -282,12 +279,12 @@ for brain in brains:
                    'icon_tag': icon_tag})
         rendered = apply(render_method, (), kw)
 
-    # this information is used by custom emplates that call getContentItems()
+    # this information is used by custom templates that call getContentItems()
     # directly.
     items.append(
         {'url': brain.getURL(),
          'title': brain['Title'],
-         'description': brain['Description'],
+         'description': summary,
          'rendered': rendered,
          'metadata': metadata_info,
          'icon_tag': icon_tag,

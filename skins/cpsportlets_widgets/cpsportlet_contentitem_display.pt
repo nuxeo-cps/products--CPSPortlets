@@ -1,12 +1,13 @@
 <tal:block define="brain nocall:options/brain;
                    display_description options/display_description;
                    display_description python:int(display_description);
+                   summary options/summary;
                    link_string options/link_string">
   <tal:block content="brain/Title" />
   <span class="itemDescription"
    tal:omit-tag="python: not (display_description or link_string)">
     <tal:block condition="display_description"
-     content="brain/Description" />
+     content="summary" />
     <tal:block i18n:translate=""
      condition="link_string"
      content="structure link_string" />
