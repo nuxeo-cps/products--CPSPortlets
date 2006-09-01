@@ -1,4 +1,4 @@
-##parameters=context_obj=None, show_docs=None, max_title_words=0, context_rpath='', context_is_portlet=0, **kw
+##parameters=context_obj=None, show_docs=False, max_title_words=0, context_rpath='', context_is_portlet=0, **kw
 
 utool = context.portal_url
 base_url = utool.getBaseUrl()
