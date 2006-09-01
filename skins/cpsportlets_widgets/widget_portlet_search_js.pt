@@ -13,13 +13,19 @@ function blankSearchFormInput(previousSearchValue, formElem) {
  * to save the server from useless load.
  */
 function checkEmptySearch(formElem) {
-    var query = trim(formElem.SearchableText.value);
+    var searchGadget = document.getElementById('searchGadget');
+    if (!searchGadget) {
+        return false;
+    }
+
+    var query = searchGadget.value;
     if (query != '') {
-        formElem.SearchableText.value = query;
+        // formElem.SearchableText.value = query;
+        searchGadget.value = query;
         return true;
     }
-    formElem.SearchableText.value = query;
-    formElem.SearchableText.focus();
+    searchGadget.value = query;
+    searchGadget.focus();
     return false;
 }
 
