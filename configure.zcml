@@ -66,6 +66,10 @@
       global="False"
       />
 
+  <five:traversable
+      class=".CPSPortlet.CPSPortlet"
+      />
+
 
   <include file="browser/configure.zcml" />
 </configure>
