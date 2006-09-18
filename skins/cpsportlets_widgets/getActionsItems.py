@@ -39,17 +39,17 @@ for category in categories:
             info = atool.queryActionInfo(category, action['id'])
             if info is not None:
                 item['priority'] = info[1]
-                
+
         if not action['id'] in actions_order:
             actionitems.append(item)
         else:
-            # replace the action id in the preordered list with the action 
+            # replace the action id in the preordered list with the action
             # vocabulary
             orderedActions[actions_order.index(action['id'])] = item
-        
+
 for action in orderedActions:
     # keep only actions that really exist (have been replaced with an item)
-    if not isinstance(action, str):
+    if not isinstance(action, basestring):
         reorderedActions.append(action)
 
 # Sort the unsorted ones:

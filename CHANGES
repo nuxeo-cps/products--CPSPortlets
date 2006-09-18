@@ -14,6 +14,7 @@ Bug fixes:
 - Fixed weak JS, that would fail under IE.
 - Fixed getFolderItems.py to not crash if the show_docs parameter is not used.
 - Missing XML ZMI export tab
+- Fixed getActionItems to filter actions represented by an unicode id.
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 - Moved jscalendar lang/ subdir to calendar-lang/ to avoid name collisions.
