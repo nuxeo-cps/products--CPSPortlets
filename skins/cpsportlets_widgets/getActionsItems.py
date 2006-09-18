@@ -34,6 +34,8 @@ for category in categories:
                      base_url=base_url,
                      alt=action['name']),
                 }
+        if 'onclick' in action:
+            item['onclick'] = action['onclick']
         item['priority'] = DEFAULT_PRIORITY
         if atool is not None:
             info = atool.queryActionInfo(category, action['id'])
