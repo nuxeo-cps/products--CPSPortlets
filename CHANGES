@@ -1,22 +1,12 @@
-Requires:
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
 ~~~~~~~~~
 -
-New features:
-~~~~~~~~~~~~~
--
-Bug fixes:
-~~~~~~~~~~
-- Better default size for icon tags (esp. useful for non persistent images
-  such as Z3 style resources)
-- Do not use the cpsskins_images/ skin folder to store search portlet icon
-  (make it easier to customize)
-- The max_words parameter did not affect the content portlet rendering
-- Fixed weak JS, that would fail under IE.
-- Fixed getFolderItems.py to not crash if the show_docs parameter is not used.
-- Missing XML ZMI export tab
-- Fixed getActionItems to filter actions represented by an unicode id.
-New internal features:
-~~~~~~~~~~~~~~~~~~~~~~
-- Moved jscalendar lang/ subdir to calendar-lang/ to avoid name collisions.
-- Use _getOb instead of getattr to get subobjects in
-  portal_cpsportlets.getBreadCrumbs
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
