@@ -7,7 +7,8 @@ New features
   portlet editor is overcrowded and/or very slow.
 Bug fixes
 ~~~~~~~~~
--
+- Provided more space in the guard manage form by using a textarea instead of a
+  one line input text field.
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 

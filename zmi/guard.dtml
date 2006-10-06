@@ -1,0 +1,31 @@
+<script type="text/javascript">
+function guardExprDocs() {
+  window.open('guardExprDocs', '', 'width=640, height=480, resizable, scrollbars, status');
+}
+</script>
+
+<table>
+
+<tr>
+<th align="left"><label for="guard_permissions">Permission(s)</label></th>
+<td><input type="text" name="guard_permissions" id="guard_permissions"
+           value="&dtml-getPermissionsText;" /></td>
+<th align="left"><label for="guard_roles">Role(s)</label></th>
+<td><input type="text" name="guard_roles" id="guard_roles"
+           value="&dtml-getRolesText;" /></td>
+<th align="left"><label for="guard_groups">Group(s)</label></th>
+<td><input type="text" name="guard_groups" id="guard_groups"
+           value="&dtml-getGroupsText;" /></td>
+</tr>
+
+<tr>
+<th align="left"><label for="guard_expr">Expression</label></th>
+<td colspan="3">
+<textarea rows="5" cols="72" name="guard_expr" id="guard_expr">
+&dtml-getExprText;
+</textarea>
+<a href="#" onclick="guardExprDocs(); return false;">[?]</a>
+</td>
+</tr>
+
+</table>

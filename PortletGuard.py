@@ -27,6 +27,7 @@
 import sys
 import types
 from zLOG import LOG, PROBLEM
+from Globals import DTMLFile
 from Globals import InitializeClass
 from Products.PageTemplates.Expressions import getEngine
 try:
@@ -71,7 +72,11 @@ def createExpressionContext(sm, portlet, context):
     return getEngine().getContext(data)
 
 class PortletGuard(Guard):
-    """DCWorkflow Guard with a portlet-specific name space."""
+    """DCWorkflow Guard with a portlet-specific name space and an improved form.
+    """
+
+    guardForm = DTMLFile('zmi/guard', globals())
+
     def check(self, sm, portlet, context):
         """Checks conditions in this guard."""
         pp = self.permissions
