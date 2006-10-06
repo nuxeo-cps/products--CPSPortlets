@@ -3,7 +3,8 @@ Requires
 -
 New features
 ~~~~~~~~~~~~
--
+- Put back the Guard management form in the ZMI which is very useful when the
+  portlet editor is overcrowded and/or very slow.
 Bug fixes
 ~~~~~~~~~
 -

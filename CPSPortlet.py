@@ -130,8 +130,13 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         return self.cpsportlet_guard_tales_help()
 
     security.declareProtected(ManagePortlets, 'setGuardProperties')
-    def setGuardProperties(self, props=None, REQUEST=None):
-        """Postprocess guard values."""
+    def setGuardProperties(self, props=None, from_portlet_editor=True,
+                           REQUEST=None):
+        """Postprocess guard values.
+
+        from_portlet_editor is to specify if this method is called from the
+        portlet editor or the ZMI, which will be used for the returned page.
+        """
         if REQUEST is not None:
             # XXX Using REQUEST itself should work.
             # but update is complaining it is not a dictionary
@@ -154,9 +159,15 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             err = e
 
         if REQUEST is not None:
-            psm = psm or 'cpsportlet_psm_settings_updated'
-            return self.cpsportlet_guard(REQUEST, portal_status_message=psm,
-                                         err=err)
+            if from_portlet_editor:
+                psm = psm or 'cpsportlet_psm_settings_updated'
+                return self.cpsportlet_guard(REQUEST,
+                                             portal_status_message=psm, err=err)
+            else:
+                psm = 'Guard setting changed.'
+                return self.manage_guardForm(REQUEST,
+                                             management_view='Guard',
+                                             manage_tabs_message=psm)
 
     security.declarePublic('SearchableText')
     def SearchableText(self):
@@ -1033,9 +1044,14 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
     security.declareProtected(ManagePortlets, 'manage_export')
     manage_export = DTMLFile('zmi/manage_exportForm', globals())
 
+    security.declareProtected(ManagePortlets, 'manage_guardForm')
+    manage_guardForm = DTMLFile('zmi/manage_guardForm', globals())
+
     manage_options = (CPSDocument.manage_options + (
                       {'label': 'Export',
                        'action': 'manage_genericSetupExport.html'},
+                      {'label': 'Guard',
+                       'action': 'manage_guardForm'},
                       )
                      )
 
