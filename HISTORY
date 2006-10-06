@@ -1,3 +1,21 @@
+*******************************************
+** CPSPortlets V0.12.0 [R1 build 2006/10/06-09:16 by madarche]
+** SVN URL: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk Revision: 49378
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+- Put back the Guard management form in the ZMI which is very useful when the
+  portlet editor is overcrowded and/or very slow.
+Bug fixes
+~~~~~~~~~
+- Provided more space in the guard manage form by using a textarea instead of a
+  one line input text field.
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
 ===========================================================
 Package: CPSPortlets 0.11.0
 ===========================================================

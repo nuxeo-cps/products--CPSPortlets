@@ -1,14 +1,12 @@
-Requires
-~~~~~~~~
--
-New features
-~~~~~~~~~~~~
-- Put back the Guard management form in the ZMI which is very useful when the
-  portlet editor is overcrowded and/or very slow.
-Bug fixes
+Requires:
 ~~~~~~~~~
-- Provided more space in the guard manage form by using a textarea instead of a
-  one line input text field.
-New internal features
-~~~~~~~~~~~~~~~~~~~~~
-- 
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
