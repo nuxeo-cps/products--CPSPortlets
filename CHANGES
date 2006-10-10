@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- Cache misses are logged at debug level
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -

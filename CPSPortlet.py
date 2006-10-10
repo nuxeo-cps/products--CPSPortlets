@@ -28,6 +28,7 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 This is a CPSDocument child base class for portlets
 """
 
+import logging
 import sys
 import time
 import md5
@@ -37,7 +38,8 @@ from App.Common import rfc1123_date
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_inner, aq_parent, aq_base
 from AccessControl import ClassSecurityInfo
-from zLOG import LOG, PROBLEM
+
+logger = logging.getLogger('Products.CPSPortlets.CPSPortlet')
 
 try:
     from zope.tales.tales import CompilerError
@@ -152,9 +154,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         try:
             self.guard.changeFromProperties(props)
         except CompilerError, e:
-            LOG('PortletGuard.setGuardProperties', PROBLEM,
-                "\"%s\" => %s: %s"
-                % (props, str(sys.exc_info()[0]), str(e)))
+            logger.warn('setGuardProperties \"%s\" => %s: %s',
+                        props, sys.exc_info()[0], e)
             psm = 'cpsportlet_psm_guard_error'
             err = e
 
@@ -530,6 +531,9 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         # create / recreate the cache entry
         if cache_entry is None:
+            logger.debug(
+                "Cache miss for portlet %s (type=%s)", self,
+                                                         self.portal_type)
             rendered = html_slimmer(self.render(**kw))
             now = time.time()
 
