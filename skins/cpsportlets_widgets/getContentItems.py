@@ -281,13 +281,15 @@ for brain in brains:
 
     # this information is used by custom templates that call getContentItems()
     # directly.
+    title = brain['Title'] or getattr(brain, 'dc:title', '')
     items.append(
         {'url': brain.getURL(),
-         'title': brain['Title'],
+         'title': title,
          'description': summary,
          'rendered': rendered,
          'metadata': metadata_info,
          'icon_tag': icon_tag,
         })
 
+logger.debug(items)
 return items

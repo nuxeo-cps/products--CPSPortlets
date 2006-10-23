@@ -7,6 +7,7 @@ New features
 Bug fixes
 ~~~~~~~~~
 - #1767: events path filtering was too strict
+- Content portlets did not show items title using CPS4.
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 

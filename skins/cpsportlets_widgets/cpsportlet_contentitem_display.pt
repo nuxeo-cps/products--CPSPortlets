@@ -2,8 +2,9 @@
                    display_description options/display_description;
                    display_description python:int(display_description);
                    summary options/summary;
+                   title python:brain['Title'] or getattr(brain, 'dc:title', '');
                    link_string options/link_string">
-  <tal:block content="brain/Title" />
+  <tal:block content="title" />
   <span class="itemDescription"
    tal:omit-tag="python: not (display_description or link_string)">
     <tal:block condition="display_description"
