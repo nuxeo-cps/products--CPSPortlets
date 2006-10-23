@@ -207,6 +207,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         nportlet = ptltool.getPortletById(new_id)
         self.assertNotEqual(nportlet, None)
 
+        # XXX GR I think the argument has to be a tuple/list now
         res = nportlet.addEvent('fake_event')
         self.assertEquals(res, 0)
 
@@ -220,6 +221,48 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         # XXX to be implemented
         self.assertEquals(nportlet.sendEvent(event_id='fake_event', folder_path='', portal_type=''), 0)
         self.assertEquals(nportlet.sendEvent(event_id='fake_eventXXX', folder_path='', portal_type=''), 1)
+
+        # XXX could go in a more 'unitary' test for isInterestedInEvent():
+        res = nportlet.addEvent(event_ids=('detailed',),
+                                folder_paths=('/sections/news', '/other'),
+                                portal_types=('News Item', ))
+        self.assertEquals(res, 0)
+        self.assertEquals(nportlet.sendEvent(event_id='detailed',
+                                             folder_path='/sections/news',
+                                             portal_type='News Item'), 0)
+        self.assertEquals(nportlet.sendEvent(event_id='detailed',
+                                             folder_path='/other/abc',
+                                             portal_type='News Item'), 0)
+        self.assertEquals(nportlet.sendEvent(
+            event_id='detailed',
+            folder_path='/sections/news/some_news', portal_type='News Item'), 0)
+        self.assertEquals(nportlet.sendEvent(event_id='detailed',
+                                             folder_path='/sections/news',
+                                             portal_type='Some Type'), 1)
+        self.assertEquals(nportlet.sendEvent(event_id='detailed',
+                                             folder_path='/workspaces/news',
+                                             portal_type='News Item'), 1)
+
+        # same without leading slash in event configuration
+        nportlet.clearEvents()
+        self.assertEquals(nportlet.listEvents(), ())
+        res = nportlet.addEvent(event_ids=('detailed',),
+                                folder_paths=('sections/news',), # here
+                                portal_types=('News Item'))
+        self.assertEquals(res, 0)
+        self.assertEquals(nportlet.sendEvent(event_id='detailed',
+                                             folder_path='/sections/news',
+                                             portal_type='News Item'), 0)
+        self.assertEquals(nportlet.sendEvent(
+            event_id='detailed',
+            folder_path='/sections/news/some_news', portal_type='News Item'), 0)
+        self.assertEquals(nportlet.sendEvent(event_id='detailed',
+                                             folder_path='/sections/news',
+                                             portal_type='Some Type'), 1)
+        self.assertEquals(nportlet.sendEvent(event_id='detailed',
+                                             folder_path='/workspaces/news',
+                                             portal_type='News Item'), 1)
+
 
     def test_FindCacheEntriesByUser(self):
         user = self.login_id

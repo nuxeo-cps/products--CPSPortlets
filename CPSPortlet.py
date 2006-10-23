@@ -818,6 +818,10 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         if not getattr(aq_base(self), '_interesting_events', 0):
             self.clearEvents()
 
+        # event system throws paths that always start with '/'
+        folder_paths = tuple(path[0] == '/' and path or '/' + path
+                             for path in folder_paths)
+
         # Add the event if not already here
         if (event_ids, folder_paths, portal_types) not in self.listEvents():
             self._interesting_events += ((event_ids,
@@ -857,6 +861,11 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
             if len(paths) > 0:
                 if folder_path:
+
+                    if folder_path[0] != '/':
+                        # shouldn't happen, but it did
+                        folder_path = '/' + folder_path
+
                     found = 0
                     for path in paths:
                         if folder_path.startswith(path):

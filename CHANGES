@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- [packaging] bundleman svn property
+- #1767: events path filtering was too strict
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
