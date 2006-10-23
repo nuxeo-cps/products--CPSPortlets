@@ -291,5 +291,4 @@ for brain in brains:
          'icon_tag': icon_tag,
         })
 
-logger.debug(items)
 return items
