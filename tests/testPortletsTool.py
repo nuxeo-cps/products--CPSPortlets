@@ -263,6 +263,9 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
                                              folder_path='/workspaces/news',
                                              portal_type='News Item'), 1)
 
+        # Robustness
+        nportlet.addEvent(event_ids=('strange_path',), folder_paths=[''])
+
 
     def test_FindCacheEntriesByUser(self):
         user = self.login_id

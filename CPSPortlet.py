@@ -819,7 +819,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             self.clearEvents()
 
         # event system throws paths that always start with '/'
-        folder_paths = tuple(path[0] == '/' and path or '/' + path
+        folder_paths = tuple(path.startswith('/') and path or '/' + path
                              for path in folder_paths)
 
         # Add the event if not already here
