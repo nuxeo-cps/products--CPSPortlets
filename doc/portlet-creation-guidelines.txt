@@ -250,3 +250,9 @@ Testing
 Write non-regression tests on the rendered HTML markup.  A test
 case framework is wanted.
 
+
+
+.. Local Variables:
+.. mode: rst
+.. End:
+.. vim: set filetype=rst:

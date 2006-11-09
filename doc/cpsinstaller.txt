@@ -95,3 +95,10 @@ So you should be able to manage through the CPSSkins interface and
 then export and import your configuration.
 
 less is more :)
+
+
+
+.. Local Variables:
+.. mode: rst
+.. End:
+.. vim: set filetype=rst:

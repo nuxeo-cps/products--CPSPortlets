@@ -63,3 +63,10 @@ Notes:
 
 - Visible in /workspaces/members/user (SLOT1): A1, B
   (A2 is overridden, A1 cannot be overridden)
+
+
+
+.. Local Variables:
+.. mode: rst
+.. End:
+.. vim: set filetype=rst:

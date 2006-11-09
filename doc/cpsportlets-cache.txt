@@ -503,3 +503,10 @@ Cache Policy Manager
 The RAM cache acts as a cache policy manager by setting the HTTP
 headers to inform front-end proxy caches when pages have expired,
 etc.
+
+
+
+.. Local Variables:
+.. mode: rst
+.. End:
+.. vim: set filetype=rst:

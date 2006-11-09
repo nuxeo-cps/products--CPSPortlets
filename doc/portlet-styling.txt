@@ -375,3 +375,9 @@ h2 ..., use instead the following markup::
 
   <div class="h1">Header 1</div>
 
+
+
+.. Local Variables:
+.. mode: rst
+.. End:
+.. vim: set filetype=rst:

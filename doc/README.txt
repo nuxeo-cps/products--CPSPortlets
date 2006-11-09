@@ -1,7 +1,6 @@
-=================
-CPSPortlets draft
-=================
-
+=========================
+CPSPortlets Documentation
+=========================
 
 :Revision: $Id$
 
@@ -9,11 +8,12 @@ CPSPortlets draft
 .. contents::   :depth: 4
 
 
-Goals
-=====
+General Documentation
+=====================
 
-- ./goals.txt
-- ../../CPSSkins/doc/CPS3-Integration.txt
+- `Goals <goals.html>`_
+- `Assigning styles to portlets <portlet-styling.html>`_
+- `Portlet creation guidelines <portlet-creation-guidelines.html>`_
 
 
 Implementation
@@ -59,3 +59,17 @@ Comments
 - Notice CPSPortlets deals only with portlet content. CPSSkins
   take care of the way it is displayed the cache etc...
 
+
+Internals
+=========
+
+- `RAM Cache <cpsportlets-cache.html>`_
+- `Portability to CMF, Plone <cpsportlets-portability.html>`_
+- `Installing portlets with CPSInstaller <cpsinstaller.html>`_
+
+
+
+.. Local Variables:
+.. mode: rst
+.. End:
+.. vim: set filetype=rst:
