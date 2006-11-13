@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2006-03-01 17:57default\n"
+"POT-Creation-Date: 2006-11-13 12:21default\n"
 "PO-Revision-Date: 2005-04-13 17:28+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -45,7 +45,7 @@ msgstr ""
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 #, fuzzy
 msgid "action_portlet_guard"
-msgstr "Guardián"
+msgstr "Guardas"
 
 #.   <input type="submit" class="standalone" value="button_submit_changes" />
 #: from ../skins/cpsportlets_default/cpsportlet_guard.pt
@@ -111,9 +111,10 @@ msgstr ""
 msgid "cpsportlet_guard_tales_user"
 msgstr "El objeto \"usuario\""
 
-#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
-#.                                  context.absolute_url() or utool()">Advanced search</a>
+#.   <a attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()" href="">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+#: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 #, fuzzy
 msgid "cpsportlets_advanced_search"
 msgstr "Búsqueda avanzada"
@@ -162,9 +163,9 @@ msgstr "Administrador(es)"
 #, fuzzy
 msgid "cpsportlets_guard_explanation"
 msgstr ""
-"El formulario guardián te permite controlar la visibilidad de los portlets. "
-"Todas las condiciones deben estar verificadas para que el portlet sea "
-"visible."
+"El formulario de guardas te permite controlar la visibilidad de los "
+"portlets. Todas las condiciones deben estar verificadas para que el portlet "
+"sea visible."
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -187,6 +188,7 @@ msgstr "Administración de portlets (componentes de presentación)"
 
 #.   <block>cpsportlets_search_in</block>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+#: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 #, fuzzy
 msgid "cpsportlets_search_in"
 msgstr "Buscar en"
@@ -210,6 +212,13 @@ msgstr "Crear una versión en..."
 #, fuzzy
 msgid "cpsportlets_up_to"
 msgstr "Subir a ${up_id}"
+
+#.   <div attributes="id python:'load-area-%s' % node['id']" style="display:none" class="load-area">
+#.       LOADING..
+#.       </div>
+#: from ../browser/tree_macros.pt
+msgid "loading_text"
+msgstr ""
 
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
@@ -235,7 +244,7 @@ msgstr "Imitar portlet"
 
 #, fuzzy
 msgid "portal_type_CustomPortlet_title"
-msgstr "Personalizar el portlet"
+msgstr "Portlet personalizado"
 
 #, fuzzy
 msgid "portal_type_TextPortlet_title"
@@ -243,11 +252,11 @@ msgstr "Portlet de texto"
 
 #, fuzzy
 msgid "portal_type_SearchPortlet_title"
-msgstr "Buscar portlet"
+msgstr "Portlet de búsqueda"
 
 #, fuzzy
 msgid "portal_type_MainContentPortlet_title"
-msgstr "Main Content portlet"
+msgstr "Portlet de contenido del área principal"
 
 #, fuzzy
 msgid "portal_type_InternalLinksPortlet_title"
@@ -259,7 +268,7 @@ msgstr "Portlet de creación de contenidos"
 
 #, fuzzy
 msgid "portal_type_BreadcrumbsPortlet_title"
-msgstr "Portlet con menú desplegable"
+msgstr "Portlet de ruta"
 
 #, fuzzy
 msgid "portal_type_ActionsPortlet_title"
@@ -335,7 +344,7 @@ msgstr "Categorías a mostrar"
 
 #, fuzzy
 msgid "cpsportlets_actions_order_label"
-msgstr "Ordered actions to display"
+msgstr "Categorías de acciones a mostrar"
 
 #, fuzzy
 msgid "cpsportlets_search_context_is_portlet_label"
@@ -659,7 +668,7 @@ msgstr "Árbol del navegación"
 
 #, fuzzy
 msgid "portlets_nav_display_dyn_navtree_menu_label"
-msgstr "Dynamic navigation tree"
+msgstr "Menú de navegación dinámico"
 
 #, fuzzy
 msgid "cpsportlets_navigation_contextual_label"
@@ -667,7 +676,7 @@ msgstr "Muestra contextual"
 
 #, fuzzy
 msgid "cpsportlets_display_mode_label"
-msgstr "Mostrar modo"
+msgstr "Modo de presentación"
 
 #, fuzzy
 msgid "cpsportlets_display_mode_help"
@@ -683,7 +692,7 @@ msgstr "Mapa del sitio"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_site_map_3_tabs_label"
-msgstr "Site map (with members)"
+msgstr "Mapa del sitio (con miembros)"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_extended_site_map_label"
@@ -715,7 +724,7 @@ msgstr "Número de imágenes a rotar entre"
 
 #, fuzzy
 msgid "portal_type_RotatingImagePortlet_title"
-msgstr "Rotando la imagen del portlet"
+msgstr "Portlet de imágenes rotatorias"
 
 #, fuzzy
 msgid "portal_type_RotatingImagePortlet_description"

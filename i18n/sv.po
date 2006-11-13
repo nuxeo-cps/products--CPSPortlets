@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2006-03-01 17:57default\n"
+"POT-Creation-Date: 2006-11-13 12:21default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -104,9 +104,10 @@ msgstr "The context's relative path ending with a slash (e.g. 'sections/')"
 msgid "cpsportlet_guard_tales_user"
 msgstr "The user object"
 
-#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
-#.                                  context.absolute_url() or utool()">Advanced search</a>
+#.   <a attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()" href="">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+#: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Avancerad sökning"
 
@@ -168,6 +169,7 @@ msgstr "Hantera Portlets"
 
 #.   <block>cpsportlets_search_in</block>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+#: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 msgid "cpsportlets_search_in"
 msgstr "Sök i"
 
@@ -187,6 +189,13 @@ msgstr "Skapa en version i ..."
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 msgid "cpsportlets_up_to"
 msgstr "Upp till ${up_id}"
+
+#.   <div attributes="id python:'load-area-%s' % node['id']" style="display:none" class="load-area">
+#.       LOADING..
+#.       </div>
+#: from ../browser/tree_macros.pt
+msgid "loading_text"
+msgstr ""
 
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
@@ -534,7 +543,7 @@ msgstr "Navigeringsträd"
 
 #, fuzzy
 msgid "portlets_nav_display_dyn_navtree_menu_label"
-msgstr "Dynamic navigation tree"
+msgstr "Unfolding navigation tree"
 
 msgid "cpsportlets_navigation_contextual_label"
 msgstr "Kontextuell visning"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2006-03-01 17:57default\n"
+"POT-Creation-Date: 2006-11-13 12:21default\n"
 "PO-Revision-Date: 2005-04-13 17:27+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -112,9 +112,10 @@ msgstr ""
 msgid "cpsportlet_guard_tales_user"
 msgstr "L'objet 'user'"
 
-#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
-#.                                  context.absolute_url() or utool()">Advanced search</a>
+#.   <a attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()" href="">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+#: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 #, fuzzy
 msgid "cpsportlets_advanced_search"
 msgstr "Recherche avancée"
@@ -186,6 +187,7 @@ msgstr "Gestion des portlets"
 
 #.   <block>cpsportlets_search_in</block>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+#: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 #, fuzzy
 msgid "cpsportlets_search_in"
 msgstr "Rechercher dans"
@@ -209,6 +211,13 @@ msgstr "Créer une version en ..."
 #, fuzzy
 msgid "cpsportlets_up_to"
 msgstr "Vers ${up_id}"
+
+#.   <div attributes="id python:'load-area-%s' % node['id']" style="display:none" class="load-area">
+#.       LOADING..
+#.       </div>
+#: from ../browser/tree_macros.pt
+msgid "loading_text"
+msgstr ""
 
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
@@ -334,7 +343,7 @@ msgstr "Catégories d'actions à afficher"
 
 #, fuzzy
 msgid "cpsportlets_actions_order_label"
-msgstr "Catégories d'actions à afficher"
+msgstr "Actions avec un ordre spécifique"
 
 #, fuzzy
 msgid "cpsportlets_search_context_is_portlet_label"
@@ -659,7 +668,7 @@ msgstr "Menu de navigation"
 
 #, fuzzy
 msgid "portlets_nav_display_dyn_navtree_menu_label"
-msgstr "Menu de navigation dynamique"
+msgstr "Menu arborescent dépliable"
 
 #, fuzzy
 msgid "cpsportlets_navigation_contextual_label"
