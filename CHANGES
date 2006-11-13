@@ -6,7 +6,8 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- #1775 RSS Portlet fails with weird characters
+- #1783: Rotating Image Portlet site error 
+- #1775: RSS Portlet fails with weird characters
 - #1767: events path filtering was too strict
 - Content portlets did not show items title using CPS4.
 New internal features
