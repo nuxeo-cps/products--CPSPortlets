@@ -1,4 +1,27 @@
 ===========================================================
+Package: CPSPortlets 0.12.2
+===========================================================
+First release built by: gracinet at: 2006-11-13T11:45:01
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/0.12.2
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk@49972
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #1783: Rotating Image Portlet site error 
+- #1775: RSS Portlet fails with weird characters
+- #1767: events path filtering was too strict
+- Content portlets did not show items title using CPS4.
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+-
+
+===========================================================
 Package: CPSPortlets 0.12.1
 ===========================================================
 First release built by: ogrisel at: 2006-10-11T20:18:39
