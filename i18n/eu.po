@@ -5,11 +5,11 @@
 # Julien Anguenot <ja@nuxeo.com>, 2004.
 msgid ""
 msgstr ""
-"Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2006-11-13 12:21default\n"
-"PO-Revision-Date: 2005-04-13 17:28+0200\n"
-"Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
-"Language-Team: French <traduc@traduc.org>\n"
+"Project-Id-Version: CPSPortlets\n"
+"POT-Creation-Date: 2006-03-01 17:57default\n"
+"PO-Revision-Date: 2006-11-16 15:48+0100\n"
+"Last-Translator: Jesus Martin <jesusmartin@lasalle.es>\n"
+"Language-Team: euskara <perikoalkain@lasalle.es>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,11 +19,13 @@ msgstr ""
 "Language-Code: eu\n"
 "Language-Name: Basque\n"
 "Domain: default\n"
+"X-Poedit-Language: basque\n"
+"X-Poedit-Country: SPAIN\n"
 
 #.   <input type="submit" value=" Add " />
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
 msgid " Add "
-msgstr ""
+msgstr "* gunearen mapa hedatua"
 
 #.   <strong>ID:</strong>
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
@@ -34,90 +36,77 @@ msgstr "ID"
 #.   <block>Edit</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
 msgid "_Edit_"
-msgstr ""
+msgstr "_Editatu_"
 
 #.   <div class="mainContentArea">_Main content_</div>
 #: from ../skins/cpsportlets_widgets/widget_portlet_maincontent.pt
 msgid "_Main content_"
-msgstr ""
+msgstr "_Eduki nagusia_"
 
 #.   <a href="cpsportlet_guard">guard</a>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
-#, fuzzy
 msgid "action_portlet_guard"
-msgstr "Guardas"
+msgstr "Zaindaria"
 
 #.   <input type="submit" class="standalone" value="button_submit_changes" />
 #: from ../skins/cpsportlets_default/cpsportlet_guard.pt
 msgid "button_submit_changes"
-msgstr ""
+msgstr "aldaketak bidaltzeko botoia"
 
 #.   <option disabled="disabled" selected="selected" value="">
 #.           Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
-#, fuzzy
 msgid "cpsportlet_add_new_item"
-msgstr "Añadir nuevo contenido"
+msgstr "Eduki berria gehitu"
 
 #.   <span>
 #.     The following names are defined for the TALES expression</span>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_explain"
-msgstr "Los siguientes nombres son definidos por la expresión TALES"
+msgstr "Honako izenak TALES adierazpenaz definituta daude"
 
 #.   <dd>The context</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_here"
-msgstr "El contexto"
+msgstr "Testuingurua"
 
 #.   <dd>The portal object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_portal"
-msgstr "El objeto \"portal\""
+msgstr " \"atari\" objektua"
 
 #.   <dd>The portlet object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_portlet"
-msgstr "El objeto \"portlet\""
+msgstr " \"portlet\" objektua"
 
 #.   <dd>
 #.     The id of the PUBLISHED object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_published"
-msgstr "El ID de un objeto PUBLICADO"
+msgstr "Objektu ARGITARATU baten IDa"
 
 #.   <dd>The REQUEST object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_request"
-msgstr "El objeto \"REQUEST\" (petición)"
+msgstr " \"REQUEST\" (eskaria) objektua"
 
 #.   <dd>
 #.     The context's relative path ending with a '/' (e.g. 'sections/')</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_rpath_slash"
-msgstr ""
-"La ruta relativa del contexto con la barra \"slash\" final (ej. secciones/)"
+msgstr "Testuinguruaren bidea azkenean duen barrarekin  \"slash\"(ad. atalak/)"
 
 #.   <dd>The user object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
-#, fuzzy
 msgid "cpsportlet_guard_tales_user"
-msgstr "El objeto \"usuario\""
+msgstr "\"erabiltzaile\" objektua"
 
-#.   <a attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
-#.                                  context.absolute_url() or utool()" href="">Advanced search</a>
+#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
-#: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
-#, fuzzy
 msgid "cpsportlets_advanced_search"
-msgstr "Búsqueda avanzada"
+msgstr "Bilaketa aurreratua"
 
 #.   <button type="submit">OK</button>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
@@ -127,692 +116,519 @@ msgstr "OK"
 
 #.   <label attributes="for language_chooser_id">Change language:</label>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
-#, fuzzy
 msgid "cpsportlets_change_language"
-msgstr "Cambiar idioma:"
+msgstr "Hizkuntza aldatu:"
 
 #.   <p>Delete translation ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
-#, fuzzy
 msgid "cpsportlets_delete_translation"
-msgstr "Borrar la versión en..."
+msgstr "Bertsioa ezabatu honakoan..."
 
 #.   <td condition="display_description">cpsportlets_extended_site_map_description</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
 msgid "cpsportlets_extended_site_map_description"
-msgstr "Descripción"
+msgstr "Deskribapena"
 
 #.   <td>cpsportlets_extended_site_map_folder</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
 msgid "cpsportlets_extended_site_map_folder"
-msgstr "Carpeta"
+msgstr "Karpeta"
 
 #.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
 msgid "cpsportlets_extended_site_map_managers"
-msgstr "Administrador(es)"
+msgstr "Administratzailea(k)"
 
 #.   <p>
 #.       The guard form allows you to control the visibility of portlets.
 #.       All the expressions that are filled in must be true for the portlet to be
 #.       visible.</p>
 #: from ../skins/cpsportlets_default/cpsportlet_guard.pt
-#, fuzzy
 msgid "cpsportlets_guard_explanation"
-msgstr ""
-"El formulario de guardas te permite controlar la visibilidad de los "
-"portlets. Todas las condiciones deben estar verificadas para que el portlet "
-"sea visible."
+msgstr "Zaindari formularioak portletsen ikusgaitasuna kontrolatzea ahalbidetzen dizu. Baldintza guztiek egiaztatuta egon behar dute portleta ikusgai izan dadin. "
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
-#, fuzzy
 msgid "cpsportlets_install_cpsskins"
-msgstr ""
-"Para administrar portlets (componentes de presentación), instale CPSSkins."
+msgstr "Portletak administratzeko (aurkezpen-osagariak),  CPSSkins instalatu."
 
 #.   <block>located in the folder</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
-#, fuzzy
 msgid "cpsportlets_located_in_the_folder"
-msgstr "localizado en la carpeta"
+msgstr "karpeta honetan aurkitua"
 
 #.   <h1>Portlet management</h1>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
-#, fuzzy
 msgid "cpsportlets_portlet_management_heading"
-msgstr "Administración de portlets (componentes de presentación)"
+msgstr "Portletsen administrazioa (aurkezpen-osagaiak)"
 
 #.   <block>cpsportlets_search_in</block>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
-#: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
-#, fuzzy
 msgid "cpsportlets_search_in"
-msgstr "Buscar en"
+msgstr "Hemen bilatu"
 
 #.   <p>Switch to ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
-#, fuzzy
 msgid "cpsportlets_switch_language"
-msgstr "Ver la versión en..."
+msgstr "Bertsioa hemen ikusi..."
 
 #.   <p>Translate into ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
-#, fuzzy
 msgid "cpsportlets_translate_into"
-msgstr "Crear una versión en..."
+msgstr "Bertsio bat sortu hemen..."
 
 #.   <span>Up to
 #.             ${up_id (tal content="item/title")}
 #.           </span>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
-#, fuzzy
 msgid "cpsportlets_up_to"
-msgstr "Subir a ${up_id}"
-
-#.   <div attributes="id python:'load-area-%s' % node['id']" style="display:none" class="load-area">
-#.       LOADING..
-#.       </div>
-#: from ../browser/tree_macros.pt
-msgid "loading_text"
-msgstr ""
+msgstr " ${up_id}-era igo"
 
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
-#, fuzzy
 msgid "this export format has not been implemented yet"
-msgstr "este formato de exportación todavía no se ha implementado"
+msgstr "exportazio-formatu hau oraindik ez da ezarri "
 
-#, fuzzy
 msgid "label_cpsportlets_provider"
-msgstr "Proveedor"
+msgstr "Hornitzailea"
 
-#, fuzzy
 msgid "label_cpsportlets_title"
-msgstr "Título del portlet"
+msgstr "Portletaren izenburua"
 
-#, fuzzy
 msgid "label_cpsportlets_i18n"
-msgstr "Traducir el contenido del portlet"
+msgstr "Portletaren edukia itzuli"
 
-#, fuzzy
 msgid "portal_type_DummyPortlet_title"
-msgstr "Imitar portlet"
+msgstr "Portleta imitatu"
 
-#, fuzzy
 msgid "portal_type_CustomPortlet_title"
-msgstr "Portlet personalizado"
+msgstr "Portleta pertsonalizatu"
 
-#, fuzzy
 msgid "portal_type_TextPortlet_title"
-msgstr "Portlet de texto"
+msgstr "Testu-portleta"
 
-#, fuzzy
 msgid "portal_type_SearchPortlet_title"
-msgstr "Portlet de búsqueda"
+msgstr "Portleta bilatu"
 
-#, fuzzy
 msgid "portal_type_MainContentPortlet_title"
-msgstr "Portlet de contenido del área principal"
+msgstr "Portletaren eduki nagusia"
 
-#, fuzzy
 msgid "portal_type_InternalLinksPortlet_title"
-msgstr "Portlet de enlaces internos"
+msgstr "Barneko estekadun portleta"
 
-#, fuzzy
 msgid "portal_type_AddItemPortlet_title"
-msgstr "Portlet de creación de contenidos"
+msgstr "Edukiak sortzeko portleta"
 
-#, fuzzy
 msgid "portal_type_BreadcrumbsPortlet_title"
-msgstr "Portlet de ruta"
+msgstr "Goitibeherako menua duen portleta"
 
-#, fuzzy
 msgid "portal_type_ActionsPortlet_title"
-msgstr "Portlet de acciones"
+msgstr "Ekintza-portleta"
 
-#, fuzzy
 msgid "portal_type_ContentPortlet_title"
-msgstr "Portlet de contenidos"
+msgstr "Eduki-portleta"
 
-#, fuzzy
 msgid "portal_type_LanguagePortlet_title"
-msgstr "Portlet de idiomas"
+msgstr "Hizkuntza-portleta"
 
-#, fuzzy
 msgid "portal_type_NavigationPortlet_title"
-msgstr "Portlet de navegación"
+msgstr "Nabigazio-portleta"
 
-#, fuzzy
 msgid "portal_type_DocumentPortlet_title"
-msgstr "Portlet de documentos"
+msgstr "Dokumentu-portleta"
 
-#, fuzzy
 msgid "portal_type_RSSPortlet_title"
-msgstr "Portlet RSS"
+msgstr "RSS portleta"
 
-#, fuzzy
 msgid "action_portlets"
-msgstr "Administrar portlets"
+msgstr "Portletak administratu"
 
-#, fuzzy
 msgid "action_canvas"
-msgstr "Diseño"
+msgstr "Diseinua"
 
-#, fuzzy
 msgid "cpsportlets_internallinks_links_label"
-msgstr "Enlaces internos"
+msgstr "Barneko estekak"
 
-#, fuzzy
 msgid "cpsportlets_portlet_created_psm"
-msgstr "Portlet creado."
+msgstr "Portleta sortuta."
 
-#, fuzzy
 msgid "cpsportlets_content_translated_psm"
-msgstr "Contenido transladado."
+msgstr "Edukia lekuz aldatua."
 
-#, fuzzy
 msgid "cpsportlets_bcs_display_dropdown_list_label"
-msgstr "Listado desplegable"
+msgstr "Goitibeherako zerrenda"
 
-#, fuzzy
 msgid "cpsportlets_bcs_display_horizontal_trail_label"
-msgstr "Rastro horizontal"
+msgstr "Arrasto horizontala"
 
-#, fuzzy
 msgid "cpsportlets_bcs_display_site_root_label"
-msgstr "Mostrar el directorio raíz."
+msgstr "Erro-direktorioa erakutsi."
 
-#, fuzzy
 msgid "cpsportlets_bcs_highlight_last_item_label"
-msgstr "Resaltar los últimos ítem desplegables"
+msgstr "Azken goitibeherako galderak nabarmendu"
 
-#, fuzzy
 msgid "cpsportlets_advanced_search_link_label"
-msgstr "Poner un enlace al formulario de búsqueda avanzada"
+msgstr "Bilaketa aurreratuak egiteko formularioari esteka bat jarri"
 
-#, fuzzy
 msgid "cpsportlets_contextual_search_choice_label"
-msgstr "Mostrar la opción de búsqueda contextual"
+msgstr "Testuinguruko bilaketaren aukera erakutsi"
 
-#, fuzzy
 msgid "cpsportlets_action_categories_label"
-msgstr "Categorías a mostrar"
+msgstr "Erakusteko kategoriak"
 
-#, fuzzy
 msgid "cpsportlets_actions_order_label"
-msgstr "Categorías de acciones a mostrar"
+msgstr "Agindutako akzioak erakusgai"
 
-#, fuzzy
 msgid "cpsportlets_search_context_is_portlet_label"
-msgstr "Ejecutar la búsquda empezando por la ubicación del portlet"
+msgstr "Bilaketa exekutatu portleten kokapenetik hasita "
 
-#, fuzzy
 msgid "cpsportlets_nav_context_is_portlet_label"
-msgstr "Utilizar la localización del portlet como contexto"
+msgstr "Portletaren kokapena testuinguru gisa erabili "
 
-#, fuzzy
 msgid "cpsportlets_content_search_related_label"
-msgstr "Documentos relacionados"
+msgstr "Erlazioa duten dokumentuak"
 
-#, fuzzy
 msgid "cpsportlets_content_search_all_label"
-msgstr "Todos los documentos"
+msgstr "Dokumentu guztiak"
 
-#, fuzzy
 msgid "cpsportlets_content_search_type_label"
-msgstr "Contenido"
+msgstr "Edukia"
 
-#, fuzzy
 msgid "cpsportlets_content_search_pending_label"
-msgstr "Documentos pendientes"
+msgstr "Zain dauden dokumentuak"
 
-#, fuzzy
 msgid "cpsportlets_content_search_last_modified_label"
-msgstr "Últimos documentos modificados"
+msgstr "Aldatutako azken dokumentuak"
 
-#, fuzzy
 msgid "cpsportlets_content_search_last_published_label"
-msgstr "Últimos documentos publicados"
+msgstr "Argitaratutako azken dokumentuak"
 
-#, fuzzy
 msgid "cpsportlets_content_search_recent_label"
-msgstr "Documentos recientes"
+msgstr "Azken dokumentuak"
 
-#, fuzzy
 msgid "cpsportlets_content_search_upcoming_label"
-msgstr "Subiendo eventos"
+msgstr "Gertaerak igoz"
 
-#, fuzzy
 msgid "cpsportlets_content_search_today_label"
-msgstr "Eventos de hoy"
+msgstr "Gaurko gertaerak"
 
-#, fuzzy
 msgid "cpsportlets_content_sort_on_label"
-msgstr "Ordenar resultados por"
+msgstr "Emaitzak honen arabera ordenatu"
 
-#, fuzzy
 msgid "cpsportlets_content_sort_on_Date_label"
-msgstr "Fecha"
+msgstr "Data"
 
-#, fuzzy
 msgid "cpsportlets_content_sort_on_Title_label"
-msgstr "Título"
+msgstr "Izenburua"
 
-#, fuzzy
 msgid "cpsportlets_content_sort_on_review_state_label"
-msgstr "Revisar estado"
+msgstr "Egoera berrikusi"
 
-#, fuzzy
 msgid "cpsportlets_content_sort_on_Creator_label"
-msgstr "Autor"
+msgstr "Egilea"
 
-#, fuzzy
 msgid "cpsportlets_content_sort_reverse_label"
-msgstr "Invertir el orden en que se muestran"
+msgstr "Azaltzen den ordena alderantzizkatu"
 
-#, fuzzy
 msgid "cpsportlets_common_render_method_label"
-msgstr "Mostrar método (.zpt, .py, etc.)"
+msgstr "Metodoa erakutsi (.zpt, .py, eta abar)"
 
-#, fuzzy
 msgid "cpsportlets_common_max_items_label"
-msgstr "Número de ítem"
+msgstr "Item-zenbakia"
 
-#, fuzzy
 msgid "cpsportlets_content_folder_path_label"
-msgstr "Directorio base"
+msgstr "Oinarrizko direktorioa"
 
-#, fuzzy
 msgid "cpsportlets_content_searchable_types_label"
-msgstr "Tipos de contenido a mostrar"
+msgstr "Erakusgai diren eduki-motak"
 
-#, fuzzy
 msgid "cpsportlets_content_contextual_label"
-msgstr "Búsqueda contextual"
+msgstr "Testuinguruzko bilaketa"
 
-#, fuzzy
 msgid "cpsportlets_language_action_label"
-msgstr "Acción"
+msgstr "Ekintza"
 
-#, fuzzy
 msgid "cpsportlets_language_action_translate_label"
-msgstr "Traducir"
+msgstr "Itzuli"
 
-#, fuzzy
 msgid "cpsportlets_language_action_delete_translation_label"
-msgstr "Borrar traducción"
+msgstr "Itzulpena ezabatu"
 
-#, fuzzy
 msgid "cpsportlets_language_action_change_label"
-msgstr "Cambiar idioma"
+msgstr "Hizkuntza aldatu"
 
-#, fuzzy
 msgid "cpsportlets_language_action_switch_language_label"
-msgstr "Cambiar de idioma"
+msgstr "Hizkuntzaz aldatu"
 
-#, fuzzy
 msgid "portal_type_ImagePortlet_title"
-msgstr "Portlet de imagen"
+msgstr "Irudi-portleta"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_vertical_breadcrumbs_menu_label"
-msgstr "Menú vertical desplegable*"
+msgstr "Goitebeherako menu bertikala*"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
-msgstr "Contenidos de la carpeta"
+msgstr "karpetaren edukiak"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_detailed_label"
-msgstr "Contenidos de la carpeta* (pormenorizados)"
+msgstr "Karpetaren edukiak* (xehetasunez)"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
-msgstr "Contenidos de las carpetas* (listado desplegable)"
+msgstr "Karpeten edukia* (goitibeherako zerrenda)"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
-msgstr "Contenidos de los subdirectorios*"
+msgstr "Azpidirektorioen edukiak*"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_up_to_parent_label"
-msgstr "Subir al directorio de nivel superior*"
+msgstr "Goi mailako direktoriora igo*"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_collapsible_menu_label"
-msgstr "Menú plegable"
+msgstr "Menu tolesgarria"
 
-#, fuzzy
 msgid "cpsportlets_additem_show_icons_label"
-msgstr "Mostrar iconos"
+msgstr "Ikonoak erakutsi"
 
-#, fuzzy
 msgid "cpsportlets_additem_dropdown_list_label"
-msgstr "Lista desplegable"
+msgstr "Goitibeherako zerrenda"
 
-#, fuzzy
 msgid "cpsportlets_additem_standard_menu_label"
-msgstr "Menú estándar"
+msgstr "Menu estandarra"
 
-#, fuzzy
 msgid "cpsportlets_navigation_rel_depth_label"
-msgstr "Profundidad relativa"
+msgstr "Sakonera erlatiboa"
 
-#, fuzzy
 msgid "cpsportlets_navigation_show_docs_label"
-msgstr "Mostrar documentos"
+msgstr "Dokumentuak erakutsi"
 
-#, fuzzy
 msgid "cpsportlets_navigation_folder_prefixes_label"
-msgstr "Prefijos de las carpetas visibles"
+msgstr "Ikusgai diren karpeten aurrizkiak"
 
-#, fuzzy
 msgid "cpsportlets_navigation_display_hidden_folders_label"
-msgstr "Mostrar carpetas ocultas"
+msgstr "Ezkutuko karpetak erakutsi"
 
-#, fuzzy
 msgid "cpsportlets_navigation_show_icons_label"
-msgstr "Mostrar iconos de los documentos"
+msgstr "Dokumentuen ikonoak erakutsi"
 
-#, fuzzy
 msgid "cpsportlets_navigation_sort_by_label"
-msgstr "Ordenar ítem por"
+msgstr "Galderak honen arabera ordenatu"
 
-#, fuzzy
 msgid "cpsportlets_navigation_sort_direction_label"
-msgstr "Dirección de ordenación"
+msgstr "Ordenatze-helbidea"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_by_date_label"
-msgstr "Fecha"
+msgstr "Data"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_by_title_label"
-msgstr "Título"
+msgstr "Izenburua"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_by_author_label"
-msgstr "Autor"
+msgstr "Egilea"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_asc_label"
-msgstr "Ascendente"
+msgstr "Goraka"
 
-#, fuzzy
 msgid "cpsportlets_folder_sort_desc_label"
-msgstr "Descendente"
+msgstr "Beheraka"
 
-#, fuzzy
 msgid "cpsportlets_content_show_icons_label"
-msgstr "Mostrar iconos de contenido"
+msgstr "Eduki-ikonoak erakutsi"
 
-#, fuzzy
 msgid "cpsportlets_actions_show_icons_label"
-msgstr "Mostrar iconos de acciones"
+msgstr "Ekintza-ikonoak erakutsi"
 
-#, fuzzy
 msgid "cpsportlets_custom_render_method_label"
-msgstr "Método de renderizado (zpt, py, etc.)"
+msgstr "Errendatzeko metodoa (zpt, py, ...)"
 
-#, fuzzy
 msgid "cpsportlets_translation_deleted_psm"
-msgstr "Traducción borrada."
+msgstr "Itzulpena ezabatuta."
 
-#, fuzzy
 msgid "button_portlet_management"
-msgstr "Administración del portlet"
+msgstr "Portletaren administrazioa"
 
-#, fuzzy
 msgid "cpsportlets_display_hidden_folders_label"
-msgstr "Mostrar carpetas ocultas"
+msgstr "Ezkutuko karpetak erakutsi"
 
-#, fuzzy
 msgid "cpsportlets_common_link_string_label"
-msgstr "Cadena de enlace"
+msgstr "Esteka-katea"
 
-#, fuzzy
 msgid "cpsportlets_common_display_description_label"
-msgstr "Mostrar descripciones de los ítem"
+msgstr "Itemen deskribapenak erakutsi"
 
-#, fuzzy
 msgid "cpsportlets_rss_channel_label"
-msgstr "Canal RSS"
+msgstr "RSS kanala"
 
-#, fuzzy
 msgid "cpsportlets_rss_update_frequency_label"
-msgstr "Frecuencia de actualización (en segundos)"
+msgstr "gaurkotze-maiztasuna (segundotan)"
 
-#, fuzzy
 msgid "cpsportlets_rss_max_words_label"
-msgstr "Número de palabras en el sumario"
+msgstr "Sumarioko hitz-kopurua"
 
-#, fuzzy
 msgid "cpsportlets_content_max_words_label"
-msgstr "Número de palabras en el sumario"
+msgstr "Sumarioko hitz-kopurua"
 
-#, fuzzy
 msgid "cpsportlets_image_image_label"
-msgstr "Archivo de imagen"
+msgstr "Irudi-fitxategia"
 
-#, fuzzy
 msgid "cpsportlets_image_link_label"
-msgstr "Enlace"
+msgstr "Esteka"
 
-#, fuzzy
 msgid "cpsportlets_image_caption_label"
-msgstr "Captura de imagen"
+msgstr "Irudi-hartzea"
 
-#, fuzzy
 msgid "portal_type_ContentPortlet_description"
-msgstr "Muestra el resultado de una búsqueda de contenido"
+msgstr "Eduki-bilaketa baten emaitza erakusten du"
 
-#, fuzzy
 msgid "portal_type_NavigationPortlet_description"
-msgstr "Muestra los ítem de navegación, contenidos de las carpetas, etc."
+msgstr "Nabigazio-galdekizunak, karpeten edukiak eta abar erakusten ditu"
 
-#, fuzzy
 msgid "portal_type_AddItemPortlet_description"
-msgstr "Muestra un menú para añadir contenidos dentro de una carpeta."
+msgstr "Karpeta baten barruan edukiak eransteko menu bat erakusten du. "
 
-#, fuzzy
 msgid "portal_type_InternalLinksPortlet_description"
-msgstr "Muestra un listado de enlaces internos."
+msgstr "Barneko esteken zerrenda erakusten du."
 
-#, fuzzy
 msgid "portal_type_TextPortlet_description"
-msgstr "Muestra un texto en formato HTML."
+msgstr "HTML formatuaz eginiko testua erakusten du."
 
-#, fuzzy
 msgid "portal_type_ImagePortlet_description"
-msgstr "Muestra una imagen decorativa con un enlace."
+msgstr "Apaintzeko irudi bat esteka batekin erakusten du."
 
-#, fuzzy
 msgid "portal_type_DummyPortlet_description"
-msgstr "Un portlet de pruebas"
+msgstr "Froga-portleta"
 
-#, fuzzy
 msgid "portal_type_SearchPortlet_description"
-msgstr "Muestra una interfaz para hacer búsquedas"
+msgstr "Bilaketak egiteko interfaze bat erakusten du"
 
-#, fuzzy
 msgid "portal_type_RSSPortlet_description"
-msgstr "Muestra las fuentes de las que se alimenta el canal RSS"
+msgstr "RSS kanala elikatzen den iturriak erakusten ditu"
 
-#, fuzzy
 msgid "portal_type_DocumentPortlet_description"
-msgstr "Muestra la visualización del documento actual"
+msgstr "Oraingo dokumentuaren bista erakusten du"
 
-#, fuzzy
 msgid "portal_type_BreadcrumbsPortlet_description"
-msgstr "Muestra un listado de enlaces a las carpetas de las que depende."
+msgstr "Karpetei menpeko zaizkien esteka-zerrenda erakusten du "
 
-#, fuzzy
 msgid "portal_type_ActionsPortlet_description"
-msgstr "Muestra una lista de las acciones del portal por categoría."
+msgstr "Kategoriaz sailkatutako atariaren akzio-zerrenda erakusten du "
 
-#, fuzzy
 msgid "portal_type_LanguagePortlet_description"
-msgstr "Muestra las acciones relacionadas con los idiomas"
+msgstr "Hizkuntzekin zerikusia duten ekintzak erakusten ditu"
 
-#, fuzzy
 msgid "cpsportlets_common_first_item_label"
-msgstr "Primer ítem"
+msgstr "Lehengo itema"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_navtree_menu_label"
-msgstr "Árbol del navegación"
+msgstr "Nabigazio-zuhaitza"
 
-#, fuzzy
 msgid "portlets_nav_display_dyn_navtree_menu_label"
-msgstr "Menú de navegación dinámico"
+msgstr "Nabigazio-zuhaitz dinamikoa"
 
-#, fuzzy
 msgid "cpsportlets_navigation_contextual_label"
-msgstr "Muestra contextual"
+msgstr "Testuinguruko mostra"
 
-#, fuzzy
 msgid "cpsportlets_display_mode_label"
-msgstr "Modo de presentación"
+msgstr "Modua erakutsi"
 
-#, fuzzy
 msgid "cpsportlets_display_mode_help"
-msgstr "Los portlets con un * tienen un diseño predeterminado."
+msgstr " * duten porteltek diseinu lehenetsia dute."
 
-#, fuzzy
 msgid "w__imagelink"
-msgstr "Enlace de imagen"
+msgstr "Irudi-esteka"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_site_map_label"
-msgstr "Mapa del sitio"
+msgstr "Gunearen mapa"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_site_map_3_tabs_label"
-msgstr "Mapa del sitio (con miembros)"
+msgstr "Gunearen mapa (kideekin)"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_extended_site_map_label"
-msgstr "Mapa extendido del sitio*"
+msgstr "* l"
 
-#, fuzzy
 msgid "cpsportlets_nav_display_expandable_tree_menu_label"
-msgstr "Menú secundario de navegación"
+msgstr "Bigarren mailako nabigazio-menua"
 
-#, fuzzy
 msgid "portal_type_CustomPortlet_description"
-msgstr "Muestra un método de visualización (.zpt, .py, etc.)"
+msgstr "Bistaratze-metodo bat erakusten du (.zpt, .py, ...)"
 
-#, fuzzy
 msgid "cpsportlets_document_context_rpath_label"
-msgstr "Ruta del documento (relativa)"
+msgstr "Dokumentu- bidea (erlatiboa)"
 
-#, fuzzy
 msgid "cpsportlets_document_cluster_id_label"
-msgstr "Clúster ID"
+msgstr "ID klusterra"
 
-#, fuzzy
 msgid "cpsportlets_document_render_cluster_no_fallback_label"
-msgstr "Visualizar el documento sólo si el clúster específico existe"
+msgstr "Dokumentua bistaratu baldin eta soilik kluster berezia badagoen "
 
-#, fuzzy
 msgid "cpsportlet_rot_image_nb_images_label"
-msgstr "Número de imágenes a rotar entre"
+msgstr "Txandakatzeko irudi-kopurua "
 
-#, fuzzy
 msgid "portal_type_RotatingImagePortlet_title"
-msgstr "Portlet de imágenes rotatorias"
+msgstr "Portletako irudia txandakatzen"
 
-#, fuzzy
 msgid "portal_type_RotatingImagePortlet_description"
-msgstr "Muestra aleatorialmente una colección de imágenes"
+msgstr "Irudi-bilduma bat ausaz erakusten du"
 
-#, fuzzy
 msgid "cpsportlets_common_custom_cache_params_label"
-msgstr "Personalizar parámetros del caché"
+msgstr "Cacheren parametroak pertsonalizatu"
 
-#, fuzzy
 msgid "cpsportlets_visibility_range_0-0_label"
-msgstr "En esta carpeta y todos los subdirectorios"
+msgstr "Karpeta honetan eta azpidirektorio guztietan"
 
-#, fuzzy
 msgid "cpsportlets_visibility_range_1-0_label"
-msgstr "Sólo en los subdirectorios"
+msgstr "Azpidirektorioetan bakarrik"
 
-#, fuzzy
 msgid "cpsportlets_visibility_range_0-1_label"
-msgstr "Sólo en esta carpeta"
+msgstr "Karpeta honetan bakarrik"
 
-#, fuzzy
 msgid "cpsportlets_common_visibility_range_label"
-msgstr "Rango de visibilidad"
+msgstr "Igusgarritasun-heina"
 
-#, fuzzy
 msgid "cpsportlets_navigation_root_uids_label"
-msgstr "Raíces del árbol"
+msgstr "Zuhaitzaren erroak"
 
-#, fuzzy
 msgid "cpsportlets_custom_js_render_method_label"
-msgstr "Método de renderizado Javascript (zpt, py, etc.)"
+msgstr "Javascript  errendatzeko metodoa (zpt, py, ...)"
 
-#, fuzzy
 msgid "cpsportlets_content_query_title_label"
-msgstr "Búsqueda por título"
+msgstr "Izenburuz bilatu"
 
-#, fuzzy
 msgid "cpsportlets_content_render_items_label"
-msgstr "Visualizar los ítem"
+msgstr "Itemak bistaratu"
 
-#, fuzzy
 msgid "cpsportlets_content_cluster_id_label"
-msgstr "Clúster ID"
+msgstr "ID klusterra"
 
-#, fuzzy
 msgid "cpsportlets_common_slot_override_label"
-msgstr "¿Sobreescribir los portlets existentes?"
+msgstr "Dauden portletak gaindatzi?"
 
-#, fuzzy
 msgid "cpsportlets_common_disable_override_label"
-msgstr "¿Evitar que este portlet sea sobreescrito?"
+msgstr "Portleta hau gaindatzia izan dadin saihestu?"
 
-#, fuzzy
 msgid "cpsportlets_document_render_container_label"
-msgstr "Visualizar el contenedor"
+msgstr "Kabinete-fitxategia bistaratu"
 
-#, fuzzy
 msgid "cpsportlets_navigation_end_depth_label"
-msgstr "Profundidad final"
+msgstr "Azken sakonera"
 
-#, fuzzy
 msgid "cpsportlets_internallinks_max_title_words_label"
-msgstr "Número de palabras en el título"
+msgstr "Izenburuko hitz-kopurura"
 
-#, fuzzy
 msgid "cpsportlets_internallinks_show_icons_label"
-msgstr "Mostrar iconos del documento"
+msgstr "Dokumentuaren ikonoak erakutsi"
 
-#, fuzzy
 msgid "cpsportlets_nav_context_rpath_label"
-msgstr "Ruta de la carpeta (relativa)"
+msgstr "Karpetaren bide-izena (erlatiboa)"
 
-#, fuzzy
 msgid "cpsportlets_common_syndication_formats_label"
-msgstr "Formatos de sindicación"
+msgstr "Sindikazio-formatuak"
 
-#, fuzzy
 msgid "cpsportlets_syndication_rss_1_0_help"
-msgstr "Hacia el alimentador de noticias RSS asociado"
+msgstr "RSS kidetutako albiste-elikatzatzailerantz"
 
-#, fuzzy
 msgid "cpsportlets_syndication_rss_2_0_help"
-msgstr "Hacia el alimentador de noticias RSS asociado"
+msgstr "RSS kidetutako albiste-elikatzatzailerantz"
 
-#, fuzzy
 msgid "cpsportlets_syndication_atom_0_3_help"
-msgstr "Exportar hacia el ATOM asociado"
+msgstr "ATOM kideturantz exportatu"
 
 #, fuzzy
 msgid "cpsportlets_syndication_rss_1_0_label"
@@ -826,26 +642,21 @@ msgstr "RSS 2.0"
 msgid "cpsportlets_syndication_atom_0_3_label"
 msgstr "ATOM 0.3"
 
-#, fuzzy
 msgid "cpsportlets_common_short_syndication_formats_label"
-msgstr "Muestra formatos cortos al exportar botones"
+msgstr "Botoiak exportatzerakoan formatu laburrak erakusten ditu "
 
-#, fuzzy
 msgid "cpsportlets_navigation_display_managers_label"
-msgstr "Mostrar los administradores de contenido"
+msgstr "Eduki-administratzaileak eakusten ditu"
 
-#, fuzzy
 msgid "cpsportlets_navigation_display_description_label"
-msgstr "Mostrar la descripción de los ítem"
+msgstr "Itemen deskribapena erakusten du"
 
-#, fuzzy
 msgid "cpsportlets_navigation_authorized_only_label"
-msgstr "Mostrar sólo los ítem autorizados"
+msgstr "Item baimenduak baion ez erakutsi"
 
-#, fuzzy
 msgid "cpsportlet_psm_settings_updated"
-msgstr "Configuración actualizada"
+msgstr "Konfigurazioa gaurkotuta"
 
-#, fuzzy
 msgid "cpsportlet_psm_guard_error"
-msgstr "Configuración incorrecta"
+msgstr "Konfigurazio okerra"
+
