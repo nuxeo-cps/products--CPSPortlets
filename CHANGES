@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- Fixed #1645 : alt attribute of icons img tags is not translated.
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 

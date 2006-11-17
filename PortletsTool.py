@@ -1,22 +1,23 @@
 # -*- coding: ISO-8859-15 -*-
-# Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
-# Copyright (c) 2004 Chalmers University of Technology <http://www.chalmers.se>
+# Copyright (c) 2004-2006 Nuxeo SAS <http://nuxeo.com>
+# Copyright (c) 2004-2006 Chalmers University of Technology <http://www.chalmers.se>
 # Authors : Julien Anguenot <ja@nuxeo.com>
 #           Jean-Marc Orliaguet <jmo@ita.chalmers.se>
-
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
-
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
 # $Id$
 
 __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
@@ -50,7 +51,7 @@ PORTLET_RAMCACHE_ID = 'portlets'
 # Icons
 ICON_RAMCACHE_ID = 'icons'
 ACTIONICON_RAMCACHE_ID = 'actioncons'
-IMG_TAG = '<img src="%s" width="%s" height="%s" alt="%s" />'
+IMG_TAG = '<img src="%s" width="%s" height="%s" alt="%s" title="%s" />'
 
 # FTI
 FTI_RAMCACHE_ID = 'fti'
@@ -814,10 +815,13 @@ class PortletsTool(UniqueObject, PortletsContainer):
             img = self.unrestrictedTraverse(icon_path, default=None)
             if img is None:
                 return None
+            trans = self.translation_service
+            language = trans.getSelectedLanguage()
+            alt_text = trans.translateDefault(alt, target_language=language)
             img_tag = IMG_TAG % (base_url + icon_path,
                                  getattr(img, 'width', 16),
                                  getattr(img, 'height', 16),
-                                 alt)
+                                 alt_text, alt_text)
             if cache is not None:
                 cache.setEntry(index, img_tag)
         return img_tag
@@ -867,10 +871,13 @@ class PortletsTool(UniqueObject, PortletsContainer):
             img = self.unrestrictedTraverse(icon_path, default=None)
             if img is None:
                 return None
+            trans = self.translation_service
+            language = trans.getSelectedLanguage()
+            alt_text = trans.translateDefault(alt, target_language=language)
             img_tag = IMG_TAG % (base_url + icon_path,
                                  getattr(img, 'width', 0),
                                  getattr(img, 'height', 0),
-                                 alt)
+                                 alt_text, alt_text)
             if cache is not None:
                 cache.setEntry(index, img_tag)
         return img_tag
