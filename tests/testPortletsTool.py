@@ -1,3 +1,5 @@
+# $Id$
+
 import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
@@ -37,7 +39,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
     def loginAsMember(self):
         # for some tests, we need an user with basic rights
         mdir = self.portal.portal_directories['members']
-        mdir._createEntry({'id' : 'wsman', 
+        mdir._createEntry({'id' : 'wsman',
                            'sn' : 'wsman',
                            'passwd' : 'secret',
                            'roles' : ['Member',],
@@ -46,7 +48,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
 
         # Now login as this user
         uf = self.portal.acl_users
-        user = uf.getUserById('wsman').__of__(uf)        
+        user = uf.getUserById('wsman').__of__(uf)
         newSecurityManager(None, user)
 
     def loginAsWsManager(self):
@@ -123,14 +125,14 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         portlet = ptltool.getPortlets(context=self.ws)[0]
         portlet.setGuardProperties(
             props={'guard_permissions': AddPortalContent})
-        
-        self.loginAsMember() 
-        
-        modifyRolesForPermission(self.ws, AddPortalContent, ('Manager',)) 
+
+        self.loginAsMember()
+
+        modifyRolesForPermission(self.ws, AddPortalContent, ('Manager',))
         self.failIf(_checkPermission(AddPortalContent, self.ws))
         portlets = ptltool.getPortlets(context=self.ws)
         self.assertEquals(portlets, [])
-        
+
         modifyRolesForPermission(self.ws, AddPortalContent,
                         ('Manager', 'Member'))
         self.failUnless(_checkPermission(AddPortalContent, self.ws))
@@ -146,9 +148,9 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         portlet = ptltool.getPortlets(context=self.ws)[0]
         portlet.setGuardProperties(
             props={'guard_roles': 'TestRole'})
-        
-        self.loginAsMember() 
-        
+
+        self.loginAsMember()
+
         self.ws.manage_setLocalRoles('wsman', ['TestRole'])
         portlets = ptltool.getPortlets(context=self.ws)
         self.assertEquals(portlets, [portlet])
@@ -164,8 +166,8 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
                                            context=self.ws)
 
         self.loginAsWsManager()
-        
-        # try to copy it 
+
+        # try to copy it
         cont = ptltool.getPortletContainer(context=self.ws)
         orig = cont.getPortletById(portlet_id)
         copy = ptltool.movePortlet(orig, self.ws.subws, leave=1)
@@ -180,7 +182,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
                                            context=self.portal)
 
         self.loginAsWsManager()
-        
+
         # should not be able to move it because not manager at root of portal
         cont = ptltool.getPortletContainer(context=self.portal)
         orig = cont.getPortletById(portlet_id)
@@ -283,7 +285,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         # render the portlet
         portlet.render_cache()
         entries = ptltool.findCacheEntriesByUser(user)
-        self.assertEquals(entries, 
+        self.assertEquals(entries,
                           [(portlet.getPhysicalPath(), 'user_%s' % user)])
 
     def test_invalidateCacheEntriesByUser(self):
@@ -336,14 +338,14 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         ttool = self.portal.portal_types
         # first rendering: storing the result in the cache
         res = ptltool.renderIcon('Dummy Portlet', '/cps/', 'dummy portlet')
-        expected = '<img src="/cps/portlet_icon.png" width="16" height="16" alt="dummy portlet" />'
+        expected = '<img src="/cps/portlet_icon.png" width="16" height="16" alt="dummy portlet" title="dummy portlet" />'
         self.assertEquals(res, expected)
         # fetching the entry from the cache
         res = ptltool.renderIcon('Dummy Portlet', '/cps/', 'dummy portlet')
         self.assertEquals(res, expected)
         # default parameters
         res = ptltool.renderIcon('Dummy Portlet')
-        expected = '<img src="portlet_icon.png" width="16" height="16" alt="" />'
+        expected = '<img src="portlet_icon.png" width="16" height="16" alt="" title="" />'
         self.assertEquals(res, expected)
         # unknown type
         res = ptltool.renderIcon('Unknown type for testing', '/', '')

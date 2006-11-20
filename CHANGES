@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- Fixed testPortletsTool unit test.
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
