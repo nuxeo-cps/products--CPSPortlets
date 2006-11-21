@@ -37,7 +37,9 @@
   </tal:block>
   <tal:block tal:condition="not:node/dynamic">
     <div class="load-area" tal:attributes="id python:'load-area-%s' % node['id']">
-        <ul style="list-style-type: none!important; padding-left: 20px!important">
+        <ul style="list-style-type: none!important; padding-left: 20px!important
+"
+            tal:omit-tag="not:node/has_folderish_children">
         <tal:block tal:repeat="node node/folderish_children">
           <li>
             <metal:block use-macro="context/tree_macros/macros/treenode">
