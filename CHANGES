@@ -6,6 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
+- #1787: Dynamic treeview navigation portlet is not XHTML valid
 - Fixed testPortletsTool unit test.
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~

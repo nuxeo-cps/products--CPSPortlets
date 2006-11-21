@@ -1,15 +1,6 @@
 <tal:block tal:define="folderItems python:request.get('folderItems')"
            tal:condition="folderItems">
 
-<tal:block tal:replace="nothing">
-  this style will be outsourced in a cpsskins style
-</tal:block>
-<style type="text/css">
-  div.nodeselected {
-    background-color: #ffc02a;
-  }
-
-</style>
 <script type="text/javascript">
   function loadScript(id, script_filename) {
     var html_doc = document.getElementsByTagName('head').item(0);
