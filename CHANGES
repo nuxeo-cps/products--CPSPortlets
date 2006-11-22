@@ -3,7 +3,8 @@ Requires
 -
 New features
 ~~~~~~~~~~~~
--
+- For #1788: if timeout is not specify in the tool's cache parameters,
+  it'll be read from the portlet 'cache_timeout' field.
 Bug fixes
 ~~~~~~~~~
 - #1787: Dynamic treeview navigation portlet is not XHTML valid

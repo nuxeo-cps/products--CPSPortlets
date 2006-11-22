@@ -295,6 +295,17 @@ Contextual variables:
   used in:
     the content portlet
 
+- cache_timeout
+
+  The timeout of the cache, expressed in seconds.
+
+  If this parameter is not specified, the value of the cache timeout
+  will be read from the corresponding portlet's field (defined in
+  schema portlet_common).
+
+  Otherwise, the specified value will supersede the value in the field for all
+  portlets of given type.
+
 
 - no-cache:
 

@@ -240,7 +240,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         """
         # set the cache timeout value based on cache paramaters
 
-        timeout = 0
+        timeout = None
         for param in cache_params:
             if not param.startswith('timeout:'):
                 continue
@@ -250,6 +250,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             except ValueError:
                 pass
 
+        if timeout is None:
+            return
         if timeout >= 0 and self.cache_timeout != timeout:
             self.cache_timeout = timeout
 
