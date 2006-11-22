@@ -479,7 +479,7 @@ msgid "cpsportlets_rss_channel_label"
 msgstr "RSS Kanal"
 
 msgid "cpsportlets_rss_update_frequency_label"
-msgstr "Ändern der Frequenz (in sekunden)"
+msgstr "Frequenz der Aktualiserungen. Zumindestens 60 (Sekunden)"
 
 msgid "cpsportlets_rss_max_words_label"
 msgstr "Anzahl der Worte der Zusammenfassung"
