@@ -1,6 +1,8 @@
 ##parameters=**kw
 
-rsstool = context.portal_rss
+rsstool = getattr(context, 'portal_rss', None)
+if rsstool is None:
+    return []
 
 channel_id = kw.get('channel')
 channel = getattr(rsstool.aq_inner.aq_explicit, channel_id, None)
