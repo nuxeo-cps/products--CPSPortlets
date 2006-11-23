@@ -1,3 +1,5 @@
+# $Id$
+
 import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
@@ -52,7 +54,7 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         kw = self.default_kw
         cache_index, data = portlet.getCacheIndex(**kw)
         expected_index = ()
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_no_cache(self):
         portlet = self.portlet
@@ -60,7 +62,7 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         kw = self.default_kw
         cache_index, data = portlet.getCacheIndex(**kw)
         expected_index = None
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_no_cache_with_fields(self):
         portlet = self.portlet
@@ -71,13 +73,13 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         kw = self.default_kw
         cache_index, data = portlet.getCacheIndex(**kw)
         expected_index = None
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
         # cache since 'dummy' has a false value.
         portlet.dummy = ''
         kw = self.default_kw
         cache_index, data = portlet.getCacheIndex(**kw)
         expected_index = ()
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_request(self):
         portlet = self.portlet
@@ -87,7 +89,7 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         self.ptltool.updateCacheParameters({'Dummy Portlet': ['request:DUMMY']})
         cache_index, data = portlet.getCacheIndex(**kw)
         expected_index = ('request__DUMMY:dummy',)
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
         # several options
         self.portal.REQUEST['DUMMY1'] = 'dummy1'
         self.portal.REQUEST['DUMMY2'] = 'dummy2'
@@ -95,7 +97,7 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
             ['request:DUMMY1,DUMMY2']})
         cache_index, data = portlet.getCacheIndex(**kw)
         expected_index = ('request__DUMMY1:dummy1_DUMMY2:dummy2',)
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_user(self):
         portlet = self.portlet
@@ -103,7 +105,7 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         kw = self.default_kw
         cache_index, data = portlet.getCacheIndex(**kw)
         expected_index = ('user_%s' % self.login_id,)
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_protocol(self):
         portlet = self.portlet
@@ -113,17 +115,17 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         self.portal.REQUEST['SERVER_URL'] = 'http://some.site.org/'
         expected_index = ('protocol_http',)
         cache_index, data = portlet.getCacheIndex(**kw)
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
         #
         self.portal.REQUEST['SERVER_URL'] = 'https://some.secure.site.org/'
         expected_index = ('protocol_https',)
         cache_index, data = portlet.getCacheIndex(**kw)
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
         #
         self.portal.REQUEST['SERVER_URL'] = ''
         expected_index = ()
         cache_index, data = portlet.getCacheIndex(**kw)
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_current_lang(self):
         portlet = self.portlet
@@ -132,12 +134,12 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         self.portal.REQUEST['cpsskins_language'] = 'en'
         cache_index, data = portlet.getCacheIndex(**kw)
         expected_index = ('current_lang_en',)
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
         # dummy language
         self.portal.REQUEST['cpsskins_language'] = 'dummy'
         cache_index, data = portlet.getCacheIndex(**kw)
         expected_index = ('current_lang_dummy',)
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_portal_type(self):
         portlet = self.portlet
@@ -145,7 +147,7 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         kw = self.default_kw
         cache_index, data = portlet.getCacheIndex(**kw)
         expected_index = ('portal_type_CPSPortlets Test Folder',)
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_object_path(self):
         portlet = self.portlet
@@ -153,7 +155,7 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         kw = self.default_kw
         cache_index, data = portlet.getCacheIndex(**kw)
         expected_index = ('object__path:/portal/cpsportlets_test_folder',)
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_object_published_path(self):
         portlet = self.portlet
@@ -163,7 +165,7 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         self.portal.REQUEST['PATH_TRANSLATED'] = '/dummy_path'
         cache_index, data = portlet.getCacheIndex(**kw)
         expected_index = ('object__published_path:/dummy_path',)
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_random(self):
         portlet = self.portlet
@@ -172,7 +174,7 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         cache_index, data = portlet.getCacheIndex(**kw)
         randint = data['random_int']
         expected_index = ('random_%s' % str(randint),)
-        self.assert_(cache_index == expected_index)
+        self.assertEquals(cache_index, expected_index)
         self.assert_(randint < 5)
 
     def test_getCustomCacheParams(self):
@@ -182,7 +184,7 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         custom_params = ['dummy1', 'dummy2']
         portlet.edit(custom_cache_params=custom_params)
         params = portlet.getCustomCacheParams()
-        self.assert_(params == custom_params)
+        self.assertEquals(params, custom_params)
 
     def test_setCustomCacheParams(self):
         ptltool = self.portal.portal_cpsportlets
@@ -190,39 +192,39 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         portlet = ptltool[portlet_id]
         custom_params = ['dummy1', 'dummy2']
         portlet.setCustomCacheParams(params=custom_params)
-        self.assert_(portlet.custom_cache_params == custom_params)
+        self.assertEquals(portlet.custom_cache_params, custom_params)
 
     def test_setCacheTimeout(self):
         portlet = self.portlet
         # unique timeout parameter
         self.ptltool.updateCacheParameters({'Dummy Portlet': ['timeout:10']})
         portlet.resetCacheTimeout()
-        self.assert_(portlet.cache_timeout == 10)
+        self.assertEquals(portlet.cache_timeout, 10)
         # resolve ambiguity
         self.ptltool.updateCacheParameters({'Dummy Portlet':
             ['timeout:123', 'timeout:20']})
         portlet.resetCacheTimeout()
-        self.assert_(portlet.cache_timeout == 20)
+        self.assertEquals(portlet.cache_timeout, 20)
         # several cache parameters
         self.ptltool.updateCacheParameters({'Dummy Portlet':
             ['baseurl', 'timeout:30', 'url']})
         portlet.resetCacheTimeout()
-        self.assert_(portlet.cache_timeout == 30)
+        self.assertEquals(portlet.cache_timeout, 30)
         # incorrect timeout value
         self.ptltool.updateCacheParameters({'Dummy Portlet':
             ['timeout:abc']})
         portlet.resetCacheTimeout()
-        self.assert_(portlet.cache_timeout == 0)
+        self.assertEquals(portlet.cache_timeout, 30)
         # incorrect timeout value
         self.ptltool.updateCacheParameters({'Dummy Portlet':
             ['timeout:-10']})
         portlet.resetCacheTimeout()
-        self.assert_(portlet.cache_timeout == 0)
+        self.assertEquals(portlet.cache_timeout, 30)
         # no timeout parameters (means timeout = 0)
         self.ptltool.updateCacheParameters({'Dummy Portlet':
             ['baseurl', 'url']})
         portlet.resetCacheTimeout()
-        self.assert_(portlet.cache_timeout == 0)
+        self.assertEquals(portlet.cache_timeout, 30)
 
 def test_suite():
     suite = unittest.TestSuite()
