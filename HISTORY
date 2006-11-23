@@ -1,4 +1,26 @@
 ===========================================================
+Package: CPSPortlets 0.13.0
+===========================================================
+First release built by: gracinet at: 2006-11-23T21:01:39
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/0.13.0
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk@50246
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+- For #1788: if timeout is not specify in the tool's cache parameters,
+  it'll be read from the portlet 'cache_timeout' field.
+Bug fixes
+~~~~~~~~~
+- #1787: Dynamic treeview navigation portlet is not XHTML valid
+- Fixed testPortletsTool unit test.
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 0.12.4
 ===========================================================
 First release built by: gracinet at: 2006-11-17T17:50:31
