@@ -136,8 +136,11 @@ else:
 if not query:
     return []
 
-# optimization
+# This is for classical ZCatalog
 query['sort_limit'] = max_items
+# This is for NXLucene which works with batching
+query['b_start'] = 0
+query['b_size'] = max_items
 
 brains = context.portal_catalog(**query)
 
