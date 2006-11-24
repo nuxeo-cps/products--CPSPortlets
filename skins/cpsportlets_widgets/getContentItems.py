@@ -1,5 +1,5 @@
 ##parameters=obj=None, REQUEST=None, **kw
-
+# $Id$
 
 if obj is None:
     return []
