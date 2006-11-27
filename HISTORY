@@ -1,4 +1,25 @@
 ===========================================================
+Package: CPSPortlets 0.13.1
+===========================================================
+First release built by: madarche at: 2006-11-27T18:35:04
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/0.13.1
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk@50325
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- Made the content portlet honor the max_items parameter when working with
+  NXLucene.
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 0.13.0
 ===========================================================
 First release built by: gracinet at: 2006-11-23T21:01:39

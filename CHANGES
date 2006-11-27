@@ -6,8 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- Made the content portlet honor the max_items parameter when working with
-  NXLucene.
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
