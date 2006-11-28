@@ -43,7 +43,7 @@
       <a
       i18n:attributes="title"
       tal:define="path path|nothing"
-      tal:omit-tag="not:voc/?format|nothing"
+      tal:omit-tag="python:not voc.has_key(format)"
       tal:attributes="href string:${portlet/absolute_url}?export=${format}&path=${path};
                       title string:cpsportlets_syndication_${format}_help">
         <tal:block condition="short_syndication_formats"
