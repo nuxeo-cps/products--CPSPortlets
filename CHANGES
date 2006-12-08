@@ -6,7 +6,8 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- Fixed the fact that RSS channels without a title where difficult to understand
+  and select from the RSS Portlet.
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
