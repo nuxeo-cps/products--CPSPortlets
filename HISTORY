@@ -1,4 +1,25 @@
 ===========================================================
+Package: CPSPortlets 0.13.3
+===========================================================
+First release built by: gracinet at: 2006-12-13T20:10:02
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/0.13.3
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk@50571
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- Fixed the fact that RSS channels without a title where difficult to understand
+  and select from the RSS Portlet.
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 0.13.2
 ===========================================================
 First release built by: gracinet at: 2006-11-29T01:52:43
