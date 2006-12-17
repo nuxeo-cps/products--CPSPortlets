@@ -1,4 +1,24 @@
 ===========================================================
+Package: CPSPortlets 0.13.4
+===========================================================
+First release built by: gracinet at: 2006-12-17T23:23:39
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/0.13.4
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk@50623
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- fix: navigation portlet tree is wrong when viewing a leaf document
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 0.13.3
 ===========================================================
 First release built by: gracinet at: 2006-12-13T20:10:02
