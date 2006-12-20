@@ -46,11 +46,6 @@ if contextual:
     root_uids = [root_uid for root_uid in root_uids
                  if current_uid.startswith(root_uid+'/')]
 
-# use a fake current object for cpsnavigation otherwhise it will not find the
-# object corresponding to current_uid if it is not a container (element of
-# portal_tree) and will not expand properly the tree.
-current = {'rpath': current_uid}
-
 portal_types = context.portal_types
 renderIcon = context.portal_cpsportlets.renderIcon
 folder_items = []
@@ -66,8 +61,15 @@ if root_uids == []:
     root_uids = ['']
 
 for root_uid in root_uids:
+    if current_uid.startswith(root_uid):
+        # use a fake current object for cpsnavigation otherwhise it will not
+        # find the object corresponding to current_uid if it is not a container
+        # (element of portal_tree) and will not expand properly the tree.
+        current = {'rpath': current_uid}
+    else:
+        current = None
     try:
-        nav = CPSNavigation(current=current,
+        nav = CPSNavigation(current=current, current_uid=current_uid,
             no_leaves=0,
             context=context_obj,
             root_uid=root_uid,
