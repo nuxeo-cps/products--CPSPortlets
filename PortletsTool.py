@@ -179,7 +179,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
     security.declareProtected(ManagePortlets, 'getPortletByPath')
     def getPortletByPath(self, portlet_path=None):
         """
-        Returns a portlet by its physical path.
+        Returns a portlet by its rpath or physical path.
         """
 
         if portlet_path is None:
