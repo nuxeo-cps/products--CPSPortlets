@@ -142,6 +142,8 @@ query['sort_limit'] = max_items
 query['b_start'] = 0
 query['b_size'] = max_items
 
+# unicode index will not match path index stored as str
+query['path'] = str(query['path'])
 brains = context.portal_catalog(**query)
 
 # post-filtering
