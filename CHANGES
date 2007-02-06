@@ -6,10 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- #1804: navigation portlet looks empty but isn't
-- fix: portlet contents return all translations for a document and break 
-  document locale selection.
-  fixed using match_languages on catalog request.
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
