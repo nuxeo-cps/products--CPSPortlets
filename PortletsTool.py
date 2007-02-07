@@ -1,5 +1,5 @@
 # -*- coding: ISO-8859-15 -*-
-# Copyright (c) 2004-2006 Nuxeo SAS <http://nuxeo.com>
+# Copyright (c) 2004-2007 Nuxeo SAS <http://nuxeo.com>
 # Copyright (c) 2004-2006 Chalmers University of Technology <http://www.chalmers.se>
 # Authors : Julien Anguenot <ja@nuxeo.com>
 #           Jean-Marc Orliaguet <jmo@ita.chalmers.se>
@@ -24,6 +24,8 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 """Portlets Tool
 """
+
+import operator
 
 from zLOG import LOG, DEBUG, ERROR
 
@@ -333,8 +335,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
     #######################################################################
 
     security.declarePublic('getPortlets')
-    def getPortlets(self, context=None, slot=None, sort=1, override=1,
-                    visibility_check=1, guard_check=1, **kw):
+    def getPortlets(self, context=None, slot=None, sort=True, override=True,
+                    visibility_check=True, guard_check=True, **kw):
         """Return a list of portlets.
         """
 
@@ -402,11 +404,10 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 continue
             allportlets.remove(portlet)
 
-        # sort the remaining portlets
         if sort:
-            def cmporder(a, b):
-                return int(a.order) - int(b.order)
-            allportlets.sort(cmporder)
+            # Sorting the portlets by order
+            # Optimal sorting using builtin sort in C
+            allportlets.sort(key=operator.attrgetter('order'))
 
         return allportlets
 
@@ -1032,10 +1033,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 continue
             slot_portlets.append(p)
 
-        # sort the portlets by order
-        def cmporder(a, b):
-            return int(a.order) - int(b.order)
-        slot_portlets.sort(cmporder)
+        # Sorting the portlets by order
+        # Optimal sorting using builtin sort in C
+        slot_portlets.sort(key=operator.attrgetter('order'))
 
         # find the position in the list
         # where to insert the portlet
