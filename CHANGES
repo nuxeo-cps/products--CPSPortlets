@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- Used optimal sorting in PortletsTool using builtin sort in C.
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
