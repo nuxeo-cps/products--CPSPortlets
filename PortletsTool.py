@@ -406,7 +406,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
         if sort:
             # Sorting the portlets by order
-            # Optimal sorting using builtin sort in C
             allportlets.sort(key=operator.attrgetter('order'))
 
         return allportlets
@@ -1034,7 +1033,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
             slot_portlets.append(p)
 
         # Sorting the portlets by order
-        # Optimal sorting using builtin sort in C
         slot_portlets.sort(key=operator.attrgetter('order'))
 
         # find the position in the list
