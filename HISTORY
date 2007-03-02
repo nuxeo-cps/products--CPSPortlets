@@ -1,4 +1,24 @@
 ===========================================================
+Package: CPSPortlets 0.14.1-rel1271525924
+===========================================================
+First release built by: div at: 2007-03-02T13:15:12
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/0.14.1-rel1271525924
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/branches/rel1271525924@51281
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- Avoid unicode problems on document titles used in navigation portlets
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 0.14.0-rel1271525924
 ===========================================================
 First release built by: ben at: 2007-02-21T16:46:38
