@@ -143,10 +143,13 @@ for root_uid in root_uids:
         visible = 1
         if not authorized_only:
             visible = object['visible']
-
+        
+        title = object['title_or_id']
+        if not isinstance(title, unicode) and utool.getPortalObject().default_charset == 'unicode':
+            title = title.decode('iso-8859-15')
         folder_items.append(
             {'url': base_url + rpath,
-             'title': object['title_or_id'],
+             'title': title,
              'depth': depth,
              'level': level,
              'selected': selected,
