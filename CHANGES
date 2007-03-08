@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- the treeview navigation portlet did not work well under IE6
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
