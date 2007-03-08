@@ -18,8 +18,8 @@
                    root_has_nephew python:[1 for item in tree_roots if
                      context.getNodeChildren(folderItems, item)];
                    toggle_plus string:toggle_plus.png;
-                   toggle_minus string:toggle_minus.png;">
-
+                   toggle_minus string:toggle_minus.png;"
+           condition="root_has_nephew">
 <ul style="list-style-type: none!important; padding-left: 0px!important">
   <tal:block tal:repeat="node tree_roots">
     <li>
