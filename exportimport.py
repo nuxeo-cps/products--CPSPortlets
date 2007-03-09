@@ -1,5 +1,7 @@
-# (C) Copyright 2005 Nuxeo SAS <http://nuxeo.com>
-# Author: Florent Guillaume <fg@nuxeo.com>
+# (C) Copyright 2005-2007 Nuxeo SAS <http://nuxeo.com>
+# Authors:
+# Florent Guillaume <fg@nuxeo.com>
+# M.-A. Darche <madarche@nuxeo.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as published
@@ -38,6 +40,7 @@ from Products.CPSDocument.exportimport import CPSObjectManagerHelpers
 from Products.CPSDocument.exportimport import CPSDocumentXMLAdapter
 from Products.CPSPortlets.PortletsContainer import addPortletsContainer
 from Products.CPSPortlets.PortletGuard import PortletGuard
+from Products.CPSUtil.cachemanagersetup import CacheableHelpers
 
 from Products.GenericSetup.interfaces import INode
 from Products.GenericSetup.interfaces import IBody
@@ -159,7 +162,7 @@ class CPSPortletXMLAdapter(CPSDocumentXMLAdapter):
 
 
 class PortletToolXMLAdapter(XMLAdapterBase, CPSObjectManagerHelpers,
-                            PropertyManagerHelpers):
+                            PropertyManagerHelpers, CacheableHelpers):
     """XML importer and exporter for portlet tool.
     """
 
@@ -176,6 +179,9 @@ class PortletToolXMLAdapter(XMLAdapterBase, CPSObjectManagerHelpers,
         node.appendChild(self._extractProperties())
         node.appendChild(self._extractCacheParameters())
         node.appendChild(self._extractObjects())
+        child = self._extractCacheableManagerAssociation()
+        if child is not None:
+            node.appendChild(child)
         self._logger.info("Portlet tool exported.")
         return node
 
@@ -186,9 +192,11 @@ class PortletToolXMLAdapter(XMLAdapterBase, CPSObjectManagerHelpers,
             self._purgeProperties()
             self._purgeCacheParameters()
             self._purgeObjects()
+            self._purgeCacheableManagerAssociation()
         self._initProperties(node)
         self._initCacheParameters(node)
         self._initObjects(node)
+        self._initCacheableManagerAssociation(node)
         self._logger.info("Portlet tool imported.")
 
     node = property(_exportNode, _importNode)

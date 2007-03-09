@@ -1,8 +1,11 @@
 # -*- coding: ISO-8859-15 -*-
 # Copyright (c) 2004-2007 Nuxeo SAS <http://nuxeo.com>
 # Copyright (c) 2004-2006 Chalmers University of Technology <http://www.chalmers.se>
-# Authors : Julien Anguenot <ja@nuxeo.com>
-#           Jean-Marc Orliaguet <jmo@ita.chalmers.se>
+# Authors :
+# Julien Anguenot <ja@nuxeo.com>
+# Jean-Marc Orliaguet <jmo@ita.chalmers.se>
+# M.-A. Darche <madarche@nuxeo.com>
+# Georges Racinet <gracinet@nuxeo.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -25,14 +28,17 @@ __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 """Portlets Tool
 """
 
+from logging import getLogger
 import operator
+from DateTime import DateTime
 
 from zLOG import LOG, DEBUG, ERROR
-
+from zope.interface import implements
 from AccessControl import ClassSecurityInfo, getSecurityManager, Unauthorized
 from Acquisition import aq_base, aq_parent, aq_inner
 from Globals import InitializeClass, DTMLFile
 from Globals import  PersistentMapping
+from OFS.Cache import Cacheable
 
 from Products.CMFCore.CMFBTreeFolder import CMFBTreeFolder
 from Products.CMFCore.permissions import View
@@ -40,11 +46,13 @@ from Products.CMFCore.utils import UniqueObject
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import _checkPermission
 
-from zope.interface import implements
+from Products.CPSCore.EventServiceTool import getPublicEventService
 from Products.CPSPortlets.interfaces import IPortletTool
-from PortletRAMCache import RAMCache, SimpleRAMCache
-from PortletsContainer import PortletsContainer
-from CPSPortletsPermissions import ManagePortlets
+from Products.CPSPortlets.PortletRAMCache import RAMCache, SimpleRAMCache
+from Products.CPSPortlets.PortletsContainer import PortletsContainer
+from Products.CPSPortlets.CPSPortletsPermissions import ManagePortlets
+
+LOG_KEY = 'CPSPortlets.PortletsTool'
 
 # RAM cache
 PORTLET_CONTAINER_ID = '.cps_portlets'
@@ -62,10 +70,17 @@ FTI_RAMCACHE_ID = 'fti'
 PORTLET_MANAGE_ACTION_ID = 'portlets'
 PORTLET_MANAGE_ACTION_CATEGORY = 'folder'
 
-class PortletsTool(UniqueObject, PortletsContainer):
-    """ Portlets Tool
-    """
+# The ID of the portlet lookup cache
+PORTLET_LOOKUP_CACHE_ID = '_v_portlet_lookup_cache'
+# The ID of the date of the last update on the portlet lookup cache globally and
+# on this particular instance.
+PORTLET_LOOKUP_CACHE_DATE_GLOBAL_ID = 'portlet_lookup_cache_date'
+PORTLET_LOOKUP_CACHE_DATE_INSTANCE_ID = '_v_portlet_lookup_cache_date'
 
+
+class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
+    """Portlets Tool
+    """
     implements(IPortletTool)
 
     id = 'portal_cpsportlets'
@@ -107,7 +122,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
         Use the portlets catalog and the dedicated indexes for the
         query.
         """
-
         query = {
             'portal_type' : self.listPortletTypes(),
             }
@@ -130,7 +144,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
            - topics
            - portal_types
         """
-
         catalog = self._getPortletCatalog()
         query = {}
 
@@ -164,7 +177,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
         It's necessarly we want to user to be able to use the CPSSkins interface
         for creating new portlets but as well from an installer too.
         """
-
         # Get all portlets all over the portal
         portlets = self.listAllPortlets()
 
@@ -180,10 +192,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security.declareProtected(ManagePortlets, 'getPortletByPath')
     def getPortletByPath(self, portlet_path=None):
+        """Returns a portlet by its rpath or physical path.
         """
-        Returns a portlet by its rpath or physical path.
-        """
-
         if portlet_path is None:
             return None
         return self.unrestrictedTraverse(portlet_path, default=None)
@@ -293,12 +303,11 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def getBottomMostFolder(self, context=None):
         """Return the first folderish object above the context
         """
-
         if context is None:
             return None
         obj = context
         bmf = None
-        while 1:
+        while True:
             if obj.isPrincipiaFolderish:
                 bmf = obj
                 break
@@ -339,76 +348,149 @@ class PortletsTool(UniqueObject, PortletsContainer):
                     visibility_check=True, guard_check=True, **kw):
         """Return a list of portlets.
         """
-
         if context is None:
             return []
 
-        # get the bottom-most folder
-        bmf = self.getBottomMostFolder(context=context)
-
-        # get portlets from the root to current path
-        # XXX This is badly reinventing traversal.
-        # XXX Use aq_parent(aq_inner(ob)) the other way round instead.
+        # Get the bottom-most folder
+        bottom_most_folder = self.getBottomMostFolder(context)
         utool = getToolByName(self, 'portal_url')
-        rpath = utool.getRelativeContentPath(bmf)
-        obj = utool.getPortalObject()
-        # root portlets
-        allportlets = self._getFolderPortlets(folder=obj, slot=slot)
-        # other portlets
-        for elem in ('',) + rpath:
-            if not elem:
-                continue
-            obj = getattr(obj, elem, None)
-            if obj is None:
-                break
-            allportlets.extend(self._getFolderPortlets(folder=obj, slot=slot))
+        portal = utool.getPortalObject()
+        rpath = utool.getRelativeContentPath(bottom_most_folder)
 
-        # list of portlets that will not be displayed
-        remove_list = []
+        allportlets_rpaths = self._getPortletLookupCache(slot, rpath, sort,
+                                                         override,
+                                                         visibility_check)
+        if allportlets_rpaths is not None:
+            allportlets = tuple(portal.unrestrictedTraverse(rpath)
+                                for rpath in allportlets_rpaths)
+        else:
+            # Get portlets from the root to current path
+            obj = portal
+            # root portlets
+            allportlets = self._getFolderPortlets(folder=obj, slot=slot)
+            # other portlets
+            for elem in ('',) + rpath:
+                if not elem:
+                    continue
+                obj = getattr(obj, elem, None)
+                if obj is None:
+                    break
+                allportlets.extend(self._getFolderPortlets(folder=obj, slot=slot))
 
-        # portlet guard and visibility range check
-        for portlet in allportlets:
-            if visibility_check:
-                if not self._isPortletVisible(portlet, context):
-                    remove_list.append(portlet)
-            if guard_check:
+            if sort:
+                # Sorting the portlets by order
+                allportlets.sort(key=operator.attrgetter('order'))
+
+            # List of portlets that will not be displayed
+            remove_set = set()
+
+            # Portlet visibility and override check
+            for portlet in allportlets:
+                if visibility_check:
+                    if not self._isPortletVisible(portlet, context):
+                        remove_set.add(portlet)
+                if override:
+                    # the portlet is protected
+                    if portlet.disable_override:
+                        continue
+                    depth = portlet.getDepth()
+                    # Run through the slot's portlets to see whether one of them
+                    # can override this portlet.
+                    for p in allportlets:
+                        # portlets cannot override themselves
+                        if p is portlet:
+                            continue
+                        # the portlet does not do override
+                        if not p.slot_override:
+                            continue
+                        if p.getDepth() <= depth:
+                            continue
+                        # override the portlet
+                        remove_set.add(portlet)
+                        break
+
+            allportlets = [portlet for portlet in allportlets
+                           if portlet not in remove_set]
+
+            self._setPortletLookupCache(
+                tuple(utool.getRpath(ptl) for ptl in allportlets),
+                slot, rpath, sort, override, visibility_check)
+
+        # List of portlets that will not be displayed
+        remove_set = set()
+
+        # Portlet guard check. Since it is dependant on many programmatic
+        # paramaters, the guard checking cannot be cached.
+        # XXX GR Do we need portlets whose guard failed *not* to override
+        # the upper ones ?
+        if guard_check:
+            for portlet in allportlets:
                 if portlet.getGuard() and not portlet.getGuard().check(
                     getSecurityManager(), portlet, context):
-                    remove_list.append(portlet)
+                    remove_set.add(portlet)
 
-        # portlet override
-        if override:
-            for portlet in allportlets:
-                # the portlet is protected
-                if portlet.disable_override:
-                    continue
-                depth = portlet.getDepth()
-                # run through the slot's portlets to see whether one of them
-                # can override this portlet.
-                for p in allportlets:
-                    # portlets cannot override themselves
-                    if p is portlet:
-                        continue
-                    # the portlet does not do override
-                    if not p.slot_override:
-                        continue
-                    if p.getDepth() <= depth:
-                        continue
-                    # override the portlet
-                    remove_list.append(portlet)
-                    break
+        return [portlet for portlet in allportlets
+                if portlet not in remove_set]
 
-        # remove invisible and overriden portlets
-        for portlet in remove_list:
-            if portlet not in allportlets:
-                continue
-            allportlets.remove(portlet)
+    security.declarePrivate('_getPortletLookupCache')
+    def _getPortletLookupCache(self, slot, rpath, sort,
+                               override, visibility_check):
+        """Return all the portlets stored in a cache depending on the given
+        paramaters.
 
-        if sort:
-            # Sorting the portlets by order
-            allportlets.sort(key=operator.attrgetter('order'))
+        Note that this is a cache containing portlet objects (and not portlet
+        renderings) depending on a specified situation (slot, rpath, sorting).
+        """
+        log_key = LOG_KEY + '._getPortletLookupCache'
+        logger = getLogger(log_key)
+        # ZEO awareness
+        last_cache_global_update = self.get(PORTLET_LOOKUP_CACHE_DATE_GLOBAL_ID)
+        last_cache_instance_update = self.get(PORTLET_LOOKUP_CACHE_DATE_INSTANCE_ID)
+        if (last_cache_global_update is not None
+            and last_cache_instance_update is not None):
+            if last_cache_instance_update < last_cache_global_update:
+                # This will force the portlet lookup cache to be recomputed on
+                # this Zope instance.
+                return None
+        portlets_cache_keywords = {'slot': slot, 'rpath': rpath, 'sort': sort,
+                                   'override': override,
+                                   'visibility_check': visibility_check}
+        portlets = self.ZCacheable_get(keywords=portlets_cache_keywords)
+        #logger.debug("portlets = %s" % str(portlets))
+        return portlets
 
-        return allportlets
+    security.declarePrivate('_setPortletLookupCache')
+    def _setPortletLookupCache(self, portlets, slot, rpath, sort,
+                               override, visibility_check):
+        """Set all the portlets stored in a cache depending on the given
+        paramaters.
+
+        Note that this is a cache containing portlet objects (and not portlet
+        renderings) depending on a specified situation (slot, rpath, sorting).
+        """
+        log_key = LOG_KEY + '._setPortletLookupCache'
+        logger = getLogger(log_key)
+        portlets_cache_keywords = {'slot': slot, 'rpath': rpath, 'sort': sort,
+                                   'override': override,
+                                   'visibility_check': visibility_check}
+        # Storing the cache as a volatile attribute. The attribute will not be
+        # shared among ZEO instances nor will it be stored persistently.
+        #logger.debug("Caching enabled ? = %s" % self.ZCacheable_isCachingEnabled())
+        self.ZCacheable_set(portlets, keywords=portlets_cache_keywords)
+
+    security.declarePrivate('_invalidatePortletLookupCache')
+    def _invalidatePortletLookupCache(self):
+        """This will remove all the cached portlet objects.
+
+        Note that this is a cache containing portlet objects (and not portlet
+        renderings) depending on a specified situation (slot, rpath, sorting).
+        """
+        self.ZCacheable_invalidate()
+        # Share with other ZEO instances that the cache has expired
+        now = DateTime()
+        setattr(self, PORTLET_LOOKUP_CACHE_DATE_GLOBAL_ID, now)
+        setattr(self, PORTLET_LOOKUP_CACHE_DATE_INSTANCE_ID, now)
+
 
     security.declarePublic('getPortletContext')
     def getPortletContext(self, portlet=None):
@@ -461,7 +543,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
         else:
             destination = self.getPortletContainer(context=context, create=1)
 
-        return destination._createPortlet(ptype_id, **kw)
+        portlet_id = destination._createPortlet(ptype_id, **kw)
+        getPublicEventService(self).notifyEvent('portlet_create', self, {})
+        return portlet_id
 
     security.declareProtected(View, 'deletePortlet')
     def deletePortlet(self, portlet_id, context=None):
@@ -481,6 +565,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         else:
             destination = self.getPortletContainer(context=context)
 
+        getPublicEventService(self).notifyEvent('portlet_delete', self, {})
         return destination._deletePortlet(portlet_id)
 
     security.declareProtected(View, 'duplicatePortlet')
@@ -506,6 +591,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
         # XXX canonize portlet id
         new_id = res[0]['new_id']
         portlet = getattr(container, new_id, None)
+        getPublicEventService(self).notifyEvent('portlet_duplicate', self, {})
         return portlet
 
     security.declareProtected(View, 'movePortlet')
@@ -555,6 +641,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
             portlet = getattr(dest_container, new_id, None)
 
         self._insertPortlet(portlet=portlet, slot=dest_slot, order=dest_ypos)
+        getPublicEventService(self).notifyEvent('portlet_move', self, {})
         return portlet
 
     security.declareProtected(View, 'insertPortlet')
@@ -566,6 +653,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
                 "You are not allowed to modify %s" %(
                 portlet.absolute_url()))
 
+        getPublicEventService(self).notifyEvent('portlet_insert', self, {})
         self._insertPortlet(portlet=portlet, slot=slot, order=order)
 
     #
@@ -580,13 +668,13 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security.declareProtected(ManagePortlets, 'getCacheParameters')
     def getCacheParameters(self):
-        """Return all cache parameters
+        """Return all cache parameters.
         """
         return self.cache_parameters
 
     security.declareProtected(ManagePortlets, 'resetCacheParameters')
     def resetCacheParameters(self):
-        """Reset all cache parameters
+        """Reset all cache parameters.
         """
         self.cache_parameters = {}
         self.updateCacheParameters(params=self.getCPSPortletCacheParams())
@@ -602,7 +690,7 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security.declareProtected(ManagePortlets, 'updateCacheParameters')
     def updateCacheParameters(self, params={}):
-        """update the cache parameters
+        """Update the cache parameters.
         """
         self.cache_parameters.update(params)
         self._p_changed = 1
@@ -610,8 +698,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
         self.rebuild_portlets()
 
     def getPortletCache(self, create=0):
-        """Returns the Portlet RAM cache object"""
-
+        """Returns the Portlet RAM cache object.
+        """
         cacheid = '_'.join((PORTLET_RAMCACHE_ID,) + \
                             self.getPhysicalPath()[1:-1])
         try:
@@ -623,10 +711,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security.declarePublic('getCacheReport')
     def getCacheReport(self):
+        """Returns detailed statistics about the cache.
         """
-        Returns detailed statistics about the cache.
-        """
-
         cache = self.getPortletCache()
         if cache is None:
             return None
@@ -634,10 +720,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security.declarePublic('getCacheStats')
     def getCacheStats(self):
+        """Returns statistics about the cache.
         """
-        Returns statistics about the cache.
-        """
-
         cache = self.getPortletCache()
         if cache is None:
             return None
@@ -657,11 +741,9 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security.declarePublic('findCacheOrphans')
     def findCacheOrphans(self):
-        """
-        Returns the list of object ids that are in the cache
+        """Returns the list of object ids that are in the cache
         but that no longer exist.
         """
-
         cache = self.getPortletCache()
         if cache is None:
             return []
@@ -684,7 +766,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
            should be used instead in order to propagate the information
            between all ZEO instances.
         """
-
         cache = self.getPortletCache()
         if cache is None:
             return
@@ -699,7 +780,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
            should be used instead in order to propagate the information
            between all ZEO instances.
         """
-
         if user is None:
             return
 
@@ -712,7 +792,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def findCacheEntriesByUser(self, user=None):
         """Return the cache entry ids associated to a user.
         """
-
         if user is None:
             return []
         user = str(user)
@@ -763,7 +842,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def getCache(self, cache_key=None):
         """Returns the RAM cache object associated to a given cache key
         """
-
         if cache_key is None:
             return None
 
@@ -779,7 +857,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
     security.declarePublic('renderIcon')
     def renderIcon(self, portal_type=None, base_url='', alt=''):
         """Renders the icon"""
-
         # render portal type icon.
         if portal_type is None:
             return None
@@ -833,7 +910,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def renderActionIcon(self, category=None, action_id=None,
                          base_url='', alt=''):
         """Renders the action's icon"""
-
         if category is None or action_id is None:
             return None
 
@@ -920,7 +996,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def getAccessKey(self):
         """Return the value of the key used to access the tool
         """
-
         # XXX make this configurable
         return '_'
 
@@ -928,7 +1003,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def renderAccessKey(self, actions=[], **kw):
         """Render the access key html markup
         """
-
         rendered = ''
         if not actions:
             atool = getToolByName(self, 'portal_actions')
@@ -971,7 +1045,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def _isPortletVisible(self, portlet, context):
         """Is the portlet visible in a given context
         """
-
         # Dublin Core
         if not portlet.isEffective(self.ZopeTime()):
             return 0
@@ -1000,7 +1073,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """Load all portlets in a .cps_portlets folder.
            The slot name can be used as a filter.
         """
-
         portlets = []
         if folder is None:
             return portlets
@@ -1021,7 +1093,6 @@ class PortletsTool(UniqueObject, PortletsContainer):
     def _insertPortlet(self, portlet=None, slot=None, order=0):
         """Insert a portlet inside a slot at a given position.
         """
-
         if portlet is None:
             return
 
@@ -1087,16 +1158,17 @@ class PortletsTool(UniqueObject, PortletsContainer):
         PortletsContainer.manage_options +
         ({'label': 'Rebuild',
           'action': 'manage_rebuildPortlets'},
-         {'label': 'Cache',
+         {'label': 'Render cache',
           'action': 'manage_RAMCache'},
-         {'label': 'Cache parameters',
-          'action': 'manage_CacheParameters'}, )
+         {'label': 'Render cache parameters',
+          'action': 'manage_CacheParameters'},
+         ) + Cacheable.manage_options
         )
 
     security.declareProtected(ManagePortlets, 'rebuild_portlets')
     def rebuild_portlets(self, REQUEST=None):
-        """ """
-
+        """
+        """
         portlets = self.listAllPortlets()
         for portlet in portlets:
             # Might be an error from the user For instance, it the user checked
@@ -1113,8 +1185,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security.declareProtected(ManagePortlets, 'manage_clearCache')
     def manage_clearCache(self, REQUEST=None):
-        """Clears the local RAM cache."""
-
+        """Clears the local RAM cache.
+        """
         self.clearCache()
 
         if REQUEST is not None:
@@ -1125,8 +1197,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security.declareProtected(ManagePortlets, 'manage_clearCacheOrphans')
     def manage_clearCacheOrphans(self, REQUEST=None):
-        """Removes orphaned objects from the cache."""
-
+        """Removes orphaned objects from the cache.
+        """
         orphans = self.findCacheOrphans()
         for orphan in orphans:
             self.invalidateCacheEntriesById(orphan)
@@ -1139,8 +1211,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security.declareProtected(ManagePortlets, 'manage_updateCacheParameters')
     def manage_updateCacheParameters(self, REQUEST=None, **kw):
-        """Update cache parameters"""
-
+        """Update cache parameters.
+        """
         if REQUEST is not None:
             kw.update(REQUEST.form)
 
@@ -1163,8 +1235,8 @@ class PortletsTool(UniqueObject, PortletsContainer):
 
     security.declareProtected(ManagePortlets, 'manage_resetCacheParameters')
     def manage_resetCacheParameters(self, REQUEST=None):
-        """Reset cache parameters"""
-
+        """Reset cache parameters.
+        """
         self.resetCacheParameters()
 
         if REQUEST is not None:
@@ -1186,11 +1258,20 @@ class PortletsTool(UniqueObject, PortletsContainer):
         """
         if self.ignore_events:
             return
+        log_key = LOG_KEY + '.notify_event'
+        logger = getLogger(log_key)
+        logger.debug("event_type = %s" % event_type)
+        logger.debug("object = %s" % repr(object))
+        logger.debug("infos = %s" % repr(infos))
 
-        ##LOG(":: CPS Portlets Tool :: ", DEBUG, 'notify_event()')
-        ##LOG(":: EVENT TYPE ::", DEBUG, event_type)
-        ##LOG(":: OBJECT ::", DEBUG, repr(object))
-        ##LOG(":: INFOS ::", DEBUG, repr(infos))
+        # Invalidate the portlet lookup cache at every portlet modification
+        if event_type in ('portlet_create',
+                          'portlet_delete',
+                          'portlet_duplicate',
+                          'portlet_move',
+                          'portlet_insert',
+                          ):
+            self._invalidatePortletLookupCache()
 
         # we skip the events that do not inform about the object's path
         if not infos.has_key('rpath'):
