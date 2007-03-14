@@ -1,13 +1,12 @@
 Requires
 ~~~~~~~~
-- CPSUtil > 0.18.1
-- CPSDefault > 3.58.0
+-
 New features
 ~~~~~~~~~~~~
-- #1800 : Implement faster portlet lookup.
+-
 Bug fixes
 ~~~~~~~~~
-- the treeview navigation portlet did not work well under IE6
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 

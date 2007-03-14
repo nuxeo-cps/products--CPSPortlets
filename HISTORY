@@ -1,4 +1,25 @@
 ===========================================================
+Package: CPSPortlets 0.14.0
+===========================================================
+First release built by: div at: 2007-03-14T12:25:00
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/0.14.0
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk@51329
+
+Requires
+~~~~~~~~
+- CPSUtil > 0.18.1
+- CPSDefault > 3.58.0
+New features
+~~~~~~~~~~~~
+- #1800 : Implement faster portlet lookup.
+Bug fixes
+~~~~~~~~~
+- the treeview navigation portlet did not work well under IE6
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 0.13.7
 ===========================================================
 First release built by: gracinet at: 2007-02-08T14:45:57
