@@ -1,5 +1,6 @@
 <div
   tal:define="layout options/layout;
+              layout_id layout/layout_id;
               ds options/datastructure;
               creation creation|nothing;
               metadata metadata|nothing;
@@ -71,15 +72,15 @@
           <div style="float: right;" tal:condition="is_flexible">
             <input type="submit" value="button_move_up"
               tal:condition="not:repeat/row/start"
-              tal:attributes="name string:uprow_${repeat/row/index}"
+              tal:attributes="name string:uprow_${repeat/row/index}__${layout_id}"
               class="context moveUp" i18n:attributes="value" />
             <input type="submit" value="button_move_down"
               tal:condition="not:repeat/row/end"
-              tal:attributes="name string:downrow_${repeat/row/index}"
+              tal:attributes="name string:downrow_${repeat/row/index}__${layout_id}"
               class="context moveDown" i18n:attributes="value" />
             <input type="submit" value="button_delete"
               class="destructive" i18n:attributes="value"
-              tal:attributes="name string:deleterow_${repeat/row/index};
+              tal:attributes="name string:deleterow_${repeat/row/index}__${layout_id};
                               onclick python:'return window.confirm(\'%s\')' %
                                 (cpsmcat('description_confirm_delete'), )" />
           </div>
