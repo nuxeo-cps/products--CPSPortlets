@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2006-11-13 12:21default\n"
+"POT-Creation-Date: 2007-04-25 12:35default\n"
 "PO-Revision-Date: 2006-07-14 22:36+0100\n"
 "Last-Translator: Domènec Arcalís <darcalis@gmail.com>\n"
 "Language-Team: català <darcalis@gmail.com>\n"
@@ -96,8 +96,8 @@ msgstr ""
 msgid "cpsportlet_guard_tales_user"
 msgstr "L'objecte  \"usuari\""
 
-#.   <a attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
-#.                                  context.absolute_url() or utool()" href="">Advanced search</a>
+#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 #: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 msgid "cpsportlets_advanced_search"
@@ -182,7 +182,7 @@ msgstr "Crear una versió en..."
 msgid "cpsportlets_up_to"
 msgstr "Pujar a ${up_id}"
 
-#.   <div attributes="id python:'load-area-%s' % node['id']" style="display:none" class="load-area">
+#.   <div style="display:none" class="load-area" attributes="id python:'load-area-%s' % node['id']">
 #.       LOADING..
 #.       </div>
 #: from ../browser/tree_macros.pt

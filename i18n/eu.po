@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2006-03-01 17:57default\n"
+"POT-Creation-Date: 2007-04-25 12:35default\n"
 "PO-Revision-Date: 2006-11-16 15:48+0100\n"
 "Last-Translator: Jesus Martin <jesusmartin@lasalle.es>\n"
 "Language-Team: euskara <perikoalkain@lasalle.es>\n"
@@ -105,6 +105,7 @@ msgstr "\"erabiltzaile\" objektua"
 #.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
 #.                                  context.absolute_url() or utool()">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+#: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 msgid "cpsportlets_advanced_search"
 msgstr "Bilaketa aurreratua"
 
@@ -145,7 +146,10 @@ msgstr "Administratzailea(k)"
 #.       visible.</p>
 #: from ../skins/cpsportlets_default/cpsportlet_guard.pt
 msgid "cpsportlets_guard_explanation"
-msgstr "Zaindari formularioak portletsen ikusgaitasuna kontrolatzea ahalbidetzen dizu. Baldintza guztiek egiaztatuta egon behar dute portleta ikusgai izan dadin. "
+msgstr ""
+"Zaindari formularioak portletsen ikusgaitasuna kontrolatzea ahalbidetzen "
+"dizu. Baldintza guztiek egiaztatuta egon behar dute portleta ikusgai izan "
+"dadin. "
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
@@ -164,6 +168,7 @@ msgstr "Portletsen administrazioa (aurkezpen-osagaiak)"
 
 #.   <block>cpsportlets_search_in</block>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+#: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 msgid "cpsportlets_search_in"
 msgstr "Hemen bilatu"
 
@@ -183,6 +188,13 @@ msgstr "Bertsio bat sortu hemen..."
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 msgid "cpsportlets_up_to"
 msgstr " ${up_id}-era igo"
+
+#.   <div style="display:none" class="load-area" attributes="id python:'load-area-%s' % node['id']">
+#.       LOADING..
+#.       </div>
+#: from ../browser/tree_macros.pt
+msgid "loading_text"
+msgstr ""
 
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
@@ -659,4 +671,3 @@ msgstr "Konfigurazioa gaurkotuta"
 
 msgid "cpsportlet_psm_guard_error"
 msgstr "Konfigurazio okerra"
-

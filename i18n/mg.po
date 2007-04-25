@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2006-11-13 12:21default\n"
+"POT-Creation-Date: 2007-04-25 12:35default\n"
 "PO-Revision-Date: 2005-04-13 17:27+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -112,8 +112,8 @@ msgstr ""
 msgid "cpsportlet_guard_tales_user"
 msgstr "L'objet 'user'"
 
-#.   <a attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
-#.                                  context.absolute_url() or utool()" href="">Advanced search</a>
+#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 #: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 #, fuzzy
@@ -212,7 +212,7 @@ msgstr "Créer une version en ..."
 msgid "cpsportlets_up_to"
 msgstr "Vers ${up_id}"
 
-#.   <div attributes="id python:'load-area-%s' % node['id']" style="display:none" class="load-area">
+#.   <div style="display:none" class="load-area" attributes="id python:'load-area-%s' % node['id']">
 #.       LOADING..
 #.       </div>
 #: from ../browser/tree_macros.pt
@@ -584,7 +584,7 @@ msgstr "Canal RSS"
 
 #, fuzzy
 msgid "cpsportlets_rss_update_frequency_label"
-msgstr "Fréquence de mise à jour (en secondes)"
+msgstr "Fréquence de mise à jour, minimum 60 (secondes)"
 
 #, fuzzy
 msgid "cpsportlets_rss_max_words_label"

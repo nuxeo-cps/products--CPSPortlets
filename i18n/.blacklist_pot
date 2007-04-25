@@ -1,3 +1,4 @@
-../../CPSDefault/i18n/cpsdefault.pot
-../../CPSDocument/i18n/cpsdocument.pot
-../../CPSSchemas/i18n/cpsschemas.pot
+../../CPSDefault/i18n/all.pot
+../../CPSSchemas/i18n/all.pot
+../../CPSDocument/i18n/all.pot
+../../CPSDirectory/i18n/all.pot

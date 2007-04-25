@@ -1,9 +1,9 @@
 Requires
 ~~~~~~~~
--
+- CPSI18n >= 1.0.0
 New features
 ~~~~~~~~~~~~
--
+- This product is eligible for a 1.0.0 version.
 Bug fixes
 ~~~~~~~~~
 -
