@@ -1,4 +1,24 @@
 ===========================================================
+Package: CPSPortlets 1.0.0
+===========================================================
+First release built by: madarche at: 2007-04-25T12:36:54
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/1.0.0
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk@51661
+
+Requires
+~~~~~~~~
+- CPSI18n >= 1.0.0
+New features
+~~~~~~~~~~~~
+- This product is eligible for a 1.0.0 version.
+Bug fixes
+~~~~~~~~~
+-
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 0.14.1
 ===========================================================
 First release built by: div at: 2007-03-26T20:47:33
