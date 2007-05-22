@@ -1,0 +1,661 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CPSPortlets\n"
+"POT-Creation-Date: 2006-11-13 12:21default\n"
+"PO-Revision-Date: 2007-05-14 20:13+0100\n"
+"Last-Translator: xosé francisco martínez reboiras <xosereboiras@lasalle.es>\n"
+"Language-Team: español <jesusmartin@lasalle.es>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Preferred-encodings: utf-8 latin1\n"
+"X-Generator: KBabel 1.3\n"
+"Language-Code: es\n"
+"Language-Name: Spanish\n"
+"Domain: default\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: SPAIN\n"
+
+#.   <input type="submit" value=" Add " />
+#: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
+msgid " Add "
+msgstr ""
+
+#.   <strong>ID:</strong>
+#: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
+msgid "ID:"
+msgstr "ID"
+
+#.   <block>Edit</block>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "_Edit_"
+msgstr "Modificar"
+
+#.   <div class="mainContentArea">_Main content_</div>
+#: from ../skins/cpsportlets_widgets/widget_portlet_maincontent.pt
+msgid "_Main content_"
+msgstr ""
+
+#.   <a href="cpsportlet_guard">guard</a>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "action_portlet_guard"
+msgstr "Gardas"
+
+#.   <input type="submit" class="standalone" value="button_submit_changes" />
+#: from ../skins/cpsportlets_default/cpsportlet_guard.pt
+msgid "button_submit_changes"
+msgstr "Enviar cambios"
+
+#.   <option disabled="disabled" selected="selected" value="">
+#.           Add new item ...</option>
+#: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
+msgid "cpsportlet_add_new_item"
+msgstr "Engadir novo contido"
+
+#.   <span>
+#.     The following names are defined for the TALES expression</span>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_explain"
+msgstr "Os seguintes nomes son definidos pola expresión TALES"
+
+#.   <dd>The context</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_here"
+msgstr "O contexto"
+
+#.   <dd>The portal object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_portal"
+msgstr "O obxecto \"portal\""
+
+#.   <dd>The portlet object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_portlet"
+msgstr "O obxecto \"portlet\""
+
+#.   <dd>
+#.     The id of the PUBLISHED object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_published"
+msgstr "O ID dun obxecto PUBLICADO"
+
+#.   <dd>The REQUEST object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_request"
+msgstr "O obxecto \"REQUEST\" (petición)"
+
+#.   <dd>
+#.     The context's relative path ending with a '/' (e.g. 'sections/')</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_rpath_slash"
+msgstr "A ruta relativa do contexto coa barra \"slash\" final (ex. seccións/)"
+
+#.   <dd>The user object</dd>
+#: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
+msgid "cpsportlet_guard_tales_user"
+msgstr "O obxecto \"usuario\""
+
+#.   <a attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()" href="">Advanced search</a>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+#: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
+msgid "cpsportlets_advanced_search"
+msgstr "Busca avanzada"
+
+#.   <button type="submit">OK</button>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_button_OK"
+msgstr "OK"
+
+#.   <label attributes="for language_chooser_id">Change language:</label>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_change_language"
+msgstr "Cambiar idioma:"
+
+#.   <p>Delete translation ...</p>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_delete_translation"
+msgstr "Borrar a versión en..."
+
+#.   <td condition="display_description">cpsportlets_extended_site_map_description</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+msgid "cpsportlets_extended_site_map_description"
+msgstr "Descrición"
+
+#.   <td>cpsportlets_extended_site_map_folder</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+msgid "cpsportlets_extended_site_map_folder"
+msgstr "Carpeta"
+
+#.   <td condition="display_managers">cpsportlets_extended_site_map_managers</td>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+msgid "cpsportlets_extended_site_map_managers"
+msgstr "Administrador(es)"
+
+#.   <p>
+#.       The guard form allows you to control the visibility of portlets.
+#.       All the expressions that are filled in must be true for the portlet to be
+#.       visible.</p>
+#: from ../skins/cpsportlets_default/cpsportlet_guard.pt
+msgid "cpsportlets_guard_explanation"
+msgstr "O formulario de gardas permíteche controlar a visibilidade dos portlets. Todas as condicións deben estar verificadas para que o portlet sexa visible."
+
+#.   <span>To manage portlets please install CPSSkins.</span>
+#: from ../skins/cpsportlets_default/portlet_manage_form.pt
+msgid "cpsportlets_install_cpsskins"
+msgstr "Para administrar portlets (compoñentes de presentación), instale CPSSkins."
+
+#.   <block>located in the folder</block>
+#: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
+msgid "cpsportlets_located_in_the_folder"
+msgstr "localizado na carpeta"
+
+#.   <h1>Portlet management</h1>
+#: from ../skins/cpsportlets_default/portlet_manage_form.pt
+msgid "cpsportlets_portlet_management_heading"
+msgstr "Administración de portlets (compoñentes de presentación)"
+
+#.   <block>cpsportlets_search_in</block>
+#: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
+#: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
+msgid "cpsportlets_search_in"
+msgstr "Buscar en"
+
+#.   <p>Switch to ...</p>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_switch_language"
+msgstr "Ver a versión en..."
+
+#.   <p>Translate into ...</p>
+#: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
+msgid "cpsportlets_translate_into"
+msgstr "Crear unha versión en..."
+
+#.   <span>Up to
+#.             ${up_id (tal content="item/title")}
+#.           </span>
+#: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
+msgid "cpsportlets_up_to"
+msgstr "Subir a ${up_id}"
+
+#.   <div attributes="id python:'load-area-%s' % node['id']" style="display:none" class="load-area">
+#.       LOADING..
+#.       </div>
+#: from ../browser/tree_macros.pt
+msgid "loading_text"
+msgstr ""
+
+#.   <span>this export format has not been implemented yet</span>
+#: from ../skins/cpsportlets_default/cpsportlet_macros.pt
+msgid "this export format has not been implemented yet"
+msgstr "este formato de exportación aínda non se implementou"
+
+msgid "label_cpsportlets_provider"
+msgstr "Proveedor"
+
+msgid "label_cpsportlets_title"
+msgstr "Título do portlet"
+
+msgid "label_cpsportlets_i18n"
+msgstr "Traducir o contido do portlet"
+
+msgid "portal_type_DummyPortlet_title"
+msgstr "Imitar portlet"
+
+msgid "portal_type_CustomPortlet_title"
+msgstr "Portlet personalizado"
+
+msgid "portal_type_TextPortlet_title"
+msgstr "Portlet de texto"
+
+msgid "portal_type_SearchPortlet_title"
+msgstr "Portlet de busca"
+
+msgid "portal_type_MainContentPortlet_title"
+msgstr "Portlet de contido da área principal"
+
+msgid "portal_type_InternalLinksPortlet_title"
+msgstr "Portlet de enlaces internos"
+
+msgid "portal_type_AddItemPortlet_title"
+msgstr "Portlet de creación de contidos"
+
+msgid "portal_type_BreadcrumbsPortlet_title"
+msgstr "Portlet de ruta"
+
+msgid "portal_type_ActionsPortlet_title"
+msgstr "Portlet de accións"
+
+msgid "portal_type_ContentPortlet_title"
+msgstr "Portlet de contidos"
+
+msgid "portal_type_LanguagePortlet_title"
+msgstr "Portlet de idiomas"
+
+msgid "portal_type_NavigationPortlet_title"
+msgstr "Portlet de navegación"
+
+msgid "portal_type_DocumentPortlet_title"
+msgstr "Portlet de documentos"
+
+msgid "portal_type_RSSPortlet_title"
+msgstr "Portlet RSS"
+
+msgid "action_portlets"
+msgstr "Administrar portlets"
+
+msgid "action_canvas"
+msgstr "Deseño"
+
+msgid "cpsportlets_internallinks_links_label"
+msgstr "Enlaces internos"
+
+msgid "cpsportlets_portlet_created_psm"
+msgstr "Portlet creado."
+
+msgid "cpsportlets_content_translated_psm"
+msgstr "Contido transladado."
+
+msgid "cpsportlets_bcs_display_dropdown_list_label"
+msgstr "Listado despregable"
+
+msgid "cpsportlets_bcs_display_horizontal_trail_label"
+msgstr "Rastro horizontal"
+
+msgid "cpsportlets_bcs_display_site_root_label"
+msgstr "Mostrar o directorio raíz."
+
+msgid "cpsportlets_bcs_highlight_last_item_label"
+msgstr "Resaltar os últimos ítem despregables"
+
+msgid "cpsportlets_advanced_search_link_label"
+msgstr "Poñer un enlace ao formulario de busca avanzada"
+
+msgid "cpsportlets_contextual_search_choice_label"
+msgstr "Mostrar a opción de busca contextual"
+
+msgid "cpsportlets_action_categories_label"
+msgstr "Categorías a amosar"
+
+msgid "cpsportlets_actions_order_label"
+msgstr "Categorías de accións a amosar"
+
+msgid "cpsportlets_search_context_is_portlet_label"
+msgstr "Executar a busca empezando pola ubicación do portlet"
+
+msgid "cpsportlets_nav_context_is_portlet_label"
+msgstr "Utilizar a localización do portlet como contexto"
+
+msgid "cpsportlets_content_search_related_label"
+msgstr "Documentos relacionados"
+
+msgid "cpsportlets_content_search_all_label"
+msgstr "Todos os documentos"
+
+msgid "cpsportlets_content_search_type_label"
+msgstr "Contido"
+
+msgid "cpsportlets_content_search_pending_label"
+msgstr "Documentos pendentes"
+
+msgid "cpsportlets_content_search_last_modified_label"
+msgstr "Últimos documentos modificados"
+
+msgid "cpsportlets_content_search_last_published_label"
+msgstr "Últimos documentos publicados"
+
+msgid "cpsportlets_content_search_recent_label"
+msgstr "Documentos recentes"
+
+msgid "cpsportlets_content_search_upcoming_label"
+msgstr "Subindo eventos"
+
+msgid "cpsportlets_content_search_today_label"
+msgstr "Eventos de hoxe"
+
+msgid "cpsportlets_content_sort_on_label"
+msgstr "Ordenar resultados por"
+
+msgid "cpsportlets_content_sort_on_Date_label"
+msgstr "Data"
+
+msgid "cpsportlets_content_sort_on_Title_label"
+msgstr "Título"
+
+msgid "cpsportlets_content_sort_on_review_state_label"
+msgstr "Revisar estado"
+
+msgid "cpsportlets_content_sort_on_Creator_label"
+msgstr "Autor"
+
+msgid "cpsportlets_content_sort_reverse_label"
+msgstr "Invertir a orde en que se amosan"
+
+msgid "cpsportlets_common_render_method_label"
+msgstr "Mostrar método (.zpt, .py, etc.)"
+
+msgid "cpsportlets_common_max_items_label"
+msgstr "Número de ítem"
+
+msgid "cpsportlets_content_folder_path_label"
+msgstr "Directorio base"
+
+msgid "cpsportlets_content_searchable_types_label"
+msgstr "Tipos de contido a amosar"
+
+msgid "cpsportlets_content_contextual_label"
+msgstr "Busca contextual"
+
+msgid "cpsportlets_language_action_label"
+msgstr "Acción"
+
+msgid "cpsportlets_language_action_translate_label"
+msgstr "Traducir"
+
+msgid "cpsportlets_language_action_delete_translation_label"
+msgstr "Borrar tradución"
+
+msgid "cpsportlets_language_action_change_label"
+msgstr "Cambiar idioma"
+
+msgid "cpsportlets_language_action_switch_language_label"
+msgstr "Cambiar de idioma"
+
+msgid "portal_type_ImagePortlet_title"
+msgstr "Portlet de imaxe"
+
+msgid "cpsportlets_nav_display_vertical_breadcrumbs_menu_label"
+msgstr "Menú vertical despregable*"
+
+msgid "cpsportlets_nav_display_folder_contents_menu_label"
+msgstr "Contidos da carpeta"
+
+msgid "cpsportlets_nav_display_folder_contents_detailed_label"
+msgstr "Contidos da carpeta* (pormenorizados)"
+
+msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
+msgstr "Contidos das carpetas* (listado despregable)"
+
+msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
+msgstr "Contidos dos subdirectorios*"
+
+msgid "cpsportlets_nav_display_up_to_parent_label"
+msgstr "Subir ao directorio de nivel superior*"
+
+msgid "cpsportlets_nav_display_collapsible_menu_label"
+msgstr "Menú pregable"
+
+msgid "cpsportlets_additem_show_icons_label"
+msgstr "Mostrar iconas"
+
+msgid "cpsportlets_additem_dropdown_list_label"
+msgstr "Lista despregable"
+
+msgid "cpsportlets_additem_standard_menu_label"
+msgstr "Menú estándar"
+
+msgid "cpsportlets_navigation_rel_depth_label"
+msgstr "Profundidade relativa"
+
+msgid "cpsportlets_navigation_show_docs_label"
+msgstr "Mostrar documentos"
+
+msgid "cpsportlets_navigation_folder_prefixes_label"
+msgstr "Prefijos das carpetas visibles"
+
+msgid "cpsportlets_navigation_display_hidden_folders_label"
+msgstr "Mostrar carpetas ocultas"
+
+msgid "cpsportlets_navigation_show_icons_label"
+msgstr "Mostrar iconas dos documentos"
+
+msgid "cpsportlets_navigation_sort_by_label"
+msgstr "Ordenar ítem por"
+
+msgid "cpsportlets_navigation_sort_direction_label"
+msgstr "Dirección de ordenación"
+
+msgid "cpsportlets_folder_sort_by_date_label"
+msgstr "Data"
+
+msgid "cpsportlets_folder_sort_by_title_label"
+msgstr "Título"
+
+msgid "cpsportlets_folder_sort_by_author_label"
+msgstr "Autor"
+
+msgid "cpsportlets_folder_sort_asc_label"
+msgstr "Ascendente"
+
+msgid "cpsportlets_folder_sort_desc_label"
+msgstr "Descendente"
+
+msgid "cpsportlets_content_show_icons_label"
+msgstr "Mostrar iconas de contido"
+
+msgid "cpsportlets_actions_show_icons_label"
+msgstr "Mostrar iconas de accións"
+
+msgid "cpsportlets_custom_render_method_label"
+msgstr "Método de renderizado (zpt, py, etc.)"
+
+msgid "cpsportlets_translation_deleted_psm"
+msgstr "Tradución borrada."
+
+msgid "button_portlet_management"
+msgstr "Administración do portlet"
+
+msgid "cpsportlets_display_hidden_folders_label"
+msgstr "Mostrar carpetas ocultas"
+
+msgid "cpsportlets_common_link_string_label"
+msgstr "Cadea de enlace"
+
+msgid "cpsportlets_common_display_description_label"
+msgstr "Mostrar descricións dos ítem"
+
+msgid "cpsportlets_rss_channel_label"
+msgstr "Canle  RSS"
+
+msgid "cpsportlets_rss_update_frequency_label"
+msgstr "Frecuencia de actualización (en segundos)"
+
+msgid "cpsportlets_rss_max_words_label"
+msgstr "Número de palabras no sumario"
+
+msgid "cpsportlets_content_max_words_label"
+msgstr "Número de palabras no sumario"
+
+msgid "cpsportlets_image_image_label"
+msgstr "Arquivo de imaxe"
+
+msgid "cpsportlets_image_link_label"
+msgstr "Enlace"
+
+msgid "cpsportlets_image_caption_label"
+msgstr "Captura de imaxe"
+
+msgid "portal_type_ContentPortlet_description"
+msgstr "Amosa o resultado dunha busca de contido"
+
+msgid "portal_type_NavigationPortlet_description"
+msgstr "Amosa os ítem de navegación, contidos das carpetas, etc."
+
+msgid "portal_type_AddItemPortlet_description"
+msgstr "Amosa un menú para engadir contidos dentro dunha carpeta."
+
+msgid "portal_type_InternalLinksPortlet_description"
+msgstr "Amosa un listado de enlaces internos."
+
+msgid "portal_type_TextPortlet_description"
+msgstr "Amosa un texto en formato HTML."
+
+msgid "portal_type_ImagePortlet_description"
+msgstr "Amosa unha imaxe decorativa cun enlace."
+
+msgid "portal_type_DummyPortlet_description"
+msgstr "Un portlet de probas"
+
+msgid "portal_type_SearchPortlet_description"
+msgstr "Amosa unha interface para facer buscas"
+
+msgid "portal_type_RSSPortlet_description"
+msgstr "Amosa as fontes das que se alimenta a canle RSS"
+
+msgid "portal_type_DocumentPortlet_description"
+msgstr "Amosa a visualización do documento actual"
+
+msgid "portal_type_BreadcrumbsPortlet_description"
+msgstr "Amosa un listado de enlaces ás carpetas das que depende."
+
+msgid "portal_type_ActionsPortlet_description"
+msgstr "Amosa unha lista das accións do portal por categoría."
+
+msgid "portal_type_LanguagePortlet_description"
+msgstr "Amos as accións relacionadas cos idiomas"
+
+msgid "cpsportlets_common_first_item_label"
+msgstr "Primeiro ítem"
+
+msgid "cpsportlets_nav_display_navtree_menu_label"
+msgstr "Árbore de navegación"
+
+msgid "portlets_nav_display_dyn_navtree_menu_label"
+msgstr "Menú de navegación dinámico"
+
+msgid "cpsportlets_navigation_contextual_label"
+msgstr "Mostra contextual"
+
+msgid "cpsportlets_display_mode_label"
+msgstr "Modo de presentación"
+
+msgid "cpsportlets_display_mode_help"
+msgstr "O portlets cun *teñen un deseño predeterminado."
+
+msgid "w__imagelink"
+msgstr "Enlace de imaxe"
+
+msgid "cpsportlets_nav_display_site_map_label"
+msgstr "Mapa do sitio"
+
+msgid "cpsportlets_nav_display_site_map_3_tabs_label"
+msgstr "Mapa do sitio (con membros)"
+
+msgid "cpsportlets_nav_display_extended_site_map_label"
+msgstr "Mapa estendido do sitio*"
+
+msgid "cpsportlets_nav_display_expandable_tree_menu_label"
+msgstr "Menú secundario de navegación"
+
+msgid "portal_type_CustomPortlet_description"
+msgstr "Amosa un método de visualización (.zpt, .py, etc.)"
+
+msgid "cpsportlets_document_context_rpath_label"
+msgstr "Ruta do documento (relativa)"
+
+msgid "cpsportlets_document_cluster_id_label"
+msgstr "Clúster ID"
+
+msgid "cpsportlets_document_render_cluster_no_fallback_label"
+msgstr "Visualizar el documento só se o clúster específico existe"
+
+msgid "cpsportlet_rot_image_nb_images_label"
+msgstr "Número de imaxes a rotar entre"
+
+msgid "portal_type_RotatingImagePortlet_title"
+msgstr "Portlet de imaxes rotatorias"
+
+msgid "portal_type_RotatingImagePortlet_description"
+msgstr "Amosa aleatorialmente unha colección de imaxes"
+
+msgid "cpsportlets_common_custom_cache_params_label"
+msgstr "Personalizar parámetros do caché"
+
+msgid "cpsportlets_visibility_range_0-0_label"
+msgstr "Nesta carpeta e todos os subdirectorios"
+
+msgid "cpsportlets_visibility_range_1-0_label"
+msgstr "Só nos subdirectorios"
+
+msgid "cpsportlets_visibility_range_0-1_label"
+msgstr "Só nesta carpeta"
+
+msgid "cpsportlets_common_visibility_range_label"
+msgstr "Rango de visibilidade"
+
+msgid "cpsportlets_navigation_root_uids_label"
+msgstr "Raíces da árbore"
+
+msgid "cpsportlets_custom_js_render_method_label"
+msgstr "Método de renderizado Javascript (zpt, py, etc.)"
+
+msgid "cpsportlets_content_query_title_label"
+msgstr "Busca por título"
+
+msgid "cpsportlets_content_render_items_label"
+msgstr "Visualizar os ítem"
+
+msgid "cpsportlets_content_cluster_id_label"
+msgstr "Clúster ID"
+
+msgid "cpsportlets_common_slot_override_label"
+msgstr "¿Sobreescribir os portlets existentes?"
+
+msgid "cpsportlets_common_disable_override_label"
+msgstr "¿Evitar que este portlet sexa sobreescrito?"
+
+msgid "cpsportlets_document_render_container_label"
+msgstr "Visualizar o contedor"
+
+msgid "cpsportlets_navigation_end_depth_label"
+msgstr "Profundidade final"
+
+msgid "cpsportlets_internallinks_max_title_words_label"
+msgstr "Número de palabras no título"
+
+msgid "cpsportlets_internallinks_show_icons_label"
+msgstr "Mostrar iconas do documento"
+
+msgid "cpsportlets_nav_context_rpath_label"
+msgstr "Ruta da carpeta (relativa)"
+
+msgid "cpsportlets_common_syndication_formats_label"
+msgstr "Formatos de sindicación"
+
+msgid "cpsportlets_syndication_rss_1_0_help"
+msgstr "Cara ao alimentador de noticias RSS asociado"
+
+msgid "cpsportlets_syndication_rss_2_0_help"
+msgstr "Cara ao alimentador de noticias RSS asociado"
+
+msgid "cpsportlets_syndication_atom_0_3_help"
+msgstr "Exportar cara ao ATOM asociado"
+
+msgid "cpsportlets_syndication_rss_1_0_label"
+msgstr "RSS 1.0"
+
+msgid "cpsportlets_syndication_rss_2_0_label"
+msgstr "RSS 2.0"
+
+msgid "cpsportlets_syndication_atom_0_3_label"
+msgstr "ATOM 0.3"
+
+msgid "cpsportlets_common_short_syndication_formats_label"
+msgstr "Amosa formatos cortos ao exportar botóns"
+
+msgid "cpsportlets_navigation_display_managers_label"
+msgstr "Amosa os administradores de contido"
+
+msgid "cpsportlets_navigation_display_description_label"
+msgstr "Mostrar a descrición dos ítem"
+
+msgid "cpsportlets_navigation_authorized_only_label"
+msgstr "Mostrar só os ítem autorizados"
+
+msgid "cpsportlet_psm_settings_updated"
+msgstr "Configuración actualizada"
+
+msgid "cpsportlet_psm_guard_error"
+msgstr "Configuración incorrecta"
+
