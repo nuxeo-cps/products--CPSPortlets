@@ -1,8 +1,10 @@
 ##parameters=obj=None, REQUEST=None, **kw
 # $Id$
-
 if obj is None:
     return []
+
+from Products.CPSUtil.timer import Timer
+t = Timer('CPSPortlets getContentItems')
 
 if REQUEST is not None:
     kw.update(REQUEST.form)
@@ -141,12 +143,21 @@ query['sort_limit'] = max_items
 # This is for NXLucene which works with batching
 query['b_start'] = 0
 query['b_size'] = max_items
-
+# match_languages purpose is to make the default language match if
+# users' doesn't exist in proxy.
+translation_service = context.translation_service
+match_languages = 'en'
+match_languages = translation_service.getSelectedLanguage()
+if not match_languages:
+    if context.isUsePortalDefaultLang():
+        match_languages = translation_service.getDefaultLanguage()
+query['match_languages'] = match_languages
+t.mark('query: %s' % str(query))
 # unicode index will not match path index stored as str
 if query.has_key('path'):
     query['path'] = str(query['path'])
 brains = context.portal_catalog(**query)
-
+t.mark('search done')
 # post-filtering
 if search_type == 'related':
     # XXX also remove the same versions of a document published
@@ -296,5 +307,5 @@ for brain in brains:
          'metadata': metadata_info,
          'icon_tag': icon_tag,
         })
-
+#t.log('done')
 return items
