@@ -14,13 +14,13 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"Language-Code: pt_BR\n"
+"Language-Code: pt\n"
 "Language-Name: Portuguese Brazilian\n"
 "Preferred-encodings: utf-8 latin1\n"
 "Domain: default\n"
 "X-Generator: KBabel 1.3\n"
 "Domain: default\n"
-"Language-Code: pt_BR\n"
+"Language-Code: pt\n"
 
 #.   <input type="submit" value=" Add " />
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
