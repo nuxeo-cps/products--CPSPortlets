@@ -6,7 +6,8 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- Accessibility: truncated text displayed in internal links portlets
+  to 60 characters.
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 

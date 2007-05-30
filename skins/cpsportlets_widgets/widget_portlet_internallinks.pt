@@ -19,7 +19,7 @@
           <tal:block content="item/title" />
           <span class="itemDescription"
           tal:condition="python: item_description and display_description"
-          tal:content="item_description" />
+          tal:content="python:item_description[:56] + ' ...'" />
         </a>
       </li>
     </ul>
