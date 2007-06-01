@@ -1,18 +1,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2007-04-25 12:35default\n"
-"PO-Revision-Date: 2006-07-14 22:36+0100\n"
-"Last-Translator: Domènec Arcalís <darcalis@gmail.com>\n"
-"Language-Team: català <darcalis@gmail.com>\n"
+"POT-Creation-Date: 2006-11-13 12:21default\n"
+"PO-Revision-Date: 2007-05-31 12:26+0100\n"
+"Language-Team: valencià/català. <juangus@lasalle.es>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Preferred-encodings: utf-8 latin1\n"
-"Language-Code: ca\n"
-"Language-Name: Catalan\n"
+"Preferred-encodings: latin9 utf-8\n"
 "Domain: default\n"
+"Language-Code: ca\n"
+"Language-Name: valencià/català\n"
 "X-Poedit-Language: Catalan\n"
 "X-Poedit-Country: SPAIN\n"
 
@@ -88,16 +87,15 @@ msgstr "L'objecte \"REQUEST\" (petició)"
 #.     The context's relative path ending with a '/' (e.g. 'sections/')</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
 msgid "cpsportlet_guard_tales_rpath_slash"
-msgstr ""
-"La ruta relativa del context amb la barra \"slash\" final (ex. seccions/)"
+msgstr "La ruta relativa del context amb la barra \"slash\" final (ex. seccions/)"
 
 #.   <dd>The user object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
 msgid "cpsportlet_guard_tales_user"
 msgstr "L'objecte  \"usuari\""
 
-#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
-#.                                  context.absolute_url() or utool()">Advanced search</a>
+#.   <a attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()" href="">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 #: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 msgid "cpsportlets_advanced_search"
@@ -139,15 +137,12 @@ msgstr "Administrador(s)"
 #.       visible.</p>
 #: from ../skins/cpsportlets_default/cpsportlet_guard.pt
 msgid "cpsportlets_guard_explanation"
-msgstr ""
-"El formulari guardià permet controlar la visibilitat dels portlets. Totes "
-"les condicions han d'estar verificades per que el portlet sigui visible."
+msgstr "El formulari guardià permet controlar la visibilitat dels portlets. Totes les condicions han d'estar verificades per que el portlet siga visible."
 
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
 msgid "cpsportlets_install_cpsskins"
-msgstr ""
-"Per a administrar portlets (components de presentació), instal·li CPSSkins."
+msgstr "Per a administrar portlets (components de presentació), instal·le CPSSkins."
 
 #.   <block>located in the folder</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
@@ -168,7 +163,7 @@ msgstr "Cercar a"
 #.   <p>Switch to ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_switch_language"
-msgstr "Veure la versió en..."
+msgstr "Vore la versió en..."
 
 #.   <p>Translate into ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
@@ -182,7 +177,7 @@ msgstr "Crear una versió en..."
 msgid "cpsportlets_up_to"
 msgstr "Pujar a ${up_id}"
 
-#.   <div style="display:none" class="load-area" attributes="id python:'load-area-%s' % node['id']">
+#.   <div attributes="id python:'load-area-%s' % node['id']" style="display:none" class="load-area">
 #.       LOADING..
 #.       </div>
 #: from ../browser/tree_macros.pt
@@ -192,7 +187,7 @@ msgstr ""
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
 msgid "this export format has not been implemented yet"
-msgstr "aquest format d'exportació encara no s'ha implementat"
+msgstr "Este format d'exportació encara no s'ha implementat"
 
 msgid "label_cpsportlets_provider"
 msgstr "Proveïdor"
@@ -252,7 +247,7 @@ msgid "action_canvas"
 msgstr "Disseny"
 
 msgid "cpsportlets_internallinks_links_label"
-msgstr "Enlaços interns"
+msgstr "Enllaços interns"
 
 msgid "cpsportlets_portlet_created_psm"
 msgstr "Portlet creat"
@@ -315,7 +310,7 @@ msgid "cpsportlets_content_search_upcoming_label"
 msgstr "Pujant esdeveniments"
 
 msgid "cpsportlets_content_search_today_label"
-msgstr "Esdeveniments d'avui"
+msgstr "Esdeveniments de hui "
 
 msgid "cpsportlets_content_sort_on_label"
 msgstr "Ordenar resultats per"
@@ -417,7 +412,7 @@ msgid "cpsportlets_navigation_sort_by_label"
 msgstr "Ordenar ítem per"
 
 msgid "cpsportlets_navigation_sort_direction_label"
-msgstr "Direcció d'ordenació"
+msgstr "Adreça d'ordenació"
 
 msgid "cpsportlets_folder_sort_by_date_label"
 msgstr "Data"
@@ -501,7 +496,7 @@ msgid "portal_type_DummyPortlet_description"
 msgstr "Un portlet de proves"
 
 msgid "portal_type_SearchPortlet_description"
-msgstr "Mostra una interfície per a recerques"
+msgstr "Mostra una interface per a recerques"
 
 msgid "portal_type_RSSPortlet_description"
 msgstr "Mostra les fonts d'on s'alimenta el canal RSS"
@@ -510,7 +505,7 @@ msgid "portal_type_DocumentPortlet_description"
 msgstr "Mostra la visualització del document actual"
 
 msgid "portal_type_BreadcrumbsPortlet_description"
-msgstr "Mstra un llistat d'enllaços a les carpetes de què depèn."
+msgstr "Mostra un llistat d'enllaços a les carpetes de què depèn."
 
 msgid "portal_type_ActionsPortlet_description"
 msgstr "Mostra una llista de les accions del portal per categoria."
@@ -606,7 +601,7 @@ msgid "cpsportlets_common_slot_override_label"
 msgstr "Sobreescriure els portlets existents?"
 
 msgid "cpsportlets_common_disable_override_label"
-msgstr "Evitar que es sobreescrigui aquest portlet?"
+msgstr "Evitar que es sobreescriga este portlet?"
 
 msgid "cpsportlets_document_render_container_label"
 msgstr "Visualitzar el contenidor"
@@ -661,3 +656,4 @@ msgstr "Configuració actualizada"
 
 msgid "cpsportlet_psm_guard_error"
 msgstr "Configuració incorrecta"
+
