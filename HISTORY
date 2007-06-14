@@ -1,4 +1,24 @@
 ===========================================================
+Package: CPSPortlets 0.15.0-rel1271525924
+===========================================================
+First release built by: div at: 2007-06-14T14:31:53
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/0.15.0-rel1271525924
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/branches/rel1271525924@51831
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+-
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- Merged with the trunk
+
+===========================================================
 Package: CPSPortlets 0.14.1-rel1271525924
 ===========================================================
 First release built by: div at: 2007-03-02T13:15:12
