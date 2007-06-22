@@ -113,12 +113,12 @@ class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
         kw = self.default_kw
         #
         self.portal.REQUEST['SERVER_URL'] = 'http://some.site.org/'
-        expected_index = ('protocol_http',)
+        expected_index = ('server_url_http://some.site.org/',)
         cache_index, data = portlet.getCacheIndex(**kw)
         self.assertEquals(cache_index, expected_index)
         #
         self.portal.REQUEST['SERVER_URL'] = 'https://some.secure.site.org/'
-        expected_index = ('protocol_https',)
+        expected_index = ('server_url_https://some.secure.site.org/',)
         cache_index, data = portlet.getCacheIndex(**kw)
         self.assertEquals(cache_index, expected_index)
         #
