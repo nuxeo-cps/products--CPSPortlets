@@ -1,9 +1,10 @@
-# Copyright (c) 2004-2006 Nuxeo SAS <http://nuxeo.com>
+# Copyright (c) 2004-2007 Nuxeo SAS <http://nuxeo.com>
 # Copyright (c) 2004 Chalmers University of Technology
 #               <http://www.chalmers.se>
 # Authors:
 # Julien Anguenot <ja@nuxeo.com>
 # Jean-Marc Orliaguet <jmo@ita.chalmers.se>
+# M.-A. Darche <madarche@nuxeo.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -352,18 +353,18 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             index_string = ''
             prefix = param
 
-            # not cacheable
+            # Not cacheable
             if param == 'no-cache':
                 return None, data
 
-            # disable the cache is a field value is True
+            # Disable the cache is a field value is True
             elif param.startswith('no-cache:'):
                 opts = getOptions(param)
                 for opt in opts:
                     if opt:
                         return None, data
 
-            # random integer
+            # Random integer
             elif param.startswith('random:'):
                 opts = getOptions(param)
                 index_string = ''
@@ -379,7 +380,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
                     index_string += str(random_int)
                     data['random_int'] = random_int
 
-            # request variable
+            # Request variable
             elif param.startswith('request:'):
                 opts = getOptions(param)
                 index_string = ''
@@ -391,23 +392,38 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
                         continue
                     index_string += str(value)
 
-            # current user
+            # Current user
             elif param == 'user':
                 index_string = str(REQUEST.get('AUTHENTICATED_USER', ''))
 
-            # current language
+            # Current language
             elif param == 'current_lang':
                 index_string = REQUEST.get('cpsskins_language', 'en')
 
-            # current url
+            # Current URL
+            # Examples:
+            # "http://mysite.net", "http://localhost:8080/cps"
             elif param == 'url':
                 index_string = REQUEST.get('cpsskins_url')
 
-            # current url
+            # Server URL
+            # Examples:
+            # http://localhost:8080
+            # http://mymachinename:8080
+            # http://mysite.net
+            # https://mysite.net
+            elif param == 'server_url':
+                index_string = REQUEST.get('SERVER_URL', '')
+
+            # Current baseurl, that is the absolute path to the base or root
+            # of the portal as seen from the client.
+            # The baseurl name is misleading, it isn't in any way an URL.
+            # Examples: "/" or "/cps"
             elif param == 'baseurl':
                 index_string = REQUEST.get('cpsskins_base_url')
 
-            # protocol
+            # Protocol
+            # Deprecated in favor or server_url
             elif param == 'protocol':
                 url = REQUEST.get('SERVER_URL', '')
                 pos = url.find('://')
@@ -428,7 +444,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
                              ac_list_extend([ac.get('name'), ac.get('url')])
                     index_string = md5.new(str(ac_list)).hexdigest()
 
-            # current object
+            # Current object
             elif param.startswith('object:'):
                 opts = getOptions(param)
                 index_string = ''
@@ -457,7 +473,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
                                    _marker) is not _marker:
                             index_string += context.getDefaultLanguage()
 
-            # portal type
+            # Portal type
             elif param == 'portal_type':
                 ti = context.getTypeInfo()
                 if ti is not None:

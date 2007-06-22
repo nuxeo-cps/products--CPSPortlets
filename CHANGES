@@ -6,6 +6,8 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
+- Fixed #1847: "Add and use a "server_url" portlet cache parameter for the
+  search, contact and conformance statement portlets".
 - Accessibility: truncated text displayed in internal links portlets
   to 60 characters.
 New internal features

@@ -1,10 +1,11 @@
-===============================
-CPSPortlets - RAM cache (draft)
-===============================
+=======================
+CPSPortlets - RAM cache
+=======================
 
 :Authors:
   - Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>
   - Julien Anguenot <mailto:ja@nuxeo.com>
+  - M.-A. Darche <madarche@nuxeo.com>
 :Revision: $Id$
 
 .. sectnum::    :depth: 4
@@ -127,7 +128,7 @@ To increase performance the parameter values must be fast to
 compute, these can typically be:
 
 - request variables
- 
+
 - variables that can be obtained through a simple method
   (``absolute_url()``, ``getId()``, ...)
 
@@ -146,25 +147,52 @@ Contextual variables:
 - url
 
   description:
-    the entire current url including the query string
+    the entire current URL including the query string
 
-  example:
+  examples:
     ``http://www.yourhost.com/cps/view?pp=1``
 
   used in:
     portal actions
 
 
+- server_url
+
+  description:
+    the URL of the server hosting the portal
+
+  examples:
+    ``http://localhost:8080``
+    ``http://mymachinename:8080``
+    ``http://mysite.net``
+    ``https://mysite.net``
+
+  used in:
+    search portlet
+
+
 - baseurl
 
   description:
-    the base url of the site.
+    The absolute path of the base or root of the portal as seen from the client.
+    The baseurl name is misleading, it isn't in any way an URL.
+
+  examples:
+    This is generally either ``/`` or ``/cps``.
+
+  used in:
+    search portlet and conformance portlet
 
 
 - protocol
 
   description:
-    the protocol used in the URL scheme (http, https)
+    The protocol used in the URL scheme. This variable is now actually useless
+    and thus deprecated since the addition of the `server_url` variable.
+
+  examples:
+    ``http``
+    ``https``
 
 
 - current_lang
@@ -181,7 +209,7 @@ Contextual variables:
   description:
     the path of the object
 
-  example:
+  examples:
     ``/cps/workspaces/members``
 
 
@@ -190,7 +218,7 @@ Contextual variables:
   description:
     the path of the published object
 
-  example:
+  examples:
     ``/cps/workspaces/members/view``
 
   used in:
@@ -202,7 +230,7 @@ Contextual variables:
   description:
     the default language of the current object
 
-  example:
+  examples:
     ``('en', 'fr')``
 
   used in:
@@ -214,7 +242,7 @@ Contextual variables:
   description:
     the list of existing language revisions of the current object
 
-  example:
+  examples:
     ``('en', 'fr')``
 
   used in:
@@ -226,8 +254,8 @@ Contextual variables:
   description:
     the name of the current user
 
-  example:
-    'root'
+  examples:
+    ``'root'``
 
   used in:
     navigation portlets, login portlet ...
@@ -244,8 +272,8 @@ Contextual variables:
   description:
     the CMF actions by categories (cat1, cat2, ...)
 
-  example:
-    actions:object,global,user,maintabs
+  examples:
+    ``actions:object,global,user,maintabs``
 
   used in:
     the actions portlet
@@ -254,14 +282,14 @@ Contextual variables:
 
   description:
     the CMF actions by categories where 'categories' is a
-    property of the portlet that contains a list/tuple of 
+    property of the portlet that contains a list/tuple of
     categories
 
   used in:
     the actions portlet
 
 - actions:(categories),(custom_categories),user
- 
+
   ...
 
 
@@ -271,8 +299,8 @@ Contextual variables:
     the list of event ids that will trigger an expiration
     of the portlet's cache.
 
-  example:
-    event_ids:workflow_publish,workflow_unpublish
+  examples:
+    ``event_ids:workflow_publish,workflow_unpublish``
 
   used in:
     the content portlet
@@ -319,7 +347,7 @@ Contextual variables:
     the portlet will not be cached if any of the specified field's
     value is True.
 
-  example:
+  examples:
     ``no-cache:(contextual)``
 
     will disable the portlet's cache if the 'contextual' option is set.
@@ -370,13 +398,6 @@ Contextual objects:
 
 Cache invalidation
 ==================
-
-#
-# Julien Anguenot (16/09)
-# XXX not finished. Need to get started with the implementation to see if it
-# works as expected
-#
-
 
 Principal
 ---------
