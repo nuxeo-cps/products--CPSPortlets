@@ -1,4 +1,27 @@
 ===========================================================
+Package: CPSPortlets 1.0.1
+===========================================================
+First release built by: madarche at: 2007-10-19T12:20:23
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/1.0.1
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk@52013
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- Fixed #1847: "Add and use a "server_url" portlet cache parameter for the
+  search, contact and conformance statement portlets".
+- Accessibility: truncated text displayed in internal links portlets
+  to 60 characters.
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.0.0
 ===========================================================
 First release built by: madarche at: 2007-04-25T12:36:54
