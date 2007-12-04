@@ -21,6 +21,8 @@
   View that knows how to return a given branch of a treeview
 
 """
+import logging
+
 from Products.CMFCore.utils import getToolByName
 from AccessControl import Unauthorized
 from OFS.CopySupport import CopyError
@@ -28,12 +30,20 @@ from Products.Five import BrowserView
 
 class TreeNodeView(BrowserView):
 
+    log = logging.getLogger('CPSPortlets.browser.TreeNodeView')
+
+    def __init__(self, *args, **kwargs):
+        BrowserView.__init__(self, *args, **kwargs)
+        self.utool = getToolByName(self.context, 'portal_url')
+        self.tree_tool = getToolByName(self.context, 'portal_trees')
+
     def getNode(self, root=''):
         """ root is the url of the root node """
-        utool = getToolByName(self.context, 'portal_url')
+        self.log.debug("getNode: root rpath=%s", root)
+        utool = self.utool
         portal_cpsportlets = getToolByName(self.context, 'portal_cpsportlets')
 
-        base_url = utool.getBaseUrl()
+        base_url = self.utool.getBaseUrl()
         node = self._getRoot(root)
         object_id = node.getId()
         context_url = self.context.absolute_url_path()
@@ -42,8 +52,8 @@ class TreeNodeView(BrowserView):
         has_folderish_children = self._hasSubFolders(node)
         object_url = node.absolute_url_path()
         renderIcon = portal_cpsportlets.renderIcon
-        children = [self.getNode(object.absolute_url_path())
-                    for object in self._folderishChildren(node)]
+        children = [self.getNode(item['rpath'])
+                    for item in self._folderishChildren(node)]
 
         if object_url == context_url:
             selected = 'selected'
@@ -72,11 +82,9 @@ class TreeNodeView(BrowserView):
         return folder_items
 
     def _rootRestrictedTraverse(self, path):
-        utool = getToolByName(self.context, 'portal_url')
-        portal_path = utool.getPortalPath()
-        if not path.startswith(portal_path):
-            path = portal_path + path
-        return self.context.restrictedTraverse(path, default=None)
+        
+        portal = self.utool.getPortalObject()
+        return portal.restrictedTraverse(path, default=None)
 
     def _getRoot(self, root=''):
         if (root is None or root == '') and (self.request is None
@@ -87,6 +95,22 @@ class TreeNodeView(BrowserView):
                 root = self.request.get('root', '')
             return self._rootRestrictedTraverse(root)
 
+    def _getTreeCache(self, folder, rpath=None):
+        """Find the TreeCache object for given folder.
+
+        Optional rpath can be passed to avoid computing it twice.
+
+        Implementation uses for now a big assumption on the tree naming and uses
+        rpath only
+        """
+
+        if rpath is None:
+            if folder is None:
+                return
+            rpath = self.utool.getRpath(folder)
+        
+        return getattr(self.tree_tool.aq_explicit, rpath.split('/', 1)[0], None)
+        
     def _getContent(self, object):
         content = None
         try:
@@ -96,28 +120,54 @@ class TreeNodeView(BrowserView):
         return content
 
     def _hasSubFolders(self, folder):
-        for id, item in folder.objectItems():
-            if self._isFolderish(item):
-                return True
-        return False
+        rpath = self.utool.getRpath(folder)
+        tc = self._getTreeCache(folder, rpath=rpath)
 
-    def _isFolderish(self, object):
-        return ((hasattr(object, 'isPrincipiaFolderish') and
+        if tc is None:
+            # costly fallback
+            for id, item in folder.objectItems():
+                if self._isFolderish(item):
+                    return True
+            return False
+        
+        # TODO cache this call for reuse ?
+        depth = len(rpath.split('/')) # depth of children (l-1+1=l)
+        return len(tc.getList(prefix=rpath, 
+                              start_depth=depth, 
+                              stop_depth=depth,filter=True)) > 0
+
+
+    def _isFolderish(self, object): 
+       return ((hasattr(object, 'isPrincipiaFolderish') and
                 object.isPrincipiaFolderish==1) and
                 not (object.getId().startswith('.') or
                      object.getId().startswith('_')))
 
     def _folderishChildren(self, folder):
-        return [item for id, item in folder.objectItems()
-                if self._isFolderish(item)]
+       """GR: now returns part of a treecache structure. """
+       rpath = self.utool.getRpath(folder)
+       tc = self._getTreeCache(folder, rpath=rpath)
+       if tc is None:
+           # costly BBB fallback
+           return [{'rpath': '/'.join((rpath, id)), 
+                    'id': id} 
+                   for id, item in folder.objectItems()
+                   if self._isFolderish(item)]
+       depth = len(rpath.split('/')) # depth of children (l-1+1=l)
+       return tc.getList(prefix=rpath, start_depth=depth, stop_depth=depth,
+                         filter=True, order=True)
 
     def _getFolderItems(self, context_obj=None, show_docs=0,
                         max_title_words=0, context_rpath='',
                         context_is_portlet=0, recursive=0, **kw):
 
+       
+        self.log.debug(
+            "Enter _getFolderItems context_obj=%s, context_rpath=%s", 
+            context_obj, context_rpath)
+
         context = self.context
-        utool = getToolByName(context, 'portal_url')
-        base_url = utool.getBaseUrl()
+        base_url = self.utool.getBaseUrl()
 
         if context_is_portlet:
             context_obj = context.getLocalFolder()
@@ -178,10 +228,13 @@ class TreeNodeView(BrowserView):
             'relation': 'relation',
             'coverage': 'coverage'}
 
-        for object in bmf.contentValues():
-            if not self._isFolderish(object):
+        for item in self._folderishChildren(bmf):
+            # GR: simply avoid contentValues, did not change anything else
+            # once object variable is set
+            object_id = item['id']
+            if not bmf.hasObject(object_id):
                 continue
-            object_id = object.getId()
+            object = getattr(bmf, object_id)
 
             # filter out objects that cannot be viewed
             if not checkPerm('View', object):
@@ -265,12 +318,12 @@ class TreeNodeView(BrowserView):
             if display_description:
                 content = content or self._getContent(object)
                 if content is not None:
-                    description = getattr(content, 'Descriptichildrenon', '')
+                    description = getattr(content, 'Description', '')
 
             object_url = object.absolute_url_path()
 
             has_folderish_children = self._hasSubFolders(object)
-            children = [self.getNode(item.absolute_url_path())
+            children = [self.getNode(item['rpath'])
                         for item in self._folderishChildren(object)]
             if object_url == context_url:
                 selected = 'selected'
