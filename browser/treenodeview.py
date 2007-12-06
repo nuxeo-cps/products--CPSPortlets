@@ -82,9 +82,18 @@ class TreeNodeView(BrowserView):
         return folder_items
 
     def _rootRestrictedTraverse(self, path):
+        utool = self.utool
+        portal = utool.getPortalObject()
 
-        portal = self.utool.getPortalObject()
-        return portal.restrictedTraverse(path, default=None)
+        root = portal.restrictedTraverse(path, default=None)
+        if root is None:
+            portal_path = utool.getPortalPath()
+            # This may be important in VHM based setup with Apache in front,
+            # for example
+            if not path.startswith(portal_path):
+                path = portal_path + path
+                return portal.restrictedTraverse(path, default=None)
+        return root
 
     def _getRoot(self, root=''):
         if (root is None or root == '') and (self.request is None
@@ -160,7 +169,6 @@ class TreeNodeView(BrowserView):
     def _getFolderItems(self, context_obj=None, show_docs=0,
                         max_title_words=0, context_rpath='',
                         context_is_portlet=0, recursive=0, **kw):
-
 
         self.log.debug(
             "Enter _getFolderItems context_obj=%s, context_rpath=%s",
