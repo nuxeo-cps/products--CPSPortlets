@@ -7,16 +7,16 @@
                 src
                 string:${base_url}cpsskins_images/${toggle_icon2};
                 alt string:toggle;
-                class python:'nodeloader ' +  node['safe_url'].replace('url:.','').replace('.','-');
+                class python:'nodeloader ' + node['safe_url'];
                 "/>
     </tal:block>
     <tal:block tal:condition="node/dynamic">
       <img tal:condition="node/has_folderish_children"
-        tal:attributes="id python:'load-caller-%s' % node['id'];
+        tal:attributes="id python:'load-caller-%s' % node['safe_url'].replace('url:.','').replace('.','-');
                 src
                 string:${base_url}cpsskins_images/${toggle_icon};
                 alt string:toggle;
-                class python:'nodeloader ' +  node['safe_url'].replace('url:.','').replace('.','-');
+                class python:'nodeloader ' + node['safe_url'];
                 "/>
     </tal:block>
     <img tal:condition="not:node/has_folderish_children"
@@ -30,13 +30,13 @@
     </a>
   </div>
   <tal:block tal:condition="node/dynamic">
-    <div class="load-area" tal:attributes="id python:'load-area-%s' %  node['safe_url'].replace('url:.','').replace('.','-');"
+    <div class="load-area" tal:attributes="id python:'load-area-%s' % node['safe_url'].replace('url:.','').replace('.','-');"
         style="display:none" i18n:translate="loading_text">
     LOADING..
     </div>
   </tal:block>
   <tal:block tal:condition="not:node/dynamic">
-    <div class="load-area" tal:attributes="id python:'load-area-%s' %  node['safe_url'].replace('url:.','').replace('.','-');">
+    <div class="load-area" tal:attributes="id python:'load-area-%s' % node['id']">
         <ul style="list-style-type: none!important; padding-left: 20px!important
 "
             tal:omit-tag="not:node/has_folderish_children">
