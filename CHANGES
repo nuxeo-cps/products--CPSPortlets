@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- #1866 dynamic treeview fetches all documents from zodb
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
