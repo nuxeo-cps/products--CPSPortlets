@@ -40,7 +40,7 @@ url = homeFolder.absolute_url_path()
 if not url.startswith('/'):
     url = '/' + url
 
-rpath = utool.getRpathFromPath(url)
+rpath = utool.getRpath(homeFolder)
 # XXX maybe this should not be hardcoded
 depth = 0
 selected_tab = (current_uid + '/').startswith(rpath + '/')
