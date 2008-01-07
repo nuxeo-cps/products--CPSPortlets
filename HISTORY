@@ -1,4 +1,25 @@
 ===========================================================
+Package: CPSPortlets 0.15.2-rel1271525924
+===========================================================
+First release built by: gracinet at: 2008-01-07T21:25:38
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/0.15.2-rel1271525924
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/branches/rel1271525924@52379
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #1879: problem with 'members' and 'private space' tabs
+  under vhosting environment
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 0.15.1-rel1271525924
 ===========================================================
 First release built by: laurent at: 2007-12-10T17:21:31

@@ -6,8 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- #1879: problem with 'members' and 'private space' tabs
-  under vhosting environment
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
