@@ -1,4 +1,5 @@
 ##parameters=**kw
+# $Id$
 
 REQUEST = context.REQUEST
 breadcrumb_set = REQUEST.get('breadcrumb_set')
@@ -6,8 +7,6 @@ if breadcrumb_set != None:
     return breadcrumb_set
 
 utool = context.portal_url
-mtool = context.portal_membership
-checkPermission = mtool.checkPermission
 
 # display options
 parent = int(kw.get('parent', 0))
