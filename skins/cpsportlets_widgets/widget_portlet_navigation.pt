@@ -391,7 +391,7 @@ function swapFolder(img, toggle_plus, toggle_minus){
       </tal:block>
   </tal:block>
 
-  
+
   <tal:block condition="python: display == 'extended_site_map'">
     <tal:block
      define="show_icons ds/show_icons;
