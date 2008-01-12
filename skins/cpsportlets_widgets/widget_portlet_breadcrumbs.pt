@@ -34,7 +34,7 @@
       <tal:block define="last_item repeat/item/end">
         <strong tal:omit-tag="python: not (highlight_last_item and last_item)">
         <a href="" tal:attributes="href item/url;
-                                   title item/longtitle"
+                                   title item/longtitle|nothing"
          tal:content="python: item['title']" />
         </strong>
         <tal:block condition="not:last_item"
