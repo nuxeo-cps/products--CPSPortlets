@@ -6,9 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- #1866: Dynamic treeview is a performance nightmare.
-- #1879: Highlighting of member space doesn't work for "3tabs" portlet.
-- #1880: Some CPSPortlets code duplicates CPSCore.URLTool.getBreadCrumbsInfo.
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
