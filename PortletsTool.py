@@ -284,7 +284,7 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
                 {'id': obj.getId(),
                  'title': obj.title_or_id(),
                  'rpath': utool.getRelativeUrl(obj),
-                 'editable': checkPerm('ManagePortlets', obj),
+                 'editable': checkPerm(ManagePortlets, obj),
                 }
             )
             obj = obj._getOb(elem)
