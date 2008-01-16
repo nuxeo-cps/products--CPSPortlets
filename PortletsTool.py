@@ -294,7 +294,7 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
             {'id': bmf.getId(),
              'title': bmf.title_or_id(),
              'rpath': utool.getRelativeUrl(bmf),
-             'editable': checkPerm('Manage Portlets', bmf),
+             'editable': checkPerm(ManagePortlets, bmf),
             }
         )
         return folders
