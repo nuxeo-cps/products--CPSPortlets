@@ -21,5 +21,5 @@ portal = utool.getPortalObject()
 items = utool.getBreadCrumbsInfo(context=context, only_parents=parent,
                                  restricted=True,
                                  show_hidden_folders=display_hidden_folders,
-                                 first_item=first_item)
+                                 first_item=first_item, title_size=50)
 return items
