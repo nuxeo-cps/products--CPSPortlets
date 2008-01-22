@@ -524,7 +524,7 @@ msgid "portal_type_LanguagePortlet_description"
 msgstr "Affiche des actions de gestion de langues."
 
 msgid "cpsportlets_common_first_item_label"
-msgstr "Premier article"
+msgstr "Premier item affiché à partir de la position"
 
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Menu de navigation"
