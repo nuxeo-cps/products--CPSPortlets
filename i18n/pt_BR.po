@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2007-04-25 12:35default\n"
+"POT-Creation-Date: 2008-01-28 17:00default\n"
 "PO-Revision-Date: 2006-04-03 15:37-0300\n"
 "Last-Translator: Mario Olimpio de Menezes\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
@@ -531,7 +531,8 @@ msgstr "Primeiro item"
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Árvore de Navegação"
 
-msgid "portlets_nav_display_dyn_navtree_menu_label"
+#, fuzzy
+msgid "cpsportlets_nav_display_dynamic_navtree_menu_label"
 msgstr "Árvore dinâmica de navegação"
 
 msgid "cpsportlets_navigation_contextual_label"

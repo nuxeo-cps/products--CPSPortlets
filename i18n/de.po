@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CPS-Portlets CPS-3.3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-13 12:21default\n"
+"POT-Creation-Date: 2008-01-28 16:59default\n"
 "PO-Revision-Date: 2005-10-08 22:25+0200\n"
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: German <rheinland@dzug.org>\n"
@@ -103,8 +103,8 @@ msgstr "The context's relative path ending with a slash (e.g. 'sections/')"
 msgid "cpsportlet_guard_tales_user"
 msgstr "The user object"
 
-#.   <a attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
-#.                                  context.absolute_url() or utool()" href="">Advanced search</a>
+#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 #: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 msgid "cpsportlets_advanced_search"
@@ -189,7 +189,7 @@ msgstr "Erstelle eine Version in ..."
 msgid "cpsportlets_up_to"
 msgstr "Zurück zu ${up_id}"
 
-#.   <div attributes="id python:'load-area-%s' % node['id']" style="display:none" class="load-area">
+#.   <div style="display:none" class="load-area" attributes="id python:'load-area-%s' % node['id']">
 #.       LOADING..
 #.       </div>
 #: from ../browser/tree_macros.pt
@@ -541,8 +541,8 @@ msgstr "Erstes Objekt"
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Navigations Baum"
 
-msgid "portlets_nav_display_dyn_navtree_menu_label"
-msgstr "Abklappbarer Baum"
+msgid "cpsportlets_nav_display_dynamic_navtree_menu_label"
+msgstr "Unfolding navigation tree"
 
 msgid "cpsportlets_navigation_contextual_label"
 msgstr "Kontext Ansicht"

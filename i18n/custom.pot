@@ -356,7 +356,7 @@ msgstr ""
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr ""
 
-msgid "portlets_nav_display_dyn_navtree_menu_label"
+msgid "cpsportlets_nav_display_dynamic_navtree_menu_label"
 msgstr ""
 
 msgid "cpsportlets_navigation_contextual_label"

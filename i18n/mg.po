@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2007-04-25 12:35default\n"
+"POT-Creation-Date: 2008-01-28 16:59default\n"
 "PO-Revision-Date: 2005-04-13 17:27+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -660,14 +660,13 @@ msgstr "Affiche des actions de gestion de langues."
 
 #, fuzzy
 msgid "cpsportlets_common_first_item_label"
-msgstr "Premier article"
+msgstr "Premier item affiché à partir de la position"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Menu de navigation"
 
-#, fuzzy
-msgid "portlets_nav_display_dyn_navtree_menu_label"
+msgid "cpsportlets_nav_display_dynamic_navtree_menu_label"
 msgstr "Menu arborescent dépliable"
 
 #, fuzzy

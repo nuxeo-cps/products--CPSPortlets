@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets Italian Translation\n"
-"POT-Creation-Date: 2007-04-25 12:35default\n"
+"POT-Creation-Date: 2008-01-28 16:59default\n"
 "PO-Revision-Date: 2005-11-29 09:28+0100\n"
 "Last-Translator: Stefano Schintu <schintu@gmail.com>\n"
 "Language-Team: CPS Italian <schintu@gmail.com>\n"
@@ -547,8 +547,7 @@ msgstr "Primo elemento"
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Menù di navigazione"
 
-#, fuzzy
-msgid "portlets_nav_display_dyn_navtree_menu_label"
+msgid "cpsportlets_nav_display_dynamic_navtree_menu_label"
 msgstr "Menu arborescent dépliable"
 
 msgid "cpsportlets_navigation_contextual_label"

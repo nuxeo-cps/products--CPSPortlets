@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
-"POT-Creation-Date: 2007-04-25 12:35default\n"
+"POT-Creation-Date: 2008-01-28 17:00default\n"
 "PO-Revision-Date: 2004-09-28 03:28+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -529,7 +529,7 @@ msgstr "Premier item affiché à partir de la position"
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Menu de navigation"
 
-msgid "portlets_nav_display_dyn_navtree_menu_label"
+msgid "cpsportlets_nav_display_dynamic_navtree_menu_label"
 msgstr "Menu arborescent dépliable"
 
 msgid "cpsportlets_navigation_contextual_label"
