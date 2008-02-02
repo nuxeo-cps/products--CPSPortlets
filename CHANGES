@@ -7,6 +7,8 @@ New features
 Bug fixes
 ~~~~~~~~~
 - Fixed the translation of the dynamic navigation tree.
+- Removed now useless scripts for defining schemas, layouts, types and
+  vocabularies, since CPS is now using GenericSetup.
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
