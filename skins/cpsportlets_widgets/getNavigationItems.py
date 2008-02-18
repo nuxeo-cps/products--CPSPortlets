@@ -1,4 +1,6 @@
 ##parameters=context_obj=None, root_uids=[], REQUEST=None, **kw
+#
+# $Id$
 
 from Products.CPSNavigation.CPSNavigation import CPSNavigation
 
