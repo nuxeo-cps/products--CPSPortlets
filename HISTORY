@@ -1,4 +1,26 @@
 ===========================================================
+Package: CPSPortlets 1.0.4
+===========================================================
+First release built by: madarche at: 2008-02-22T15:57:00
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/1.0.4
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk@52586
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- Fixed the translation of the dynamic navigation tree.
+- Removed now useless scripts for defining schemas, layouts, types and
+  vocabularies, since CPS is now using GenericSetup.
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.0.3
 ===========================================================
 First release built by: madarche at: 2008-01-18T21:37:18
