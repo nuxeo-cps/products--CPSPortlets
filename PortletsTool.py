@@ -1,5 +1,5 @@
 # -*- coding: ISO-8859-15 -*-
-# Copyright (c) 2004-2007 Nuxeo SAS <http://nuxeo.com>
+# Copyright (c) 2004-2008 Nuxeo SAS <http://nuxeo.com>
 # Copyright (c) 2004-2006 Chalmers University of Technology <http://www.chalmers.se>
 # Authors :
 # Julien Anguenot <ja@nuxeo.com>
@@ -515,33 +515,33 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
 
     security.declareProtected(View, 'createPortlet')
     def createPortlet(self, ptype_id, context=None, **kw):
-        """Create a new portlet
+        """Create a new portlet.
 
-        Check where it has to be created globally within the tool or locally
-        within the PortletsTool. It's done byt checking the context. If context
-        is None then it's global otherweise we gonne look at the context to get
-        the portal ocontainer
+        If context is None the portlet is created within the PortletsTool
+        (portal_portlets), otherwise the portlet is created locally in portlet
+        container of the given context.
 
-        returns the id of the new portlet within portal_portlets or Portlet
-        Container or None if something happend
+        Returns the id of the newly created portlet or None if something has
+        failed.
         """
+        # Determine where the portlet has to be created
+        if context is None:
+            if not _checkPermission(ManagePortlets, self):
+                raise Unauthorized(
+                    "You are not allowed to globally create portlets")
 
-        # XXX possible to cope with that in a better way ?
-        if not _checkPermission(ManagePortlets, context):
-            raise Unauthorized(
-                "You are not allowed to create portlets within %s" %(
-                context.absolute_url()))
+            # Here, it's within the tool
+            destination = self
+        else:
+            if not _checkPermission(ManagePortlets, context):
+                raise Unauthorized(
+                    "You are not allowed to locally create portlets within %s"
+                    % (context.absolute_url()))
+            destination = self.getPortletContainer(context=context, create=1)
 
         # Check if the ptype_id is valid
         if ptype_id not in self.listPortletTypes():
             return None
-
-        # Check where we gonna create the portlet
-        if context is None:
-            # Here it's within the tool
-            destination = self
-        else:
-            destination = self.getPortletContainer(context=context, create=1)
 
         portlet_id = destination._createPortlet(ptype_id, **kw)
         getPublicEventService(self).notifyEvent('portlet_create', self, {})
