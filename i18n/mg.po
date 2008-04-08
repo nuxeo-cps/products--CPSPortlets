@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2008-01-28 16:59default\n"
+"POT-Creation-Date: 2008-01-28 17:00default\n"
 "PO-Revision-Date: 2005-04-13 17:27+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -82,7 +82,7 @@ msgstr "L'objet 'portal'"
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
 #, fuzzy
 msgid "cpsportlet_guard_tales_portlet"
-msgstr "L'object 'portlet'"
+msgstr "L'objet 'portlet'"
 
 #.   <dd>
 #.     The id of the PUBLISHED object</dd>
@@ -95,7 +95,7 @@ msgstr "L'identifiant de l'objet 'PUBLISHED'"
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
 #, fuzzy
 msgid "cpsportlet_guard_tales_request"
-msgstr "L'object 'REQUEST'"
+msgstr "L'objet 'REQUEST'"
 
 #.   <dd>
 #.     The context's relative path ending with a '/' (e.g. 'sections/')</dd>
@@ -103,7 +103,7 @@ msgstr "L'object 'REQUEST'"
 #, fuzzy
 msgid "cpsportlet_guard_tales_rpath_slash"
 msgstr ""
-"Le chemin relatif de l'objet courant finissant par un '/' (par ex. "
+"Le chemin relatif de l'objet 'context' finissant par un '/' (par ex. "
 "'sections/')"
 
 #.   <dd>The user object</dd>

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2008-01-28 16:59default\n"
+"POT-Creation-Date: 2008-04-08 14:58default\n"
 "PO-Revision-Date: 2005-02-27 19:35+0100\n"
 "Last-Translator: Jean-Marc Orliaguet <jmo@ita.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -96,7 +96,8 @@ msgstr "The REQUEST object"
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
 #, fuzzy
 msgid "cpsportlet_guard_tales_rpath_slash"
-msgstr "The context's relative path ending with a slash (e.g. 'sections/')"
+msgstr ""
+"The context object relative path ending with a slash (e.g. 'sections/')"
 
 #.   <dd>The user object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
@@ -104,8 +105,8 @@ msgstr "The context's relative path ending with a slash (e.g. 'sections/')"
 msgid "cpsportlet_guard_tales_user"
 msgstr "The user object"
 
-#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
-#.                                  context.absolute_url() or utool()">Advanced search</a>
+#.   <a attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()" href="">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 #: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 msgid "cpsportlets_advanced_search"
@@ -190,7 +191,7 @@ msgstr "Skapa en version i ..."
 msgid "cpsportlets_up_to"
 msgstr "Upp till ${up_id}"
 
-#.   <div style="display:none" class="load-area" attributes="id python:'load-area-%s' % node['id']">
+#.   <div attributes="id python:'load-area-%s' % node['id']" style="display:none" class="load-area">
 #.       LOADING..
 #.       </div>
 #: from ../browser/tree_macros.pt
