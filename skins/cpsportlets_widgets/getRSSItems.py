@@ -12,7 +12,7 @@ LOG_KEY = 'CPSPortlets.getRSSItems'
 
 DEFAULT_RSS_ITEM_DISPLAY = 'cpsportlet_rssitem_display'
 
-logger = getLogger(LOG_KEY)
+#logger = getLogger(LOG_KEY)
 
 rsstool = getattr(context, 'portal_rss', None)
 if rsstool is None:
@@ -33,8 +33,6 @@ for channel_id in channels_ids:
     data_items += lines
     if first_item > 1:
         data_items = data_items[first_item - 1:]
-
-logger.debug("data_items = %s" % str(data_items))
 
 # If there is more than 1 channel we need to sort the rss items to only keep the
 # more recent ones, up to max_items.
