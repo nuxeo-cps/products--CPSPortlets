@@ -1,4 +1,26 @@
 ===========================================================
+Package: CPSPortlets 1.0.6
+===========================================================
+First release built by: madarche at: 2008-04-18T12:57:35
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/1.0.6
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk@52768
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #1899: Workspace members cannot create blogs.
+- #1900: It should be possible to set multiple RSS channels in a RSS portlet.
+- French translation for "rpath_slash".
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.0.5
 ===========================================================
 First release built by: madarche at: 2008-03-19T17:49:44
