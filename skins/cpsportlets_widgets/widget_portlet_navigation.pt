@@ -124,7 +124,10 @@ function swapFolder(img, toggle_plus, toggle_minus){
     <tal:block define="
         cpsmcat nocall:here/translation_service;
         base_url utool/getBaseUrl;
-        items python: context.getFolderContents();
+        sort_by ds/sort_by|nothing;
+        sort_direction ds/sort_direction|nothing;
+        items python: context.getFolderContents(sort_by=sort_by,
+                                                direction=sort_direction);
         format string:one_column;
         no_form python:1;">
       <metal:block use-macro="here/content_lib_display_contents/macros/display_contents" />

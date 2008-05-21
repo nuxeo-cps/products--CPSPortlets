@@ -248,6 +248,9 @@ msgstr ""
 msgid "cpsportlets_folder_sort_by_date_label"
 msgstr ""
 
+msgid "cpsportlets_folder_sort_by_effective_label"
+msgstr ""
+
 msgid "cpsportlets_folder_sort_by_title_label"
 msgstr ""
 

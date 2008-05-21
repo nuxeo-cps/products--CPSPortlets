@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2008-04-08 14:58default\n"
+"POT-Creation-Date: 2008-05-21 17:30default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -100,8 +100,8 @@ msgstr ""
 msgid "cpsportlet_guard_tales_user"
 msgstr "The user object"
 
-#.   <a attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
-#.                                  context.absolute_url() or utool()" href="">Advanced search</a>
+#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 #: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 msgid "cpsportlets_advanced_search"
@@ -185,7 +185,7 @@ msgstr "Create a version in ..."
 msgid "cpsportlets_up_to"
 msgstr "Up to ${up_id}"
 
-#.   <div attributes="id python:'load-area-%s' % node['id']" style="display:none" class="load-area">
+#.   <div style="display:none" class="load-area" attributes="id python:'load-area-%s' % node['id']">
 #.       LOADING..
 #.       </div>
 #: from ../browser/tree_macros.pt
@@ -423,13 +423,16 @@ msgid "cpsportlets_navigation_sort_direction_label"
 msgstr "Sorting direction"
 
 msgid "cpsportlets_folder_sort_by_date_label"
-msgstr "Date"
+msgstr "by modification date"
+
+msgid "cpsportlets_folder_sort_by_effective_label"
+msgstr "by publishing date"
 
 msgid "cpsportlets_folder_sort_by_title_label"
-msgstr "Title"
+msgstr "by title"
 
 msgid "cpsportlets_folder_sort_by_author_label"
-msgstr "Author"
+msgstr "by author"
 
 msgid "cpsportlets_folder_sort_asc_label"
 msgstr "Ascending"

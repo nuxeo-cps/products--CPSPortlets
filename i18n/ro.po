@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ro\n"
-"POT-Creation-Date: 2008-04-08 14:58default\n"
+"POT-Creation-Date: 2008-05-21 17:28default\n"
 "PO-Revision-Date: 2006-03-02 18:01+0200\n"
 "Last-Translator: Dragos Ivan <div@nuxeo.com>\n"
 "Language-Team:  <en@li.org>\n"
@@ -99,8 +99,8 @@ msgstr ""
 msgid "cpsportlet_guard_tales_user"
 msgstr "Obiectul 'user'"
 
-#.   <a attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
-#.                                  context.absolute_url() or utool()" href="">Advanced search</a>
+#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 #: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 msgid "cpsportlets_advanced_search"
@@ -185,7 +185,7 @@ msgstr "Creeaza o versiune in..."
 msgid "cpsportlets_up_to"
 msgstr "Inapoi la"
 
-#.   <div attributes="id python:'load-area-%s' % node['id']" style="display:none" class="load-area">
+#.   <div style="display:none" class="load-area" attributes="id python:'load-area-%s' % node['id']">
 #.       LOADING..
 #.       </div>
 #: from ../browser/tree_macros.pt
@@ -424,6 +424,10 @@ msgstr "Directia de sortare"
 
 msgid "cpsportlets_folder_sort_by_date_label"
 msgstr "Data"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_by_effective_label"
+msgstr "by publishing date"
 
 msgid "cpsportlets_folder_sort_by_title_label"
 msgstr "Titlu"

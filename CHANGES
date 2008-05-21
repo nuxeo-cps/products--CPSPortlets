@@ -3,7 +3,8 @@ Requires
 -
 New features
 ~~~~~~~~~~~~
--
+- #1910: Provide options "sort_by", "sort_direction" to the "Folder contents"
+  portlet.
 Bug fixes
 ~~~~~~~~~
 -

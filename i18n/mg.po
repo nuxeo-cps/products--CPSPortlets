@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2008-01-28 17:00default\n"
+"POT-Creation-Date: 2008-05-21 17:28default\n"
 "PO-Revision-Date: 2005-04-13 17:27+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -529,6 +529,10 @@ msgstr "Direction du tri"
 #, fuzzy
 msgid "cpsportlets_folder_sort_by_date_label"
 msgstr "leur date de modification"
+
+#, fuzzy
+msgid "cpsportlets_folder_sort_by_effective_label"
+msgstr "leur date de publication"
 
 #, fuzzy
 msgid "cpsportlets_folder_sort_by_title_label"
