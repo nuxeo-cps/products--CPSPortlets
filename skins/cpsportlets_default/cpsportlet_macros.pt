@@ -47,7 +47,7 @@
       tal:attributes="href string:${portlet/absolute_url}?export=${format}&path=${path};
                       title string:cpsportlets_syndication_${format}_help">
         <tal:block condition="short_syndication_formats"
-         content="voc/?format|nothing" />
+         content="python:voc.get(format)"/>
         <tal:block condition="not:short_syndication_formats"
          i18n:translate=""
          content="python:voc.getMsgid(key=format)" />
