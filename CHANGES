@@ -7,7 +7,9 @@ New features
   portlet.
 Bug fixes
 ~~~~~~~~~
--
+- Made the "extended_site_map" Navigation Portlet defined in
+  widget_portlet_navigation.pt take into account the display_hidden_folders
+  parameter for sub-folders.
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
