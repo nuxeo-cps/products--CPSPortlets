@@ -479,7 +479,6 @@ function swapFolder(img, toggle_plus, toggle_minus){
                  context_rpath=context_rpath,
                  context_obj=context,
                  start_depth=int(rel_depth),
-                 end_depth=int(rel_depth)+1,
                  display_description=display_description,
                  display_hidden_folders=display_hidden_folders,
                  sort_by=sort_by,
@@ -491,23 +490,23 @@ function swapFolder(img, toggle_plus, toggle_minus){
           <a tal:attributes="href item/url;
                              class linkclass">
             <tal:block condition="show_icons"
-             content="structure item/icon_tag" />
+                       content="structure item/icon_tag" />
             <tal:block content="item/title" />
           </a>
-          <tal:block condition="python: item['open']"
-           define="subfolderItems python: context.getFolderItems(context_obj=context, show_docs=int(show_docs), sort_by=sort_by, display_hidden_folders=display_hidden_folders)"
-     repeat="subitem subfolderItems">
-          <a style="margin-left: 1em"
-             tal:attributes="href subitem/url;
-                             class linkclass">
-            <tal:block condition="show_icons"
-             content="structure subitem/icon_tag" />
-            <tal:block content="subitem/title" />
-            <span class="itemDescription"
-             tal:define="description item/description"
-             tal:condition="python: description and display_description"
-             tal:content="description" />
-          </a>
+          <tal:block condition="python:item['open']"
+                     define="subfolderItems python:context.getFolderItems(context_obj=context, show_docs=int(show_docs), sort_by=sort_by, display_hidden_folders=display_hidden_folders)"
+                     repeat="subitem subfolderItems">
+            <a style="margin-left: 1em"
+               tal:attributes="href subitem/url;
+                               class linkclass">
+              <tal:block condition="show_icons"
+                         content="structure subitem/icon_tag" />
+              <tal:block content="subitem/title" />
+              <span class="itemDescription"
+               tal:define="description item/description"
+               tal:condition="python: description and display_description"
+               tal:content="description" />
+            </a>
           </tal:block>
         </li>
       </ul>
