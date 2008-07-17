@@ -479,6 +479,7 @@ function swapFolder(img, toggle_plus, toggle_minus){
                  context_rpath=context_rpath,
                  context_obj=context,
                  start_depth=int(rel_depth),
+                 end_depth=int(rel_depth)+1,
                  display_description=display_description,
                  display_hidden_folders=display_hidden_folders,
                  sort_by=sort_by,
