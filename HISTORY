@@ -1,4 +1,28 @@
 ===========================================================
+Package: CPSPortlets 1.1.0
+===========================================================
+First release built by: madarche at: 2008-08-29T12:02:23
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/1.1.0
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk@52929
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+- #1910: Provide options "sort_by", "sort_direction" to the "Folder contents"
+  portlet.
+Bug fixes
+~~~~~~~~~
+- Made the "collapsible_menu" Navigation Portlet defined in
+  widget_portlet_navigation.pt take into account the display_hidden_folders
+  parameter for sub-folders.
+- #1915: Add a "start depth" option to the "Navigation tree" portlet.
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.0.6
 ===========================================================
 First release built by: madarche at: 2008-04-18T12:57:35
