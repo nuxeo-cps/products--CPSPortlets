@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets Italian Translation\n"
-"POT-Creation-Date: 2008-08-28 17:28default\n"
+"POT-Creation-Date: 2008-08-29 11:57default\n"
 "PO-Revision-Date: 2005-11-29 09:28+0100\n"
 "Last-Translator: Stefano Schintu <schintu@gmail.com>\n"
 "Language-Team: CPS Italian <schintu@gmail.com>\n"
@@ -99,8 +99,8 @@ msgstr "Il percorso relativo al contesto seguito da / (p.es.: 'sezioni/)"
 msgid "cpsportlet_guard_tales_user"
 msgstr "L'oggetto utente"
 
-#.   <a href="" attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
-#.                                  context.absolute_url() or utool()">Advanced search</a>
+#.   <a attributes="href string:${adv_url}/${advanced_search_form}" condition="advanced_search_link" define="adv_url python:contextual_search and
+#.                                  context.absolute_url() or utool()" href="">Advanced search</a>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 #: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 msgid "cpsportlets_advanced_search"
@@ -185,7 +185,7 @@ msgstr "Traduci in ..."
 msgid "cpsportlets_up_to"
 msgstr "Ritorna a ${up_id}"
 
-#.   <div style="display:none" class="load-area" attributes="id python:'load-area-%s' % node['id']">
+#.   <div attributes="id python:'load-area-%s' % node['id']" style="display:none" class="load-area">
 #.       LOADING..
 #.       </div>
 #: from ../browser/tree_macros.pt
