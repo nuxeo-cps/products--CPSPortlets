@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2008-05-21 17:30default\n"
+"POT-Creation-Date: 2008-08-28 17:29default\n"
 "PO-Revision-Date: 2006-04-03 15:37-0300\n"
 "Last-Translator: Mario Olimpio de Menezes\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
@@ -624,6 +624,10 @@ msgstr "Proteger este portlet de ser sobrescrito?"
 
 msgid "cpsportlets_document_render_container_label"
 msgstr "Renderizar o continente (container)"
+
+#, fuzzy
+msgid "cpsportlets_navigation_start_depth_label"
+msgstr "Profundidade relativa"
 
 msgid "cpsportlets_navigation_end_depth_label"
 msgstr "Profundidade final"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: en\n"
-"POT-Creation-Date: 2008-05-21 17:30default\n"
+"POT-Creation-Date: 2008-08-28 17:29default\n"
 "PO-Revision-Date: 2004-09-28 03:27+0200\n"
 "Last-Translator: Julien Anguenot <ja@nuxeo.com>\n"
 "Language-Team: \n"
@@ -616,6 +616,9 @@ msgstr "Protect this portlet from being overridden?"
 
 msgid "cpsportlets_document_render_container_label"
 msgstr "Render the container"
+
+msgid "cpsportlets_navigation_start_depth_label"
+msgstr "Start depth"
 
 msgid "cpsportlets_navigation_end_depth_label"
 msgstr "End depth"

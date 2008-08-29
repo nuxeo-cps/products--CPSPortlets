@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: default\n"
-"POT-Creation-Date: 2008-05-21 17:30default\n"
+"POT-Creation-Date: 2008-08-28 17:29default\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Your Name <your@email>\n"
 "Language-Team: Name <email>\n"
@@ -608,6 +608,9 @@ msgid "cpsportlets_common_disable_override_label"
 msgstr ""
 
 msgid "cpsportlets_document_render_container_label"
+msgstr ""
+
+msgid "cpsportlets_navigation_start_depth_label"
 msgstr ""
 
 msgid "cpsportlets_navigation_end_depth_label"

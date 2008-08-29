@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets Italian Translation\n"
-"POT-Creation-Date: 2008-05-21 17:28default\n"
+"POT-Creation-Date: 2008-08-28 17:28default\n"
 "PO-Revision-Date: 2005-11-29 09:28+0100\n"
 "Last-Translator: Stefano Schintu <schintu@gmail.com>\n"
 "Language-Team: CPS Italian <schintu@gmail.com>\n"
@@ -643,6 +643,10 @@ msgstr "Proteggi questo portlet dalla sovrascrittura ?"
 
 msgid "cpsportlets_document_render_container_label"
 msgstr "Genera una renderizzazione del contenitore"
+
+#, fuzzy
+msgid "cpsportlets_navigation_start_depth_label"
+msgstr "Profondeur de départ"
 
 msgid "cpsportlets_navigation_end_depth_label"
 msgstr "Profondità di arrivo"

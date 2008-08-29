@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2008-05-21 17:28default\n"
+"POT-Creation-Date: 2008-08-28 17:29default\n"
 "PO-Revision-Date: 2007-05-14 20:13+0100\n"
 "Last-Translator: xosé francisco martínez reboiras <xosereboiras@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
@@ -614,6 +614,10 @@ msgstr "¿Evitar que este portlet sexa sobreescrito?"
 
 msgid "cpsportlets_document_render_container_label"
 msgstr "Visualizar o contedor"
+
+#, fuzzy
+msgid "cpsportlets_navigation_start_depth_label"
+msgstr "Start depth"
 
 msgid "cpsportlets_navigation_end_depth_label"
 msgstr "Profundidade final"

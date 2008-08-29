@@ -449,6 +449,9 @@ msgstr ""
 msgid "cpsportlets_document_render_container_label"
 msgstr ""
 
+msgid "cpsportlets_navigation_start_depth_label"
+msgstr ""
+
 msgid "cpsportlets_navigation_end_depth_label"
 msgstr ""
 

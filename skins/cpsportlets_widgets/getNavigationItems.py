@@ -2,7 +2,11 @@
 #
 # $Id$
 
+from logging import getLogger
+
 from Products.CPSNavigation.CPSNavigation import CPSNavigation
+
+logger = getLogger('getNavigationItems')
 
 if root_uids is None:
     return []
@@ -18,6 +22,9 @@ base_url = utool.getBaseUrl()
 context_rpath = kw.get('context_rpath')
 start_depth = kw.get('start_depth', 0)
 end_depth = kw.get('end_depth', 0)
+
+## logger.debug("start, end = %s, %s"
+##              % (start_depth, end_depth))
 
 # contextual navigation
 contextual = int(kw.get('contextual', 0)) == 1

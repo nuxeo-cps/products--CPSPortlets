@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2008-04-08 14:58default\n"
+"POT-Creation-Date: 2008-08-28 17:28default\n"
 "PO-Revision-Date: 2007-05-31 12:26+0100\n"
 "Language-Team: valencià/català. <juangus@lasalle.es>\n"
 "MIME-Version: 1.0\n"
@@ -609,6 +609,10 @@ msgstr "Evitar que es sobreescriga este portlet?"
 
 msgid "cpsportlets_document_render_container_label"
 msgstr "Visualitzar el contenidor"
+
+#, fuzzy
+msgid "cpsportlets_navigation_start_depth_label"
+msgstr "Relative depth"
 
 msgid "cpsportlets_navigation_end_depth_label"
 msgstr "Profunditat final"

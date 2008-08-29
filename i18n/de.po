@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS-Portlets CPS-3.3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-21 17:28default\n"
+"POT-Creation-Date: 2008-08-28 17:28default\n"
 "PO-Revision-Date: 2005-10-08 22:25+0200\n"
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: German <rheinland@dzug.org>\n"
@@ -636,6 +636,10 @@ msgstr "Schützen dieses Portlets vor Überschreiben? "
 
 msgid "cpsportlets_document_render_container_label"
 msgstr "Rendern dieses Behälters?"
+
+#, fuzzy
+msgid "cpsportlets_navigation_start_depth_label"
+msgstr "Start depth"
 
 msgid "cpsportlets_navigation_end_depth_label"
 msgstr "End Tiefe"
