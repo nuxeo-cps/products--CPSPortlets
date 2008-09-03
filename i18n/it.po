@@ -11,14 +11,14 @@ msgstr ""
 "Last-Translator: Stefano Schintu <schintu@gmail.com>\n"
 "Language-Team: CPS Italian <schintu@gmail.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Preferred-encodings: utf-8 latin1\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
 "Language-Code: it\n"
 "Language-Name: Italian\n"
 "Domain: default\n"
-"X-Poedit-Language: Italian\n"
-"X-Poedit-Country: ITALY\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Preferred-Encodings: utf-8\n"
 
 #.   <input type="submit" value=" Add " />
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
@@ -143,7 +143,7 @@ msgstr "Responsabile(i)"
 #: from ../skins/cpsportlets_default/cpsportlet_guard.pt
 msgid "cpsportlets_guard_explanation"
 msgstr ""
-"Il modulo di controllo consente di controllare la visibilità dei portlet. "
+"Il modulo di controllo consente di controllare la visibilitÃ  dei portlet. "
 "Tutte le condizioni che vengono inserite devono essere vere per poter "
 "visualizzare il portlet."
 
@@ -195,7 +195,7 @@ msgstr ""
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
 msgid "this export format has not been implemented yet"
-msgstr "questo formato di esportazione non è stato ancora implementato"
+msgstr "questo formato di esportazione non Ã¨ stato ancora implementato"
 
 msgid "label_cpsportlets_provider"
 msgstr "Fornitore"
@@ -220,7 +220,7 @@ msgstr "Portlet di ricerca"
 
 #, fuzzy
 msgid "portal_type_MainContentPortlet_title"
-msgstr "Portlet de contenu de la région principale"
+msgstr "Portlet de contenu de la rÃ©gion principale"
 
 msgid "portal_type_InternalLinksPortlet_title"
 msgstr "Portlet dei collegamenti interni"
@@ -259,10 +259,10 @@ msgid "cpsportlets_internallinks_links_label"
 msgstr "Collegamenti interni"
 
 msgid "cpsportlets_portlet_created_psm"
-msgstr "Il portlet è stato creato."
+msgstr "Il portlet Ã¨ stato creato."
 
 msgid "cpsportlets_content_translated_psm"
-msgstr "Il contenuto è stato tradotto."
+msgstr "Il contenuto Ã¨ stato tradotto."
 
 msgid "cpsportlets_bcs_display_dropdown_list_label"
 msgstr "Lista a cascata"
@@ -288,7 +288,7 @@ msgstr "Categorie di azioni da visualizzare"
 
 #, fuzzy
 msgid "cpsportlets_actions_order_label"
-msgstr "Actions avec un ordre spécifique"
+msgstr "Actions avec un ordre spÃ©cifique"
 
 msgid "cpsportlets_search_context_is_portlet_label"
 msgstr ""
@@ -296,7 +296,7 @@ msgstr ""
 
 msgid "cpsportlets_nav_context_is_portlet_label"
 msgstr ""
-"Utilizza, contestualmente, la cartella internamente alla quale è contenuto "
+"Utilizza, contestualmente, la cartella internamente alla quale Ã¨ contenuto "
 "il portlet"
 
 msgid "cpsportlets_content_search_related_label"
@@ -385,7 +385,7 @@ msgstr "Contenuti della cartella corrente"
 
 #, fuzzy
 msgid "cpsportlets_nav_display_folder_contents_detailed_label"
-msgstr "Contenu du répertoire* (détailé)"
+msgstr "Contenu du rÃ©pertoire* (dÃ©tailÃ©)"
 
 msgid "cpsportlets_nav_display_folder_contents_dropdown_list_label"
 msgstr "Contenuto delle cartelle (menu a cascata)"
@@ -397,7 +397,7 @@ msgid "cpsportlets_nav_display_up_to_parent_label"
 msgstr "Ritorna alla cartella superiore:"
 
 msgid "cpsportlets_nav_display_collapsible_menu_label"
-msgstr "Menù estensibile (comparsa/scomparsa)"
+msgstr "MenÃ¹ estensibile (comparsa/scomparsa)"
 
 msgid "cpsportlets_additem_show_icons_label"
 msgstr "Mostra le icone"
@@ -406,10 +406,10 @@ msgid "cpsportlets_additem_dropdown_list_label"
 msgstr "Lista a cascata"
 
 msgid "cpsportlets_additem_standard_menu_label"
-msgstr "Menù standard"
+msgstr "MenÃ¹ standard"
 
 msgid "cpsportlets_navigation_rel_depth_label"
-msgstr "Profondità relativa"
+msgstr "ProfonditÃ  relativa"
 
 msgid "cpsportlets_navigation_show_docs_label"
 msgstr "Visualizza gli oggetti"
@@ -465,7 +465,7 @@ msgid "cpsportlets_custom_render_method_label"
 msgstr "Metodo di renderizzazione (zpt, py, etc.):"
 
 msgid "cpsportlets_translation_deleted_psm"
-msgstr "La traduzione è stata eliminata."
+msgstr "La traduzione Ã¨ stata eliminata."
 
 msgid "button_portlet_management"
 msgstr "Gestione dei portlets"
@@ -505,11 +505,11 @@ msgstr "Visualizza i risultati di una ricerca dei contenuti."
 
 msgid "portal_type_NavigationPortlet_description"
 msgstr ""
-"Visualizza un menù di navigazione, il contenuto della cartella corrente, ecc."
+"Visualizza un menÃ¹ di navigazione, il contenuto della cartella corrente, ecc."
 
 msgid "portal_type_AddItemPortlet_description"
 msgstr ""
-"Visualizza un menù per la creazioni di oggetti internamente ad una cartella."
+"Visualizza un menÃ¹ per la creazioni di oggetti internamente ad una cartella."
 
 msgid "portal_type_InternalLinksPortlet_description"
 msgstr "Visualizza una lista dei collegamenti interni."
@@ -549,19 +549,19 @@ msgid "cpsportlets_common_first_item_label"
 msgstr "Primo elemento"
 
 msgid "cpsportlets_nav_display_navtree_menu_label"
-msgstr "Menù di navigazione"
+msgstr "MenÃ¹ di navigazione"
 
 msgid "cpsportlets_nav_display_dynamic_navtree_menu_label"
-msgstr "Menu arborescent dépliable"
+msgstr "Menu arborescent dÃ©pliable"
 
 msgid "cpsportlets_navigation_contextual_label"
 msgstr "Visualizzazione contestuale"
 
 msgid "cpsportlets_display_mode_label"
-msgstr "Modalità di visualizzazione"
+msgstr "ModalitÃ  di visualizzazione"
 
 msgid "cpsportlets_display_mode_help"
-msgstr "I portlet segnato con un * subiranno delle modifiche già programmate."
+msgstr "I portlet segnato con un * subiranno delle modifiche giÃ  programmate."
 
 msgid "w__imagelink"
 msgstr "Collegamento immagine"
@@ -646,10 +646,10 @@ msgstr "Genera una renderizzazione del contenitore"
 
 #, fuzzy
 msgid "cpsportlets_navigation_start_depth_label"
-msgstr "Profondeur de départ"
+msgstr "Profondeur de dÃ©part"
 
 msgid "cpsportlets_navigation_end_depth_label"
-msgstr "Profondità di arrivo"
+msgstr "ProfonditÃ  di arrivo"
 
 msgid "cpsportlets_internallinks_max_title_words_label"
 msgstr "Numero di parole contenute nel titolo"

@@ -3,19 +3,19 @@ msgstr ""
 "Project-Id-Version: CPSPortlets\n"
 "POT-Creation-Date: 2008-08-29 11:58default\n"
 "PO-Revision-Date: 2006-05-07 09:05+0100\n"
-"Last-Translator: Jes˙s MartÌn <jesusmartin@lasalle.es>\n"
-"Language-Team: espaÒol <jesusmartin@lasalle.es>\n"
+"Last-Translator: Jes√∫s Mart√≠n <jesusmartin@lasalle.es>\n"
+"Language-Team: espa√±ol <jesusmartin@lasalle.es>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Preferred-encodings: utf-8 latin1\n"
 "X-Generator: KBabel 1.3\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: SPAIN\n"
 "Language-Code: es\n"
 "Language-Name: Spanish\n"
 "Domain: default\n"
-"X-Poedit-Language: Spanish\n"
-"X-Poedit-Country: SPAIN\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Preferred-Encodings: utf-8\n"
 
 #.   <input type="submit" value=" Add " />
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
@@ -51,13 +51,13 @@ msgstr "Enviar cambios"
 #.           Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
-msgstr "AÒadir nuevo contenido"
+msgstr "A√±adir nuevo contenido"
 
 #.   <span>
 #.     The following names are defined for the TALES expression</span>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
 msgid "cpsportlet_guard_tales_explain"
-msgstr "Los siguientes nombres son definidos por la expresiÛn TALES"
+msgstr "Los siguientes nombres son definidos por la expresi√≥n TALES"
 
 #.   <dd>The context</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
@@ -83,7 +83,7 @@ msgstr "El ID de un objeto PUBLICADO"
 #.   <dd>The REQUEST object</dd>
 #: from ../skins/cpsportlets_default/cpsportlet_guard_tales_help.pt
 msgid "cpsportlet_guard_tales_request"
-msgstr "El objeto \"REQUEST\" (peticiÛn)"
+msgstr "El objeto \"REQUEST\" (petici√≥n)"
 
 #.   <dd>
 #.     The context's relative path ending with a '/' (e.g. 'sections/')</dd>
@@ -102,7 +102,7 @@ msgstr "El objeto \"usuario\""
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
 #: ../skins/cpsportlets_widgets/widget_portlet_search_utf8.pt
 msgid "cpsportlets_advanced_search"
-msgstr "B˙squeda avanzada"
+msgstr "B√∫squeda avanzada"
 
 #.   <button type="submit">OK</button>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
@@ -117,12 +117,12 @@ msgstr "Cambiar idioma:"
 #.   <p>Delete translation ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
-msgstr "Borrar la versiÛn en..."
+msgstr "Borrar la versi√≥n en..."
 
 #.   <td condition="display_description">cpsportlets_extended_site_map_description</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 msgid "cpsportlets_extended_site_map_description"
-msgstr "DescripciÛn"
+msgstr "Descripci√≥n"
 
 #.   <td>cpsportlets_extended_site_map_folder</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
@@ -149,7 +149,7 @@ msgstr ""
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
 msgid "cpsportlets_install_cpsskins"
 msgstr ""
-"Para administrar portlets (componentes de presentaciÛn), instale CPSSkins."
+"Para administrar portlets (componentes de presentaci√≥n), instale CPSSkins."
 
 #.   <block>located in the folder</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
@@ -159,7 +159,7 @@ msgstr "localizado en la carpeta"
 #.   <h1>Portlet management</h1>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
 msgid "cpsportlets_portlet_management_heading"
-msgstr "AdministraciÛn de portlets (componentes de presentaciÛn)"
+msgstr "Administraci√≥n de portlets (componentes de presentaci√≥n)"
 
 #.   <block>cpsportlets_search_in</block>
 #: from ../skins/cpsportlets_widgets/widget_portlet_search.pt
@@ -170,12 +170,12 @@ msgstr "Buscar en"
 #.   <p>Switch to ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_switch_language"
-msgstr "Ver la versiÛn en..."
+msgstr "Ver la versi√≥n en..."
 
 #.   <p>Translate into ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_translate_into"
-msgstr "Crear una versiÛn en..."
+msgstr "Crear una versi√≥n en..."
 
 #.   <span>Up to
 #.             ${up_id (tal content="item/title")}
@@ -194,13 +194,13 @@ msgstr ""
 #.   <span>this export format has not been implemented yet</span>
 #: from ../skins/cpsportlets_default/cpsportlet_macros.pt
 msgid "this export format has not been implemented yet"
-msgstr "este formato de exportaciÛn todavÌa no se ha implementado"
+msgstr "este formato de exportaci√≥n todav√≠a no se ha implementado"
 
 msgid "label_cpsportlets_provider"
 msgstr "Proveedor"
 
 msgid "label_cpsportlets_title"
-msgstr "TÌtulo del portlet"
+msgstr "T√≠tulo del portlet"
 
 msgid "label_cpsportlets_i18n"
 msgstr "Traducir el contenido del portlet"
@@ -215,16 +215,16 @@ msgid "portal_type_TextPortlet_title"
 msgstr "Portlet de texto"
 
 msgid "portal_type_SearchPortlet_title"
-msgstr "Portlet de b˙squeda"
+msgstr "Portlet de b√∫squeda"
 
 msgid "portal_type_MainContentPortlet_title"
-msgstr "Portlet de contenido del ·rea principal"
+msgstr "Portlet de contenido del √°rea principal"
 
 msgid "portal_type_InternalLinksPortlet_title"
 msgstr "Portlet de enlaces internos"
 
 msgid "portal_type_AddItemPortlet_title"
-msgstr "Portlet de creaciÛn de contenidos"
+msgstr "Portlet de creaci√≥n de contenidos"
 
 msgid "portal_type_BreadcrumbsPortlet_title"
 msgstr "Portlet de ruta"
@@ -239,7 +239,7 @@ msgid "portal_type_LanguagePortlet_title"
 msgstr "Portlet de idiomas"
 
 msgid "portal_type_NavigationPortlet_title"
-msgstr "Portlet de navegaciÛn"
+msgstr "Portlet de navegaci√≥n"
 
 msgid "portal_type_DocumentPortlet_title"
 msgstr "Portlet de documentos"
@@ -251,7 +251,7 @@ msgid "action_portlets"
 msgstr "Administrar portlets"
 
 msgid "action_canvas"
-msgstr "DiseÒo"
+msgstr "Dise√±o"
 
 msgid "cpsportlets_internallinks_links_label"
 msgstr "Enlaces internos"
@@ -269,28 +269,28 @@ msgid "cpsportlets_bcs_display_horizontal_trail_label"
 msgstr "Rastro horizontal"
 
 msgid "cpsportlets_bcs_display_site_root_label"
-msgstr "Mostrar el directorio raÌz."
+msgstr "Mostrar el directorio ra√≠z."
 
 msgid "cpsportlets_bcs_highlight_last_item_label"
-msgstr "Resaltar los ˙ltimos Ìtem desplegables"
+msgstr "Resaltar los √∫ltimos √≠tem desplegables"
 
 msgid "cpsportlets_advanced_search_link_label"
-msgstr "Poner un enlace al formulario de b˙squeda avanzada"
+msgstr "Poner un enlace al formulario de b√∫squeda avanzada"
 
 msgid "cpsportlets_contextual_search_choice_label"
-msgstr "Mostrar la opciÛn de b˙squeda contextual"
+msgstr "Mostrar la opci√≥n de b√∫squeda contextual"
 
 msgid "cpsportlets_action_categories_label"
-msgstr "CategorÌas a mostrar"
+msgstr "Categor√≠as a mostrar"
 
 msgid "cpsportlets_actions_order_label"
-msgstr "CategorÌas de acciones a mostrar"
+msgstr "Categor√≠as de acciones a mostrar"
 
 msgid "cpsportlets_search_context_is_portlet_label"
-msgstr "Ejecutar la b˙squda empezando por la ubicaciÛn del portlet"
+msgstr "Ejecutar la b√∫squda empezando por la ubicaci√≥n del portlet"
 
 msgid "cpsportlets_nav_context_is_portlet_label"
-msgstr "Utilizar la localizaciÛn del portlet como contexto"
+msgstr "Utilizar la localizaci√≥n del portlet como contexto"
 
 msgid "cpsportlets_content_search_related_label"
 msgstr "Documentos relacionados"
@@ -305,10 +305,10 @@ msgid "cpsportlets_content_search_pending_label"
 msgstr "Documentos pendientes"
 
 msgid "cpsportlets_content_search_last_modified_label"
-msgstr "⁄ltimos documentos modificados"
+msgstr "√öltimos documentos modificados"
 
 msgid "cpsportlets_content_search_last_published_label"
-msgstr "⁄ltimos documentos publicados"
+msgstr "√öltimos documentos publicados"
 
 msgid "cpsportlets_content_search_recent_label"
 msgstr "Documentos recientes"
@@ -326,7 +326,7 @@ msgid "cpsportlets_content_sort_on_Date_label"
 msgstr "Fecha"
 
 msgid "cpsportlets_content_sort_on_Title_label"
-msgstr "TÌtulo"
+msgstr "T√≠tulo"
 
 msgid "cpsportlets_content_sort_on_review_state_label"
 msgstr "Revisar estado"
@@ -338,10 +338,10 @@ msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Invertir el orden en que se muestran"
 
 msgid "cpsportlets_common_render_method_label"
-msgstr "Mostrar mÈtodo (.zpt, .py, etc.)"
+msgstr "Mostrar m√©todo (.zpt, .py, etc.)"
 
 msgid "cpsportlets_common_max_items_label"
-msgstr "N˙mero de Ìtem"
+msgstr "N√∫mero de √≠tem"
 
 msgid "cpsportlets_content_folder_path_label"
 msgstr "Directorio base"
@@ -350,16 +350,16 @@ msgid "cpsportlets_content_searchable_types_label"
 msgstr "Tipos de contenido a mostrar"
 
 msgid "cpsportlets_content_contextual_label"
-msgstr "B˙squeda contextual"
+msgstr "B√∫squeda contextual"
 
 msgid "cpsportlets_language_action_label"
-msgstr "AcciÛn"
+msgstr "Acci√≥n"
 
 msgid "cpsportlets_language_action_translate_label"
 msgstr "Traducir"
 
 msgid "cpsportlets_language_action_delete_translation_label"
-msgstr "Borrar traducciÛn"
+msgstr "Borrar traducci√≥n"
 
 msgid "cpsportlets_language_action_change_label"
 msgstr "Cambiar idioma"
@@ -371,7 +371,7 @@ msgid "portal_type_ImagePortlet_title"
 msgstr "Portlet de imagen"
 
 msgid "cpsportlets_nav_display_vertical_breadcrumbs_menu_label"
-msgstr "Men˙ vertical desplegable*"
+msgstr "Men√∫ vertical desplegable*"
 
 msgid "cpsportlets_nav_display_folder_contents_menu_label"
 msgstr "Contenidos de la carpeta"
@@ -389,7 +389,7 @@ msgid "cpsportlets_nav_display_up_to_parent_label"
 msgstr "Subir al directorio de nivel superior*"
 
 msgid "cpsportlets_nav_display_collapsible_menu_label"
-msgstr "Men˙ plegable"
+msgstr "Men√∫ plegable"
 
 msgid "cpsportlets_additem_show_icons_label"
 msgstr "Mostrar iconos"
@@ -398,7 +398,7 @@ msgid "cpsportlets_additem_dropdown_list_label"
 msgstr "Lista desplegable"
 
 msgid "cpsportlets_additem_standard_menu_label"
-msgstr "Men˙ est·ndar"
+msgstr "Men√∫ est√°ndar"
 
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Profundidad relativa"
@@ -416,10 +416,10 @@ msgid "cpsportlets_navigation_show_icons_label"
 msgstr "Mostrar iconos de los documentos"
 
 msgid "cpsportlets_navigation_sort_by_label"
-msgstr "Ordenar Ìtem por"
+msgstr "Ordenar √≠tem por"
 
 msgid "cpsportlets_navigation_sort_direction_label"
-msgstr "DirecciÛn de ordenaciÛn"
+msgstr "Direcci√≥n de ordenaci√≥n"
 
 msgid "cpsportlets_folder_sort_by_date_label"
 msgstr "Fecha"
@@ -429,7 +429,7 @@ msgid "cpsportlets_folder_sort_by_effective_label"
 msgstr "by publishing date"
 
 msgid "cpsportlets_folder_sort_by_title_label"
-msgstr "TÌtulo"
+msgstr "T√≠tulo"
 
 msgid "cpsportlets_folder_sort_by_author_label"
 msgstr "Autor"
@@ -447,13 +447,13 @@ msgid "cpsportlets_actions_show_icons_label"
 msgstr "Mostrar iconos de acciones"
 
 msgid "cpsportlets_custom_render_method_label"
-msgstr "MÈtodo de renderizado (zpt, py, etc.)"
+msgstr "M√©todo de renderizado (zpt, py, etc.)"
 
 msgid "cpsportlets_translation_deleted_psm"
-msgstr "TraducciÛn borrada."
+msgstr "Traducci√≥n borrada."
 
 msgid "button_portlet_management"
-msgstr "AdministraciÛn del portlet"
+msgstr "Administraci√≥n del portlet"
 
 msgid "cpsportlets_display_hidden_folders_label"
 msgstr "Mostrar carpetas ocultas"
@@ -462,19 +462,19 @@ msgid "cpsportlets_common_link_string_label"
 msgstr "Cadena de enlace"
 
 msgid "cpsportlets_common_display_description_label"
-msgstr "Mostrar descripciones de los Ìtem"
+msgstr "Mostrar descripciones de los √≠tem"
 
 msgid "cpsportlets_rss_channel_label"
 msgstr "Canal RSS"
 
 msgid "cpsportlets_rss_update_frequency_label"
-msgstr "Frecuencia de actualizaciÛn (en segundos)"
+msgstr "Frecuencia de actualizaci√≥n (en segundos)"
 
 msgid "cpsportlets_rss_max_words_label"
-msgstr "N˙mero de palabras en el sumario"
+msgstr "N√∫mero de palabras en el sumario"
 
 msgid "cpsportlets_content_max_words_label"
-msgstr "N˙mero de palabras en el sumario"
+msgstr "N√∫mero de palabras en el sumario"
 
 msgid "cpsportlets_image_image_label"
 msgstr "Archivo de imagen"
@@ -486,13 +486,13 @@ msgid "cpsportlets_image_caption_label"
 msgstr "Captura de imagen"
 
 msgid "portal_type_ContentPortlet_description"
-msgstr "Muestra el resultado de una b˙squeda de contenido"
+msgstr "Muestra el resultado de una b√∫squeda de contenido"
 
 msgid "portal_type_NavigationPortlet_description"
-msgstr "Muestra los Ìtem de navegaciÛn, contenidos de las carpetas, etc."
+msgstr "Muestra los √≠tem de navegaci√≥n, contenidos de las carpetas, etc."
 
 msgid "portal_type_AddItemPortlet_description"
-msgstr "Muestra un men˙ para aÒadir contenidos dentro de una carpeta."
+msgstr "Muestra un men√∫ para a√±adir contenidos dentro de una carpeta."
 
 msgid "portal_type_InternalLinksPortlet_description"
 msgstr "Muestra un listado de enlaces internos."
@@ -507,28 +507,28 @@ msgid "portal_type_DummyPortlet_description"
 msgstr "Un portlet de pruebas"
 
 msgid "portal_type_SearchPortlet_description"
-msgstr "Muestra una interfaz para hacer b˙squedas"
+msgstr "Muestra una interfaz para hacer b√∫squedas"
 
 msgid "portal_type_RSSPortlet_description"
 msgstr "Muestra las fuentes de las que se alimenta el canal RSS"
 
 msgid "portal_type_DocumentPortlet_description"
-msgstr "Muestra la visualizaciÛn del documento actual"
+msgstr "Muestra la visualizaci√≥n del documento actual"
 
 msgid "portal_type_BreadcrumbsPortlet_description"
 msgstr "Muestra un listado de enlaces a las carpetas de las que depende."
 
 msgid "portal_type_ActionsPortlet_description"
-msgstr "Muestra una lista de las acciones del portal por categorÌa."
+msgstr "Muestra una lista de las acciones del portal por categor√≠a."
 
 msgid "portal_type_LanguagePortlet_description"
 msgstr "Muestra las acciones relacionadas con los idiomas"
 
 msgid "cpsportlets_common_first_item_label"
-msgstr "Primer Ìtem"
+msgstr "Primer √≠tem"
 
 msgid "cpsportlets_nav_display_navtree_menu_label"
-msgstr "¡rbol del navegaciÛn"
+msgstr "√Årbol del navegaci√≥n"
 
 msgid "cpsportlets_nav_display_dynamic_navtree_menu_label"
 msgstr "Unfolding navigation tree"
@@ -537,10 +537,10 @@ msgid "cpsportlets_navigation_contextual_label"
 msgstr "Muestra contextual"
 
 msgid "cpsportlets_display_mode_label"
-msgstr "Modo de presentaciÛn"
+msgstr "Modo de presentaci√≥n"
 
 msgid "cpsportlets_display_mode_help"
-msgstr "Los portlets con un * tienen un diseÒo predeterminado."
+msgstr "Los portlets con un * tienen un dise√±o predeterminado."
 
 msgid "w__imagelink"
 msgstr "Enlace de imagen"
@@ -555,64 +555,64 @@ msgid "cpsportlets_nav_display_extended_site_map_label"
 msgstr "Mapa extendido del sitio*"
 
 msgid "cpsportlets_nav_display_expandable_tree_menu_label"
-msgstr "Men˙ secundario de navegaciÛn"
+msgstr "Men√∫ secundario de navegaci√≥n"
 
 msgid "portal_type_CustomPortlet_description"
-msgstr "Muestra un mÈtodo de visualizaciÛn (.zpt, .py, etc.)"
+msgstr "Muestra un m√©todo de visualizaci√≥n (.zpt, .py, etc.)"
 
 msgid "cpsportlets_document_context_rpath_label"
 msgstr "Ruta del documento (relativa)"
 
 msgid "cpsportlets_document_cluster_id_label"
-msgstr "Cl˙ster ID"
+msgstr "Cl√∫ster ID"
 
 msgid "cpsportlets_document_render_cluster_no_fallback_label"
-msgstr "Visualizar el documento sÛlo si el cl˙ster especÌfico existe"
+msgstr "Visualizar el documento s√≥lo si el cl√∫ster espec√≠fico existe"
 
 msgid "cpsportlet_rot_image_nb_images_label"
-msgstr "N˙mero de im·genes a rotar entre"
+msgstr "N√∫mero de im√°genes a rotar entre"
 
 msgid "portal_type_RotatingImagePortlet_title"
-msgstr "Portlet de im·genes rotatorias"
+msgstr "Portlet de im√°genes rotatorias"
 
 msgid "portal_type_RotatingImagePortlet_description"
-msgstr "Muestra aleatorialmente una colecciÛn de im·genes"
+msgstr "Muestra aleatorialmente una colecci√≥n de im√°genes"
 
 msgid "cpsportlets_common_custom_cache_params_label"
-msgstr "Personalizar par·metros del cachÈ"
+msgstr "Personalizar par√°metros del cach√©"
 
 msgid "cpsportlets_visibility_range_0-0_label"
 msgstr "En esta carpeta y todos los subdirectorios"
 
 msgid "cpsportlets_visibility_range_1-0_label"
-msgstr "SÛlo en los subdirectorios"
+msgstr "S√≥lo en los subdirectorios"
 
 msgid "cpsportlets_visibility_range_0-1_label"
-msgstr "SÛlo en esta carpeta"
+msgstr "S√≥lo en esta carpeta"
 
 msgid "cpsportlets_common_visibility_range_label"
 msgstr "Rango de visibilidad"
 
 msgid "cpsportlets_navigation_root_uids_label"
-msgstr "RaÌces del ·rbol"
+msgstr "Ra√≠ces del √°rbol"
 
 msgid "cpsportlets_custom_js_render_method_label"
-msgstr "MÈtodo de renderizado Javascript (zpt, py, etc.)"
+msgstr "M√©todo de renderizado Javascript (zpt, py, etc.)"
 
 msgid "cpsportlets_content_query_title_label"
-msgstr "B˙squeda por tÌtulo"
+msgstr "B√∫squeda por t√≠tulo"
 
 msgid "cpsportlets_content_render_items_label"
-msgstr "Visualizar los Ìtem"
+msgstr "Visualizar los √≠tem"
 
 msgid "cpsportlets_content_cluster_id_label"
-msgstr "Cl˙ster ID"
+msgstr "Cl√∫ster ID"
 
 msgid "cpsportlets_common_slot_override_label"
-msgstr "øSobreescribir los portlets existentes?"
+msgstr "¬øSobreescribir los portlets existentes?"
 
 msgid "cpsportlets_common_disable_override_label"
-msgstr "øEvitar que este portlet sea sobreescrito?"
+msgstr "¬øEvitar que este portlet sea sobreescrito?"
 
 msgid "cpsportlets_document_render_container_label"
 msgstr "Visualizar el contenedor"
@@ -625,7 +625,7 @@ msgid "cpsportlets_navigation_end_depth_label"
 msgstr "Profundidad final"
 
 msgid "cpsportlets_internallinks_max_title_words_label"
-msgstr "N˙mero de palabras en el tÌtulo"
+msgstr "N√∫mero de palabras en el t√≠tulo"
 
 msgid "cpsportlets_internallinks_show_icons_label"
 msgstr "Mostrar iconos del documento"
@@ -634,7 +634,7 @@ msgid "cpsportlets_nav_context_rpath_label"
 msgstr "Ruta de la carpeta (relativa)"
 
 msgid "cpsportlets_common_syndication_formats_label"
-msgstr "Formatos de sindicaciÛn"
+msgstr "Formatos de sindicaci√≥n"
 
 msgid "cpsportlets_syndication_rss_1_0_help"
 msgstr "Hacia el alimentador de noticias RSS asociado"
@@ -661,13 +661,13 @@ msgid "cpsportlets_navigation_display_managers_label"
 msgstr "Mostrar los administradores de contenido"
 
 msgid "cpsportlets_navigation_display_description_label"
-msgstr "Mostrar la descripciÛn de los Ìtem"
+msgstr "Mostrar la descripci√≥n de los √≠tem"
 
 msgid "cpsportlets_navigation_authorized_only_label"
-msgstr "Mostrar sÛlo los Ìtem autorizados"
+msgstr "Mostrar s√≥lo los √≠tem autorizados"
 
 msgid "cpsportlet_psm_settings_updated"
-msgstr "ConfiguraciÛn actualizada"
+msgstr "Configuraci√≥n actualizada"
 
 msgid "cpsportlet_psm_guard_error"
-msgstr "ConfiguraciÛn incorrecta"
+msgstr "Configuraci√≥n incorrecta"

@@ -8,17 +8,18 @@ msgstr ""
 "Last-Translator: Georg Hennemann <georg.hennemann@dhl.com>\n"
 "Language-Team: German <rheinland@dzug.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Language-Code: de\n"
-"Domain: default\n"
 "Language-Name: German\n"
+"Domain: default\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Preferred-Encodings: utf-8\n"
 
 #.   <input type="submit" value=" Add " />
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
 msgid " Add "
-msgstr " Hinzufügen "
+msgstr " HinzufÃ¼gen "
 
 #.   <strong>ID:</strong>
 #: from ../skins/cpsportlets_widgets/cpsportlet_additem_factories.pt
@@ -50,7 +51,7 @@ msgstr ""
 #.           Add new item ...</option>
 #: from ../skins/cpsportlets_widgets/widget_portlet_additem.pt
 msgid "cpsportlet_add_new_item"
-msgstr "Hinzufügen eines neuen Objekts..."
+msgstr "HinzufÃ¼gen eines neuen Objekts..."
 
 #.   <span>
 #.     The following names are defined for the TALES expression</span>
@@ -119,12 +120,12 @@ msgstr "OK"
 #.   <label attributes="for language_chooser_id">Change language:</label>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_change_language"
-msgstr "Ändere Sprache:"
+msgstr "Ã„ndere Sprache:"
 
 #.   <p>Delete translation ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_delete_translation"
-msgstr "Lösche die Version in ..."
+msgstr "LÃ¶sche die Version in ..."
 
 #.   <td condition="display_description">cpsportlets_extended_site_map_description</td>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
@@ -155,7 +156,7 @@ msgstr ""
 #.   <span>To manage portlets please install CPSSkins.</span>
 #: from ../skins/cpsportlets_default/portlet_manage_form.pt
 msgid "cpsportlets_install_cpsskins"
-msgstr "Für die Portlets Verwaltung installieren Sie bitte CPSSkins"
+msgstr "FÃ¼r die Portlets Verwaltung installieren Sie bitte CPSSkins"
 
 #.   <block>located in the folder</block>
 #: from ../skins/cpsportlets_default/cpsportlet_edit_form.pt
@@ -176,7 +177,7 @@ msgstr "Suchen in"
 #.   <p>Switch to ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
 msgid "cpsportlets_switch_language"
-msgstr "Wähle aus ..."
+msgstr "WÃ¤hle aus ..."
 
 #.   <p>Translate into ...</p>
 #: from ../skins/cpsportlets_widgets/widget_portlet_language.pt
@@ -188,7 +189,7 @@ msgstr "Erstelle eine Version in ..."
 #.           </span>
 #: from ../skins/cpsportlets_widgets/widget_portlet_navigation.pt
 msgid "cpsportlets_up_to"
-msgstr "Zurück zu ${up_id}"
+msgstr "ZurÃ¼ck zu ${up_id}"
 
 #.   <div attributes="id python:'load-area-%s' % node['id']" style="display:none" class="load-area">
 #.       LOADING..
@@ -209,7 +210,7 @@ msgid "label_cpsportlets_title"
 msgstr "Portlet Titel"
 
 msgid "label_cpsportlets_i18n"
-msgstr "Übersetze den Portlets Titel"
+msgstr "Ãœbersetze den Portlets Titel"
 
 msgid "portal_type_DummyPortlet_title"
 msgstr "Dummy Portlet"
@@ -267,7 +268,7 @@ msgid "cpsportlets_portlet_created_psm"
 msgstr "Portlet erstellt."
 
 msgid "cpsportlets_content_translated_psm"
-msgstr "Inhalt übersetzt."
+msgstr "Inhalt Ã¼bersetzt."
 
 msgid "cpsportlets_bcs_display_dropdown_list_label"
 msgstr "Drop Down Liste"
@@ -295,7 +296,7 @@ msgid "cpsportlets_actions_order_label"
 msgstr "Ordered actions to display"
 
 msgid "cpsportlets_search_context_is_portlet_label"
-msgstr "Suche ausführen startend vom Ort des Portlets"
+msgstr "Suche ausfÃ¼hren startend vom Ort des Portlets"
 
 msgid "cpsportlets_nav_context_is_portlet_label"
 msgstr "Verwende Ort des Portlet als Kontext"
@@ -313,7 +314,7 @@ msgid "cpsportlets_content_search_pending_label"
 msgstr "Schwebende Dokumente"
 
 msgid "cpsportlets_content_search_last_modified_label"
-msgstr "Zuletzt geänderte Dokumente"
+msgstr "Zuletzt geÃ¤nderte Dokumente"
 
 msgid "cpsportlets_content_search_last_published_label"
 msgstr "Zuletzt publizierte Dokumente"
@@ -364,13 +365,13 @@ msgid "cpsportlets_language_action_label"
 msgstr "Aktion"
 
 msgid "cpsportlets_language_action_translate_label"
-msgstr "Übersetzen"
+msgstr "Ãœbersetzen"
 
 msgid "cpsportlets_language_action_delete_translation_label"
-msgstr "Übersetzung löschen"
+msgstr "Ãœbersetzung lÃ¶schen"
 
 msgid "cpsportlets_language_action_change_label"
-msgstr "Sprache ändern"
+msgstr "Sprache Ã¤ndern"
 
 msgid "cpsportlets_language_action_switch_language_label"
 msgstr "Sprache wechseln"
@@ -395,10 +396,10 @@ msgid "cpsportlets_nav_display_subfolder_contents_menu_label"
 msgstr "Subfolder Inhalte*"
 
 msgid "cpsportlets_nav_display_up_to_parent_label"
-msgstr "Zurück zum Vater Folder*"
+msgstr "ZurÃ¼ck zum Vater Folder*"
 
 msgid "cpsportlets_nav_display_collapsible_menu_label"
-msgstr "Zusammenklappbares Menü"
+msgstr "Zusammenklappbares MenÃ¼"
 
 msgid "cpsportlets_additem_show_icons_label"
 msgstr "Anzeige Minibilder"
@@ -407,7 +408,7 @@ msgid "cpsportlets_additem_dropdown_list_label"
 msgstr "Drop Down Liste"
 
 msgid "cpsportlets_additem_standard_menu_label"
-msgstr "Standard Menü"
+msgstr "Standard MenÃ¼"
 
 msgid "cpsportlets_navigation_rel_depth_label"
 msgstr "Relative Tiefe"
@@ -466,7 +467,7 @@ msgid "cpsportlets_custom_render_method_label"
 msgstr "Rendern der Methode (zpt, py, etc.)"
 
 msgid "cpsportlets_translation_deleted_psm"
-msgstr "Übersetzung gelöscht."
+msgstr "Ãœbersetzung gelÃ¶scht."
 
 msgid "button_portlet_management"
 msgstr "Portlet Management"
@@ -508,7 +509,7 @@ msgid "portal_type_NavigationPortlet_description"
 msgstr "Anzeigen von Navigations Objekten, Folder Inhalten, etc."
 
 msgid "portal_type_AddItemPortlet_description"
-msgstr "Anzeigen eines Menüs um Objekte in einen Folder zu tun."
+msgstr "Anzeigen eines MenÃ¼s um Objekte in einen Folder zu tun."
 
 msgid "portal_type_InternalLinksPortlet_description"
 msgstr "Anzeigen einer Liste von internen Verweisen."
@@ -520,10 +521,10 @@ msgid "portal_type_ImagePortlet_description"
 msgstr "Anzeigen eines Dekorations Bildes mit einem Verweis."
 
 msgid "portal_type_DummyPortlet_description"
-msgstr "Ein Portlet fürs Testen."
+msgstr "Ein Portlet fÃ¼rs Testen."
 
 msgid "portal_type_SearchPortlet_description"
-msgstr "Anzeigen eines Interfaces für die Suche im Portal."
+msgstr "Anzeigen eines Interfaces fÃ¼r die Suche im Portal."
 
 msgid "portal_type_RSSPortlet_description"
 msgstr "Anzeigen eines Feeds eines RSS Kanals."
@@ -629,13 +630,13 @@ msgid "cpsportlets_content_cluster_id_label"
 msgstr "Cluster ID"
 
 msgid "cpsportlets_common_slot_override_label"
-msgstr "Überschreiben der existierenden Portlets?"
+msgstr "Ãœberschreiben der existierenden Portlets?"
 
 msgid "cpsportlets_common_disable_override_label"
-msgstr "Schützen dieses Portlets vor Überschreiben? "
+msgstr "SchÃ¼tzen dieses Portlets vor Ãœberschreiben? "
 
 msgid "cpsportlets_document_render_container_label"
-msgstr "Rendern dieses Behälters?"
+msgstr "Rendern dieses BehÃ¤lters?"
 
 #, fuzzy
 msgid "cpsportlets_navigation_start_depth_label"
