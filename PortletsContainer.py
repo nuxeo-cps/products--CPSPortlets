@@ -1,30 +1,34 @@
-# -*- coding: ISO-8859-15 -*-
-# Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
+# Copyright (c) 2004-2008 Nuxeo SAS <http://nuxeo.com>
 # Copyright (c) 2004 Chalmers University of Technology <http://www.chalmers.se>
-# Authors : Julien Anguenot <ja@nuxeo.com>
-#           Jean-Marc Orliaguet <jmo@ita.chalmers.se>
-
+# Authors:
+# Julien Anguenot <ja@nuxeo.com>
+# Jean-Marc Orliaguet <jmo@ita.chalmers.se>
+# M.-A. Darche <madarche@nuxeo.com>
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
-
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
 # $Id$
 
 __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 """Portlets Container
-
-Will be used to define local boxes
 """
+
+from logging import getLogger
+
+from zope.interface import implements
 
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
@@ -33,9 +37,11 @@ from Acquisition import aq_base
 from Products.CMFCore.CMFBTreeFolder import CMFBTreeFolder
 from Products.CMFCore.utils import getToolByName
 
-from zope.interface import implements
+from Products.CPSUtil.id import generateId
 from Products.CPSPortlets.interfaces import IPortletContainer
 
+
+logger = getLogger('PortletsContainer')
 
 class PortletsContainer(CMFBTreeFolder):
     """ Portlets Container
@@ -108,42 +114,53 @@ class PortletsContainer(CMFBTreeFolder):
     def _createPortlet(self, ptype_id, **kw):
         """Create a new portlet given its portal_type
 
-        Check the identifier that the user might have given.  If it aleady
-        exists then don't create the portlet and log it The reason is that the
-        update will be wrong after if cerate it in this situation
-
-        If it's a portlet created through CPSSkins then use the internal
-        id as identifier
+        If the given (or computed if none given) identifier is not unique,
+        None is returned and the portlet is not created. The reason is that
+        updates would otherwise be wrong afterward.
         """
-
+        logger.debug("kw = %s" % str(kw))
         ptltool = getToolByName(self, 'portal_cpsportlets')
-
-        ok = 0
+        tstool = getToolByName(self, 'translation_service')
+        portlet_id = ''
 
         if kw.has_key('identifier'):
-            ok = ptltool.checkIdentifier(kw.get('identifier'))
-        else:
-            while not ok:
-                new_id = self.generateId(prefix='portlet_',
+            # In this case a new identifier must not be computed.
+            # It is OK or NOT with the given identifier.
+            portlet_id = kw.get('identifier')
+            unique = ptltool.checkIdentifier(portlet_id)
+            if not unique:
+                return None
+
+        if kw.has_key('Title'):
+            portlet_id = kw.get('Title')
+            # Defaulting to the default language of the translation service
+            # which should be the default language of the portal to find out
+            # which words are meaningless to not put those words in the portlet IDs.
+            meaningless_words = tstool.translateDefault('words_meaningless',
+                                                        target_language=None).split()
+            portlet_id = generateId(portlet_id, max_chars=24,
+                                    lower=True,
+                                    meaningless_words=meaningless_words)
+        while True:
+            if portlet_id:
+                unique = ptltool.checkIdentifier(portlet_id)
+                if unique:
+                    break
+            portlet_id = self.generateId(prefix=portlet_id,
                                          suffix='',
                                          rand_ceiling=999999999)
-                ok = ptltool.checkIdentifier(new_id)
-            kw['identifier'] = new_id
 
-        if ok:
-            new_id = kw.get('identifier')
-            # create the portlet
-            self.invokeFactory(ptype_id, new_id)
-            new_portlet = getattr(self, new_id)
-            # set the portlet's guard
-            if 'guard' in kw:
-                new_portlet.setGuardProperties(props=kw['guard'])
-                del kw['guard']
-            new_portlet.edit(kw)
-            # rebuild the portlet to add javascript and cache parameters
-            new_portlet._rebuild()
-            return new_id
-        return None
+        # Then creating the portlet
+        self.invokeFactory(ptype_id, portlet_id)
+        new_portlet = getattr(self, portlet_id)
+        # Setting the portlet's guard
+        if kw.has_key('guard'):
+            new_portlet.setGuardProperties(props=kw.get('guard'))
+            del kw['guard']
+        new_portlet.edit(kw)
+        # Rebuilding the portlet to add javascript and cache parameters
+        new_portlet._rebuild()
+        return portlet_id
 
     def _deletePortlet(self, portlet_id):
         """Delete a portlet given its id
