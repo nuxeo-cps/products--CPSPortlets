@@ -16,23 +16,19 @@ if REQUEST is not None:
 else:
     REQUEST=context.REQUEST
 
-utool = context.portal_url
-base_url = utool.getBaseUrl()
-
-context_rpath = kw.get('context_rpath')
+# Used to discard nodes with depth < start_depth:
 start_depth = kw.get('start_depth', 0)
+
+# Used to discard nodes with depth >= end_depth:
 end_depth = kw.get('end_depth', 0)
 
 ## logger.debug("start, end = %s, %s"
 ##              % (start_depth, end_depth))
 
-# contextual navigation
+# Used to only consider root_uids of the given context_rpath (context_rpath
+# being the current location during a navigation).
 contextual = int(kw.get('contextual', 0)) == 1
-
-if contextual:
-    context_uid = context_rpath
-else:
-    context_uid = None
+context_rpath = kw.get('context_rpath')
 
 # folder prefixes
 folder_prefixes = kw.get('folder_prefixes', [])
@@ -59,15 +55,18 @@ portal_types = context.portal_types
 renderIcon = context.portal_cpsportlets.renderIcon
 folder_items = []
 
-# the relative depth is relative to the current folder in contextual mode
+# The relative depth is relative to the current folder in contextual mode
 delta = 0
 if contextual:
     delta = len(context_rpath.split('/')) -1
 
-# this is needed to get into the 'for' loop in case root_uid in not set.
+# This is needed to get into the 'for' loop in case root_uid in not set.
 # in that case, the 'context' is used to determine the root_uid.
 if root_uids == []:
     root_uids = ['']
+
+utool = context.portal_url
+base_url = utool.getBaseUrl()
 
 for root_uid in root_uids:
     if current_uid.startswith(root_uid):
