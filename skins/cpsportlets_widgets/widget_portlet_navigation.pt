@@ -496,7 +496,10 @@ function swapFolder(img, toggle_plus, toggle_minus){
             <tal:block content="item/title" />
           </a>
           <tal:block condition="python:item['open']"
-                     define="subfolderItems python:context.getFolderItems(context_obj=context, show_docs=int(show_docs), sort_by=sort_by, display_hidden_folders=display_hidden_folders)"
+                     define="subfolderItems python:context.getFolderItems(
+                                            context_obj=context, show_docs=int(show_docs),
+                                            sort_by=sort_by,
+                                            display_hidden_folders=display_hidden_folders)"
                      repeat="subitem subfolderItems">
             <a style="margin-left: 1em"
                tal:attributes="href subitem/url;
