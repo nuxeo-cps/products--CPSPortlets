@@ -170,23 +170,19 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
 
     security.declarePublic('checkIdentifier')
     def checkIdentifier(self, identifier):
-        """We need to check that the given identifier (coming from the user
-        is not already in use.
+        """Check that the given portlet identifier is not already in use.
 
-        It's necessarly we want to user to be able to use the CPSSkins interface
-        for creating new portlets but as well from an installer too.
+        The check is done on all of the portal portlets, independently of their
+        location (global or local) in the portal. This is for safety.
         """
         # Get all portlets all over the portal
         portlets = self.listAllPortlets()
-
         existing_identifiers = []
-
         for portlet in portlets:
             if portlet:
                 cidentifier = getattr(aq_base(portlet), 'identifier', None)
                 if cidentifier is not None:
                     existing_identifiers.append(cidentifier)
-
         return (identifier not in existing_identifiers)
 
     security.declareProtected(ManagePortlets, 'getPortletByPath')
