@@ -118,7 +118,7 @@ class PortletsContainer(CMFBTreeFolder):
         None is returned and the portlet is not created. The reason is that
         updates would otherwise be wrong afterward.
         """
-        logger.debug("kw = %s" % str(kw))
+        #logger.debug("kw = %s" % str(kw))
         ptltool = getToolByName(self, 'portal_cpsportlets')
         tstool = getToolByName(self, 'translation_service')
         portlet_id = ''
