@@ -1,4 +1,8 @@
 ##parameters=context_obj=None, show_docs=False, max_title_words=0, context_rpath='', context_is_portlet=0, **kw
+#
+# $Id$
+"""Return the list of items found in the folder found through context_obj.
+"""
 
 utool = context.portal_url
 base_url = utool.getBaseUrl()
@@ -15,10 +19,10 @@ if context_obj is None:
 context_url = context_obj.absolute_url_path()
 folder_items = []
 
-# Find bottom-most folder:
+# Find bottom-most folder
 obj = context_obj
 bmf = None
-while 1:
+while True:
     if obj.isPrincipiaFolderish:
         bmf = obj
         break
@@ -142,7 +146,7 @@ for object in bmf.contentValues():
         if now < content.effective() or now > content.expires():
             continue
 
-    # title 
+    # title
     title = object.title_or_id()
     if max_title_words > 0:
         words = title.split(' ')
