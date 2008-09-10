@@ -1,6 +1,9 @@
 ##parameters=context_obj=None, root_uids=[], REQUEST=None, **kw
 #
 # $Id$
+"""Return a list of navigation items (with depth information)
+corresponding to the given constraints, roots, start depth, end_depth, etc.
+"""
 
 from logging import getLogger
 
@@ -97,13 +100,26 @@ for root_uid in root_uids:
         # compute the item's depth
         depth = level - delta
         if depth < 0:
+##             logger.debug("%s, %s depth < 0"
+##                          % (node['object'].get('rpath'),
+##                             node.get('level')))
             continue
 
         # filter out items outside the specified depth
         if start_depth and depth < start_depth:
+##             logger.debug("%s, %s depth < start_depth"
+##                          % (node['object'].get('rpath'),
+##                             node.get('level')))
             continue
         if end_depth and depth >= end_depth:
+##             logger.debug("%s, %s depth >= end_depth"
+##                          % (node['object'].get('rpath'),
+##                             node.get('level')))
             continue
+
+##         logger.debug("%s, %s CONSIDERING"
+##                      % (node['object'].get('rpath'),
+##                         node.get('level')))
 
         # cpsnav object is a mapping
         object = node['object']
@@ -154,6 +170,7 @@ for root_uid in root_uids:
 
         folder_items.append(
             {'url': base_url + rpath,
+             'rpath': rpath,
              'title': object['title_or_id'],
              'depth': depth,
              'level': level,
