@@ -467,11 +467,18 @@ function swapFolder(img, toggle_plus, toggle_minus){
     </tal:block>
   </tal:block>
 
+  <tal:comment condition="nothing">
+  The aim of this menu is to display folding branches of navigation items
+  (but with no JavaScript) and to have an open branch only if it is leading
+  to the current context.
+  </tal:comment>
   <tal:block condition="python: display == 'collapsible_menu'">
     <tal:block
      define="show_icons ds/show_icons;
              show_icons python: int(show_icons);
              show_docs ds/show_docs;
+             start_depth ds/start_depth;
+             end_depth ds/end_depth;
              rel_depth ds/rel_depth;
              sort_by ds/sort_by|nothing;
              sort_direction ds/sort_direction|nothing;
@@ -479,15 +486,16 @@ function swapFolder(img, toggle_plus, toggle_minus){
                  root_uids=root_uids,
                  context_rpath=context_rpath,
                  context_obj=context,
-                 start_depth=int(rel_depth),
-                 end_depth=int(rel_depth)+1,
+                 start_depth=int(start_depth),
+                 end_depth=int(start_depth)+1,
                  display_description=display_description,
                  display_hidden_folders=display_hidden_folders,
                  sort_by=sort_by,
                  sort_direction=sort_direction);
-             linkclass python: show_icons and 'noicon' or None"
-     condition="folderItems">
-      <ul class="cpsskinsMenu">
+                 linkclass python: show_icons and 'noicon' or None;
+        ">
+      <tal:block condition="folderItems">
+       <ul class="cpsskinsMenu">
         <li tal:repeat="item folderItems">
           <a tal:attributes="href item/url;
                              class linkclass">
@@ -495,9 +503,10 @@ function swapFolder(img, toggle_plus, toggle_minus){
                        content="structure item/icon_tag" />
             <tal:block content="item/title" />
           </a>
-          <tal:block condition="python:item['open']"
+          <tal:block condition="python:item['open']
+                                or context_rpath.startswith(item['rpath'])"
                      define="subfolderItems python:context.getFolderItems(
-                                            context_obj=context, show_docs=int(show_docs),
+                                            context_rpath=item['rpath'], show_docs=int(show_docs),
                                             sort_by=sort_by,
                                             display_hidden_folders=display_hidden_folders)"
                      repeat="subitem subfolderItems">
@@ -515,6 +524,7 @@ function swapFolder(img, toggle_plus, toggle_minus){
           </tal:block>
         </li>
       </ul>
+     </tal:block>
     </tal:block>
   </tal:block>
 
