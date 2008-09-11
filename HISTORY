@@ -1,4 +1,26 @@
 ===========================================================
+Package: CPSPortlets 1.1.1
+===========================================================
+First release built by: madarche at: 2008-09-11T13:08:16
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/1.1.1
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk@52990
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #1893: Portlets should have user-friendly IDs
+- #1918: Make the "Collapsible menu" (collapsible_menu) not fold wrong branch
+- #1916: Switch all the .po files to UTF-8
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.1.0
 ===========================================================
 First release built by: madarche at: 2008-08-29T12:02:23
