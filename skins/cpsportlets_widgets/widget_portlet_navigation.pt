@@ -182,6 +182,7 @@ function swapFolder(img, toggle_plus, toggle_minus){
              show_icons python: int(show_icons);
              contextual ds/contextual;
              end_depth ds/end_depth;
+             start_depth ds/start_depth;
              folderItems python: context.getNavigationItems(
                  root_uids=root_uids,
                  context_rpath=context_rpath,

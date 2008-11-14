@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- #1924: Navigation Portlet with 'navigation_tree' display starts at depth=2
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
