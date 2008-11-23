@@ -1,4 +1,24 @@
 ===========================================================
+Package: CPSPortlets 1.1.2
+===========================================================
+First release built by: madarche at: 2008-11-23T22:13:47
+SVN Tag: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/tags/1.1.2
+Build from: https://svn.nuxeo.org/pub/CPS3/products/CPSPortlets/trunk@53051
+
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #1924: Navigation Portlet with 'navigation_tree' display starts at depth=2
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.1.1
 ===========================================================
 First release built by: madarche at: 2008-09-11T13:08:16
