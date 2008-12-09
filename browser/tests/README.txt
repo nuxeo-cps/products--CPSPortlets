@@ -26,7 +26,10 @@ Let's create a fake folder for our tests and plug the view::
     ...         return '/'
     ...     def getPortalPath(self):
     ...         return '/cps'
-    ...
+    ...     def getRpath(self, ob):
+    ...         return ob.rpath
+    ...     def getPortalObject(self):
+    ...         return self.portal
     >>> class FakeMemberShip:
     ...     def checkPermission(self, *args, **kwargs):
     ...         return True
@@ -34,6 +37,9 @@ Let's create a fake folder for our tests and plug the view::
     >>> class FakePortalType:
     ...     pass
     ...
+    >>> class FakePortalTrees:
+    ...     def __init__(self):
+    ...         self.aq_explicit = self
     >>> class FakePortalPortlets:
     ...     def renderIcon(self, *args, **kwargs):
     ...         return ''
@@ -47,6 +53,7 @@ Let's create a fake folder for our tests and plug the view::
     ...     portal_url = FakePortalUrl()
     ...     portal_membership = FakeMemberShip()
     ...     portal_types = FakePortalType()
+    ...     portal_trees = FakePortalTrees()
     ...     portal_cpsportlets = FakePortalPortlets()
     ...     view = "yes, i have the view, don't worry"
     ...     portal_type = "Pretty Cool though heavy folder"
@@ -55,6 +62,12 @@ Let's create a fake folder for our tests and plug the view::
     ...         self.id = id
     ...         self.items = []
     ...         self.parent = parent
+    ...         if parent is None:
+    ...		    self.rpath = ''
+    ...         elif not parent.rpath:
+    ...             self.rpath = id
+    ...         else: 
+    ...             self.rpath = '/'.join((parent.rpath, self.id))
     ...         if self.parent is not None:
     ...             if self not in self.parent.items:
     ...                 self.parent.items.append(self)
@@ -72,6 +85,9 @@ Let's create a fake folder for our tests and plug the view::
     ...         temp = self.items[oldpos]
     ...         del self.items[oldpos]
     ...         self.items.insert(newpos, temp)
+    ...
+    ...     def hasObject(self, oid):
+    ...         return oid in self.objectIds()
     ...
     ...     def objectIds(self):
     ...         ids = []
@@ -128,6 +144,7 @@ Let's create a fake folder for our tests and plug the view::
 Let's create a structure::
 
     >>> root = FakeFolder('root')
+    >>> root.portal_url.portal = root
     >>> sub_folder = FakeFolder('sub_folder', root)
     >>> sub_folder2 = FakeFolder('sub_folder2', root)
     >>> sub_folder3 = FakeFolder('sub_folder3', sub_folder2)

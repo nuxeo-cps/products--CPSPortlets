@@ -234,7 +234,7 @@ class TreeNodeView(BrowserView):
             object_id = item['id']
             if not bmf.hasObject(object_id):
                 continue
-            object = getattr(bmf, object_id)
+            object = bmf[object_id]
 
             # filter out objects that cannot be viewed
             if not checkPerm('View', object):

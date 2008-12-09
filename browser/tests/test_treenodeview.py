@@ -44,8 +44,8 @@ class TreeNodeViewTests(CPSPortletsTestCase.CPSPortletsTestCase):
         # making sure we catch the root wheter the portal is
         # behind apache or not
         nodeview = TreeNodeView(self.portal.sections, None)
-        self.assertEquals(nodeview._rootRestrictedTraverse('/sections'),
-                          nodeview._rootRestrictedTraverse('/portal/sections'))
+        self.assertEquals(nodeview._rootRestrictedTraverse('sections'),
+                          nodeview._rootRestrictedTraverse('portal/sections'))
 
 def test_suite():
     return unittest.TestSuite((
