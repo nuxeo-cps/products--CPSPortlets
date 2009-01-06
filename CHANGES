@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- #1924: default BBB value set to 0
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
