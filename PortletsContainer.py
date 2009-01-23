@@ -153,6 +153,8 @@ class PortletsContainer(CMFBTreeFolder):
         # Then creating the portlet
         self.invokeFactory(ptype_id, portlet_id)
         new_portlet = getattr(self, portlet_id)
+	# set the portlet's internal identifier
+        kw['identifier'] = portlet_id
         # Setting the portlet's guard
         if kw.has_key('guard'):
             new_portlet.setGuardProperties(props=kw.get('guard'))
