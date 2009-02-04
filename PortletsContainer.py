@@ -1,5 +1,5 @@
-# Copyright (c) 2004-2008 Nuxeo SAS <http://nuxeo.com>
-# Copyright (c) 2004 Chalmers University of Technology <http://www.chalmers.se>
+# Copyright (c) 2004-2009 Nuxeo SA <http://nuxeo.com>
+# Copyright (c) 2004-2009 Chalmers University of Technology <http://www.chalmers.se>
 # Authors:
 # Julien Anguenot <ja@nuxeo.com>
 # Jean-Marc Orliaguet <jmo@ita.chalmers.se>
@@ -153,7 +153,13 @@ class PortletsContainer(CMFBTreeFolder):
         # Then creating the portlet
         self.invokeFactory(ptype_id, portlet_id)
         new_portlet = getattr(self, portlet_id)
-        # set the portlet's internal identifier
+        # Setting the portlet's internal identifier.
+        # It is used to identify portlets uniquely no matter which container
+        # they are located in, for instance when you do copy and paste between
+        # containers, unique ids per container are not enough. the id is similar
+        # to the document id in portal_repository except that it is stored in
+        # the portlet's catalog portlets are also documents so they need a Zope
+        # id (which is more cosmetic than anything else).
         kw['identifier'] = portlet_id
         # Setting the portlet's guard
         if kw.has_key('guard'):

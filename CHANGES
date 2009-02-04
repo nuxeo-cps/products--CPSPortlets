@@ -7,6 +7,7 @@ New features
 Bug fixes
 ~~~~~~~~~
 - #1924: default BBB value set to 0
+- #1893 (ticket had to be reopened): Portlets should have user-friendly IDs
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
