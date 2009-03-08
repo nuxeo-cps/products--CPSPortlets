@@ -340,6 +340,9 @@ msgstr "Auteur"
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Inverser l'ordre d'affichage"
 
+msgid "cpsportlets_content_strict_lang_filtering_label"
+msgstr "Filtrage strict de la langue"
+
 msgid "cpsportlets_common_render_method_label"
 msgstr "Méthode d'affichage (.zpt, .py, etc.)"
 

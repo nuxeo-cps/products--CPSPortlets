@@ -338,6 +338,9 @@ msgstr "Author"
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Invert the display order"
 
+msgid "cpsportlets_content_strict_lang_filtering_label"
+msgstr "Strict language filtering"
+
 msgid "cpsportlets_common_render_method_label"
 msgstr "Display method (.zpt, .py, etc.)"
 
