@@ -143,15 +143,19 @@ query['sort_limit'] = max_items
 # This is for NXLucene which works with batching
 query['b_start'] = 0
 query['b_size'] = max_items
-# match_languages purpose is to make the default language match if
+# match_languages index purpose is to make the default language match if
 # users' doesn't exist in proxy.
+# we use it if 'strict_lang_filtering' is False
 translation_service = context.translation_service
 match_languages = 'en'
 match_languages = translation_service.getSelectedLanguage()
 if not match_languages:
     if context.isUsePortalDefaultLang():
         match_languages = translation_service.getDefaultLanguage()
-query['match_languages'] = match_languages
+if kw.get('strict_lang_filtering'):
+    query['Language'] = match_languages
+else:
+    query['match_languages'] = match_languages
 t.mark('query: %s' % str(query))
 brains = context.portal_catalog(**query)
 t.mark('search done')
