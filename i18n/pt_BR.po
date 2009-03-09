@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2008-08-29 11:58default\n"
+"POT-Creation-Date: 2009-03-09 09:45default\n"
 "PO-Revision-Date: 2006-04-03 15:37-0300\n"
 "Last-Translator: Mario Olimpio de Menezes\n"
 "Language-Team: Portugues do Brasil <pt@li.org>\n"
 "MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Domain: default\n"
@@ -19,7 +20,6 @@ msgstr ""
 "Language-Code: pt_BR\n"
 "Language-Name: Portuguese Brazilian\n"
 "Domain: default\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Preferred-Encodings: utf-8\n"
 
 #.   <input type="submit" value=" Add " />
@@ -341,6 +341,10 @@ msgstr "Autor"
 
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Inverter a ordem de mostra"
+
+#, fuzzy
+msgid "cpsportlets_content_strict_lang_filtering_label"
+msgstr "Título"
 
 msgid "cpsportlets_common_render_method_label"
 msgstr "Método de renderização (.zpt, .py, etc.)"

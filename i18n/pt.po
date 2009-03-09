@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2008-08-29 11:57default\n"
+"POT-Creation-Date: 2008-08-29 11:58default\n"
 "PO-Revision-Date: 2007-05-01 16:30+0100\n"
 "Last-Translator: \n"
 "Language-Team: Português <luis727@gmail.com>\n"
 "MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Language-Code: pt\n"
@@ -19,7 +20,6 @@ msgstr ""
 "Language-Code: pt\n"
 "Language-Name: pt\n"
 "Domain: default\n"
-"Content-Type: text/plain; charset=UTF-8\n"
 "Preferred-Encodings: utf-8\n"
 
 #.   <input type="submit" value=" Add " />
@@ -341,6 +341,10 @@ msgstr "Autor"
 
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Inverter a ordem de mostra"
+
+#, fuzzy
+msgid "cpsportlets_content_strict_lang_filtering_label"
+msgstr "Strict language filtering"
 
 msgid "cpsportlets_common_render_method_label"
 msgstr "Método de renderização (.zpt, .py, etc.)"
