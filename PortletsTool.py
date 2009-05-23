@@ -121,18 +121,12 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         Use the portlets catalog and the dedicated indexes for the
         query.
         """
-        query = {
-            'portal_type' : self.listPortletTypes(),
-            }
-
+        query = {}
         if event_ids:
             query['eventIds'] = event_ids
-
-        portlets = []
-        for res in self._getPortletCatalog()(**query):
-            portlet = res.getObject()
-            if portlet is not None:
-                portlets.append(portlet)
+        portlets = set(brain.getObject()
+                       for brain in self._getPortletCatalog()(**query))
+        portlets.discard(None) # stale entries in catalog
         return portlets
 
     security.declarePublic('listPortlets')
@@ -147,23 +141,21 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         query = {}
 
         # topics
-        if kw.has_key('topics'):
-            topics = kw['topics']
-            if len(topics) > 0:
-                query['Subject'] = topics
+        topics = kw.get('topics')
+        if topics:
+            query['Subject'] = topics
 
         # portal types
-        if kw.has_key('portal_types'):
-            query['portal_type'] = kw['portal_types']
-        else:
-            query['portal_type'] = self.listPortletTypes()
+        ptypes = kw.get('portal_types')
+        if ptypes:
+            query['portal_type'] = ptypes
 
         portlets = []
         for res in catalog.searchResults(query):
             portlet = res.getObject()
             if portlet is None:
                 continue
-            if portlet.isGlobal():
+            if portlet.isGlobal(): # GR PERF should ne handled by an index
                 continue
             portlets.append(portlet)
         return portlets
@@ -204,6 +196,7 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         slots = PortletsContainer.listPortletSlots(self)
 
         # Get all portlets all over the portal
+        # GR PERF: Awful. An index would be so much more efficient, here
         portlets = self.listAllPortlets()
 
         for portlet in portlets:

@@ -77,6 +77,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
                               slot='slot2',
                               context=self.portal.sections)
         slots = ptltool.listPortletSlots()
+        slots.sort()
         self.assertEquals(slots, ['slot1', 'slot2'])
 
     def test_listPortletTypes(self):

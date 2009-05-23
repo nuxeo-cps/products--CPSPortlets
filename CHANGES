@@ -6,6 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
+- #2000: useless calls to types tool on invalidation logic
 - #1973: add an option for "strict" language filtering
 - #1924: default BBB value set to 0
 - #1893 (ticket had to be reopened): Portlets should have user-friendly IDs
