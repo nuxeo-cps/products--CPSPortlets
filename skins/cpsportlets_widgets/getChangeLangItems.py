@@ -13,7 +13,7 @@ for lang in lang_map:
     lang_id = lang['id']
     if lang_id == current_lang:
         continue
-    title = 'label_language_%s' % lang_id
+    title = 'label_language_native_%s' % lang_id
     langs.append({'lang': lang_id, 'title': title})
 
 return langs
