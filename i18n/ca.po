@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2008-08-29 11:58default\n"
+"POT-Creation-Date: 2009-03-09 09:45default\n"
 "PO-Revision-Date: 2007-05-31 12:26+0100\n"
 "Language-Team: valencià/català. <juangus@lasalle.es>\n"
 "MIME-Version: 1.0\n"
@@ -333,6 +333,10 @@ msgstr "Autor"
 
 msgid "cpsportlets_content_sort_reverse_label"
 msgstr "Invertir l'ordre en què es mostren"
+
+#, fuzzy
+msgid "cpsportlets_content_strict_lang_filtering_label"
+msgstr "Strict language filtering"
 
 msgid "cpsportlets_common_render_method_label"
 msgstr "Mostrar mètode (.zpt, .py, etc.)"

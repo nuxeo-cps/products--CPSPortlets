@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPSPortlets\n"
-"POT-Creation-Date: 2009-03-09 09:45default\n"
+"POT-Creation-Date: 2009-07-16 10:56default\n"
 "PO-Revision-Date: 2006-05-07 09:05+0100\n"
 "Last-Translator: Jesús Martín <jesusmartin@lasalle.es>\n"
 "Language-Team: español <jesusmartin@lasalle.es>\n"
@@ -237,6 +237,10 @@ msgstr "Portlet de contenidos"
 
 msgid "portal_type_LanguagePortlet_title"
 msgstr "Portlet de idiomas"
+
+#, fuzzy
+msgid "portal_type_SocialBookmarkingPortlet_title"
+msgstr "Social bookmarking portlet"
 
 msgid "portal_type_NavigationPortlet_title"
 msgstr "Portlet de navegación"
@@ -527,6 +531,12 @@ msgstr "Muestra una lista de las acciones del portal por categoría."
 
 msgid "portal_type_LanguagePortlet_description"
 msgstr "Muestra las acciones relacionadas con los idiomas"
+
+#, fuzzy
+msgid "portal_type_SocialBookmarkingPortlet_description"
+msgstr ""
+"Displays controls for marking/sharing published documents to different "
+"social networks such as Facebook, Delicious, StumbleUpon, Twitter, etc."
 
 msgid "cpsportlets_common_first_item_label"
 msgstr "Primer ítem"

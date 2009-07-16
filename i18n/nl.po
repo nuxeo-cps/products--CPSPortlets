@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CPS 3\n"
-"POT-Creation-Date: 2008-08-29 11:58default\n"
+"POT-Creation-Date: 2009-07-16 10:56default\n"
 "PO-Revision-Date: 2005-04-13 17:28+0200\n"
 "Last-Translator: M.-A. DARCHE <madarche@nuxeo.com>\n"
 "Language-Team: French <traduc@traduc.org>\n"
@@ -279,6 +279,10 @@ msgstr "Content portlet"
 #, fuzzy
 msgid "portal_type_LanguagePortlet_title"
 msgstr "Language portlet"
+
+#, fuzzy
+msgid "portal_type_SocialBookmarkingPortlet_title"
+msgstr "Social bookmarking portlet"
 
 #, fuzzy
 msgid "portal_type_NavigationPortlet_title"
@@ -663,6 +667,12 @@ msgstr "Displays a list of portal actions by category."
 #, fuzzy
 msgid "portal_type_LanguagePortlet_description"
 msgstr "Displays language related actions."
+
+#, fuzzy
+msgid "portal_type_SocialBookmarkingPortlet_description"
+msgstr ""
+"Displays controls for marking/sharing published documents to different "
+"social networks such as Facebook, Delicious, StumbleUpon, Twitter, etc."
 
 #, fuzzy
 msgid "cpsportlets_common_first_item_label"

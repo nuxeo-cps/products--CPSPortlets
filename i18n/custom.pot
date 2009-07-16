@@ -59,6 +59,9 @@ msgstr ""
 msgid "portal_type_LanguagePortlet_title"
 msgstr ""
 
+msgid "portal_type_SocialBookmarkingPortlet_title"
+msgstr ""
+
 msgid "portal_type_NavigationPortlet_title"
 msgstr ""
 
@@ -354,6 +357,9 @@ msgid "portal_type_ActionsPortlet_description"
 msgstr ""
 
 msgid "portal_type_LanguagePortlet_description"
+msgstr ""
+
+msgid "portal_type_SocialBookmarkingPortlet_description"
 msgstr ""
 
 msgid "cpsportlets_common_first_item_label"
