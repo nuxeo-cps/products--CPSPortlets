@@ -990,6 +990,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         stool = getToolByName(self, 'portal_schemas')
         existing_schemas = stool.objectIds()
         ti = self.getTypeInfo()
+        if ti is None:
+            return
         for type_schema in ti._listSchemas():
             schema_id = type_schema.getId()
             if schema_id not in existing_schemas:
