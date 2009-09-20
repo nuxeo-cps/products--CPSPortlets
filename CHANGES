@@ -4,7 +4,7 @@ Requires
 New features
 ~~~~~~~~~~~~
 - #2005: Social bookmarking links portlet
--
+- #2033: Change a portlet slot from ZMI
 Bug fixes
 ~~~~~~~~~
 - #2021: robustness in rebuild if type info not available any more

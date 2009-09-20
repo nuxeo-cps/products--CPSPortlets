@@ -33,6 +33,7 @@ import logging
 import sys
 import time
 import md5
+from copy import deepcopy
 from cgi import escape
 from random import randint
 from App.Common import rfc1123_date
@@ -76,6 +77,10 @@ ESI_CODE = """
 </esi:try>
 """
 
+MINIMAL_ESI_CODE = """
+<esi:include src="%s/render?context_rurl=%s" onerror="continue" />
+"""
+
 VISIBILITY_VOC = 'cpsportlets_visibility_range_voc'
 KEYWORD_DOWNLOAD_FILE = 'downloadFile'
 
@@ -98,6 +103,11 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
     guard = None
 
+    slot = ''
+
+    _properties = ({'id': 'slot', 'mode': 'w', 'type': 'string',
+                    'label': 'Slot'},
+                   )
     def __getitem__(self, name):
         """File Downloader.
 
@@ -606,6 +616,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         utool = getToolByName(self, 'portal_url')
         context_obj = kw.get('context_obj')
         context_rurl = utool.getRelativeUrl(context_obj)
+        if kw.get(esi_minimal):
+            return MINIMAL_ESI_CODE % (self.absolute_url(), context_rurl)
         return ESI_CODE % (self.absolute_url(), context_rurl)
 
     ##################################################################
@@ -1085,6 +1097,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
                        'action': 'manage_genericSetupExport.html'},
                       {'label': 'Guard',
                        'action': 'manage_guardForm'},
+                      {'label': 'Properties',
+                       'action': 'manage_propertiesForm'},
                       )
                      )
 
