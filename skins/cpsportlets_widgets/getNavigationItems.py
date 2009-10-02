@@ -49,7 +49,12 @@ authorized_only = int(kw.get('authorized_only', 1)) == 1
 display_managers = kw.get('display_managers', 0)
 display_description = kw.get('display_description', 0)
 
-current_uid = context_rpath
+utool = context.portal_url
+current_obj = context_obj
+while not current_obj.isPrincipiaFolderish:
+    current_obj = current_obj.aq_inner.aq_parent
+current_uid = utool.getRpath(current_obj)
+
 if contextual:
     root_uids = [root_uid for root_uid in root_uids
                  if current_uid.startswith(root_uid+'/')]
@@ -68,7 +73,6 @@ if contextual:
 if root_uids == []:
     root_uids = ['']
 
-utool = context.portal_url
 base_url = utool.getBaseUrl()
 
 for root_uid in root_uids:
@@ -169,7 +173,7 @@ for root_uid in root_uids:
             visible = object['visible']
 
         folder_items.append(
-            {'url': base_url + rpath,
+            {'url': utool.getUrlFromRpath(rpath),
              'rpath': rpath,
              'title': object['title_or_id'],
              'depth': depth,
