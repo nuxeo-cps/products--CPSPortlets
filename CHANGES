@@ -7,6 +7,7 @@ New features
 - #2033: Change a portlet slot from ZMI
 Bug fixes
 ~~~~~~~~~
+- #2036: Display shift in navigation tree if start_depth is set
 - #2038: Navigation tree not aware enough of deep virtual hosting
 - #2037: In navigation tree, no highlightning if on a leaf document
 - #2021: robustness in rebuild if type info not available any more

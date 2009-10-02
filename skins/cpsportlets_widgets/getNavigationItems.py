@@ -176,7 +176,7 @@ for root_uid in root_uids:
             {'url': utool.getUrlFromRpath(rpath),
              'rpath': rpath,
              'title': object['title_or_id'],
-             'depth': depth,
+             'depth': depth-start_depth,
              'level': level,
              'selected': selected,
              'selected_tab': selected_tab,
