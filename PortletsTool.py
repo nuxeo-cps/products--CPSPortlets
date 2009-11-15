@@ -339,79 +339,97 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         if context is None:
             return []
 
-        # Get the bottom-most folder
-        bottom_most_folder = self.getBottomMostFolder(context)
+        portlets = self._getPortletsCacheable(self.getBottomMostFolder(context),
+                                              slot, sort, override)
+        return self._filterPortletsAfterCache(context, portlets,
+                                              visibility_check, guard_check)
+
+    security.declarePrivate('_getPortletsCacheable')
+    def _getPortletsCacheable(self, bmf, slot, sort, override):
+        """Cacheable part of the portlets lookup logic.
+        """
+
         utool = getToolByName(self, 'portal_url')
         portal = utool.getPortalObject()
-        rpath = utool.getRelativeContentPath(bottom_most_folder)
+        bmf_path = utool.getRelativeContentPath(bmf)
 
-        allportlets_rpaths = self._getPortletLookupCache(slot, rpath, sort,
-                                                         override,
-                                                         )
+        allportlets_rpaths = self._getPortletLookupCache(slot, bmf_path, sort,
+                                                         override)
         if allportlets_rpaths is not None:
-            allportlets = tuple(portal.unrestrictedTraverse(rpath)
-                                for rpath in allportlets_rpaths)
-        else:
-            # Get portlets from the root to current path
-            obj = portal
-            # root portlets
-            allportlets = self._getFolderPortlets(folder=obj, slot=slot)
-            # other portlets
-            for elem in ('',) + rpath:
-                if not elem:
-                    continue
-                obj = getattr(obj, elem, None)
-                if obj is None:
-                    break
-                allportlets.extend(self._getFolderPortlets(folder=obj, slot=slot))
+            return tuple(portal.unrestrictedTraverse(rpath)
+                         for rpath in allportlets_rpaths)
 
-            if sort:
-                # Sorting the portlets by order
-                allportlets.sort(key=operator.attrgetter('order'))
+        # Get portlets from the root to current path
+        obj = portal
+        # root portlets
+        allportlets = self._getFolderPortlets(folder=obj, slot=slot)
+        # other portlets
+        for elem in ('',) + bmf_path:
+            if not elem:
+                continue
+            obj = getattr(obj, elem, None)
+            if obj is None:
+                break
+            allportlets.extend(self._getFolderPortlets(folder=obj, slot=slot))
 
-            # List of portlets that will not be displayed
-            remove_set = set()
-
-            # Applying overridance rules
-            for portlet in allportlets:
-                if override:
-                    # the portlet is protected
-                    if portlet.disable_override:
-                        continue
-                    depth = portlet.getDepth()
-                    # Run through the slot's portlets to see whether one of them
-                    # can override this portlet.
-                    for p in allportlets:
-                        # portlets cannot override themselves
-                        if p is portlet:
-                            continue
-                        # the portlet does not do override
-                        if not p.slot_override:
-                            continue
-                        if p.getDepth() <= depth:
-                            continue
-                        # override the portlet
-                        remove_set.add(portlet)
-                        break
-
-            allportlets = [portlet for portlet in allportlets
-                           if portlet not in remove_set]
-
-            self._setPortletLookupCache(
-                tuple(utool.getRpath(ptl) for ptl in allportlets),
-                slot, rpath, sort, override)
+        if sort:
+            # Sorting the portlets by order
+            allportlets.sort(key=operator.attrgetter('order'))
 
         # List of portlets that will not be displayed
         remove_set = set()
 
-        # Portlet visibility and guard check.
-        # Since it is dependant on many programmatic
-        # paramaters, the guard checking cannot be cached.
-        # The visibility depends on actual context rpath, and we use
-        # bottom most folder rpath as cache key for efficiency. Therefore
-        # the visibility check cannot be cached (see #2052 for details)
-        # XXX GR Do we need portlets whose guard failed *not* to override
-        # the upper ones ?
+        # Applying overridance rules
+        for portlet in allportlets:
+            if override:
+                # the portlet is protected
+                if portlet.disable_override:
+                    continue
+                depth = portlet.getDepth()
+                # Run through the slot's portlets to see whether one of them
+                # can override this portlet.
+                for p in allportlets:
+                    # portlets cannot override themselves
+                    if p is portlet:
+                        continue
+                    # the portlet does not do override
+                    if not p.slot_override:
+                        continue
+                    if p.getDepth() <= depth:
+                        continue
+                    # override the portlet
+                    remove_set.add(portlet)
+                    break
+
+        allportlets = [portlet for portlet in allportlets
+                       if portlet not in remove_set]
+
+        self._setPortletLookupCache(
+            tuple(utool.getRpath(ptl) for ptl in allportlets),
+                slot, bmf_path, sort, override)
+
+        return allportlets
+
+    security.declarePrivate('_filterPortletsAfterCache')
+    def _filterPortletsAfterCache(self, context, allportlets,
+                                  visibility_check, guard_check, **kw):
+        """Does the final, uncacheable, filtering of portlets.
+
+        Since it is dependent on many programmatic
+        paramaters, the guard checking cannot be cached.
+
+        The visibility depends on actual context rpath, and we use
+        bottom most folder rpath as cache key for efficiency. Therefore
+        the visibility check cannot be cached (see #2052 for details)
+
+        XXX GR Do we need portlets whose guard failed *not* to override
+        the upper ones ?
+        """
+        # List of portlets that will not be displayed
+        remove_set = set()
+
+        # Final, uncacheable, filtering : portlet visibility and guard check.
+
         if guard_check:
             for portlet in allportlets:
                 if visibility_check:
