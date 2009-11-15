@@ -31,7 +31,6 @@ from logging import getLogger
 import operator
 from DateTime import DateTime
 
-from zLOG import LOG, DEBUG, ERROR
 from zope.interface import implements
 from AccessControl import ClassSecurityInfo, getSecurityManager, Unauthorized
 from Acquisition import aq_base, aq_parent, aq_inner
@@ -51,7 +50,7 @@ from Products.CPSPortlets.PortletRAMCache import RAMCache, SimpleRAMCache
 from Products.CPSPortlets.PortletsContainer import PortletsContainer
 from Products.CPSPortlets.CPSPortletsPermissions import ManagePortlets
 
-LOG_KEY = 'CPSPortlets.PortletsTool'
+logger = getLogger('CPSPortlets.PortletsTool')
 
 # RAM cache
 PORTLET_CONTAINER_ID = '.cps_portlets'
@@ -450,8 +449,6 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         Note that this is a cache containing portlet objects (and not portlet
         renderings) depending on a specified situation (slot, rpath, sorting).
         """
-        log_key = LOG_KEY + '._getPortletLookupCache'
-        logger = getLogger(log_key)
         # ZEO awareness
         last_cache_global_update = self.get(PORTLET_LOOKUP_CACHE_DATE_GLOBAL_ID)
         last_cache_instance_update = self.get(PORTLET_LOOKUP_CACHE_DATE_INSTANCE_ID)
@@ -464,7 +461,7 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         portlets_cache_keywords = {'slot': slot, 'rpath': rpath, 'sort': sort,
                                    'override': override,}
         portlets = self.ZCacheable_get(keywords=portlets_cache_keywords)
-        #logger.debug("portlets = %s" % str(portlets))
+        #logger.debug("_getPortletLookupCache: returning %s", portlets)
         return portlets
 
     security.declarePrivate('_setPortletLookupCache')
@@ -476,14 +473,13 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         Note that this is a cache containing portlet objects (and not portlet
         renderings) depending on a specified situation (slot, rpath, sorting).
         """
-        log_key = LOG_KEY + '._setPortletLookupCache'
-        logger = getLogger(log_key)
         portlets_cache_keywords = {'slot': slot, 'rpath': rpath, 'sort': sort,
                                    'override': override,
                                    }
         # Storing the cache as a volatile attribute. The attribute will not be
         # shared among ZEO instances nor will it be stored persistently.
-        #logger.debug("Caching enabled ? = %s" % self.ZCacheable_isCachingEnabled())
+        #logger.debug("_setPortletLookupCache: caching enabled ? = %s",
+        #             self.ZCacheable_isCachingEnabled())
         self.ZCacheable_set(portlets, keywords=portlets_cache_keywords)
 
     security.declarePrivate('_invalidatePortletLookupCache')
@@ -1266,11 +1262,8 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         """
         if self.ignore_events:
             return
-        log_key = LOG_KEY + '.notify_event'
-        logger = getLogger(log_key)
-        logger.debug("event_type = %s" % event_type)
-        logger.debug("object = %s" % repr(object))
-        logger.debug("infos = %s" % repr(infos))
+        logger.debug("notify_event: event_type=%s, object=%s, infos=%s",
+                     event_type, object, infos)
 
         # Invalidate the portlet lookup cache at every portlet modification
         if event_type in ('portlet_create',
