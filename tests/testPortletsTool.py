@@ -117,6 +117,25 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         subws_portlets_ids = [p.getId() for p in subws_portlets]
         self.assertEquals(subws_portlets_ids, [portlet1_id, portlet2_id])
 
+    def test_getPortlets_lookup_cache_consistency(self):
+        # see #2052 : doing a portlet lookup on a document inside a folder
+        # with local portlets could set a wrong list in cache for the folder.
+        subws = self.ws.subws
+        ptltool = self.ptltool
+        portlet1_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                            context=self.ws)
+        portlet2_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                            context=subws,
+                                            visibility_range=[0,1])
+
+        wftool = self.portal.portal_workflow
+        wftool.invokeFactoryFor(self.ws.subws, 'News Item', 'news')
+        news = subws.news
+        portlets_ids = [p.getId() for p in ptltool.getPortlets(context=news)]
+        self.assertEquals(portlets_ids, [portlet1_id])
+        portlets_ids = [p.getId() for p in ptltool.getPortlets(context=subws)]
+        self.assertEquals(portlets_ids, [portlet1_id, portlet2_id])
+
     def test_getPortlets_permission_guard(self):
         # tests that guard permission does its work
         ptltool = self.ptltool

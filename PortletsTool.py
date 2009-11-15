@@ -347,7 +347,7 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
 
         allportlets_rpaths = self._getPortletLookupCache(slot, rpath, sort,
                                                          override,
-                                                         visibility_check)
+                                                         )
         if allportlets_rpaths is not None:
             allportlets = tuple(portal.unrestrictedTraverse(rpath)
                                 for rpath in allportlets_rpaths)
@@ -372,11 +372,8 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
             # List of portlets that will not be displayed
             remove_set = set()
 
-            # Portlet visibility and override check
+            # Applying overridance rules
             for portlet in allportlets:
-                if visibility_check:
-                    if not self._isPortletVisible(portlet, context):
-                        remove_set.add(portlet)
                 if override:
                     # the portlet is protected
                     if portlet.disable_override:
@@ -402,17 +399,24 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
 
             self._setPortletLookupCache(
                 tuple(utool.getRpath(ptl) for ptl in allportlets),
-                slot, rpath, sort, override, visibility_check)
+                slot, rpath, sort, override)
 
         # List of portlets that will not be displayed
         remove_set = set()
 
-        # Portlet guard check. Since it is dependant on many programmatic
+        # Portlet visibility and guard check.
+        # Since it is dependant on many programmatic
         # paramaters, the guard checking cannot be cached.
+        # The visibility depends on actual context rpath, and we use
+        # bottom most folder rpath as cache key for efficiency. Therefore
+        # the visibility check cannot be cached (see #2052 for details)
         # XXX GR Do we need portlets whose guard failed *not* to override
         # the upper ones ?
         if guard_check:
             for portlet in allportlets:
+                if visibility_check:
+                    if not self._isPortletVisible(portlet, context):
+                        remove_set.add(portlet)
                 if portlet.getGuard() and not portlet.getGuard().check(
                     getSecurityManager(), portlet, context):
                     remove_set.add(portlet)
@@ -421,8 +425,7 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
                 if portlet not in remove_set]
 
     security.declarePrivate('_getPortletLookupCache')
-    def _getPortletLookupCache(self, slot, rpath, sort,
-                               override, visibility_check):
+    def _getPortletLookupCache(self, slot, rpath, sort, override):
         """Return all the portlets stored in a cache depending on the given
         paramaters.
 
@@ -441,15 +444,14 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
                 # this Zope instance.
                 return None
         portlets_cache_keywords = {'slot': slot, 'rpath': rpath, 'sort': sort,
-                                   'override': override,
-                                   'visibility_check': visibility_check}
+                                   'override': override,}
         portlets = self.ZCacheable_get(keywords=portlets_cache_keywords)
         #logger.debug("portlets = %s" % str(portlets))
         return portlets
 
     security.declarePrivate('_setPortletLookupCache')
     def _setPortletLookupCache(self, portlets, slot, rpath, sort,
-                               override, visibility_check):
+                               override):
         """Set all the portlets stored in a cache depending on the given
         paramaters.
 
@@ -460,7 +462,7 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         logger = getLogger(log_key)
         portlets_cache_keywords = {'slot': slot, 'rpath': rpath, 'sort': sort,
                                    'override': override,
-                                   'visibility_check': visibility_check}
+                                   }
         # Storing the cache as a volatile attribute. The attribute will not be
         # shared among ZEO instances nor will it be stored persistently.
         #logger.debug("Caching enabled ? = %s" % self.ZCacheable_isCachingEnabled())
