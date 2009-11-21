@@ -24,9 +24,10 @@
 """Portlet Guard
 """
 
+import logging
+
 import sys
 import types
-from zLOG import LOG, PROBLEM
 from Globals import DTMLFile
 from Globals import InitializeClass
 from Products.PageTemplates.Expressions import getEngine
@@ -37,6 +38,8 @@ except ImportError:
     from Products.PageTemplates.TALES import CompilerError
 from Products.CMFCore.utils import getToolByName
 from Products.DCWorkflow.Guard import Guard
+
+logger = logging.getLogger('Products.CPSPortlets.PortletGuard')
 
 def createExpressionContext(sm, portlet, context):
     """Create a name space for TALES expressions."""
@@ -105,9 +108,10 @@ class PortletGuard(Guard):
             try:
                 res = expr(econtext)
             except (NameError, CompilerError, AttributeError), e:
-                LOG('PortletGuard.check', PROBLEM,
-                    "\"%s\" => %s: %s"
-                    % (expr.text, str(sys.exc_info()[0]), str(e)))
+                utool = getToolByName(context, 'portal_url')
+                logger.warn("Problem for portlet at %s, \"%s\" => %s: %s",
+                            utool.getRpath(portlet),
+                            expr.text.strip(), sys.exc_info()[0], e)
                 return 0
             if not res:
                 return 0
