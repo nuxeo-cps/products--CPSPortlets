@@ -3,22 +3,10 @@ Requires
 -
 New features
 ~~~~~~~~~~~~
-- #2005: Social bookmarking links portlet
-- #2033: Change a portlet slot from ZMI
+-
 Bug fixes
 ~~~~~~~~~
-- #2052: sporadic disappearance of portlet if displayed only where defined
-- #2078: portlet should provide self to portlet widgets downstream
-- #2036: Display shift in navigation tree if start_depth is set
-- #2038: Navigation tree not aware enough of deep virtual hosting
-- #2037: In navigation tree, no highlightning if on a leaf document
-- #2021: robustness in rebuild if type info not available any more
-- #2000: useless calls to types tool on invalidation logic
-- #1973: add an option for "strict" language filtering
-- #1924: default BBB value set to 0
-- #1893 (ticket had to be reopened): Portlets should have user-friendly IDs
-- #1833: Labels used to switch the portal language should be in the target 
-  language and not in the currently selected language
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
