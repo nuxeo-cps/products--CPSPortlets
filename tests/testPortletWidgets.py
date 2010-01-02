@@ -9,6 +9,12 @@ from Acquisition import aq_base
 from Testing import ZopeTestCase
 
 from Products.CPSDefault.tests import CPSDefaultTestCase
+from Products.CPSSchemas.tests.testWidgets import FakeDataModel
+from Products.CPSSchemas.tests.testWidgets import FakeDataStructure
+
+from Products.CPSSchemas.BasicWidgets import CPSSelectWidget
+from Products.CPSPortlets.CPSPortletWidget import CPSDispatcherPortletWidget
+from Products.CPSPortlets.CPSPortlet import CPSPortlet
 
 class TestPortlets(CPSDefaultTestCase.CPSDefaultTestCase):
     def afterSetUp(self):
@@ -108,11 +114,73 @@ class TestCustomPortletWidget(TestPortlets):
         content = "<cite>portlet_meth</cite> is not a callable object."
         self.assertNotEqual(re.findall(pattern % content, rendering), None)
 
+class TestDispatcherPortletWidget(TestPortlets):
+
+    def afterSetUp(self):
+        TestPortlets.afterSetUp(self)
+        portal = self.portal
+
+        # widgets
+        portal._setObject('sel', CPSSelectWidget('sel'))
+        portal._setObject('disp', CPSDispatcherPortletWidget('disp'))
+        self.selector = portal.sel
+        self.selector.manage_changeProperties(fields=('sel',))
+        self.dispatcher = portal.disp
+
+        # a render method
+        def meth(mode='', datastructure=None, **kw):
+            return mode + " Foo"
+
+        portal.dispatcher_widget_foo = meth
+
+        # a fake portlet
+        class FakePortlet(CPSPortlet):
+            portal_type = 'Dispatcher Portlet'
+
+        portal._setObject('disp_portlet', FakePortlet('disp_portlet'))
+        self.portlet = portal.disp_portlet
+
+        dm = self.dm = FakeDataModel()
+        dm.proxy = self.portlet
+        self.ds = FakeDataStructure(dm)
+
+    def test_dispatching_ok(self):
+        self.dispatcher.manage_changeProperties(
+            selector_widget='sel',
+            render_method_prefix='dispatcher_widget_')
+        self.dm['sel'] = 'foo'
+        ds = self.ds
+        self.selector.prepare(ds)
+        self.dispatcher.prepare(ds)
+        rendered = self.dispatcher.render('view', ds)
+        self.assertEquals(rendered, "view Foo")
+
+    def test_dispatching_wrong_selector(self):
+        self.dispatcher.manage_changeProperties(
+            selector_widget='wrong',
+            render_method_prefix='dispatcher_widget_')
+        self.dm['sel'] = 'foo'
+        ds = self.ds
+        self.selector.prepare(ds)
+        self.dispatcher.prepare(ds)
+        self.assertRaises(ValueError, self.dispatcher.render, 'view', ds)
+
+    def test_dispatching_wrong_method(self):
+        self.dispatcher.manage_changeProperties(
+            selector_widget='sel',
+            render_method_prefix='dispatcher_widget_')
+        self.dm['sel'] = 'wrong'
+        ds = self.ds
+        self.selector.prepare(ds)
+        self.dispatcher.prepare(ds)
+        self.assertRaises(RuntimeError, self.dispatcher.render, 'view', ds)
+
 def test_suite():
     suite = unittest.TestSuite()
     for test in tests:
         suite.addTest(unittest.makeSuite(test))
     suite.addTest(unittest.makeSuite(TestCustomPortletWidget))
+    suite.addTest(unittest.makeSuite(TestDispatcherPortletWidget))
     return suite
 
 if __name__ == '__main__':
