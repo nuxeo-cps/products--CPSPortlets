@@ -1,4 +1,3 @@
-# -*- coding: ISO-8859-15 -*-
 # Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
 # Copyright (c) 2004 Chalmers University of Technology
 #                    <http://www.chalmers.se>
@@ -24,7 +23,6 @@ __author__ = "Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>"
 """ Generic Portlet widget
 """
 
-from zLOG import LOG, DEBUG
 from Globals import InitializeClass
 
 from Products.CPSSchemas.Widget import CPSWidget
