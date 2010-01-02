@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<tal:block xmlns:metal="http://xml.zope.org/namespaces/metal"
+	   xmlns:tal="http://xml.zope.org/namespaces/tal"
+	   define="utool nocall:here/portal_url;
+                   export request/form/export|nothing;
+                   ds options/datastructure;
+                   display ds/display;
+                   show_docs ds/show_docs;
+                   display_hidden_folders ds/display_hidden_folders;
+                   display_description ds/display_description;
+                   display_description python: int(display_description);
+                   display_managers ds/display_managers;
+                   display_managers python:int(display_managers);
+                   authorized_only ds/authorized_only;
+                   syndication_formats ds/syndication_formats|python:[];
+                   start_depth python: 2;
+                   root_uids ds/root_uids;
+                   context nocall:options/context_obj|here;
+                   context_rpath python: utool.getRelativeUrl(context)">
+
+ <tal:block condition="not:export">
+
+  <tal:comment condition="nothing">
+  The aim of this menu is to display folding branches of navigation items
+  (but with no JavaScript) and to have an open branch only if it is leading
+  to the current context.
+  </tal:comment>
+  <tal:block
+    define="show_icons ds/show_icons;
+            show_icons python: int(show_icons);
+            show_docs ds/show_docs;
+            start_depth ds/start_depth;
+            end_depth ds/end_depth;
+            rel_depth ds/rel_depth;
+            sort_by ds/sort_by|nothing;
+            sort_direction ds/sort_direction|nothing;
+            folderItems python: context.getNavigationItems(
+                root_uids=root_uids,
+                context_rpath=context_rpath,
+                context_obj=context,
+                start_depth=int(start_depth),
+                end_depth=int(start_depth)+1,
+                display_description=display_description,
+                display_hidden_folders=display_hidden_folders,
+                sort_by=sort_by,
+                sort_direction=sort_direction);
+                linkclass python: show_icons and 'noicon' or None;
+       ">
+     <tal:block condition="folderItems">
+      <ul class="cpsskinsMenu">
+       <li tal:repeat="item folderItems">
+         <a tal:attributes="href item/url;
+                            class linkclass">
+           <tal:block condition="show_icons"
+                      content="structure item/icon_tag" />
+           <tal:block content="item/title" />
+         </a>
+         <tal:block condition="python:item['open']
+                               or context_rpath.startswith(item['rpath'])"
+                    define="subfolderItems python:context.getFolderItems(
+                                           context_rpath=item['rpath'], show_docs=int(show_docs),
+                                           sort_by=sort_by,
+                                           display_hidden_folders=display_hidden_folders)"
+                    repeat="subitem subfolderItems">
+           <a style="margin-left: 1em"
+              tal:attributes="href subitem/url;
+                              class linkclass">
+             <tal:block condition="show_icons"
+                        content="structure subitem/icon_tag" />
+             <tal:block content="subitem/title" />
+             <span class="itemDescription"
+              tal:define="description item/description"
+              tal:condition="python: description and display_description"
+              tal:content="description" />
+           </a>
+         </tal:block>
+       </li>
+     </ul>
+    </tal:block>
+   </tal:block>
+ </tal:block>
+
+ <tal:block condition="syndication_formats" define="path context_rpath">
+   <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
+ </tal:block>
+
+ <tal:block tal:condition="export">
+  <tal:block define="export_macro string:export_${export};
+                     items python: context.getFolderItems(
+                     context_rpath=request.form.get('path'),
+                     show_docs=1, display_hidden_folders=0)">
+    <metal:block use-macro="here/cpsportlet_macros/macros/?export_macro|
+                            here/cpsportlet_macros/macros/export_not_implemented
+" />
+  </tal:block>
+ </tal:block>
+
+</tal:block>

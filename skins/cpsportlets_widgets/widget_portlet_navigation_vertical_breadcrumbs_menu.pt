@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<tal:block xmlns:metal="http://xml.zope.org/namespaces/metal"
+	   xmlns:tal="http://xml.zope.org/namespaces/tal"
+	   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+           define="utool nocall:here/portal_url;
+                   export request/form/export|nothing;
+                   ds options/datastructure;
+                   display ds/display;
+                   show_docs ds/show_docs;
+                   display_hidden_folders ds/display_hidden_folders;
+                   display_description ds/display_description;
+                   display_description python: int(display_description);
+                   display_managers ds/display_managers;
+                   display_managers python:int(display_managers);
+                   authorized_only ds/authorized_only;
+                   syndication_formats ds/syndication_formats|python:[];
+                   start_depth python: 2;
+                   root_uids ds/root_uids;
+                   context nocall:options/context_obj|here;
+                   context_rpath python: utool.getRelativeUrl(context)">
+
+ <tal:block condition="not:export">
+  <tal:block condition="python: display == 'vertical_breadcrumbs_menu'">
+    <tal:block
+     define="rel_depth ds/rel_depth;
+             trailItems python: context.getBreadcrumbsItems(url=context_rpath, display_hidden_folders=display_hidden_folders);
+             folderItems python: context.getFolderItems(context_obj=context, show_docs=show_docs, display_hidden_folders=display_hidden_folders);
+             trailItems python: trailItems[int(rel_depth):];
+             depth python: len(trailItems)">
+      <h1 style="margin:0" tal:condition="python: depth >= 1">
+        <a tal:define="item python: trailItems[0]"
+           tal:attributes="href item/url"
+           tal:content="item/title" /><br/>
+        <tal:block tal:repeat="item folderItems" tal:condition="python: depth == 1">
+          <br/><br/><a tal:content="item/title" tal:attributes="href item/url" />
+        </tal:block>
+      </h1>
+      <h2 style="margin:0" tal:condition="python: depth >= 2">
+        <a tal:define="item python: trailItems[1]"
+           tal:attributes="href item/url"
+           tal:content="item/title" /><br/>
+        <tal:block tal:repeat="item folderItems" tal:condition="python: depth == 2">
+          <br/><br/><a tal:content="item/title" tal:attributes="href item/url" />
+        </tal:block>
+      </h2>
+      <h3 style="margin:0" tal:condition="python: depth >= 3">
+        <a tal:define="item python: trailItems[2]"
+           tal:attributes="href item/url"
+           tal:content="item/title" /><br/>
+        <tal:block tal:repeat="item folderItems" tal:condition="python: depth == 3">
+          <br/><br/><a tal:content="item/title" tal:attributes="href item/url" />
+        </tal:block>
+      </h3>
+      <tal:block repeat="level python: range(3,depth)">
+        <h4 style="margin:0">
+          <a tal:define="item python: trailItems[level]"
+             tal:attributes="href item/url"
+             tal:content="item/title" /><br/>
+          <tal:block tal:repeat="item folderItems" tal:condition="python: level == depth">
+            <br/><br/><a tal:content="item/title" tal:attributes="href item/url" />
+          </tal:block>
+        </h4>
+      </tal:block>
+    </tal:block>
+  </tal:block>
+
+ <tal:block tal:condition="export">
+  <tal:block define="export_macro string:export_${export};
+                     items python: context.getFolderItems(
+                     context_rpath=request.form.get('path'),
+                     show_docs=1, display_hidden_folders=0)">
+    <metal:block use-macro="here/cpsportlet_macros/macros/?export_macro|
+                            here/cpsportlet_macros/macros/export_not_implemented
+" />
+  </tal:block>
+ </tal:block>
+
+</tal:block>

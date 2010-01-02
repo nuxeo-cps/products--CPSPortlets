@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<tal:block xmlns:metal="http://xml.zope.org/namespaces/metal"
+	   xmlns:tal="http://xml.zope.org/namespaces/tal"
+           define="utool nocall:here/portal_url;
+                   export request/form/export|nothing;
+                   ds options/datastructure;
+                   display ds/display;
+                   show_docs ds/show_docs;
+                   display_hidden_folders ds/display_hidden_folders;
+                   display_description ds/display_description;
+                   display_description python: int(display_description);
+                   display_managers ds/display_managers;
+                   display_managers python:int(display_managers);
+                   authorized_only ds/authorized_only;
+                   syndication_formats ds/syndication_formats|python:[];
+                   start_depth python: 2;
+                   root_uids ds/root_uids;
+                   context nocall:options/context_obj|here;
+                   context_rpath python: utool.getRelativeUrl(context)">
+
+<tal:block condition="not:export">
+   <tal:block tal:define="dummy python:request.set('ds', ds);
+                          context_url context/absolute_url_path;
+                          dummy python:request.set('context_url', context_url);
+                          contextual python:ds.get('contextual', True);
+                          end_depth python:ds.get('end_depth', 0);
+                          folder_prefixes python:ds.get('folder_prefixes', []);
+                          folderItems python: context.getNavigationItems(
+                                              root_uids=root_uids,
+                                              context_rpath=context_rpath,
+                                              context_obj=context,
+                                               contextual=0, expand=1,
+                                               folder_prefixes=folder_prefixes,
+                                               end_depth=int(end_depth),
+                                               display_description=display_description,
+                                               display_hidden_folders=display_hidden_folders,
+                                               );
+                          dummy python:request.set('folderItems', folderItems);
+                                                ">
+     <tal:block tal:content="structure context/getTreeView"/>
+   </tal:block>
+
+  </tal:block>
+
+ <tal:block tal:condition="export">
+  <tal:block define="export_macro string:export_${export};
+                     items python: context.getFolderItems(
+                     context_rpath=request.form.get('path'),
+                     show_docs=1, display_hidden_folders=0)">
+    <metal:block use-macro="here/cpsportlet_macros/macros/?export_macro|
+                            here/cpsportlet_macros/macros/export_not_implemented
+" />
+  </tal:block>
+ </tal:block>
+
+</tal:block>

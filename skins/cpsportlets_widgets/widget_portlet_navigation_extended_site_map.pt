@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<tal:block xmlns:metal="http://xml.zope.org/namespaces/metal"
+	   xmlns:tal="http://xml.zope.org/namespaces/tal"
+	   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+           define="utool nocall:here/portal_url;
+                   export request/form/export|nothing;
+                   ds options/datastructure;
+                   display ds/display;
+                   show_docs ds/show_docs;
+                   display_hidden_folders ds/display_hidden_folders;
+                   display_description ds/display_description;
+                   display_description python: int(display_description);
+                   display_managers ds/display_managers;
+                   display_managers python:int(display_managers);
+                   authorized_only ds/authorized_only;
+                   syndication_formats ds/syndication_formats|python:[];
+                   start_depth python: 2;
+                   root_uids ds/root_uids;
+                   context nocall:options/context_obj|here;
+                   context_rpath python: utool.getRelativeUrl(context)">
+
+<tal:block condition="not:export">
+  <tal:block condition="python: display == 'extended_site_map'">
+    <tal:block
+     define="show_icons ds/show_icons;
+             show_icons python: int(show_icons);
+             end_depth ds/end_depth;
+             mdir here/portal_directories/members;
+             mdir_id mdir/getId;
+             display_managers ds/display_managers;
+             display_managers python:int(display_managers) and mdir.isVisible();
+             folderItems python: context.getNavigationItems(
+                 root_uids=root_uids,
+                 context_rpath=context_rpath,
+                 context_obj=context,
+                 contextual=0, expand=1,
+                 end_depth=int(end_depth),
+                 display_hidden_folders=display_hidden_folders,
+                 display_managers=display_managers,
+                 display_description=display_description,
+                 authorized_only=authorized_only,
+                 );
+              linkclass python: show_icons and 'noicon' or None"
+     condition="folderItems">
+      <table class="listing" summary="Detailed site map">
+        <thead>
+          <tr>
+            <td i18n:translate="">cpsportlets_extended_site_map_folder</td>
+            <td tal:condition="display_description"
+              i18n:translate="">cpsportlets_extended_site_map_description</td>
+            <td tal:condition="display_managers"
+              i18n:translate="">cpsportlets_extended_site_map_managers</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr tal:repeat="item folderItems">
+            <td width="30%">
+              <p tal:define="style string:margin-left:${item/depth}em"
+              tal:attributes="style style">
+              <a tal:omit-tag="not:item/visible"
+                tal:attributes="href item/url;
+                style style;
+                class linkclass">
+                <tal:block condition="show_icons"
+                  content="structure item/icon_tag" />
+                <tal:block content="item/title" />
+            </a></p>
+            </td>
+            <td tal:condition="display_description" class="description"
+              tal:content="item/description">Description</td>
+            <td tal:condition="display_managers"
+              tal:define="managers python:item['managers'];
+              base_url utool/getBaseUrl;
+              ">
+              <ul class="cpsskinsMenu">
+                <li tal:repeat="manager managers"><tal:block
+                    tal:define="user
+                    python:mdir.getEntry(manager, default=None)"
+                    tal:condition="user">
+                    <a href=""
+                      tal:content="python:user.get('fullname', manager)"
+                      tal:attributes="href
+                      python:'%scpsdirectory_entry_view?dirname=%s&amp;id=%s' %
+                      (base_url, mdir_id, manager);">Manager's fullname</a>
+                </tal:block></li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </tal:block>
+  </tal:block>
+
+ <tal:block tal:condition="export">
+  <tal:block define="export_macro string:export_${export};
+                     items python: context.getFolderItems(
+                     context_rpath=request.form.get('path'),
+                     show_docs=1, display_hidden_folders=0)">
+    <metal:block use-macro="here/cpsportlet_macros/macros/?export_macro|
+                            here/cpsportlet_macros/macros/export_not_implemented
+" />
+  </tal:block>
+ </tal:block>
+
+</tal:block>

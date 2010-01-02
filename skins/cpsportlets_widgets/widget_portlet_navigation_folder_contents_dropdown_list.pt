@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<tal:block xmlns:metal="http://xml.zope.org/namespaces/metal"
+	   xmlns:tal="http://xml.zope.org/namespaces/tal"
+	   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+           define="utool nocall:here/portal_url;
+                   export request/form/export|nothing;
+                   ds options/datastructure;
+                   display ds/display;
+                   show_docs ds/show_docs;
+                   display_hidden_folders ds/display_hidden_folders;
+                   display_description ds/display_description;
+                   display_description python: int(display_description);
+                   display_managers ds/display_managers;
+                   display_managers python:int(display_managers);
+                   authorized_only ds/authorized_only;
+                   syndication_formats ds/syndication_formats|python:[];
+                   start_depth python: 2;
+                   root_uids ds/root_uids;
+                   context nocall:options/context_obj|here;
+                   context_rpath python: utool.getRelativeUrl(context)">
+
+ <tal:block condition="not:export">
+  <tal:block condition="python: display == 'folder_contents_dropdown_list'">
+    <form method="get" action="cpsportlet_url_redirect"
+    tal:define="folderItems python: here.getFolderItems(
+                context_obj=context,
+                **dict(ds))"
+    tal:condition="folderItems">
+      <select onchange="submit()" name="url">
+        <option value="" selected="selected">...</option>
+        <tal:block repeat="item folderItems">
+          <option value=""
+          tal:define="item_url item/url"
+          tal:content="item/title"
+          tal:attributes="value item_url" />
+        </tal:block>
+      </select>
+    </form>
+ </tal:block>
+
+ <tal:block tal:condition="export">
+  <tal:block define="export_macro string:export_${export};
+                     items python: context.getFolderItems(
+                     context_rpath=request.form.get('path'),
+                     show_docs=1, display_hidden_folders=0)">
+    <metal:block use-macro="here/cpsportlet_macros/macros/?export_macro|
+                            here/cpsportlet_macros/macros/export_not_implemented
+" />
+  </tal:block>
+ </tal:block>
+
+</tal:block>
