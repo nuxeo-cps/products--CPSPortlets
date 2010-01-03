@@ -20,7 +20,6 @@
                    context_rpath python: utool.getRelativeUrl(context)">
 
  <tal:block condition="not:export">
-  <tal:block condition="python: display == 'folder_contents_detailed'">
     <tal:block define="
         cpsmcat nocall:here/translation_service;
         base_url utool/getBaseUrl;
@@ -44,5 +43,4 @@
 " />
   </tal:block>
  </tal:block>
-
 </tal:block>
