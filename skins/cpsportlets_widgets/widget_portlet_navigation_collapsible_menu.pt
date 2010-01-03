@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tal:block xmlns:metal="http://xml.zope.org/namespaces/metal"
 	   xmlns:tal="http://xml.zope.org/namespaces/tal"
 	   define="utool nocall:here/portal_url;

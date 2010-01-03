@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tal:block xmlns:metal="http://xml.zope.org/namespaces/metal"
 	   xmlns:tal="http://xml.zope.org/namespaces/tal"
 	   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
