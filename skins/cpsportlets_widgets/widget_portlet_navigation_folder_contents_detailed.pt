@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <tal:block xmlns:metal="http://xml.zope.org/namespaces/metal"
 	   xmlns:tal="http://xml.zope.org/namespaces/tal"
 	   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
@@ -20,7 +19,6 @@
                    context_rpath python: utool.getRelativeUrl(context)">
 
  <tal:block condition="not:export">
-  <tal:block condition="python: display == 'folder_contents_detailed'">
     <tal:block define="
         cpsmcat nocall:here/translation_service;
         base_url utool/getBaseUrl;
