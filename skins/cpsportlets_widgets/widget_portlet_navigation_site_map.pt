@@ -19,7 +19,6 @@
                    context_rpath python: utool.getRelativeUrl(context)">
 
  <tal:block condition="not:export">
-  <tal:block condition="python: display == 'site_map'">
     <tal:block
      define="show_icons ds/show_icons;
              show_icons python: int(show_icons);

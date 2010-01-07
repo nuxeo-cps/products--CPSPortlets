@@ -19,7 +19,6 @@
                    context_rpath python: utool.getRelativeUrl(context)">
 
  <tal:block condition="not:export">
-  <tal:block condition="python: display == 'up_to_parent'">
     <tal:block define="item context/getParentItem"
      condition="item">
       <a tal:attributes="href item/url">
@@ -29,7 +28,7 @@
         </span>
       </a>
     </tal:block>
-  </tal:block>
+ </tal:block>
 
  <tal:block tal:condition="export">
   <tal:block define="export_macro string:export_${export};
