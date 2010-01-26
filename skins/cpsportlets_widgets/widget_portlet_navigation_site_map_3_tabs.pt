@@ -39,7 +39,7 @@
                 condition="folderItems">
           <ul class="cpsskinsMenu">
               <li tal:repeat="item folderItems"
-                  tal:attributes="class python: item['selected_tab'] and 'selected' or None">
+                  tal:attributes="class python: item['selected_tab'] and 'selected ' or '' + 'tab_' + item['tree']">
                   <a tal:define="style string:margin-left:${item/depth}em"
                      tal:condition="item/visible"
                      tal:attributes="style style;

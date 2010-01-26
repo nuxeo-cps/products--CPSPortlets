@@ -56,6 +56,7 @@ item.append({'url': url,
              'icon_tag': renderIcon(ptype, base_url, ''),
              'description': description,
              'visible': visible,
+             'tree': 'members',
             })
 
 return item
