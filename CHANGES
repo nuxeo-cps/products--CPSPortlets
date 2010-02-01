@@ -7,6 +7,8 @@ New features
 Bug fixes
 ~~~~~~~~~
 - #2074: split navigation portlet render method
+- #2111: Advanced search form should have a contextual title, presently it
+  hinders both accessibility and SEO
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
