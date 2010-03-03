@@ -45,7 +45,7 @@
          src string:${base_url}portlet_search_icon.png;
          alt search_label" />
   </label>
-  <input id="searchGadget" type="text" name="SearchableText" size="15" value=""
+  <input id="searchGadget" type="text" name="SearchableText:utf8:ustring" size="15" value=""
          tal:attributes="value search_value;
                          onclick python:'blankSearchFormInput(\'%s\', this)'
                          % previous_search_value;

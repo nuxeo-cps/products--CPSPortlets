@@ -12,7 +12,8 @@ context_rpath = ds.get('context_rpath')
 render_obj = context_obj
 # a document  path is specified
 if context_rpath:
-    render_obj = context.restrictedTraverse(context_rpath, None)
+    render_obj = context.restrictedTraverse(str(context_rpath), None)
+
     checkPerm = context.portal_membership.checkPermission
     if render_obj is not None:
         if not checkPerm('View', render_obj):

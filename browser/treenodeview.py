@@ -82,9 +82,18 @@ class TreeNodeView(BrowserView):
         return folder_items
 
     def _rootRestrictedTraverse(self, path):
-        
-        portal = self.utool.getPortalObject()
-        return portal.restrictedTraverse(path, default=None)
+        utool = self.utool
+        portal = utool.getPortalObject()
+
+        root = portal.restrictedTraverse(path, default=None)
+        if root is None:
+            portal_path = utool.getPortalPath()
+            # This may be important in VHM based setup with Apache in front,
+            # for example
+            if not path.startswith(portal_path):
+                path = portal_path + path
+                return portal.restrictedTraverse(path, default=None)
+        return root
 
     def _getRoot(self, root=''):
         if (root is None or root == '') and (self.request is None
@@ -108,9 +117,9 @@ class TreeNodeView(BrowserView):
             if folder is None:
                 return
             rpath = self.utool.getRpath(folder)
-        
+
         return getattr(self.tree_tool.aq_explicit, rpath.split('/', 1)[0], None)
-        
+
     def _getContent(self, object):
         content = None
         try:
@@ -129,15 +138,15 @@ class TreeNodeView(BrowserView):
                 if self._isFolderish(item):
                     return True
             return False
-        
+
         # TODO cache this call for reuse ?
         depth = len(rpath.split('/')) # depth of children (l-1+1=l)
-        return len(tc.getList(prefix=rpath, 
-                              start_depth=depth, 
+        return len(tc.getList(prefix=rpath,
+                              start_depth=depth,
                               stop_depth=depth,filter=True)) > 0
 
 
-    def _isFolderish(self, object): 
+    def _isFolderish(self, object):
        return ((hasattr(object, 'isPrincipiaFolderish') and
                 object.isPrincipiaFolderish==1) and
                 not (object.getId().startswith('.') or
@@ -149,8 +158,8 @@ class TreeNodeView(BrowserView):
        tc = self._getTreeCache(folder, rpath=rpath)
        if tc is None:
            # costly BBB fallback
-           return [{'rpath': '/'.join((rpath, id)), 
-                    'id': id} 
+           return [{'rpath': '/'.join((rpath, id)),
+                    'id': id}
                    for id, item in folder.objectItems()
                    if self._isFolderish(item)]
        depth = len(rpath.split('/')) # depth of children (l-1+1=l)
@@ -161,9 +170,8 @@ class TreeNodeView(BrowserView):
                         max_title_words=0, context_rpath='',
                         context_is_portlet=0, recursive=0, **kw):
 
-       
         self.log.debug(
-            "Enter _getFolderItems context_obj=%s, context_rpath=%s", 
+            "Enter _getFolderItems context_obj=%s, context_rpath=%s",
             context_obj, context_rpath)
 
         context = self.context
