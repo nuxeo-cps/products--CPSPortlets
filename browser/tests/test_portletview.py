@@ -45,8 +45,8 @@ class PortletViewTests(CPSPortletsTestCase.CPSPortletsTestCase):
             if portlet_id in not_tested:
                 continue
             portletviewer = PortletView(self.portal.sections, None)
-            result = portletviewer.render(portlet_id)
-            if result.strip() == '':
+            result = portletviewer.render(portlet_id).strip()
+            if result == '':
                 continue
             self.assert_(result.startswith('<div id="%s">' % portlet_id))
 
