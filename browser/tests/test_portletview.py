@@ -82,7 +82,7 @@ class PortletViewTests(CPSPortletsTestCase.CPSPortletsTestCase):
             result = portletviewer.render(portlet_id)
             if result.strip() == '':
                 continue
-            result = result.decode('iso-8859-15').encode('utf-8')
+            result = result.encode('utf-8')
             fakepage = ('\n<div>**** portlet %s ****</div>\n%s\n'
                         % (portlet_id, result))
 
