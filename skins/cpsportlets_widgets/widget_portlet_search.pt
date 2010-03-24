@@ -55,9 +55,8 @@
   </div>
   <div>
     <a href="" tal:condition="advanced_search_link"
-    tal:define="adv_url python:contextual_search and
-                               context.absolute_url() or utool()"
+    tal:define="from_rpath python:utool.getRpath(context)"
     i18n:translate="cpsportlets_advanced_search"
-    tal:attributes="href string:${adv_url}/${advanced_search_form}">Advanced search</a>
+    tal:attributes="href string:${base_url}${advanced_search_form}?from=${from_rpath}">Advanced search</a>
   </div>
 </form>

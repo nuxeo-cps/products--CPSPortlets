@@ -178,6 +178,7 @@ for root_uid in root_uids:
              'title': object['title_or_id'],
              'depth': depth-start_depth,
              'level': level,
+             'tree': root_uid,
              'selected': selected,
              'selected_tab': selected_tab,
              'open': node.get('is_open'),
