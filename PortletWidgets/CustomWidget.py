@@ -1,4 +1,3 @@
-# -*- coding: ISO-8859-15 -*-
 # Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
 # Copyright (c) 2004 Chalmers University of Technology <http://www.chalmers.se>
 # Authors : Julien Anguenot <ja@nuxeo.com>
