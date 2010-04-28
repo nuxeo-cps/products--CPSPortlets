@@ -38,7 +38,9 @@ class PortletCustomWidget(CPSStringWidget):
         """Render in mode from datastructure."""
         meth = getattr(self, self.render_method, None)
         if meth is None:
-            msg = "Unknown render method <cite>%s</cite>." % self.render_method
+            # Real need of CPSAsciiStringField here
+            # render_method is acquired from portlet obj (yuck)
+            msg = "Unknown render method <cite>%s</cite>." % str(self.render_method)
             return msg
         if not callable(meth):
             msg = "<cite>%s</cite> is not a callable object." \
