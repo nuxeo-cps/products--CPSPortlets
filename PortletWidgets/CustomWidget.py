@@ -1,4 +1,3 @@
-# -*- coding: ISO-8859-15 -*-
 # Copyright (c) 2004 Nuxeo SARL <http://nuxeo.com>
 # Copyright (c) 2004 Chalmers University of Technology <http://www.chalmers.se>
 # Authors : Julien Anguenot <ja@nuxeo.com>
@@ -38,7 +37,9 @@ class PortletCustomWidget(CPSStringWidget):
         """Render in mode from datastructure."""
         meth = getattr(self, self.render_method, None)
         if meth is None:
-            msg = "Unknown render method <cite>%s</cite>." % self.render_method
+            # Real need of CPSAsciiStringField here
+            # render_method is acquired from portlet obj (yuck)
+            msg = "Unknown render method <cite>%s</cite>." % str(self.render_method)
             return msg
         if not callable(meth):
             msg = "<cite>%s</cite> is not a callable object." \
