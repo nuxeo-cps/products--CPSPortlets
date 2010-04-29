@@ -17,6 +17,8 @@
 #
 # $Id$
 
+import logging
+import transaction
 from Products.CMFCore.utils import getToolByName
 
 def upgrade_335_336_portlets_catalog(context):
@@ -198,3 +200,29 @@ def check_upgrade_338_340_portlets_cache_bug_1470(portal):
         if 'workflow_reject' not in values:
             return True
     return False
+
+from Products.CPSDocument.upgrade import _upgrade_doc_unicode
+
+def upgrade_350_351_unicode(portal):
+    """Upgrade all portlets to unicode.
+
+    CPS String Field content will be cast to unicode, whereas
+    CPS Ascii String Field content will be cast to str
+    """
+
+    logger = logging.getLogger('Products.CPSPortlets.upgrades.350_351_unicode')
+    ptool = portal.portal_cpsportlets
+
+    logger.info("Starting upgrade of portlets")
+    ptls = ptool.listAllPortlets()
+    total = len(ptls)
+    logger.info("Starting, found %d portlets", total)
+    done = 0
+    for ptl in ptls:
+        if not _upgrade_doc_unicode(ptl):
+            logger.error("Could not upgrade portlet %s", doc)
+            continue
+        done += 1
+    transaction.commit()
+    logger.info("Upgraded %d/%d portlets.", done, total)
+
