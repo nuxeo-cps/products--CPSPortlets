@@ -3,6 +3,8 @@
 if not lang:
     return
 
+lang = lang.split()[0] # header splitting protection, see #2151
+
 if REQUEST is None:
     REQUEST = context.REQUEST
 
