@@ -6,7 +6,7 @@
                    show_icons ds/show_icons;
                    show_icons python: int(show_icons);
                    context nocall:options/context_obj|here;
-                   contentitems python: here.getContentItems(obj=context, get_metadata=get_metadata, **dict(ds));
+                   contentitems python: here.getContentItems(obj=context, get_metadata=get_metadata, syndication=export is not None, **dict(ds));
                    linkclass python: show_icons and 'noicon' or None"
   tal:condition="contentitems">
 
