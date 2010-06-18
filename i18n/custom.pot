@@ -446,6 +446,9 @@ msgstr ""
 msgid "cpsportlets_content_render_items_label"
 msgstr ""
 
+msgid "cpsportlets_content_render_links_label"
+msgstr ""
+
 msgid "cpsportlets_content_cluster_id_label"
 msgstr ""
 

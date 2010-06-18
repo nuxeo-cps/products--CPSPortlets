@@ -616,6 +616,9 @@ msgstr "Title search"
 msgid "cpsportlets_content_render_items_label"
 msgstr "Render items"
 
+msgid "cpsportlets_content_render_links_label"
+msgstr "Render links (in most circumstances, you should let the widgets do it)"
+
 msgid "cpsportlets_content_cluster_id_label"
 msgstr "Cluster ID"
 
