@@ -3,7 +3,7 @@
                    get_metadata python: export is not None;
                    render_items ds/render_items;
                    render_items python: int(render_items);
-                   render_links ds/render_links;
+                   render_links ds/render_links|python:1;
                    render_links python: int(render_links);
                    show_icons ds/show_icons;
                    show_icons python: int(show_icons);
