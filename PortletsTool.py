@@ -489,6 +489,7 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         Note that this is a cache containing portlet objects (and not portlet
         renderings) depending on a specified situation (slot, rpath, sorting).
         """
+        logger.info("Invalidating the lookup cache")
         self.ZCacheable_invalidate()
         # Share with other ZEO instances that the cache has expired
         now = DateTime()
@@ -1271,7 +1272,8 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
                           'portlet_duplicate',
                           'portlet_move',
                           'portlet_insert',
-                          ):
+                          ) or (
+            getattr(aq_base(object), 'meta_type', '') == 'CPS Portlet'):
             self._invalidatePortletLookupCache()
 
         # we skip the events that do not inform about the object's path
