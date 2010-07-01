@@ -6,10 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- #2151: HTTP response splitting condition
-- #2074 (split navigation portlet method) : extended site map was broken
-- #2165: new option not to render links in case one renders items
-- Gave the social bookmarking portlet its own icon
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
