@@ -40,7 +40,10 @@ import PortletRAMCache
 # Import new widgets in here
 import PortletWidgets.DummyWidget
 import PortletWidgets.CustomWidget
-import PortletWidgets.MainContentWidget
+try:
+    import PortletWidgets.MainContentWidget
+except ImportError: # not sure CPSUtil.integration would give the right answer
+    pass
 
 contentClasses = (
     CPSPortlet.CPSPortlet,
