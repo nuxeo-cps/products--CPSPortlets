@@ -37,6 +37,12 @@ class PortletsCatalogTool(CatalogTool):
     id = 'portal_cpsportlets_catalog'
     meta_type = 'CPS Portlets Catalog Tool'
 
+    def refreshCatalog(self, *args, **kwargs):
+        CatalogTool.refreshCatalog(self, *args, **kwargs)
+        ptl_tool = getToolByName(self, 'portal_cpsportlets')
+        # XXX GR would be better to fire an event, too lazy for now
+        ptl_tool._invalidatePortletLookupCache()
+
 InitializeClass(PortletsCatalogTool)
 
 def reindex_portlets_catalog(context):

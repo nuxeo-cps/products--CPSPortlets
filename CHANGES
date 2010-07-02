@@ -6,6 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
+- #2072: improve portlet lookup cache invalidation
 - #2174: provide easily importable portlets catalog reindex utility
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
