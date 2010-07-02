@@ -1,4 +1,3 @@
-# -*- coding: ISO-8859-15 -*-
 # Copyright (c) 2005 Nuxeo SARL <http://nuxeo.com>
 # Author : Julien Anguenot <ja@nuxeo.com>
 
@@ -24,6 +23,7 @@ from Globals import InitializeClass
 from zope.interface import implements
 
 from Products.CMFCore.CatalogTool import CatalogTool
+from Products.CMFCore.utils import getToolByName
 from Products.CPSPortlets.interfaces import IPortletCatalogTool
 
 class PortletsCatalogTool(CatalogTool):
@@ -38,3 +38,7 @@ class PortletsCatalogTool(CatalogTool):
     meta_type = 'CPS Portlets Catalog Tool'
 
 InitializeClass(PortletsCatalogTool)
+
+def reindex_portlets_catalog(context):
+    cat = getToolByName(context, PortletsCatalogTool.id)
+    cat.refreshCatalog(clear=True)
