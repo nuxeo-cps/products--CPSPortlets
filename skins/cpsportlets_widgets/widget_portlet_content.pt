@@ -3,10 +3,12 @@
                    get_metadata python: export is not None;
                    render_items ds/render_items;
                    render_items python: int(render_items);
+                   render_links ds/render_links|python:1;
+                   render_links python: int(render_links);
                    show_icons ds/show_icons;
                    show_icons python: int(show_icons);
                    context nocall:options/context_obj|here;
-                   contentitems python: here.getContentItems(obj=context, get_metadata=get_metadata, **dict(ds));
+                   contentitems python: here.getContentItems(obj=context, get_metadata=get_metadata, syndication=export is not None, **dict(ds));
                    linkclass python: show_icons and 'noicon' or None"
   tal:condition="contentitems">
 
@@ -15,7 +17,8 @@
       <tal:block repeat="item contentitems">
         <li tal:define="item_url item/url;
                         rendered item/rendered">
-          <a tal:attributes="href item_url;
+          <a tal:omit-tag="python: render_items and not render_links"
+	     tal:attributes="href item_url;
                              class linkclass">
             <tal:block condition="show_icons"
              content="structure item/icon_tag" />

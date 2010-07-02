@@ -1,4 +1,43 @@
 ===========================================================
+Package: CPSPortlets 1.2.2
+===========================================================
+First release built by: gracinet at: 2010-06-30T02:35:18
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2151: HTTP response splitting condition
+- #2074 (split navigation portlet method) : extended site map was broken
+- #2165: new option not to render links in case one renders items
+- Gave the social bookmarking portlet its own icon
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
+Package: CPSPortlets 1.2.1
+===========================================================
+First release built by: gracinet at: 2010-03-14T16:27:27
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2074: split navigation portlet render method
+- #2111: Advanced search form should have a contextual title, presently it
+  hinders both accessibility and SEO
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.2.0
 ===========================================================
 First release built by: gracinet at: 2009-12-15T12:28:01

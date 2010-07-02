@@ -107,6 +107,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
     _properties = ({'id': 'slot', 'mode': 'w', 'type': 'string',
                     'label': 'Slot'},
+                   {'id': 'order', 'mode': 'w', 'type': 'string',
+                    'label': 'Order in the slot'},
                    )
     def __getitem__(self, name):
         """File Downloader.

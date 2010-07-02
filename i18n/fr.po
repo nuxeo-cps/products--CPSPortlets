@@ -621,6 +621,10 @@ msgstr "Recherche sur le titre"
 msgid "cpsportlets_content_render_items_label"
 msgstr "Générer un rendu des résultats"
 
+msgid "cpsportlets_content_render_links_label"
+msgstr "Générer les liens (dans la plupart des cas, il vaut mieux laisser "
+"les widgets le faire)"
+
 msgid "cpsportlets_content_cluster_id_label"
 msgstr "Identifiant de groupement de layouts"
 
