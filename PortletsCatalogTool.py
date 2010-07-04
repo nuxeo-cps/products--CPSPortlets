@@ -39,9 +39,10 @@ class PortletsCatalogTool(CatalogTool):
 
     def refreshCatalog(self, *args, **kwargs):
         CatalogTool.refreshCatalog(self, *args, **kwargs)
-        ptl_tool = getToolByName(self, 'portal_cpsportlets')
         # XXX GR would be better to fire an event, too lazy for now
-        ptl_tool._invalidatePortletLookupCache()
+        ptl_tool = getToolByName(self, 'portal_cpsportlets', None)
+        if ptl_tool is not None:
+            ptl_tool._invalidatePortletLookupCache()
 
 InitializeClass(PortletsCatalogTool)
 
