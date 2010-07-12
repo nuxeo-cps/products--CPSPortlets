@@ -62,7 +62,7 @@
   <cps:upgradeStep
       title="Upgrade portlets to unicode"
       source="3.5.0" destination="3.5.1"
-      handler=".upgrade.upgrade_350_351_unicode"
+      handler=".upgrade.upgrade_unicode"
       />
 
   <five:registerClass
