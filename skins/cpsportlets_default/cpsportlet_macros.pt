@@ -36,7 +36,7 @@
               short_syndication_formats ds/short_syndication_formats|nothing;
               portlet nocall:options/portlet|nothing"
   tal:condition="python: formats and portlet">
-  <div class="xmlExportButtons"
+  <div class="xmlExportButtons contentPortletFeeds"
   tal:define="vtool here/portal_vocabularies;
               voc vtool/cpsportlets_syndication_formats_voc">
     <tal:block repeat="format formats">
@@ -46,15 +46,15 @@
       tal:omit-tag="python:not voc.has_key(format)"
       tal:attributes="href string:${portlet/absolute_url}?export=${format}&path=${path};
                       title string:cpsportlets_syndication_${format}_help">
-        <tal:block condition="short_syndication_formats"
-         content="python:voc.get(format)"/>
-        <tal:block condition="not:short_syndication_formats"
-         i18n:translate=""
-         content="python:voc.getMsgid(key=format)" />
+	<img
+             tal:attributes="src string:${base_url}syndication_icon-28.png;
+			     alt python:voc.get(format);
+                             title python:voc.getMsgid(key=format);"
+	     i18n:attributes="title"
+	     />
       </a>
     </tal:block>
   </div>
-  <div style="clear:right"></div>
 </metal:block>
 
 <metal:block define-macro="view_tree"

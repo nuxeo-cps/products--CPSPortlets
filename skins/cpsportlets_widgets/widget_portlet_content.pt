@@ -5,6 +5,7 @@
                    render_items python: int(render_items);
                    render_links ds/render_links|python:1;
                    render_links python: int(render_links);
+		   base_url here/portal_url/getBaseUrl;
                    show_icons ds/show_icons;
                    show_icons python: int(show_icons);
                    context nocall:options/context_obj|here;
@@ -13,7 +14,10 @@
   tal:condition="contentitems">
 
   <tal:block condition="not:export">
-    <ul class="cpsskinsMenu">
+     <tal:block condition="contentitems">
+      <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
+     </tal:block>
+     <ul class="cpsskinsMenu">
       <tal:block repeat="item contentitems">
         <li tal:define="item_url item/url;
                         rendered item/rendered">
@@ -28,9 +32,6 @@
         </li>
       </tal:block>
     </ul>
-    <tal:block condition="contentitems">
-      <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
-    </tal:block>
   </tal:block>
 
   <tal:block tal:condition="export">
