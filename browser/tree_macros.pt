@@ -12,7 +12,7 @@
     </tal:block>
     <tal:block tal:condition="node/dynamic">
       <img tal:condition="node/has_folderish_children"
-        tal:attributes="id python:'load-caller-%s' % node['id'];
+        tal:attributes="id python:'load-caller-%s' % node['safe_url'].replace('url:.','').replace('.','-');
                 src
                 string:${base_url}cpsskins_images/${toggle_icon};
                 alt string:toggle;
@@ -30,7 +30,7 @@
     </a>
   </div>
   <tal:block tal:condition="node/dynamic">
-    <div class="load-area" tal:attributes="id python:'load-area-%s' % node['id']"
+    <div class="load-area" tal:attributes="id python:'load-area-%s' % node['safe_url'].replace('url:.','').replace('.','-');"
         style="display:none" i18n:translate="loading_text">
     LOADING..
     </div>

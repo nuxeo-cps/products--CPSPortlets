@@ -74,6 +74,7 @@ class TestCustomPortletWidget(TestPortlets):
         self.assertEquals(len(ptltool.items()), len_before + 1)
         portlet = ptltool[portlet_id]
         rendering = portlet.render(context_obj=self.portal, portlet=portlet)
+        rendering = rendering.strip()
         self.assertNotEqual(re.match(pattern % 'Unknown render method <cite></cite>.',
                             rendering), None)
 

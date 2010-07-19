@@ -156,7 +156,12 @@ if kw.get('strict_lang_filtering'):
     query['Language'] = match_languages
 else:
     query['match_languages'] = match_languages
+
 t.mark('query: %s' % str(query))
+# unicode index will not match path index stored as str
+if query.has_key('path'):
+    query['path'] = str(query['path'])
+
 brains = context.portal_catalog(**query)
 t.mark('search done')
 # post-filtering

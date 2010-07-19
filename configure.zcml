@@ -59,6 +59,12 @@
       checker=".upgrade.check_upgrade_338_340_portlets_cache_bug_1470"
       />
 
+  <cps:upgradeStep
+      title="Upgrade portlets to unicode"
+      source="3.5.0" destination="3.5.1"
+      handler=".upgrade.upgrade_unicode"
+      />
+
   <five:registerClass
       class=".PortletsContainer.PortletsContainer"
       meta_type="CPS Placeful Portlets Container"

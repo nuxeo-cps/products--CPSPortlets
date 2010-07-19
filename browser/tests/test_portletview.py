@@ -45,8 +45,8 @@ class PortletViewTests(CPSPortletsTestCase.CPSPortletsTestCase):
             if portlet_id in not_tested:
                 continue
             portletviewer = PortletView(self.portal.sections, None)
-            result = portletviewer.render(portlet_id)
-            if result.strip() == '':
+            result = portletviewer.render(portlet_id).strip()
+            if result == '':
                 continue
             self.assert_(result.startswith('<div id="%s">' % portlet_id))
 
@@ -82,7 +82,7 @@ class PortletViewTests(CPSPortletsTestCase.CPSPortletsTestCase):
             result = portletviewer.render(portlet_id)
             if result.strip() == '':
                 continue
-            result = result.decode('iso-8859-15').encode('utf-8')
+            result = result.encode('utf-8')
             fakepage = ('\n<div>**** portlet %s ****</div>\n%s\n'
                         % (portlet_id, result))
 
