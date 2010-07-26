@@ -1,4 +1,23 @@
 ===========================================================
+Package: CPSPortlets 1.2.3
+===========================================================
+First release built by: gracinet at: 2010-07-26T22:51:16
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2072: improve portlet lookup cache invalidation
+- #2177: Nicer look for content portlets syndication
+- #2174: provide easily importable portlets catalog reindex utility
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.2.2
 ===========================================================
 First release built by: gracinet at: 2010-06-30T02:35:18
