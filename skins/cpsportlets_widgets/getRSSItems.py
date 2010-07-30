@@ -61,11 +61,6 @@ render_method = getattr(context, render_method, None)
 
 order = 0
 for item in data_items:
-    # sanitizing to avoid unicode errors in page templates
-    for f,v in item.items():
-        if isinstance(v, unicode):
-            item[f] = v.encode('iso-8859-15', 'latin9_fallback')
-
     description = item['description']
     modified = item['modified']
     author = item['author']
