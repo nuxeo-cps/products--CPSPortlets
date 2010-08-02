@@ -1,4 +1,21 @@
 ===========================================================
+Package: CPSPortlets 1.2.4
+===========================================================
+First release built by: gracinet at: 2010-08-02T19:58:25
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2185: RSS portlet now unicode-ready
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.2.3
 ===========================================================
 First release built by: gracinet at: 2010-07-26T22:51:16
