@@ -8,7 +8,8 @@
       <tal:block repeat="item rssitems">
         <li tal:define="item_url item/url;
                         rendered item/rendered">
-          <a tal:attributes="href item_url"
+          <a tal:attributes="href item_url;
+	   onclick python:item['newWindow'] and 'window.open(\x22%s\x22)\x3b return false\x3b' % item_url or None"
              tal:content="structure rendered" />
         </li>
       </tal:block>

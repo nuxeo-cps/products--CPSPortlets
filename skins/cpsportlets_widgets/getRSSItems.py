@@ -4,6 +4,7 @@
 """The script that returns RSS items according to the portlet parameters.
 """
 
+from copy import deepcopy
 from logging import getLogger
 
 import operator
@@ -29,7 +30,11 @@ for channel_id in channels_ids:
     if channel is None:
         continue
     data = channel.getData(max_items + first_item - 1)
-    lines = data['lines']
+    lines = deepcopy(data['lines']) # RSSChan did a simple copy
+    for line in lines:
+        # lines will be shuffled around (timely sort), so channel dependent
+        # display options have to be copied
+        line['newWindow'] = data['newWindow']
     data_items += lines
     if first_item > 1:
         data_items = data_items[first_item - 1:]
