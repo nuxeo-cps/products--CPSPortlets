@@ -1,5 +1,5 @@
-<dtml-call "request.RESPONSE.setHeader('Content-Type', 'text/xml; charset=ISO-8859-15')">
-<?xml version="1.0" encoding="ISO-8859-15"?>
+<dtml-call "request.RESPONSE.setHeader('Content-Type', 'text/xml; charset=UTF-8')">
+<?xml version="1.0" encoding="UTF-8"?>
 
 <dtml-let convert_date="context.cpsportlet_convert_date">
 
