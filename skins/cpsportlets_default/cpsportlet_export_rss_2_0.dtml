@@ -5,7 +5,7 @@
 
 <rss version="2.0">
   <channel>
-    <title><dtml-var "portal.Title()" html_quote> - <dtml-var "box['Title']" html_quote></title>
+    <title><dtml-var "folder_title" html_quote> - <dtml-var "box['Title']" html_quote></title>
     <link><dtml-var url html_quote></link>
     <description><dtml-var "box['Description']" html_quote></description>
 

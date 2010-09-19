@@ -26,8 +26,9 @@
 <metal:block define-macro="syndication">
   <tal:block define="url string:${request/URL}?${request/QUERY_STRING};
                      utool nocall:here/portal_url;
-                     portal python: utool.getPortalObject()"
-   content="structure python: export_script(portal=portal, box=ds, items=items, url=url, context=here, request=request)" />
+                     portal python: utool.getPortalObject();
+		     folder_title python: portal.restrictedTraverse(ds.get('folder_path', ''), portal).Title()"
+   content="structure python: export_script(portal=portal, box=ds, items=items, folder_title=folder_title, url=url, context=here, request=request)" />
 </metal:block>
 
 <!-- Display export buttons -->

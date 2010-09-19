@@ -6,6 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
+- #2237: content portlet syndication titles now local
 - #2236: honouring new window property of RSS Channel
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
