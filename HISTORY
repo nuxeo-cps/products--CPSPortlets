@@ -1,4 +1,23 @@
 ===========================================================
+Package: CPSPortlets 1.2.5
+===========================================================
+First release built by: gracinet at: 2010-10-03T11:46:44
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2235: syndication exports now UTF-8
+- #2237: content portlet syndication titles now local
+- #2236: honouring new window property of RSS Channel
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.2.4
 ===========================================================
 First release built by: gracinet at: 2010-08-02T19:58:25
