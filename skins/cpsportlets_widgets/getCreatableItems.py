@@ -7,9 +7,9 @@ content_types = context.getSortedContentTypes(allowed=1)
 renderIcon = context.portal_cpsportlets.renderIcon
 
 for ptype in content_types:
-    ptype_id = ptype.getId()
+    ptype_id = ptype['id']
     items.append({
-        'title': ptype.Title(),
+        'title': ptype['Title'],
         'id': ptype_id,
         'icon_tag': renderIcon(ptype_id, base_url, '')
     })

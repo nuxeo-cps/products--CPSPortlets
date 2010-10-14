@@ -15,7 +15,7 @@
          value="" disabled="disabled">
         Add new item ...</option>
         <option tal:repeat="item creatableItems"
-        tal:content="item/title" i18n:translate=""
+        tal:content="item/title"
         tal:attributes="value item/id" value="" />
       </select>
     </form>
@@ -32,7 +32,7 @@
                              class python:show_icons and icon_tag and 'noicon' or None">
             <tal:block condition="show_icons"
              content="structure icon_tag" />
-            <tal:block i18n:translate="" content="item/title" />
+            <tal:block content="item/title" />
           </a>
         </li>
       </tal:block>
