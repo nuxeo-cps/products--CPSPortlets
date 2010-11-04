@@ -1263,8 +1263,6 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         """
         if self.ignore_events:
             return
-        logger.debug("notify_event: event_type=%s, object=%s, infos=%s",
-                     event_type, object, infos)
 
         # Invalidate the portlet lookup cache at every portlet modification
         if event_type in ('portlet_create',
