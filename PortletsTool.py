@@ -50,7 +50,7 @@ from Products.CPSPortlets.PortletRAMCache import RAMCache, SimpleRAMCache
 from Products.CPSPortlets.PortletsContainer import PortletsContainer
 from Products.CPSPortlets.CPSPortletsPermissions import ManagePortlets
 
-logger = getLogger('CPSPortlets.PortletsTool')
+logger = getLogger(__name__)
 
 # RAM cache
 PORTLET_CONTAINER_ID = '.cps_portlets'
