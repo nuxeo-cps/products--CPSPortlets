@@ -625,7 +625,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         js_method = self.getJavaScript()
         if not js_method:
             return
-        rid = JSGlobalMethodResource.register(js_method)
+        rid = JSGlobalMethodResource.register(str(js_method)) # avoid unicode
         require_resource(rid, category=PORTLET_RESOURCE_CATEGORY, context=self)
 
     security.declarePublic('render_esi')
