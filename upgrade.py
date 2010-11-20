@@ -96,8 +96,13 @@ def upgrade_338_340_themes(context, check=False):
     SLOT_TYPE = 'Portal Box Group Templet'
 
     tmtool = getToolByName(context, 'portal_themes', None)
-    if tmtool is None and check:
-        return False
+    if check:
+        try:
+            from Products.CPSSkins.PortalThemesTool import PortalThemesTool
+        except ImportError:
+            return False
+        return tmtool is not None and isinstance(tmtool, PortalThemesTool)
+
     for theme in tmtool.getThemes():
         for templet in theme.getTemplets():
             if not templet.meta_type == 'Main Content Templet':
