@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- #2281: use the request resource registry
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
