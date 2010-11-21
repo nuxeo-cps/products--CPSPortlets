@@ -1,3 +1,4 @@
+import re
 from DateTime.DateTime import DateTime
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
@@ -74,6 +75,20 @@ class BaseExport(BrowserView):
         ts = self._cpsmcat = getToolByName(self.context, 'translation_service')
         return ts
 
+    def cpsVersion(self):
+        """Return suitable CPS version string"""
+        # TODO duplicated from CPSCore.PatchCopyright
+        try:
+            from Products.CPSCore.portal import CPSSite
+        except ImportError: # CPS portlets more or less CPS-independent
+            return ''
+
+        vstr = '.'.join((str(x) for x in CPSSite.cps_version[1:]))
+        vsuffix = getattr(CPSSite, 'cps_version_suffix', '')
+        if vsuffix:
+            vstr += '-' + vsuffix
+        return vstr
+
     def l10nPortletTitle(self):
         return self.getCpsMcat()(self.datamodel['Title'])
 
@@ -110,6 +125,8 @@ class BaseExport(BrowserView):
     def dateTimeFormat(self, dt, format):
         if dt is None:
             return None
+        if isinstance(dt, basestring):
+            dt = DateTime(dt)
         format = DATETIME_FORMATS.get(format)
         if format is None:
             return dt.rfc822() # makes a good default
@@ -143,12 +160,32 @@ class ContentPortletRssExport(RssExport, ContentPortletExport):
 
 class AtomExport(object):
 
+    urlregexp = re.compile(r"^(http://|https://)([^/:]+):?(\d+)?(/.*)$")
+
     def contentType(self):
         """TODO: detection of browsers that don't recognize the standard.
         """
         return ATOM_CONTENT_TYPE
 
+    def atomId(self, permalink, datetime):
+        """Adapted from cpsportlet_contstruct_atomid
 
-class AtomContentExport(AtomExport, ContentPortletExport):
+        Original docstring:
+          <link rel="alternate"> is always the permalink of the entry
+          http://diveintomark.org/archives/2004/05/28/howto-atom-id - article
+          about constructing id
+        """
+        m = self.urlregexp.search(permalink)
+        if not m:
+            return permalink
+        location, port, path = m.groups()[1:]
+        path = path.split('?')[0]
+        uid = 'tag:' + location + ',' + \
+            DateTime(datetime).strftime('%Y-%m-%d') + ':' + path
+        return uid
+
+
+
+class ContentPortletAtomExport(AtomExport, ContentPortletExport):
     """The class to use for all Atom exports of content portlets"""
 
