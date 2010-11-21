@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns="http://purl.org/rss/1.0/"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <channel tal:attributes="rdf:about view/contentUrl">
+   <title tal:content="string:${view/folderTitle} - ${view/l10nPortletTitle}"/>
+   <link tal:content="view/contentUrl"/>
+   <description tal:content="view/portletDescription" />
+    <items>
+      <rdf:Seq>
+       <rdf:li  tal:repeat="item view/items"
+		tal:attributes="rdf:resource item/url" />
+      </rdf:Seq>
+    </items>
+  </channel>
+  <item tal:repeat="item view/items"
+	tal:attributes="rdf:about item/url">
+   <title tal:content="item/title"/>
+   <description tal:content="item/description"/>
+   <link tal:content="item/url"/>
+   <tal:block define="metadata item/metadata|nothing;
+		      pubdate python:view.itemLastModified(item)"
+	      condition="metadata">
+    <dc:contributor tal:content="metadata/contributor|nothing"/>
+    <dc:language tal:content="metadata/language|nothing"/>
+    <dc:coverage tal:content="metadata/coverage|nothing"/>
+    <dc:rights tal:content="metadata/rights|nothing"/>
+    <dc:date tal:condition="pubdate"
+	     tal:content="python:view.dateTimeFormat(pubdate, 'W3CDTF')"/>
+   </tal:block>
+  </item>
+</rdf:RDF>

@@ -7,6 +7,10 @@ RSS_CONTENT_TYPE = 'application/rss+xml'
 
 ATOM_CONTENT_TYPE = 'application/atom+xml'
 
+DATETIME_FORMATS = dict(W3CDTF='%Y-%m-%dT%H:%M:%SZ',
+                        )
+
+
 class BaseExport(BrowserView):
 
     def __init__(self, *args):
@@ -103,19 +107,22 @@ class BaseExport(BrowserView):
         ds.updateFromMapping(self.request.form)
         return ds
 
+    def dateTimeFormat(self, dt, format):
+        if dt is None:
+            return None
+        format = DATETIME_FORMATS.get(format)
+        if format is None:
+            return dt.rfc822() # makes a good default
+        return dt.strftime(format)
+
 
 class ContentPortletExport(BaseExport):
 
     def itemLastModified(self, item):
+        """Return last modified date as a DateTime object."""
         date_str = item['metadata'].get('date')
         if date_str:
             return DateTime(date_str) # lame, but that's the input we have
-
-    def itemLastModifiedRfc822(self, item):
-        dt = self.itemLastModified(item)
-        if dt is None:
-            return ''
-        return dt.rfc822()
 
     def initItems(self):
         kw = dict(self.dataStructure()) # dict() necessary to pass on

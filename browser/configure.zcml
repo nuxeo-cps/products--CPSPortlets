@@ -49,6 +49,13 @@
     permission="zope.Public"
     class=".browser.exportviews.ContentPortletRssExport"/>
 
+  <browser:page
+    for="Products.CPSPortlets.interfaces.ICPSPortlet"
+    template="content_portlet_rss_1_0.pt"
+    name="rss1_0"
+    permission="zope.Public"
+    class=".browser.exportviews.ContentPortletRssExport"/>
+
   <browser:resource
     file="treenodeview.js"
     name="treenodeview.js"/>
