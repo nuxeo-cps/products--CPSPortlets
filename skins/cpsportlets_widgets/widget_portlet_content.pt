@@ -13,7 +13,8 @@
                    linkclass python: show_icons and 'noicon' or None"
   tal:condition="contentitems">
 
-  <tal:block condition="not:export">
+  <tal:block condition="not:export"
+	     define="export_new_style python:True">
      <tal:block condition="contentitems">
       <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
      </tal:block>
