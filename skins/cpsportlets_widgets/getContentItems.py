@@ -5,7 +5,6 @@ if obj is None:
 
 from Products.CPSUtil.timer import Timer
 t = Timer('CPSPortlets getContentItems')
-
 if REQUEST is not None:
     kw.update(REQUEST.form)
 
@@ -219,10 +218,8 @@ metadata_map = {
 # portal type icons
 portal_types = context.portal_types
 renderIcon = context.portal_cpsportlets.renderIcon
-
 utool = context.portal_url
 base_url = utool.getBaseUrl()
-
 order = 0
 for brain in brains:
     order += 1

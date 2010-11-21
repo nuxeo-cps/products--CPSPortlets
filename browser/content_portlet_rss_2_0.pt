@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<rss version="2.0"
+     xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <channel>
+   <title tal:content="string:${view/folderTitle} - ${view/l10nPortletTitle}"/>
+   <link tal:content="view/contentUrl"/>
+   <description tal:content="view/portletDescription" />
+
+   <tal:block repeat="item view/items">
+    <item tal:define="pubdate python:view.itemLastModifiedRfc822(item)">
+     <title tal:content="item/title"/>
+     <link tal:content="item/url"/>
+     <guid tal:content="item/url"/>
+     <description tal:content="item/description"/>
+     <pubDate tal:condition="pubdate" tal:content="pubdate"/>
+    </item>
+   </tal:block>
+
+  </channel>
+</rss>
