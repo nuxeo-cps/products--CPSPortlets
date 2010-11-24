@@ -1,4 +1,6 @@
-<tal:block define="ds options/datastructure;
+<tal:block xmlns:metal="http://xml.zope.org/namespaces/metal"
+	   xmlns:tal="http://xml.zope.org/namespaces/tal"
+	   define="ds options/datastructure;
                    display ds/display;
                    display_hidden_folders ds/display_hidden_folders;
                    display_site_root ds/display_site_root;
@@ -24,9 +26,6 @@
     </select>
   </form>
   <tal:block condition="python: display == 'horizontal_trail'">
-    <tal:comment condition="nothing">
-      the icon should be made optional, e.g. with a "show icon" option
-    </tal:comment>
     <img tal:attributes="src
       string:${base_url}cpsskins_images/UpFolder_icon.png;
       alt string:Up Folder" />
@@ -42,4 +41,16 @@
       </tal:block>
     </tal:block>
   </tal:block>
+  <tal:block condition="python: display == 'semantic_simple'">
+   <ul class="breadcrumbs">
+    <li tal:repeat="item breadcrumbsItems"
+	tal:attributes="class python: repeat['item'].start and 'first'
+                                   or repeat['item'].end and 'last' or None">
+        <a href="" tal:attributes="href item/url;
+                                   title item/longtitle|nothing"
+         tal:content="python: item['title']" />
+    </li>
+   </ul>
+  </tal:block>
 </tal:block>
+
