@@ -3,10 +3,10 @@ Requires
 -
 New features
 ~~~~~~~~~~~~
-- #2283: Zope3 style refactor of portlet exports
+-
 Bug fixes
 ~~~~~~~~~
-- #2281: use the request resource registry
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
