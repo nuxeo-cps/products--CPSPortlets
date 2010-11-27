@@ -14,13 +14,47 @@ DATETIME_FORMATS = dict(W3CDTF='%Y-%m-%dT%H:%M:%SZ',
 
 class BaseExport(BrowserView):
 
-    def __init__(self, *args):
-        BrowserView.__init__(self, *args)
-        portlet = self.portlet = self.context
+    ready = False
+
+    # GR: it would be tempting to subclass __init__ to put something like
+    # self.portlet = context in there for overall clarity.
+    # But the resulting self.portlet would then always be
+    # retrieved wrapped in the view class, and that leads to aq problems in
+    # getContentUrl(). Somehow, self.context does not have this problem, and I
+    # don't know why at this point.
+
+    def prepare(self):
+        """Can't be done in __init__
+
+        These initializations are likely to require the authenticated user to
+        be initialized, which happens after the traversal, during which the view
+        class instantiation occurs.
+        """
+        if self.ready:
+            return
+        portlet = self.context
         self.datamodel = portlet.getDataModel(context=portlet)
         self.initFolder()
         self.initItems()
         self.responseHeaders()
+        self.ready = True
+
+    def __call__(self, *args, **kwargs):
+        """Intercept the rendering to call prepare().
+
+        We're subclassing Five.browser.metaconfigure.ViewMixinForTemplate, here
+        used as metaclass base (as the current class) for instantiation of self.
+        self.index is the page template object itself.
+
+        TODO: maybe insulate that kind of trick from Five specifics
+        by putting a generic base class in CPSonFive.browser.
+        Note that Five's naming is fortunately the same as the one from
+        zope.app.pagetemplate.simpleviewclass
+        It's also probably a better idea to understand the use of (standard python
+        new-style) metaclass usage of Zope 3 before Five's
+        """
+        self.prepare()
+        return self.index(self,  *args, **kwargs)
 
     def __getitem__(self, segment):
         """Zope2-style traversal (implementing ITraversable does not work).
@@ -99,7 +133,7 @@ class BaseExport(BrowserView):
         return self.datamodel['Description']
 
     def contentUrl(self):
-        return self.portlet.getLocalFolder().absolute_url()
+        return self.context.getLocalFolder().absolute_url()
 
     def dataStructure(self):
         """Return a prepared DataStructure instance for request and context.
@@ -112,7 +146,7 @@ class BaseExport(BrowserView):
         that's a whole different story.
         """
 
-        portlet = self.portlet
+        portlet = self.context
         fti = portlet.getTypeInfo()
         layouts = (fti.getLayout(lid, portlet) for lid in fti.getLayoutIds())
 
@@ -144,7 +178,8 @@ class ContentPortletExport(BaseExport):
     def initItems(self):
         kw = dict(self.dataStructure()) # dict() necessary to pass on
         kw['get_metadata'] = True
-        self.items = self.context.getContentItems(obj=self.portlet, **kw)
+        portlet = self.context
+        self.items = portlet.getContentItems(obj=portlet, **kw)
 
 class RssExport(object):
 
