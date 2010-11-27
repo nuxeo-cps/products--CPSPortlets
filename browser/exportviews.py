@@ -18,10 +18,10 @@ class BaseExport(BrowserView):
 
     # GR: it would be tempting to subclass __init__ to put something like
     # self.portlet = context in there for overall clarity.
-    # But the resulting self.portlet would then always be
-    # retrieved wrapped in the view class, and that leads to aq problems in
-    # getContentUrl(). Somehow, self.context does not have this problem, and I
-    # don't know why at this point.
+    # But the resulting self.portlet would be retrieved as ImplicitAcquirerWrapper
+    # with aq_chain starting in the view class from prepare() and that leads to aq
+    # problems in getContentUrl(). self.context does not have this problem
+    # (don't know really why at this point).
 
     def prepare(self):
         """Can't be done in __init__
@@ -139,7 +139,7 @@ class BaseExport(BrowserView):
         """Return a prepared DataStructure instance for request and context.
 
         Simplified version of what happens in FlexibleTypeInformation
-        Request query parameters are taken into account, just in case
+        Request query parameters are taken into account, just in case.
         Session isn't.
 
         Of course portlets rendering should not rely on datastructure, but
