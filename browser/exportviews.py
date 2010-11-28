@@ -1,7 +1,11 @@
 import re
+import logging
+
 from DateTime.DateTime import DateTime
+from AccessControl import Unauthorized
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
+from Products.CPSonFive.browser import AqSafeBrowserView
 from Products.CPSSchemas.DataStructure import DataStructure
 
 RSS_CONTENT_TYPE = 'application/rss+xml'
@@ -10,29 +14,23 @@ ATOM_CONTENT_TYPE = 'application/atom+xml'
 
 DATETIME_FORMATS = dict(W3CDTF='%Y-%m-%dT%H:%M:%SZ',
                         )
+logger = logging.getLogger(__name__)
 
-
-class BaseExport(BrowserView):
+class BaseExport(AqSafeBrowserView):
 
     ready = False
-
-    # GR: it would be tempting to subclass __init__ to put something like
-    # self.portlet = context in there for overall clarity.
-    # But the resulting self.portlet would be retrieved as ImplicitAcquirerWrapper
-    # with aq_chain starting in the view class from prepare() and that leads to aq
-    # problems in getContentUrl(). self.context does not have this problem
-    # (don't know really why at this point).
 
     def prepare(self):
         """Can't be done in __init__
 
         These initializations are likely to require the authenticated user to
-        be initialized, which happens after the traversal, during which the view
-        class instantiation occurs.
+        be initialized, which happens after the traversal, during which the
+        view class instantiation occurs.
         """
         if self.ready:
             return
-        portlet = self.context
+        portlet = self.context.aq_inner
+        self.aqSafeSet('portlet', portlet)
         self.datamodel = portlet.getDataModel(context=portlet)
         self.initFolder()
         self.initItems()
@@ -43,18 +41,19 @@ class BaseExport(BrowserView):
         """Intercept the rendering to call prepare().
 
         We're subclassing Five.browser.metaconfigure.ViewMixinForTemplate, here
-        used as metaclass base (as the current class) for instantiation of self.
-        self.index is the page template object itself.
+        used as metaclass base (as the current class) for instantiation of
+        self.
 
         TODO: maybe insulate that kind of trick from Five specifics
         by putting a generic base class in CPSonFive.browser.
         Note that Five's naming is fortunately the same as the one from
         zope.app.pagetemplate.simpleviewclass
-        It's also probably a better idea to understand the use of (standard python
-        new-style) metaclass usage of Zope 3 before Five's
+        It's also probably a better idea to understand the use of (standard
+        python new-style) metaclass in Zope 3 before Five's adaptation for
+        old-style classes.
         """
         self.prepare()
-        return self.index(self,  *args, **kwargs)
+        return self.index(self,  *args, **kwargs) # self.index is the ZPT
 
     def __getitem__(self, segment):
         """Zope2-style traversal (implementing ITraversable does not work).
@@ -73,9 +72,12 @@ class BaseExport(BrowserView):
         return self
 
     def initFolder(self):
+        """Set folder and portal attributes."""
         rpath = self.datamodel['folder_path']
-        portal = getToolByName(self.context, 'portal_url').getPortalObject()
-        self.folder = portal.restrictedTraverse(rpath) # might be portal
+        utool = getToolByName(self.context.aq_inner, 'portal_url')
+        portal =  utool.getPortalObject()
+        self.aqSafeSet('portal', portal)
+        self.aqSafeSet('folder', portal.restrictedTraverse(rpath))
 
     def contentType(self):
         """Return applicable MIME type for this export.
@@ -146,7 +148,7 @@ class BaseExport(BrowserView):
         that's a whole different story.
         """
 
-        portlet = self.context
+        portlet = self.aqSafeGet('portlet')
         fti = portlet.getTypeInfo()
         layouts = (fti.getLayout(lid, portlet) for lid in fti.getLayoutIds())
 
@@ -166,6 +168,31 @@ class BaseExport(BrowserView):
             return dt.rfc822() # makes a good default
         return dt.strftime(format)
 
+    def itemDataModel(self, item):
+        """Return a DataModel for the prescribed item, or None"""
+        rpath = item.get('rpath')
+        if rpath is None:
+            logger.error('Item rpath not provided for %r. Check overrides',
+                         item)
+            return
+
+        try:
+            proxy = self.aqSafeGet('portal').restrictedTraverse(rpath)
+            if proxy is None:
+                return
+            doc = proxy.getContent()
+            return doc.getDataModel(proxy=proxy)
+        except Unauthorized:
+            # in theory, it is possible to access the brain information
+            # without accessing the object itself. This is exceptional and
+            # happens only if the security index would be bypassed par
+            # custom code or would be somewhat broken
+            logger.warn("%r unauthorized to access content %r returned "
+                        "by search", user, rpath)
+        except (KeyError, AttributeError):
+            logger.warn("Inconsistency: item %r not reachable or "
+                        "cannot provide DataModel", rpath)
+
 
 class ContentPortletExport(BaseExport):
 
@@ -178,7 +205,7 @@ class ContentPortletExport(BaseExport):
     def initItems(self):
         kw = dict(self.dataStructure()) # dict() necessary to pass on
         kw['get_metadata'] = True
-        portlet = self.context
+        portlet = self.aqSafeGet('portlet')
         self.items = portlet.getContentItems(obj=portlet, **kw)
 
 class RssExport(object):

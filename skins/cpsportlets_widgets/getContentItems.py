@@ -1,5 +1,4 @@
 ##parameters=obj=None, REQUEST=None, **kw
-# $Id$
 if obj is None:
     return []
 
@@ -309,6 +308,7 @@ for brain in brains:
          'rendered': rendered,
          'metadata': metadata_info,
          'icon_tag': icon_tag,
+         'rpath': brain.relative_path,
         })
 #t.log('done')
 return items

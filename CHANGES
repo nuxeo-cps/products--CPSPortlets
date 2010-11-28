@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- #2283: more helpers in new-style exports and robuster (see #2290)
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
