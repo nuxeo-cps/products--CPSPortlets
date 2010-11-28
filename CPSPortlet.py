@@ -517,14 +517,14 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         kw.update(data)
 
         self.registerRequireJavaScript()
+        ptltool = getToolByName(self, 'portal_cpsportlets')
         # the portlet is not cacheable.
-        if cache_index is None:
+        if ptltool.render_cache_disabled or cache_index is None:
             return self.render(**kw)
 
         now = time.time()
         portlet_path = self.getPhysicalPath()
         index = (portlet_path, ) + cache_index
-        ptltool = getToolByName(self, 'portal_cpsportlets')
         cache = ptltool.getPortletCache()
         # last_cleanup: the date when all the cache entries associated to the
         # portlet were last removed from the cache
