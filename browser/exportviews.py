@@ -129,7 +129,7 @@ class BaseExport(AqSafeBrowserView):
         return self.getCpsMcat()(self.datamodel['Title'])
 
     def folderTitle(self):
-        return self.folder.Title() # TODO l10n in some cases ?
+        return self.aqSafeGet('folder').Title() # TODO l10n in some cases ?
 
     def portletDescription(self):
         return self.datamodel['Description']
