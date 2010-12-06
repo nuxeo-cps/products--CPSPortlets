@@ -3,6 +3,8 @@ if obj is None:
     return []
 
 from Products.CPSUtil.timer import Timer
+from Products.CPSUtil.text import summarize
+
 t = Timer('CPSPortlets getContentItems')
 if REQUEST is not None:
     kw.update(REQUEST.form)
@@ -168,16 +170,6 @@ if search_type == 'related':
     # in different places?
     obj_url = obj.absolute_url()
     brains = [o for o in brains if o.getURL() != obj_url]
-
-# build results dictionary
-def summarize(text='', max_words=20):
-    """summarize the text by returning the first max_words"""
-    if not text:
-        return ''
-    words = text.split(' ')
-    if len(words) > max_words:
-        words = words[:max_words] + [' ...']
-    return ' '.join(words)
 
 # return the catalog brain's actual content
 def getBrainInfo():
