@@ -7,7 +7,7 @@
  <title tal:content="string:${view/folderTitle} - ${view/l10nPortletTitle}"/>
  <link tal:content="view/contentUrl"/>
  <id tal:content="python:view.atomId(view.contentUrl(),
-		  view.portlet.created())"/>
+		  view.aqSafeGet('portlet').created())"/>
  <generator url="http://cps-cms.org" tal:attributes="version view/cpsVersion">
   CPS Content Management System
  </generator>
