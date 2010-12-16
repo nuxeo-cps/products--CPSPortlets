@@ -74,6 +74,8 @@ class BaseExport(AqSafeBrowserView):
     def initFolder(self):
         """Set folder and portal attributes."""
         rpath = self.datamodel['folder_path']
+        if rpath.startswith('/'):
+            rpath = rpath[1:]
         utool = getToolByName(self.context.aq_inner, 'portal_url')
         portal =  utool.getPortalObject()
         self.aqSafeSet('portal', portal)
