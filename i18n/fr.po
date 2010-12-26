@@ -273,6 +273,9 @@ msgstr "Liste déroulante"
 msgid "cpsportlets_bcs_display_horizontal_trail_label"
 msgstr "Piste horizontale"
 
+msgid "cpsportlets_bcs_display_semantic_simple_label"
+msgstr "Sémantique minimal, contrôlé par CSS"
+
 msgid "cpsportlets_bcs_display_site_root_label"
 msgstr "Afficher la racine du site"
 

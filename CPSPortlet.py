@@ -50,6 +50,8 @@ except ImportError:
     from Products.PageTemplates.TALES import CompilerError
 from Products.CMFCore.utils import getToolByName, _getViewFor
 from Products.CMFCore.permissions import View, ModifyPortalContent
+from Products.CPSUtil.resourceregistry import JSGlobalMethodResource
+from Products.CPSUtil.resourceregistry import require_resource
 from Products.CPSCore.ProxyBase import FileDownloader
 from Products.CPSDocument.CPSDocument import CPSDocument
 
@@ -60,6 +62,8 @@ from cpsportlets_utils import html_slimmer
 
 from zope.interface import implements
 from Products.CPSPortlets.interfaces import ICPSPortlet
+
+PORTLET_RESOURCE_CATEGORY = 'portlet'
 
 _marker = []
 
@@ -511,14 +515,16 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         cache_index, data = self.getCacheIndex(**kw)
         kw.update(data)
+
+        self.registerRequireJavaScript()
+        ptltool = getToolByName(self, 'portal_cpsportlets')
         # the portlet is not cacheable.
-        if cache_index is None:
+        if ptltool.render_cache_disabled or cache_index is None:
             return self.render(**kw)
 
         now = time.time()
         portlet_path = self.getPhysicalPath()
         index = (portlet_path, ) + cache_index
-        ptltool = getToolByName(self, 'portal_cpsportlets')
         cache = ptltool.getPortletCache()
         # last_cleanup: the date when all the cache entries associated to the
         # portlet were last removed from the cache
@@ -614,6 +620,13 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             if meth and callable(meth):
                 rendered = apply(meth, (), kw)
         return rendered
+
+    def registerRequireJavaScript(self):
+        js_method = self.getJavaScript()
+        if not js_method:
+            return
+        rid = JSGlobalMethodResource.register(str(js_method)) # avoid unicode
+        require_resource(rid, category=PORTLET_RESOURCE_CATEGORY, context=self)
 
     security.declarePublic('render_esi')
     def render_esi(self, **kw):

@@ -32,28 +32,61 @@
 </metal:block>
 
 <!-- Display export buttons -->
+<tal:comment condition="nothing">
+ TODO GR: reimplement path query argument (not used for content portlets)
+</tal:comment>
+
+<metal:block define-macro="xml_export_link_new_style"
+             tal:define="exts_voc vtool/cpsportlets_export_extensions|nothing;
+                         ptlid portlet/getId;
+	                 ptlurl portlet/absolute_url">
+
+ <a i18n:attributes="title"
+    tal:omit-tag="python:not voc.has_key(format)"
+    tal:define="ext python: exts_voc and exts_voc.get(format) or 'xml';
+                export_name python: ext and ptlid + '.' + ext or ptlid;"
+    tal:attributes="href string:${ptlurl}/${format}/${export_name};
+		    title string:cpsportlets_syndication_${format}_help">
+  <img tal:attributes="src string:${base_url}syndication_icon-28.png;
+                       alt python:voc.get(format);
+                       title python:voc.getMsgid(key=format);"
+       i18n:attributes="title" />
+ </a>
+</metal:block>
+
+<metal:block define-macro="xml_export_link_old_style">
+ <a i18n:attributes="title"
+    tal:define="path path|nothing"
+    tal:omit-tag="python:not voc.has_key(format)"
+    tal:attributes="href string:${portlet/absolute_url}?export=${format}&path=${path};
+		    title string:cpsportlets_syndication_${format}_help">
+  <img
+    tal:attributes="src string:${base_url}syndication_icon-28.png;
+		    alt python:voc.get(format);
+		    title python:voc.getMsgid(key=format);"
+    i18n:attributes="title"
+    />
+ </a>
+</metal:block>
+
 <metal:block define-macro="xml_exports"
   tal:define="formats ds/syndication_formats;
               short_syndication_formats ds/short_syndication_formats|nothing;
               portlet nocall:options/portlet|nothing"
   tal:condition="python: formats and portlet">
   <div class="xmlExportButtons contentPortletFeeds"
-  tal:define="vtool here/portal_vocabularies;
-              voc vtool/cpsportlets_syndication_formats_voc">
+       tal:define="vtool here/portal_vocabularies;
+                   export_new_style export_new_style|nothing;
+                   voc vtool/cpsportlets_syndication_formats_voc">
     <tal:block repeat="format formats">
-      <a
-      i18n:attributes="title"
-      tal:define="path path|nothing"
-      tal:omit-tag="python:not voc.has_key(format)"
-      tal:attributes="href string:${portlet/absolute_url}?export=${format}&path=${path};
-                      title string:cpsportlets_syndication_${format}_help">
-	<img
-             tal:attributes="src string:${base_url}syndication_icon-28.png;
-			     alt python:voc.get(format);
-                             title python:voc.getMsgid(key=format);"
-	     i18n:attributes="title"
-	     />
-      </a>
+     <tal:block condition="export_new_style">
+      <metal:block
+	use-macro="here/cpsportlet_macros/macros/xml_export_link_new_style" />
+     </tal:block>
+     <tal:block condition="not:export_new_style">
+      <metal:block
+	use-macro="here/cpsportlet_macros/macros/xml_export_link_old_style" />
+     </tal:block>
     </tal:block>
   </div>
 </metal:block>

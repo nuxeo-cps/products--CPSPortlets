@@ -45,6 +45,9 @@ try:
 except ImportError: # not sure CPSUtil.integration would give the right answer
     pass
 
+from AccessControl import ModuleSecurityInfo
+ModuleSecurityInfo('copy').declarePublic('deepcopy')
+
 contentClasses = (
     CPSPortlet.CPSPortlet,
     PortletsContainer.PortletsContainer,

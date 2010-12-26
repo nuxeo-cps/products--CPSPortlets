@@ -50,7 +50,7 @@ from Products.CPSPortlets.PortletRAMCache import RAMCache, SimpleRAMCache
 from Products.CPSPortlets.PortletsContainer import PortletsContainer
 from Products.CPSPortlets.CPSPortletsPermissions import ManagePortlets
 
-logger = getLogger('CPSPortlets.PortletsTool')
+logger = getLogger(__name__)
 
 # RAM cache
 PORTLET_CONTAINER_ID = '.cps_portlets'
@@ -92,8 +92,12 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
     _properties = PortletsContainer._properties + (
         {'id': 'ignore_events', 'type': 'boolean', 'mode': 'w',
          'label': "Ignore events"},
+        {'id': 'render_cache_disabled', 'type': 'boolean', 'mode': 'w',
+         'label': "Disable the render cache (for dev/debug)"},
         )
     ignore_events = False
+
+    render_cache_disabled = False
 
     def __init__(self):
         self.initializeCacheParameters()

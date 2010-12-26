@@ -6,7 +6,9 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- #2300: moved portlets logic meant for CPSRSS to CPSRSS
+- #2289: simple property to disable portlets render cache
+- #2283: more helpers in new-style exports and robuster (see #2290)
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 

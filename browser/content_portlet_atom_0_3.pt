@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed version="0.3"
+      xmlns="http://purl.org/atom/ns#"
+      xmlns:dc="http://purl.org/dc/elements/1.1/"
+      xmlns:tal="http://xml.zope.org/namespaces/tal">
+
+ <title tal:content="string:${view/folderTitle} - ${view/l10nPortletTitle}"/>
+ <link tal:content="view/contentUrl"/>
+ <id tal:content="python:view.atomId(view.contentUrl(),
+		  view.aqSafeGet('portlet').created())"/>
+ <generator url="http://cps-cms.org" tal:attributes="version view/cpsVersion">
+  CPS Content Management System
+ </generator>
+ <modified
+   tal:content="python:view.dateTimeFormat(view.lastModified(), 'W3CDTF')" />
+ <tagline type="text/plain">ATOM feed</tagline>
+ <entry tal:repeat="item view/items">
+  <tal:block define="metadata item/metadata|nothing;
+		     moddate python:view.itemLastModified(item)"
+	     condition="metadata">
+   <id tal:content="python:view.atomId(item['url'], metadata.get('created'))"/>
+   <title mode="escaped" tal:content="item/title"/>
+   <summary tal:content="item/description"/>
+   <link rel="alternate" tal:content="item/url"/>
+   <issued tal:define="issued metadata/issued|nothing"
+	   tal:condition="issued"
+	   tal:content="python: view.dateTimeFormat(issued, 'W3CDTF')"/>
+   <modified tal:condition="moddate"
+	     tal:content="python: view.dateTimeFormat(moddate, 'W3CDTF')"/>
+   <contributor tal:content="metadata/contributor|nothing"/>
+   <author tal:content="metadata/creator|nothing"/>
+  </tal:block>
+ </entry>
+</feed>

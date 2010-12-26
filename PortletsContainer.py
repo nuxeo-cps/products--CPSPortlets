@@ -41,7 +41,7 @@ from Products.CPSUtil.id import generateId
 from Products.CPSPortlets.interfaces import IPortletContainer
 
 
-logger = getLogger('PortletsContainer')
+logger = getLogger(__name__)
 
 class PortletsContainer(CMFBTreeFolder):
     """ Portlets Container

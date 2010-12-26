@@ -1,11 +1,11 @@
 ##parameters=obj=None, REQUEST=None, **kw
-# $Id$
 if obj is None:
     return []
 
 from Products.CPSUtil.timer import Timer
-t = Timer('CPSPortlets getContentItems')
+from Products.CPSUtil.text import summarize
 
+t = Timer('CPSPortlets getContentItems')
 if REQUEST is not None:
     kw.update(REQUEST.form)
 
@@ -171,16 +171,6 @@ if search_type == 'related':
     obj_url = obj.absolute_url()
     brains = [o for o in brains if o.getURL() != obj_url]
 
-# build results dictionary
-def summarize(text='', max_words=20):
-    """summarize the text by returning the first max_words"""
-    if not text:
-        return ''
-    words = text.split(' ')
-    if len(words) > max_words:
-        words = words[:max_words] + [' ...']
-    return ' '.join(words)
-
 # return the catalog brain's actual content
 def getBrainInfo():
     content = None
@@ -219,10 +209,8 @@ metadata_map = {
 # portal type icons
 portal_types = context.portal_types
 renderIcon = context.portal_cpsportlets.renderIcon
-
 utool = context.portal_url
 base_url = utool.getBaseUrl()
-
 order = 0
 for brain in brains:
     order += 1
@@ -312,6 +300,7 @@ for brain in brains:
          'rendered': rendered,
          'metadata': metadata_info,
          'icon_tag': icon_tag,
+         'rpath': brain.relative_path,
         })
 #t.log('done')
 return items
