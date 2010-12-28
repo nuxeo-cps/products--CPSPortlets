@@ -21,12 +21,17 @@
 
 from zope.interface import Interface, Attribute
 from Products.CMFCore.interfaces import ICatalogTool
+from Products.CPSSchemas.interfaces import IWidget
 from Products.CPSDocument.interfaces import ICPSDocument
 
 class ICPSPortlet(ICPSDocument):
     """A portlet is a CPSDocument with a guard attribute
     """
     guard = Attribute("Guard parameters or None")
+
+class IPortletWidget(IWidget):
+    """The main widget doing the rendering for a portlet.
+    """
 
 class IPortletContainer(Interface):
     """Portlet Container.

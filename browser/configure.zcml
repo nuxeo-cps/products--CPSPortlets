@@ -7,6 +7,13 @@
 
   <five:traversable class="OFS.Folder.Folder" />
 
+  <browser:view
+    for=".interfaces.IPortletWidget"
+    name="nav_hierarchical_simple"
+    class=".browser.navigation.HierarchicalSimpleView"
+    permission="zope.Public"
+    />
+
   <browser:page
     for="*"
     name="viewPortlet"

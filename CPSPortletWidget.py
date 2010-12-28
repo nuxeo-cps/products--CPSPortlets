@@ -24,6 +24,8 @@ __author__ = "Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>"
 """ Generic Portlet widget
 """
 
+from zope.interface import implements
+
 from Globals import InitializeClass
 
 from Products.CMFCore.utils import getToolByName
@@ -31,8 +33,12 @@ from Products.CMFCore.utils import getToolByName
 from Products.CPSSchemas.Widget import CPSWidget
 from Products.CPSSchemas.Widget import widgetRegistry
 
+from interfaces import IPortletWidget
+
 class CPSPortletWidget(CPSWidget):
     """Generic Portlet Widget."""
+
+    implements(IPortletWidget)
 
     meta_type = 'Generic Portlet Widget'
 
@@ -88,6 +94,8 @@ class CPSDispatcherPortletWidget(CPSWidget):
     The dispatching is done according to the datastructure value corresponding
     to another widget, referenced in the selector_widget property.
     """
+
+    implements(IPortletWidget)
 
     meta_type = 'Dispatcher Portlet Widget'
 

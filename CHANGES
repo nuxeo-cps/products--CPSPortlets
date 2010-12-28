@@ -3,7 +3,7 @@ Requires
 -
 New features
 ~~~~~~~~~~~~
--
+- #2314: simple semantic tree navigation portlet
 Bug fixes
 ~~~~~~~~~
 - #2300: moved portlets logic meant for CPSRSS to CPSRSS
