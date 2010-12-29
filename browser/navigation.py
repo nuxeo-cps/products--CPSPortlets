@@ -75,6 +75,8 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         here_rpath = self.here_rpath.split('/')
         utool = getToolByName(self.context, 'portal_url')
         portal_path = utool.getPortalObject().absolute_url_path()
+        if portal_path == '/':
+            portal_path = ''
 
         res_tree = []
         from_top = []
@@ -98,7 +100,11 @@ class HierarchicalSimpleView(AqSafeBrowserView):
                     from_top.append(produced)
 
             if from_top:
-                append_to = from_top[-1]['children']
+                parent = from_top[-1]
+                append_to = parent['children']
+                classes = parent.get('auto_classes', '')
+                if not 'unfolded' in classes:
+                    parent['auto_classes'] = ' '.join(('unfolded', classes))
             else:
                 append_to = res_tree
 
@@ -109,8 +115,6 @@ class HierarchicalSimpleView(AqSafeBrowserView):
             classes = [] # CSS
             if here_rpath == item_rpath:
                 classes.append('selected')
-            elif lstartswith(here_rpath, item_rpath):
-                classes.append('unfolded')
 
             produced['url'] = portal_path + '/' + item['rpath']
             if classes:
