@@ -546,6 +546,9 @@ msgstr "Premier item affiché à partir de la position"
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Menu de navigation"
 
+msgid "cpsportlets_nav_display_hiertree_menu_label"
+msgstr "Arbre hiérarchique simple"
+
 msgid "cpsportlets_nav_display_dynamic_navtree_menu_label"
 msgstr "Menu arborescent dépliable"
 

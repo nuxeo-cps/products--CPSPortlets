@@ -544,6 +544,9 @@ msgstr "First item displayed from position"
 msgid "cpsportlets_nav_display_navtree_menu_label"
 msgstr "Navigation tree"
 
+msgid "cpsportlets_nav_display_hiertree_menu_label"
+msgstr "Simple hierarchical tree"
+
 msgid "cpsportlets_nav_display_dynamic_navtree_menu_label"
 msgstr "Unfolding navigation tree"
 
