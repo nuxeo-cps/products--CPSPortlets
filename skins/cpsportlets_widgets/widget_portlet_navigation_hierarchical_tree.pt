@@ -15,7 +15,7 @@
              ">
 
   <metal:block define-macro="recurse">
-   <ul>
+   <ul tal:condition="folderItems">
 
     <tal:block repeat="item folderItems">
      <li tal:attributes="class item/auto_classes|nothing">

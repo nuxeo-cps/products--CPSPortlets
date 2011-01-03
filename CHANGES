@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- #2314: new hierarchical tree now empty if no content
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
