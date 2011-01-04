@@ -1,4 +1,21 @@
 ===========================================================
+Package: CPSPortlets 1.4.2
+===========================================================
+First release built by: gracinet at: 2011-01-04T02:44:23
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2314: new hierarchical tree now empty if no content
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.4.1
 ===========================================================
 First release built by: gracinet at: 2011-01-03T01:14:40
