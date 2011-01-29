@@ -66,5 +66,44 @@ class HierarchicalSimpleViewTest(unittest.TestCase):
                         dict(rpath='a/y')]
                      )])
 
+    def test_listToTree_deeper(self):
+        # Test that a first-level visible folder inside a non-visible one
+        # that's not in the currently unfolder path gets nevertheless displayed
+        self.view.here_rpath = 'a/x/z'
+
+        tree = self.view.listToTree(rpaths_to_items(
+                'a', 'a/b/b1', 'a/x', 'a/x/a', 'a/x/z', 'a/y'))
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='a', children=[
+                        dict(rpath='a/b/b1'),
+                        dict(rpath='a/x', children=[
+                                dict(rpath='a/x/a'),
+                                dict(rpath='a/x/z')]),
+                        dict(rpath='a/y')]
+                     )])
+
+        # border case
+        tree = self.view.listToTree(rpaths_to_items(
+                'a/b/b1', 'a/x', 'a/x/a', 'a/x/z', 'a/y'))
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='a/b/b1'),
+                dict(rpath='a/x', children=[
+                        dict(rpath='a/x/a'),
+                        dict(rpath='a/x/z')]),
+                dict(rpath='a/y')])
+
+
+        # another border case : climbing 2 steps up
+        tree = self.view.listToTree(rpaths_to_items(
+                'a/b', 'a/b/b1', 'd', 'a/x', 'a/x/a', 'a/x/z', 'c'))
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='a/b'),
+                dict(rpath='d'),
+                dict(rpath='a/x', children=[
+                        dict(rpath='a/x/a'),
+                        dict(rpath='a/x/z')]),
+                dict(rpath='c')])
+
+
 def test_suite():
     return unittest.makeSuite(HierarchicalSimpleViewTest)
