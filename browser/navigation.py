@@ -132,6 +132,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
                          self.__class___)
             raise NotImplementedError
         tree = trees[0]
+        self.aqSafeSet('tree_cache', tree)
 
         tkw = dict(start_depth=dm['start_depth'])
         end_depth = dm['end_depth']
