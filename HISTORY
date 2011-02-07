@@ -1,4 +1,21 @@
 ===========================================================
+Package: CPSPortlets 1.4.4
+===========================================================
+First release built by: gracinet at: 2011-02-07T12:42:33
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2331: hierarchical simple tree : options for intermediate, non visible folders
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.4.3
 ===========================================================
 First release built by: gracinet at: 2011-02-01T21:21:59
