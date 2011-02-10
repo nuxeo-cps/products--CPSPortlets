@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- #2336: Cases of infinite loops in hierarchical simple navigation tree
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 

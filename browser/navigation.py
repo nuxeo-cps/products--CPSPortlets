@@ -85,11 +85,11 @@ class HierarchicalSimpleView(AqSafeBrowserView):
             item_rpath = item['rpath'].split('/')
 
             # a rise in rpath means we have to climb up
-            if from_top and not lstartswith(item_rpath,
-                                            from_top[-1]['rpath'].split('/')):
+            while from_top and not lstartswith(
+                item_rpath, from_top[-1]['rpath'].split('/')):
+                    from_top = from_top[:-1]
 
-                from_top = from_top[:-1]
-            elif lstartswith(item_rpath, prev_rpath):
+            if lstartswith(item_rpath, prev_rpath):
                 # deeper that previous one => prev_rpath is the apparent parent
                 # keep only those whose apparent parent is an ancestor of here
                 if not lstartswith(here_rpath, prev_rpath):
