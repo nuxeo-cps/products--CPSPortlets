@@ -19,8 +19,8 @@
 
     <tal:block repeat="item folderItems">
      <li tal:attributes="class item/auto_classes|nothing">
-      <a tal:condition="item/visible"
-         tal:attributes="href item/url; class linkclass">
+      <a tal:omit-tag="python:not item['visible']"
+         tal:attributes="href item/url|nothing; class linkclass">
        <tal:block condition="show_icons"
                   content="structure item/icon_tag" />
        <tal:block content="item/title" />
