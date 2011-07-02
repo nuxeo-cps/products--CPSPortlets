@@ -7,7 +7,7 @@
                    dummy python: view.setOptions(options);">
 
  <tal:block
-     define="show_icons ds/show_icons;
+     define="show_icons python:False;
              show_icons python: bool(show_icons);
              display_description ds/display_description;
              folderItems view/getTree;
