@@ -55,6 +55,7 @@ class PortletsCatalogTool(CatalogTool):
 
         Return the number of portlets done.
         """
+        done = 0
         if IPortletContainer.providedBy(folder):
             container = folder
         else:
@@ -82,7 +83,7 @@ class PortletsCatalogTool(CatalogTool):
         for subf in walk_cps_folders(folder):
             done += self.indexPortletsIn(subf)
             if done >= prev_threshold:
-                logger.info("Indexed %d portlets")
+                logger.info("Indexed %d portlets", done)
                 prev_threshold = done / 100
                 transaction.savepoint()
 
