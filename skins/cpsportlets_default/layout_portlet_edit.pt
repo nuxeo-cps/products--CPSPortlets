@@ -69,73 +69,20 @@
                   tal:content="msg">err</em>
               </tal:block>
           </tal:block>
-          <div style="float: right;" tal:condition="is_flexible">
-            <input type="submit" value="button_move_up"
-              tal:condition="not:repeat/row/start"
-              tal:attributes="name string:uprow_${repeat/row/index}__${layout_id}"
-              class="context moveUp" i18n:attributes="value" />
-            <input type="submit" value="button_move_down"
-              tal:condition="not:repeat/row/end"
-              tal:attributes="name string:downrow_${repeat/row/index}__${layout_id}"
-              class="context moveDown" i18n:attributes="value" />
-            <input type="submit" value="button_delete"
-              class="destructive" i18n:attributes="value"
-              tal:attributes="name string:deleterow_${repeat/row/index}__${layout_id};
-                              onclick python:'return window.confirm(\'%s\')' %
-                                (cpsmcat('description_confirm_delete'), )" />
-          </div>
         </div>
       </tal:block>
     </td>
   </tr>
 </table>
 
-<tal:block condition="is_flexible">
-<div style="float: right;"
-    tal:define="flexible_widgets options/flexible_widgets;
-                layout_id layout/layout_id">
-  <tal:select condition="python:len(flexible_widgets)>1">
-    <select tal:attributes="name string:widget_type__${layout_id}">
-      <tal:block repeat="widget options/flexible_widgets">
-      <option value="."
-        tal:condition="widget/is_i18n"
-        i18n:translate=""
-        tal:attributes="value widget/getWidgetId"
-        tal:content="widget/title_or_id">Type</option>
-      <option value="."
-        tal:condition="not:widget/is_i18n"
-        tal:attributes="value widget/getWidgetId"
-        tal:content="widget/title_or_id">Type</option>
-      </tal:block>
-    </select>
-    <input type="submit"
-           value="button_add"
-           class="context"
-           tal:attributes="name string:addwidget_button__${layout_id}"
-           i18n:attributes="value" />
-  </tal:select>
-  <tal:button condition="python:len(flexible_widgets) == 1"
-              define="widget python:flexible_widgets[0]">
-    <input type="hidden"
-           tal:attributes="value widget/getWidgetId;
-                           name string:widget_type__${layout_id}"/>
-    <input type="submit"
-           class="context"
-           tal:define="button_add python:cpsmcat('button_add');
-                       widget_title python:cpsmcat(widget.title_or_id())"
-           tal:attributes="value string:${button_add} ${widget_title};
-                           name string:addwidget_button__${layout_id}"/>
-  </tal:button>
-</div>
-<br /><br />
-</tal:block>
-
 <tal:block condition="last_layout">
+ <p class="buttons">
   <input type="submit" class="standalone" name="cpsdocument_edit_button"
     value="button_change" i18n:attributes="value"
     tal:condition="not:creation" />
   <input type="submit" class="standalone" name="cpsdocument_create_button"
     value="button_create" i18n:attributes="value" tal:condition="creation" />
+ </p>
   <tal:block content="structure string:</div></form>" />
 </tal:block>
 

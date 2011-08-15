@@ -23,13 +23,16 @@
 
     <form class="group" action="setGuardProperties" method="post">
       <tal:block content="structure here/renderGuardForm" />
+     <p class="buttons">
       <input type="submit" class="standalone"
        value="button_submit_changes" i18n:attributes="value" />
+     </p>
     </form>
 
   </div>
 
   <form action="" style="text-align: center">
+   <p class="buttons">
     <input class="standalone" type="button"
      onclick="history.back()"
      value="button_back" i18n:attributes="value" />
@@ -37,6 +40,7 @@
     <input class="standalone" type="submit"
      onclick="window.opener.location.reload();window.close()"
      value="button_close" i18n:attributes="value" />
+   </p>
   </form>
 
   </metal:block>

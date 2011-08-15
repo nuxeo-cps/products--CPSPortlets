@@ -36,9 +36,11 @@
   </dl>
 
   <form action="" style="text-align: center" method="post">
+   <p class="buttons">
     <input class="standalone" type="submit"
      onclick="window.opener.location.reload();window.close()"
      value="button_close" i18n:attributes="value" />
+   </p>
   </form>
 
 </div>

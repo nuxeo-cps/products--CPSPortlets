@@ -76,15 +76,19 @@
 
       <div class="group" tal:content="structure rendered_main" />
 
-      <input type="submit" name="cpsdocument_edit_button"
-           class="standalone" value="Save Changes"
-           id="cpsdocument_edit_button" />
+      <p class="buttons">
+       <input type="submit" name="cpsdocument_edit_button"
+            class="standalone" value="Save Changes"
+            id="cpsdocument_edit_button" />
+      </p>
     </form>
 
     <form action="" style="text-align: center">
-      <input class="standalone" type="submit"
-       onclick="window.opener.location.reload();window.close()"
-       value="button_close" i18n:attributes="value" />
+      <p class="buttons">
+       <input class="standalone" type="submit"
+        onclick="window.opener.location.reload();window.close()"
+        value="button_close" i18n:attributes="value" />
+      </p>
     </form>
 
   </div>
