@@ -300,7 +300,7 @@ msgid "cpsportlets_nav_context_is_portlet_label"
 msgstr "Use the portlet's location as the context"
 
 msgid "cpsportlets_content_search_related_label"
-msgstr "Related documents"
+msgstr "Related documents on the same subject(s) as the container"
 
 msgid "cpsportlets_content_search_all_label"
 msgstr "All documents"

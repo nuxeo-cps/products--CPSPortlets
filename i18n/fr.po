@@ -302,7 +302,7 @@ msgid "cpsportlets_nav_context_is_portlet_label"
 msgstr "Utiliser comme context le répertoire dans lequel se trouve le portlet"
 
 msgid "cpsportlets_content_search_related_label"
-msgstr "Articles sur le même sujet"
+msgstr "Articles sur le(s) même(s) sujet(s) que le conteneur"
 
 msgid "cpsportlets_content_search_all_label"
 msgstr "Tous les documents"
