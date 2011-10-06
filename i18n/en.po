@@ -348,7 +348,7 @@ msgid "cpsportlets_content_strict_lang_filtering_label"
 msgstr "Strict language filtering"
 
 msgid "cpsportlets_common_render_method_label"
-msgstr "Display method (.zpt, .py, etc.)"
+msgstr "Display method (&lt;nom&gt;.zpt, &lt;nom&gt;.pt, &lt;nom&gt;.py)"
 
 msgid "cpsportlets_common_max_items_label"
 msgstr "Number of items"

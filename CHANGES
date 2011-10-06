@@ -9,6 +9,7 @@ Bug fixes
 - Better wording for the content portlet subject option.
 - Hardening getContentItems of the ContentPortlet when it is used with the
   "Related documents on the same subject(s) as the container" content option.
+- More helpful field label for the ContentPortlet Display method.
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
