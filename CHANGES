@@ -7,6 +7,8 @@ New features
 Bug fixes
 ~~~~~~~~~
 - Better wording for the content portlet subject option.
+- Hardening getContentItems of the ContentPortlet when it is used with the
+  "Related documents on the same subject(s) as the container" content option.
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
