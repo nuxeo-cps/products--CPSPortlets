@@ -48,7 +48,7 @@ try:
 except ImportError:
     # BBB: Zope < 2.10
     from Products.PageTemplates.TALES import CompilerError
-from Products.CMFCore.utils import getToolByName, _getViewFor
+from Products.CMFCore.utils import getToolByName#, _getViewFor
 from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.CPSUtil.resourceregistry import JSGlobalMethodResource
 from Products.CPSUtil.resourceregistry import require_resource
