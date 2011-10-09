@@ -27,12 +27,12 @@ for category in categories:
         continue
     actions_by_cat = actions[category]
     for action in actions_by_cat:
-        item = {'title': action['name'],
+        item = {'title': action['title'],
                  'url': action['url'],
                  'icon_tag': renderActionIcon(action_id=action['id'],
                      category=category,
                      base_url=base_url,
-                     alt=action['name']),
+                     alt=action['title']),
                 }
         if 'onclick' in action:
             item['onclick'] = action['onclick']
