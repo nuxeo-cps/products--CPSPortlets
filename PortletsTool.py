@@ -887,9 +887,9 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
             # see if an icon with the same name is present in the current
             # theme's icon folder. The path must be relative and cannot contain
             # any '/'.
-            if '/' not in icon_path:
+            tmtool = getToolByName(self, 'portal_themes', None)
+            if tmtool is not None and '/' not in icon_path:
                 icon_name = icon_path
-                tmtool = getToolByName(self, 'portal_themes')
                 utool = getToolByName(self, 'portal_url')
                 theme, page = tmtool.getEffectiveThemeAndPageName()
                 theme_container = tmtool.getThemeContainer(theme)
