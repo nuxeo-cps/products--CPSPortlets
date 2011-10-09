@@ -45,7 +45,7 @@ logger = logging.getLogger('Products.CPSPortlets.CPSPortlet')
 
 
 from zope.tales.tales import CompilerError
-from Products.CMFCore.utils import getToolByName#, _getViewFor
+from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.CPSUtil.resourceregistry import JSGlobalMethodResource
 from Products.CPSUtil.resourceregistry import require_resource
@@ -197,17 +197,6 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         """Return true if this is a CPS Portlet.
         """
         return 1
-
-    security.declareProtected(View, 'edit_form')
-    def edit_form(self, **kw):
-        """
-        Call the edit action.
-        """
-
-        action = _getViewFor(self, view='edit')
-        if action and callable(action):
-            return apply(action, (), kw)
-        return None
 
     #################################################################
     # RAM Cache
