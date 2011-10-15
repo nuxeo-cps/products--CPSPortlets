@@ -2,7 +2,8 @@
 # Copyright (c) 2004 Chalmers University of Technology <http://www.chalmers.se>
 # Authors : Julien Anguenot <ja@nuxeo.com>
 #           Jean-Marc Orliaguet <jmo@ita.chalmers.se>
-
+#           Georges Racinet <gracinet@cps-cms.org>
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
@@ -16,20 +17,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-# $Id$
 
-__author__ = "Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>"
-
-""" Custom Portlet.
-"""
+"""Here are widgets used for the view mode rendering of specific portlets."""
 
 from Globals import InitializeClass
-
 from Products.CPSSchemas.BasicWidgets import CPSStringWidget
-from Products.CPSSchemas.Widget import widgetRegistry
 
 class PortletCustomWidget(CPSStringWidget):
-    """Widget for the Custom Portlet.
+    """For the Custom Portlet.
     """
     meta_type = 'CPS Portlet Custom Widget'
 
@@ -49,4 +44,16 @@ class PortletCustomWidget(CPSStringWidget):
 
 InitializeClass(PortletCustomWidget)
 
-widgetRegistry.register(PortletCustomWidget)
+class PortletDummyWidget(CPSStringWidget):
+    """Dummy Portlet widget
+
+    GR: is this used outside of tests ?
+    """
+    meta_type = 'CPS Portlet Dummy Widget'
+
+    def render(self, mode, datastructure, **kw):
+        """Render in mode from datastructure
+        """
+        return "<h1>Dummy portlet</h1>"
+
+InitializeClass(PortletDummyWidget)

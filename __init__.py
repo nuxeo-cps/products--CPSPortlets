@@ -31,17 +31,8 @@ import FlexibleTypeInformationPatch
 import PortletsTool
 import PortletsCatalogTool
 import CPSPortlet
-import CPSPortletWidget
 import PortletsContainer
 import PortletRAMCache
-
-# Import new widgets in here
-import PortletWidgets.DummyWidget
-import PortletWidgets.CustomWidget
-try:
-    import PortletWidgets.MainContentWidget
-except ImportError: # not sure CPSUtil.integration would give the right answer
-    pass
 
 from AccessControl import ModuleSecurityInfo
 ModuleSecurityInfo('copy').declarePublic('deepcopy')

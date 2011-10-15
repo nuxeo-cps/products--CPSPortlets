@@ -7,4 +7,4 @@ Do the widget registration within the module holding the widget. (not
 within the __init__.py)
 
 If the widgets you wrote are generic enough to be used within documents then
-move it to CPSSchemas.
+move them to CPSSchemas or CPSDocument

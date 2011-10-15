@@ -21,19 +21,18 @@
 
 __author__ = "Jean-Marc Orliaguet <mailto:jmo@ita.chalmers.se>"
 
-""" Generic Portlet widget
+"""Portlet widgets take care of the main rendering in view mode of the portlet.
+
+Some portlets don't use them, because a standard widget does already cover
+their needs (see the Image Portlet for an example).
 """
 
 from zope.interface import implements
-
 from Globals import InitializeClass
-
 from Products.CMFCore.utils import getToolByName
-
 from Products.CPSSchemas.Widget import CPSWidget
-from Products.CPSSchemas.Widget import widgetRegistry
 
-from interfaces import IPortletWidget
+from Products.CPSPortlets.interfaces import IPortletWidget
 
 class CPSPortletWidget(CPSWidget):
     """Generic Portlet Widget."""
@@ -86,7 +85,6 @@ class CPSPortletWidget(CPSWidget):
 
 InitializeClass(CPSPortletWidget)
 
-widgetRegistry.register(CPSPortletWidget)
 
 class CPSDispatcherPortletWidget(CPSWidget):
     """Portlet widget whose rendering is dispatched on several methods.
@@ -150,6 +148,4 @@ class CPSDispatcherPortletWidget(CPSWidget):
         return meth(mode=mode, datastructure=datastructure, **kw)
 
 InitializeClass(CPSDispatcherPortletWidget)
-
-widgetRegistry.register(CPSDispatcherPortletWidget)
 

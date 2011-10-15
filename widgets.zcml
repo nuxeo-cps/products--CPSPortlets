@@ -1,4 +1,11 @@
 <configure xmlns="http://namespaces.nuxeo.org/cps">
+
  <!-- Registration of CPSPortlets' widget classes -->
- <widget class=".CPSPortletVisibilityWidget.CPSPortletVisibilityWidget"/>
+ <widget class=".widgets.visibility.CPSPortletVisibilityWidget"/>
+ <widget class=".widgets.generic.CPSPortletWidget"/>
+ <widget class=".widgets.generic.CPSDispatcherPortletWidget"/>
+ <widget class=".widgets.specific.PortletCustomWidget"/>
+ <!-- GR I hope we can cut this one -->
+ <!--widget class=".widgets.specific.PortletDummyWidget"/-->
+
 </configure>
