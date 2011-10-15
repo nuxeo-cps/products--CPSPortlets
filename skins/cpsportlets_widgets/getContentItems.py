@@ -58,8 +58,8 @@ if query_title is not None:
 search_type = kw.get('search_type')
 if search_type == 'related':
     content = obj.getContent()
-    if getattr(content.aq_inner.aq_explicit, 'Subject'):
-        subjects=content.Subject()
+    if getattr(content.aq_inner.aq_explicit, 'Subject', None):
+        subjects = content.Subject()
         if subjects:
             query.update({'Subject': subjects,
                           'review_state': 'published',})

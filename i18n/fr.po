@@ -302,7 +302,7 @@ msgid "cpsportlets_nav_context_is_portlet_label"
 msgstr "Utiliser comme context le répertoire dans lequel se trouve le portlet"
 
 msgid "cpsportlets_content_search_related_label"
-msgstr "Articles sur le même sujet"
+msgstr "Articles sur le(s) même(s) sujet(s) que le conteneur"
 
 msgid "cpsportlets_content_search_all_label"
 msgstr "Tous les documents"
@@ -350,7 +350,7 @@ msgid "cpsportlets_content_strict_lang_filtering_label"
 msgstr "Filtrage strict de la langue"
 
 msgid "cpsportlets_common_render_method_label"
-msgstr "Méthode d'affichage (.zpt, .py, etc.)"
+msgstr "Méthode d'affichage (&lt;nom&gt;.zpt, &lt;nom&gt;.pt, &lt;nom&gt;.py)"
 
 msgid "cpsportlets_common_max_items_label"
 msgstr "Nombre de résultats"
