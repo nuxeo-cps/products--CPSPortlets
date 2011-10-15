@@ -3,6 +3,8 @@
     xmlns:cps="http://namespaces.nuxeo.org/cps"
     xmlns:five="http://namespaces.zope.org/five">
 
+  <include file="widgets.zcml" />
+
   <adapter
       factory=".exportimport.CPSPortletXMLAdapter"
       provides="Products.GenericSetup.interfaces.IBody"

@@ -1,0 +1,4 @@
+<configure xmlns="http://namespaces.nuxeo.org/cps">
+ <!-- Registration of CPSPortlets' widget classes -->
+ <widget class=".CPSPortletVisibilityWidget.CPSPortletVisibilityWidget"/>
+</configure>

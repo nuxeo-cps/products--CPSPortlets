@@ -32,7 +32,6 @@ import PortletsTool
 import PortletsCatalogTool
 import CPSPortlet
 import CPSPortletWidget
-import CPSPortletVisibilityWidget
 import PortletsContainer
 import PortletRAMCache
 

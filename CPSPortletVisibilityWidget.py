@@ -1,4 +1,3 @@
-# -*- coding: iso-8859-15 -*-
 # (C) Copyright 2003 Nuxeo SARL <http://nuxeo.com>
 # Copyright (c) 2004 Chalmers University of Technology
 #               <http://www.chalmers.se>
@@ -29,11 +28,9 @@ from cgi import escape
 
 from Products.CMFCore.utils import getToolByName
 
+from Products.CPSUtil.html import renderHtmlTag
 from Products.CPSSchemas.Widget import widgetRegistry
-
-from Products.CPSSchemas.BasicWidgets import renderHtmlTag, CPSSelectWidget
-
-##################################################
+from Products.CPSSchemas.widgets.select import CPSSelectWidget
 
 class CPSPortletVisibilityWidget(CPSSelectWidget):
     """CPS Portlet Visibility widget."""
@@ -127,5 +124,3 @@ class CPSPortletVisibilityWidget(CPSSelectWidget):
         raise RuntimeError('unknown mode %s' % mode)
 
 InitializeClass(CPSPortletVisibilityWidget)
-
-widgetRegistry.register(CPSPortletVisibilityWidget)
