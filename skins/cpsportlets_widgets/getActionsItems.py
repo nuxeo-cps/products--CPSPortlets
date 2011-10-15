@@ -1,6 +1,8 @@
 ##parameters=obj=None, categories=[], actions_order=[]
-
+import logging
 from Products.CMFCore.utils import getToolByName
+
+logger = logging.getLogger('cps_portlet_widgets.getActionItems')
 
 DEFAULT_PRIORITY = 200
 
@@ -26,6 +28,7 @@ for category in categories:
     if not actions.has_key(category):
         continue
     actions_by_cat = actions[category]
+    logger.debug('Actions for category %r: %r', category, actions_by_cat)
     for action in actions_by_cat:
         item = {'title': action['title'],
                  'url': action['url'],

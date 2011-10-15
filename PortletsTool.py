@@ -869,7 +869,6 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         # render portal type icon.
         if portal_type is None:
             return None
-
         cache = self.getCache(ICON_RAMCACHE_ID)
 
         # compute the cache index
@@ -933,17 +932,17 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         img_tag = cache.getEntry(index)
         # the icon is not in the cache
         if img_tag is None:
-            icon_path = aitool.queryActionIcon(category=category,
-                action_id=action_id)
+            icon_path = str(aitool.queryActionIcon(category=category,
+                                                   action_id=action_id))
             if not icon_path:
                 return
 
             # see if an icon with the same name is present in the current
             # theme's icon folder. The path must be relative and cannot contain
             # any '/'.
-            if '/' not in icon_path:
+            tmtool = getToolByName(self, 'portal_themes', None)
+            if tmtool is not None and '/' not in icon_path:
                 icon_name = icon_path
-                tmtool = getToolByName(self, 'portal_themes')
                 utool = getToolByName(self, 'portal_url')
                 theme, page = tmtool.getEffectiveThemeAndPageName()
                 theme_container = tmtool.getThemeContainer(theme)
