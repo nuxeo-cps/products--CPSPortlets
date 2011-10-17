@@ -491,6 +491,9 @@ msgstr "Image file"
 msgid "cpsportlets_image_link_label"
 msgstr "Link"
 
+msgid "cpsportlets_image_link_target_label"
+msgstr "Link target attribute"
+
 msgid "cpsportlets_image_caption_label"
 msgstr "Image caption"
 
