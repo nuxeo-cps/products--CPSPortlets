@@ -12,8 +12,8 @@ from Products.CPSDefault.tests import CPSDefaultTestCase
 from Products.CPSSchemas.tests.testWidgets import FakeDataModel
 from Products.CPSSchemas.tests.testWidgets import FakeDataStructure
 
-from Products.CPSSchemas.BasicWidgets import CPSSelectWidget
-from Products.CPSPortlets.CPSPortletWidget import CPSDispatcherPortletWidget
+from Products.CPSSchemas.widgets.select import CPSSelectWidget
+from Products.CPSPortlets.widgets.generic import CPSDispatcherPortletWidget
 from Products.CPSPortlets.CPSPortlet import CPSPortlet
 
 class TestPortlets(CPSDefaultTestCase.CPSDefaultTestCase):
