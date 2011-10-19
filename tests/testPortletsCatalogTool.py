@@ -112,14 +112,14 @@ class CatalogToolTests(SecurityTest):
         dummy.effective = now+1
         dummy.expires = now+2
         catalog.catalog_object(dummy, '/dummy')
-        self.assertEqual(1, len(catalog._catalog.searchResults()))
+        self.assertEqual(1, len(catalog.unrestrictedSearchResults()))
         self.assertEqual(0, len(catalog.searchResults()))
 
         # already expired
         dummy.effective = now-2
         dummy.expires = now-1
         catalog.catalog_object(dummy, '/dummy')
-        self.assertEqual(1, len(catalog._catalog.searchResults()))
+        self.assertEqual(1, len(catalog.unrestrictedSearchResults()))
         self.assertEqual(0, len(catalog.searchResults()))
 
     def test_search_restrict_manager(self):
@@ -133,7 +133,7 @@ class CatalogToolTests(SecurityTest):
         dummy.effective = now-4
         dummy.expires = now-2
         catalog.catalog_object(dummy, '/dummy')
-        self.assertEqual(1, len(catalog._catalog.searchResults()))
+        self.assertEqual(1, len(catalog.unrestrictedSearchResults()))
         self.assertEqual(1, len(catalog.searchResults()))
 
         self.assertEqual(1, len(catalog.searchResults(
@@ -165,7 +165,7 @@ class CatalogToolTests(SecurityTest):
         dummy.effective = now-4
         dummy.expires = now-2
         catalog.catalog_object(dummy, '/dummy')
-        self.assertEqual(1, len(catalog._catalog.searchResults()))
+        self.assertEqual(1, len(catalog.unrestrictedSearchResults()))
         self.assertEqual(0, len(catalog.searchResults()))
 
         self.assertEqual(0, len(catalog.searchResults(
@@ -195,7 +195,7 @@ class CatalogToolTests(SecurityTest):
         dummy.effective = now-2
         dummy.expires = now+2
         catalog.catalog_object(dummy, '/dummy')
-        self.assertEqual(1, len(catalog._catalog.searchResults()))
+        self.assertEqual(1, len(catalog.unrestrictedSearchResults()))
         self.assertEqual(1, len(catalog.searchResults()))
 
         self.assertEqual(0, len(catalog.searchResults(
@@ -293,9 +293,9 @@ class CatalogToolTests(SecurityTest):
         ctool = site.portal_catalog
         ctool.catalog_object(site.dummy, '/dummy')
 
-        self.assertEqual(1, len(ctool._catalog.searchResults()))
+        self.assertEqual(1, len(ctool.unrestrictedSearchResults()))
         ctool.refreshCatalog(clear=1)
-        self.assertEqual(1, len(ctool._catalog.searchResults()),
+        self.assertEqual(1, len(ctool.unrestrictedSearchResults()),
                          'CMF Collector issue #379 (\'Update Catalog\' '
                          'fails): %s entries after refreshCatalog'
                          % (len(ctool._catalog.searchResults()),))
