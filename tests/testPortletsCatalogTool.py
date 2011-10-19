@@ -39,7 +39,10 @@ class CatalogToolTests(SecurityTest):
         from Products.CPSPortlets.PortletsCatalogTool import \
              PortletsCatalogTool
 
-        return PortletsCatalogTool(*args, **kw)
+        cat = PortletsCatalogTool(*args, **kw)
+        cat.addIndex('allowedRolesAndUsers', 'KeywordIndex')
+        cat.addIndex('localUsersWithRoles', 'KeywordIndex')
+        return cat
 
     def test_z2interfaces(self):
         from Interface.Verify import verifyClass
