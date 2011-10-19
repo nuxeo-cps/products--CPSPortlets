@@ -26,6 +26,8 @@ Zope2.startup()
 from AccessControl.SecurityManagement import newSecurityManager
 from DateTime import DateTime
 
+from Products.CMFCore.permissions import View
+from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.tests.base.dummy import DummyContent
 from Products.CMFCore.tests.base.dummy import DummySite
 from Products.CMFCore.tests.base.security import OmnipotentUser
@@ -42,6 +44,8 @@ class CatalogToolTests(SecurityTest):
         cat = PortletsCatalogTool(*args, **kw)
         cat.addIndex('allowedRolesAndUsers', 'KeywordIndex')
         cat.addIndex('localUsersWithRoles', 'KeywordIndex')
+        cat.addIndex('effective', 'DateIndex')
+        cat.addIndex('expires', 'DateIndex')
         return cat
 
     def test_z2interfaces(self):
@@ -107,9 +111,10 @@ class CatalogToolTests(SecurityTest):
         catalog = self._makeOne()
         now = DateTime()
         dummy = DummyContent(catalog=1)
-        dummy._View_Permission = ('Blob',)
+        dummy.manage_permission(View, ('Blob',), False)
 
         self.loginWithRoles('Blob')
+        self.assertTrue(_checkPermission(View, dummy))
 
         # not yet effective
         dummy.effective = now+1
