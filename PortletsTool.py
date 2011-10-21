@@ -484,7 +484,7 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         inst_date = getattr(self_base, LOOKUP_CACHE_DATE_INSTANCE_ID, None)
 
         # None is smaller than all DateTime objects
-        if inst_date < glob_date:
+        if inst_date < glob_date.value:
             return None
 
         portlets_cache_keywords = {'slot': slot, 'rpath': rpath, 'sort': sort,

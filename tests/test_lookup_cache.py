@@ -74,9 +74,9 @@ class TestLookupCache(CPSDefaultTestCase):
         tool.ignore_events = True
         tool.deletePortlet(self.portlet_id, context=context)
         tool.ignore_events = False
-        future = DateTime() + 3.0/86400 # +3 secs to be sure it's later
-        setattr(tool, LOOKUP_CACHE_DATE_GLOBAL_ID, future)
 
+        future = DateTime() + 3.0/86400 # +3 secs to be sure it's later
+        tool._getGlobalLookupCacheDate().set(future)
         # Invalidation is propagated: the cache returns nothing for these keys
         cached = tool._lookupCacheGet(*cache_args)
         self.assertEquals(cached, None)
