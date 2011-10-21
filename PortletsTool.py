@@ -53,7 +53,9 @@ from Products.CMFCore.utils import UniqueObject
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import _checkPermission
 
+from Products.CPSUtil.conflictresolvers import IncreasingDateTime
 from Products.CPSCore.EventServiceTool import getPublicEventService
+from Products.CPSCore.utils import bhasattr
 from Products.CPSPortlets.interfaces import IPortletTool
 from Products.CPSPortlets.PortletRAMCache import RAMCache, SimpleRAMCache
 from Products.CPSPortlets.PortletsContainer import PortletsContainer
@@ -356,6 +358,13 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         return self._filterPortletsAfterCache(context, portlets,
                                               visibility_check, guard_check)
 
+    def _getGlobalLookupCacheDate(self):
+        if not bhasattr(self, LOOKUP_CACHE_DATE_GLOBAL_ID):
+            setattr(self, LOOKUP_CACHE_DATE_GLOBAL_ID,
+                    IncreasingDateTime(LOOKUP_CACHE_DATE_GLOBAL_ID))
+
+        return getattr(self, LOOKUP_CACHE_DATE_GLOBAL_ID)
+
     security.declarePrivate('_getPortletsCacheable')
     def _getPortletsCacheable(self, bmf, slot, sort, override):
         """Cacheable part of the portlets lookup logic.
@@ -371,14 +380,13 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
             try:
                 return tuple(portal.unrestrictedTraverse(rpath)
                              for rpath in allportlets_rpaths)
-            except AttributeError:
+            except (AttributeError, KeyError):
                 # log and proceed to recomputation
                 logger.error(
                     "There are ghost entries in the lookup cache. "
                     "Cluster-wide invalidation timestamp: %r "
                     "process-local invalidation timestamp: %r",
-                    getattr(aq_base(self),
-                            LOOKUP_CACHE_DATE_GLOBAL_ID, None),
+                    self._getGlobalLookupCacheDate(),
                     getattr(aq_base(self),
                             LOOKUP_CACHE_DATE_INSTANCE_ID, None))
 
@@ -472,11 +480,11 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         effectively forcing downstream code to recompute and update the cache.
         """
         self_base = aq_base(self)
-        glob_date = getattr(self_base, LOOKUP_CACHE_DATE_GLOBAL_ID, None)
+        glob_date = self._getGlobalLookupCacheDate()
         inst_date = getattr(self_base, LOOKUP_CACHE_DATE_INSTANCE_ID, None)
 
         # None is smaller than all DateTime objects
-        if glob_date is not None and inst_date < glob_date:
+        if inst_date < glob_date:
             return None
 
         portlets_cache_keywords = {'slot': slot, 'rpath': rpath, 'sort': sort,
@@ -510,15 +518,14 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         """
         logger.info("Invalidating the lookup cache")
         self.ZCacheable_invalidate()
+        now = DateTime()
 
         # timestamp kept for detection of future invalidations by other
         # ZEO clients
-        now = DateTime()
         setattr(self, LOOKUP_CACHE_DATE_INSTANCE_ID, now)
 
         # Share with other ZEO clients that the cache has expired
-        setattr(self, LOOKUP_CACHE_DATE_GLOBAL_ID, now)
-
+        self._getGlobalLookupCacheDate().set(now)
 
     security.declarePublic('getPortletContext')
     def getPortletContext(self, portlet=None):
