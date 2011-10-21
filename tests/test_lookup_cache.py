@@ -36,8 +36,6 @@ class TestLookupCache(CPSDefaultTestCase):
         self.login_id = 'manager'
         self.login(self.login_id)
         portal = self.portal
-#        portal.REQUEST.SESSION = {}
-#        portal.REQUEST['AUTHENTICATED_USER'] = self.login_id
 
         self.tool = tool = getToolByName(portal, 'portal_cpsportlets')
 
@@ -67,6 +65,11 @@ class TestLookupCache(CPSDefaultTestCase):
             tool._invalidatePortletLookupCache()
         tool.getPortlets(slot='test_slot', context=context)
 
+        cache_args = ['test_slot', ('sections',), True, True]
+        cached = tool._getPortletLookupCache(*cache_args)
+        self.failIf(cached is None)
+        self.assertEquals(len(cached), 1)
+
         # Another ZEO client deletes the portlet, so we don't get events
         # but it sets the global date
         tool.ignore_events = True
@@ -76,13 +79,13 @@ class TestLookupCache(CPSDefaultTestCase):
         setattr(tool, PORTLET_LOOKUP_CACHE_DATE_GLOBAL_ID, future)
 
         # Invalidation is propagated: the cache returns nothing for these keys
-        cached = tool._getPortletLookupCache(context, 'test_slot', True, True)
+        cached = tool._getPortletLookupCache(*cache_args)
         self.assertEquals(cached, None)
 
     def test_invalidation(self):
         self.do_test_invalidation(with_prior_invalidation=False)
 
-    def test_invalidation(self):
+    def test_invalidation2(self):
         self.do_test_invalidation(with_prior_invalidation=True)
 
     def test_ghosts(self):
