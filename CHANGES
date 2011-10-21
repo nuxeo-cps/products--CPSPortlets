@@ -3,10 +3,10 @@ Requires
 -
 New features
 ~~~~~~~~~~~~
-- Zope 2.9 & 2.10 are supported
+-
 Bug fixes
 ~~~~~~~~~
-- #2413: new force reindexing method
+- #2481: ZEO-awareness of lookup cache invalidation
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
