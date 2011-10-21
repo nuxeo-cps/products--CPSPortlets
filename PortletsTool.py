@@ -359,8 +359,19 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         allportlets_rpaths = self._getPortletLookupCache(slot, bmf_path, sort,
                                                          override)
         if allportlets_rpaths is not None:
-            return tuple(portal.unrestrictedTraverse(rpath)
-                         for rpath in allportlets_rpaths)
+            try:
+                return tuple(portal.unrestrictedTraverse(rpath)
+                             for rpath in allportlets_rpaths)
+            except AttributeError:
+                # log and proceed to recomputation
+                logger.error(
+                    "There are ghost entries in the lookup cache. "
+                    "Cluster-wide invalidation timestamp: %r "
+                    "process-local invalidation timestamp: %r",
+                    getattr(aq_base(self),
+                            PORTLET_LOOKUP_CACHE_DATE_GLOBAL_ID, None),
+                    getattr(aq_base(self),
+                            PORTLET_LOOKUP_CACHE_DATE_INSTANCE_ID, None))
 
         # Get portlets from the root to current path
         obj = portal
@@ -454,8 +465,11 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         renderings) depending on a specified situation (slot, rpath, sorting).
         """
         # ZEO awareness
-        last_cache_global_update = self.get(PORTLET_LOOKUP_CACHE_DATE_GLOBAL_ID)
-        last_cache_instance_update = self.get(PORTLET_LOOKUP_CACHE_DATE_INSTANCE_ID)
+        last_cache_global_update = getattr(
+            aq_base(self), PORTLET_LOOKUP_CACHE_DATE_GLOBAL_ID, None)
+        last_cache_instance_update = getattr(
+            aq_base(self), PORTLET_LOOKUP_CACHE_DATE_INSTANCE_ID, None)
+
         if (last_cache_global_update is not None
             and last_cache_instance_update is not None):
             if last_cache_instance_update < last_cache_global_update:
