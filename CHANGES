@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- #2481: ZEO-awareness of lookup cache invalidation
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
