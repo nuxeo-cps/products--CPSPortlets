@@ -27,8 +27,7 @@ from Testing import ZopeTestCase
 from DateTime import DateTime
 from Products.CMFCore.utils import getToolByName
 from Products.CPSDefault.tests.CPSDefaultTestCase import CPSDefaultTestCase
-from Products.CPSPortlets.PortletsTool import (
-    PORTLET_LOOKUP_CACHE_DATE_GLOBAL_ID)
+from Products.CPSPortlets.PortletsTool import LOOKUP_CACHE_DATE_GLOBAL_ID
 
 class TestLookupCache(CPSDefaultTestCase):
 
@@ -62,11 +61,11 @@ class TestLookupCache(CPSDefaultTestCase):
 
         # first, invalidate and fill the lookup cache
         if with_prior_invalidation:
-            tool._invalidatePortletLookupCache()
+            tool.lookupCacheInvalidate()
         tool.getPortlets(slot='test_slot', context=context)
 
         cache_args = ['test_slot', ('sections',), True, True]
-        cached = tool._getPortletLookupCache(*cache_args)
+        cached = tool._lookupCacheGet(*cache_args)
         self.failIf(cached is None)
         self.assertEquals(len(cached), 1)
 
@@ -76,10 +75,10 @@ class TestLookupCache(CPSDefaultTestCase):
         tool.deletePortlet(self.portlet_id, context=context)
         tool.ignore_events = False
         future = DateTime() + 3.0/86400 # +3 secs to be sure it's later
-        setattr(tool, PORTLET_LOOKUP_CACHE_DATE_GLOBAL_ID, future)
+        setattr(tool, LOOKUP_CACHE_DATE_GLOBAL_ID, future)
 
         # Invalidation is propagated: the cache returns nothing for these keys
-        cached = tool._getPortletLookupCache(*cache_args)
+        cached = tool._lookupCacheGet(*cache_args)
         self.assertEquals(cached, None)
 
     def test_invalidation(self):
