@@ -6,11 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- #2469: added optional target for widget image + link (used in Image Portlets)
-- Better wording for the content portlet subject option.
-- Hardening getContentItems of the ContentPortlet when it is used with the
-  "Related documents on the same subject(s) as the container" content option.
-- More helpful field label for the ContentPortlet Display method.
+- #2481: ZEO-awareness of lookup cache was broken
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
