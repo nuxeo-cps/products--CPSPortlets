@@ -25,6 +25,7 @@ import unittest
 from Testing import ZopeTestCase
 
 from DateTime import DateTime
+from Products.CPSUtil.conflictresolvers import IncreasingDateTime
 from Products.CMFCore.utils import getToolByName
 from Products.CPSDefault.tests.CPSDefaultTestCase import CPSDefaultTestCase
 from Products.CPSPortlets.PortletsTool import LOOKUP_CACHE_DATE_GLOBAL_ID
@@ -80,6 +81,14 @@ class TestLookupCache(CPSDefaultTestCase):
         # Invalidation is propagated: the cache returns nothing for these keys
         cached = tool._lookupCacheGet(*cache_args)
         self.assertEquals(cached, None)
+
+    def test_upgrade_2482(self):
+        # test auto upgrade to conflictresolver timestamp
+        tool = self.tool
+        setattr(tool, LOOKUP_CACHE_DATE_GLOBAL_ID, DateTime('2011/10/19'))
+        tool.lookupCacheInvalidate() # used to break already
+        self.assertTrue(isinstance(getattr(tool, LOOKUP_CACHE_DATE_GLOBAL_ID),
+                                   IncreasingDateTime))
 
     def test_invalidation(self):
         self.do_test_invalidation(with_prior_invalidation=False)

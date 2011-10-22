@@ -359,7 +359,8 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
                                               visibility_check, guard_check)
 
     def _getGlobalLookupCacheDate(self):
-        if not bhasattr(self, LOOKUP_CACHE_DATE_GLOBAL_ID):
+        idt = getattr(aq_base(self), LOOKUP_CACHE_DATE_GLOBAL_ID, None)
+        if idt is None or isinstance(idt, DateTime):
             setattr(self, LOOKUP_CACHE_DATE_GLOBAL_ID,
                     IncreasingDateTime(LOOKUP_CACHE_DATE_GLOBAL_ID))
 
