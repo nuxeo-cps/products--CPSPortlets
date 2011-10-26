@@ -1,12 +1,14 @@
 import re
 import logging
 
+from Acquisition import aq_parent, aq_inner
 from DateTime.DateTime import DateTime
 from AccessControl import Unauthorized
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Products.CPSonFive.browser import AqSafeBrowserView
 from Products.CPSSchemas.DataStructure import DataStructure
+from Products.CPSPortlets.CPSPortlet import REQUEST_TRAVERSAL_KEY
 
 RSS_CONTENT_TYPE = 'application/rss+xml'
 
@@ -16,9 +18,21 @@ DATETIME_FORMATS = dict(W3CDTF='%Y-%m-%dT%H:%M:%SZ',
                         )
 logger = logging.getLogger(__name__)
 
+def parent(obj):
+    """For readability."""
+    return aq_parent(aq_inner(obj))
+
 class BaseExport(AqSafeBrowserView):
 
     ready = False
+
+    def getContextObj(self):
+        definition_folder = parent(parent(self.aqSafeGet('portlet')))
+        req_trav = getattr(self.request, REQUEST_TRAVERSAL_KEY, None)
+        if req_trav is None:
+            return definition_folder
+
+        return definition_folder.restrictedTraverse('/'.join(req_trav))
 
     def prepare(self):
         """Can't be done in __init__
@@ -208,7 +222,7 @@ class ContentPortletExport(BaseExport):
         kw = dict(self.dataStructure()) # dict() necessary to pass on
         kw['get_metadata'] = True
         portlet = self.aqSafeGet('portlet')
-        self.items = portlet.getContentItems(obj=portlet, **kw)
+        self.items = portlet.getContentItems(obj=self.getContextObj(), **kw)
 
 class RssExport(object):
 
