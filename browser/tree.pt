@@ -1,5 +1,5 @@
 <tal:block tal:define="folderItems python:request.get('folderItems');
-                       base_url python: request.get('cpsskins_base_url')"
+                       base_url python: request.get('cps_base_url')"
            tal:condition="folderItems">
 
 <script type="text/javascript" 

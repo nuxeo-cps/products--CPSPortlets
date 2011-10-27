@@ -62,7 +62,7 @@
                  display_hidden_folders=display_hidden_folders,
                  );
              linkclass python: show_icons and 'noicon' or None;
-             base_url python: request.get('cpsskins_base_url');
+             base_url python: request.get('cps_base_url');
              tree_roots python:[item for item in folderItems
                if item.get('level') == 0];
              root_has_nephew python:[1 for item in tree_roots if

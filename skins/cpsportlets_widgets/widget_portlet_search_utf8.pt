@@ -13,7 +13,7 @@
                   search_label python:cpsmcat('button_search');
                   previous_search_value request/SearchableText|string:;
                   search_value python:previous_search_value or search_label;
-                  base_url python:request.get('cpsskins_base_url');"
+                  base_url python:request.get('cps_base_url');"
  method="get" action="" accept-charset="utf-8"
  tal:attributes="action search_script"
  onsubmit="return checkEmptySearch(this)">

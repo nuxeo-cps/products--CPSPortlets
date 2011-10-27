@@ -1,4 +1,4 @@
-<tal:block define="base_url python: request.get('cpsskins_base_url')">
+<tal:block define="base_url python: request.get('cps_base_url')">
 <p>
 <tal:block i18n:translate="cpsportlets_share_this_document">Share this document</tal:block>
 <img src="dig.gif" alt="Dig"/>

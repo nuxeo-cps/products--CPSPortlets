@@ -5,7 +5,7 @@
                    show_icons ds/show_icons|python:1;
                    show_icons python: int(show_icons);
                    actionitems python: here.getActionsItems(context, categories, actions_order);
-                   base_url python: request.get('cpsskins_base_url')"
+                   base_url python: request.get('cps_base_url')"
   condition="actionitems">
     <ul class="cpsskinsMenu">
       <li tal:repeat="action actionitems"><a

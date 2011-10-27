@@ -32,6 +32,7 @@ import operator
 from DateTime import DateTime
 
 from zope.interface import implements
+from zExceptions import NotFound
 from AccessControl import ClassSecurityInfo, getSecurityManager, Unauthorized
 from Acquisition import aq_base, aq_parent, aq_inner
 from Globals import InitializeClass, DTMLFile
@@ -127,9 +128,16 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         query = {}
         if event_ids:
             query['eventIds'] = event_ids
-        portlets = set(brain.getObject()
-                       for brain in self._getPortletCatalog()(**query))
-        portlets.discard(None) # stale entries in catalog
+
+        portlets = []
+        for brain in self._getPortletCatalog()(**query):
+            try:
+                portlets.append(brain.getObject())
+            except (KeyError, AttributeError, NotFound):
+                logger.warn("Stale entry in portlets catalog: %r",
+                            brain.getPath(), exc_info=True)
+
+
         return portlets
 
     security.declarePublic('listPortlets')
@@ -155,9 +163,13 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
 
         portlets = []
         for res in catalog.searchResults(query):
-            portlet = res.getObject()
-            if portlet is None:
+            try:
+                portlet = res.getObject()
+            except (KeyError, AttributeError, NotFound):
+                logger.warn("Stale entry in portlets catalog: %r",
+                            brain.getPath(), exc_info=True)
                 continue
+
             if portlet.isGlobal(): # GR PERF should ne handled by an index
                 continue
             portlets.append(portlet)

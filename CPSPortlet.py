@@ -422,7 +422,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             # The baseurl name is misleading, it isn't in any way an URL.
             # Examples: "/" or "/cps"
             elif param == 'baseurl':
-                index_string = REQUEST.get('cpsskins_base_url')
+                index_string = REQUEST.get('cps_base_url')
 
             # Protocol
             # Deprecated in favor or server_url
