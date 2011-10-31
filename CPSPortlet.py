@@ -517,6 +517,10 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         cache_index, data = self.getCacheIndex(**kw)
         kw.update(data)
+        if 'portlet' not in kw:
+            # cf #2078, CPSSkins puts it in kw, CPSDesignerThemes won't
+            kw['portlet'] = self
+
 
         self.registerRequireJavaScript()
         ptltool = getToolByName(self, 'portal_cpsportlets')
@@ -572,10 +576,6 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             logger.debug(
                 "Cache miss for portlet %s (type=%s)", self,
                                                          self.portal_type)
-            if 'portlet' not in kw:
-                # cf #2078, CPSSkins puts it in kw, CPSDesignerThemes won't
-                kw['portlet'] = self
-
             rendered = html_slimmer(self.render(**kw))
             now = time.time()
 
