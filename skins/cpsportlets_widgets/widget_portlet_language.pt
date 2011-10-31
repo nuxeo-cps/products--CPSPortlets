@@ -62,10 +62,27 @@
           ">
           <option tal:repeat="item langItems" i18n:translate=""
            tal:content="item/title"
-           tal:attributes="value item/lang" />
+           tal:attributes="value item/lang"/>
         </select>
         <button type="submit" i18n:translate="cpsportlets_button_OK">OK</button>
       </p>
-    </form>
+
+      <tal:block tal:repeat="item langItems">
+       <a
+	 tal:attributes="
+	 href string:${context_url}/cpsportlet_change_language/?lang=${item/lang}
+	 "
+	>
+       <img
+	   tal:attributes="
+	    src python:'cpsskins_images/flag-'+item['lang']+'.png';
+	    alt item/lang;
+	    title item/title"
+	    i18n:attributes="title"
+
+	  />
+       </a>
+       </tal:block>
+      </form>
   </tal:block>
 </tal:block>
