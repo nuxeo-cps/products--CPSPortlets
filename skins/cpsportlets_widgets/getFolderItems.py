@@ -3,7 +3,6 @@
 # $Id$
 """Return the list of items found in the folder found through context_obj.
 """
-
 utool = context.portal_url
 base_url = utool.getBaseUrl()
 
@@ -78,8 +77,6 @@ for object in bmf.contentValues():
     object_id = object.getId()
     # filter out objects that cannot be viewed
     if not checkPerm('View', object):
-        continue
-    if getattr(object, 'view', None) is None:
         continue
 
     # skip documents if show_docs is not set
