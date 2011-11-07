@@ -2,7 +2,8 @@
                    portlet nocall:options/portlet;
                    context nocall:options/context_obj|here;
                    context_url context/absolute_url;
-                   action ds/action">
+                   action ds/action;
+		   selector_mode ds/selector_display_type">
   <tal:block condition="python: action == 'translate'">
     <form action="" method="get"
      tal:define="langItems context/getTranslateLangItems"
@@ -32,7 +33,7 @@
     </form>
   </tal:block>
   <tal:block condition="python: action == 'switch_language'">
-    <form action="" method="get"
+   <form action="" method="get"
      tal:define="langItems context/getSwitchableLangItems"
      tal:condition="langItems"
      tal:attributes="action string:${context_url}/cpsportlet_switch_language">
@@ -45,10 +46,12 @@
       <button type="submit" i18n:translate="cpsportlets_button_OK">OK</button>
     </form>
   </tal:block>
-  <tal:block condition="python: action == 'change'">
+  <tal:block condition="python: action == 'change'"
+   tal:define="langItems context/getChangeLangItems;
+                 language_chooser_id portlet/getId">
+   <tal:block condition="python: selector_mode == 'dropdown'">
     <form method="get" action=""
-     tal:define="langItems context/getChangeLangItems;
-                 language_chooser_id portlet/getId"
+
      tal:condition="langItems"
      tal:attributes="action string:${context_url}/cpsportlet_change_language">
       <p>
@@ -66,8 +69,10 @@
         </select>
         <button type="submit" i18n:translate="cpsportlets_button_OK">OK</button>
       </p>
-
-      <tal:block tal:repeat="item langItems">
+      </form>
+     </tal:block>
+     <tal:block condition="python: selector_mode == 'flags'">
+      <tal:block repeat="item langItems">
        <a
 	 tal:attributes="
 	 href string:${context_url}/cpsportlet_change_language/?lang=${item/lang}
@@ -79,10 +84,9 @@
 	    alt item/lang;
 	    title item/title"
 	    i18n:attributes="title"
-
 	  />
        </a>
-       </tal:block>
-      </form>
-  </tal:block>
+      </tal:block>
+     </tal:block>
+    </tal:block>
 </tal:block>
