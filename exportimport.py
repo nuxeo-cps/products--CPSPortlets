@@ -129,6 +129,7 @@ class CPSPortletXMLAdapter(CPSDocumentXMLAdapter):
         self._initDocumentFields(node)
         self._initObjects(node)
         self._initPortletGuard(node)
+        self.context._rebuild()
         msg = "Portlet %r imported." % self.context.getId()
         self._logger.log(VERBOSE, msg)
 

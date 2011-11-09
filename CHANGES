@@ -6,6 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
+- #2351: Portlets' render cache invalidation broken after profiles import
 - #2482: cache invalidation/cleanup dates were potential sources of conflicts
 - #2481: ZEO-awareness of lookup cache was broken
 New internal features
