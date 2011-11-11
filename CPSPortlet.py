@@ -590,7 +590,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             logger.debug(
                 "Cache miss for portlet %s (type=%s)", self,
                                                          self.portal_type)
-            rendered = html_slimmer(self.render(**kw))
+            rendered = html_slimmer(self.render(REQUEST=REQUEST, **kw))
             now = time.time()
 
             if REQUEST is None:
