@@ -1,15 +1,11 @@
 import re
 import logging
 
-from zExceptions import NotFound
-from Acquisition import aq_parent, aq_inner
 from DateTime.DateTime import DateTime
 from AccessControl import Unauthorized
-from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
-from Products.CPSonFive.browser import AqSafeBrowserView
 from Products.CPSSchemas.DataStructure import DataStructure
-from Products.CPSPortlets.CPSPortlet import REQUEST_TRAVERSAL_KEY
+from baseview import BaseView
 
 RSS_CONTENT_TYPE = 'application/rss+xml'
 
@@ -19,60 +15,16 @@ DATETIME_FORMATS = dict(W3CDTF='%Y-%m-%dT%H:%M:%SZ',
                         )
 logger = logging.getLogger(__name__)
 
-def parent(obj):
-    """For readability."""
-    return aq_parent(aq_inner(obj))
-
-class BaseExport(AqSafeBrowserView):
-
-    ready = False
-
-    def getContextObj(self):
-        definition_folder = parent(parent(self.aqSafeGet('portlet')))
-        req_trav = getattr(self.request, REQUEST_TRAVERSAL_KEY, None)
-        if req_trav is None:
-            return definition_folder
-        rpath = '/'.join(req_trav)
-        try:
-            return definition_folder.restrictedTraverse(rpath)
-        except (KeyError, AttributeError):
-            raise NotFound('/'.join((
-                        definition_folder.absolute_url_path() + rpath)))
+class BaseExport(BaseView):
 
     def prepare(self):
-        """Can't be done in __init__
-
-        These initializations are likely to require the authenticated user to
-        be initialized, which happens after the traversal, during which the
-        view class instantiation occurs.
-        """
-        if self.ready:
+        if self.prepared:
             return
-        portlet = self.context.aq_inner
-        self.aqSafeSet('portlet', portlet)
-        self.datamodel = portlet.getDataModel(context=portlet)
+
+        BaseView.prepare(self)
         self.initFolder()
         self.initItems()
         self.responseHeaders()
-        self.ready = True
-
-    def __call__(self, *args, **kwargs):
-        """Intercept the rendering to call prepare().
-
-        We're subclassing Five.browser.metaconfigure.ViewMixinForTemplate, here
-        used as metaclass base (as the current class) for instantiation of
-        self.
-
-        TODO: maybe insulate that kind of trick from Five specifics
-        by putting a generic base class in CPSonFive.browser.
-        Note that Five's naming is fortunately the same as the one from
-        zope.app.pagetemplate.simpleviewclass
-        It's also probably a better idea to understand the use of (standard
-        python new-style) metaclass in Zope 3 before Five's adaptation for
-        old-style classes.
-        """
-        self.prepare()
-        return self.index(self,  *args, **kwargs) # self.index is the ZPT
 
     def __getitem__(self, segment):
         """Zope2-style traversal (implementing ITraversable does not work).
@@ -124,27 +76,6 @@ class BaseExport(AqSafeBrowserView):
         response = self.request.RESPONSE
         response.setHeader('Content-Type', self.contentType())
         response.setHeader('Last-Modified', self.lastModified().rfc822())
-
-    def getCpsMcat(self):
-        _cpsmcat = getattr(self, '._cpsmcat', None)
-        if _cpsmcat is not None:
-            return _cpsmcat
-        ts = self._cpsmcat = getToolByName(self.context, 'translation_service')
-        return ts
-
-    def cpsVersion(self):
-        """Return suitable CPS version string"""
-        # TODO duplicated from CPSCore.PatchCopyright
-        try:
-            from Products.CPSCore.portal import CPSSite
-        except ImportError: # CPS portlets more or less CPS-independent
-            return ''
-
-        vstr = '.'.join((str(x) for x in CPSSite.cps_version[1:]))
-        vsuffix = getattr(CPSSite, 'cps_version_suffix', '')
-        if vsuffix:
-            vstr += '-' + vsuffix
-        return vstr
 
     def l10nPortletTitle(self):
         return self.getCpsMcat()(self.datamodel['Title'])
