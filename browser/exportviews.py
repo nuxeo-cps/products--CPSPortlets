@@ -1,6 +1,7 @@
 import re
 import logging
 
+from zExceptions import NotFound
 from Acquisition import aq_parent, aq_inner
 from DateTime.DateTime import DateTime
 from AccessControl import Unauthorized
@@ -31,8 +32,12 @@ class BaseExport(AqSafeBrowserView):
         req_trav = getattr(self.request, REQUEST_TRAVERSAL_KEY, None)
         if req_trav is None:
             return definition_folder
-
-        return definition_folder.restrictedTraverse('/'.join(req_trav))
+        rpath = '/'.join(req_trav)
+        try:
+            return definition_folder.restrictedTraverse(rpath)
+        except (KeyError, AttributeError):
+            raise NotFound('/'.join((
+                        definition_folder.absolute_url_path() + rpath)))
 
     def prepare(self):
         """Can't be done in __init__
