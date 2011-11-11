@@ -47,8 +47,10 @@ logger = logging.getLogger('Products.CPSPortlets.CPSPortlet')
 from zope.tales.tales import CompilerError
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.permissions import View, ModifyPortalContent
+from Products.CPSUtil.conflictresolvers import IncreasingDateTime
 from Products.CPSUtil.resourceregistry import JSGlobalMethodResource
 from Products.CPSUtil.resourceregistry import require_resource
+from Products.CPSCore.utils import bhasattr
 from Products.CPSCore.ProxyBase import FileDownloader
 from Products.CPSDocument.CPSDocument import CPSDocument
 
@@ -273,7 +275,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
            between all ZEO instances as long as the portlet has not been
            removed.
         """
-        self.cache_cleanup_date = time.time()
+        self.getCacheCleanupDate().set(time.time())
 
     security.declarePublic('getCacheObjects')
     def getCacheObjects(self, **kw):
@@ -501,6 +503,10 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         cache_index, data = self.getCacheIndex(**kw)
         kw.update(data)
+        if 'portlet' not in kw:
+            # cf #2078, CPSSkins puts it in kw, CPSDesignerThemes won't
+            kw['portlet'] = self
+
 
         self.registerRequireJavaScript()
         ptltool = getToolByName(self, 'portal_cpsportlets')
@@ -556,10 +562,6 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             logger.debug(
                 "Cache miss for portlet %s (type=%s)", self,
                                                          self.portal_type)
-            if 'portlet' not in kw:
-                # cf #2078, CPSSkins puts it in kw, CPSDesignerThemes won't
-                kw['portlet'] = self
-
             rendered = html_slimmer(self.render(**kw))
             now = time.time()
 
@@ -690,9 +692,17 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
     security.declarePublic('getCacheCleanupDate')
     def getCacheCleanupDate(self):
-        """Return the last cleanup date for this portlet"""
+        """Return the last cleanup date for this portlet.
+        Create it if needed.
 
-        return self.cache_cleanup_date
+        BBB note: the date used to be as a float field in portlet_common
+        schema, we upgrade transparently.
+        """
+        attr = 'cache_cleanup_date'
+        idt = getattr(aq_base(self), attr, None)
+        if idt is None or isinstance(idt, float):
+            setattr(self, attr, IncreasingDateTime(attr))
+        return getattr(self, attr) # aq_wrapped
 
     security.declarePublic('getCacheTimeout')
     def getCacheTimeout(self):
@@ -1016,8 +1026,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             schema = stool[schema_id]
             for field in schema.objectValues():
                 field_id = field.getFieldId()
-                # the attribute exists
-                if getattr(aq_base(self), field_id, _marker) is not _marker:
+                # the attribute exists or should not persist
+                if field.write_ignore_storage or bhasattr(self, field_id):
                     continue
                 default_value = field.getDefault()
                 setattr(self, field_id, default_value)

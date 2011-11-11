@@ -493,6 +493,9 @@ msgstr "Image"
 msgid "cpsportlets_image_link_label"
 msgstr "Lien"
 
+msgid "cpsportlets_image_link_target_label"
+msgstr "Attribut \"target\" du lien"
+
 msgid "cpsportlets_image_caption_label"
 msgstr "Légende"
 

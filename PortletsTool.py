@@ -25,8 +25,17 @@
 __author__ = "Julien Anguenot <mailto:ja@nuxeo.com>"
 
 """Portlets Tool
+
+The portlets tool manages portlets, and various ZEO-aware caches:
+ - render caches, for the renderings of portlets (see the documentation in
+the doc directory of this product)
+ - lookup cache: a global object that caches a pre-version of list of portlets
+to be displayed according to context. After filtering with conditions that
+cannot be cached (such as guards), this becomes the actual list of portlets to
+display.
 """
 
+import warnings
 from logging import getLogger
 import operator
 from DateTime import DateTime
@@ -45,7 +54,9 @@ from Products.CMFCore.utils import UniqueObject
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import _checkPermission
 
+from Products.CPSUtil.conflictresolvers import IncreasingDateTime
 from Products.CPSCore.EventServiceTool import getPublicEventService
+from Products.CPSCore.utils import bhasattr
 from Products.CPSPortlets.interfaces import IPortletTool
 from Products.CPSPortlets.PortletRAMCache import RAMCache, SimpleRAMCache
 from Products.CPSPortlets.PortletsContainer import PortletsContainer
@@ -70,11 +81,11 @@ PORTLET_MANAGE_ACTION_ID = 'portlets'
 PORTLET_MANAGE_ACTION_CATEGORY = 'folder'
 
 # The ID of the portlet lookup cache
-PORTLET_LOOKUP_CACHE_ID = '_v_portlet_lookup_cache'
+LOOKUP_CACHE_ID = '_v_portlet_lookup_cache'
 # The ID of the date of the last update on the portlet lookup cache globally and
 # on this particular instance.
-PORTLET_LOOKUP_CACHE_DATE_GLOBAL_ID = 'portlet_lookup_cache_date'
-PORTLET_LOOKUP_CACHE_DATE_INSTANCE_ID = '_v_portlet_lookup_cache_date'
+LOOKUP_CACHE_DATE_GLOBAL_ID = 'portlet_lookup_cache_date'
+LOOKUP_CACHE_DATE_INSTANCE_ID = '_v_portlet_lookup_cache_date'
 
 
 class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
@@ -359,6 +370,14 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         return self._filterPortletsAfterCache(context, portlets,
                                               visibility_check, guard_check)
 
+    def _getGlobalLookupCacheDate(self):
+        idt = getattr(aq_base(self), LOOKUP_CACHE_DATE_GLOBAL_ID, None)
+        if idt is None or isinstance(idt, DateTime):
+            setattr(self, LOOKUP_CACHE_DATE_GLOBAL_ID,
+                    IncreasingDateTime(LOOKUP_CACHE_DATE_GLOBAL_ID))
+
+        return getattr(self, LOOKUP_CACHE_DATE_GLOBAL_ID)
+
     security.declarePrivate('_getPortletsCacheable')
     def _getPortletsCacheable(self, bmf, slot, sort, override):
         """Cacheable part of the portlets lookup logic.
@@ -368,11 +387,21 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         portal = utool.getPortalObject()
         bmf_path = utool.getRelativeContentPath(bmf)
 
-        allportlets_rpaths = self._getPortletLookupCache(slot, bmf_path, sort,
-                                                         override)
+        allportlets_rpaths = self._lookupCacheGet(slot, bmf_path, sort,
+                                                  override)
         if allportlets_rpaths is not None:
-            return tuple(portal.unrestrictedTraverse(rpath)
-                         for rpath in allportlets_rpaths)
+            try:
+                return tuple(portal.unrestrictedTraverse(rpath)
+                             for rpath in allportlets_rpaths)
+            except (AttributeError, KeyError):
+                # log and proceed to recomputation
+                logger.error(
+                    "There are ghost entries in the lookup cache. "
+                    "Cluster-wide invalidation timestamp: %r "
+                    "process-local invalidation timestamp: %r",
+                    self._getGlobalLookupCacheDate(),
+                    getattr(aq_base(self),
+                            LOOKUP_CACHE_DATE_INSTANCE_ID, None))
 
         # Get portlets from the root to current path
         obj = portal
@@ -395,6 +424,7 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         remove_set = set()
 
         # Applying overridance rules
+        # GR PERF quadratic complexity (dubious).
         for portlet in allportlets:
             if override:
                 # the portlet is protected
@@ -416,12 +446,10 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
                     remove_set.add(portlet)
                     break
 
-        allportlets = [portlet for portlet in allportlets
-                       if portlet not in remove_set]
+        allportlets = [p for p in allportlets if p not in remove_set]
 
-        self._setPortletLookupCache(
-            tuple(utool.getRpath(ptl) for ptl in allportlets),
-                slot, bmf_path, sort, override)
+        self._lookupCacheSet(tuple(utool.getRpath(ptl) for ptl in allportlets),
+                             slot, bmf_path, sort, override)
 
         return allportlets
 
@@ -430,6 +458,7 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
                                   visibility_check, guard_check, **kw):
         """Does the final, uncacheable, filtering of portlets.
 
+        To be applied on the list returned by _lookupCacheGet
         Since it is dependent on many programmatic
         paramaters, the guard checking cannot be cached.
 
@@ -443,8 +472,6 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         # List of portlets that will not be displayed
         remove_set = set()
 
-        # Final, uncacheable, filtering : portlet visibility and guard check.
-
         if guard_check:
             for portlet in allportlets:
                 if visibility_check:
@@ -457,61 +484,61 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
         return [portlet for portlet in allportlets
                 if portlet not in remove_set]
 
-    security.declarePrivate('_getPortletLookupCache')
-    def _getPortletLookupCache(self, slot, rpath, sort, override):
-        """Return all the portlets stored in a cache depending on the given
-        paramaters.
+    security.declarePrivate('_lookupCacheGet')
+    def _lookupCacheGet(self, slot, rpath, sort, override):
+        """Return portlets paths from the cache according to paramaters.
 
-        Note that this is a cache containing portlet objects (and not portlet
-        renderings) depending on a specified situation (slot, rpath, sorting).
+        ZEO awareness: if the global timestamp is older than ours, then
+        another ZEO client has invalidated, and we ignore the entry,
+        effectively forcing downstream code to recompute and update the cache.
         """
-        # ZEO awareness
-        last_cache_global_update = self.get(PORTLET_LOOKUP_CACHE_DATE_GLOBAL_ID)
-        last_cache_instance_update = self.get(PORTLET_LOOKUP_CACHE_DATE_INSTANCE_ID)
-        if (last_cache_global_update is not None
-            and last_cache_instance_update is not None):
-            if last_cache_instance_update < last_cache_global_update:
-                # This will force the portlet lookup cache to be recomputed on
-                # this Zope instance.
-                return None
+        self_base = aq_base(self)
+        glob_date = self._getGlobalLookupCacheDate()
+        inst_date = getattr(self_base, LOOKUP_CACHE_DATE_INSTANCE_ID, None)
+
+        # None is smaller than all DateTime objects
+        if inst_date < glob_date.value:
+            return None
+
         portlets_cache_keywords = {'slot': slot, 'rpath': rpath, 'sort': sort,
                                    'override': override,}
         portlets = self.ZCacheable_get(keywords=portlets_cache_keywords)
-        #logger.debug("_getPortletLookupCache: returning %s", portlets)
         return portlets
 
-    security.declarePrivate('_setPortletLookupCache')
-    def _setPortletLookupCache(self, portlets, slot, rpath, sort,
-                               override):
-        """Set all the portlets stored in a cache depending on the given
-        paramaters.
-
-        Note that this is a cache containing portlet objects (and not portlet
-        renderings) depending on a specified situation (slot, rpath, sorting).
-        """
+    security.declarePrivate('_lookupCacheSet')
+    def _lookupCacheSet(self, portlets, slot, rpath, sort, override):
+        """Set portlets paths in cache for the given parameters."""
         portlets_cache_keywords = {'slot': slot, 'rpath': rpath, 'sort': sort,
                                    'override': override,
                                    }
-        # Storing the cache as a volatile attribute. The attribute will not be
-        # shared among ZEO instances nor will it be stored persistently.
-        #logger.debug("_setPortletLookupCache: caching enabled ? = %s",
-        #             self.ZCacheable_isCachingEnabled())
+        # The RAMCacheManager is local to this ZEO client
         self.ZCacheable_set(portlets, keywords=portlets_cache_keywords)
 
     security.declarePrivate('_invalidatePortletLookupCache')
     def _invalidatePortletLookupCache(self):
-        """This will remove all the cached portlet objects.
+        warnings.warn(
+            '_invalidatePortletLookupCache is deprecated in favor '
+            'of lookupCacheInvalidate; this compatibility alias will be '
+            'removed in CPS 3.6', DeprecationWarning, stacklevel=2)
+        self.lookupCacheInvalidate()
 
-        Note that this is a cache containing portlet objects (and not portlet
-        renderings) depending on a specified situation (slot, rpath, sorting).
+    security.declareProtected(ManagePortlets, 'lookupCacheInvalidate')
+    def lookupCacheInvalidate(self):
+        """Remove all the cached portlet rpaths, ZEO aware
+
+        This method should have an UI. Invalidation all caches at once
+        is important for a site admin if anything goes wrong.
         """
         logger.info("Invalidating the lookup cache")
         self.ZCacheable_invalidate()
-        # Share with other ZEO instances that the cache has expired
         now = DateTime()
-        setattr(self, PORTLET_LOOKUP_CACHE_DATE_GLOBAL_ID, now)
-        setattr(self, PORTLET_LOOKUP_CACHE_DATE_INSTANCE_ID, now)
 
+        # timestamp kept for detection of future invalidations by other
+        # ZEO clients
+        setattr(self, LOOKUP_CACHE_DATE_INSTANCE_ID, now)
+
+        # Share with other ZEO clients that the cache has expired
+        self._getGlobalLookupCacheDate().set(now)
 
     security.declarePublic('getPortletContext')
     def getPortletContext(self, portlet=None):

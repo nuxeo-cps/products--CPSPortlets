@@ -484,6 +484,9 @@ msgstr ""
 msgid "cpsportlets_image_link_label"
 msgstr ""
 
+msgid "cpsportlets_image_link_target_label"
+msgstr ""
+
 msgid "cpsportlets_image_caption_label"
 msgstr ""
 
