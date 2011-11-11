@@ -126,7 +126,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         if bhasattr(self, name): # regular attribute
             return getattr(self, name)
         elif name == KEYWORD_DOWNLOAD_FILE: # special case
-            return FileDownloader(self, self).__of__self
+            return FileDownloader(self, self).__of__(self)
 
         view = queryMultiAdapter((self, request), Interface, name)
         if view is not None:
