@@ -36,6 +36,10 @@ import md5
 from copy import deepcopy
 from cgi import escape
 from random import randint
+
+from zope.interface import Interface
+from zope.component import queryMultiAdapter
+
 from App.Common import rfc1123_date
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_inner, aq_parent, aq_base
@@ -86,6 +90,8 @@ MINIMAL_ESI_CODE = """
 
 VISIBILITY_VOC = 'cpsportlets_visibility_range_voc'
 KEYWORD_DOWNLOAD_FILE = 'downloadFile'
+REQUEST_TRAVERSAL_KEY = '_portlet_traversal'
+
 
 class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
     """ CPS Portlet
@@ -113,17 +119,6 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
                    {'id': 'order', 'mode': 'w', 'type': 'string',
                     'label': 'Order in the slot'},
                    )
-    def __getitem__(self, name):
-        """File Downloader.
-
-        Parses URLs for download of the form:
-          mydoc/downloadFile/attrname/mydocname.pdf
-        """
-        if name == KEYWORD_DOWNLOAD_FILE:
-            ob = self
-            downloader = FileDownloader(ob, self)
-            return downloader.__of__(self)
-        raise KeyError(name)
 
     security.declarePublic('getGuard')
     def getGuard(self):

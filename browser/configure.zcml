@@ -5,6 +5,13 @@
            i18n_domain="cpsdefault"
            >
 
+  <adapter
+    for=".interfaces.ICPSPortlet
+	 zope.publisher.interfaces.browser.IBrowserRequest"
+    provides="zope.publisher.interfaces.IPublishTraverse"
+    factory=".browser.traversal.PortletTraverser"
+    />
+
   <five:traversable class="OFS.Folder.Folder" />
 
   <browser:view
