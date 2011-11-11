@@ -67,6 +67,9 @@ class BaseView(AqSafeBrowserView):
         self.prepare()
         return self.index(self,  *args, **kwargs) # self.index is the ZPT
 
+    def setContextObj(self, context_obj):
+        self.aqSafeSet('context_obj', context_obj)
+
     def context_obj(self):
         context_obj = self.aqSafeGet('context_obj', None)
         if context_obj is not None:

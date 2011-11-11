@@ -1,13 +1,13 @@
 <tal:block xmlns:metal="http://xml.zope.org/namespaces/metal"
 	   xmlns:tal="http://xml.zope.org/namespaces/tal"
-	   define="ds options/datastructure;
-                   display ds/display;
-                   display_hidden_folders ds/display_hidden_folders;
-                   display_site_root ds/display_site_root;
-                   highlight_last_item ds/highlight_last_item;
+	   define="dm view/datamodel;
+                   display dm/display;
+                   display_hidden_folders dm/display_hidden_folders;
+                   display_site_root dm/display_site_root;
+                   highlight_last_item dm/highlight_last_item;
                    highlight_last_item python:int(highlight_last_item);
-                   first_item ds/first_item;
-                   context nocall:options/context_obj|here;
+                   first_item dm/first_item;
+                   context view/context_obj;
                    utool nocall:here/portal_url;
                    context_url python: utool.getRelativeUrl(context);
                    base_url python: request.get('cps_base_url');
@@ -53,4 +53,3 @@
    </ul>
   </tal:block>
 </tal:block>
-

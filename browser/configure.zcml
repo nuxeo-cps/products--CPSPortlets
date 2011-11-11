@@ -4,13 +4,14 @@
            xmlns:i18n="http://namespaces.zope.org/i18n"
            i18n_domain="cpsdefault"
            >
-
   <adapter
     for=".interfaces.ICPSPortlet
 	 zope.publisher.interfaces.browser.IBrowserRequest"
     provides="zope.publisher.interfaces.IPublishTraverse"
     factory=".browser.traversal.PortletTraverser"
     />
+
+  <include file="portlets.zcml" />
 
   <five:traversable class="OFS.Folder.Folder" />
 

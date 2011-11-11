@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+ <!-- Predefined portlet views.
+
+ permission check for context_obj is made by BaseView.
+ Additional ones are the responsibility of the subclass. -->
+
+ <browser:page
+   for="Products.CPSPortlets.interfaces.ICPSPortlet"
+   name="Breadcrumbs Portlet"
+   template="breadcrumbs.pt"
+   class=".browser.basicportlets.BreadCrumbsPortletView"
+   permission="zope2.Public"/>
+
+</configure>

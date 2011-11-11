@@ -491,6 +491,29 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         return index, data
 
+    security.declarePublic('render')
+    def render(self, REQUEST=None, layout_mode='view', **kw):
+        """In view mode, lookup a Z3 view, default to CPSDocument machinery
+
+        The view name is the portal_type. TODO optionally use a field declared
+        in the type information and a pattern to construct the view name.
+        """
+        def cpsdoc_render():
+            return super(CPSPortlet, self).render(layout_mode=layout_mode,
+                                                  REQUEST=REQUEST,
+                                                  **kw)
+        if layout_mode != 'view':
+            cpsdoc_render()
+
+        view = queryMultiAdapter((self, self.REQUEST), Interface,
+                                 self.portal_type)
+        if view is not None:
+            view.render_kwargs = kw
+            # explicit setting of context obj
+            view.setContextObj(kw.get('context_obj'))
+            return view()
+        return cpsdoc_render()
+
     security.declarePublic('render_cache')
     def render_cache(self, REQUEST=None, **kw):
         """Renders the cached version of the portlet.
@@ -507,7 +530,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         ptltool = getToolByName(self, 'portal_cpsportlets')
         # the portlet is not cacheable.
         if ptltool.render_cache_disabled or cache_index is None:
-            return self.render(**kw)
+            return self.render(REQUEST=REQUEST, **kw)
 
         now = time.time()
         portlet_path = self.getPhysicalPath()
