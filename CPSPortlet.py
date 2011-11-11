@@ -491,6 +491,20 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         return index, data
 
+    def getBrowserView(self, context_obj, request, render_kwargs):
+        """Lookup a browser view and prepare it.
+
+        context_obj is passed explicitely although it's in render_kwargs for
+        the sake of expliciteness and possible later refactors
+        """
+        view = queryMultiAdapter((self, request), Interface,
+                                 self.portal_type)
+        if view is not None:
+            view.render_kwargs = render_kwargs
+            view.setContextObj(context_obj)
+            view.prepare()
+        return view
+
     security.declarePublic('render')
     def render(self, REQUEST=None, layout_mode='view', **kw):
         """In view mode, lookup a Z3 view, default to CPSDocument machinery
@@ -505,12 +519,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         if layout_mode != 'view':
             cpsdoc_render()
 
-        view = queryMultiAdapter((self, self.REQUEST), Interface,
-                                 self.portal_type)
+        view = self.getBrowserView(kw.get('context_obj'), REQUEST, kw)
         if view is not None:
-            view.render_kwargs = kw
-            # explicit setting of context obj
-            view.setContextObj(kw.get('context_obj'))
             return view()
         return cpsdoc_render()
 

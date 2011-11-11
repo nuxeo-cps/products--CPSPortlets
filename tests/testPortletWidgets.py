@@ -37,7 +37,8 @@ class TestPortlet(TestPortlets):
         portlet_id = ptltool.createPortlet(ptype_id)
         self.assertEquals(len(ptltool.items()), len_before+1)
         portlet = ptltool[portlet_id]
-        portlet.render(context_obj=self.portal, portlet=portlet)
+        portlet.render(context_obj=self.portal, portlet=portlet,
+                       REQUEST=self.app.REQUEST)
         self.assert_(portlet.render_js() is not None)
 
 # portal type list
@@ -46,7 +47,6 @@ for ptype_id in ['Dummy Portlet',
                  'Search Portlet',
                  'Internal Links Portlet',
                  'Add Item Portlet',
-                 'Breadcrumbs Portlet',
                  'Actions Portlet',
                  'Content Portlet',
                  'Language Portlet',

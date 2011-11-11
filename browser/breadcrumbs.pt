@@ -2,16 +2,12 @@
 	   xmlns:tal="http://xml.zope.org/namespaces/tal"
 	   define="dm view/datamodel;
                    display dm/display;
-                   display_hidden_folders dm/display_hidden_folders;
-                   display_site_root dm/display_site_root;
                    highlight_last_item dm/highlight_last_item;
-                   highlight_last_item python:int(highlight_last_item);
                    first_item dm/first_item;
                    context view/context_obj;
-                   utool nocall:here/portal_url;
-                   context_url python: utool.getRelativeUrl(context);
                    base_url python: request.get('cps_base_url');
-                   breadcrumbsItems python: context.getBreadcrumbsItems(context=context, display_hidden_folders=display_hidden_folders, first_item=first_item, display_site_root=display_site_root)">
+		   breadcrumbsItems view/breadcrumbs">
+
   <form tal:condition="python: display == 'dropdown_list'"
   method="get" action="cpsportlet_url_redirect"
   tal:attributes="action string:${context_url}/cpsportlet_url_redirect">

@@ -48,7 +48,7 @@ class PortletViewTests(CPSPortletsTestCase.CPSPortletsTestCase):
         for portlet_id in portlets.objectIds():
             if portlet_id in not_tested:
                 continue
-            portletviewer = PortletView(self.portal.sections, None)
+            portletviewer = PortletView(self.portal.sections, self.app.REQUEST)
             result = portletviewer.render(portlet_id).strip()
             if result == '':
                 continue
@@ -82,12 +82,12 @@ class PortletViewTests(CPSPortletsTestCase.CPSPortletsTestCase):
                            + list(cpsportlets.objectIds())):
             if portlet_id in not_tested:
                 continue
-            portletviewer = PortletView(self.portal, None)
+            portletviewer = PortletView(self.portal, self.app.REQUEST)
             result = portletviewer.render(portlet_id)
             if result.strip() == '':
                 continue
             result = result.encode('utf-8')
-            fakepage = ('\n<div>**** portlet %s ****</div>\n%s\n'
+            fakepage = ('\n<div>**** portlet %s ****</div>\n<div>%s</div>\n'
                         % (portlet_id, result))
 
             assertValidXhtml(htmlpage % fakepage, portlet_id)

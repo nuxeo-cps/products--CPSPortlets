@@ -20,19 +20,26 @@
 """
   Z3-style helper to render a portlet
 """
-# from Products.CMFCore.utils import getToolByName
+import warnings
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
+
+warnings.warn(__name__ + " is deprecated. What we call now portlet views "
+              "are used from the portlet rendering, not to call it. "
+              "It will be removed in one of the CPS 3.6 series.",
+              DeprecationWarning, stacklevel=2)
 
 class PortletView(BrowserView):
 
     def render(self, portlet_id):
         portlets = getToolByName(self.context, 'portal_cpsportlets')
         if portlet_id in portlets.objectIds():
-            return portlets[portlet_id].render(context_obj=self.context)
+            return portlets[portlet_id].render(context_obj=self.context,
+                                               REQUEST=self.request)
 
         portlets = getToolByName(self.context, '.cps_portlets')
         if portlet_id in portlets.objectIds():
-            return portlets[portlet_id].render(context_obj=self.context)
+            return portlets[portlet_id].render(context_obj=self.context,
+                                               REQUEST=self.request)
 
         raise KeyError(portlet_id)
