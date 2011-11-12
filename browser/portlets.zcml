@@ -3,15 +3,18 @@
     xmlns:browser="http://namespaces.zope.org/browser">
 
  <!-- Predefined portlet views.
-
  permission check for context_obj is made by BaseView.
  Additional ones are the responsibility of the subclass. -->
 
- <browser:page
-   for="Products.CPSPortlets.interfaces.IBreadcrumbsPortlet"
-   name="Breadcrumbs Portlet"
-   template="breadcrumbs.pt"
+ <browser:pages for=".interfaces.IBreadcrumbsPortlet"
    class=".browser.basicportlets.BreadCrumbsPortletView"
-   permission="zope2.Public"/>
+   permission="zope2.Public">
+  <browser:page name="horizontal_trail"
+                template="breadcrumbs_horizontal_trail.pt" />
+  <browser:page name="dropdown_list"
+                template="breadcrumbs_dropdown_list.pt" />
+  <browser:page name="semantic_simple"
+                template="breadcrumbs_semantic_simple.pt" />
+ </browser:pages>
 
 </configure>

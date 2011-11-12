@@ -36,7 +36,7 @@ class BaseView(AqSafeBrowserView):
     def __init__(self, context, request):
         AqSafeBrowserView.__init__(self, context, request)
 
-    def prepare(self):
+    def prepare(self, datamodel=None):
         """Preparation that can't be done in __init__
 
         These initializations are likely to require the authenticated user to
@@ -47,7 +47,9 @@ class BaseView(AqSafeBrowserView):
             return
         portlet = self.context.aq_inner
         self.aqSafeSet('portlet', portlet)
-        self.datamodel = portlet.getDataModel(context=portlet)
+        if datamodel is None:
+            datamodel = portlet.getDataModel(context=portlet)
+        self.datamodel = datamodel
 
     def __call__(self, *args, **kwargs):
         """Intercept the rendering to call prepare().

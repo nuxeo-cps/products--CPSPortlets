@@ -41,6 +41,7 @@ from zope.interface import Interface
 from zope.interface import directlyProvides
 from zope.dottedname.resolve import resolve as resolve_dotted_name
 from zope.component import queryMultiAdapter
+from zope.publisher.interfaces.browser import IBrowserView
 
 from App.Common import rfc1123_date
 from Globals import InitializeClass, DTMLFile
@@ -499,12 +500,19 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         context_obj is passed explicitely although it's in render_kwargs for
         the sake of expliciteness and possible later refactors
         """
+        dm = self.getDataModel(context=self)
         view = queryMultiAdapter((self, request), Interface,
-                                 self.portal_type)
-        if view is not None:
-            view.render_kwargs = render_kwargs
-            view.setContextObj(context_obj)
-            view.prepare()
+                                 name=dm['render_view_name'])
+
+        # There are lots of non-view adapters for self and request
+        # One gets one of these usually if there's no proper defined view
+        # because views adapt to Interface and must be queried to Interface
+        if view is None or not IBrowserView.providedBy(view):
+            return
+
+        view.render_kwargs = render_kwargs
+        view.setContextObj(context_obj)
+        view.prepare(datamodel=dm)
         return view
 
     security.declarePublic('render')

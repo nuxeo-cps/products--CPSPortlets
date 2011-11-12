@@ -1,0 +1,22 @@
+<form xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      method="get" action="cpsportlet_url_redirect"
+      tal:define="dm view/datamodel;
+                  display dm/display;
+                  highlight_last_item dm/highlight_last_item;
+                  first_item dm/first_item;
+                  context view/context_obj;
+                  base_url python: request.get('cps_base_url');
+                  breadcrumbsItems view/breadcrumbs"
+      tal:attributes="action string:${context_url}/cpsportlet_url_redirect">
+
+ <select onchange="submit()" name="url" tal:condition="breadcrumbsItems">
+  <tal:block repeat="item breadcrumbsItems">
+   <option value="" selected=""
+           tal:define="item_url item/url"
+           tal:content="python: item['title']"
+           tal:attributes="value item_url;
+                           selected python:test(item_url == context_url, nothing, 'selected')" />
+  </tal:block>
+ </select>
+</form>
