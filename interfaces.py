@@ -44,3 +44,8 @@ class IPortletTool(IPortletContainer):
 class IPortletCatalogTool(ICatalogTool):
     """Porlet Catalog Tool.
     """
+
+## marker interfaces for concrete portlet types
+
+class IBreadcrumbsPortlet(ICPSPortlet):
+    """Breadcrumbs portlet."""

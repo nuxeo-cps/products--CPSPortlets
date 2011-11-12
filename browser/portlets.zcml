@@ -8,7 +8,7 @@
  Additional ones are the responsibility of the subclass. -->
 
  <browser:page
-   for="Products.CPSPortlets.interfaces.ICPSPortlet"
+   for="Products.CPSPortlets.interfaces.IBreadcrumbsPortlet"
    name="Breadcrumbs Portlet"
    template="breadcrumbs.pt"
    class=".browser.basicportlets.BreadCrumbsPortletView"

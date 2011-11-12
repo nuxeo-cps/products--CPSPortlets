@@ -38,6 +38,8 @@ from cgi import escape
 from random import randint
 
 from zope.interface import Interface
+from zope.interface import directlyProvides
+from zope.dottedname.resolve import resolve as resolve_dotted_name
 from zope.component import queryMultiAdapter
 
 from App.Common import rfc1123_date
@@ -1041,12 +1043,22 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         """Rebuilds the portlet.
         """
 
-        # rebuild properties
-        stool = getToolByName(self, 'portal_schemas')
-        existing_schemas = stool.objectIds()
+        # rebuild TypeInformation stuff, notably marker interfaces
         ti = self.getTypeInfo()
         if ti is None:
             return
+
+        marker = ti.getProperty('marker_interface', '')
+        if marker:
+            logger.info("Ensuring that %r provides %r", self, marker)
+            marker = resolve_dotted_name(marker.strip())
+            if not marker.providedBy(self):
+                directlyProvides(self, marker)
+
+        # rebuild properties. GR: WTF ??
+        stool = getToolByName(self, 'portal_schemas')
+        existing_schemas = stool.objectIds()
+
         for type_schema in ti._listSchemas():
             schema_id = type_schema.getId()
             if schema_id not in existing_schemas:
