@@ -18,6 +18,14 @@
 
   <five:traversable class="OFS.Folder.Folder" />
 
+  <browser:pages
+    for=".interfaces.ICPSPortlet"
+    class="Products.CPSUtil.browser.relay.AcquiredMethodView"
+    permission="zope2.Public">
+   <browser:page name="cpsportlet_edit_form"/>
+   <browser:page name="cpsportlet_edit"/>
+  </browser:pages>
+
   <browser:view
     for=".interfaces.IPortletWidget"
     name="nav_hierarchical_simple"
