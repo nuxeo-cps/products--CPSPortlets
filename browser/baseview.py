@@ -50,6 +50,7 @@ class BaseView(AqSafeBrowserView):
         if datamodel is None:
             datamodel = portlet.getDataModel(context=portlet)
         self.datamodel = datamodel
+        self.prepared = True
 
     def __call__(self, *args, **kwargs):
         """Intercept the rendering to call prepare().
