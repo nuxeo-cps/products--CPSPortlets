@@ -5,13 +5,9 @@
               creation creation|nothing;
               metadata metadata|nothing;
               type_name request/type_name|nothing;
-              ti python:type_name and getattr(here.portal_types,type_name,None) or getattr(here.portal_types,here.portal_type,None);
-              creation_form python:ti and ti.getActionById('create', 'cpsdocument_create_form') or 'cpsdocument_create_form' ;
-              edit_form     python:ti and ti.getActionById('edit',   'cpsdocument_edit_form') or  'cpsdocument_edit_form';
-              metadata_form python:ti and ti.getActionById('metadata', 'cpsdocument_metadata') or 'cpsdocument_metadata';
-              formaction python: test(creation, creation_form,
-                                 test(metadata, metadata_form,
-                                                edit_form));
+              formaction python: test(creation, 'create',
+                                 test(metadata, 'metadata',
+                                                'edit'));
               first_layout options/first_layout|python:0;
               last_layout options/last_layout|python:0;
               is_flexible options/is_flexible;
