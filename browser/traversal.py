@@ -22,6 +22,8 @@ from zope.interface import implements
 from zope.component import queryMultiAdapter
 from zope.publisher.interfaces import IPublishTraverse
 
+from Acquisition import aq_parent, aq_inner
+
 from Products.CPSCore.utils import bhasattr
 from Products.CPSCore.ProxyBase import FileDownloader
 from Products.CPSCore.ProxyBase import ImageDownloader
@@ -29,6 +31,26 @@ from Products.CPSCore.utils import KEYWORD_DOWNLOAD_FILE
 from Products.CPSCore.utils import KEYWORD_SIZED_IMAGE
 
 REQUEST_TRAVERSAL_KEY = '_portlet_traversal'
+
+def parent(obj):
+    """For readability."""
+    return aq_parent(aq_inner(obj))
+
+def request_context_obj(portlet, request):
+    """Use request to traverse to context_obj from portlet's definition folder.
+    """
+    definition_folder = parent(parent(portlet))
+    req_trav = getattr(request, REQUEST_TRAVERSAL_KEY, None)
+    if req_trav is None:
+        return definition_folder
+    rpath = '/'.join(req_trav)
+    try:
+        context_obj = definition_folder.restrictedTraverse(rpath)
+    except (KeyError, AttributeError):
+        raise NotFound('/'.join((
+                    definition_folder.absolute_url_path() + rpath)))
+
+    return context_obj
 
 class PortletTraverser(object):
 

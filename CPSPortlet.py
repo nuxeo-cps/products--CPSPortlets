@@ -38,8 +38,6 @@ from cgi import escape
 from random import randint
 
 from zope.interface import Interface
-from zope.interface import directlyProvides
-from zope.dottedname.resolve import resolve as resolve_dotted_name
 from zope.component import queryMultiAdapter
 from zope.publisher.interfaces.browser import IBrowserView
 
@@ -68,6 +66,7 @@ from cpsportlets_utils import html_slimmer
 
 from zope.interface import implements
 from Products.CPSPortlets.interfaces import ICPSPortlet
+from browser.traversal import request_context_obj
 
 PORTLET_RESOURCE_CATEGORY = 'portlet'
 
@@ -95,6 +94,11 @@ VISIBILITY_VOC = 'cpsportlets_visibility_range_voc'
 KEYWORD_DOWNLOAD_FILE = 'downloadFile'
 REQUEST_TRAVERSAL_KEY = '_portlet_traversal'
 
+def noadapter(datamodel, request):
+    """An adapter factory used as a kind of base of adaptation of datamodel
+    and request."""
+
+    return
 
 class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
     """ CPS Portlet
@@ -500,27 +504,27 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         context_obj is passed explicitely although it's in render_kwargs for
         the sake of expliciteness and possible later refactors
         """
-        dm = self.getDataModel(context=self)
-        view = queryMultiAdapter((self, request), Interface,
+        dm = self.getDataModel(context=context_obj)
+        view = queryMultiAdapter((dm, request), Interface,
                                  name=dm['render_view_name'])
 
-        # There are lots of non-view adapters for self and request
+        # There might be non-view adapters for datamodel
         # One gets one of these usually if there's no proper defined view
-        # because views adapt to Interface and must be queried to Interface
+        # because views adapt to Interface and therefore must be queried to
+        # Interface, and that is quite broad.
+        # We try to be protected from that by the baseline browser.no_view
+        # adapter factory (returns None), but one never knows.
         if view is None or not IBrowserView.providedBy(view):
             return
 
         view.render_kwargs = render_kwargs
-        view.setContextObj(context_obj)
-        view.prepare(datamodel=dm)
         return view
 
     security.declarePublic('render')
     def render(self, REQUEST=None, layout_mode='view', **kw):
         """In view mode, lookup a Z3 view, default to CPSDocument machinery
 
-        The view name is the portal_type. TODO optionally use a field declared
-        in the type information and a pattern to construct the view name.
+        The view name is read in the 'render_view_name' field.
         """
         def cpsdoc_render():
             return super(CPSPortlet, self).render(layout_mode=layout_mode,
@@ -529,7 +533,11 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         if layout_mode != 'view':
             cpsdoc_render()
 
-        view = self.getBrowserView(kw.get('context_obj'), REQUEST, kw)
+        context_obj = kw.get('context_obj')
+        if context_obj is None:
+            context_obj = request_context_obj(self, REQUEST)
+
+        view = self.getBrowserView(context_obj, REQUEST, kw)
         if view is not None:
             return view()
         return cpsdoc_render()
@@ -1055,13 +1063,6 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         ti = self.getTypeInfo()
         if ti is None:
             return
-
-        marker = ti.getProperty('marker_interface', '')
-        if marker:
-            logger.info("Ensuring that %r provides %r", self, marker)
-            marker = resolve_dotted_name(marker.strip())
-            if not marker.providedBy(self):
-                directlyProvides(self, marker)
 
         # rebuild properties. GR: WTF ??
         stool = getToolByName(self, 'portal_schemas')

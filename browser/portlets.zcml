@@ -6,7 +6,7 @@
  permission check for context_obj is made by BaseView.
  Additional ones are the responsibility of the subclass. -->
 
- <browser:pages for=".interfaces.IBreadcrumbsPortlet"
+ <browser:pages for=".interfaces.IBreadcrumbsPortletModel"
    class=".browser.basicportlets.BreadCrumbsPortletView"
    permission="zope2.Public">
   <browser:page name="horizontal_trail"

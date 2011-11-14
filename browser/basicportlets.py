@@ -29,9 +29,10 @@ class BreadCrumbsPortletView(BaseView):
             return breadcrumb_set
 
         dm = self.datamodel
-        utool = getToolByName(self.context, 'portal_url')
+        context = self.context_obj()
+        utool = getToolByName(context, 'portal_url')
         return utool.getBreadCrumbsInfo(
-            context=self.context_obj(),
+            context=context,
             only_parents=dm.get('parent', False), # might not be in schema
             show_root=dm['display_site_root'],
             restricted=True,
@@ -39,5 +40,6 @@ class BreadCrumbsPortletView(BaseView):
             first_item=dm['first_item'], title_size=50)
 
     def context_url(self):
-        utool = getToolByName(self.context, 'portal_url')
-        return utool.getRelativeUrl(self.context_obj())
+        context = self.context_obj()
+        utool = getToolByName(context, 'portal_url')
+        return utool.getRelativeUrl(context)

@@ -18,6 +18,13 @@
 
   <five:traversable class="OFS.Folder.Folder" />
 
+  <adapter
+    for="Products.CPSSchemas.interfaces.IDataModel
+   	   zope.publisher.interfaces.http.IHTTPRequest"
+    provides="zope.interface.Interface"
+    factory=".browser.no_view"
+    />
+
   <browser:pages
     for=".interfaces.ICPSPortlet"
     class="Products.CPSUtil.browser.relay.AcquiredMethodView"

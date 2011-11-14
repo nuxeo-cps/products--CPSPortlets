@@ -23,6 +23,7 @@ from zope.interface import Interface, Attribute
 from Products.CMFCore.interfaces import ICatalogTool
 from Products.CPSSchemas.interfaces import IWidget
 from Products.CPSDocument.interfaces import ICPSDocument
+from Products.CPSSchemas.interfaces import IDataModel
 
 class ICPSPortlet(ICPSDocument):
     """A portlet is a CPSDocument with a guard attribute
@@ -47,5 +48,5 @@ class IPortletCatalogTool(ICatalogTool):
 
 ## marker interfaces for concrete portlet types
 
-class IBreadcrumbsPortlet(ICPSPortlet):
+class IBreadcrumbsPortletModel(IDataModel):
     """Breadcrumbs portlet."""
