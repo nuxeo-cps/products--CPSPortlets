@@ -1,13 +1,7 @@
 <ul xmlns:metal="http://xml.zope.org/namespaces/metal"
     xmlns:tal="http://xml.zope.org/namespaces/tal"
     class="breadcrumbs"
-    tal:define="dm view/datamodel;
-                display dm/display;
-                highlight_last_item dm/highlight_last_item;
-                first_item dm/first_item;
-                context view/context_obj;
-                base_url python: request.get('cps_base_url');
-                breadcrumbsItems view/breadcrumbs">
+    tal:define="breadcrumbsItems view/breadcrumbs">
 
   <li tal:repeat="item breadcrumbsItems"
       tal:attributes="class python: repeat['item'].start and 'first'
