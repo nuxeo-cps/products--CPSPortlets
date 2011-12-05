@@ -36,6 +36,10 @@ import md5
 from copy import deepcopy
 from cgi import escape
 from random import randint
+
+from zope.interface import Interface
+from zope.component import queryMultiAdapter
+
 from App.Common import rfc1123_date
 from Globals import InitializeClass, DTMLFile
 from Acquisition import aq_inner, aq_parent, aq_base
@@ -89,6 +93,8 @@ MINIMAL_ESI_CODE = """
 
 VISIBILITY_VOC = 'cpsportlets_visibility_range_voc'
 KEYWORD_DOWNLOAD_FILE = 'downloadFile'
+REQUEST_TRAVERSAL_KEY = '_portlet_traversal'
+
 
 class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
     """ CPS Portlet
@@ -116,17 +122,24 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
                    {'id': 'order', 'mode': 'w', 'type': 'string',
                     'label': 'Order in the slot'},
                    )
-    def __getitem__(self, name):
-        """File Downloader.
+    def __bobo_traverse__(self, request, name):
+        if bhasattr(self, name): # regular attribute
+            return getattr(self, name)
+        elif name == KEYWORD_DOWNLOAD_FILE: # special case
+            return FileDownloader(self, self).__of__(self)
 
-        Parses URLs for download of the form:
-          mydoc/downloadFile/attrname/mydocname.pdf
-        """
-        if name == KEYWORD_DOWNLOAD_FILE:
-            ob = self
-            downloader = FileDownloader(ob, self)
-            return downloader.__of__(self)
-        raise KeyError(name)
+        view = queryMultiAdapter((self, request), Interface, name)
+        if view is not None:
+            return view
+
+        # Neither regular attribute nor a view, : store for later traversal,
+        # from a view or render method
+        req_trav = getattr(request, REQUEST_TRAVERSAL_KEY, None)
+        if req_trav is None:
+            req_trav = []
+            setattr(request, REQUEST_TRAVERSAL_KEY, req_trav)
+        req_trav.append(name)
+        return self
 
     security.declarePublic('getGuard')
     def getGuard(self):
