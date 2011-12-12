@@ -498,15 +498,22 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         return index, data
 
-    def getBrowserView(self, context_obj, request, render_kwargs):
+    def getBrowserView(self, context_obj, request, render_kwargs=None,
+                       view_name=''):
         """Lookup a browser view and prepare it.
 
-        context_obj is passed explicitely although it's in render_kwargs for
-        the sake of expliciteness and possible later refactors
+        context_obj is passed explicitely although it's usually
+        in render_kwargs for the sake of expliciteness and possible later
+        refactors
         """
+        if render_kwargs is None:
+            render_kwargs = {}
+        # store before resolution for cache params
+        render_kwargs['requested_view_name'] = view_name
         dm = self.getDataModel(context=context_obj)
-        view = queryMultiAdapter((dm, request), Interface,
-                                 name=dm['render_view_name'])
+        if not view_name:
+            view_name = dm['render_view_name']
+        view = queryMultiAdapter((dm, request), Interface, name=view_name)
 
         # There might be non-view adapters for datamodel
         # One gets one of these usually if there's no proper defined view
@@ -516,7 +523,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         # adapter factory (returns None), but one never knows.
         if view is None or not IBrowserView.providedBy(view):
             return
-
+        render_kwargs.setdefault('context_obj', context_obj)
         view.render_kwargs = render_kwargs
         return view
 
@@ -537,7 +544,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         if context_obj is None:
             context_obj = request_context_obj(self, REQUEST)
 
-        view = self.getBrowserView(context_obj, REQUEST, kw)
+        view = self.getBrowserView(context_obj, REQUEST, render_kwargs=kw)
         if view is not None:
             return view()
         return cpsdoc_render()

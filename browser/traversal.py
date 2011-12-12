@@ -31,6 +31,9 @@ from Products.CPSCore.utils import KEYWORD_DOWNLOAD_FILE
 from Products.CPSCore.utils import KEYWORD_SIZED_IMAGE
 
 REQUEST_TRAVERSAL_KEY = '_portlet_traversal'
+REQUEST_TRAVERSAL_FINISHED = '_portlet_traversal_finished'
+KEYWORD_CONTEXT_OBJ_TRAVERSAL = '.context'
+KEYWORD_VIEW_TRAVERSAL = '.view'
 
 def parent(obj):
     """For readability."""
@@ -60,9 +63,26 @@ class PortletTraverser(object):
         self.portlet = portlet
 
     def publishTraverse(self, request, name):
+        req_trav = getattr(request, REQUEST_TRAVERSAL_KEY, None)
+        portlet = self.portlet
+        if req_trav is None and name == KEYWORD_CONTEXT_OBJ_TRAVERSAL:
+            # initiate deferred context obj traversal
+            setattr(request, REQUEST_TRAVERSAL_KEY, [])
+            setattr(request, REQUEST_TRAVERSAL_FINISHED, False)
+            return portlet
+
+        if req_trav is not None and not getattr(request,
+                                                REQUEST_TRAVERSAL_FINISHED):
+           if name == KEYWORD_VIEW_TRAVERSAL:
+               setattr(request, REQUEST_TRAVERSAL_FINISHED, True)
+           else: # store for deferred traversal
+               req_trav.append(name)
+           return portlet
+
         portlet = self.portlet
         if bhasattr(portlet, name): # regular attribute
             return getattr(portlet, name)
+
         # now special cases. TODO: in CPSCore, provide a generic traverser
         # and subclass it with soft dependency.
         elif name == KEYWORD_DOWNLOAD_FILE:
@@ -70,15 +90,9 @@ class PortletTraverser(object):
         elif name == KEYWORD_SIZED_IMAGE:
             return ImageDownloader(portlet, portlet).__of__(portlet)
 
-        view = queryMultiAdapter((portlet, request), Interface, name)
+        view = portlet.getBrowserView(request_context_obj(portlet, request),
+                                      request, {}, view_name=name)
         if view is not None:
             return view
 
-        # Neither regular attribute nor a view, : store for later traversal,
-        # from a view or render method to context object
-        req_trav = getattr(request, REQUEST_TRAVERSAL_KEY, None)
-        if req_trav is None:
-            req_trav = []
-            setattr(request, REQUEST_TRAVERSAL_KEY, req_trav)
-        req_trav.append(name)
-        return portlet
+        return getattr(portlet, name) # default to acquisition
