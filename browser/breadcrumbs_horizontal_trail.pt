@@ -4,7 +4,7 @@
                    highlight_last_item dm/highlight_last_item;
                    first_item dm/first_item;
                    context view/context_obj;
-                   base_url python: request.get('cps_base_url');
+                   base_url view/base_url;
 		   breadcrumbsItems view/breadcrumbs">
 
  <img

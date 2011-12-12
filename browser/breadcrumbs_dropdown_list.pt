@@ -7,8 +7,7 @@
                   first_item dm/first_item;
                   context view/context_obj;
                   context_url context/absolute_url_path;
-                  utool nocall:here/portal_url;
-                  base_url python: request.get('cps_base_url');
+                  base_url view/base_url;
                   breadcrumbsItems view/breadcrumbs"
       tal:attributes="action string:${base_url}${context_url}/cpsportlet_url_redirect">
  <select onchange="submit()" name="url" tal:condition="breadcrumbsItems">

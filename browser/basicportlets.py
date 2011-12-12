@@ -30,16 +30,10 @@ class BreadCrumbsPortletView(BaseView):
 
         dm = self.datamodel
         context = self.context_obj()
-        utool = getToolByName(context, 'portal_url')
-        return utool.getBreadCrumbsInfo(
-            context=context,
+        return self.url_tool().getBreadCrumbsInfo(
+            context=self.context_obj(),
             only_parents=dm.get('parent', False), # might not be in schema
             show_root=dm['display_site_root'],
             restricted=True,
             show_hidden_folders=dm['display_hidden_folders'],
             first_item=dm['first_item'], title_size=50)
-
-    def context_url(self):
-        context = self.context_obj()
-        utool = getToolByName(context, 'portal_url')
-        return utool.getRelativeUrl(context)

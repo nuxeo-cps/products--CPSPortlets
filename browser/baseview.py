@@ -27,11 +27,10 @@ logger = logging.getLogger(__name__)
 class BaseView(AqSafeBrowserView):
     """Base Portlets View for normal and specialized renderings."""
 
-
     def __init__(self, datamodel, request):
+        AqSafeBrowserView.__init__(self, datamodel, request)
         self.datamodel = datamodel
         self.context = datamodel.getContext()
-        self.request = request
 
     def context_obj(self):
         return self.datamodel.getContext()
@@ -58,3 +57,13 @@ class BaseView(AqSafeBrowserView):
         if vsuffix:
             vstr += '-' + vsuffix
         return vstr
+
+    def url_tool(self):
+        utool = self.aqSafeGet('_url_tool', None)
+        if utool is None:
+            utool = getToolByName(self.context, 'portal_url')
+            self.aqSafeSet('_url_tool', utool)
+        return utool
+
+    def base_url(self):
+        return self.url_tool().getBaseUrl()
