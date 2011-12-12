@@ -94,6 +94,9 @@ MINIMAL_ESI_CODE = """
 VISIBILITY_VOC = 'cpsportlets_visibility_range_voc'
 KEYWORD_DOWNLOAD_FILE = 'downloadFile'
 REQUEST_TRAVERSAL_KEY = '_portlet_traversal'
+REQUEST_TRAVERSAL_FINISHED = '_portlet_traversal_finished'
+KEYWORD_CONTEXT_OBJ_TRAVERSAL = '.context'
+KEYWORD_VIEW_TRAVERSAL = '.view'
 
 
 class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
@@ -123,23 +126,33 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
                     'label': 'Order in the slot'},
                    )
     def __bobo_traverse__(self, request, name):
-        if bhasattr(self, name): # regular attribute
+        req_trav = getattr(request, REQUEST_TRAVERSAL_KEY, None)
+        if req_trav is None and name == KEYWORD_CONTEXT_OBJ_TRAVERSAL:
+            # initiate deferred context obj traversal
+            setattr(request, REQUEST_TRAVERSAL_KEY, [])
+            setattr(request, REQUEST_TRAVERSAL_FINISHED, False)
+            return self
+
+        if req_trav is not None and not getattr(request,
+                                                REQUEST_TRAVERSAL_FINISHED):
+           if name == KEYWORD_VIEW_TRAVERSAL:
+               setattr(request, REQUEST_TRAVERSAL_FINISHED, True)
+           else: # store for deferred traversal
+               req_trav.append(name)
+           return self
+
+        if name == 'KEYWORD_DOWNLOAD_FILE': # special case
+           return FileDownloader(self, self).__of__(self)
+
+        # normal traversal: first direct attrs, then view, then aq
+        if bhasattr(self, name):
             return getattr(self, name)
-        elif name == KEYWORD_DOWNLOAD_FILE: # special case
-            return FileDownloader(self, self).__of__(self)
 
         view = queryMultiAdapter((self, request), Interface, name)
         if view is not None:
             return view
 
-        # Neither regular attribute nor a view, : store for later traversal,
-        # from a view or render method
-        req_trav = getattr(request, REQUEST_TRAVERSAL_KEY, None)
-        if req_trav is None:
-            req_trav = []
-            setattr(request, REQUEST_TRAVERSAL_KEY, req_trav)
-        req_trav.append(name)
-        return self
+        return getattr(self, name)
 
     security.declarePublic('getGuard')
     def getGuard(self):
