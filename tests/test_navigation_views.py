@@ -16,6 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import unittest
+from Products.CPSDefault.tests.CPSTestCase import CPSTestCase
+
 from Products.CPSPortlets.browser.navigation import HierarchicalSimpleView
 from Products.CPSPortlets.browser.navigation import lstartswith
 
@@ -155,6 +157,26 @@ class HierarchicalSimpleViewTest(unittest.TestCase):
                 {'rpath': 'a/b/co'}
                 ])
 
+class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
+
+    def afterSetUp(self):
+        # we'll feed the needed context/request if needed
+        self.request = self.app.REQUEST
+        view = self.view = HierarchicalSimpleView(self.portal, self.request)
+        view.datamodel = dict(start_depth=0, end_depth=0,
+                              root_uids=['sections'])
+        self.login('manager')
+        self.portal.portal_workflow.invokeFactoryFor(
+            self.portal.sections, 'Section', 'subs')
+
+    def test_getTree(self):
+        view = self.view
+        view.here_rpath = 'sections'
+        tree = view.getTree()
+        self.assertEquals(tree[0]['rpath'], 'sections')
 
 def test_suite():
-    return unittest.makeSuite(HierarchicalSimpleViewTest)
+    return unittest.TestSuite((
+        unittest.makeSuite(HierarchicalSimpleViewTest),
+        unittest.makeSuite(HierarchicalSimpleViewIntegrationTest),
+        ))

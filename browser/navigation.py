@@ -135,7 +135,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
     security.declarePublic('getTree')
     def getTree(self):
         """Return the tree according to options and context. """
-        self.initTreeCache()
+        tree = self.initTreeCache()
         dm = self.datamodel
 
         tkw = dict(start_depth=dm['start_depth'])
