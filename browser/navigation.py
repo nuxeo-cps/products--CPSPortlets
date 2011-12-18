@@ -121,18 +121,22 @@ class HierarchicalSimpleView(AqSafeBrowserView):
 
         return res_tree
 
-    security.declarePublic('getTree')
-    def getTree(self):
-        """Return the tree according to options and context. """
-        dm = self.datamodel
+    def initTreeCache(self):
         ttool = getToolByName(self.context, 'portal_trees')
-        trees = [ttool[tid] for tid in dm['root_uids']]
+        trees = [ttool[tid] for tid in self.datamodel['root_uids']]
         if len(trees) > 1:
             logger.error("%r does not support multiple trees yet",
                          self.__class___)
             raise NotImplementedError
         tree = trees[0]
         self.aqSafeSet('tree_cache', tree)
+        return tree
+
+    security.declarePublic('getTree')
+    def getTree(self):
+        """Return the tree according to options and context. """
+        self.initTreeCache()
+        dm = self.datamodel
 
         tkw = dict(start_depth=dm['start_depth'])
         end_depth = dm['end_depth']
