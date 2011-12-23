@@ -35,6 +35,22 @@ def lstartswith(l1, l2):
             return False
     return True
 
+def tree_to_rpaths(tree):
+    """Keep only the rpaths in a tree.
+
+    This utility function is useful in tests and potentially for application
+    code.
+    """
+    res = []
+    for item in tree:
+        produced = {}
+        if item['children']:
+            produced['children'] = tree_to_rpaths(item['children'])
+        produced['rpath'] = item['rpath']
+
+        res.append(produced)
+    return res
+
 class HierarchicalSimpleView(AqSafeBrowserView):
     """This view provides a full tree, in a purely static way. No AJAX.
 

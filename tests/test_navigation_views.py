@@ -20,6 +20,7 @@ from Products.CPSDefault.tests.CPSTestCase import CPSTestCase
 
 from Products.CPSPortlets.browser.navigation import HierarchicalSimpleView
 from Products.CPSPortlets.browser.navigation import lstartswith
+from Products.CPSPortlets.browser.navigation import tree_to_rpaths
 
 def simplify_tree_list(tlist):
     """Convert a real life tree list to one more readable/debuggable."""
@@ -33,17 +34,6 @@ def simplify_tree_list(tlist):
 
 def rpaths_to_items(*rpaths):
     return [dict(rpath=p) for p in rpaths]
-
-def tree_to_rpaths(tree):
-    res = []
-    for item in tree:
-        produced = {}
-        if item['children']:
-            produced['children'] = tree_to_rpaths(item['children'])
-        produced['rpath'] = item['rpath']
-
-        res.append(produced)
-    return res
 
 class FakePortal:
 
