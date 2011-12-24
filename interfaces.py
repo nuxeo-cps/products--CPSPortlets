@@ -50,3 +50,6 @@ class IPortletCatalogTool(ICatalogTool):
 
 class IBreadcrumbsPortletModel(IDataModel):
     """Breadcrumbs portlet."""
+
+class IContentPortletModel(IDataModel):
+    """Breadcrumbs portlet."""

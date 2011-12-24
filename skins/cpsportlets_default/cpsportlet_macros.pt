@@ -70,9 +70,9 @@
 </metal:block>
 
 <metal:block define-macro="xml_exports"
-  tal:define="formats ds/syndication_formats;
-              short_syndication_formats ds/short_syndication_formats|nothing;
-              portlet nocall:options/portlet|nothing"
+  tal:define="formats dm/syndication_formats;
+              short_syndication_formats dm/short_syndication_formats|nothing;
+              portlet view/portlet"
   tal:condition="python: formats and portlet">
   <div class="xmlExportButtons contentPortletFeeds"
        tal:define="vtool here/portal_vocabularies;

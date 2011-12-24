@@ -31,11 +31,43 @@ class BaseView(AqSafeBrowserView):
         AqSafeBrowserView.__init__(self, datamodel, request)
         self.datamodel = datamodel
         self.context = datamodel.getContext()
+        self.prepared = False
+
+    def prepare(self):
+        """To subclass, for preparations that need to be done after __init__.
+
+        For instance, __init__ occurs during traversal, but the authenticated
+        user is resolved after travering is done."""
+        self.prepared = True
 
     def context_obj(self):
         return self.datamodel.getContext()
 
     getContextObj = context_obj
+
+    def __call__(self, *args, **kwargs):
+        """Intercept the ZPT renderings to call prepare().
+
+        This is lighter than putting it in the ZPTs or having all methods
+        call prepare() before hand.
+
+        We're subclassing Five.browser.metaconfigure.ViewMixinForTemplate, here
+        used as metaclass base (as the current class) for instantiation of
+        self.
+
+        TODO: maybe insulate that kind of trick from Five specifics
+        by putting a generic base class in CPSonFive.browser.
+        Note that Five's naming is fortunately the same as the one from
+        zope.app.pagetemplate.simpleviewclass
+        It's also probably a better idea to understand the use of (standard
+        python new-style) metaclass in Zope 3 before Five's adaptation for
+        old-style classes.
+        """
+        self.prepare()
+        return self.index(self,  *args, **kwargs) # self.index is the ZPT
+
+    def portlet(self):
+        return self.datamodel.getObject()
 
     def getCpsMcat(self):
         _cpsmcat = getattr(self, '._cpsmcat', None)
@@ -67,3 +99,5 @@ class BaseView(AqSafeBrowserView):
 
     def base_url(self):
         return self.url_tool().getBaseUrl()
+
+
