@@ -11,8 +11,6 @@ RSS_CONTENT_TYPE = 'application/rss+xml'
 
 ATOM_CONTENT_TYPE = 'application/atom+xml'
 
-DATETIME_FORMATS = dict(W3CDTF='%Y-%m-%dT%H:%M:%SZ',
-                        )
 logger = logging.getLogger(__name__)
 
 class BaseExportView(BaseView):

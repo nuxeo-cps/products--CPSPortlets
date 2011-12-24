@@ -19,6 +19,8 @@ import logging
 import warnings
 from zExceptions import NotFound
 from Acquisition import aq_parent, aq_inner
+from DateTime.DateTime import DateTime
+
 from Products.CMFCore.utils import getToolByName
 from Products.CPSSchemas.DataStructure import DataStructure
 from Products.CPSPortlets.CPSPortlet import REQUEST_TRAVERSAL_KEY
@@ -26,6 +28,8 @@ from Products.CPSonFive.browser import AqSafeBrowserView
 
 logger = logging.getLogger(__name__)
 
+DATETIME_FORMATS = dict(W3CDTF='%Y-%m-%dT%H:%M:%SZ',
+                        )
 class BaseView(AqSafeBrowserView):
     """Base Portlets View for normal and specialized renderings.
 
@@ -146,7 +150,30 @@ class BaseView(AqSafeBrowserView):
                         "See traceback to know how it got looked up",
                         rpath, exc_info=True)
 
+    @classmethod
     def dateTimeFormat(self, dt, format):
+        """Format a DateTime instance or a string parseable by DateTime.
+
+        Abbreviation for this method:
+        >>> dtf = BaseView.dateTimeFormat
+
+        W3C format:
+        >>> dtf(DateTime('2011/12/25'), 'W3CDTF')
+        '2011-12-25T00:00:00Z'
+        >>> dtf('2011/12/25', 'W3CDTF')
+        '2011-12-25T00:00:00Z'
+
+        Unknown format defaults to RFC 822:
+        >>> dtf(DateTime('2011/12/25 EST'), 'Unknown')
+        'Sun, 25 Dec 2011 00:00:00 -0500'
+
+        Special cases:
+        >>> dtf(None, 'W3CDTF') is None
+        True
+        >>> dtf(None, 'Unknown') is None
+        True
+        """
+
         if dt is None:
             return None
         if isinstance(dt, basestring):
