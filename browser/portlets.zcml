@@ -6,6 +6,8 @@
       permission check for context_obj is made by BaseView.
       Additional ones are the responsibility of the subclass. -->
 
+ <!-- Breadcrumbs portlets -->
+
  <browser:pages for=".interfaces.IBreadcrumbsPortletModel"
                 class=".browser.basicportlets.BreadCrumbsPortletView"
                 permission="zope2.Public">
@@ -17,6 +19,8 @@
                 template="breadcrumbs_semantic_simple.pt" />
  </browser:pages>
 
+ <!-- Content portlets -->
+
  <browser:page
    for="Products.CPSPortlets.interfaces.IContentPortletModel"
    class=".browser.contentportlet.ContentPortletView"
@@ -24,19 +28,13 @@
    name=""
    permission="zope.Public" />
 
- <browser:page
+ <browser:pages
    for="Products.CPSPortlets.interfaces.IContentPortletModel"
-   template="content_portlet_rss_2_0.pt"
-   name="rss_2_0"
    permission="zope.Public"
-   class=".browser.contentportlet.RssExportView"/>
-
- <browser:page
-   for="Products.CPSPortlets.interfaces.IContentPortletModel"
-   template="content_portlet_rss_1_0.pt"
-   name="rss_1_0"
-   permission="zope.Public"
-   class=".browser.contentportlet.RssExportView"/>
+   class=".browser.contentportlet.RssExportView">
+  <browser:page name="rss_1_0" template="content_portlet_rss_1_0.pt" />
+  <browser:page name="rss_2_0" template="content_portlet_rss_2_0.pt" />
+ </browser:pages>
 
  <browser:page
    for="Products.CPSPortlets.interfaces.IContentPortletModel"
