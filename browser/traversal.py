@@ -57,6 +57,13 @@ def request_context_obj(portlet, request):
     return context_obj
 
 class PortletTraverser(object):
+    """Will be looked up and called for each path segment.
+
+    If the adapter lookup becomes a performance bottleneck (currently really
+    not the case), we could factor this logic out to implement IPublishTraverse
+    also in CPSPortlet class. With the current (Zope 2.10) version of
+    BaseRequest, this is indeed checked and used before any adapter lookup.
+    """
 
     implements(IPublishTraverse)
 
@@ -81,16 +88,19 @@ class PortletTraverser(object):
            return portlet
 
         portlet = self.portlet
-        if bhasattr(portlet, name): # regular attribute
-            return getattr(portlet, name)
+        # attribute and special traversals, but only directly on portlet
+        if req_trav is None:
+            if bhasattr(portlet, name): # regular attribute
+                return getattr(portlet, name)
 
-        # now special cases. TODO: in CPSCore, provide a generic traverser
-        # and subclass it with soft dependency.
-        elif name == KEYWORD_DOWNLOAD_FILE:
-            return FileDownloader(portlet, portlet).__of__(portlet)
-        elif name == KEYWORD_SIZED_IMAGE:
-            return ImageDownloader(portlet, portlet).__of__(portlet)
+            # now special cases. TODO: in CPSCore, provide a generic traverser
+            # and subclass it with soft dependency.
+            elif name == KEYWORD_DOWNLOAD_FILE:
+                return FileDownloader(portlet, portlet).__of__(portlet)
+            elif name == KEYWORD_SIZED_IMAGE:
+                return ImageDownloader(portlet, portlet).__of__(portlet)
 
+        # view lookup attempt either directly or after keyword for view
         view = portlet.getBrowserView(request_context_obj(portlet, request),
                                       request, {}, view_name=name)
         if view is not None:
