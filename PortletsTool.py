@@ -1314,7 +1314,7 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
                           'portlet_insert',
                           ) or (
             getattr(aq_base(object), 'meta_type', '') == 'CPS Portlet'):
-            self._invalidatePortletLookupCache()
+            self.lookupCacheInvalidate()
 
         # we skip the events that do not inform about the object's path
         if not infos.has_key('rpath'):

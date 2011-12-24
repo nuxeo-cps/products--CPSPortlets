@@ -103,7 +103,7 @@ class TestLookupCache(CPSDefaultTestCase):
         context = self.ptl_context
 
         # first, invalidate and fill the lookup cache
-        tool._invalidatePortletLookupCache()
+        tool.lookupCacheInvalidate()
         tool.getPortlets(slot='test_slot', context=context)
         # let's turn off cache invalidation and destroy the portlet
         tool.ignore_events = True
