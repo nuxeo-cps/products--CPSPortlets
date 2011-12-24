@@ -1,9 +1,8 @@
 from Testing import ZopeTestCase
-from Products.CPSDefault.tests import CPSTestCase
+from Products.CPSDefault.tests.CPSTestCase import CPSTestCase as \
+    CPSPortletsTestCase
 
 from Products.ExternalMethod.ExternalMethod import ExternalMethod
-
-CPSPortletsTestCase = CPSTestCase.CPSTestCase
 
 ZopeTestCase.installProduct('CPSPortlets')
 ZopeTestCase.installProduct('CPSNavigation')

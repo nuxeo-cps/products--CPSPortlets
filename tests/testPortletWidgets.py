@@ -1,14 +1,12 @@
-import os, sys
-import re
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
-
 import unittest
-from Acquisition import aq_base
-
 from Testing import ZopeTestCase
 
-from Products.CPSDefault.tests import CPSDefaultTestCase
+import os, sys
+import re
+
+from Acquisition import aq_base
+
+from Products.CPSDefault.tests.CPSTestCase import CPSTestCase
 from Products.CPSSchemas.tests.testWidgets import FakeDataModel
 from Products.CPSSchemas.tests.testWidgets import FakeDataStructure
 
@@ -16,7 +14,7 @@ from Products.CPSSchemas.widgets.select import CPSSelectWidget
 from Products.CPSPortlets.widgets.generic import CPSDispatcherPortletWidget
 from Products.CPSPortlets.CPSPortlet import CPSPortlet
 
-class TestPortlets(CPSDefaultTestCase.CPSDefaultTestCase):
+class TestPortlets(CPSTestCase):
     def afterSetUp(self):
         self.login('manager')
         self.portal.REQUEST.SESSION = {}
