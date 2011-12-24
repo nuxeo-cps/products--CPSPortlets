@@ -16,16 +16,30 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import warnings
 from zExceptions import NotFound
 from Acquisition import aq_parent, aq_inner
 from Products.CMFCore.utils import getToolByName
+from Products.CPSSchemas.DataStructure import DataStructure
 from Products.CPSPortlets.CPSPortlet import REQUEST_TRAVERSAL_KEY
 from Products.CPSonFive.browser import AqSafeBrowserView
 
 logger = logging.getLogger(__name__)
 
 class BaseView(AqSafeBrowserView):
-    """Base Portlets View for normal and specialized renderings."""
+    """Base Portlets View for normal and specialized renderings.
+
+    In portlet views, self.context is neither the portlet (self.portlet()),
+    nor its datamodel (self.datamodel), but the object from/for which the
+    portlet rendering is called (aka context_obj in most portlets related
+    existing code).
+
+    the whole_response attribute is set to True if the view instance is
+    supposed to perform the whole response (typicaly looked up by a direct
+    traversal for ESI, AJAX/JSON or feeds), and defaults to False.
+    """
+
+    whole_response = False
 
     def __init__(self, datamodel, request):
         AqSafeBrowserView.__init__(self, datamodel, request)
@@ -37,19 +51,16 @@ class BaseView(AqSafeBrowserView):
         """To subclass, for preparations that need to be done after __init__.
 
         For instance, __init__ occurs during traversal, but the authenticated
-        user is resolved after travering is done."""
+        user is resolved after traversing is done."""
         self.prepared = True
-
-    def context_obj(self):
-        return self.datamodel.getContext()
-
-    getContextObj = context_obj
 
     def __call__(self, *args, **kwargs):
         """Intercept the ZPT renderings to call prepare().
 
-        This is lighter than putting it in the ZPTs or having all methods
-        call prepare() before hand.
+        This is necessary if the portlet does the whole response, as opposed to
+        the case where the portlet is rendered as part of a page.
+        All portlets are supposed to be renderable independently, at least for
+        ESI support.
 
         We're subclassing Five.browser.metaconfigure.ViewMixinForTemplate, here
         used as metaclass base (as the current class) for instantiation of
@@ -64,7 +75,14 @@ class BaseView(AqSafeBrowserView):
         old-style classes.
         """
         self.prepare()
+        if self.whole_response:
+            self.responseHeaders()
         return self.index(self,  *args, **kwargs) # self.index is the ZPT
+
+    def context_obj(self):
+        return self.datamodel.getContext()
+
+    getContextObj = context_obj
 
     def portlet(self):
         return self.datamodel.getObject()
@@ -100,4 +118,70 @@ class BaseView(AqSafeBrowserView):
     def base_url(self):
         return self.url_tool().getBaseUrl()
 
+    def l10nPortletTitle(self):
+        return self.getCpsMcat()(self.datamodel['Title'])
 
+    def portletDescription(self):
+        return self.datamodel['Description']
+
+    def rpathToDataModel(self, rpath):
+        """Return the DataModel for a proxy document at rpath."""
+        try:
+            proxy = self.aqSafeGet('portal').restrictedTraverse(rpath)
+            if proxy is None:
+                return
+            doc = proxy.getContent()
+            return doc.getDataModel(proxy=proxy)
+        except Unauthorized:
+            # in theory, it is possible to access, e.g, brain information
+            # without accessing the object itself. This is exceptional and
+            # happens only if the security index would be bypassed par
+            # custom code or would be somewhat broken
+            logger.warn("User %r unauthorized to access content at %r. "
+                        "See traceback to know how it got looked up",
+                        user, rpath, exc_info=True)
+        except (KeyError, AttributeError):
+            logger.warn("Inconsistency: item %r not reachable or "
+                        "cannot provide DataModel",
+                        "See traceback to know how it got looked up",
+                        rpath, exc_info=True)
+
+    def dateTimeFormat(self, dt, format):
+        if dt is None:
+            return None
+        if isinstance(dt, basestring):
+            dt = DateTime(dt)
+        format = DATETIME_FORMATS.get(format)
+        if format is None:
+            return dt.rfc822() # makes a good default
+        return dt.strftime(format)
+
+    def dataStructure(self):
+        """Return a prepared DataStructure instance for request and context.
+
+        This method is a convenience for quick conversion of legacy portlet
+        widgets to view renderings. Script skins that were called from such
+        widget templates can still be used, provided that one feeds them a
+        datastructure.
+
+        Using datastructures to represent the portlet parameters is now
+        strongly discouraged. That's why this method sends deprecation
+        warnings.
+
+        This is a simplified version of what happens in FlexibleTypeInformation
+        Request query parameters are taken into account, just in case.
+        Session isn't.
+        """
+
+        warnings.warn("Access to portlet parameters through a DataStructure"
+                      "is deprecated. You should rely on view.datamodel "
+                      "instead", DeprecationWarning, 2)
+        portlet = self.portlet()
+        fti = portlet.getTypeInfo()
+        layouts = (fti.getLayout(lid, portlet) for lid in fti.getLayoutIds())
+
+        ds = DataStructure(datamodel=self.datamodel)
+        for layout in layouts:
+            layout.prepareLayoutWidgets(ds)
+        ds.updateFromMapping(self.request.form)
+        return ds

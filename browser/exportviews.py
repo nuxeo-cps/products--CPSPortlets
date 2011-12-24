@@ -15,7 +15,18 @@ DATETIME_FORMATS = dict(W3CDTF='%Y-%m-%dT%H:%M:%SZ',
                         )
 logger = logging.getLogger(__name__)
 
-class BaseExport(BaseView):
+class BaseExportView(BaseView):
+    """Provide helpers for various portlets exports (Atom feeds, etc.)
+
+    The contents of an export is made of "items", whose lookup is done by
+    the initItems() method.
+
+    An export is always related to a folder, whose lookup is done by the
+    initFolder() method.
+
+    Subclasses must implement the appropriate initItems(), initFolder() and
+    contentType()
+    """
 
     def prepare(self):
         if self.prepared:
@@ -24,7 +35,6 @@ class BaseExport(BaseView):
         BaseView.prepare(self)
         self.initFolder()
         self.initItems()
-        self.responseHeaders()
 
     def __getitem__(self, segment):
         """Zope2-style traversal (implementing ITraversable does not work).
@@ -42,15 +52,41 @@ class BaseExport(BaseView):
         """
         return self
 
-    def initFolder(self):
-        """Set folder and portal attributes."""
-        rpath = self.datamodel['folder_path']
-        if rpath.startswith('/'):
-            rpath = rpath[1:]
-        utool = getToolByName(self.context.aq_inner, 'portal_url')
-        portal =  utool.getPortalObject()
-        self.aqSafeSet('portal', portal)
-        self.aqSafeSet('folder', portal.restrictedTraverse(rpath))
+    def responseHeaders(self):
+        """Last-Modified is typically to be set for exports only."""
+        response = self.request.RESPONSE
+        response.setHeader('Content-Type', self.contentType())
+        response.setHeader('Last-Modified', self.lastModified().rfc822())
+
+    def lastModified(self):
+        lmd = self.datamodel['ModificationDate']
+        for i in self.items:
+            i_lmd = self.itemLastModified(i)
+            if i_lmd > lmd:
+                lmd = i_lmd
+        return lmd
+
+    def itemLastModified(self, item):
+        """Return last modified date as a DateTime object."""
+        date_str = item['metadata'].get('date')
+        if date_str:
+            return DateTime(date_str) # lame, but that's the input we have
+
+    def l10nPortletTitle(self):
+        return self.getCpsMcat()(self.datamodel['Title'])
+
+    def folderTitle(self):
+        return self.aqSafeGet('folder').Title() # TODO l10n in some cases ?
+
+    def portletDescription(self):
+        return self.datamodel['Description']
+
+    def contentUrl(self):
+        return self.portlet().getLocalFolder().absolute_url()
+
+    #
+    # Subclass API
+    #
 
     def contentType(self):
         """Return applicable MIME type for this export.
@@ -64,103 +100,24 @@ class BaseExport(BaseView):
         """
         raise NotImplementedError
 
-    def lastModified(self):
-        lmd = self.datamodel['ModificationDate']
-        for i in self.items:
-            i_lmd = self.itemLastModified(i)
-            if i_lmd > lmd:
-                lmd = i_lmd
-        return lmd
-
-    def responseHeaders(self):
-        response = self.request.RESPONSE
-        response.setHeader('Content-Type', self.contentType())
-        response.setHeader('Last-Modified', self.lastModified().rfc822())
-
-    def l10nPortletTitle(self):
-        return self.getCpsMcat()(self.datamodel['Title'])
-
-    def folderTitle(self):
-        return self.aqSafeGet('folder').Title() # TODO l10n in some cases ?
-
-    def portletDescription(self):
-        return self.datamodel['Description']
-
-    def contentUrl(self):
-        return self.context.getLocalFolder().absolute_url()
-
-    def dataStructure(self):
-        """Return a prepared DataStructure instance for request and context.
-
-        Simplified version of what happens in FlexibleTypeInformation
-        Request query parameters are taken into account, just in case.
-        Session isn't.
-
-        Of course portlets rendering should not rely on datastructure, but
-        that's a whole different story.
-        """
-
-        portlet = self.aqSafeGet('portlet')
-        fti = portlet.getTypeInfo()
-        layouts = (fti.getLayout(lid, portlet) for lid in fti.getLayoutIds())
-
-        ds = DataStructure(datamodel=self.datamodel)
-        for layout in layouts:
-            layout.prepareLayoutWidgets(ds)
-        ds.updateFromMapping(self.request.form)
-        return ds
-
-    def dateTimeFormat(self, dt, format):
-        if dt is None:
-            return None
-        if isinstance(dt, basestring):
-            dt = DateTime(dt)
-        format = DATETIME_FORMATS.get(format)
-        if format is None:
-            return dt.rfc822() # makes a good default
-        return dt.strftime(format)
-
-    def itemDataModel(self, item):
-        """Return a DataModel for the prescribed item, or None"""
-        rpath = item.get('rpath')
-        if rpath is None:
-            logger.error('Item rpath not provided for %r. Check overrides',
-                         item)
-            return
-
-        try:
-            proxy = self.aqSafeGet('portal').restrictedTraverse(rpath)
-            if proxy is None:
-                return
-            doc = proxy.getContent()
-            return doc.getDataModel(proxy=proxy)
-        except Unauthorized:
-            # in theory, it is possible to access the brain information
-            # without accessing the object itself. This is exceptional and
-            # happens only if the security index would be bypassed par
-            # custom code or would be somewhat broken
-            logger.warn("%r unauthorized to access content %r returned "
-                        "by search", user, rpath)
-        except (KeyError, AttributeError):
-            logger.warn("Inconsistency: item %r not reachable or "
-                        "cannot provide DataModel", rpath)
-
-
-class ContentPortletExport(BaseExport):
-
-    def itemLastModified(self, item):
-        """Return last modified date as a DateTime object."""
-        date_str = item['metadata'].get('date')
-        if date_str:
-            return DateTime(date_str) # lame, but that's the input we have
+    def initFolder(self):
+        """Initialize the folder related to this export."""
+        raise NotImplementedError
 
     def initItems(self):
-        kw = dict(self.dataStructure()) # dict() necessary to pass on
-        kw['get_metadata'] = True
-        portlet = self.aqSafeGet('portlet')
-        self.items = portlet.getContentItems(obj=self.getContextObj(), **kw)
+        """Initialize the items that make this export.
 
-class RssExport(object):
+        They are afterwards available as the 'items' attribute.
+        This must be a list of dicts, with the following keys:
+           - rpath : relative path of the item from the portal
+           - metadata : dict of metadata, must have at least 'date' (string
+           representation of item last modification date/time)
+        """
+        raise NotImplementedError
+
+
+class RssMixin:
+    """To enhance a subclass."""
 
     def contentType(self):
         """TODO: detection of browsers that don't recognize the standard.
@@ -168,11 +125,12 @@ class RssExport(object):
         return RSS_CONTENT_TYPE
 
 
-class ContentPortletRssExport(RssExport, ContentPortletExport):
-    """The class to use for all RSS exports of content portlets"""
+class RssExportView(RssMixin, BaseExportView):
+    """For direct subclassing."""
 
 
-class AtomExport(object):
+class AtomMixin:
+    """To enhance a subclass."""
 
     urlregexp = re.compile(r"^(http://|https://)([^/:]+):?(\d+)?(/.*)$")
 
@@ -182,7 +140,7 @@ class AtomExport(object):
         return ATOM_CONTENT_TYPE
 
     def atomId(self, permalink, datetime):
-        """Adapted from cpsportlet_contstruct_atomid
+        """Helper method adapted from cpsportlet_contstruct_atomid
 
         Original docstring:
           <link rel="alternate"> is always the permalink of the entry
@@ -198,8 +156,10 @@ class AtomExport(object):
             DateTime(datetime).strftime('%Y-%m-%d') + ':' + path
         return uid
 
+    def feedAtomId(self):
+        return self.constructAtomId(self.contentUrl(),
+                                    self.datamodel['CreationDate'])
 
 
-class ContentPortletAtomExport(AtomExport, ContentPortletExport):
-    """The class to use for all Atom exports of content portlets"""
-
+class AtomExport(BaseExportView):
+    """For direct subclassing."""

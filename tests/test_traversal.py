@@ -31,13 +31,15 @@ class PortletTraversalTestCase(CPSTestCase):
                 'application/rss+xml'))
 
         # successful traversal from portlet definiton folder
-        response = self.zopePublish(ptl_path + '/sections/rss_2_0/truc.rss')
+        response = self.zopePublish(
+            ptl_path + '/.context/sections/.view/rss_2_0/truc.rss')
         self.assertEquals(response.getStatus(), 200)
         self.assertTrue(response.getHeader('Content-Type').startswith(
                 'application/rss+xml'))
 
         # unsuccessful traversal from portlet definition folder
-        response = self.zopePublish(ptl_path + '/nosuch/rss_2_0/truc.rss')
+        response = self.zopePublish(
+            ptl_path + '/.context/nosuch/.view/rss_2_0/truc.rss')
         self.assertEquals(response.getStatus(), 404)
 
 

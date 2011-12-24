@@ -21,6 +21,7 @@ from zope.interface import Interface
 from zope.interface import implements
 from zope.component import queryMultiAdapter
 from zope.publisher.interfaces import IPublishTraverse
+from zExceptions import NotFound
 
 from Acquisition import aq_parent, aq_inner
 
@@ -93,6 +94,7 @@ class PortletTraverser(object):
         view = portlet.getBrowserView(request_context_obj(portlet, request),
                                       request, {}, view_name=name)
         if view is not None:
+            view.whole_response = True
             return view
 
         return getattr(portlet, name) # default to acquisition
