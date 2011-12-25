@@ -533,6 +533,12 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         The view name is read in the 'render_view_name' field.
         """
+
+        if 'portlet' not in kw:
+            # cf #2078, CPSSkins puts it in kw, CPSDesignerThemes won't
+            kw['portlet'] = self
+        self.registerRequireJavaScript()
+
         def cpsdoc_render():
             return super(CPSPortlet, self).render(layout_mode=layout_mode,
                                                   REQUEST=REQUEST,
@@ -557,13 +563,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         cache_index, data = self.getCacheIndex(**kw)
         kw.update(data)
-        if 'portlet' not in kw:
-            # cf #2078, CPSSkins puts it in kw, CPSDesignerThemes won't
-            kw['portlet'] = self
 
-        self.registerRequireJavaScript()
         ptltool = getToolByName(self, 'portal_cpsportlets')
-
         # Non cacheable cases
         if ptltool.render_cache_disabled or cache_index is None:
             return self.render(REQUEST=REQUEST, **kw)
