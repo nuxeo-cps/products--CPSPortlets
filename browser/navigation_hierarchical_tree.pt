@@ -1,0 +1,37 @@
+<tal:block xmlns:metal="http://xml.zope.org/namespaces/metal"
+	   xmlns:tal="http://xml.zope.org/namespaces/tal"
+	   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+           define="utool view/url_tool;
+                   dm view/datamodel;
+		   show_icons python:False;
+		   display_description dm/display_description;
+		   folderItems view/getTree;
+		   linkclass python: show_icons and 'noicon' or None;
+		   ">
+
+ <metal:block define-macro="recurse">
+  <ul class="navigationPortlet hierarchicalTree" tal:condition="folderItems">
+
+   <tal:block repeat="item folderItems">
+    <li tal:attributes="class item/auto_classes|nothing">
+     <a tal:omit-tag="python:not item['visible']"
+	tal:attributes="href item/url|nothing; class linkclass">
+      <tal:block condition="show_icons"
+		 content="structure item/icon_tag" />
+      <tal:block content="item/title" />
+      <span class="itemDescription"
+	    tal:define="description item/description"
+	    tal:condition="python: description and display_description"
+	    tal:content="description" />
+     </a>
+     <tal:block condition="item/children|nothing"
+		define="folderItems item/children|nothing">
+      <ul metal:use-macro="template/macros/recurse" />
+     </tal:block>
+    </li>
+   </tal:block>
+
+  </ul>
+ </metal:block>
+
+</tal:block>

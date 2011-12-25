@@ -43,5 +43,11 @@
    permission="zope.Public"
    class=".browser.contentportlet.AtomExportView"/>
 
+ <browser:pages for=".interfaces.INavigationPortletModel"
+                class=".browser.navigation.HierarchicalSimpleView"
+                permission="zope2.Public">
+  <browser:page name="hierarchical_tree"
+                template="navigation_hierarchical_tree.pt" />
+ </browser:pages>
 
 </configure>

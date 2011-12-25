@@ -48,6 +48,9 @@ class FakePortal:
     def absolute_url_path(self):
         return '/deep/inside'
 
+    def _url_tool_rpath(self):
+        return ''
+
 PORTAL = FakePortal()
 
 class FakeUrlTool:
@@ -55,13 +58,26 @@ class FakeUrlTool:
     def getPortalObject(self):
         return PORTAL
 
+    def getRpath(self, obj):
+        return obj._url_tool_rpath
+
+class FakeDataModel(dict):
+
+    def getObject(self):
+        return self.object
+
+    def getContext(self):
+        return self.context
+
 PORTAL.portal_url = FakeUrlTool()
 
 class HierarchicalSimpleViewTest(unittest.TestCase):
 
     def setUp(self):
         # we'll feed the needed context/request if needed
-        self.view = HierarchicalSimpleView(PORTAL, None)
+        dm = self.datamodel = FakeDataModel()
+        dm.context = PORTAL
+        self.view = HierarchicalSimpleView(dm, None)
 
     def assertConsistency(self, children, node=None):
         """Check that children are always actually children."""

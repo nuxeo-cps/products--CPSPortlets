@@ -52,4 +52,7 @@ class IBreadcrumbsPortletModel(IDataModel):
     """Breadcrumbs portlet."""
 
 class IContentPortletModel(IDataModel):
-    """Breadcrumbs portlet."""
+    """Content portlet."""
+
+class INavigationPortletModel(IDataModel):
+    """Navigation portlet."""

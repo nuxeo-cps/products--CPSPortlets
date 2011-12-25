@@ -17,12 +17,8 @@
 
 import logging
 
-from Globals import InitializeClass
-from AccessControl import ClassSecurityInfo
-
 from Products.CMFCore.utils import getToolByName
-from Products.CPSonFive.browser import AqSafeBrowserView
-from Products.CPSSchemas.DataStructure import DataStructure
+from baseview import BaseView
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +31,7 @@ def lstartswith(l1, l2):
             return False
     return True
 
-class HierarchicalSimpleView(AqSafeBrowserView):
+class HierarchicalSimpleView(BaseView):
     """This view provides a full tree, in a purely static way. No AJAX.
 
     This is a transitional way of rendering portlets by resolving a view
@@ -50,20 +46,9 @@ class HierarchicalSimpleView(AqSafeBrowserView):
       kind of popup views it's meant to produce to be easily customized.
     """
 
-    security = ClassSecurityInfo()
-
-    security.declarePublic('setOptions')
-    def setOptions(self, options):
-        """Corresponds to the 'options' as seen from the template."""
-        self.options = options
-        ds = self.datastructure = options['datastructure']
-        self.datamodel = ds.getDataModel()
-
-        here = options.get('context_obj')
-        if here is None:
-            here = self.context
-        utool = getToolByName(self.context, 'portal_url')
-        self.here_rpath = utool.getRpath(here)
+    def __init__(self, datamodel, request):
+        BaseView.__init__(self, datamodel, request)
+        self.here_rpath = self.url_tool().getRpath(self.context)
 
     def listToTree(self, tlist):
         """Transform TreeCache.getList() output into a proper tree.
@@ -73,7 +58,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         """
 
         here_rpath = self.here_rpath.split('/')
-        utool = getToolByName(self.context, 'portal_url')
+        utool = self.url_tool()
         portal_path = utool.getPortalObject().absolute_url_path()
         if portal_path == '/':
             portal_path = ''
@@ -121,7 +106,6 @@ class HierarchicalSimpleView(AqSafeBrowserView):
 
         return res_tree
 
-    security.declarePublic('getTree')
     def getTree(self):
         """Return the tree according to options and context. """
         dm = self.datamodel
@@ -142,5 +126,3 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         tlist = tree.getList(**tkw)
         return self.listToTree(tlist)
 
-
-InitializeClass(HierarchicalSimpleView)
