@@ -16,8 +16,6 @@
 
   <include file="portlets.zcml" />
 
-  <five:traversable class="OFS.Folder.Folder" />
-
   <adapter
     for="Products.CPSSchemas.interfaces.IDataModel
    	   zope.publisher.interfaces.http.IHTTPRequest"
