@@ -7,12 +7,12 @@ from Acquisition import aq_base
 
 from Testing import ZopeTestCase
 
-from Products.CPSDefault.tests import CPSDefaultTestCase
+from Products.CPSDefault.tests import CPSTestCase
 
 # XXX hardcoded interval
 ORDER_INTERVAL = 10
 
-class TestPortlets(CPSDefaultTestCase.CPSDefaultTestCase):
+class TestPortlets(CPSTestCase.CPSTestCase):
     def afterSetUp(self):
         if self.login_id:
             self.login(self.login_id)

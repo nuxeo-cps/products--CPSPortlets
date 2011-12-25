@@ -9,10 +9,10 @@ from Testing import ZopeTestCase
 
 from Products.CMFCore.TypesTool import FactoryTypeInformation as FTI
 
-from Products.CPSDefault.tests import CPSDefaultTestCase
+from Products.CPSDefault.tests import CPSTestCase
 
 
-class TestRAMCache(CPSDefaultTestCase.CPSDefaultTestCase):
+class TestRAMCache(CPSTestCase.CPSTestCase):
     def afterSetUp(self):
         self.login_id = 'manager'
         self.login(self.login_id)

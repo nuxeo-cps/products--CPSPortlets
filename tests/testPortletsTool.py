@@ -15,11 +15,11 @@ from Products.CMFCore.permissions import AddPortalContent, setDefaultRoles
 from Products.CMFCore.utils import _checkPermission
 from Products.DCWorkflow.utils import modifyRolesForPermission
 
-from Products.CPSDefault.tests import CPSDefaultTestCase
+from Products.CPSDefault.tests import CPSTestCase
 
 PORTLET_CONTAINER_ID = '.cps_portlets'
 
-class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
+class TestPortletsTool(CPSTestCase.CPSTestCase):
     def afterSetUp(self):
         self.login_id = 'manager'
         self.login(self.login_id)

@@ -7,9 +7,9 @@ from Acquisition import aq_base
 
 from Testing import ZopeTestCase
 
-from Products.CPSDefault.tests import CPSDefaultTestCase
+from Products.CPSDefault.tests import CPSTestCase
 
-class TestPortlets(CPSDefaultTestCase.CPSDefaultTestCase):
+class TestPortlets(CPSTestCase.CPSTestCase):
     def afterSetUp(self):
         if self.login_id:
             self.login(self.login_id)
@@ -148,7 +148,7 @@ class TestLocalPortletsAsRoot(TestPortlets):
         self.assert_(portlet.isLocal())
         self.assert_(not portlet.isGlobal())
 
-class TestLocalPortletsAsMember(CPSDefaultTestCase.CPSDefaultTestCase):
+class TestLocalPortletsAsMember(CPSTestCase.CPSTestCase):
     login_id = 'member'
 
     def afterSetUp(self):

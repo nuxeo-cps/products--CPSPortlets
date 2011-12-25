@@ -27,10 +27,10 @@ from Testing import ZopeTestCase
 from DateTime import DateTime
 from Products.CPSUtil.conflictresolvers import IncreasingDateTime
 from Products.CMFCore.utils import getToolByName
-from Products.CPSDefault.tests.CPSDefaultTestCase import CPSDefaultTestCase
+from Products.CPSDefault.tests.CPSTestCase import CPSTestCase
 from Products.CPSPortlets.PortletsTool import LOOKUP_CACHE_DATE_GLOBAL_ID
 
-class TestLookupCache(CPSDefaultTestCase):
+class TestLookupCache(CPSTestCase):
 
     def afterSetUp(self):
         self.login_id = 'manager'
