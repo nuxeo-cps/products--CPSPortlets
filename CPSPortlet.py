@@ -533,6 +533,12 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         The view name is read in the 'render_view_name' field.
         """
+
+        if 'portlet' not in kw:
+            # cf #2078, CPSSkins puts it in kw, CPSDesignerThemes won't
+            kw['portlet'] = self
+        self.registerRequireJavaScript()
+
         def cpsdoc_render():
             return super(CPSPortlet, self).render(layout_mode=layout_mode,
                                                   REQUEST=REQUEST,
@@ -557,48 +563,39 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         cache_index, data = self.getCacheIndex(**kw)
         kw.update(data)
-        if 'portlet' not in kw:
-            # cf #2078, CPSSkins puts it in kw, CPSDesignerThemes won't
-            kw['portlet'] = self
 
-
-        self.registerRequireJavaScript()
-        ptltool = getToolByName(self, 'portal_cpsportlets')
-        # the portlet is not cacheable.
-        if ptltool.render_cache_disabled or cache_index is None:
+        # Non cacheable cases
+        if cache_index is not None:
+            ptltool = getToolByName(self, 'portal_cpsportlets')
+            if ptltool.render_cache_disabled:
+                cache_index = None
+        if cache_index is None:
             return self.render(REQUEST=REQUEST, **kw)
 
-        now = time.time()
         portlet_path = self.getPhysicalPath()
         index = (portlet_path, ) + cache_index
         cache = ptltool.getPortletCache()
-        # last_cleanup: the date when all the cache entries associated to the
-        # portlet were last removed from the cache
-        last_cleanup = cache.getLastCleanup(id=portlet_path)
-        # cleanup_date: the portlet's cleanup date (ZEO-aware).
-        cleanup_date = self.getCacheCleanupDate()
-        # cache timeout
+
+        # Time-based invalidations.
+        # Theres a flat timeout. Also We compare latest cleanup times :
+        # ZEO client local (from RAM) vs global accross ZEO cluster (from ZODB)
+        # global > local means that another client has invalidated. So must we.
+        now = time.time()
         timeout = self.getCacheTimeout()
+        client_cleanup_time = cache.getLastCleanup(id=portlet_path)
+        global_cleanup_time = self.getCacheCleanupDate()
 
-        # remove all cache entries associated to this portlet.
-        # This will occur on all ZEO instances (lazily).
-        if cleanup_date > last_cleanup:
+        if (client_cleanup_time is None or
+            global_cleanup_time.value - client_cleanup_time > 0 or
+            (timeout > 0 and now > last_cleanup + timeout)):
+            # This also sets client cleanup date
             cache.delEntries(portlet_path)
+            cache_entry = None
+        else:
+            cache_entry = cache.getEntry(index)
 
-        # bootstrap: if last_cleanup is None we delete entries to set
-        #            an initial cleanup date.
-        if last_cleanup is None:
-            cache.delEntries(portlet_path)
-        # cache timeout
-        elif timeout > 0:
-            if now > last_cleanup + timeout:
-                cache.delEntries(portlet_path)
-
-        cache_entry = cache.getEntry(index)
-        # compare the cache entry creation date with the modification date
-        # of cached objects. The cache entry is considered invalid if any one
-        # of the cache objects were modified after the cache entry creation
-        # date.
+        # The cache entry is considered invalid if any cached objects has been
+        # modified after the cache entry creation date.
         if cache_entry is not None:
             creation_date = cache_entry['date']
             for obj_path in cache_entry['objects']:
@@ -611,42 +608,29 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
                 cache_entry = None
                 break
 
-        # create / recreate the cache entry
-        if cache_entry is None:
-            logger.debug(
-                "Cache miss for portlet %s (type=%s)", self,
-                                                         self.portal_type)
-            rendered = html_slimmer(self.render(REQUEST=REQUEST, **kw))
-            now = time.time()
+        if cache_entry is not None:
+            return cache_entry['rendered']
 
+        # From now, this is a cache miss: render and set in cache
+
+        logger.debug("Cache miss for portlet %s (type=%s)",
+                     self, self.portal_type)
+
+        rendered = html_slimmer(self.render(REQUEST=REQUEST, **kw))
+
+        # we'll associate to current user if the cache entry is user-dependent
+        if 'user' in self.getCacheParams():
             if REQUEST is None:
                 REQUEST = self.REQUEST
-            RESPONSE = REQUEST.RESPONSE
-
-            # set the HTTP headers to inform proxy caches (Apache, Squid, ...)
-            # that the page has expired.
-            RESPONSE.setHeader('Expires', rfc1123_date(now))
-            RESPONSE.setHeader('Last-Modified', rfc1123_date(now))
-            # XXX more headers?
-
-            # current user if the cache entry is user-dependent
-            if 'user' in self.getCacheParams():
-                user = str(REQUEST.get('AUTHENTICATED_USER', ''))
-            else:
-                user = ''
-
-            # get the list of cache objects.
-            cache_objects = self.getCacheObjects(**kw)
-
-            # set the new cache entry
-            cache.setEntry(index, {'rendered': rendered,
-                                   'user': user,
-                                   'date': now,
-                                   'objects': cache_objects,
-                                  })
-        # use the existing cache entry
+            user = str(REQUEST.get('AUTHENTICATED_USER', ''))
         else:
-            rendered = cache_entry['rendered']
+            user = ''
+
+        cache.setEntry(index, {'rendered': rendered,
+                               'user': user,
+                               'date': now,
+                               'objects': self.getCacheObjects(**kw)
+                              })
 
         return rendered
 

@@ -97,12 +97,10 @@ class RAMCache:
 
         if not self.valid:
             return None
-        data = None
-        cache = self.cache
         self.writelock.acquire()
         try:
-            if cache.has_key(index):
-                data = cache[index]
+            data = self.cache.get(index)
+            if data is not None:
                 self.hits += 1
             else:
                 self.misses += 1
