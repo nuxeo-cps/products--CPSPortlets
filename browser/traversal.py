@@ -56,6 +56,27 @@ def request_context_obj(portlet, request):
 
     return context_obj
 
+class CacheRenderer(object):
+    """An object to return from traversal to trigger cache-aware rendering."""
+
+    def __init__(self, portlet, request, context=None, view_name=''):
+        self.portlet = portlet
+        self.request = request
+        self.view_name = view_name
+        self.further_path = []
+
+    def __getitem__(self, item):
+        self.further_path.append(item)
+        return self
+
+    def __call__(self):
+        """Called after traversal"""
+        request = self.request
+        portlet = self.portlet
+        return portlet.render_cache(
+            REQUEST=request, view_name=self.view_name,
+            context_obj=request_context_obj(portlet, request))
+
 class PortletTraverser(object):
     """Will be looked up and called for each path segment.
 
@@ -106,8 +127,13 @@ class PortletTraverser(object):
                 return FileDownloader(portlet, portlet).__of__(portlet)
             elif name == KEYWORD_SIZED_IMAGE:
                 return ImageDownloader(portlet, portlet).__of__(portlet)
-
         # view lookup attempt either directly or after keyword for view
+        # keyword is better, as we are sure that this is a view-based
+        # rendering (and not an acquired method such has cpsportlet_edit_form),
+        # hence we can safely go for cache
+        if getattr(request, REQUEST_TRAVERSAL_FINISHED, False):
+            return CacheRenderer(portlet, request, view_name=name)
+
         view = portlet.getBrowserView(request_context_obj(portlet, request),
                                       request, {}, view_name=name)
         if view is not None:

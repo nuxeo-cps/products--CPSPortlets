@@ -496,6 +496,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             if index_string:
                 index += (prefix + '_' + index_string,)
 
+        index += (kw.get('view_name', ''),)
         return index, data
 
     def getBrowserView(self, context_obj, request, render_kwargs=None,
@@ -528,7 +529,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         return view
 
     security.declarePublic('render')
-    def render(self, REQUEST=None, layout_mode='view', **kw):
+    def render(self, REQUEST=None, layout_mode='view', view_name='', **kw):
         """In view mode, lookup a Z3 view, default to CPSDocument machinery
 
         The view name is read in the 'render_view_name' field.
@@ -551,7 +552,8 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             context_obj = request_context_obj(self, REQUEST)
             kw['context_obj'] = context_obj
 
-        view = self.getBrowserView(context_obj, REQUEST, render_kwargs=kw)
+        view = self.getBrowserView(context_obj, REQUEST, view_name=view_name,
+                                   render_kwargs=kw)
         if view is not None:
             return view()
         return cpsdoc_render()
@@ -615,7 +617,6 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         logger.debug("Cache miss for portlet %s (type=%s)",
                      self, self.portal_type)
-
         rendered = html_slimmer(self.render(REQUEST=REQUEST, **kw))
 
         # we'll associate to current user if the cache entry is user-dependent
