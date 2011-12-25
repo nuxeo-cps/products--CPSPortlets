@@ -83,6 +83,12 @@ class BaseView(AqSafeBrowserView):
             self.responseHeaders()
         return self.index(self,  *args, **kwargs) # self.index is the ZPT
 
+    def responseHeaders(self):
+        """Set the headers in case the view does the whole rendering.
+
+        Suitable default for rendering as an HTML fragment (ESI, AJAX...)"""
+        self.request.RESPONSE.setHeader('Content-Type', 'text/html')
+
     def context_obj(self):
         return self.datamodel.getContext()
 
