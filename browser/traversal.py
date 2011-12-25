@@ -88,14 +88,21 @@ class PortletTraverser(object):
            return portlet
 
         portlet = self.portlet
-        # attribute and special traversals, but only directly on portlet
-        if req_trav is None:
-            if bhasattr(portlet, name): # regular attribute
-                return getattr(portlet, name)
 
+        # regular attribute
+        # must work even after processing the context part of traversal:
+        # if no view is specified, name == 'render', and
+        # we'll call otherwise getBrowserView from here, and then from
+        # portlet.render(), which means building the datamodel twice
+        # (not negligible for fast portlets)
+        if bhasattr(portlet, name):
+            return getattr(portlet, name)
+
+        # special traversals, but only directly on portlet
+        if req_trav is None:
             # now special cases. TODO: in CPSCore, provide a generic traverser
             # and subclass it with soft dependency.
-            elif name == KEYWORD_DOWNLOAD_FILE:
+            if name == KEYWORD_DOWNLOAD_FILE:
                 return FileDownloader(portlet, portlet).__of__(portlet)
             elif name == KEYWORD_SIZED_IMAGE:
                 return ImageDownloader(portlet, portlet).__of__(portlet)
