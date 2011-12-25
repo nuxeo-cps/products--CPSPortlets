@@ -564,9 +564,12 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         cache_index, data = self.getCacheIndex(**kw)
         kw.update(data)
 
-        ptltool = getToolByName(self, 'portal_cpsportlets')
         # Non cacheable cases
-        if ptltool.render_cache_disabled or cache_index is None:
+        if cache_index is not None:
+            ptltool = getToolByName(self, 'portal_cpsportlets')
+            if ptltool.render_cache_disabled:
+                cache_index = None
+        if cache_index is None:
             return self.render(REQUEST=REQUEST, **kw)
 
         portlet_path = self.getPhysicalPath()
