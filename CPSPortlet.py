@@ -617,13 +617,6 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         if REQUEST is None:
             REQUEST = self.REQUEST
-        RESPONSE = REQUEST.RESPONSE
-
-        # set the HTTP headers to inform proxy caches (Apache, Squid, ...)
-        # that the page has expired.
-        RESPONSE.setHeader('Expires', rfc1123_date(now))
-        RESPONSE.setHeader('Last-Modified', rfc1123_date(now))
-        # XXX more headers?
 
         # current user if the cache entry is user-dependent
         if 'user' in self.getCacheParams():
