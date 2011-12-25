@@ -35,6 +35,7 @@ class TestPortlet(TestPortlets):
         portlet_id = ptltool.createPortlet(ptype_id)
         self.assertEquals(len(ptltool.items()), len_before+1)
         portlet = ptltool[portlet_id]
+        self.update_portlet_settings(portlet)
         portlet.render(context_obj=self.portal, portlet=portlet,
                        REQUEST=self.app.REQUEST)
         self.assert_(portlet.render_js() is not None)
@@ -57,7 +58,13 @@ for ptype_id in ['Dummy Portlet',
                  'Custom Portlet',
                 ]:
     class TestOnePortlet(TestPortlet):
+
         ptype_id = ptype_id
+
+        def update_portlet_settings(self, portlet):
+            if self.ptype_id == 'Navigation Portlet':
+                portlet.render_view_name = 'folder_contents'
+
     tests.append(TestOnePortlet)
 
 pattern = '<div id="\w*?">%s</div>'
