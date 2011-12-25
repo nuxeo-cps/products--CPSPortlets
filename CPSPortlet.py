@@ -543,6 +543,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         context_obj = kw.get('context_obj')
         if context_obj is None:
             context_obj = request_context_obj(self, REQUEST)
+            kw['context_obj'] = context_obj
 
         view = self.getBrowserView(context_obj, REQUEST, render_kwargs=kw)
         if view is not None:
