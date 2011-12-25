@@ -610,28 +610,25 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         if cache_entry is not None:
             return cache_entry['rendered']
 
-        # Cache miss: render and set in cache
+        # From now, this is a cache miss: render and set in cache
+
         logger.debug("Cache miss for portlet %s (type=%s)",
                      self, self.portal_type)
+
         rendered = html_slimmer(self.render(REQUEST=REQUEST, **kw))
 
-        if REQUEST is None:
-            REQUEST = self.REQUEST
-
-        # current user if the cache entry is user-dependent
+        # we'll associate to current user if the cache entry is user-dependent
         if 'user' in self.getCacheParams():
+            if REQUEST is None:
+                REQUEST = self.REQUEST
             user = str(REQUEST.get('AUTHENTICATED_USER', ''))
         else:
             user = ''
 
-        # get the list of cache objects.
-        cache_objects = self.getCacheObjects(**kw)
-
-        # set the new cache entry
         cache.setEntry(index, {'rendered': rendered,
                                'user': user,
                                'date': now,
-                               'objects': cache_objects,
+                               'objects': self.getCacheObjects(**kw)
                               })
 
         return rendered
