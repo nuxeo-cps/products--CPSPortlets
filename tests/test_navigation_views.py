@@ -18,6 +18,7 @@
 import unittest
 from Products.CPSDefault.tests.CPSTestCase import CPSTestCase
 
+from Products.CMFCore.utils import getToolByName
 from Products.CPSPortlets.browser.navigation import HierarchicalSimpleView
 from Products.CPSPortlets.browser.navigation import lstartswith
 from Products.CPSPortlets.browser.navigation import tree_to_rpaths
@@ -132,6 +133,21 @@ class HierarchicalSimpleViewTest(unittest.TestCase):
                      ),
                 ])
 
+    def test_under(self):
+        forest = [dict(rpath='a', children=[
+                    dict(rpath='a/b', children=[
+                            dict(rpath='a/b/b1')]),
+                    dict(rpath='a/x', children=[
+                            dict(rpath='a/x/a'),
+                            dict(rpath='a/x/z')]),
+                        dict(rpath='a/y')]
+                       ),
+                  ]
+        self.assertEquals(self.view.under(forest, 'a/x'),
+                    dict(rpath='a/x', children=[
+                            dict(rpath='a/x/a'),
+                            dict(rpath='a/x/z')]))
+
     def test_listToTree_unfold_level3(self):
         tree = self.view.listToTree(rpaths_to_items(
                 'a', 'a/b', 'a/b/b1',
@@ -225,55 +241,95 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
         self.request = self.app.REQUEST
         view = self.view = HierarchicalSimpleView(self.portal, self.request)
         view.datamodel = dict(start_depth=0, end_depth=0,
-                              root_uids=['sections'])
+                              root_uids=['workspaces'])
         self.login('manager')
-        self.portal.portal_workflow.invokeFactoryFor(
-            self.portal.sections, 'Section', 'subs')
-        self.portal.portal_workflow.invokeFactoryFor(
-            self.portal.sections.subs, 'Section', 'subsubs')
-        self.portal.portal_trees['sections'].rebuild() # could get slow
+        wftool = getToolByName(self.portal, 'portal_workflow')
+        ws = self.portal.workspaces
+        wftool.invokeFactoryFor(ws, 'Workspace', 'subw')
+        subw = ws.subw
+        wftool.invokeFactoryFor(subw, 'Workspace', 'subsubw')
+        wftool.invokeFactoryFor(subw, 'File', 'doc')
+        wftool.invokeFactoryFor(subw.subsubw, 'FAQ', 'faq')
+        self.portal.portal_trees['workspaces'].rebuild() # could get slow
 
     def test_getTree(self):
         view = self.view
-        view.here_rpath = 'sections'
+        view.here_rpath = 'workspaces'
         tree = view.getTree()
-        self.assertEquals(tree[0]['rpath'], 'sections')
+        self.assertEquals(tree[0]['rpath'], 'workspaces')
+
+    def test_getTreeWithDocs(self):
+        view = self.view
+        view.datamodel['with_docs'] = True
+        view.here_rpath = 'workspaces/subw'
+        tree = view.getTree()
+        self.assertEquals(tree_to_rpaths(tree),
+                dict(rpath='workspaces', children=[
+                        dict(rpath='workspaces/subw', children=[
+                            dict(rpath='workspaces/subw/doc'),
+                            dict(rpath='workspaces/subw/subsubw'),
+                            ])
+                        ]))
+
+    def test_getTreeWithDocs2(self):
+        view = self.view
+        view.datamodel['with_docs'] = True
+        view.here_rpath = 'workspaces/subw/subsubw'
+        tree = view.getTree()
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='workspaces', children=[
+                        dict(rpath='workspaces/subw', children=[
+                            dict(rpath='workspaces/subw/subsubw', children=[
+                                dict(rpath='workspaces/subw/subsubw/faq')])
+                            ])
+                        ])
+                ])
 
     def test_nodeSubTree(self):
         view = self.view
-        view.here_rpath = 'sections'
+        view.here_rpath = 'workspaces'
         tree = view.nodeSubTree(inclusive=True)
         self.assertEquals(tree_to_rpaths(tree), [
-                dict(rpath='sections', children=[
-                        dict(rpath='sections/subs')])
+                dict(rpath='workspaces', children=[
+                        dict(rpath='workspaces/subw')])
                 ])
 
         tree = view.nodeSubTree(inclusive=False)
-        self.assertEquals(tree[0]['rpath'], 'sections/subs')
+        self.assertEquals(tree[0]['rpath'], 'workspaces/subw')
         self.assertEquals(tree_to_rpaths(tree), [
-                dict(rpath='sections/subs')])
+                dict(rpath='workspaces/subw')])
 
     def test_nodeSubTreeFromDeeper(self):
         view = self.view
-        view.here_rpath = 'sections/subs'
+        view.here_rpath = 'workspaces/subw'
         tree = view.nodeSubTree(inclusive=True)
         self.assertEquals(tree_to_rpaths(tree), [
-                dict(rpath='sections/subs', children=[
-                        dict(rpath='sections/subs/subsubs')])
+                dict(rpath='workspaces/subw', children=[
+                        dict(rpath='workspaces/subw/subsubw')])
                 ])
 
         tree = view.nodeSubTree(inclusive=False)
         self.assertEquals(tree_to_rpaths(tree),
-                          [dict(rpath='sections/subs/subsubs')])
+                          [dict(rpath='workspaces/subw/subsubw')])
 
     def test_nodeSubTreeLevel2(self):
         view = self.view
         view.datamodel['subtree_depth'] = 2
-        view.here_rpath = 'sections'
+        view.here_rpath = 'workspaces'
         tree = view.nodeSubTree(inclusive=False)
         self.assertEquals(tree_to_rpaths(tree), [
-                dict(rpath='sections/subs', children=[
-                        dict(rpath='sections/subs/subsubs')])
+                dict(rpath='workspaces/subw', children=[
+                        dict(rpath='workspaces/subw/subsubw')])
+                ])
+
+    def test_getTreeWithDocs(self):
+        view = self.view
+        view.datamodel['subtree_depth'] = 2
+        view.here_rpath = 'workspaces'
+        tree = view.nodeSubTree(inclusive=False)
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='workspaces/subw', children=[
+                        dict(rpath='workspaces/subw/subsubw')])
                 ])
 
 def test_suite():

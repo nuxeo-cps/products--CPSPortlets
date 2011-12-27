@@ -21,6 +21,9 @@ from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.utils import _checkPermission
+from Products.CMFCore.permissions import View
+from Products.CPSCore.ProxyBase import ALL_PROXY_META_TYPES
 from Products.CPSonFive.browser import AqSafeBrowserView
 from Products.CPSSchemas.DataStructure import DataStructure
 
@@ -68,6 +71,10 @@ class HierarchicalSimpleView(AqSafeBrowserView):
 
     security = ClassSecurityInfo()
 
+    def __init__(self, context, request):
+        AqSafeBrowserView.__init__(self, context, request)
+        self.url_tool = getToolByName(context, 'portal_url')
+
     security.declarePublic('setOptions')
     def setOptions(self, options):
         """Corresponds to the 'options' as seen from the template."""
@@ -78,8 +85,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         here = options.get('context_obj')
         if here is None:
             here = self.context
-        utool = getToolByName(self.context, 'portal_url')
-        self.here_rpath = utool.getRpath(here)
+        self.here_rpath = self.url_tool.getRpath(here)
 
     def listToTree(self, tlist, unfold_to=None, unfold_level=1):
         """Transform TreeCache.getList() output into a proper tree (forest)
@@ -104,8 +110,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         else:
             here_rpath = unfold_to.split('/')
 
-        utool = getToolByName(self.context, 'portal_url')
-        portal_path = utool.getPortalObject().absolute_url_path()
+        portal_path = self.url_tool.getPortalObject().absolute_url_path()
         if portal_path == '/':
             portal_path = ''
 
@@ -169,6 +174,54 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         self.aqSafeSet('tree_cache', tree)
         return tree
 
+    def under(self, forest, rpath):
+        """Return the subtree of forest that's under given rpath, inclusive."""
+        rpath = rpath.split('/')
+        while True:
+            for child in forest:
+                child_rpath = child['rpath'].split('/')
+                if lstartswith(child_rpath, rpath): # found
+                    return child
+                if lstartswith(rpath, child_rpath):
+                    forest = child.get('children', ()) # go down
+                    break
+            else:
+                raise LookupError(rpath)
+
+    def makeChildEntry(self, container, oid, obj, container_rpath):
+        return dict(title=obj.title_or_id(),
+                    description='',
+                    visible=True, # check done before-hand
+                    url='%s%s/%s' % (self.url_tool.getBaseUrl(),
+                                     container_rpath, oid))
+
+    def addDocs(self, tree, container=None):
+        """Add ordinary documents (not from TreeCache) to the given tree.
+
+        We'll actually check for all proxy types and exclude those from
+        TreeCache because:
+          + it is assumed that there are usually more documents that folders
+          + some folders may not be in the cache
+        """
+        rpath = tree['rpath']
+        if container is None:
+            portal = self.url_tool.getPortalObject()
+            container = portal.restrictedTraverse(tree['rpath'])
+        children = tree['children']
+
+        # recurse and remember what was already there in the tree to avoid
+        # duplicates
+        already = set()
+        for child in children:
+            child_id = child['id']
+            self.addDocs(child, container=container[child_id])
+            already.add(child_id)
+
+        children.extend(
+            self.makeChildEntry(container, oid, obj, rpath)
+            for oid, obj in container.objectItems(ALL_PROXY_META_TYPES)
+            if oid not in already and _checkPermission(View, obj))
+
     security.declarePublic('getTree')
     def getTree(self):
         """Return the whole tree according to options and context. """
@@ -181,7 +234,10 @@ class HierarchicalSimpleView(AqSafeBrowserView):
             tkw[end_depth] = end_depth
 
         tlist = tree.getList(**tkw)
-        return self.listToTree(tlist, unfold_to=self.here_rpath)
+        forest = self.listToTree(tlist, unfold_to=self.here_rpath)
+        if dm.get('with_docs', False):
+            self.addDocs(self.under(forest, self.here_rpath))
+        return forest
 
     security.declarePublic('nodeSubTree')
     def nodeSubTree(self, inclusive=False):
@@ -197,6 +253,8 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         forest = self.listToTree(tlist, unfold_to=start, unfold_level=depth)
         if not inclusive:
             forest = forest[0]['children']
+        if dm.get('with_docs'):
+            self.addDocs(self.under(forest, self.here_rpath))
         return forest
 
 InitializeClass(HierarchicalSimpleView)
