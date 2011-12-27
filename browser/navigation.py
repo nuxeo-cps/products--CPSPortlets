@@ -81,14 +81,29 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         utool = getToolByName(self.context, 'portal_url')
         self.here_rpath = utool.getRpath(here)
 
-    def listToTree(self, tlist):
-        """Transform TreeCache.getList() output into a proper tree.
+    def listToTree(self, tlist, unfold_to=None, unfold_level=1):
+        """Transform TreeCache.getList() output into a proper tree (forest)
 
         Yes, this far too complicated, but one should NEVER represent
         a tree as a list, except at outermost level of the system.
+
+        The unfold_to argument is used for cases where the forest is to be
+        shown from its root with the path to some location fully displayed,
+        including siblings of intermediate nodes. In case the location is a
+        folder, its children are also displayed, up to unfold_level.
+        With unfold_level=1, and unfold_to the current folder,
+        this is the classical need of sidebar navigation portlets.
+
+        With unfold_to coinciding with the beginning of the extracted tree and
+        arbitrary unfold_level, this produces a proper subtree, suitable for
+        dynamical unfolding (e.g, AJAX portlets).
         """
 
-        here_rpath = self.here_rpath.split('/')
+        if unfold_to is None: # BBB
+            here_rpath = self.here_rpath.split('/')
+        else:
+            here_rpath = unfold_to.split('/')
+
         utool = getToolByName(self.context, 'portal_url')
         portal_path = utool.getPortalObject().absolute_url_path()
         if portal_path == '/':
@@ -108,7 +123,13 @@ class HierarchicalSimpleView(AqSafeBrowserView):
             if lstartswith(item_rpath, prev_rpath):
                 # deeper that previous one => prev_rpath is the apparent parent
                 # keep only those whose apparent parent is an ancestor of here
-                if not lstartswith(here_rpath, prev_rpath):
+                # at level unfold_level (meaning that we climb up more level in
+                # parents to do the checking)
+                if unfold_level > 1:
+                    f_rpath = prev_rpath[:1 - unfold_level]
+                else:
+                    f_rpath = prev_rpath
+                if not lstartswith(here_rpath, f_rpath):
                     continue
                 if prev_rpath:
                     from_top.append(produced)
@@ -150,7 +171,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
 
     security.declarePublic('getTree')
     def getTree(self):
-        """Return the tree according to options and context. """
+        """Return the whole tree according to options and context. """
         tree = self.initTreeCache()
         dm = self.datamodel
 
@@ -160,7 +181,8 @@ class HierarchicalSimpleView(AqSafeBrowserView):
             tkw[end_depth] = end_depth
 
         tlist = tree.getList(**tkw)
-        return self.listToTree(tlist)
+        return self.listToTree(tlist, unfold_to=self.here_rpath)
+
 
 
 InitializeClass(HierarchicalSimpleView)

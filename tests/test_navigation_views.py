@@ -82,6 +82,76 @@ class HierarchicalSimpleViewTest(unittest.TestCase):
                         dict(rpath='a/y')]
                      )])
 
+    def test_listToTree_forest(self):
+        # can produce actual forests, here with two trees
+        tree = self.view.listToTree(rpaths_to_items(
+                'a', 'a/b', 'a/b/b1', 'a/x', 'a/x/a', 'a/x/z', 'a/y',
+                'tree2'), unfold_to='a/x/z')
+
+        self.assertConsistency(tree)
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='a', children=[
+                        dict(rpath='a/b'),
+                        dict(rpath='a/x', children=[
+                                dict(rpath='a/x/a'),
+                                dict(rpath='a/x/z')]),
+                        dict(rpath='a/y')]
+                     ),
+                dict(rpath='tree2')])
+
+    def test_listToTree_unfold_level1(self):
+        tree = self.view.listToTree(rpaths_to_items(
+                'a', 'a/b', 'a/b/b1',
+                'a/x', 'a/x/a', 'a/x/z', 'a/x/z/t',
+                'a/y',), unfold_to='a', unfold_level=1)
+
+        self.assertConsistency(tree)
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='a', children=[
+                        dict(rpath='a/b'),
+                        dict(rpath='a/x'),
+                        dict(rpath='a/y')]
+                     ),])
+
+    def test_listToTree_unfold_level2(self):
+        tree = self.view.listToTree(rpaths_to_items(
+                'a', 'a/b', 'a/b/b1',
+                'a/x', 'a/x/a', 'a/x/z', 'a/x/z/t',
+                'a/y'), unfold_to='a', unfold_level=2)
+
+        self.assertConsistency(tree)
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='a', children=[
+                        dict(rpath='a/b', children=[
+                                dict(rpath='a/b/b1')]),
+                        dict(rpath='a/x', children=[
+                                dict(rpath='a/x/a'),
+                                dict(rpath='a/x/z')]),
+                        dict(rpath='a/y')]
+                     ),
+                ])
+
+    def test_listToTree_unfold_level3(self):
+        tree = self.view.listToTree(rpaths_to_items(
+                'a', 'a/b', 'a/b/b1',
+                'a/x', 'a/x/a', 'a/x/z', 'a/x/z/t',
+                'a/y',), unfold_to='a', unfold_level=3)
+
+        self.assertConsistency(tree)
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='a', children=[
+                        dict(rpath='a/b', children=[
+                                dict(rpath='a/b/b1')]),
+                        dict(rpath='a/x', children=[
+                                dict(rpath='a/x/a'),
+                                dict(rpath='a/x/z', children=[
+                                        dict(rpath='a/x/z/t')
+                                        ])
+                                ]),
+                        dict(rpath='a/y')]
+                     ),
+                ])
+
     def test_listToTree_deeper(self):
         # Test that a first-level visible folder inside a non-visible one
         # that's not in the currently unfolder path gets nevertheless displayed
