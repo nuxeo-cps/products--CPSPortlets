@@ -260,7 +260,7 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
 
     def test_getTreeWithDocs(self):
         view = self.view
-        view.datamodel['with_docs'] = True
+        view.datamodel['show_docs'] = True
         view.here_rpath = 'workspaces/subw'
         tree = view.getTree()
         self.assertEquals(tree_to_rpaths(tree),
@@ -273,7 +273,7 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
 
     def test_getTreeWithDocs2(self):
         view = self.view
-        view.datamodel['with_docs'] = True
+        view.datamodel['show_docs'] = True
         view.here_rpath = 'workspaces/subw/subsubw'
         tree = view.getTree()
         self.assertEquals(tree_to_rpaths(tree), [

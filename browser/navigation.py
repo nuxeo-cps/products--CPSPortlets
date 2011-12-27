@@ -235,7 +235,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
 
         tlist = tree.getList(**tkw)
         forest = self.listToTree(tlist, unfold_to=self.here_rpath)
-        if dm.get('with_docs', False):
+        if dm.get('show_docs', False):
             self.addDocs(self.under(forest, self.here_rpath))
         return forest
 
