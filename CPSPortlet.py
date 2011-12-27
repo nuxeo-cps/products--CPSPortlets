@@ -589,7 +589,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         if (client_cleanup_time is None or
             global_cleanup_time is None or
-            global_cleanup_time.value > client_cleanup_time or
+            global_cleanup_time > client_cleanup_time or
             (timeout > 0 and now > last_cleanup + timeout)):
             # This also sets client cleanup date
             cache.delEntries(portlet_path)
