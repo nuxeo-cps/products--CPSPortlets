@@ -306,7 +306,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         portlet.render_cache()
         entries = ptltool.findCacheEntriesByUser(user)
         self.assertEquals(entries,
-                          [(portlet.getPhysicalPath(), 'user_%s' % user)])
+                          [(portlet.getPhysicalPath(), 'user_%s' % user, '')])
 
     def test_invalidateCacheEntriesByUser(self):
         user = self.login_id
@@ -325,7 +325,7 @@ class TestPortletsTool(CPSDefaultTestCase.CPSDefaultTestCase):
         # render the portlet
         portlet.render_cache()
         entries = ptltool.findCacheEntriesByUser(user)
-        self.assertEquals(entries, [(portlet_path, 'user_%s' % user)])
+        self.assertEquals(entries, [(portlet_path, 'user_%s' % user, '')])
         # invalidate the entry for another user
         ptltool.invalidateCacheEntriesByUser('dummy user')
         self.assert_(ptltool.findCacheEntriesByUser(user) != [])
