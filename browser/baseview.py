@@ -55,39 +55,16 @@ class BaseView(AqSafeBrowserView):
         """To subclass, for preparations that need to be done after __init__.
 
         For instance, __init__ occurs during traversal, but the authenticated
-        user is resolved after traversing is done."""
+        user is resolved after traversing is done.
+        This is usually called from CPSPortlet.render()
+        """
         self.prepared = True
 
-    def __call__(self, *args, **kwargs):
-        """Intercept the ZPT renderings to call prepare().
-
-        This is necessary if the portlet does the whole response, as opposed to
-        the case where the portlet is rendered as part of a page.
-        All portlets are supposed to be renderable independently, at least for
-        ESI support.
-
-        We're subclassing Five.browser.metaconfigure.ViewMixinForTemplate, here
-        used as metaclass base (as the current class) for instantiation of
-        self.
-
-        TODO: maybe insulate that kind of trick from Five specifics
-        by putting a generic base class in CPSonFive.browser.
-        Note that Five's naming is fortunately the same as the one from
-        zope.app.pagetemplate.simpleviewclass
-        It's also probably a better idea to understand the use of (standard
-        python new-style) metaclass in Zope 3 before Five's adaptation for
-        old-style classes.
-        """
-        self.prepare()
-        if self.whole_response:
-            self.responseHeaders()
-        return self.index(self,  *args, **kwargs) # self.index is the ZPT
-
     def responseHeaders(self):
-        """Set the headers in case the view does the whole rendering.
+        """Return the headers for the case the view does the whole rendering.
 
         Suitable default for rendering as an HTML fragment (ESI, AJAX...)"""
-        self.request.RESPONSE.setHeader('Content-Type', 'text/html')
+        return {'Content-Type': 'text/html'}
 
     def context_obj(self):
         return self.datamodel.getContext()

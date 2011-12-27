@@ -53,8 +53,10 @@ class TestRAMCache(CPSTestCase.CPSTestCase):
         self.ptltool.updateCacheParameters({'Dummy Portlet': []})
         kw = self.default_kw
         cache_index, data = portlet.getCacheIndex(**kw)
-        expected_index = ()
+        expected_index = ('',)
         self.assertEquals(cache_index, expected_index)
+        cache_index, data = portlet.getCacheIndex(view_name='custom', **kw)
+        expected_index = ('custom',)
 
     def test_getCacheIndex_no_cache(self):
         portlet = self.portlet
@@ -78,7 +80,7 @@ class TestRAMCache(CPSTestCase.CPSTestCase):
         portlet.dummy = ''
         kw = self.default_kw
         cache_index, data = portlet.getCacheIndex(**kw)
-        expected_index = ()
+        expected_index = ('',)
         self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_request(self):
@@ -88,7 +90,7 @@ class TestRAMCache(CPSTestCase.CPSTestCase):
         self.portal.REQUEST['DUMMY'] = 'dummy'
         self.ptltool.updateCacheParameters({'Dummy Portlet': ['request:DUMMY']})
         cache_index, data = portlet.getCacheIndex(**kw)
-        expected_index = ('request__DUMMY:dummy',)
+        expected_index = ('request__DUMMY:dummy', '')
         self.assertEquals(cache_index, expected_index)
         # several options
         self.portal.REQUEST['DUMMY1'] = 'dummy1'
@@ -96,7 +98,7 @@ class TestRAMCache(CPSTestCase.CPSTestCase):
         self.ptltool.updateCacheParameters({'Dummy Portlet':
             ['request:DUMMY1,DUMMY2']})
         cache_index, data = portlet.getCacheIndex(**kw)
-        expected_index = ('request__DUMMY1:dummy1_DUMMY2:dummy2',)
+        expected_index = ('request__DUMMY1:dummy1_DUMMY2:dummy2', '')
         self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_user(self):
@@ -104,7 +106,7 @@ class TestRAMCache(CPSTestCase.CPSTestCase):
         self.ptltool.updateCacheParameters({'Dummy Portlet': ['user']})
         kw = self.default_kw
         cache_index, data = portlet.getCacheIndex(**kw)
-        expected_index = ('user_%s' % self.login_id,)
+        expected_index = ('user_%s' % self.login_id, '')
         self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_server_url(self):
@@ -113,17 +115,17 @@ class TestRAMCache(CPSTestCase.CPSTestCase):
         kw = self.default_kw
         #
         self.portal.REQUEST['SERVER_URL'] = 'http://some.site.org/'
-        expected_index = ('server_url_http://some.site.org/',)
+        expected_index = ('server_url_http://some.site.org/', '')
         cache_index, data = portlet.getCacheIndex(**kw)
         self.assertEquals(cache_index, expected_index)
         #
         self.portal.REQUEST['SERVER_URL'] = 'https://some.secure.site.org/'
-        expected_index = ('server_url_https://some.secure.site.org/',)
+        expected_index = ('server_url_https://some.secure.site.org/', '')
         cache_index, data = portlet.getCacheIndex(**kw)
         self.assertEquals(cache_index, expected_index)
         #
         self.portal.REQUEST['SERVER_URL'] = ''
-        expected_index = ()
+        expected_index = ('',)
         cache_index, data = portlet.getCacheIndex(**kw)
         self.assertEquals(cache_index, expected_index)
 
@@ -133,17 +135,17 @@ class TestRAMCache(CPSTestCase.CPSTestCase):
         kw = self.default_kw
         #
         self.portal.REQUEST['SERVER_URL'] = 'http://some.site.org/'
-        expected_index = ('protocol_http',)
+        expected_index = ('protocol_http', '')
         cache_index, data = portlet.getCacheIndex(**kw)
         self.assertEquals(cache_index, expected_index)
         #
         self.portal.REQUEST['SERVER_URL'] = 'https://some.secure.site.org/'
-        expected_index = ('protocol_https',)
+        expected_index = ('protocol_https', '')
         cache_index, data = portlet.getCacheIndex(**kw)
         self.assertEquals(cache_index, expected_index)
         #
         self.portal.REQUEST['SERVER_URL'] = ''
-        expected_index = ()
+        expected_index = ('',)
         cache_index, data = portlet.getCacheIndex(**kw)
         self.assertEquals(cache_index, expected_index)
 
@@ -153,12 +155,12 @@ class TestRAMCache(CPSTestCase.CPSTestCase):
         kw = self.default_kw
         self.portal.REQUEST['cpsskins_language'] = 'en'
         cache_index, data = portlet.getCacheIndex(**kw)
-        expected_index = ('current_lang_en',)
+        expected_index = ('current_lang_en', '')
         self.assertEquals(cache_index, expected_index)
         # dummy language
         self.portal.REQUEST['cpsskins_language'] = 'dummy'
         cache_index, data = portlet.getCacheIndex(**kw)
-        expected_index = ('current_lang_dummy',)
+        expected_index = ('current_lang_dummy', '')
         self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_portal_type(self):
@@ -166,7 +168,7 @@ class TestRAMCache(CPSTestCase.CPSTestCase):
         self.ptltool.updateCacheParameters({'Dummy Portlet': ['portal_type']})
         kw = self.default_kw
         cache_index, data = portlet.getCacheIndex(**kw)
-        expected_index = ('portal_type_CPSPortlets Test Folder',)
+        expected_index = ('portal_type_CPSPortlets Test Folder', '')
         self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_object_path(self):
@@ -174,7 +176,7 @@ class TestRAMCache(CPSTestCase.CPSTestCase):
         self.ptltool.updateCacheParameters({'Dummy Portlet': ['object:path']})
         kw = self.default_kw
         cache_index, data = portlet.getCacheIndex(**kw)
-        expected_index = ('object__path:/portal/cpsportlets_test_folder',)
+        expected_index = ('object__path:/portal/cpsportlets_test_folder', '')
         self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_object_published_path(self):
@@ -184,7 +186,7 @@ class TestRAMCache(CPSTestCase.CPSTestCase):
         kw = self.default_kw
         self.portal.REQUEST['PATH_TRANSLATED'] = '/dummy_path'
         cache_index, data = portlet.getCacheIndex(**kw)
-        expected_index = ('object__published_path:/dummy_path',)
+        expected_index = ('object__published_path:/dummy_path', '')
         self.assertEquals(cache_index, expected_index)
 
     def test_getCacheIndex_random(self):
@@ -193,7 +195,7 @@ class TestRAMCache(CPSTestCase.CPSTestCase):
         kw = self.default_kw
         cache_index, data = portlet.getCacheIndex(**kw)
         randint = data['random_int']
-        expected_index = ('random_%s' % str(randint),)
+        expected_index = ('random_%s' % str(randint), '')
         self.assertEquals(cache_index, expected_index)
         self.assert_(randint < 5)
 

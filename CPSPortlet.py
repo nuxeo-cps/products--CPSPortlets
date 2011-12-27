@@ -496,6 +496,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             if index_string:
                 index += (prefix + '_' + index_string,)
 
+        index += (kw.get('view_name', ''),)
         return index, data
 
     def getBrowserView(self, context_obj, request, render_kwargs=None,
@@ -529,9 +530,24 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
     security.declarePublic('render')
     def render(self, REQUEST=None, layout_mode='view', **kw):
-        """In view mode, lookup a Z3 view, default to CPSDocument machinery
+        """Place holder to keep tests happy.
+
+        This could be removed if tests called the now proper render_headers()
+        for the main rendering, and render() would become the CPSDocument
+        method again (TODO)
+        """
+        if layout_mode == 'view':
+            return self.render_headers(REQUEST, **kw)[0]
+        return super(CPSPortlet, self).render(REQUEST=REQUEST,
+                                              layout_mode=layout_mode, **kw)
+
+    security.declarePublic('render_headers')
+    def render_headers(self, request, layout_mode='view',
+                       view_name='', view=None, whole_response=False, **kw):
+        """Render and set headers through a Z3 view or CPSDocument machinery
 
         The view name is read in the 'render_view_name' field.
+        Return rendered, headers
         """
 
         if 'portlet' not in kw:
@@ -539,22 +555,31 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             kw['portlet'] = self
         self.registerRequireJavaScript()
 
-        def cpsdoc_render():
-            return super(CPSPortlet, self).render(layout_mode=layout_mode,
-                                                  REQUEST=REQUEST,
-                                                  **kw)
-        if layout_mode != 'view':
-            cpsdoc_render()
-
         context_obj = kw.get('context_obj')
         if context_obj is None:
-            context_obj = request_context_obj(self, REQUEST)
+            context_obj = request_context_obj(self, request)
             kw['context_obj'] = context_obj
 
-        view = self.getBrowserView(context_obj, REQUEST, render_kwargs=kw)
+        if view is None:
+            view = self.getBrowserView(context_obj, request,
+                                       view_name=view_name, render_kwargs=kw)
+
         if view is not None:
-            return view()
-        return cpsdoc_render()
+            if whole_response:
+                view.whole_response = True
+            view.prepare()
+            headers = None
+            if whole_response:
+                headers = view.responseHeaders()
+                response = request.RESPONSE
+                for name, value in headers.items():
+                    response.setHeader(name, value)
+            return view(), headers # TODO method views ?
+
+        # defaulting to CPSDocument machinery
+        return super(CPSPortlet, self).render(
+            layout_mode='view', REQUEST=request, **kw), None
+
 
     security.declarePublic('render_cache')
     def render_cache(self, REQUEST=None, **kw):
@@ -569,8 +594,12 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             ptltool = getToolByName(self, 'portal_cpsportlets')
             if ptltool.render_cache_disabled:
                 cache_index = None
+
+        if REQUEST is None:
+            REQUEST = self.REQUEST
+
         if cache_index is None:
-            return self.render(REQUEST=REQUEST, **kw)
+            return self.render_headers(REQUEST, **kw)[0]
 
         portlet_path = self.getPhysicalPath()
         index = (portlet_path, ) + cache_index
@@ -583,10 +612,11 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         now = time.time()
         timeout = self.getCacheTimeout()
         client_cleanup_time = cache.getLastCleanup(id=portlet_path)
-        global_cleanup_time = self.getCacheCleanupDate()
+        global_cleanup_time = self.getCacheCleanupDate().value
 
         if (client_cleanup_time is None or
-            global_cleanup_time.value - client_cleanup_time > 0 or
+            global_cleanup_time is None or
+            global_cleanup_time > client_cleanup_time or
             (timeout > 0 and now > last_cleanup + timeout)):
             # This also sets client cleanup date
             cache.delEntries(portlet_path)
@@ -609,19 +639,23 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
                 break
 
         if cache_entry is not None:
+            headers = cache_entry['headers']
+            if headers is not None:
+                response = REQUEST.RESPONSE
+                for name, value in headers.items():
+                    response.setHeader(name, value)
             return cache_entry['rendered']
 
         # From now, this is a cache miss: render and set in cache
 
         logger.debug("Cache miss for portlet %s (type=%s)",
                      self, self.portal_type)
+        rendered, headers = self.render_headers(REQUEST, **kw)
 
-        rendered = html_slimmer(self.render(REQUEST=REQUEST, **kw))
+        # TODO provide Last-Modified and Expires if not already set
 
         # we'll associate to current user if the cache entry is user-dependent
         if 'user' in self.getCacheParams():
-            if REQUEST is None:
-                REQUEST = self.REQUEST
             user = str(REQUEST.get('AUTHENTICATED_USER', ''))
         else:
             user = ''
@@ -629,6 +663,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         cache.setEntry(index, {'rendered': rendered,
                                'user': user,
                                'date': now,
+                               'headers': headers,
                                'objects': self.getCacheObjects(**kw)
                               })
 
