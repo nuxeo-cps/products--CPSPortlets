@@ -21,6 +21,7 @@ from Products.CPSDefault.tests.CPSTestCase import CPSTestCase
 from Products.CPSPortlets.browser.navigation import HierarchicalSimpleView
 from Products.CPSPortlets.browser.navigation import lstartswith
 from Products.CPSPortlets.browser.navigation import tree_to_rpaths
+from Products.CPSCore.TreeCacheManager import get_treecache_manager
 
 def simplify_tree_list(tlist):
     """Convert a real life tree list to one more readable/debuggable."""
@@ -228,12 +229,52 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
         self.login('manager')
         self.portal.portal_workflow.invokeFactoryFor(
             self.portal.sections, 'Section', 'subs')
+        self.portal.portal_workflow.invokeFactoryFor(
+            self.portal.sections.subs, 'Section', 'subsubs')
+        self.portal.portal_trees['sections'].rebuild() # could get slow
 
     def test_getTree(self):
         view = self.view
         view.here_rpath = 'sections'
         tree = view.getTree()
         self.assertEquals(tree[0]['rpath'], 'sections')
+
+    def test_nodeSubTree(self):
+        view = self.view
+        view.here_rpath = 'sections'
+        tree = view.nodeSubTree(inclusive=True)
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='sections', children=[
+                        dict(rpath='sections/subs')])
+                ])
+
+        tree = view.nodeSubTree(inclusive=False)
+        self.assertEquals(tree[0]['rpath'], 'sections/subs')
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='sections/subs')])
+
+    def test_nodeSubTreeFromDeeper(self):
+        view = self.view
+        view.here_rpath = 'sections/subs'
+        tree = view.nodeSubTree(inclusive=True)
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='sections/subs', children=[
+                        dict(rpath='sections/subs/subsubs')])
+                ])
+
+        tree = view.nodeSubTree(inclusive=False)
+        self.assertEquals(tree_to_rpaths(tree),
+                          [dict(rpath='sections/subs/subsubs')])
+
+    def test_nodeSubTreeLevel2(self):
+        view = self.view
+        view.datamodel['subtree_depth'] = 2
+        view.here_rpath = 'sections'
+        tree = view.nodeSubTree(inclusive=False)
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='sections/subs', children=[
+                        dict(rpath='sections/subs/subsubs')])
+                ])
 
 def test_suite():
     return unittest.TestSuite((

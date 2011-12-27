@@ -52,7 +52,7 @@ def tree_to_rpaths(tree):
     return res
 
 class HierarchicalSimpleView(AqSafeBrowserView):
-    """This view provides a full tree, in a purely static way. No AJAX.
+    """This view provides a full static forest from top and node subtrees.
 
     This is a transitional way of rendering portlets by resolving a view
     against the portlet, while waiting for deep design decisions about the
@@ -183,6 +183,20 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         tlist = tree.getList(**tkw)
         return self.listToTree(tlist, unfold_to=self.here_rpath)
 
+    security.declarePublic('nodeSubTree')
+    def nodeSubTree(self, inclusive=False):
+        """Return a subtree from context_obj.
 
+        The depth is controlled by the 'subtree_depth' field.
+        """
+        tree = self.initTreeCache()
+        dm = self.datamodel
+        start = self.here_rpath
+        tlist = tree.getList(prefix=start)
+        depth = dm.get('subtree_depth', 1) # default value for BBB
+        forest = self.listToTree(tlist, unfold_to=start, unfold_level=depth)
+        if not inclusive:
+            forest = forest[0]['children']
+        return forest
 
 InitializeClass(HierarchicalSimpleView)
