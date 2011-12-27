@@ -560,6 +560,9 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         if view is not None:
             if whole_response:
                 view.whole_response = True
+            view.prepare()
+            if whole_response:
+                view.responseHeaders()
             return view() # TODO method views ?
 
         return cpsdoc_render()
