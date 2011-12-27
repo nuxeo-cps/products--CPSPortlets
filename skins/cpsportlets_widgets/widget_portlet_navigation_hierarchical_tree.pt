@@ -7,7 +7,7 @@
                    dummy python: view.setOptions(options);">
 
  <tal:block
-     define="show_icons python:False;
+     define="show_icons ds/show_icons;
              show_icons python: bool(show_icons);
              display_description ds/display_description;
              folderItems view/getTree;
@@ -21,8 +21,8 @@
      <li tal:attributes="class item/auto_classes|nothing">
       <a tal:omit-tag="python:not item['visible']"
          tal:attributes="href item/url|nothing; class linkclass">
-       <tal:block condition="show_icons"
-                  content="structure item/icon_tag" />
+       <img tal:condition="show_icons"
+	    tal:attributes="src python:view.iconUri(item)"/>
        <tal:block content="item/title" />
        <span class="itemDescription"
              tal:define="description item/description"

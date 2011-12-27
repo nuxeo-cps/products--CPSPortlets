@@ -73,6 +73,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
 
     def __init__(self, context, request):
         AqSafeBrowserView.__init__(self, context, request)
+        self.icon_uris = {} # cache portal_type -> icon URI
         self.url_tool = getToolByName(context, 'portal_url')
 
     security.declarePublic('setOptions')
@@ -191,7 +192,8 @@ class HierarchicalSimpleView(AqSafeBrowserView):
     def makeChildEntry(self, container, oid, obj, container_rpath):
         return dict(title=obj.title_or_id(),
                     description='',
-                    visible=True, # check done before-hand
+                    visible=True, # check done before-hand,
+                    portal_type=obj.portal_type,
                     url='%s%s/%s' % (self.url_tool.getBaseUrl(),
                                      container_rpath, oid))
 
@@ -256,5 +258,17 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         if dm.get('with_docs'):
             self.addDocs(self.under(forest, self.here_rpath))
         return forest
+
+    security.declarePublic('iconUri')
+    def iconUri(self, item):
+        """Return URI of icon for item's portal_type."""
+        ptype = item['portal_type']
+        uri = self.icon_uris.get(ptype)
+        if uri is not None:
+            return uri
+        icon = getToolByName(self.context, 'portal_types')[ptype].getIcon()
+        self.icon_uris[ptype] = uri = self.url_tool.getBaseUrl() + icon
+        return uri
+
 
 InitializeClass(HierarchicalSimpleView)
