@@ -52,9 +52,8 @@ class BaseExportView(BaseView):
 
     def responseHeaders(self):
         """Last-Modified is typically to be set for exports only."""
-        response = self.request.RESPONSE
-        response.setHeader('Content-Type', self.contentType())
-        response.setHeader('Last-Modified', self.lastModified().rfc822())
+        return {'Content-Type': self.contentType(),
+                'Last-Modified': self.lastModified().rfc822()}
 
     def lastModified(self):
         lmd = self.datamodel['ModificationDate']

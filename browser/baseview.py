@@ -61,10 +61,10 @@ class BaseView(AqSafeBrowserView):
         self.prepared = True
 
     def responseHeaders(self):
-        """Set the headers in case the view does the whole rendering.
+        """Return the headers for the case the view does the whole rendering.
 
         Suitable default for rendering as an HTML fragment (ESI, AJAX...)"""
-        self.request.RESPONSE.setHeader('Content-Type', 'text/html')
+        return {'Content-Type': 'text/html'}
 
     def context_obj(self):
         return self.datamodel.getContext()
