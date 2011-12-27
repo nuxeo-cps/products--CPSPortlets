@@ -585,10 +585,11 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         now = time.time()
         timeout = self.getCacheTimeout()
         client_cleanup_time = cache.getLastCleanup(id=portlet_path)
-        global_cleanup_time = self.getCacheCleanupDate()
+        global_cleanup_time = self.getCacheCleanupDate().value
 
         if (client_cleanup_time is None or
-            global_cleanup_time.value - client_cleanup_time > 0 or
+            global_cleanup_time is None or
+            global_cleanup_time.value > client_cleanup_time or
             (timeout > 0 and now > last_cleanup + timeout)):
             # This also sets client cleanup date
             cache.delEntries(portlet_path)
