@@ -57,12 +57,20 @@ def request_context_obj(portlet, request):
     return context_obj
 
 class CacheRenderer(object):
-    """An object to return from traversal to trigger cache-aware rendering."""
+    """An object to return from traversal to trigger cache-aware rendering.
 
-    def __init__(self, portlet, request, context=None, view_name=''):
+    Can either keep a reference to an already looked up view or just its name,
+    to avoid double lookups downstream.
+    """
+
+    def __init__(self, portlet, request, context=None,
+                 view_name='', view=None):
+        """view_name is the *requested* view name, before actual resolution.
+        """
         self.portlet = portlet
         self.request = request
         self.view_name = view_name
+        self.view = view
         self.further_path = []
 
     def __getitem__(self, item):
@@ -74,7 +82,8 @@ class CacheRenderer(object):
         request = self.request
         portlet = self.portlet
         return portlet.render_cache(
-            REQUEST=request, view_name=self.view_name,
+            REQUEST=request, view_name=self.view_name, view=self.view,
+            whole_response=True,
             context_obj=request_context_obj(portlet, request))
 
 class PortletTraverser(object):
@@ -127,17 +136,20 @@ class PortletTraverser(object):
                 return FileDownloader(portlet, portlet).__of__(portlet)
             elif name == KEYWORD_SIZED_IMAGE:
                 return ImageDownloader(portlet, portlet).__of__(portlet)
-        # view lookup attempt either directly or after keyword for view
-        # keyword is better, as we are sure that this is a view-based
-        # rendering (and not an acquired method such has cpsportlet_edit_form),
-        # hence we can safely go for cache
+
+
         if getattr(request, REQUEST_TRAVERSAL_FINISHED, False):
+            # we are 100% sure that this is a view-based rendering.
+            # Transmit to cache system, it'll either render without a lookup
+            # or call the non-cached rendering (does the lookup)
             return CacheRenderer(portlet, request, view_name=name)
 
+        # view lookup attempt
         view = portlet.getBrowserView(request_context_obj(portlet, request),
                                       request, {}, view_name=name)
+
         if view is not None:
-            view.whole_response = True
-            return view
+            # this is afterall a view. CacheRenderer can use it
+            return CacheRenderer(portlet, request, view=view)
 
         return getattr(portlet, name) # default to acquisition
