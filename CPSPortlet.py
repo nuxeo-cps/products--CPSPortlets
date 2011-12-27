@@ -98,6 +98,26 @@ REQUEST_TRAVERSAL_FINISHED = '_portlet_traversal_finished'
 KEYWORD_CONTEXT_OBJ_TRAVERSAL = '.context'
 KEYWORD_VIEW_TRAVERSAL = '.view'
 
+def parent(obj):
+    """For readability."""
+    return aq_parent(aq_inner(obj))
+
+def request_context_obj(portlet, request):
+    """Use request to traverse to context_obj from portlet's definition folder.
+    """
+    definition_folder = parent(parent(portlet))
+    req_trav = getattr(request, REQUEST_TRAVERSAL_KEY, None)
+    if req_trav is None:
+        return definition_folder
+    rpath = '/'.join(req_trav)
+    try:
+        context_obj = definition_folder.restrictedTraverse(rpath)
+    except (KeyError, AttributeError):
+        raise NotFound('/'.join((
+                    definition_folder.absolute_url_path() + rpath)))
+
+    return context_obj
+
 
 class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
     """ CPS Portlet
@@ -535,6 +555,17 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
                 index += (prefix + '_' + index_string,)
 
         return index, data
+
+    security.declarePublic('render')
+    def render(self, REQUEST=None, context_obj=None, **kw):
+        """Lookup context_obj (deferred traversal) and relay to CPSDocument.
+        """
+        if REQUEST is None:
+            REQUEST = self.REQUEST
+        if context_obj is None:
+            context_obj=request_context_obj(self, REQUEST)
+        return CPSDocument.render(self, REQUEST=REQUEST,
+                                  context_obj=context_obj, **kw)
 
     security.declarePublic('render_cache')
     def render_cache(self, REQUEST=None, **kw):
