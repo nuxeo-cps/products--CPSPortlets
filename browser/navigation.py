@@ -47,7 +47,7 @@ def tree_to_rpaths(tree):
     res = []
     for item in tree:
         produced = {}
-        if item['children']:
+        if item.get('children', ()):
             produced['children'] = tree_to_rpaths(item['children'])
         produced['rpath'] = item['rpath']
 
@@ -119,8 +119,8 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         from_top = []
         prev_rpath = ()
         for item in tlist:
+            terminal = False
             item_rpath = item['rpath'].split('/')
-
             # a rise in rpath means we have to climb up
             while from_top and not lstartswith(
                 item_rpath, from_top[-1]['rpath'].split('/')):
@@ -137,8 +137,13 @@ class HierarchicalSimpleView(AqSafeBrowserView):
                     f_rpath = prev_rpath
                 if not lstartswith(here_rpath, f_rpath):
                     continue
+                if len(here_rpath) - len(f_rpath) == unfold_level - 1:
+                    terminal = True
                 if prev_rpath:
                     from_top.append(produced)
+            else:
+                # sibling of previous one is terminal if prev is
+                terminal = produced.get('terminal', False)
 
             if from_top:
                 parent = from_top[-1]
@@ -150,6 +155,8 @@ class HierarchicalSimpleView(AqSafeBrowserView):
                 append_to = res_tree
 
             produced = item.copy()
+            if terminal:
+                produced['terminal'] = True
             append_to.append(produced)
             produced['children'] = []
 
@@ -176,7 +183,8 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         return tree
 
     def under(self, forest, rpath):
-        """Return the subtree of forest that's under given rpath, inclusive."""
+        """Return the subtree of forest that's under given rpath, inclusive.
+        """
         rpath = rpath.split('/')
         while True:
             for child in forest:
@@ -190,21 +198,26 @@ class HierarchicalSimpleView(AqSafeBrowserView):
                 raise LookupError(rpath)
 
     def makeChildEntry(self, container, oid, obj, container_rpath):
+        rpath = '/'.join((container_rpath, oid))
         return dict(title=obj.title_or_id(),
                     description='',
                     visible=True, # check done before-hand,
                     portal_type=obj.portal_type,
-                    url='%s%s/%s' % (self.url_tool.getBaseUrl(),
-                                     container_rpath, oid))
+                    rpath=rpath,
+                    url=self.url_tool.getBaseUrl() + rpath)
 
     def addDocs(self, tree, container=None):
         """Add ordinary documents (not from TreeCache) to the given tree.
 
-        We'll actually check for all proxy types and exclude those from
+        We'll actually check for all proxies and exclude those from
         TreeCache because:
           + it is assumed that there are usually more documents that folders
           + some folders may not be in the cache
+
+        Nodes that are marked as terminal don't get any documents.
         """
+        if tree.get('terminal', False):
+            return
         rpath = tree['rpath']
         if container is None:
             portal = self.url_tool.getPortalObject()
@@ -255,7 +268,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         forest = self.listToTree(tlist, unfold_to=start, unfold_level=depth)
         if not inclusive:
             forest = forest[0]['children']
-        if dm.get('with_docs'):
+        if dm.get('show_docs'):
             self.addDocs(self.under(forest, self.here_rpath))
         return forest
 

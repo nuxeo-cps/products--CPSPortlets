@@ -263,14 +263,39 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
         view.datamodel['show_docs'] = True
         view.here_rpath = 'workspaces/subw'
         tree = view.getTree()
-        self.assertEquals(tree_to_rpaths(tree),
+        self.assertEquals(tree_to_rpaths(tree), [
                 dict(rpath='workspaces', children=[
                         dict(rpath='workspaces/subw', children=[
-                            dict(rpath='workspaces/subw/doc'),
-                            dict(rpath='workspaces/subw/subsubw'),
-                            ])
-                        ]))
+                                dict(rpath='workspaces/subw/subsubw'),
+                                dict(rpath='workspaces/subw/doc'),
+                                ])
+                        ])
+                ])
 
+    def test_getTreeWithDocs_terminal(self):
+        # we check that docs are not added to terminal nodes,
+        # ie those that are at maximal depth of unfolding under here_rpath
+        # test is actually about the second terminal node under subw :
+        # it should not display its document
+        wftool = getToolByName(self.portal, 'portal_workflow')
+        subw = self.portal.workspaces.subw
+        wftool.invokeFactoryFor(subw, 'Workspace', 'subsubw2')
+        wftool.invokeFactoryFor(subw.subsubw2, 'File', 'doc2')
+        self.portal.portal_trees['workspaces'].rebuild() # could get slow
+
+        view = self.view
+        view.datamodel['show_docs'] = True
+        view.here_rpath = 'workspaces/subw'
+        tree = view.getTree()
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='workspaces', children=[
+                        dict(rpath='workspaces/subw', children=[
+                                dict(rpath='workspaces/subw/subsubw'),
+                                dict(rpath='workspaces/subw/subsubw2'),
+                                dict(rpath='workspaces/subw/doc'),
+                                ])
+                        ])
+                ])
     def test_getTreeWithDocs2(self):
         view = self.view
         view.datamodel['show_docs'] = True
@@ -322,7 +347,7 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
                         dict(rpath='workspaces/subw/subsubw')])
                 ])
 
-    def test_getTreeWithDocs(self):
+    def test_nodeSubTreeWithDocs(self):
         view = self.view
         view.datamodel['subtree_depth'] = 2
         view.here_rpath = 'workspaces'
