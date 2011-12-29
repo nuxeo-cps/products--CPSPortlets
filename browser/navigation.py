@@ -299,8 +299,9 @@ class DynaTreeNavigation(HierarchicalSimpleView):
             is_folder = tree.get('from_treecache') or tree('is_folder'),
             res.append(
                 dict(title=tree['title'],
-                is_folder=is_fodler,
-                children=self.nodeExtract(tree['children'])
+                     is_folder=is_fodler,
+                     children=self.nodeExtract(tree['children'])
+                     )
                 )
 
     def nodeUnfold(self):
