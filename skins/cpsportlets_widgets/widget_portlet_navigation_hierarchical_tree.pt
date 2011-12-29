@@ -7,22 +7,24 @@
                    dummy python: view.setOptions(options);">
 
  <tal:block
-     define="show_icons python:False;
+     define="show_icons ds/show_icons;
              show_icons python: bool(show_icons);
              display_description ds/display_description;
              folderItems view/getTree;
              linkclass python: show_icons and 'noicon' or None;
+             tree_start python: True;
              ">
 
   <metal:block define-macro="recurse">
-   <ul tal:condition="folderItems">
+   <ul tal:condition="folderItems"
+       tal:attributes="class python:tree_start and 'hierarchicalTreeStart' or 'hierarchicalTree'">
 
     <tal:block repeat="item folderItems">
      <li tal:attributes="class item/auto_classes|nothing">
       <a tal:omit-tag="python:not item['visible']"
          tal:attributes="href item/url|nothing; class linkclass">
-       <tal:block condition="show_icons"
-                  content="structure item/icon_tag" />
+       <img tal:condition="show_icons"
+	    tal:attributes="src python:view.iconUri(item)"/>
        <tal:block content="item/title" />
        <span class="itemDescription"
              tal:define="description item/description"
@@ -30,7 +32,8 @@
              tal:content="description" />
       </a>
       <tal:block condition="item/children|nothing"
-                 define="folderItems item/children|nothing">
+                 define="folderItems item/children|nothing;
+                         tree_start python:False">
        <ul metal:use-macro="template/macros/recurse" />
       </tal:block>
      </li>

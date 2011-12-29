@@ -18,6 +18,9 @@
 import logging
 
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.utils import _checkPermission
+from Products.CMFCore.permissions import View
+from Products.CPSCore.ProxyBase import ALL_PROXY_META_TYPES
 from baseview import BaseView
 
 logger = logging.getLogger(__name__)
@@ -30,6 +33,22 @@ def lstartswith(l1, l2):
         if x != y:
             return False
     return True
+
+def tree_to_rpaths(tree):
+    """Keep only the rpaths in a tree.
+
+    This utility function is useful in tests and potentially for application
+    code.
+    """
+    res = []
+    for item in tree:
+        produced = {}
+        if item.get('children', ()):
+            produced['children'] = tree_to_rpaths(item['children'])
+        produced['rpath'] = item['rpath']
+
+        res.append(produced)
+    return res
 
 class HierarchicalSimpleView(BaseView):
     """This view provides a full tree, in a purely static way. No AJAX.
@@ -49,17 +68,34 @@ class HierarchicalSimpleView(BaseView):
     def __init__(self, datamodel, request):
         BaseView.__init__(self, datamodel, request)
         self.here_rpath = self.url_tool().getRpath(self.context)
+        self.icon_uris = {} # cache portal_type -> icon URI
 
-    def listToTree(self, tlist):
-        """Transform TreeCache.getList() output into a proper tree.
+    def listToTree(self, tlist, unfold_to=None, unfold_level=1):
+        """Transform TreeCache.getList() output into a proper tree (forest)
 
         Yes, this far too complicated, but one should NEVER represent
         a tree as a list, except at outermost level of the system.
+
+        The unfold_to argument is used for cases where the forest is to be
+        shown from its root with the path to some location fully displayed,
+        including siblings of intermediate nodes. In case the location is a
+        folder, its children are also displayed, up to unfold_level.
+        With unfold_level=1, and unfold_to the current folder,
+        this is the classical need of sidebar navigation portlets.
+
+        With unfold_to coinciding with the beginning of the extracted tree and
+        arbitrary unfold_level, this produces a proper subtree, suitable for
+        dynamical unfolding (e.g, AJAX portlets).
         """
 
-        here_rpath = self.here_rpath.split('/')
         utool = self.url_tool()
         portal_path = utool.getPortalObject().absolute_url_path()
+
+        if unfold_to is None: # BBB
+            here_rpath = self.here_rpath.split('/')
+        else:
+            here_rpath = unfold_to.split('/')
+
         if portal_path == '/':
             portal_path = ''
 
@@ -67,8 +103,8 @@ class HierarchicalSimpleView(BaseView):
         from_top = []
         prev_rpath = ()
         for item in tlist:
+            terminal = False
             item_rpath = item['rpath'].split('/')
-
             # a rise in rpath means we have to climb up
             while from_top and not lstartswith(
                 item_rpath, from_top[-1]['rpath'].split('/')):
@@ -77,10 +113,21 @@ class HierarchicalSimpleView(BaseView):
             if lstartswith(item_rpath, prev_rpath):
                 # deeper that previous one => prev_rpath is the apparent parent
                 # keep only those whose apparent parent is an ancestor of here
-                if not lstartswith(here_rpath, prev_rpath):
+                # at level unfold_level (meaning that we climb up more level in
+                # parents to do the checking)
+                if unfold_level > 1:
+                    f_rpath = prev_rpath[:1 - unfold_level]
+                else:
+                    f_rpath = prev_rpath
+                if not lstartswith(here_rpath, f_rpath):
                     continue
+                if len(here_rpath) - len(f_rpath) == unfold_level - 1:
+                    terminal = True
                 if prev_rpath:
                     from_top.append(produced)
+            else:
+                # sibling of previous one is terminal if prev is
+                terminal = produced.get('terminal', False)
 
             if from_top:
                 parent = from_top[-1]
@@ -92,6 +139,8 @@ class HierarchicalSimpleView(BaseView):
                 append_to = res_tree
 
             produced = item.copy()
+            if terminal:
+                produced['terminal'] = True
             append_to.append(produced)
             produced['children'] = []
 
@@ -106,17 +155,76 @@ class HierarchicalSimpleView(BaseView):
 
         return res_tree
 
-    def getTree(self):
-        """Return the tree according to options and context. """
-        dm = self.datamodel
+    def initTreeCache(self):
         ttool = getToolByName(self.context, 'portal_trees')
-        trees = [ttool[tid] for tid in dm['root_uids']]
+        trees = [ttool[tid] for tid in self.datamodel['root_uids']]
         if len(trees) > 1:
             logger.error("%r does not support multiple trees yet",
                          self.__class___)
             raise NotImplementedError
         tree = trees[0]
         self.aqSafeSet('tree_cache', tree)
+        return tree
+
+    def under(self, forest, rpath):
+        """Return the subtree of forest that's under given rpath, inclusive.
+        """
+        rpath = rpath.split('/')
+        while True:
+            for child in forest:
+                child_rpath = child['rpath'].split('/')
+                if lstartswith(child_rpath, rpath): # found
+                    return child
+                if lstartswith(rpath, child_rpath):
+                    forest = child.get('children', ()) # go down
+                    break
+            else:
+                raise LookupError(rpath)
+
+    def makeChildEntry(self, container, oid, obj, container_rpath):
+        rpath = '/'.join((container_rpath, oid))
+        return dict(title=obj.title_or_id(),
+                    description='',
+                    visible=True, # check done before-hand,
+                    portal_type=obj.portal_type,
+                    rpath=rpath,
+                    url=self.url_tool().getBaseUrl() + rpath)
+
+    def addDocs(self, tree, container=None):
+        """Add ordinary documents (not from TreeCache) to the given tree.
+
+        We'll actually check for all proxies and exclude those from
+        TreeCache because:
+          + it is assumed that there are usually more documents that folders
+          + some folders may not be in the cache
+
+        Nodes that are marked as terminal don't get any documents.
+        """
+        if tree.get('terminal', False):
+            return
+        rpath = tree['rpath']
+        if container is None:
+            portal = self.url_tool().getPortalObject()
+            container = portal.restrictedTraverse(tree['rpath'])
+        children = tree['children']
+
+        # recurse and remember what was already there in the tree to avoid
+        # duplicates
+        already = set()
+        for child in children:
+            child_id = child['id']
+            self.addDocs(child, container=container[child_id])
+            already.add(child_id)
+
+        children.extend(
+            self.makeChildEntry(container, oid, obj, rpath)
+            for oid, obj in container.objectItems(ALL_PROXY_META_TYPES)
+            if oid not in already and _checkPermission(View, obj))
+
+    def getTree(self):
+        """Return the whole tree according to options and context. """
+        tree = self.initTreeCache()
+        dm = self.datamodel
 
         tkw = dict(start_depth=dm['start_depth'])
         end_depth = dm['end_depth']
@@ -124,5 +232,35 @@ class HierarchicalSimpleView(BaseView):
             tkw[end_depth] = end_depth
 
         tlist = tree.getList(**tkw)
-        return self.listToTree(tlist)
+        forest = self.listToTree(tlist, unfold_to=self.here_rpath)
+        if dm.get('show_docs', False):
+            self.addDocs(self.under(forest, self.here_rpath))
+        return forest
+
+    def nodeSubTree(self, inclusive=False):
+        """Return a subtree from context_obj.
+
+        The depth is controlled by the 'subtree_depth' field.
+        """
+        tree = self.initTreeCache()
+        dm = self.datamodel
+        start = self.here_rpath
+        tlist = tree.getList(prefix=start)
+        depth = dm.get('subtree_depth', 1) # default value for BBB
+        forest = self.listToTree(tlist, unfold_to=start, unfold_level=depth)
+        if not inclusive:
+            forest = forest[0]['children']
+        if dm.get('show_docs'):
+            self.addDocs(self.under(forest, self.here_rpath))
+        return forest
+
+    def iconUri(self, item):
+        """Return URI of icon for item's portal_type."""
+        ptype = item['portal_type']
+        uri = self.icon_uris.get(ptype)
+        if uri is not None:
+            return uri
+        icon = getToolByName(self.context, 'portal_types')[ptype].getIcon()
+        self.icon_uris[ptype] = uri = self.url_tool().getBaseUrl() + icon
+        return uri
 

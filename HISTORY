@@ -1,4 +1,58 @@
 ===========================================================
+Package: CPSPortlets 1.6.4-CPS-3.5
+===========================================================
+First release built by: gracinet at: 2011-12-26T12:56:19
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2506 (related): extracted a utility function from the navigation view tests
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
+Package: CPSPortlets 1.6.3-CPS-3.5
+===========================================================
+First release built by: gracinet at: 2011-12-19T15:40:24
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- In navigation view, separated tree cache lookup (for potential subclasses)
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
+Package: CPSPortlets 1.6.2-CPS-3.5
+===========================================================
+First release built by: gracinet at: 2011-11-23T19:44:32
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2351: Portlets' render cache invalidation broken after profiles import
+- #2482: cache invalidation/cleanup dates were potential sources of conflicts
+- #2481: ZEO-awareness of lookup cache was broken
+- #2479: new flags rendering style for Language Portlet
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.6.1-CPS-3.5
 ===========================================================
 First release built by: gracinet at: 2011-10-20T08:52:13
