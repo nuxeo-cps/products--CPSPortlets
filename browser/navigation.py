@@ -24,6 +24,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.permissions import View
 from Products.CPSCore.ProxyBase import ALL_PROXY_META_TYPES
+from Products.CPSUtil import minjson as json
 from Products.CPSonFive.browser import AqSafeBrowserView
 from Products.CPSSchemas.DataStructure import DataStructure
 
@@ -157,6 +158,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
             produced = item.copy()
             if terminal:
                 produced['terminal'] = True
+            produced['from_treecache'] = True
             append_to.append(produced)
             produced['children'] = []
 
@@ -200,6 +202,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
     def makeChildEntry(self, container, oid, obj, container_rpath):
         rpath = '/'.join((container_rpath, oid))
         return dict(title=obj.title_or_id(),
+                    is_folder=obj.meta_type in PROXY_FOLDERISH_META_TYPES,
                     description='',
                     visible=True, # check done before-hand,
                     portal_type=obj.portal_type,
@@ -283,5 +286,22 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         self.icon_uris[ptype] = uri = self.url_tool.getBaseUrl() + icon
         return uri
 
-
 InitializeClass(HierarchicalSimpleView)
+
+
+class DynaTreeNavigation(HierarchicalSimpleView):
+
+    def dynaExtract(self, forest):
+        """Return the forest structure under a node, ready for serialization.
+        """
+        res = []
+        for tree in forest:
+            is_folder = tree.get('from_treecache') or tree('is_folder'),
+            res.append(
+                dict(title=tree['title'],
+                is_folder=is_fodler,
+                children=self.nodeExtract(tree['children'])
+                )
+
+    def nodeUnfold(self):
+        return json.write(self.dynaExtract(self.nodeSubTree()))
