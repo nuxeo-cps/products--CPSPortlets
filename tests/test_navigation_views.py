@@ -20,9 +20,11 @@ from Products.CPSDefault.tests.CPSTestCase import CPSTestCase
 
 from Products.CMFCore.utils import getToolByName
 from Products.CPSPortlets.browser.navigation import HierarchicalSimpleView
+from Products.CPSPortlets.browser.navigation import JsonNavigation
+from Products.CPSPortlets.browser.navigation import DynaTreeNavigation
 from Products.CPSPortlets.browser.navigation import lstartswith
 from Products.CPSPortlets.browser.navigation import tree_to_rpaths
-from Products.CPSCore.TreeCacheManager import get_treecache_manager
+from Products.CPSPortlets.CPSPortlet import REQUEST_TRAVERSAL_KEY
 
 def simplify_tree_list(tlist):
     """Convert a real life tree list to one more readable/debuggable."""
@@ -234,14 +236,12 @@ class HierarchicalSimpleViewTest(unittest.TestCase):
                 {'rpath': 'a/b/co'}
                 ])
 
-class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
+class CommonFixture:
 
-    def afterSetUp(self):
-        # we'll feed the needed context/request if needed
-        self.request = self.app.REQUEST
-        view = self.view = HierarchicalSimpleView(self.portal, self.request)
-        view.datamodel = dict(start_depth=0, end_depth=0,
-                              root_uids=['workspaces'])
+    def setRequestContextObj(self, rpath):
+        self.request[REQUEST_TRAVERSAL_KEY] = rpath.split('/')
+
+    def createStructure(self):
         self.login('manager')
         wftool = getToolByName(self.portal, 'portal_workflow')
         ws = self.portal.workspaces
@@ -251,6 +251,25 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
         wftool.invokeFactoryFor(subw, 'File', 'doc')
         wftool.invokeFactoryFor(subw.subsubw, 'FAQ', 'faq')
         self.portal.portal_trees['workspaces'].rebuild() # could get slow
+
+    def createPortlet(self):
+        self.login('manager')
+        ptltool = getToolByName(self.portal, 'portal_cpsportlets')
+        ptl_id = ptltool.createPortlet('Navigation Portlet',
+                                       root_uids=('workspaces',), show_docs=1)
+        self.portlet = ptltool[ptl_id]
+
+
+class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
+
+    def afterSetUp(self):
+        # we'll feed the needed context/request if needed
+        self.request = self.app.REQUEST
+        view = self.view = HierarchicalSimpleView(self.portal, self.request)
+        view.datamodel = dict(start_depth=0, end_depth=0,
+                              root_uids=['workspaces'])
+        self.createStructure()
+
 
     def test_getTree(self):
         view = self.view
@@ -357,8 +376,65 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
                         dict(rpath='workspaces/subw/subsubw')])
                 ])
 
+def forest_extract_method(view):
+    """Extractor to test JsonNavigation base class, similar to tree_to_rpaths.
+    """
+    def extract(forest):
+        res = []
+        for tree in forest:
+            node = dict(rpath=tree['rpath'])
+            children = tree.get('children')
+            if children:
+                node['children'] = view.extract(tree['children'])
+            res.append(node)
+        return res
+    return extract
+
+class JsonNavigationIntegrationTest(CommonFixture, CPSTestCase):
+
+    def afterSetUp(self):
+        # we'll feed the needed context/request if needed
+        self.request = self.app.REQUEST
+        self.createPortlet()
+
+        view = self.view = JsonNavigation(self.portlet, self.request)
+        view.extract = forest_extract_method(view)
+        self.createStructure()
+
+    def setRequestContextObj(self, rpath):
+        self.request[REQUEST_TRAVERSAL_KEY] = rpath.split('/')
+
+    def testNodeUnfold(self):
+        self.setRequestContextObj('workspaces/subw')
+        self.assertEquals(self.view.nodeUnfold(),
+                          u'[{"rpath": "workspaces/subw/subsubw"}, '
+                          '{"rpath": "workspaces/subw/doc"}]')
+
+class DynaTreeNavigationIntegrationTest(CommonFixture, CPSTestCase):
+
+    def afterSetUp(self):
+        # we'll feed the needed context/request if needed
+        self.request = self.app.REQUEST
+        self.createPortlet()
+
+        view = self.view = DynaTreeNavigation(self.portlet, self.request)
+        self.createStructure()
+
+    def testNodeUnfold(self):
+        self.setRequestContextObj('workspaces/subw')
+        # format for dynatree to be precised anyway. Notably for async
+        # unfolding (subw has children, but is currently unfolded, that's
+        # why its children is empty list right now.
+        self.assertEquals(self.view.nodeUnfold(), u'['
+                          '{"children": [], "is_folder": true, "title": ""}, '
+                          '{"is_folder": false, "title": "doc"}]'
+                          )
+
+
 def test_suite():
     return unittest.TestSuite((
         unittest.makeSuite(HierarchicalSimpleViewTest),
         unittest.makeSuite(HierarchicalSimpleViewIntegrationTest),
+        unittest.makeSuite(JsonNavigationIntegrationTest),
+        unittest.makeSuite(DynaTreeNavigationIntegrationTest),
         ))

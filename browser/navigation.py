@@ -24,6 +24,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.permissions import View
 from Products.CPSCore.ProxyBase import ALL_PROXY_META_TYPES
+from Products.CPSCore.ProxyBase import PROXY_FOLDERISH_META_TYPES
 from Products.CPSUtil import minjson as json
 from Products.CPSonFive.browser import AqSafeBrowserView
 from Products.CPSSchemas.DataStructure import DataStructure
@@ -270,10 +271,10 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         tlist = tree.getList(prefix=start)
         depth = dm.get('subtree_depth', 1) # default value for BBB
         forest = self.listToTree(tlist, unfold_to=start, unfold_level=depth)
-        if not inclusive:
-            forest = forest[0]['children']
         if dm.get('show_docs'):
             self.addDocs(self.under(forest, self.here_rpath))
+        if not inclusive and forest:
+            forest = forest[0]['children']
         return forest
 
     security.declarePublic('iconUri')
@@ -288,6 +289,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         return uri
 
 InitializeClass(HierarchicalSimpleView)
+
 
 class JsonNavigation(HierarchicalSimpleView, BaseExport):
     """Subclass to present subtrees under context_obj node in Json."""
@@ -315,12 +317,10 @@ class DynaTreeNavigation(JsonNavigation):
         """
         res = []
         for tree in forest:
-            is_folder = tree.get('from_treecache') or tree('is_folder'),
-            res.append(
-                dict(title=tree['title'],
-                     is_folder=is_folder,
-                     children=self.dynaExtract(tree['children'])
-                     )
-                )
+            is_folder = tree.get('from_treecache') or tree.get('is_folder')
+            node = dict(title=tree['title'], is_folder=is_folder)
+            if is_folder:
+                node['children'] = self.extract(tree['children'])
+            res.append(node)
         return res
 
