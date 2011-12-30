@@ -27,6 +27,7 @@ from Products.CPSCore.ProxyBase import ALL_PROXY_META_TYPES
 from Products.CPSUtil import minjson as json
 from Products.CPSonFive.browser import AqSafeBrowserView
 from Products.CPSSchemas.DataStructure import DataStructure
+from exportviews import BaseExport
 
 logger = logging.getLogger(__name__)
 
@@ -288,21 +289,38 @@ class HierarchicalSimpleView(AqSafeBrowserView):
 
 InitializeClass(HierarchicalSimpleView)
 
+class JsonNavigation(HierarchicalSimpleView, BaseExport):
+    """Subclass to present subtrees under context_obj node in Json."""
 
-class DynaTreeNavigation(HierarchicalSimpleView):
+    def prepare(self):
+        if self.ready:
+            return
+        portlet = self.context.aq_inner
+        self.aqSafeSet('portlet', portlet)
+        self.datamodel = portlet.getDataModel(context=portlet)
+        self.here_rpath = self.url_tool.getRpath(self.getContextObj())
+        self.ready = True
 
-    def dynaExtract(self, forest):
-        """Return the forest structure under a node, ready for serialization.
+    def nodeUnfold(self):
+        """Return unfolded navigation in json"""
+        self.prepare()
+        self.request.RESPONSE.setHeader('Content-Type', 'application/json')
+        return json.write(self.extract(self.nodeSubTree()))
+
+
+class DynaTreeNavigation(JsonNavigation):
+
+    def extract(self, forest):
+        """Extract from forest in format expected by dynatree.
         """
         res = []
         for tree in forest:
             is_folder = tree.get('from_treecache') or tree('is_folder'),
             res.append(
                 dict(title=tree['title'],
-                     is_folder=is_fodler,
-                     children=self.nodeExtract(tree['children'])
+                     is_folder=is_folder,
+                     children=self.dynaExtract(tree['children'])
                      )
                 )
+        return res
 
-    def nodeUnfold(self):
-        return json.write(self.dynaExtract(self.nodeSubTree()))
