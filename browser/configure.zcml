@@ -70,6 +70,13 @@
     permission="zope.Public"
     class=".browser.exportviews.ContentPortletAtomExport"/>
 
+  <browser:page
+    for="Products.CPSPortlets.interfaces.ICPSPortlet"
+    attribute="nodeUnfold"
+    name="dynatree_unfold"
+    permission="zope.Public"
+    class=".browser.navigation.DynaTreeNavigation"/>
+
   <browser:resource
     file="treenodeview.js"
     name="treenodeview.js"/>

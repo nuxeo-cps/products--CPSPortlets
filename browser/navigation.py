@@ -24,8 +24,11 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.permissions import View
 from Products.CPSCore.ProxyBase import ALL_PROXY_META_TYPES
+from Products.CPSCore.ProxyBase import PROXY_FOLDERISH_META_TYPES
+from Products.CPSUtil import minjson as json
 from Products.CPSonFive.browser import AqSafeBrowserView
 from Products.CPSSchemas.DataStructure import DataStructure
+from exportviews import BaseExport
 
 logger = logging.getLogger(__name__)
 
@@ -157,6 +160,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
             produced = item.copy()
             if terminal:
                 produced['terminal'] = True
+            produced['from_treecache'] = True
             append_to.append(produced)
             produced['children'] = []
 
@@ -200,6 +204,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
     def makeChildEntry(self, container, oid, obj, container_rpath):
         rpath = '/'.join((container_rpath, oid))
         return dict(title=obj.title_or_id(),
+                    is_folder=obj.meta_type in PROXY_FOLDERISH_META_TYPES,
                     description='',
                     visible=True, # check done before-hand,
                     portal_type=obj.portal_type,
@@ -266,10 +271,10 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         tlist = tree.getList(prefix=start)
         depth = dm.get('subtree_depth', 1) # default value for BBB
         forest = self.listToTree(tlist, unfold_to=start, unfold_level=depth)
-        if not inclusive:
-            forest = forest[0]['children']
         if dm.get('show_docs'):
             self.addDocs(self.under(forest, self.here_rpath))
+        if not inclusive and forest:
+            forest = forest[0]['children']
         return forest
 
     security.declarePublic('iconUri')
@@ -283,5 +288,39 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         self.icon_uris[ptype] = uri = self.url_tool.getBaseUrl() + icon
         return uri
 
-
 InitializeClass(HierarchicalSimpleView)
+
+
+class JsonNavigation(HierarchicalSimpleView, BaseExport):
+    """Subclass to present subtrees under context_obj node in Json."""
+
+    def prepare(self):
+        if self.ready:
+            return
+        portlet = self.context.aq_inner
+        self.aqSafeSet('portlet', portlet)
+        self.datamodel = portlet.getDataModel(context=portlet)
+        self.here_rpath = self.url_tool.getRpath(self.getContextObj())
+        self.ready = True
+
+    def nodeUnfold(self):
+        """Return unfolded navigation in json"""
+        self.prepare()
+        self.request.RESPONSE.setHeader('Content-Type', 'application/json')
+        return json.write(self.extract(self.nodeSubTree()))
+
+
+class DynaTreeNavigation(JsonNavigation):
+
+    def extract(self, forest):
+        """Extract from forest in format expected by dynatree.
+        """
+        res = []
+        for tree in forest:
+            is_folder = tree.get('from_treecache') or tree.get('is_folder')
+            node = dict(title=tree['title'], is_folder=is_folder)
+            if is_folder:
+                node['children'] = self.extract(tree['children'])
+            res.append(node)
+        return res
+
