@@ -291,6 +291,7 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
                         ])
                 ])
 
+
     def test_getTreeWithDocs_terminal(self):
         # we check that docs are not added to terminal nodes,
         # ie those that are at maximal depth of unfolding under here_rpath
@@ -355,6 +356,14 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
         tree = view.nodeSubTree(inclusive=False)
         self.assertEquals(tree_to_rpaths(tree),
                           [dict(rpath='workspaces/subw/subsubw')])
+
+    def test_nodeSubTreeWithDocsEmpty(self):
+        # in this case we must not get a LookupError
+        view = self.view
+        view.datamodel['show_docs'] = True
+        view.here_rpath = 'workspaces/khhhuhu'
+        tree = view.nodeSubTree(inclusive=False)
+        self.assertEquals(tree, [])
 
     def test_nodeSubTreeLevel2(self):
         view = self.view

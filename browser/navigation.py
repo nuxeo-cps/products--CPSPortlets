@@ -189,6 +189,8 @@ class HierarchicalSimpleView(AqSafeBrowserView):
     def under(self, forest, rpath):
         """Return the subtree of forest that's under given rpath, inclusive.
         """
+        if not forest:
+            return
         rpath = rpath.split('/')
         while True:
             for child in forest:
@@ -221,7 +223,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
 
         Nodes that are marked as terminal don't get any documents.
         """
-        if tree.get('terminal', False):
+        if not tree or tree.get('terminal', False):
             return
         rpath = tree['rpath']
         if container is None:
