@@ -28,11 +28,11 @@ class TestBreadCrumbs(CPSTestCase):
         ptl = self.portal['.cps_portlets'].portlet_breadcrumbs
         view = ptl.getBrowserView(self.portal.workspaces, self.app.REQUEST, {})
         self.assertEquals(view.breadcrumbs(), [
-                {'url': 'http://nohost/portal',
+                {'url': '/portal',
                  'longtitle': 'CPSDefault Portal',
                  'rpath': '', 'id': 'portal',
                  'title': 'CPSDefault Portal'},
-                {'url': 'http://nohost/portal/workspaces',
+                {'url': '/portal/workspaces',
                  'longtitle': u'Workspaces',
                  'rpath': 'workspaces', 'id': 'workspaces',
                  'title': u'Workspaces'}])

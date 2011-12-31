@@ -50,4 +50,12 @@
                 template="navigation_hierarchical_tree.pt" />
  </browser:pages>
 
+  <browser:page
+    for=".interfaces.INavigationPortletModel"
+    attribute="nodeUnfold"
+    name="dynatree_unfold"
+    permission="zope.Public"
+    class=".browser.navigation.DynaTreeNavigation"/>
+
+
 </configure>

@@ -20,9 +20,11 @@ from Products.CPSDefault.tests.CPSTestCase import CPSTestCase
 
 from Products.CMFCore.utils import getToolByName
 from Products.CPSPortlets.browser.navigation import HierarchicalSimpleView
+from Products.CPSPortlets.browser.navigation import JsonNavigation
+from Products.CPSPortlets.browser.navigation import DynaTreeNavigation
 from Products.CPSPortlets.browser.navigation import lstartswith
 from Products.CPSPortlets.browser.navigation import tree_to_rpaths
-from Products.CPSCore.TreeCacheManager import get_treecache_manager
+from Products.CPSPortlets.CPSPortlet import REQUEST_TRAVERSAL_KEY
 
 def simplify_tree_list(tlist):
     """Convert a real life tree list to one more readable/debuggable."""
@@ -42,8 +44,8 @@ class FakePortal:
     def absolute_url_path(self):
         return '/deep/inside'
 
-    def _url_tool_rpath(self):
-        return ''
+    _url_tool_rpath = ''
+
 
 PORTAL = FakePortal()
 
@@ -65,11 +67,13 @@ class FakeDataModel(dict):
 
 PORTAL.portal_url = FakeUrlTool()
 
+
 class HierarchicalSimpleViewTest(unittest.TestCase):
 
     def setUp(self):
         # we'll feed the needed context/request if needed
         dm = self.datamodel = FakeDataModel()
+        # just for view __init__, will be actually set in each test
         dm.context = PORTAL
         self.view = HierarchicalSimpleView(dm, None)
 
@@ -250,16 +254,16 @@ class HierarchicalSimpleViewTest(unittest.TestCase):
                 {'rpath': 'a/b/co'}
                 ])
 
-class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
+class CommonFixture:
 
     def afterSetUp(self):
-        # we'll feed the needed context/request if needed
         self.request = self.app.REQUEST
-        dm = self.datamodel = FakeDataModel()
-        dm.context = self.portal
-        view = self.view = HierarchicalSimpleView(dm, self.request)
-        view.datamodel.update(dict(start_depth=0, end_depth=0,
+        self.createPortlet()
+        self.datamodel.update(dict(start_depth=0, end_depth=0,
                                    root_uids=['workspaces']))
+        self.createStructure()
+
+    def createStructure(self):
         self.login('manager')
         wftool = getToolByName(self.portal, 'portal_workflow')
         ws = self.portal.workspaces
@@ -270,16 +274,33 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
         wftool.invokeFactoryFor(subw.subsubw, 'FAQ', 'faq')
         self.portal.portal_trees['workspaces'].rebuild() # could get slow
 
+    def createPortlet(self):
+        self.login('manager')
+        ptltool = getToolByName(self.portal, 'portal_cpsportlets')
+        ptl_id = ptltool.createPortlet('Navigation Portlet',
+                                       root_uids=('workspaces',), show_docs=1)
+        self.portlet = ptltool[ptl_id]
+        self.datamodel = self.portlet.getDataModel()
+
+    def initView(self, context_rpath=''):
+        dm = self.datamodel
+        dm._context = self.portal.unrestrictedTraverse(context_rpath)
+        view = self.view = self.view_class(dm, self.request)
+        return view
+
+
+class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
+
+    view_class = HierarchicalSimpleView
+
     def test_getTree(self):
-        view = self.view
-        view.here_rpath = 'workspaces'
+        view = self.initView(context_rpath='workspaces')
         tree = view.getTree()
         self.assertEquals(tree[0]['rpath'], 'workspaces')
 
     def test_getTreeWithDocs(self):
-        view = self.view
-        view.datamodel['show_docs'] = True
-        view.here_rpath = 'workspaces/subw'
+        self.datamodel['show_docs'] = True
+        view = self.initView(context_rpath='workspaces/subw')
         tree = view.getTree()
         self.assertEquals(tree_to_rpaths(tree), [
                 dict(rpath='workspaces', children=[
@@ -301,9 +322,8 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
         wftool.invokeFactoryFor(subw.subsubw2, 'File', 'doc2')
         self.portal.portal_trees['workspaces'].rebuild() # could get slow
 
-        view = self.view
-        view.datamodel['show_docs'] = True
-        view.here_rpath = 'workspaces/subw'
+        self.datamodel['show_docs'] = True
+        view = self.initView(context_rpath='workspaces/subw')
         tree = view.getTree()
         self.assertEquals(tree_to_rpaths(tree), [
                 dict(rpath='workspaces', children=[
@@ -315,9 +335,8 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
                         ])
                 ])
     def test_getTreeWithDocs2(self):
-        view = self.view
-        view.datamodel['show_docs'] = True
-        view.here_rpath = 'workspaces/subw/subsubw'
+        self.datamodel['show_docs'] = True
+        view = self.initView(context_rpath='workspaces/subw/subsubw')
         tree = view.getTree()
         self.assertEquals(tree_to_rpaths(tree), [
                 dict(rpath='workspaces', children=[
@@ -329,8 +348,7 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
                 ])
 
     def test_nodeSubTree(self):
-        view = self.view
-        view.here_rpath = 'workspaces'
+        view = self.initView(context_rpath='workspaces')
         tree = view.nodeSubTree(inclusive=True)
         self.assertEquals(tree_to_rpaths(tree), [
                 dict(rpath='workspaces', children=[
@@ -343,8 +361,8 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
                 dict(rpath='workspaces/subw')])
 
     def test_nodeSubTreeFromDeeper(self):
-        view = self.view
-        view.here_rpath = 'workspaces/subw'
+        self.datamodel['show_docs'] = False
+        view = self.initView(context_rpath='workspaces/subw')
         tree = view.nodeSubTree(inclusive=True)
         self.assertEquals(tree_to_rpaths(tree), [
                 dict(rpath='workspaces/subw', children=[
@@ -356,9 +374,8 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
                           [dict(rpath='workspaces/subw/subsubw')])
 
     def test_nodeSubTreeLevel2(self):
-        view = self.view
-        view.datamodel['subtree_depth'] = 2
-        view.here_rpath = 'workspaces'
+        self.datamodel['subtree_depth'] = 2
+        view = self.initView(context_rpath='workspaces')
         tree = view.nodeSubTree(inclusive=False)
         self.assertEquals(tree_to_rpaths(tree), [
                 dict(rpath='workspaces/subw', children=[
@@ -366,17 +383,79 @@ class HierarchicalSimpleViewIntegrationTest(CPSTestCase):
                 ])
 
     def test_nodeSubTreeWithDocs(self):
-        view = self.view
-        view.datamodel['subtree_depth'] = 2
-        view.here_rpath = 'workspaces'
+        self.datamodel['subtree_depth'] = 2
+        view = self.initView(context_rpath='workspaces')
         tree = view.nodeSubTree(inclusive=False)
         self.assertEquals(tree_to_rpaths(tree), [
                 dict(rpath='workspaces/subw', children=[
                         dict(rpath='workspaces/subw/subsubw')])
                 ])
 
+def forest_extract_method(view):
+    """Extractor to test JsonNavigation base class, similar to tree_to_rpaths.
+    """
+    def extract(forest):
+        res = []
+        for tree in forest:
+            node = dict(rpath=tree['rpath'])
+            children = tree.get('children')
+            if children:
+                node['children'] = view.extract(tree['children'])
+            res.append(node)
+        return res
+    return extract
+
+class JsonNavigationIntegrationTest(CommonFixture, CPSTestCase):
+
+    view_class = JsonNavigation
+
+    def afterSetUp(self):
+        # we'll feed the needed context/request if needed
+        self.request = self.app.REQUEST
+        self.createPortlet()
+        self.datamodel.update(dict(start_depth=0, end_depth=0,
+                                   root_uids=['workspaces']))
+        self.createStructure()
+
+    def initView(self, **kw):
+        view = CommonFixture.initView(self, **kw)
+        view.extract = forest_extract_method(view)
+        return view
+
+    def testNodeUnfold(self):
+        self.datamodel['show_docs'] = 1
+        self.initView(context_rpath='workspaces/subw')
+        self.assertEquals(self.view.nodeUnfold(),
+                          u'[{"rpath": "workspaces/subw/subsubw"}, '
+                          '{"rpath": "workspaces/subw/doc"}]')
+
+class DynaTreeNavigationIntegrationTest(CommonFixture, CPSTestCase):
+
+    view_class = DynaTreeNavigation
+
+    def afterSetUp(self):
+        # we'll feed the needed context/request if needed
+        self.request = self.app.REQUEST
+        self.createPortlet()
+        self.datamodel.update(dict(start_depth=0, end_depth=0,
+                                   root_uids=['workspaces']))
+        self.createStructure()
+
+    def testNodeUnfold(self):
+        self.initView(context_rpath='workspaces/subw')
+        # format for dynatree to be precised anyway. Notably for async
+        # unfolding (subw has children, but is currently unfolded, that's
+        # why its children is empty list right now.
+        self.assertEquals(self.view.nodeUnfold(), u'['
+                          '{"children": [], "is_folder": true, "title": ""}, '
+                          '{"is_folder": false, "title": "doc"}]'
+                          )
+
+
 def test_suite():
     return unittest.TestSuite((
         unittest.makeSuite(HierarchicalSimpleViewTest),
         unittest.makeSuite(HierarchicalSimpleViewIntegrationTest),
+        unittest.makeSuite(JsonNavigationIntegrationTest),
+        unittest.makeSuite(DynaTreeNavigationIntegrationTest),
         ))
