@@ -373,6 +373,13 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
         self.assertEquals(tree_to_rpaths(tree),
                           [dict(rpath='workspaces/subw/subsubw')])
 
+    def test_nodeSubTreeWithDocsEmpty(self):
+        # in this case we must not get a LookupError
+        self.datamodel['show_docs'] = True
+        view = self.initView(context_rpath='sections')
+        tree = view.nodeSubTree(inclusive=False)
+        self.assertEquals(tree, [])
+
     def test_nodeSubTreeLevel2(self):
         self.datamodel['subtree_depth'] = 2
         view = self.initView(context_rpath='workspaces')
