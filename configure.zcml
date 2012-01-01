@@ -67,6 +67,12 @@
       handler=".upgrade.upgrade_unicode"
       />
 
+  <cps:upgradeStep
+      title="Upgrade portlets to new render dispatch style"
+      source="3.5.3" destination="3.6.0"
+      handler=".upgrade.upgrade_render_dispatch"
+      />
+
   <five:registerClass
       class=".PortletsContainer.PortletsContainer"
       meta_type="CPS Placeful Portlets Container"

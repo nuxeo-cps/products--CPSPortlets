@@ -6,7 +6,7 @@ New features
 - #2491: generic z3-style portlet traversal
 Bug fixes
 ~~~~~~~~~
--
+- #2510: upgrade step for portlets render dispatch
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 

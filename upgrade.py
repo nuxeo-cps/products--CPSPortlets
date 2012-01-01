@@ -247,6 +247,55 @@ def upgrade_container_unicode(container, counters=None):
         if upgrade_doc_unicode(portlet):
             counters['done'] += 1
         if counters['done'] % 100 == 0:
-            logger.info("Upgraded workflow history for %d documents.",
+            logger.info("Upgraded %d to unicode.",
+                        counters['done'])
+            transaction.commit()
+
+RENDER_DISPATCH_FIELDS = {'Navigation Portlet': 'display',
+                          'Breadcrumbs Portlet': 'display'}
+
+def upgrade_render_dispatch(portal):
+    """Upgrade all portlets to unicode.
+
+    CPS String Field content will be cast to unicode, whereas
+    CPS Ascii String Field content will be cast to str
+    """
+    logger = logging.getLogger('Products.CPSPortlets.upgrades.render_dispatch')
+    logger.info("Starting upgrade of portlets")
+    counters = dict(done=0, total=0)
+    for folder in walk_cps_folders(portal):
+        upgrade_render_dispatch_in(folder, counters=counters)
+    upgrade_container_render_dispatch(portal.portal_cpsportlets,
+                                      counters=counters)
+    transaction.commit()
+    logger.warn(
+        "Finished to upgrade portlets to new render dispatch style"
+        "Successful for %(done)d/%(total)d portlets", counters)
+    transaction.commit()
+
+def upgrade_render_dispatch_in(folder, counters=None):
+    if counters is None:
+        counters = dict(done=0, total=0)
+    for container in folder.objectValues([PortletsContainer.meta_type]):
+        upgrade_container_render_dispatch(container, counters=counters)
+
+def upgrade_container_render_dispatch(container, counters=None):
+    """Upgrade the portlets from a container to new render dispatch."""
+    logger = logging.getLogger('Products.CPSPortlets.upgrades.render_dispatch')
+    if counters is None:
+        counters = dict(done=0, total=0)
+    for portlet in container.listPortlets():
+        counters['total'] += 1
+        fname = RENDER_DISPATCH_FIELDS.get(portlet.portal_type)
+        if fname is None:
+            continue
+        portlet.render_view_name = getattr(portlet, fname, '')
+        try:
+            delattr(portlet, fname)
+        except AttributeError:
+            pass
+        counters['done'] += 1
+        if counters['done'] % 100 == 0:
+            logger.info("Upgraded render dispatch for %d portlets.",
                         counters['done'])
             transaction.commit()
