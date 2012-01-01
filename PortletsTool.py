@@ -178,7 +178,7 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
                 portlet = res.getObject()
             except (KeyError, AttributeError, NotFound):
                 logger.warn("Stale entry in portlets catalog: %r",
-                            brain.getPath(), exc_info=True)
+                            res.getPath(), exc_info=True)
                 continue
 
             if portlet.isGlobal(): # GR PERF should ne handled by an index
