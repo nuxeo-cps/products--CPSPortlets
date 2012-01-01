@@ -37,8 +37,9 @@ class TestUpgrade(CPSTestCase):
         self.ptool = ptool = getToolByName(self.portal, 'portal_cpsportlets')
 
     def test_upgrade_render_dispatch(self):
-        # test with upgraded profile
+        # test with fresh (same as upgraded) profile
         from Products.CPSPortlets.upgrade import upgrade_render_dispatch
+
         ptl_id = self.ptool.createPortlet('Navigation Portlet',
                                           context=self.section)
         ptl = self.ptool.getPortletContainer(context=self.section)[ptl_id]
@@ -47,6 +48,24 @@ class TestUpgrade(CPSTestCase):
         upgrade_render_dispatch(self.portal)
         self.assertEquals(ptl.render_view_name, 'folder_contents')
         self.assertFalse(bhasattr(ptl, 'display'))
+
+    def test_upgrade_render_dispatch_idempotency(self):
+        from Products.CPSPortlets.upgrade import \
+            upgrade_container_render_dispatch
+
+        container = self.portal['.cps_portlets']
+        ptl = container['portlet_navigation_workspaces']
+        ptl.display = u'hierarchical_tree'
+        delattr(ptl, 'render_view_name') # there's a value in current profile
+
+        upgrade_container_render_dispatch(container)
+        self.assertEquals(ptl.render_view_name, 'hierarchical_tree')
+        self.assertFalse(bhasattr(ptl, 'display'))
+
+        # second run to check idempotency
+        # (before protection, the result was '')
+        upgrade_container_render_dispatch(container)
+        self.assertEquals(ptl.render_view_name, 'hierarchical_tree')
 
 
 def test_suite():

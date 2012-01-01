@@ -21,6 +21,7 @@ import logging
 import transaction
 
 from Products.CMFCore.utils import getToolByName
+from Products.CPSCore.utils import bhasattr
 from Products.CPSCore.ProxyBase import walk_cps_folders
 
 from PortletsCatalogTool import reindex_portlets_catalog
@@ -287,6 +288,8 @@ def upgrade_container_render_dispatch(container, counters=None):
     for portlet_id in container.listPortletIds():
         portlet = container[portlet_id]
         counters['total'] += 1
+        if bhasattr(portlet, 'render_view_name') and portlet.render_view_name:
+            continue
         fname = RENDER_DISPATCH_FIELDS.get(portlet.portal_type)
         if fname is None:
             continue
@@ -296,7 +299,7 @@ def upgrade_container_render_dispatch(container, counters=None):
         except AttributeError:
             pass
         counters['done'] += 1
-        if counters['done'] % 100 == 0:
-            logger.info("Upgraded render dispatch for %d portlets.",
-                        counters['done'])
+        done = counters['done']
+        if done and not done % 100:
+            logger.info("Upgraded render dispatch for %d portlets.", done)
             transaction.commit()
