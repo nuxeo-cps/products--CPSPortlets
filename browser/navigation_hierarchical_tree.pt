@@ -20,9 +20,9 @@
 	tal:attributes="href item/url|nothing; class linkclass">
       <img tal:condition="show_icons"
            tal:attributes="src python:view.iconUri(item)"/>
-      <tal:block content="item/title" />
+      <tal:block content="item/title|item/id" />
       <span class="itemDescription"
-	    tal:define="description item/description"
+	    tal:define="description item/description|nothing"
 	    tal:condition="python: description and display_description"
 	    tal:content="description" />
      </a>

@@ -284,7 +284,10 @@ def upgrade_container_render_dispatch(container, counters=None):
     logger = logging.getLogger('Products.CPSPortlets.upgrades.render_dispatch')
     if counters is None:
         counters = dict(done=0, total=0)
-    for portlet in container.listPortlets():
+    # don't use listPortlets: if the container is the tool, this returns all
+    # portlets from the catalog
+    for portlet_id in container.listPortletIds():
+        portlet = container[portlet_id]
         counters['total'] += 1
         fname = RENDER_DISPATCH_FIELDS.get(portlet.portal_type)
         if fname is None:
