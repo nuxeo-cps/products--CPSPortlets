@@ -267,11 +267,9 @@ def upgrade_render_dispatch(portal):
         upgrade_render_dispatch_in(folder, counters=counters)
     upgrade_container_render_dispatch(portal.portal_cpsportlets,
                                       counters=counters)
-    transaction.commit()
     logger.warn(
         "Finished to upgrade portlets to new render dispatch style"
         "Successful for %(done)d/%(total)d portlets", counters)
-    transaction.commit()
 
 def upgrade_render_dispatch_in(folder, counters=None):
     if counters is None:
