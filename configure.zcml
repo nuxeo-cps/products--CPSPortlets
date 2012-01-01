@@ -69,7 +69,7 @@
 
   <cps:upgradeStep
       title="Upgrade portlets to new render dispatch style"
-      source="3.5.3" destination="3.6.0"
+      source="3.6.-1" destination="3.6.0"
       handler=".upgrade.upgrade_render_dispatch"
       />
 
