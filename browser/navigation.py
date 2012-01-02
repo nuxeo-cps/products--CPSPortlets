@@ -259,7 +259,8 @@ class HierarchicalSimpleView(AqSafeBrowserView):
             tkw[end_depth] = end_depth
 
         tlist = tree.getList(**tkw)
-        forest = self.listToTree(tlist, unfold_to=self.here_rpath)
+        forest = self.listToTree(tlist, unfold_to=self.here_rpath,
+                                 show_hidden=dm.get('display_hidden_folders'))
         if dm.get('show_docs', False):
             self.addDocs(self.under(forest, self.here_rpath))
         return forest
