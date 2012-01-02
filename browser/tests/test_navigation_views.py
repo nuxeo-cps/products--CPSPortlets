@@ -319,6 +319,24 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
                         ])
                 ])
 
+    def test_getTree_hidden_folder_True(self):
+        self.datamodel['display_hidden_folders'] = True
+        self.datamodel['show_docs'] = False
+        self.wftool.invokeFactoryFor(self.portal.workspaces.subw, 'Workspace',
+                                     'hidden-ws', hidden_folder=True)
+        self.rebuildTree()
+
+        view = self.initView(context_rpath='workspaces/subw')
+        tree = view.getTree()
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='workspaces', children=[
+                        dict(rpath='workspaces/subw', children=[
+                                dict(rpath='workspaces/subw/subsubw'),
+                                dict(rpath='workspaces/subw/hidden-ws'),
+                                ])
+                        ])
+                ])
+
     def test_getTreeWithDocs(self):
         self.datamodel['show_docs'] = True
         view = self.initView(context_rpath='workspaces/subw')
