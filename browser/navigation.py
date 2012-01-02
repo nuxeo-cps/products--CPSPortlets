@@ -325,7 +325,7 @@ class DynaTreeNavigation(JsonNavigation):
         for tree in forest:
             is_folder = tree.get('from_treecache') or tree.get('is_folder')
             node = dict(title=tree['title'], is_folder=is_folder,
-                        key=self.url_tool.getUrlFromRpath(tree['rpath']))
+                        key=tree['url'])
             if is_folder:
                 node['children'] = self.extract(tree['children'])
             res.append(node)
