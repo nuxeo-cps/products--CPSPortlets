@@ -263,16 +263,20 @@ class CommonFixture:
                                    root_uids=['workspaces']))
         self.createStructure()
 
+    def rebuildTree(self):
+        # could get slow
+        getToolByName(self.portal, 'portal_trees')['workspaces'].rebuild()
+
     def createStructure(self):
         self.login('manager')
-        wftool = getToolByName(self.portal, 'portal_workflow')
+        self.wftool = wftool = getToolByName(self.portal, 'portal_workflow')
         ws = self.portal.workspaces
         wftool.invokeFactoryFor(ws, 'Workspace', 'subw')
         subw = ws.subw
         wftool.invokeFactoryFor(subw, 'Workspace', 'subsubw')
         wftool.invokeFactoryFor(subw, 'File', 'doc')
         wftool.invokeFactoryFor(subw.subsubw, 'FAQ', 'faq')
-        self.portal.portal_trees['workspaces'].rebuild() # could get slow
+        self.rebuildTree()
 
     def createPortlet(self):
         self.login('manager')
@@ -297,6 +301,23 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
         view = self.initView(context_rpath='workspaces')
         tree = view.getTree()
         self.assertEquals(tree[0]['rpath'], 'workspaces')
+
+    def test_getTree_hidden_folder(self):
+        self.datamodel['display_hidden_folders'] = False
+        self.datamodel['show_docs'] = False
+        self.wftool.invokeFactoryFor(self.portal.workspaces.subw, 'Workspace',
+                                     'hidden-ws', hidden_folder=True)
+        self.rebuildTree()
+
+        view = self.initView(context_rpath='workspaces/subw')
+        tree = view.getTree()
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='workspaces', children=[
+                        dict(rpath='workspaces/subw', children=[
+                                dict(rpath='workspaces/subw/subsubw'),
+                                ])
+                        ])
+                ])
 
     def test_getTreeWithDocs(self):
         self.datamodel['show_docs'] = True
