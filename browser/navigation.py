@@ -91,7 +91,8 @@ class HierarchicalSimpleView(AqSafeBrowserView):
             here = self.context
         self.here_rpath = self.url_tool.getRpath(here)
 
-    def listToTree(self, tlist, unfold_to=None, unfold_level=1):
+    def listToTree(self, tlist, unfold_to=None, unfold_level=1,
+                   show_hidden=False):
         """Transform TreeCache.getList() output into a proper tree (forest)
 
         Yes, this far too complicated, but one should NEVER represent
@@ -122,6 +123,8 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         from_top = []
         prev_rpath = ()
         for item in tlist:
+            if not show_hidden and item.get('hidden_folder'):
+                continue
             terminal = False
             item_rpath = item['rpath'].split('/')
             # a rise in rpath means we have to climb up
