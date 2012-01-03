@@ -327,7 +327,7 @@ class DynaTreeNavigation(JsonNavigation):
             node = dict(title=tree['title'], isFolder=is_folder,
                         href=tree['url'])
             if is_folder:
-                node['children'] = self.extract(tree['children'])
+                node['children'] = self.extract(tree.get('children', ()))
                 node['expand'] = False
             res.append(node)
         return res
