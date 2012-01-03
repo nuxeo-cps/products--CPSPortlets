@@ -61,8 +61,19 @@ class TestLocalPortletsAsRoot(TestPortlets):
             raise RuntimeError('testshield')
         portlet.render = render
 
-        # Shield on
-        ptltool.shield_disabled = False # CPSTestCase sets to True
+
+        # Shield on by default
+        del ptltool.shield_disabled # CPSTestCase sets to True
+        try:
+            portlet.render_cache()
+        except RuntimeError, e:
+            if str(e) == 'testshield':
+                self.fail("Shield did not catch exception")
+            else:
+                raise
+
+        # Shield on, explicit
+        ptltool.shield_disabled = False
         try:
             portlet.render_cache()
         except RuntimeError, e:

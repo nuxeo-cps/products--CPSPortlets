@@ -113,7 +113,7 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
 
     render_cache_disabled = False
 
-    render_shield_disabled = False
+    shield_disabled = False
 
     def __init__(self):
         self.initializeCacheParameters()
