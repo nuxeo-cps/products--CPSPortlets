@@ -72,7 +72,8 @@ class HierarchicalSimpleView(BaseView):
         self.here_rpath = self.url_tool().getRpath(self.context)
         self.icon_uris = {} # cache portal_type -> icon URI
 
-    def listToTree(self, tlist, unfold_to=None, unfold_level=1):
+    def listToTree(self, tlist, unfold_to=None, unfold_level=1,
+                   show_hidden=False):
         """Transform TreeCache.getList() output into a proper tree (forest)
 
         Yes, this far too complicated, but one should NEVER represent
@@ -105,6 +106,8 @@ class HierarchicalSimpleView(BaseView):
         from_top = []
         prev_rpath = ()
         for item in tlist:
+            if not show_hidden and item.get('hidden_folder'):
+                continue
             terminal = False
             item_rpath = item['rpath'].split('/')
             # a rise in rpath means we have to climb up
@@ -238,7 +241,9 @@ class HierarchicalSimpleView(BaseView):
             tkw[end_depth] = end_depth
 
         tlist = tree.getList(**tkw)
-        forest = self.listToTree(tlist, unfold_to=self.here_rpath)
+        forest = self.listToTree(tlist, unfold_to=self.here_rpath,
+                                 show_hidden=dm.get('display_hidden_folders'))
+
         if dm.get('show_docs', False):
             self.addDocs(self.under(forest, self.here_rpath))
         return forest

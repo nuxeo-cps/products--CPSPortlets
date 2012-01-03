@@ -7,6 +7,7 @@ New features
 Bug fixes
 ~~~~~~~~~
 - #2510: upgrade step for portlets render dispatch
+- #2511: hierarchical tree navigation mode w/ diplay_hidden_folder=False
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
