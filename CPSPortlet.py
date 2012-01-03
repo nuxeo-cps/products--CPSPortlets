@@ -57,6 +57,8 @@ from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.CPSUtil.conflictresolvers import IncreasingDateTime
 from Products.CPSUtil.resourceregistry import JSGlobalMethodResource
 from Products.CPSUtil.resourceregistry import require_resource
+from Products.CPSUtil.crashshield import shield_apply
+from Products.CPSUtil.crashshield import CrashShieldException
 from Products.CPSCore.utils import bhasattr
 from Products.CPSCore.ProxyBase import FileDownloader
 from Products.CPSDocument.CPSDocument import CPSDocument
@@ -567,6 +569,19 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         return CPSDocument.render(self, REQUEST=REQUEST,
                                   context_obj=context_obj, **kw)
 
+    def render_shield(self, **kw):
+        """Render with crashshield protection."""
+        try:
+            __traceback_info__="portlet id: " + self.getId()
+            return shield_apply(self, 'render', **kw)
+        except CrashShieldException:
+            if getToolByName(self, 'portal_cpsportlets').shield_disabled:
+                # normally, we shouldn't have been called. Behave nicely though
+                # (traceback and post-mortem will be in shield_apply itself)
+                raise
+            # TODO what with non HTML renderings ?
+            return '<blink>!!!</blink>'
+
     security.declarePublic('render_cache')
     def render_cache(self, REQUEST=None, **kw):
         """Renders the cached version of the portlet.
@@ -581,9 +596,11 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         self.registerRequireJavaScript()
         ptltool = getToolByName(self, 'portal_cpsportlets')
+        render = ptltool.shield_disabled and self.render or self.render_shield
+
         # the portlet is not cacheable.
         if ptltool.render_cache_disabled or cache_index is None:
-            return self.render(**kw)
+            return render(**kw)
 
         now = time.time()
         portlet_path = self.getPhysicalPath()
@@ -633,7 +650,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             logger.debug(
                 "Cache miss for portlet %s (type=%s)", self,
                                                          self.portal_type)
-            rendered = html_slimmer(self.render(**kw))
+            rendered = html_slimmer(render(**kw))
             now = time.time()
 
             if REQUEST is None:

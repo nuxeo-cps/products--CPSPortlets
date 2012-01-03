@@ -105,10 +105,15 @@ class PortletsTool(UniqueObject, PortletsContainer, Cacheable):
          'label': "Ignore events"},
         {'id': 'render_cache_disabled', 'type': 'boolean', 'mode': 'w',
          'label': "Disable the render cache (for dev/debug)"},
+        {'id': 'shield_disabled', 'type': 'boolean', 'mode': 'w',
+         'label': "Disable the render shield (for dev/debug)"},
         )
+
     ignore_events = False
 
     render_cache_disabled = False
+
+    render_shield_disabled = False
 
     def __init__(self):
         self.initializeCacheParameters()
