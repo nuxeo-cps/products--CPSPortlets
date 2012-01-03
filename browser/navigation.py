@@ -325,7 +325,7 @@ class DynaTreeNavigation(JsonNavigation):
         for tree in forest:
             is_folder = tree.get('from_treecache') or tree.get('is_folder')
             node = dict(title=tree['title'], isFolder=is_folder,
-                        key=tree['url'])
+                        href=tree['url'])
             if is_folder:
                 node['children'] = self.extract(tree['children'])
                 node['expand'] = False
