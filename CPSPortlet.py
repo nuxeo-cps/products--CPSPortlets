@@ -55,6 +55,8 @@ from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.CPSUtil.conflictresolvers import IncreasingDateTime
 from Products.CPSUtil.resourceregistry import JSGlobalMethodResource
 from Products.CPSUtil.resourceregistry import require_resource
+from Products.CPSUtil.crashshield import shield_apply
+from Products.CPSUtil.crashshield import CrashShieldException
 from Products.CPSCore.utils import bhasattr
 from Products.CPSCore.ProxyBase import FileDownloader
 from Products.CPSDocument.CPSDocument import CPSDocument
@@ -581,6 +583,23 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             layout_mode='view', REQUEST=request, **kw), None
 
 
+    def render_headers_shield(self, REQUEST, **kw):
+        """Render with headers and crashshield protection.
+
+        This is for view mode renderings only (be it ZTK-style or old
+        CPSDocument style)
+        """
+        try:
+            __traceback_info__="portlet id: " + self.getId()
+            return shield_apply(self, 'render_headers', REQUEST, **kw)
+        except CrashShieldException:
+            if getToolByName(self, 'portal_cpsportlets').shield_disabled:
+                # normally, we shouldn't have been called. Behave nicely though
+                # (traceback and post-mortem will be in shield_apply itself)
+                raise
+            # TODO what with non HTML renderings ?
+            return '<blink>!!!</blink>', None
+
     security.declarePublic('render_cache')
     def render_cache(self, REQUEST=None, **kw):
         """Renders the cached version of the portlet.
@@ -599,7 +618,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
             REQUEST = self.REQUEST
 
         if cache_index is None:
-            return self.render_headers(REQUEST, **kw)[0]
+            return self.render_headers_shield(REQUEST, **kw)[0]
 
         portlet_path = self.getPhysicalPath()
         index = (portlet_path, ) + cache_index
@@ -650,7 +669,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         logger.debug("Cache miss for portlet %s (type=%s)",
                      self, self.portal_type)
-        rendered, headers = self.render_headers(REQUEST, **kw)
+        rendered, headers = self.render_headers_shield(REQUEST, **kw)
 
         # TODO provide Last-Modified and Expires if not already set
 

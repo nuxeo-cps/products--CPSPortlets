@@ -49,6 +49,46 @@ class TestLocalPortletsAsRoot(TestPortlets):
         self.assertNotEqual(portlet, None)
         self.assert_(portlet.render())
 
+    def test_render_shield(self):
+        ptltool = self.ptltool
+        # create a portlet with broken render()
+        working_context = self.portal.workspaces
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                           context=working_context)
+        container = ptltool.getPortletContainer(context=working_context)
+        portlet = container.getPortletById(portlet_id)
+        def render(**kw):
+            raise RuntimeError('testshield')
+        portlet.render = render
+
+
+        # Shield on by default
+        del ptltool.shield_disabled # CPSTestCase sets to True
+        try:
+            portlet.render_cache()
+        except RuntimeError, e:
+            if str(e) == 'testshield':
+                self.fail("Shield did not catch exception")
+            else:
+                raise
+
+        # Shield on, explicit
+        ptltool.shield_disabled = False
+        try:
+            portlet.render_cache()
+        except RuntimeError, e:
+            if str(e) == 'testshield':
+                self.fail("Shield did not catch exception")
+            else:
+                raise
+
+        # Shield lifted
+        ptltool.shield_disabled = True
+        try:
+            portlet.render_cache()
+        except RuntimeError, e:
+            self.assertEquals(str(e), 'testshield')
+
     def test_getPortletContext(self):
         ptltool = self.ptltool
         working_context = self.portal.workspaces
