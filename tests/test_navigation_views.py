@@ -454,7 +454,9 @@ class JsonNavigationIntegrationTest(CommonFixture, CPSTestCase):
     def testNodeUnfold(self):
         self.setRequestContextObj('workspaces/subw')
         self.assertEquals(self.view.nodeUnfold(),
-                          u'[{"rpath": "workspaces/subw/subsubw"}, '
+                          u'[{"rpath": "workspaces/subw/subsubw", '
+                          '"children": '
+                          '[{"rpath": "workspaces/subw/subsubw/faq"}]}, '
                           '{"rpath": "workspaces/subw/doc"}]')
 
 class DynaTreeNavigationIntegrationTest(CommonFixture, CPSTestCase):
@@ -469,14 +471,17 @@ class DynaTreeNavigationIntegrationTest(CommonFixture, CPSTestCase):
 
     def testNodeUnfold(self):
         self.setRequestContextObj('workspaces/subw')
-        # format for dynatree to be precised anyway. Notably for async
-        # unfolding (subw has children, but is currently unfolded, that's
-        # why its children is empty list right now.
-        self.assertEquals(self.view.nodeUnfold(), u'['
-                          '{"children": [], "is_folder": true, "title": ""}, '
-                          '{"is_folder": false, "title": "doc"}]'
-                          )
-
+        self.assertEquals(self.view.nodeUnfold(),
+                          u'[{"isLazy": true, '
+                          '"href": "/portal/workspaces/subw/subsubw", '
+                          '"isFolder": true, '
+                          '"children": '
+                          '[{"isLazy": true, '
+                          '"href": "/portal/workspaces/subw/subsubw/faq", '
+                          '"isFolder": true, "children": [], "title": "faq"}], '
+                          '"title": ""}, '
+                          '{"href": "/portal/workspaces/subw/doc", '
+                          '"isFolder": false, "title": "doc"}]')
 
 def test_suite():
     return unittest.TestSuite((
