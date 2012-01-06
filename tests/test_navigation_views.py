@@ -238,6 +238,8 @@ class HierarchicalSimpleViewTest(unittest.TestCase):
 
 class CommonFixture:
 
+    TEST_USER = 'nav_view_user'
+
     def setRequestContextObj(self, rpath):
         self.request[REQUEST_TRAVERSAL_KEY] = rpath.split('/')
 
@@ -247,13 +249,28 @@ class CommonFixture:
 
     def createStructure(self):
         self.login('manager')
+        user = self.TEST_USER
+
+        aclu = getToolByName(self.portal, 'acl_users')
+        aclu._doAddUser(user, '', ('Member',), ())
+        self.assertFalse(aclu.getUser(user) is None)
+
         self.wftool = wftool = getToolByName(self.portal, 'portal_workflow')
+        self.pmtool = pmtool = getToolByName(self.portal, 'portal_membership')
+
         ws = self.portal.workspaces
+        pmtool.setLocalRoles(obj=ws, member_ids=[user],
+                             member_role='WorkspaceReader')
+
         wftool.invokeFactoryFor(ws, 'Workspace', 'subw')
         subw = ws.subw
+
         wftool.invokeFactoryFor(subw, 'Workspace', 'subsubw')
+        subsubw = subw.subsubw
+        pmtool.blockLocalRoles(subsubw)
+
         wftool.invokeFactoryFor(subw, 'File', 'doc')
-        wftool.invokeFactoryFor(subw.subsubw, 'FAQ', 'faq')
+        wftool.invokeFactoryFor(subsubw, 'FAQ', 'faq')
         self.rebuildTree()
 
     def createPortlet(self):
@@ -354,6 +371,7 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
                                 ])
                         ])
                 ])
+
     def test_getTreeWithDocs2(self):
         view = self.view
         view.datamodel['show_docs'] = True
@@ -367,6 +385,35 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
                             ])
                         ])
                 ])
+
+    def test_getTreeWithDocs_subw_blocked(self):
+        # we used to have an error in addDocs because of the jump in
+        # rpaths if an intermediate node is missing (permissions)
+        user = self.TEST_USER
+        # we really need to add one level and block at subsubw to reproduce
+        # the difficulty. At subw, the recursion would start too deep in the
+        # tree already.
+        subsubw = self.portal.workspaces.subw.subsubw
+        self.wftool.invokeFactoryFor(subsubw, 'Workspace', 'sub3w')
+        sub3w = subsubw.sub3w
+        self.pmtool.setLocalRoles(obj=sub3w, member_ids=[user],
+                                  member_role='WorkspaceReader')
+        self.rebuildTree()
+
+        self.login(user)
+        view = self.view
+        view.datamodel['show_docs'] = True
+        view.here_rpath = 'workspaces/subw'
+
+        tree = view.getTree()
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='workspaces', children=[
+                        dict(rpath='workspaces/subw', children=[
+                                dict(rpath='workspaces/subw/subsubw/sub3w'),
+                                dict(rpath='workspaces/subw/doc'),
+                                ])
+                            ])
+                        ])
 
     def test_nodeSubTree(self):
         view = self.view
