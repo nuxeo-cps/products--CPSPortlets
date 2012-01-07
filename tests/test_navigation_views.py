@@ -499,8 +499,9 @@ class JsonNavigationIntegrationTest(CommonFixture, CPSTestCase):
         self.request[REQUEST_TRAVERSAL_KEY] = rpath.split('/')
 
     def testNodeUnfoldNoLevel(self):
+        # subtree_depth=0 means to unfold to the end
         self.setRequestContextObj('workspaces/subw')
-        # mostly to explain the expected results
+        self.portlet.edit(subtree_depth=0)
         self.assertEquals(self.portlet.getDataModel()['subtree_depth'], 0)
         self.assertEquals(self.view.nodeUnfold(),
                           u'[{"rpath": "workspaces/subw/subsubw", '
@@ -528,6 +529,8 @@ class DynaTreeNavigationIntegrationTest(CommonFixture, CPSTestCase):
 
     def testNodeUnfold(self):
         self.setRequestContextObj('workspaces/subw')
+        self.portlet.edit(subtree_depth=0)
+        self.assertEquals(self.portlet.getDataModel()['subtree_depth'], 0)
         self.assertEquals(self.view.nodeUnfold(),
                           u'[{"isLazy": true, '
                           '"href": "/portal/workspaces/subw/subsubw", '
