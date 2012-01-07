@@ -517,10 +517,10 @@ class JsonNavigationIntegrationTest(CommonFixture, CPSTestCase):
         return view
 
     def testNodeUnfoldNoLevel(self):
+        # subtree_depth=0 means to unfold to the end
+        self.datamodel['subtree_depth'] = 0
         self.datamodel['show_docs'] = 1
         self.initView(context_rpath='workspaces/subw')
-        # mostly to explain the expected results
-        self.assertEquals(self.portlet.getDataModel()['subtree_depth'], 0)
         self.assertEquals(self.view.nodeUnfold(),
                           u'[{"rpath": "workspaces/subw/subsubw", '
                           '"children": '
@@ -548,6 +548,7 @@ class DynaTreeNavigationIntegrationTest(CommonFixture, CPSTestCase):
         self.createStructure()
 
     def testNodeUnfold(self):
+        self.datamodel['subtree_depth'] = 0
         self.initView(context_rpath='workspaces/subw')
         self.assertEquals(self.view.nodeUnfold(),
                           u'[{"isLazy": true, '
