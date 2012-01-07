@@ -256,6 +256,8 @@ class HierarchicalSimpleViewTest(unittest.TestCase):
 
 class CommonFixture:
 
+    TEST_USER = 'nav_view_user'
+
     def afterSetUp(self):
         self.request = self.app.REQUEST
         self.createPortlet()
@@ -269,13 +271,28 @@ class CommonFixture:
 
     def createStructure(self):
         self.login('manager')
+        user = self.TEST_USER
+
+        aclu = getToolByName(self.portal, 'acl_users')
+        aclu._doAddUser(user, '', ('Member',), ())
+        self.assertFalse(aclu.getUser(user) is None)
+
         self.wftool = wftool = getToolByName(self.portal, 'portal_workflow')
+        self.pmtool = pmtool = getToolByName(self.portal, 'portal_membership')
+
         ws = self.portal.workspaces
+        pmtool.setLocalRoles(obj=ws, member_ids=[user],
+                             member_role='WorkspaceReader')
+
         wftool.invokeFactoryFor(ws, 'Workspace', 'subw')
         subw = ws.subw
+
         wftool.invokeFactoryFor(subw, 'Workspace', 'subsubw')
+        subsubw = subw.subsubw
+        pmtool.blockLocalRoles(subsubw)
+
         wftool.invokeFactoryFor(subw, 'File', 'doc')
-        wftool.invokeFactoryFor(subw.subsubw, 'FAQ', 'faq')
+        wftool.invokeFactoryFor(subsubw, 'FAQ', 'faq')
         self.rebuildTree()
 
     def createPortlet(self):
@@ -373,6 +390,7 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
                                 ])
                         ])
                 ])
+
     def test_getTreeWithDocs2(self):
         self.datamodel['show_docs'] = True
         view = self.initView(context_rpath='workspaces/subw/subsubw')
@@ -386,7 +404,37 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
                         ])
                 ])
 
+    def test_getTreeWithDocs_subw_blocked(self):
+        # we used to have an error in addDocs because of the jump in
+        # rpaths if an intermediate node is missing (permissions)
+        user = self.TEST_USER
+        # we really need to add one level and block at subsubw to reproduce
+        # the difficulty. At subw, the recursion would start too deep in the
+        # tree already.
+        subsubw = self.portal.workspaces.subw.subsubw
+        self.wftool.invokeFactoryFor(subsubw, 'Workspace', 'sub3w')
+        sub3w = subsubw.sub3w
+        self.pmtool.setLocalRoles(obj=sub3w, member_ids=[user],
+                                  member_role='WorkspaceReader')
+        self.rebuildTree()
+
+        self.login(user)
+
+        self.datamodel['show_docs'] = True
+        view = self.initView(context_rpath='workspaces/subw')
+
+        tree = view.getTree()
+        self.assertEquals(tree_to_rpaths(tree), [
+                dict(rpath='workspaces', children=[
+                        dict(rpath='workspaces/subw', children=[
+                                dict(rpath='workspaces/subw/subsubw/sub3w'),
+                                dict(rpath='workspaces/subw/doc'),
+                                ])
+                            ])
+                        ])
+
     def test_nodeSubTree(self):
+        self.datamodel['subtree_depth'] = 1
         view = self.initView(context_rpath='workspaces')
         tree = view.nodeSubTree(inclusive=True)
         self.assertEquals(tree_to_rpaths(tree), [
@@ -468,8 +516,20 @@ class JsonNavigationIntegrationTest(CommonFixture, CPSTestCase):
         view.extract = forest_extract_method(view)
         return view
 
-    def testNodeUnfold(self):
+    def testNodeUnfoldNoLevel(self):
         self.datamodel['show_docs'] = 1
+        self.initView(context_rpath='workspaces/subw')
+        # mostly to explain the expected results
+        self.assertEquals(self.portlet.getDataModel()['subtree_depth'], 0)
+        self.assertEquals(self.view.nodeUnfold(),
+                          u'[{"rpath": "workspaces/subw/subsubw", '
+                          '"children": '
+                          '[{"rpath": "workspaces/subw/subsubw/faq"}]}, '
+                          '{"rpath": "workspaces/subw/doc"}]')
+
+    def testNodeUnfoldLevel1(self):
+        self.datamodel['show_docs'] = 1
+        self.datamodel['subtree_depth'] = 1
         self.initView(context_rpath='workspaces/subw')
         self.assertEquals(self.view.nodeUnfold(),
                           u'[{"rpath": "workspaces/subw/subsubw"}, '
@@ -489,13 +549,17 @@ class DynaTreeNavigationIntegrationTest(CommonFixture, CPSTestCase):
 
     def testNodeUnfold(self):
         self.initView(context_rpath='workspaces/subw')
-        # format for dynatree to be precised anyway. Notably for async
-        # unfolding (subw has children, but is currently unfolded, that's
-        # why its children is empty list right now.
-        self.assertEquals(self.view.nodeUnfold(), u'['
-                          '{"children": [], "is_folder": true, "title": ""}, '
-                          '{"is_folder": false, "title": "doc"}]'
-                          )
+        self.assertEquals(self.view.nodeUnfold(),
+                          u'[{"isLazy": true, '
+                          '"href": "/portal/workspaces/subw/subsubw", '
+                          '"isFolder": true, '
+                          '"children": '
+                          '[{"isLazy": true, '
+                          '"href": "/portal/workspaces/subw/subsubw/faq", '
+                          '"isFolder": true, "children": [], "title": "faq"}], '
+                          '"title": ""}, '
+                          '{"href": "/portal/workspaces/subw/doc", '
+                          '"isFolder": false, "title": "doc"}]')
 
 
 def test_suite():

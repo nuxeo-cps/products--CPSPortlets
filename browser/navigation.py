@@ -199,7 +199,7 @@ class HierarchicalSimpleView(BaseView):
                     rpath=rpath,
                     url=self.url_tool().getBaseUrl() + rpath)
 
-    def addDocs(self, tree, container=None):
+    def addDocs(self, tree, container=None, container_rpath=None):
         """Add ordinary documents (not from TreeCache) to the given tree.
 
         We'll actually check for all proxies and exclude those from
@@ -208,22 +208,36 @@ class HierarchicalSimpleView(BaseView):
           + some folders may not be in the cache
 
         Nodes that are marked as terminal don't get any documents.
+
+        container and container_rpath kwargs are used for recursion,
+        and should not be passed by primary caller.
+        If they are, and don't correspond, result is likely to be an exception
+        or to be impredictible.
+
+        Note: it'd be probably simpler and a bit faster to add document leaves
+        directly from list_to_tree, and avoid this addDocs method altogether,
+        but for now we prefer the latter to stay a pure manipulation of python
+        base types, and not have to do with Zope API (easier to unit test).
         """
         if not tree or tree.get('terminal', False):
             return
         rpath = tree['rpath']
         if container is None:
             portal = self.url_tool().getPortalObject()
-            container = portal.restrictedTraverse(tree['rpath'])
+            container_rpath = tree['rpath']
+            container = portal.restrictedTraverse(container_rpath)
+
         children = tree['children']
 
         # recurse and remember what was already there in the tree to avoid
         # duplicates
         already = set()
         for child in children:
-            child_id = child['id']
-            self.addDocs(child, container=container[child_id])
-            already.add(child_id)
+            child_rpath = child['rpath']
+            self.addDocs(child, container_rpath=child_rpath,
+                         container=container.restrictedTraverse(
+                    child_rpath[len(container_rpath)+1:]))
+            already.add(child['id'])
 
         children.extend(
             self.makeChildEntry(container, oid, obj, rpath)
