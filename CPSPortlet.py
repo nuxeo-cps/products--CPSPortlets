@@ -589,15 +589,13 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         This is for view mode renderings only (be it ZTK-style or old
         CPSDocument style)
         """
+        if getToolByName(self, 'portal_cpsportlets').shield_disabled:
+            return self.render_headers(REQUEST, **kw)
+
         try:
             __traceback_info__="portlet id: " + self.getId()
             return shield_apply(self, 'render_headers', REQUEST, **kw)
         except CrashShieldException:
-            if getToolByName(self, 'portal_cpsportlets').shield_disabled:
-                # normally, we shouldn't have been called. Behave nicely though
-                # (traceback and post-mortem will be in shield_apply itself)
-                raise
-            # TODO what with non HTML renderings ?
             return '<blink>!!!</blink>', None
 
     security.declarePublic('render_cache')
