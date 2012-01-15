@@ -53,6 +53,7 @@ from zope.tales.tales import CompilerError
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.CPSUtil.conflictresolvers import IncreasingDateTime
+from Products.CPSUtil.http import is_modified_since
 from Products.CPSUtil.resourceregistry import JSGlobalMethodResource
 from Products.CPSUtil.resourceregistry import require_resource
 from Products.CPSUtil.crashshield import shield_apply
@@ -656,11 +657,14 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
                 break
 
         if cache_entry is not None:
+            # Conditional request treatment
             headers = cache_entry['headers']
             if headers is not None:
                 response = REQUEST.RESPONSE
                 for name, value in headers.items():
                     response.setHeader(name, value)
+                if not is_modified_since(REQUEST, global_cleanup_time):
+                    return ''
             return cache_entry['rendered']
 
         # From now, this is a cache miss: render and set in cache
