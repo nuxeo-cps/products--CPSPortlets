@@ -1,4 +1,21 @@
 ===========================================================
+Package: CPSPortlets 1.7.0-CPS-3.5
+===========================================================
+First release built by: gracinet at: 2012-01-09T16:10:47
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2511: hierarchical tree navigation mode w/ diplay_hidden_folder=False
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- #2513: crash field now controlled and invoked by portlets (tool) 
+
+===========================================================
 Package: CPSPortlets 1.6.4-CPS-3.5
 ===========================================================
 First release built by: gracinet at: 2011-12-26T12:56:19
