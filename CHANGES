@@ -1,13 +1,12 @@
 Requires
 ~~~~~~~~
-- Zope 2.10 / CMF 2.1.1
+-
 New features
 ~~~~~~~~~~~~
-- #2491: generic z3-style portlet traversal
+-
 Bug fixes
 ~~~~~~~~~
-- #2510: upgrade step for portlets render dispatch
-- #2511: hierarchical tree navigation mode w/ diplay_hidden_folder=False
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
