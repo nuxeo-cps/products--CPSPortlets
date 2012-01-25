@@ -5,6 +5,8 @@ if obj is None:
 from Products.CPSUtil.timer import Timer
 from Products.CPSUtil.text import summarize
 
+
+
 t = Timer('CPSPortlets getContentItems')
 if REQUEST is not None:
     kw.update(REQUEST.form)
@@ -31,12 +33,16 @@ if contextual:
         obj = obj.aq_inner.aq_parent
     query_rpath = context.portal_url.getRelativeUrl(obj)
 
+
 # explicit folder path
 else:
     query_rpath = kw.get('folder_path')
-
+    
 if query_rpath:
     query['path'] = context.portal_url.getPortalPath() + '/' + query_rpath
+
+
+
 
 # sort on
 query['sort_on'] = kw.get('sort_on')
@@ -161,6 +167,13 @@ t.mark('query: %s' % str(query))
 # unicode index will not match path index stored as str
 if query.has_key('path'):
     query['path'] = str(query['path'])
+
+if kw.get('lookup_depth'):
+    a = context.portal_url.getRelativeUrl(obj)
+    b = context.portal_url.getPortalPath()
+    query['path'] = b + '/' + a
+    query['container_path']=str(query['path'])
+
 
 brains = context.portal_catalog(**query)
 t.mark('search done')
