@@ -1,0 +1,185 @@
+=================
+Portlet Rendering
+=================
+
+:Author: Georges Racinet <gracinet@cps-cms.org>
+:Description:
+    Reference documentation on how portlet renderings work in CPS 3.6
+
+.. sectnum::    :depth: 4
+.. contents::   :depth: 4
+
+
+Calling schemes : infering the rendering context and the view name
+==================================================================
+
+A portlet is always rendered according to a context object
+(``context_obj`` in the pre CPS 3.6 days) and by a given ZTK-style view.
+
+A portlet can be rendered either as an HTML fragment or as a whole
+HTTP response.
+
+HTML Fragment
+-------------
+In the former case, the rendering is triggered by the theme
+engine, once that portlet has been selected by slot and visibility
+rules, and the context object is the context of the whole page. For
+instance, if a Content Portlet is defined in ``sections`` and is being rendered
+on the page at ``sections/public/introduction``, the context object is
+``sections/public/introduction``. Of course, the rendering may depend
+on the context object or not. In that example, the Content Portlet may
+be configured to list the 5 most recent News Item documents under the
+bottom-most folder above the context obj.
+
+In this calling scheme, the view name is read in the
+``render_view_name`` field of the ``portlet_common`` schema.
+
+Whole response
+--------------
+The latter case of the whole HTTP response happens in case there is a
+direct request on the portlet object. This request then specifies
+explicitely the context object and the view name, through following form::
+
+  <PORTLET_URL>/.context/<PATH_TO_CONTEXT>.view/<VIEW_NAME>[/MORE]
+
+where
+
+- ``PORTLET_URL`` is one of the URLs for the portlet object itself,
+    such as ``http://cps.example/sections/.cps_portlets/breaking_news``
+- ``PATH_TO_CONTEXT`` is the path from the portlet definition folder
+    to the context object. In the example above, that'd be
+    ``public/introduction``
+- ``VIEW_NAME`` is the name of the view to  perform the rendering.
+- The optional ``MORE`` is mentionned to stress that the view itself
+  can define further traversals (for instance to control under which
+  name the user agents will store the results)
+
+NB: a given view returning HTML can be used with the two calling
+schemes, within a page for initial rendering, and as fragment for AJAX
+refreshings.
+
+View resolution
+===============
+A datamodel is constructed for the portlet, with the marker interface
+specified in the portlet Type Information (if any).
+
+This datamodel has the following bindings:
+- ``object``: the portlet itself
+- ``context``: the rendering context, as explained above
+- ``proxy``: ``None`` (non applicable in that case).
+
+The view lookup is done on the *datamodel*, not on the portlet object.
+It is recommended to define interfaces for that purposes and to
+register the view for those interfaces, so that the
+same view name can be used for different portlet types.
+
+As an example, we currently have a ``INavigationPortletModel``
+interface defined in ``CPSPortlets.interfaces``. It is referenced in
+the ``Navigation Portlet`` Type Information, so that all view lookups
+for Navigation Portlet will be made on a datamodel with that
+interface.
+
+In case the view lookup failed, the system fall backs to the old
+rendering principle (see below).
+
+Guidelines for view writing
+===========================
+
+It is recommended to subclass
+``Products.CPSPortlets.baseview.BaseView``. See the docstrings for
+predefined attributes and the many helper methods for details,
+we'll simply highlight a few things that are expected by the
+CPSPortlets infrastructure.
+
+Preparation
+-----------
+Many portlets have to perform some sort of extraction before
+rendering, but these cannot be done in ``__init__()``, and have to be
+done after the class has been instantiated.
+
+Namely, anything that depends on the authenticated user has to. This
+includes notably all catalog searches (typically filtered by the
+security index). There may be other reasons that we are not yet aware
+of.
+
+Besides, at least for Page Template based views, there is no easy way to
+intercept the rendering before the call of the template.
+
+Therefore, the portlets infrastructure requires view classes to
+implement a ``prepare()`` method and to bear a
+``prepared`` boolean attribute to set once it's done (to avoidi
+multiple costly calls).
+
+The base class provides a minimal implementation that does nothing
+worth noting, for those views that don't need to extract anything.
+
+
+Headers
+-------
+In the whole response rendering case, the CPSPortlets infrastructure
+has to be aware of the headers set by the view, to be able to serve
+later requests from cache.
+
+Therefore a portlet view must not set the headers directly on the
+respone object. It must instead provide a ``responseHeaders``
+method (returning a ``dict`` of headers).
+
+Again, the base class provides a default implementation (setting the
+content MIME type to ``text/html``).
+
+Legacy rendering cases
+======================
+This is a short description of what happened before CPS 3.6, and still
+happens in case the view lookup fails (notably for portlets that have
+not been migrated yet).
+
+Rendering is CPSDocument's
+--------------------------
+Recall that CPSPortlet is actually a subclass of CPSDocument. The
+rendering is simply done by the CPSSchemas/CPSDocument machinery :
+``CPSDocument.render()`` is called on the portlet, with the rendering
+context passed in keyword argument ``context_obj``.
+In turn, all widgets that aren't hidden in ``view`` layout mode will
+be displayed (usually there's only one). In CPS 3.6, the CPSDocument
+rendering system should be used for the portlet configuration only.
+
+Portlet Widgets
+---------------
+In most cases there's only one widget actually displayed in ``view``
+layout mode, and it is a ``Portlet Widget``. These in turn relay to
+a method specified in their ``render_method`` property, usually
+acquired from the skins. The render method also usually calls a big
+script to perform the extraction (``getContentItems()`` for Content
+Portlet, ``getNavigationItems`` for most Navigation Portlets, etc.
+
+Historical note
+---------------
+Up to CPS 3.4 included, all portlet related renderings (including
+syndication exports) have been done this way. The actual render method
+did the dispatching according to its internal notion of rendering
+kind (usually a field named ``display``), with special cases for
+syndication exports. Moreover, the parameters were read in the
+datastructure, not in the datamodel, which is a bit wrong and inefficien
+(datastructures are meant to model interaction with a user in a form,
+not to provide strongly typed values)
+
+In CPS 3.5, there have been some intermediate steps before the
+major refactor of CPS 3.6:
+
+- introduction of the ``Portlet Dispatcher Widget``, to split enormous
+  rendering methods (used in Navigation Portlet) ;
+- creation of ZTK views and draft of the traversal system for
+  syndication exports. Indeed, the branching in ZPTs had become too
+  complicated and was really frail (a XML file must never have a
+  leading blank line).
+
+In CPS 3.6, the dispatch field has been normalized, the view approach
+has been cleaned (use of marker interfaces) and made systematic.
+The cache managament (RAM and HTTP) has been updated to cover all
+cases, including whole responses.
+
+
+.. Local Variables:
+.. mode: rst
+.. End:
+.. vim: set filetype=rst:
