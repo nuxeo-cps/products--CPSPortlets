@@ -137,7 +137,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         tkw = dict(start_depth=dm['start_depth'])
         end_depth = dm['end_depth']
         if end_depth: # 0 not understood by tree
-            tkw[end_depth] = end_depth
+            tkw['stop_depth'] = end_depth
 
         tlist = tree.getList(**tkw)
         return self.listToTree(tlist)

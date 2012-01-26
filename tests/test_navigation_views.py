@@ -19,6 +19,9 @@ import unittest
 from Products.CPSPortlets.browser.navigation import HierarchicalSimpleView
 from Products.CPSPortlets.browser.navigation import lstartswith
 
+from Products.CMFCore.utils import getToolByName
+from Products.CPSDefault.tests.CPSTestCase import CPSTestCase
+
 def simplify_tree_list(tlist):
     """Convert a real life tree list to one more readable/debuggable."""
     for node in tlist:
@@ -155,6 +158,78 @@ class HierarchicalSimpleViewTest(unittest.TestCase):
                 {'rpath': 'a/b/co'}
                 ])
 
+class CommonFixture:
+
+    TEST_USER = 'nav_view_user'
+
+    def setRequestContextObj(self, rpath):
+        self.request[REQUEST_TRAVERSAL_KEY] = rpath.split('/')
+
+    def rebuildTree(self):
+        # could get slow
+        getToolByName(self.portal, 'portal_trees')['workspaces'].rebuild()
+
+    def createStructure(self):
+        self.login('manager')
+        user = self.TEST_USER
+
+        aclu = getToolByName(self.portal, 'acl_users')
+        aclu._doAddUser(user, '', ('Member',), ())
+        self.assertFalse(aclu.getUser(user) is None)
+
+        self.wftool = wftool = getToolByName(self.portal, 'portal_workflow')
+        self.pmtool = pmtool = getToolByName(self.portal, 'portal_membership')
+
+        ws = self.portal.workspaces
+        pmtool.setLocalRoles(obj=ws, member_ids=[user],
+                             member_role='WorkspaceReader')
+
+        wftool.invokeFactoryFor(ws, 'Workspace', 'subw')
+        subw = ws.subw
+
+        wftool.invokeFactoryFor(subw, 'Workspace', 'subsubw')
+        subsubw = subw.subsubw
+        pmtool.blockLocalRoles(subsubw)
+
+        wftool.invokeFactoryFor(subw, 'File', 'doc')
+        wftool.invokeFactoryFor(subsubw, 'FAQ', 'faq')
+        self.rebuildTree()
+
+    def createPortlet(self):
+        self.login('manager')
+        ptltool = getToolByName(self.portal, 'portal_cpsportlets')
+        ptl_id = ptltool.createPortlet('Navigation Portlet',
+                                       root_uids=('workspaces',), show_docs=1)
+        self.portlet = ptltool[ptl_id]
+
+
+class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
+
+    def afterSetUp(self):
+        # we'll feed the needed context/request if needed
+        self.request = self.app.REQUEST
+        view = self.view = HierarchicalSimpleView(self.portal, self.request)
+        view.datamodel = dict(start_depth=0, end_depth=0,
+                              root_uids=['workspaces'])
+        self.createStructure()
+
+    def test_getTree(self):
+        view = self.view
+        view.here_rpath = 'workspaces'
+        tree = view.getTree()
+        self.assertEquals(tree[0]['rpath'], 'workspaces')
+
+    def test_getTree_end_depth(self):
+        # see #2534
+        view = self.view
+        view.datamodel['end_depth'] = 1
+        view.here_rpath = 'workspaces'
+        tree = view.getTree()
+        self.assertEquals(tree[0]['rpath'], 'workspaces')
+
 
 def test_suite():
-    return unittest.makeSuite(HierarchicalSimpleViewTest)
+    return unittest.TestSuite((
+        unittest.makeSuite(HierarchicalSimpleViewTest),
+        unittest.makeSuite(HierarchicalSimpleViewIntegrationTest),
+        ))
