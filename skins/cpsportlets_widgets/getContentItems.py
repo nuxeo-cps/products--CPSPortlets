@@ -58,8 +58,8 @@ if query_title is not None:
 search_type = kw.get('search_type')
 if search_type == 'related':
     content = obj.getContent()
-    if getattr(content.aq_inner.aq_explicit, 'Subject'):
-        subjects=content.Subject()
+    if getattr(content.aq_inner.aq_explicit, 'Subject', None):
+        subjects = content.Subject()
         if subjects:
             query.update({'Subject': subjects,
                           'review_state': 'published',})
@@ -161,6 +161,9 @@ t.mark('query: %s' % str(query))
 # unicode index will not match path index stored as str
 if query.has_key('path'):
     query['path'] = str(query['path'])
+
+if kw.get('depth_equals_0'):
+    query['container_path']=query['path']
 
 brains = context.portal_catalog(**query)
 t.mark('search done')
