@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- #2539: Provide context aware link to RSS exports
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
