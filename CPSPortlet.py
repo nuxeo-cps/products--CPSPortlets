@@ -176,6 +176,33 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         return getattr(self, name)
 
+    def viewAbsoluteUrlPath(self, view_name, context_obj=None):
+        """Return relative URI w/ absolute path for named view on context_obj.
+
+        context_obj should be None only if the rendering is expected to be
+        independent of context (useful for HTTP caching).
+        """
+        segments = [self.absolute_url_path(), KEYWORD_CONTEXT_OBJ_TRAVERSAL]
+
+        if context_obj is not None:
+            definition_folder = parent(parent(self))
+            definition_path = definition_folder.getPhysicalPath()
+            context_path = context_obj.getPhysicalPath()
+            while definition_path:
+                if not context_path[0] == definition_path[0]:
+                    raise RuntimeError((
+                        "Rendering context %r should be below definition "
+                        "folder %r") % (context_obj, definiton_folder))
+                definition_path = definition_path[1:]
+                context_path = context_path[1:]
+            segments.extend(context_path)
+
+        segments.extend((KEYWORD_VIEW_TRAVERSAL, view_name))
+        return '/'.join(segments)
+
+
+
+
     security.declarePublic('getGuard')
     def getGuard(self):
         return self.guard

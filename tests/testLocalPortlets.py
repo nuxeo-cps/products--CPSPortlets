@@ -9,6 +9,8 @@ from Testing import ZopeTestCase
 
 from Products.CPSDefault.tests import CPSDefaultTestCase
 
+from Products.CMFCore.utils import getToolByName
+
 class TestPortlets(CPSDefaultTestCase.CPSDefaultTestCase):
     def afterSetUp(self):
         if self.login_id:
@@ -48,6 +50,37 @@ class TestLocalPortletsAsRoot(TestPortlets):
         portlet = portlets_container.getPortletById(portlet_id)
         self.assertNotEqual(portlet, None)
         self.assert_(portlet.render())
+
+    def test_view_links(self):
+        ptltool = self.ptltool
+        definition_folder = self.portal.workspaces
+        portlet_id = ptltool.createPortlet(ptype_id='Dummy Portlet',
+                                           context=definition_folder)
+        portlets_container = ptltool.getPortletContainer(
+            context=definition_folder)
+        portlet = portlets_container.getPortletById(portlet_id)
+        self.assertNotEqual(portlet, None)
+
+        wftool = getToolByName(self.portal, 'portal_workflow')
+        wftool.invokeFactoryFor(definition_folder, 'Workspace', 'subw')
+        subw = definition_folder.subw
+
+        def assert_path(view_name, context_obj, pattern):
+            """Generate path and check against pattern.
+            in pattern, %s will be replaced by portlet id
+            """
+            res = portlet.viewAbsoluteUrlPath(view_name,
+                                              context_obj=context_obj)
+            self.assertEquals(res, pattern % portlet_id)
+
+        assert_path('rss_2_0', subw, '/portal/workspaces/.cps_portlets/%s'
+                    '/.context/subw/.view/rss_2_0')
+        assert_path('rss_2_0', None, '/portal/workspaces/.cps_portlets/%s'
+                    '/.context/.view/rss_2_0')
+        assert_path('rss_2_0', definition_folder,
+                    '/portal/workspaces/.cps_portlets/%s'
+                    '/.context/.view/rss_2_0')
+
 
     def test_render_shield(self):
         ptltool = self.ptltool
