@@ -8,10 +8,27 @@
                 context nocall:view/context;
                 linkclass python: show_icons and 'noicon' or None;
                 contentItems view/items;
+		export_formats dm/syndication_formats;
                 export_new_style python:True"
     tal:condition="contentItems">
 
- <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
+ <metal:block define-macro="xml_exports"
+   tal:define="formats dm/syndication_formats;
+	       short_syndication_formats dm/short_syndication_formats|nothing;
+	       portlet view/portlet"
+   tal:condition="python: formats and portlet">
+  <div class="xmlExportButtons contentPortletFeeds"
+       tal:define="vtool here/portal_vocabularies;
+                   voc vtool/cpsportlets_syndication_formats_voc">
+   <tal:block repeat="format formats">
+    <tal:block define="exporturl python:view.viewAbsoluteUrlPath(format)">
+     <metal:block
+       use-macro="here/cpsportlet_macros/macros/xml_export_link_new_style" />
+    </tal:block>
+   </tal:block>
+  </div>
+ </metal:block>
+
  <ul class="contentPortlet">
   <tal:block repeat="item contentItems">
    <li tal:define="item_url item/url;

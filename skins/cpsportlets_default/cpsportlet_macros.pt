@@ -38,9 +38,7 @@
 
 <metal:block define-macro="xml_export_link_new_style"
              tal:define="exts_voc vtool/cpsportlets_export_extensions|nothing;
-                         ptlid portlet/getId;
-			 contextual_export contextual_export|python:True;
-	                 exporturl python: view.viewAbsoluteUrlPath(format);">
+                         ptlid portlet/getId;">
 
  <a i18n:attributes="title"
     tal:omit-tag="python:not voc.has_key(format)"
