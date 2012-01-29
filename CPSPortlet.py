@@ -176,6 +176,7 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         return getattr(self, name)
 
+    security.declarePublic('viewAbsoluteUrlPath')
     def viewAbsoluteUrlPath(self, view_name, context_obj=None):
         """Return relative URI w/ absolute path for named view on context_obj.
 
@@ -199,9 +200,6 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
 
         segments.extend((KEYWORD_VIEW_TRAVERSAL, view_name))
         return '/'.join(segments)
-
-
-
 
     security.declarePublic('getGuard')
     def getGuard(self):
