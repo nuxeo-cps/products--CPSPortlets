@@ -15,7 +15,8 @@
 
   <tal:block condition="not:export"
 	     define="export_new_style python:True">
-     <tal:block condition="contentitems">
+     <tal:block condition="contentitems"
+		define="contextual_export python: ds['search_type'] == 'related' or ds['contextual']">
       <metal:block use-macro="here/cpsportlet_macros/macros/xml_exports" />
      </tal:block>
      <ul class="cpsskinsMenu">

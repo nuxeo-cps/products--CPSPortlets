@@ -39,13 +39,14 @@
 <metal:block define-macro="xml_export_link_new_style"
              tal:define="exts_voc vtool/cpsportlets_export_extensions|nothing;
                          ptlid portlet/getId;
-	                 ptlurl portlet/absolute_url">
+			 contextual_export contextual_export|python:True;
+	                 exporturl python: portlet.viewAbsoluteUrlPath(format, context_obj=test(contextual_export, context, None))">
 
  <a i18n:attributes="title"
     tal:omit-tag="python:not voc.has_key(format)"
     tal:define="ext python: exts_voc and exts_voc.get(format) or 'xml';
                 export_name python: ext and ptlid + '.' + ext or ptlid;"
-    tal:attributes="href string:${ptlurl}/${format}/${export_name};
+    tal:attributes="href string:${exporturl}/${export_name};
 		    title string:cpsportlets_syndication_${format}_help">
   <img tal:attributes="src string:${base_url}syndication_icon-28.png;
                        alt python:voc.get(format);
