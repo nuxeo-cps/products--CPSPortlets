@@ -38,6 +38,10 @@ class ContentPortletView(BaseExportView):
         self.items = self.context.getContentItems(obj=self.getContextObj(),
                                                   **kw)
 
+    def isContextual(self):
+        dm = self.datamodel
+        return dm['contextual'] or dm['search_type'] == 'related'
+
 
 class RssExportView(RssMixin, ContentPortletView):
     """The class to use for all RSS exports of content portlets"""

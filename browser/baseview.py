@@ -17,6 +17,8 @@
 
 import logging
 import warnings
+
+from zope.component import getMultiAdapter
 from zExceptions import NotFound
 from Acquisition import aq_parent, aq_inner
 from DateTime.DateTime import DateTime
@@ -25,6 +27,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.CPSSchemas.DataStructure import DataStructure
 from Products.CPSPortlets.CPSPortlet import REQUEST_TRAVERSAL_KEY
 from Products.CPSonFive.browser import AqSafeBrowserView
+
+from zope.publisher.interfaces import IPublishTraverse
 
 logger = logging.getLogger(__name__)
 
@@ -195,3 +199,33 @@ class BaseView(AqSafeBrowserView):
             layout.prepareLayoutWidgets(ds)
         ds.updateFromMapping(self.request.form)
         return ds
+
+    def isContextual(self):
+        """Do some view renderings for this portlet depend on context ?.
+
+        To be implemented in subclasses. Returning True is conservative.
+        Returning False will help, e.g., for HTTP caching by not varying URLs.
+        This is primarily meant for exports (see #2539).
+
+        Of course the case in which a portlet is not normally not contextual (
+        e.g., renderings all depend on a common extraction that is not),
+        but someone adds in a final customization a view that nevertheless
+        happens to be is not
+        covered.
+        In this case, people should then go as far as changing this method in
+        the original view (subclassing + overriding in ZCML)
+        """
+        return True
+
+    def viewAbsoluteUrlPath(self, view_name):
+        """Return relative URI w/ absolute path for given named view.
+
+        If appropriate, context in the URI is the current context or None.
+        """
+        traverser = getMultiAdapter((self.portlet(), self.request,),
+                                    IPublishTraverse)
+        if self.isContextual():
+            context = self.context
+        else:
+            context = None
+        return traverser.viewAbsoluteUrlPath(view_name, context_obj=context)
