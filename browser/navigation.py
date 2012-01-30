@@ -183,7 +183,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         trees = [ttool[tid] for tid in self.datamodel['root_uids']]
         if len(trees) > 1:
             logger.error("%r does not support multiple trees yet",
-                         self.__class___)
+                         self.__class__)
             raise NotImplementedError
         tree = trees[0]
         self.aqSafeSet('tree_cache', tree)
