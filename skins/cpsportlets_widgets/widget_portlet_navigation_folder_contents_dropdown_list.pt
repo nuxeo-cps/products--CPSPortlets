@@ -1,6 +1,6 @@
 <tal:block xmlns:metal="http://xml.zope.org/namespaces/metal"
-	   xmlns:tal="http://xml.zope.org/namespaces/tal"
-	   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+       xmlns:tal="http://xml.zope.org/namespaces/tal"
+       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
            define="utool nocall:here/portal_url;
                    export request/form/export|nothing;
                    ds options/datastructure;
@@ -20,23 +20,24 @@
 
  <tal:block condition="not:export">
   <tal:block condition="python: display == 'folder_contents_dropdown_list'">
-    <form method="get" action="cpsportlet_url_redirect"
+   <form method="get" action="cpsportlet_url_redirect"
     tal:define="folderItems python: here.getFolderItems(
                 context_obj=context,
                 **dict(ds))"
     tal:condition="folderItems">
-      <select onchange="submit()" name="url">
-        <option value="" selected="selected">...</option>
-        <tal:block repeat="item folderItems">
+    <select onchange="submit()" name="url">
+     <option value="" selected="selected">...</option>
+     <tal:block repeat="item folderItems">
           <option value=""
           tal:define="item_url item/url"
           tal:content="item/title"
           tal:attributes="value item_url" />
-        </tal:block>
-      </select>
-    </form>
+     </tal:block>
+    </select>
+   </form>
+  </tal:block>
  </tal:block>
-
+ 
  <tal:block tal:condition="export">
   <tal:block define="export_macro string:export_${export};
                      items python: context.getFolderItems(

@@ -8,6 +8,7 @@ Bug fixes
 ~~~~~~~~~
 - Documentation overhaul, initiated reference doc for the rendering system
 - #2539: Provide context aware link to RSS exports
+- #2534: hierarchical_tree navigation portlet fails if end_depth specified
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 

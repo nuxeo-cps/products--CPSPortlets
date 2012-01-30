@@ -20,7 +20,7 @@
 
  <tal:block condition="not:export">
   <tal:block condition="python: display == 'vertical_breadcrumbs_menu'">
-    <tal:block
+   <tal:block
      define="rel_depth ds/rel_depth;
              trailItems python: context.getBreadcrumbsItems(url=context_rpath, display_hidden_folders=display_hidden_folders);
              folderItems python: context.getFolderItems(context_obj=context, show_docs=show_docs, display_hidden_folders=display_hidden_folders);
@@ -60,9 +60,10 @@
           </tal:block>
         </h4>
       </tal:block>
-    </tal:block>
+   </tal:block>
   </tal:block>
-
+ </tal:block>
+ 
  <tal:block tal:condition="export">
   <tal:block define="export_macro string:export_${export};
                      items python: context.getFolderItems(
