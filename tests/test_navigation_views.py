@@ -297,6 +297,14 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
         tree = view.getTree()
         self.assertEquals(tree[0]['rpath'], 'workspaces')
 
+    def test_getTree_end_depth(self):
+        # see #2534
+        view = self.view
+        view.datamodel['end_depth'] = 1
+        view.here_rpath = 'workspaces'
+        tree = view.getTree()
+        self.assertEquals(tree[0]['rpath'], 'workspaces')
+
     def test_getTree_hidden_folder(self):
         view = self.view
         view.here_rpath = 'workspaces/subw'
