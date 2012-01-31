@@ -6,8 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- #2534: hierarchical_tree navigation portlet fails if end_depth specified
-- #2533: some broken display modes for navigation portlets
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
