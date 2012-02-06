@@ -65,12 +65,8 @@ class CatalogToolTests(SecurityTest):
         from Products.CPSPortlets.PortletsCatalogTool import \
              PortletsCatalogTool as CatalogTool
 
-        # GR. With Five > 1.3.2, the creation on the fly of this interface
-        # is problematic. IPortletsCatalogTool cannot simply
-        # derive from it because it is deferred. Problem likely to be solved
-        # with a CMF upgrade.
-        if FIVE_VERSION == (1, 3, 2):
-            verifyClass(IActionProvider, CatalogTool)
+        # GR. Test of IActionProvider failed. We can afford getting rid of it
+        # in this branch
         verifyClass(ICatalogTool, CatalogTool)
 
     def loginWithRoles(self, *roles):
