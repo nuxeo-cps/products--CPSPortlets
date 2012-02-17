@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- #2253: Add the definition of base_url, which is no provided in all cases
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
