@@ -40,7 +40,7 @@
              tal:define="exts_voc vtool/cpsportlets_export_extensions|nothing;
                          ptlid portlet/getId;
 	                 ptlurl portlet/absolute_url;
-                     base_url here/portal_utl/getBaseUrl;
+                     base_url here/portal_url/getBaseUrl;
                      ">
 
  <a i18n:attributes="title"
@@ -59,7 +59,7 @@
 <metal:block define-macro="xml_export_link_old_style">
  <a i18n:attributes="title"
     tal:define="path path|nothing;
-                base_url here/portal_utl/getBaseUrl;
+                base_url here/portal_url/getBaseUrl;
                 "
     tal:omit-tag="python:not voc.has_key(format)"
     tal:attributes="href string:${portlet/absolute_url}?export=${format}&path=${path};
@@ -76,7 +76,7 @@
 <metal:block define-macro="xml_exports"
   tal:define="formats ds/syndication_formats;
               short_syndication_formats ds/short_syndication_formats|nothing;
-              base_url here/portal_utl/getBaseUrl;
+              base_url here/portal_url/getBaseUrl;
               portlet nocall:options/portlet|nothing;"
   tal:condition="python: formats and portlet">
   <div class="xmlExportButtons contentPortletFeeds"
@@ -100,7 +100,7 @@
   tal:define="children python:context.getNodeChildren(folderItems, node);
   branch python:'branch:' + node.get('url').replace('/', ':');
   selected_heir python:context.hasSelectedHeir(folderItems, node);
-  base_url here/portal_utl/getBaseUrl;
+  base_url here/portal_url/getBaseUrl;
   branch_display python:test(
     selected_heir or node['selected'], 'block', 'none');"
   tal:condition="python:children">
