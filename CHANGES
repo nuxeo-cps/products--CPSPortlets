@@ -6,9 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
-- #2539: Provide context aware link to RSS exports
-- #2534: hierarchical_tree navigation portlet fails if end_depth specified
-- #2253: Add the definition of base_url, which is no provided in all cases
+-
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
