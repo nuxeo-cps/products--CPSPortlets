@@ -39,7 +39,7 @@
 <metal:block define-macro="xml_export_link_new_style"
              tal:define="exts_voc vtool/cpsportlets_export_extensions|nothing;
                          ptlid portlet/getId;
-                         base_url here/portal_utl/getBaseUrl;
+                         base_url here/portal_url/getBaseUrl;
 			 contextual_export contextual_export|python:True;
 	                 exporturl python: portlet.viewAbsoluteUrlPath(format, context_obj=test(contextual_export, context, None))">
 
