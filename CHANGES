@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- #2569: robuster logic to skip current node while unfolding it
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 

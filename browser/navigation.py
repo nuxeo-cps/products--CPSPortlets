@@ -294,7 +294,13 @@ class HierarchicalSimpleView(AqSafeBrowserView):
         if dm.get('show_docs'):
             self.addDocs(self.under(forest, self.here_rpath))
         if not inclusive and forest:
-            forest = forest[0]['children']
+            # in practice (see #2569) the current node might already be skipped
+            if forest[0]['rpath'] == start:
+                if len(forest) > 1:
+                    logger.error("While removing current node (for unfolding)"
+                                 "found unexpected siblings. forest=%r",
+                                 forest)
+                forest = forest[0]['children']
         return forest
 
     security.declarePublic('iconUri')
