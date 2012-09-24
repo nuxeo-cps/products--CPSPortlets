@@ -549,7 +549,28 @@ class DynaTreeNavigationIntegrationTest(CommonFixture, CPSTestCase):
                           '"isFolder": true, "children": [], "title": "faq"}], '
                           '"title": ""}, '
                           '{"href": "/portal/workspaces/subw/doc", '
-                          '"isFolder": false, "title": "doc"}]')
+                          '"isFolder": false, '
+                          '"title": "doc"}]')
+
+    def testNodeUnfoldWithIcons(self):
+        # same with icons TODO yes, parse that JSON and make a more sensible
+        # statement
+        self.setRequestContextObj('workspaces/subw')
+        self.portlet.edit(subtree_depth=0, show_icons=True)
+        self.assertEquals(self.view.nodeUnfold(),
+                          u'[{"isLazy": true, '
+                          '"href": "/portal/workspaces/subw/subsubw", '
+                          '"isFolder": true, '
+                          '"children": '
+                          '[{"isLazy": true, '
+                          '"href": "/portal/workspaces/subw/subsubw/faq", '
+                          '"isFolder": true, "children": [], "title": "faq"}], '
+                          '"title": ""}, '
+                          '{"href": "/portal/workspaces/subw/doc", '
+                          '"isFolder": false, '
+                          '"icon": "/portal/attachedfile_icon.png", '
+                          '"title": "doc"}]')
+
 
 def test_suite():
     return unittest.TestSuite((

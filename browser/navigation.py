@@ -214,6 +214,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
                     visible=True, # check done before-hand,
                     portal_type=obj.portal_type,
                     rpath=rpath,
+                    icon=self.iconUri(obj),
                     url=self.url_tool.getBaseUrl() + rpath)
 
     def addDocs(self, tree, container=None, container_rpath=None):
@@ -349,6 +350,10 @@ class DynaTreeNavigation(JsonNavigation):
             if is_folder:
                 node['children'] = self.extract(tree.get('children', ()))
                 node['isLazy'] = True
+            elif self.datamodel['show_icons']:
+                icon = tree.get('icon')
+                if icon is not None:
+                    node['icon'] = icon
             res.append(node)
         return res
 

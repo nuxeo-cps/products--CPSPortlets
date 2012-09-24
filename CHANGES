@@ -7,6 +7,7 @@ New features
 Bug fixes
 ~~~~~~~~~
 - #2569: robuster logic to skip current node while unfolding it
+- #2570: provide content icons in document browser portlets
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
