@@ -24,10 +24,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.permissions import View
 from Products.CPSCore.ProxyBase import ALL_PROXY_META_TYPES
-from Products.CPSCore.ProxyBase import PROXY_FOLDERISH_META_TYPES
 from Products.CPSUtil import minjson as json
 from Products.CPSonFive.browser import AqSafeBrowserView
-from Products.CPSSchemas.DataStructure import DataStructure
 from exportviews import BaseExport
 
 logger = logging.getLogger(__name__)
@@ -207,15 +205,33 @@ class HierarchicalSimpleView(AqSafeBrowserView):
                 raise LookupError(rpath)
 
     def makeChildEntry(self, container, oid, obj, container_rpath):
+        doc = obj.getContent()
+        base_url = self.url_tool.getBaseUrl()
+
         rpath = '/'.join((container_rpath, oid))
-        return dict(title=obj.title_or_id(),
-                    is_folder=obj.meta_type in PROXY_FOLDERISH_META_TYPES,
+        child = dict(title=obj.title_or_id(),
+                    isLazy=False,
                     description='',
                     visible=True, # check done before-hand,
                     portal_type=obj.portal_type,
                     rpath=rpath,
                     icon=self.iconUri(obj),
-                    url=self.url_tool.getBaseUrl() + rpath)
+                    url=base_url+rpath)
+
+        if not self.datamodel['show_attached_files']:
+            child['is_folder'] = False
+        else:
+            files = [dict(title=att['current_filename'],
+                          url=att['content_url'],
+                          rpath=att['content_url'][len(base_url):],
+                          is_folder=False,
+                          icon=base_url+att['mimetype'].icon_path)
+                     for att in doc.getAttachedFilesInfo()]
+            child['is_folder'] = bool(files)
+            if files:
+                child['children'] = files
+
+        return child
 
     def addDocs(self, tree, container=None, container_rpath=None):
         """Add ordinary documents (not from TreeCache) to the given tree.
@@ -350,7 +366,7 @@ class DynaTreeNavigation(JsonNavigation):
             if is_folder:
                 node['children'] = self.extract(tree.get('children', ()))
                 node['isLazy'] = True
-            elif self.datamodel['show_icons']:
+            if self.datamodel['show_icons']:
                 icon = tree.get('icon')
                 if icon is not None:
                     node['icon'] = icon
