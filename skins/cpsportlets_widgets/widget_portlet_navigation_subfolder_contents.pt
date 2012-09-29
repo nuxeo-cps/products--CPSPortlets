@@ -42,9 +42,10 @@
         </tal:block>
       </tal:block>
     </tal:block>
-
-    <tal:block tal:condition="export">
-      <tal:block define="export_macro string:export_${export};
+  </tal:block>
+ 
+ <tal:block tal:condition="export">
+  <tal:block define="export_macro string:export_${export};
                      items python: context.getFolderItems(
                      context_rpath=request.form.get('path'),
                      show_docs=1, display_hidden_folders=0)">
@@ -53,6 +54,4 @@
 " />
       </tal:block>
     </tal:block>
-
-  </tal:block>
 </tal:block>

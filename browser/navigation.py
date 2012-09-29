@@ -21,7 +21,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.permissions import View
 from Products.CPSCore.ProxyBase import ALL_PROXY_META_TYPES
-from Products.CPSCore.ProxyBase import PROXY_FOLDERISH_META_TYPES
 from Products.CPSUtil import minjson as json
 from baseview import BaseView
 
@@ -149,7 +148,7 @@ class HierarchicalSimpleView(BaseView):
             produced['from_treecache'] = True
             append_to.append(produced)
             produced['children'] = []
-
+            produced['icon'] = self.iconUri(item)
             classes = [] # CSS
             if here_rpath == item_rpath:
                 classes.append('selected')
@@ -166,7 +165,7 @@ class HierarchicalSimpleView(BaseView):
         trees = [ttool[tid] for tid in self.datamodel['root_uids']]
         if len(trees) > 1:
             logger.error("%r does not support multiple trees yet",
-                         self.__class___)
+                         self.__class__)
             raise NotImplementedError
         tree = trees[0]
         self.aqSafeSet('tree_cache', tree)
@@ -190,14 +189,33 @@ class HierarchicalSimpleView(BaseView):
                 raise LookupError(rpath)
 
     def makeChildEntry(self, container, oid, obj, container_rpath):
+        doc = obj.getContent()
+        base_url = self.url_tool().getBaseUrl()
+
         rpath = '/'.join((container_rpath, oid))
-        return dict(title=obj.title_or_id(),
-                    is_folder=obj.meta_type in PROXY_FOLDERISH_META_TYPES,
+        child = dict(title=obj.title_or_id(),
+                    isLazy=False,
                     description='',
                     visible=True, # check done before-hand,
                     portal_type=obj.portal_type,
                     rpath=rpath,
-                    url=self.url_tool().getBaseUrl() + rpath)
+                    icon=self.iconUri(obj),
+                    url=base_url+rpath)
+
+        if not self.datamodel['show_attached_files']:
+            child['is_folder'] = False
+        else:
+            files = [dict(title=att['current_filename'],
+                          url=att['content_url'],
+                          rpath=att['content_url'][len(base_url):],
+                          is_folder=False,
+                          icon=base_url+att['mimetype'].icon_path)
+                     for att in doc.getAttachedFilesInfo()]
+            child['is_folder'] = bool(files)
+            if files:
+                child['children'] = files
+
+        return child
 
     def addDocs(self, tree, container=None, container_rpath=None):
         """Add ordinary documents (not from TreeCache) to the given tree.
@@ -276,12 +294,23 @@ class HierarchicalSimpleView(BaseView):
         if dm.get('show_docs'):
             self.addDocs(self.under(forest, self.here_rpath))
         if not inclusive and forest:
-            forest = forest[0]['children']
+            # in practice (see #2569) the current node might already be skipped
+            if forest[0]['rpath'] == start:
+                if len(forest) > 1:
+                    logger.error("While removing current node (for unfolding)"
+                                 "found unexpected siblings. forest=%r",
+                                 forest)
+                forest = forest[0]['children']
         return forest
 
     def iconUri(self, item):
-        """Return URI of icon for item's portal_type."""
+        """Return URI of icon for item's portal_type.
+
+        item can be a dict (as from the TreeCache) or a content object.
+        """
         ptype = item['portal_type']
+        if ptype is None: # happens in unit tests
+            return
         uri = self.icon_uris.get(ptype)
         if uri is not None:
             return uri
@@ -312,5 +341,9 @@ class DynaTreeNavigation(JsonNavigation):
             if is_folder:
                 node['children'] = self.extract(tree.get('children', ()))
                 node['isLazy'] = True
+            if self.datamodel['show_icons']:
+                icon = tree.get('icon')
+                if icon is not None:
+                    node['icon'] = icon
             res.append(node)
         return res

@@ -53,6 +53,43 @@ New internal features
 - 
 
 ===========================================================
+Package: CPSPortlets 1.7.2-CPS-3.5
+===========================================================
+First release built by: gracinet at: 2012-02-18T23:00:04
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2539: Provide context aware link to RSS exports
+- #2534: hierarchical_tree navigation portlet fails if end_depth specified
+- #2253: Add the definition of base_url, which is no provided in all cases
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
+Package: CPSPortlets 1.5.2-1.5.0-bugfix
+===========================================================
+First release built by: colin at: 2012-01-31T16:19:58
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2534: hierarchical_tree navigation portlet fails if end_depth specified
+- #2533: some broken display modes for navigation portlets
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.7.1-CPS-3.5
 ===========================================================
 First release built by: gracinet at: 2012-01-29T14:29:06

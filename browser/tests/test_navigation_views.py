@@ -24,7 +24,8 @@ from Products.CPSPortlets.browser.navigation import JsonNavigation
 from Products.CPSPortlets.browser.navigation import DynaTreeNavigation
 from Products.CPSPortlets.browser.navigation import lstartswith
 from Products.CPSPortlets.browser.navigation import tree_to_rpaths
-from Products.CPSPortlets.CPSPortlet import REQUEST_TRAVERSAL_KEY
+# don't repeat original import in likely case we'll change json lib
+from Products.CPSPortlets.browser.navigation import json
 
 def simplify_tree_list(tlist):
     """Convert a real life tree list to one more readable/debuggable."""
@@ -37,7 +38,7 @@ def simplify_tree_list(tlist):
             simplify_tree_list(children)
 
 def rpaths_to_items(*rpaths):
-    return [dict(rpath=p) for p in rpaths]
+    return [dict(rpath=p, portal_type=None) for p in rpaths]
 
 class FakePortal:
 
@@ -73,6 +74,7 @@ class HierarchicalSimpleViewTest(unittest.TestCase):
     def setUp(self):
         # we'll feed the needed context/request if needed
         dm = self.datamodel = FakeDataModel()
+        dm['show_icons'] = False
         # just for view __init__, will be actually set in each test
         dm.context = PORTAL
         self.view = HierarchicalSimpleView(dm, None)
@@ -231,13 +233,8 @@ class HierarchicalSimpleViewTest(unittest.TestCase):
                 dict(rpath='c')])
 
     def test_listToTree_buggy1(self):
-        tlist = [
-            {'rpath': 'a/b/c'},
-            {'rpath': 'a/b/c/ca'},
-            {'rpath': 'a/b/c/ca/ca1'},
-            {'rpath': 'a/b/e'},
-            {'rpath': 'a/b/co'},
-            ]
+        tlist = rpaths_to_items('a/b/c', 'a/b/c/ca', 'a/b/c/ca/ca1',
+                                'a/b/e', 'a/b/co')
 
         self.view.here_rpath = 'a/b/c/ca'
         tree = self.view.listToTree(tlist)
@@ -363,6 +360,7 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
 
     def test_getTreeWithDocs(self):
         self.datamodel['show_docs'] = True
+        self.datamodel['show_attached_files'] = False
         view = self.initView(context_rpath='workspaces/subw')
         tree = view.getTree()
         self.assertEquals(tree_to_rpaths(tree), [
@@ -373,6 +371,21 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
                                 ])
                         ])
                 ])
+
+        # now with attached file
+        from OFS.Image import File
+        self.datamodel['show_attached_files'] = False
+        view = self.initView(context_rpath='workspaces/subw')
+        fobj = File('file', 'attached.pdf', '')
+        self.portal.workspaces.subw.doc.getEditableContent().edit(file=fobj)
+        rpaths = tree_to_rpaths(view.getTree())
+        self.assertEquals(
+            rpaths[0]['children'][0]['children'][1],
+            dict(rpath='workspaces/subw/doc',
+                 children=[dict(
+                    rpath='workspaces/subw/doc/downloadFile/file/attached.pdf')
+                           ]
+                    ))
 
     def test_getTreeWithDocs_terminal(self):
         # we check that docs are not added to terminal nodes,
@@ -386,6 +399,7 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
         self.portal.portal_trees['workspaces'].rebuild() # could get slow
 
         self.datamodel['show_docs'] = True
+        self.datamodel['show_attached_files'] = False
         view = self.initView(context_rpath='workspaces/subw')
         tree = view.getTree()
         self.assertEquals(tree_to_rpaths(tree), [
@@ -400,6 +414,7 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
 
     def test_getTreeWithDocs2(self):
         self.datamodel['show_docs'] = True
+        self.datamodel['show_attached_files'] = False
         view = self.initView(context_rpath='workspaces/subw/subsubw')
         tree = view.getTree()
         self.assertEquals(tree_to_rpaths(tree), [
@@ -428,6 +443,7 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
         self.login(user)
 
         self.datamodel['show_docs'] = True
+        self.datamodel['show_attached_files'] = False
         view = self.initView(context_rpath='workspaces/subw')
 
         tree = view.getTree()
@@ -470,6 +486,7 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
     def test_nodeSubTreeWithDocsEmpty(self):
         # in this case we must not get a LookupError
         self.datamodel['show_docs'] = True
+        self.datamodel['show_attached_files'] = False
         view = self.initView(context_rpath='sections')
         tree = view.nodeSubTree(inclusive=False)
         self.assertEquals(tree, [])
@@ -485,7 +502,9 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
 
     def test_nodeSubTreeWithDocs(self):
         self.datamodel['subtree_depth'] = 2
+        self.datamodel['show_attached_files'] = False
         view = self.initView(context_rpath='workspaces')
+
         tree = view.nodeSubTree(inclusive=False)
         self.assertEquals(tree_to_rpaths(tree), [
                 dict(rpath='workspaces/subw', children=[
@@ -557,17 +576,28 @@ class DynaTreeNavigationIntegrationTest(CommonFixture, CPSTestCase):
     def testNodeUnfold(self):
         self.datamodel['subtree_depth'] = 0
         self.initView(context_rpath='workspaces/subw')
-        self.assertEquals(self.view.nodeUnfold(),
-                          u'[{"isLazy": true, '
-                          '"href": "/portal/workspaces/subw/subsubw", '
-                          '"isFolder": true, '
-                          '"children": '
-                          '[{"isLazy": true, '
-                          '"href": "/portal/workspaces/subw/subsubw/faq", '
-                          '"isFolder": true, "children": [], "title": "faq"}], '
-                          '"title": ""}, '
-                          '{"href": "/portal/workspaces/subw/doc", '
-                          '"isFolder": false, "title": "doc"}]')
+        json_result = json.read(self.view.nodeUnfold())
+        self.assertEquals(json_result, [
+                {u'children': [
+                        {u'href': u'/portal/workspaces/subw/subsubw/faq',
+                         u'isFolder': False,
+                         u'title': u'faq'}],
+                 u'href': u'/portal/workspaces/subw/subsubw',
+                 u'isFolder': True,
+                 u'isLazy': True,
+                 u'title': u''},
+                {u'href': u'/portal/workspaces/subw/doc',
+                 u'isFolder': False,
+                 u'title': u'doc'}]
+                          )
+    def testNodeUnfoldWithIcons(self):
+        self.datamodel['subtree_depth'] = 0
+        self.datamodel['show_icons'] = True
+        self.initView(context_rpath='workspaces/subw')
+        json_result = json.read(self.view.nodeUnfold())
+        self.assertEquals(json_result[1]['icon'],
+                          u'/portal/attachedfile_icon.png')
+
 
 
 def test_suite():
