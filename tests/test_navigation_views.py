@@ -39,7 +39,7 @@ def simplify_tree_list(tlist):
             simplify_tree_list(children)
 
 def rpaths_to_items(*rpaths):
-    return [dict(rpath=p) for p in rpaths]
+    return [dict(rpath=p, portal_type=None) for p in rpaths]
 
 class FakePortal:
 
@@ -60,6 +60,7 @@ class HierarchicalSimpleViewTest(unittest.TestCase):
     def setUp(self):
         # we'll feed the needed context/request if needed
         self.view = HierarchicalSimpleView(PORTAL, None)
+        self.view.datamodel = dict(show_icons=False)
 
     def assertConsistency(self, children, node=None):
         """Check that children are always actually children."""
@@ -215,13 +216,8 @@ class HierarchicalSimpleViewTest(unittest.TestCase):
                 dict(rpath='c')])
 
     def test_listToTree_buggy1(self):
-        tlist = [
-            {'rpath': 'a/b/c'},
-            {'rpath': 'a/b/c/ca'},
-            {'rpath': 'a/b/c/ca/ca1'},
-            {'rpath': 'a/b/e'},
-            {'rpath': 'a/b/co'},
-            ]
+        tlist = rpaths_to_items('a/b/c', 'a/b/c/ca', 'a/b/c/ca/ca1',
+                                'a/b/e', 'a/b/co')
 
         self.view.here_rpath = 'a/b/c/ca'
         tree = self.view.listToTree(tlist)

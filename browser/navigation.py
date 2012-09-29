@@ -164,7 +164,7 @@ class HierarchicalSimpleView(AqSafeBrowserView):
             produced['from_treecache'] = True
             append_to.append(produced)
             produced['children'] = []
-
+            produced['icon'] = self.iconUri(item)
             classes = [] # CSS
             if here_rpath == item_rpath:
                 classes.append('selected')
@@ -322,8 +322,13 @@ class HierarchicalSimpleView(AqSafeBrowserView):
 
     security.declarePublic('iconUri')
     def iconUri(self, item):
-        """Return URI of icon for item's portal_type."""
+        """Return URI of icon for item's portal_type.
+
+        item can be a dict (as from the TreeCache) or a content object.
+        """
         ptype = item['portal_type']
+        if ptype is None: # happens in unit tests
+            return
         uri = self.icon_uris.get(ptype)
         if uri is not None:
             return uri
