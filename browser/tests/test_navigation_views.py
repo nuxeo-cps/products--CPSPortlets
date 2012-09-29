@@ -374,7 +374,7 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
 
         # now with attached file
         from OFS.Image import File
-        self.datamodel['show_attached_files'] = False
+        self.datamodel['show_attached_files'] = True
         view = self.initView(context_rpath='workspaces/subw')
         fobj = File('file', 'attached.pdf', '')
         self.portal.workspaces.subw.doc.getEditableContent().edit(file=fobj)
