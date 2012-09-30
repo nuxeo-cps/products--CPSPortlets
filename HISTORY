@@ -1,4 +1,23 @@
 ===========================================================
+Package: CPSPortlets 1.8.3
+===========================================================
+First release built by: gracinet at: 2012-09-30T10:15:53
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- #2569: robuster logic to skip current node while unfolding it
+- #2570: provide content icons in document browser portlets
+- #2571: attached files optionnally visible in doc browser portlets
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.8.2
 ===========================================================
 First release built by: gracinet at: 2012-05-27T21:01:07
