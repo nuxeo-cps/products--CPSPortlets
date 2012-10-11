@@ -6,7 +6,8 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- got rid of one deprecation warning
+- #2576: now "show hidden folders" honoured in hierarchical simple nav portlets
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 
