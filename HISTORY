@@ -1,4 +1,22 @@
 ===========================================================
+Package: CPSPortlets 1.7.4-CPS-3.5
+===========================================================
+First release built by: gracinet at: 2012-11-13T17:07:47
+Requires
+~~~~~~~~
+-
+New features
+~~~~~~~~~~~~
+-
+Bug fixes
+~~~~~~~~~
+- got rid of one deprecation warning
+- #2576: now "show hidden folders" honoured in hierarchical simple nav portlets
+New internal features
+~~~~~~~~~~~~~~~~~~~~~
+- 
+
+===========================================================
 Package: CPSPortlets 1.7.3-CPS-3.5
 ===========================================================
 First release built by: gracinet at: 2012-09-30T12:37:42
