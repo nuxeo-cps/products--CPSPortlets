@@ -631,33 +631,28 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
         portlet_path = self.getPhysicalPath()
         index = (portlet_path, ) + cache_index
         cache = ptltool.getPortletCache()
-        # last_cleanup: the date when all the cache entries associated to the
-        # portlet were last removed from the cache
-        last_cleanup = cache.getLastCleanup(id=portlet_path)
-        # cleanup_date: the portlet's cleanup date (ZEO-aware).
-        cleanup_date = self.getCacheCleanupDate()
-        # cache timeout
+
+        # Time-based invalidations.
+        # Theres a flat timeout. Also We compare latest cleanup times :
+        # ZEO client local (from RAM) vs global accross ZEO cluster (from ZODB)
+        # global > local means that another client has invalidated. So must we.
+        now = time.time()
         timeout = self.getCacheTimeout()
+        client_cleanup_time = cache.getLastCleanup(id=portlet_path)
+        global_cleanup_time = self.getCacheCleanupDate().value
 
-        # remove all cache entries associated to this portlet.
-        # This will occur on all ZEO instances (lazily).
-        if cleanup_date > last_cleanup:
+        if (client_cleanup_time is None or
+            global_cleanup_time is None or
+            global_cleanup_time > client_cleanup_time or
+            (timeout > 0 and now > client_cleanup_time + timeout)):
+            # This also sets client cleanup date
             cache.delEntries(portlet_path)
+            cache_entry = None
+        else:
+            cache_entry = cache.getEntry(index)
 
-        # bootstrap: if last_cleanup is None we delete entries to set
-        #            an initial cleanup date.
-        if last_cleanup is None:
-            cache.delEntries(portlet_path)
-        # cache timeout
-        elif timeout > 0:
-            if now > last_cleanup + timeout:
-                cache.delEntries(portlet_path)
-
-        cache_entry = cache.getEntry(index)
-        # compare the cache entry creation date with the modification date
-        # of cached objects. The cache entry is considered invalid if any one
-        # of the cache objects were modified after the cache entry creation
-        # date.
+        # The cache entry is considered invalid if any cached objects has been
+        # modified after the cache entry creation date.
         if cache_entry is not None:
             creation_date = cache_entry['date']
             for obj_path in cache_entry['objects']:
