@@ -6,7 +6,7 @@ New features
 -
 Bug fixes
 ~~~~~~~~~
--
+- #2581: render cache invalidation problem
 New internal features
 ~~~~~~~~~~~~~~~~~~~~~
 - 

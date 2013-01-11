@@ -48,7 +48,7 @@ class PortletsCatalogTool(CatalogTool):
         # XXX GR would be better to fire an event, too lazy for now
         ptl_tool = getToolByName(self, 'portal_cpsportlets', None)
         if ptl_tool is not None:
-            ptl_tool._invalidatePortletLookupCache()
+            ptl_tool.lookupCacheInvalidate()
 
     def indexPortletsIn(self, folder):
         """Index all portlets that are in the folder.

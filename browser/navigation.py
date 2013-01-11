@@ -272,6 +272,7 @@ class HierarchicalSimpleView(BaseView):
         if end_depth: # 0 not understood by tree
             tkw['stop_depth'] = end_depth
 
+        tkw['filter'] = not dm['display_hidden_folders']
         tlist = tree.getList(**tkw)
         forest = self.listToTree(tlist, unfold_to=self.here_rpath,
                                  show_hidden=dm.get('display_hidden_folders'))
@@ -288,9 +289,12 @@ class HierarchicalSimpleView(BaseView):
         tree = self.initTreeCache()
         dm = self.datamodel
         start = self.here_rpath
-        tlist = tree.getList(prefix=start)
+
+        tlist = tree.getList(prefix=start,
+                             filter=not dm['display_hidden_folders'])
         depth = dm.get('subtree_depth', 1) # default value for BBB
-        forest = self.listToTree(tlist, unfold_to=start, unfold_level=depth)
+        forest = self.listToTree(tlist, unfold_to=start, unfold_level=depth,
+                                 show_hidden=dm.get('display_hidden_folders'))
         if dm.get('show_docs'):
             self.addDocs(self.under(forest, self.here_rpath))
         if not inclusive and forest:
