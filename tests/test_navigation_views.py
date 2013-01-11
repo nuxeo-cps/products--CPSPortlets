@@ -286,6 +286,7 @@ class HierarchicalSimpleViewIntegrationTest(CommonFixture, CPSTestCase):
         self.request = self.app.REQUEST
         view = self.view = HierarchicalSimpleView(self.portal, self.request)
         view.datamodel = dict(start_depth=0, end_depth=0,
+                              display_hidden_folders=False,
                               root_uids=['workspaces'])
         self.createStructure()
 
