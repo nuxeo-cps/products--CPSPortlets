@@ -56,3 +56,6 @@ class IContentPortletModel(IDataModel):
 
 class INavigationPortletModel(IDataModel):
     """Navigation portlet."""
+
+class IDocumentPortletModel(IDataModel):
+    """Document portlet."""

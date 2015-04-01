@@ -1,0 +1,7 @@
+<tal:block define="dm view/docDataModel"
+           xmlns:tal="http://xml.zope.org/namespaces/tal">
+
+  <h1 tal:content="dm/Title" />
+  <p class="doc_description" tal:content="dm/Description" />
+
+</tal:block>

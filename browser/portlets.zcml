@@ -43,6 +43,8 @@
    permission="zope.Public"
    class=".browser.contentportlet.AtomExportView"/>
 
+ <!-- Navigation portlets -->
+
  <browser:pages for=".interfaces.INavigationPortletModel"
                 class=".browser.navigation.HierarchicalSimpleView"
                 permission="zope2.Public">
@@ -57,5 +59,12 @@
     permission="zope.Public"
     class=".browser.navigation.DynaTreeNavigation"/>
 
+ <!-- Document portlets -->
+ <browser:pages for=".interfaces.IDocumentPortletModel"
+                class=".browser.documentportlet.DocumentPortletView"
+                permission="zope2.Public">
+   <browser:page name="title_descr"
+                 template="document_portlet_title_descr.pt" />
+ </browser:pages>
 
 </configure>
