@@ -281,6 +281,10 @@ for brain in brains:
                     pass
 
     # render the item using a custom display method (.zpt, .py, .dtml)
+    # GR so in case of downstream explicit rendering, we'll allways have
+    # the default template going (slow) or a miss.
+    # changing this would be an API break. In the meanwhile, users are
+    # encouraged to use 'cpsportlet_contentitem_no_rendering'
     elif render_method is not None:
         kw.update({'item': content,
                    'brain': brain,
@@ -300,6 +304,7 @@ for brain in brains:
          'rendered': rendered,
          'metadata': metadata_info,
          'icon_tag': icon_tag,
+         'portal_type': brain['portal_type'],
          'rpath': brain.relative_path,
         })
 #t.log('done')
