@@ -33,6 +33,7 @@ import logging
 import sys
 import time
 import md5
+import traceback
 from copy import deepcopy
 from cgi import escape
 from random import randint
@@ -129,6 +130,28 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
                    {'id': 'order', 'mode': 'w', 'type': 'string',
                     'label': 'Order in the slot'},
                    )
+
+    def has_key(self, k):
+        """Workaround BaseRequest's traverser mess for #2587
+
+        BaseRequest considers all methods save GET and POST to be DAV requests,
+        including HEAD
+        Because DAV requests (in the sense of BaseRequest) also include PUT,
+        the 'traverse()' method takes care to raise ``AttributeError`` if the
+        object does not exist. This happens before Z3 traversal, apparently.
+
+        We check that the caller is ``BaseRequest.traverse()`` and always
+        return ``True`` in that case (it wouldn't be reasonible to monkey-
+        patch this huge method).
+
+        The side-effect is that PUT requests on portlets sub-objects are
+        effectively forbidden. But I think that's ok in that context. Still
+        better than having all HEAD requests intended for portlets view fail.
+        """
+        caller = traceback.extract_stack(None, 2)[0]
+        if caller[0].endswith('BaseRequest.py') and caller[2] == 'traverse':
+            return True
+        return hasattr(self, k)
 
     security.declarePublic('getGuard')
     def getGuard(self):
