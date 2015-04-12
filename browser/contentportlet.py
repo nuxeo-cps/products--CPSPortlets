@@ -234,18 +234,40 @@ class ContentPortletView(BaseExportView):
     def batching_window(self):
         """Return URIs and page numbers for known pages around the current one.
 
-        This is a helper for the template
+        This is a helper for the template.
+        Return first, prev, window, next, last
         """
         first = 1
         last = (self.total_results / self.page_size) + 1
         # TODO harcoded content_page
         form = self.request.form.copy()
         form.pop('-C', None)
-        res = []
-        for i in range(first, last + 1):
+
+        def page_info(index):
             form['content_page'] = i
-            res.append((i, '?' + make_query(form)))
-        return res
+            return (i, '?' + make_query(form))
+
+        window = [page_info(i) for i in range(first, last+1)]
+
+        current = self.current_page
+        if current == 1:
+            first_info = prev_info = None
+        else:
+            first_info = page_info(1)
+            prev_info = page_info(current - 1)
+
+        if current == last:
+            next_info = last_info = None
+        else:
+            next_info = page_info(current + 1)
+            last_info = page_info(last)
+
+        return {'first': first_info,
+                'prev': prev_info,
+                'window': window,
+                'next': next_info,
+                'last': last_info,
+                }
 
     def insertBatchingParameters(self, query, page, items_per_page):
         """Add parameters to query so that offset, limit are respected.
