@@ -1,4 +1,9 @@
 ##parameters=obj=None, REQUEST=None, **kw
+"""This skins script is now deprecated, see #2528.
+
+All content portlets should now be rendered in the Zope3 way.
+Kept for backwards compatibility though
+"""
 if obj is None:
     return []
 
