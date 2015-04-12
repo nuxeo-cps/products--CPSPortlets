@@ -1,18 +1,15 @@
-import re
 import logging
 
-from DateTime.DateTime import DateTime
-from AccessControl import Unauthorized
 from Products.CMFCore.utils import getToolByName
 from Products.CPSUtil.timer import Timer
 from Products.CPSUtil.text import summarize
-from Products.CPSSchemas.DataStructure import DataStructure
 
 from exportviews import BaseExportView
 from exportviews import RssMixin
 from exportviews import AtomMixin
 
 logger = logging.getLogger(__name__)
+
 
 class ContentPortletView(BaseExportView):
     """The export base view is very suitable for this portlet in all cases."""
@@ -22,7 +19,7 @@ class ContentPortletView(BaseExportView):
         rpath = self.datamodel['folder_path']
         if rpath.startswith('/'):
             rpath = rpath[1:]
-        portal =  self.url_tool().getPortalObject()
+        portal = self.url_tool().getPortalObject()
         self.aqSafeSet('portal', portal)
         self.aqSafeSet('folder', portal.restrictedTraverse(rpath))
 
@@ -43,10 +40,10 @@ class ContentPortletView(BaseExportView):
         """Return brains."""
 
         obj = self.getContextObj()
-        context = self.portlet()
         if obj is None:
             return []  # kept from skins script, but should not happen
 
+        context = self.portlet()
         kw = dict(self.datamodel)  # avoid side effects
 
         t = Timer('CPSPortlets getContentItems')
@@ -72,14 +69,14 @@ class ContentPortletView(BaseExportView):
         if contextual:
             if not obj.isPrincipiaFolderish:
                 obj = obj.aq_inner.aq_parent
-            query_rpath = context.portal_url.getRelativeUrl(obj)
+            query_rpath = self.url_tool().getRelativeUrl(obj)
 
         # explicit folder path
         else:
             query_rpath = kw.get('folder_path')
 
         if query_rpath:
-            query['path'] = context.portal_url.getPortalPath() + '/' + query_rpath
+            query['path'] = self.url_tool().getPortalPath() + '/' + query_rpath
 
         # sort on
         query['sort_on'] = kw.get('sort_on')
@@ -135,7 +132,7 @@ class ContentPortletView(BaseExportView):
             query.update({'review_state': 'published',
                           'end': {'query': now, 'range': 'min'},
                           'sort_on': 'start',
-                         })
+                          })
 
         # Today's events:
         # - published
@@ -162,7 +159,8 @@ class ContentPortletView(BaseExportView):
         # - published
         # - modified date > last_login_time
         elif search_type == 'recent':
-            member = context.portal_membership.getAuthenticatedMember()
+            member = getToolByName(
+                self, 'portal_membership').getAuthenticatedMember()
             if member and getattr(member, 'last_login_time', None) is not None:
                 query.update({'modified': member.last_login_time,
                               'modified_usage': 'range:min',
@@ -186,8 +184,8 @@ class ContentPortletView(BaseExportView):
         # This is for NXLucene which works with batching
         query['b_start'] = 0
         query['b_size'] = max_items
-        # match_languages index purpose is to make the default language match if
-        # users' doesn't exist in proxy.
+        # match_languages index purpose is to make the default language match
+        # if users' doesn't exist in proxy.
         # we use it if 'strict_lang_filtering' is False
         translation_service = context.translation_service
         match_languages = 'en'
@@ -224,8 +222,8 @@ class ContentPortletView(BaseExportView):
         """Pick the brain's actual content.
 
         NB: should be avoided as much as possible for performance
-        :return: ``(content, brain object)``, where ``content`` is ``None`` if the
-                 brain object is not a proxy, else its target.
+        :return: ``(content, brain object)``, where ``content`` is ``None``
+                 if the brain object is not a proxy, else its target.
         """
         content = None
         obj = None
@@ -238,7 +236,9 @@ class ContentPortletView(BaseExportView):
         return content, obj
 
     def convertBrains(self, brains):
-        """Convert search results (brains) in the expected ``items`` list of dicts.
+        """Convert search results (brains) in the expected ``items``.
+
+        :returns: a list of dicts.
         """
         if not brains:
             return ()
@@ -326,8 +326,8 @@ class ContentPortletView(BaseExportView):
                                            cluster_id=cluster_id,
                                            proxy=brain_obj)
             # render the item using a custom display method (.zpt, .py, .dtml)
-            # GR so in case of downstream explicit rendering, we'll allways have
-            # the default template going (slow) or a miss.
+            # GR so in case of downstream explicit rendering, we'll allways
+            # have the default template going (slow) or a miss.
             # changing this would be an API break. In the meanwhile, users are
             # encouraged to use 'cpsportlet_contentitem_no_rendering'
             elif render_method is not None:
@@ -339,8 +339,8 @@ class ContentPortletView(BaseExportView):
                            'icon_tag': icon_tag})
                 rendered = apply(render_method, (), kw)
 
-            # this information is used by custom templates that call getContentItems()
-            # directly.
+            # this information is used by custom templates that call
+            # getContentItems() directly.
             title = brain['Title'] or getattr(brain, 'dc:title', '')
             items.append(
                 {'url': brain.getURL(),
