@@ -688,12 +688,14 @@ class CPSPortlet(CPSPortletCatalogAware, CPSDocument):
                     response.setHeader(name, value)
                 if not is_modified_since(REQUEST, global_cleanup_time):
                     return ''
+                logger.debug("Cache hit for portlet %s (type=%s, index=%r)",
+                             self, self.portal_type, cache_index)
             return cache_entry['rendered']
 
         # From now, this is a cache miss: render and set in cache
 
-        logger.debug("Cache miss for portlet %s (type=%s)",
-                     self, self.portal_type)
+        logger.debug("Cache miss for portlet %s (type=%s, index=%r)",
+                     self, self.portal_type, cache_index)
         rendered, headers = self.render_headers_shield(REQUEST, **kw)
 
         # TODO provide Last-Modified and Expires if not already set

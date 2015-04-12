@@ -1,5 +1,7 @@
 import logging
 
+from ZTUtils import make_query
+
 from Products.CMFCore.utils import getToolByName
 from Products.CPSUtil.timer import Timer
 from Products.CPSUtil.text import summarize
@@ -13,6 +15,11 @@ logger = logging.getLogger(__name__)
 
 class ContentPortletView(BaseExportView):
     """The export base view is very suitable for this portlet in all cases."""
+
+    brains = None
+    total_results = 0
+    page_size = 5
+    current_page = 0
 
     def initFolder(self):
         """Set folder and portal attributes."""
@@ -44,11 +51,11 @@ class ContentPortletView(BaseExportView):
         return ctool
 
     def performSearch(self):
-        """Return brains."""
+        """Perfom the search and sets the ``brains`` attribute."""
 
         obj = self.getContextObj()
         if obj is None:
-            return []  # kept from skins script, but should not happen
+            return  # kept from skins script, but should not happen
 
         context = self.portlet()
         kw = dict(self.datamodel)  # avoid side effects
@@ -56,7 +63,7 @@ class ContentPortletView(BaseExportView):
         t = Timer('CPSPortlets contentportlet search')
         kw.update(self.request.form)
 
-        max_items = int(kw.get('max_items', 5))
+        self.page_size = max_items = int(kw.get('max_items', 5))
 
         query = {}
         # set portal_type query parameter
@@ -184,7 +191,7 @@ class ContentPortletView(BaseExportView):
             query = {}
 
         if not query:
-            return []
+            return
 
         # TODO make this configurable (this can wait, usually there's need
         # for at most one batchable portlet on a page)
@@ -220,7 +227,25 @@ class ContentPortletView(BaseExportView):
             brains = [o for o in brains if o.getURL() != obj_url]
 
         # brains don't support slicing through a slice object
-        return brains[batch[0]:batch[1]]
+        self.total_results = len(brains)
+        self.brains = brains[batch[0]:batch[1]]
+        self.current_page = page
+
+    def batching_window(self):
+        """Return URIs and page numbers for known pages around the current one.
+
+        This is a helper for the template
+        """
+        first = 1
+        last = (self.total_results / self.page_size) + 1
+        # TODO harcoded content_page
+        form = self.request.form.copy()
+        form.pop('-C', None)
+        res = []
+        for i in range(first, last + 1):
+            form['content_page'] = i
+            res.append((i, '?' + make_query(form)))
+        return res
 
     def insertBatchingParameters(self, query, page, items_per_page):
         """Add parameters to query so that offset, limit are respected.
@@ -239,12 +264,14 @@ class ContentPortletView(BaseExportView):
         else:
             # results will have to be resliced, ZCatalog has seemingly
             # no builtin support for offset
-            query['sort-limit'] = end
+            # no support for total number of results, either, we'll ask for
+            # 3 more pages
+            query['sort-limit'] = end + 3 * items_per_page
         return start, end
 
     def initItems(self):
-        brains = self.performSearch()
-        self.items = self.convertBrains(brains)
+        self.performSearch()
+        self.items = self.convertBrains()
 
     def brainContent(self, brain):
         """Pick the brain's actual content.
@@ -263,11 +290,12 @@ class ContentPortletView(BaseExportView):
                 content = getContent()
         return content, obj
 
-    def convertBrains(self, brains):
+    def convertBrains(self):
         """Convert search results (brains) in the expected ``items``.
 
         :returns: a list of dicts.
         """
+        brains = self.brains
         if not brains:
             return ()
 
