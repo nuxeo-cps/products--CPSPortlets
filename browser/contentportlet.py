@@ -36,6 +36,13 @@ class ContentPortletView(BaseExportView):
         dm = self.datamodel
         return dm['contextual'] or dm['search_type'] == 'related'
 
+    def catalog_tool(self):
+        ctool = self.aqSafeGet('_catalog_tool', None)
+        if ctool is None:
+            ctool = getToolByName(self.context, 'portal_catalog')
+            self.aqSafeSet('_catalog_tool', ctool)
+        return ctool
+
     def performSearch(self):
         """Return brains."""
 
@@ -46,7 +53,7 @@ class ContentPortletView(BaseExportView):
         context = self.portlet()
         kw = dict(self.datamodel)  # avoid side effects
 
-        t = Timer('CPSPortlets getContentItems')
+        t = Timer('CPSPortlets contentportlet search')
         kw.update(self.request.form)
 
         max_items = int(kw.get('max_items', 5))
@@ -179,11 +186,11 @@ class ContentPortletView(BaseExportView):
         if not query:
             return []
 
-        # This is for classical ZCatalog
-        query['sort_limit'] = max_items
-        # This is for NXLucene which works with batching
-        query['b_start'] = 0
-        query['b_size'] = max_items
+        # TODO make this configurable (this can wait, usually there's need
+        # for at most one batchable portlet on a page)
+        page = int(kw.get('content_page', 1))
+        batch = self.insertBatchingParameters(query, page, max_items)
+
         # match_languages index purpose is to make the default language match
         # if users' doesn't exist in proxy.
         # we use it if 'strict_lang_filtering' is False
@@ -203,7 +210,7 @@ class ContentPortletView(BaseExportView):
         if 'path' in query:
             query['path'] = str(query['path'])
 
-        brains = context.portal_catalog(**query)
+        brains = self.catalog_tool()(**query)
         t.mark('search done')
         # post-filtering
         if search_type == 'related':
@@ -212,7 +219,28 @@ class ContentPortletView(BaseExportView):
             obj_url = obj.absolute_url()
             brains = [o for o in brains if o.getURL() != obj_url]
 
-        return brains
+        # brains don't support slicing through a slice object
+        return brains[batch[0]:batch[1]]
+
+    def insertBatchingParameters(self, query, page, items_per_page):
+        """Add parameters to query so that offset, limit are respected.
+
+        :page: human-friendly page number (starting from 1)
+        :returns: a slice to be applied to results (can be for double
+                  safety, or really need to achieve what's wanted)
+        """
+
+        self.lucene = 'Lucene' in self.catalog_tool().meta_type
+        start = (page - 1) * items_per_page
+        end = start + items_per_page
+        if self.lucene:
+            query['b_start'] = start
+            query['b_size'] = items_per_page
+        else:
+            # results will have to be resliced, ZCatalog has seemingly
+            # no builtin support for offset
+            query['sort-limit'] = end
+        return start, end
 
     def initItems(self):
         brains = self.performSearch()
