@@ -4,7 +4,10 @@ import logging
 from DateTime.DateTime import DateTime
 from AccessControl import Unauthorized
 from Products.CMFCore.utils import getToolByName
+from Products.CPSUtil.timer import Timer
+from Products.CPSUtil.text import summarize
 from Products.CPSSchemas.DataStructure import DataStructure
+
 from exportviews import BaseExportView
 from exportviews import RssMixin
 from exportviews import AtomMixin
@@ -36,20 +39,15 @@ class ContentPortletView(BaseExportView):
         dm = self.datamodel
         return dm['contextual'] or dm['search_type'] == 'related'
 
-    def initItems(self):
-        """Workhorse method, imported from old skins script."""
+    def performSearch(self):
+        """Return brains."""
 
         obj = self.getContextObj()
         context = self.portlet()
         if obj is None:
-            self.items = []  # kept from skins script, but should not happen
-            return
+            return []  # kept from skins script, but should not happen
 
         kw = dict(self.datamodel)  # avoid side effects
-        kw['get_metadata'] = True
-
-        from Products.CPSUtil.timer import Timer
-        from Products.CPSUtil.text import summarize
 
         t = Timer('CPSPortlets getContentItems')
         kw.update(self.request.form)
@@ -181,8 +179,7 @@ class ContentPortletView(BaseExportView):
             query = {}
 
         if not query:
-            self.items = []
-            return
+            return []
 
         # This is for classical ZCatalog
         query['sort_limit'] = max_items
@@ -217,17 +214,39 @@ class ContentPortletView(BaseExportView):
             obj_url = obj.absolute_url()
             brains = [o for o in brains if o.getURL() != obj_url]
 
-        # return the catalog brain's actual content
-        def getBrainInfo():
-            content = None
-            object = None
-            if getattr(brain.aq_inner.aq_explicit, 'getRID', None) is not None:
-                object = brain.getObject()
-                getContent = getattr(object.aq_inner.aq_explicit, 'getContent',
-                                     None)
-                if getContent is not None:
-                    content = getContent()
-            return content, object
+        return brains
+
+    def initItems(self):
+        brains = self.performSearch()
+        self.items = self.convertBrains(brains)
+
+    def brainContent(self, brain):
+        """Pick the brain's actual content.
+
+        NB: should be avoided as much as possible for performance
+        :return: ``(content, brain object)``, where ``content`` is ``None`` if the
+                 brain object is not a proxy, else its target.
+        """
+        content = None
+        obj = None
+        if getattr(brain.aq_inner.aq_explicit, 'getRID', None) is not None:
+            obj = brain.getObject()
+            getContent = getattr(obj.aq_inner.aq_explicit, 'getContent',
+                                 None)
+            if getContent is not None:
+                content = getContent()
+        return content, obj
+
+    def convertBrains(self, brains):
+        """Convert search results (brains) in the expected ``items`` list of dicts.
+        """
+        if not brains:
+            return ()
+
+        context = self.context
+        kw = dict(self.datamodel)  # avoid side-effects
+        kw['get_metadata'] = True
+        kw.update(self.request.form)
 
         items = []
         render_items = int(kw.get('render_items', 0))
@@ -254,7 +273,6 @@ class ContentPortletView(BaseExportView):
             'coverage': 'coverage'}
 
         # portal type icons
-        portal_types = context.portal_types
         renderIcon = context.portal_cpsportlets.renderIcon
         utool = context.portal_url
         base_url = utool.getBaseUrl()
@@ -264,12 +282,12 @@ class ContentPortletView(BaseExportView):
 
             content = None
             if render_items or render_method != DEFAULT_CONTENT_ITEM_DISPLAY:
-                content, object = getBrainInfo()
+                content, brain_obj = self.brainContent(brain)
 
             # DublinCore / metadata information
             metadata_info = {}
             if get_metadata:
-                content = content or getBrainInfo()[0]
+                content = content or self.brainContent()[0]
 
                 for key, attr in metadata_map.items():
                     meth = getattr(content, attr)
@@ -289,7 +307,7 @@ class ContentPortletView(BaseExportView):
             # Item's icon
             icon_tag = ''
             if show_icons:
-                content = content or getBrainInfo()[0]
+                content = content or self.brainContent()[0]
                 ti = content.getTypeInfo()
                 if ti is not None:
                     icon_tag = renderIcon(ti.getId(), base_url, '')
@@ -303,30 +321,10 @@ class ContentPortletView(BaseExportView):
 
             # Item rendering and display
             rendered = ''
-            # render the item using CPSDocument render()
             if render_items:
-                renderable = 1
-                # check whether the cluster exists.
-                # XXX: this could be done in CPSDocument.FlexibleTypeInformation.py
-                if cluster_id:
-                    ti = content.getTypeInfo()
-                    if ti is None:
-                        continue
-                    renderable = 0
-                    for cluster in ti.getProperty('layout_clusters', []):
-                        cl, v = cluster.split(':')
-                        if cl == cluster_id:
-                            renderable = 1
-                            break
-
-                if renderable:
-                    renderer = getattr(content, 'render', None)
-                    if renderer is not None:
-                        try:
-                            rendered = renderer(proxy=object, cluster=cluster_id)
-                        except TypeError:
-                            pass
-
+                self.itemCPSDocumentRender(content,
+                                           cluster_id=cluster_id,
+                                           proxy=brain_obj)
             # render the item using a custom display method (.zpt, .py, .dtml)
             # GR so in case of downstream explicit rendering, we'll allways have
             # the default template going (slow) or a miss.
@@ -354,7 +352,38 @@ class ContentPortletView(BaseExportView):
                  'portal_type': brain['portal_type'],
                  'rpath': brain.relative_path,
                  })
-        self.items = items
+        return items
+
+
+def itemCPSDocumentRender(self, doc, cluster_id=None, proxy=None):
+    """Render ``doc`` the CPSDocument way (layout clusters).
+
+    :param ``doc``: CPSDocument instance.
+    """
+    renderable = 1
+    # check whether the cluster exists.
+    # XXX: this could be done in CPSDocument.FlexibleTypeInformation.py
+    if cluster_id:
+        ti = doc.getTypeInfo()
+        if ti is None:
+            return ''
+        renderable = 0
+        for cluster in ti.getProperty('layout_clusters', []):
+            cl, v = cluster.split(':')
+            if cl == cluster_id:
+                renderable = 1
+                break
+
+    if renderable:
+        renderer = getattr(doc, 'render', None)
+        if renderer is not None:
+            try:
+                return renderer(proxy=proxy, cluster=cluster_id)
+            except TypeError:
+                logger.exception("Error while rendering doc %r "
+                                 "(cluster_id=%r, proxy=%r)",
+                                 doc, cluster_id, proxy)
+                return ''
 
 
 class RssExportView(RssMixin, ContentPortletView):
